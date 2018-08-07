@@ -1,8 +1,8 @@
 id: che-service-plugin
 version: 0.0.1
-type: Che Plugin   # can be `Che Plugin` or `Che Editor`
-name: che-java
-title: Che Java Plugin
-description: ...
-icon: https://....
-url: https://.... # this points to the URL of the tar.gz of the plugin (usually this is the plugin release URL on github)
+type: Che Plugin
+name: che-service
+title: Che Service Plugin
+description: Che Plug-in with Theia plug-in and container definition providing a service
+icon: https://www.eclipse.org/che/images/ico/16x16.png
+url: https://github.com/ws-skeleton/che-service-plugin/releases/download/untagged-dfd687068b9f03269b0e/che-service-plugin.tar.gz

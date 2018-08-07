@@ -1,8 +1,8 @@
 id: che-editor-theia
 version: 0.0.1
-type: Che Plugin   # can be `Che Plugin` or `Che Editor`
-name: che-java
-title: Che Java Plugin
-description: ...
-icon: https://....
-url: https://.... # this points to the URL of the tar.gz of the plugin (usually this is the plugin release URL on github)
+type: Che Plugin
+name: Che Editor
+title: Che Editor
+description: Che Editor adding support of Eclipse Theia
+icon: https://www.eclipse.org/che/images/ico/16x16.png
+url: https://github.com/ws-skeleton/che-editor-theia/releases/download/untagged-6aa64b8a33e59c5d9e3c/che-editor-plugin.tar.gz
