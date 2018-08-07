@@ -1,0 +1,8 @@
+id: che-service-plugin
+version: 0.0.1
+type: Che Plugin   # can be `Che Plugin` or `Che Editor`
+name: che-java
+title: Che Java Plugin
+description: ...
+icon: https://....
+url: https://.... # this points to the URL of the tar.gz of the plugin (usually this is the plugin release URL on github)
