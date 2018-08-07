@@ -1,6 +1,6 @@
 id: che-editor-theia
 version: 0.0.1
-type: Che Plugin
+type: Che Editor
 name: Che Editor
 title: Che Editor
 description: Che Editor adding support of Eclipse Theia
