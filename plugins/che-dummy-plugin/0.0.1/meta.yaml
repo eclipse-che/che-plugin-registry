@@ -1,6 +1,6 @@
 id: che-dummy-plugin
 version: 0.0.1
-type: Che
+type: Che Plugin
 name: Che dummy plugin
 title: Che dummy Plugin
 description: A hello world theia plug-in wrapped into a Che Plug-in
