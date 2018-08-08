@@ -1,0 +1,8 @@
+id: theia-ide
+version: 1.0.0
+type: Che Editor
+name: org.eclipse.che.editor.theia
+title: Eclipse Theia for Eclipse Che
+description: Eclipse Theia
+icon: https://pbs.twimg.com/profile_images/929088242456190976/xjkS2L-0_400x400.jpg
+url: https://github.com/ws-skeleton/che-editor-theia/releases/download/untagged-6aa64b8a33e59c5d9e3c/che-editor-plugin.tar.gz
