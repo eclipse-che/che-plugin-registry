@@ -41,7 +41,7 @@ function install_deps() {
 
 function tag_push() {
   local TARGET=$1
-  docker tag che-plugin-registry $TARGET
+  docker tag ${IMAGE} $TARGET
   docker push $TARGET
 }
 
