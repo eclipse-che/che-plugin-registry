@@ -11,15 +11,6 @@ metadata:
   name: che-plugin-registry-service
 objects:
 - apiVersion: v1
-  kind: Route
-  metadata:
-    name: che-plugin-registry
-  spec:
-    host: ${APPLICATION_DOMAIN}
-    to:
-      kind: Service
-      name: che-plugin-registry
-- apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
@@ -31,9 +22,6 @@ objects:
       app: che-plugin-registry
       deploymentconfig: che-plugin-registry
     strategy:
-      resources:
-        limits:
-          memory: 1Gi
       rollingParams:
         intervalSeconds: 1
         maxSurge: 25%
@@ -43,7 +31,6 @@ objects:
       type: Rolling
     template:
       metadata:
-        creationTimestamp: null
         labels:
           app: che-plugin-registry
           deploymentconfig: che-plugin-registry
@@ -52,6 +39,8 @@ objects:
         - image: ${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: Always
           name: che-plugin-registry
+          ports:
+          - containerPort: 8080
           livenessProbe:
             httpGet:
               path: /plugins
@@ -59,9 +48,6 @@ objects:
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 3
-          name: httpd-example
-          ports:
-          - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /plugins
@@ -93,9 +79,5 @@ parameters:
 - description: Maximum amount of memory the container can use.
   displayName: Memory Limit
   name: MEMORY_LIMIT
-  required: true
   value: 256Mi
-- description: The exposed hostname that will route to the httpd service, if left
-    blank a value will be defaulted.
-  displayName: Application Hostname
-  name: APPLICATION_DOMAIN
+
