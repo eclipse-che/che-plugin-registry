@@ -1,6 +1,3 @@
-FROM quay.io/openshiftio/rhel-base-httpd:latest
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
 
 COPY /plugins /var/www/html/plugins
-ADD entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
