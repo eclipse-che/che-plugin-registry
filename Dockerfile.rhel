@@ -1,5 +1,6 @@
 FROM quay.io/openshiftio/rhel-base-httpd:latest
 
 COPY /plugins /var/www/html/plugins
-RUN rm -rf /run/httpd/*
-CMD ["httpd", "-D", "FOREGROUND"]
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
