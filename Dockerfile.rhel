@@ -1,2 +1,5 @@
 FROM quay.io/openshiftio/rhel-base-httpd:latest
+
 COPY /plugins /var/www/html/plugins
+
+CMD ["httpd", "-D", "FOREGROUND"]
