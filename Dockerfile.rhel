@@ -1,3 +1,17 @@
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7
+FROM quay.io/openshiftio/rhel-base-httpd:latest
+
+RUN sed -i -e "s,Listen 80,Listen 8080," /etc/httpd/conf/httpd.conf
+RUN sed -i -e "s,logs/error_log,/dev/stderr," /etc/httpd/conf/httpd.conf
+RUN sed -i -e "s,logs/access_log,/dev/stdout," /etc/httpd/conf/httpd.conf
+
+EXPOSE 80
+
+# the htpasswd file may be periodically replaced during run
+RUN chmod a+rwX            /etc/httpd/conf
+RUN chmod a+rwX            /run/httpd
 
 COPY /plugins /var/www/html/plugins
+
+STOPSIGNAL SIGWINCH
+
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
