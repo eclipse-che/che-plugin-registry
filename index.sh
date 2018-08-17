@@ -25,9 +25,8 @@ do
         # 5. Append `"` at the beginning of each line
         sed 's/^/\"/g'  |\
         # 6. Remove all new lines
-        tr -d '\n' |\
-        # 7. Remove last ','
-        sed 's/,$//g'
+        tr -d '\n'
+    echo " \"links\": {\"self\":\"$(echo $i|sed 's/^.//g' )\" }"
     echo "}"
 done
 echo "]"
