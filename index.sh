@@ -17,7 +17,7 @@ do
     # 1. read meta.yaml to stio
     cat $i| \
         # 2. filter lines with name,version,type
-        grep -e name -e version -e type |\
+        grep -e 'name:' -e 'version:' -e 'type:' -e 'id:' |\
         # 3. Replace ` :` with `":"`
         sed 's/: /\":"/g'  |\
         # 4. Append `",` to the end of each line
