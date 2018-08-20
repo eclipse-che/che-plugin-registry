@@ -1,7 +1,7 @@
-id: theia-ide
+id: org.eclipse.che.editor.theia
 version: 1.0.0
 type: Che Editor
-name: org.eclipse.che.editor.theia
+name: theia-ide
 title: Eclipse Theia for Eclipse Che
 description: Eclipse Theia
 icon: https://pbs.twimg.com/profile_images/929088242456190976/xjkS2L-0_400x400.jpg
