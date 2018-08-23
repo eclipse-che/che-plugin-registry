@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## browse all plugin directories which names goes as follow
 ##  <plugin id>/<plugin version>
 ## and check that directory names match with id/version in meta.yaml files
