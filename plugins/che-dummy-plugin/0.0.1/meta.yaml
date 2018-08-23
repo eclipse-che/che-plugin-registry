@@ -1,5 +1,5 @@
 id: che-dummy-plugin
-version: 0.0.1
+version: 1.0.1
 type: Che Plugin
 name: Che dummy plugin
 title: Che dummy Plugin
