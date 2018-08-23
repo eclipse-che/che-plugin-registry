@@ -13,7 +13,6 @@ for d in */ ; do
   VERSION_DIR_NAME=${VERSION_DIR_NAME%/}
   cd $VERSION_DIR_NAME
 
-
   ID_YAML=$(grep "id: " meta.yaml)
   ID_YAML=${ID_YAML:4}
   if [[ "$ID_YAML" != "$ID_DIR_NAME" ]];then

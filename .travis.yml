@@ -1,1 +1,4 @@
-language: generic
+language: bash
+
+script:
+     - check_plugins_location.sh
