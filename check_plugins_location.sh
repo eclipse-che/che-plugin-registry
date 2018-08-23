@@ -12,7 +12,7 @@ for d in */ ; do
   VERSION_DIR_NAME=${VERSION_DIR_NAME%/}
   cd $VERSION_DIR_NAME
 
-  ID_YAML=$(yq .id meta.yaml | tr -d \")
+  ID_YAML=$(yq .id meta.yaml | sed 's/^"\(.*\)"$/\1/')
   if [[ "$ID_YAML" != "$ID_DIR_NAME" ]];then
     echo "!!! ID mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
     echo "!!!   id in meta.yaml: '${ID_YAML}'"
@@ -20,7 +20,7 @@ for d in */ ; do
     FOUND=true
   fi
 
-  VERSION_YAML=$(yq .version meta.yaml | tr -d \")
+  VERSION_YAML=$(yq .version meta.yaml | sed 's/^"\(.*\)"$/\1/')
   VERSION_YAML="${VERSION_YAML%\"}"
   if [[ "$VERSION_YAML" != "$VERSION_DIR_NAME" ]];then
     echo "!!! Version mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
