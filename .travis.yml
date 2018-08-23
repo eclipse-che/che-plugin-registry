@@ -1,4 +1,7 @@
 language: bash
 
+install:
+  - pip install --user yq
+
 script:
-     - bash check_plugins_location.sh
+  - bash check_plugins_location.sh
