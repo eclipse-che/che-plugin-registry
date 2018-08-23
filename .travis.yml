@@ -1,4 +1,4 @@
 language: bash
 
 script:
-     - check_plugins_location.sh
+     - bash check_plugins_location.sh
