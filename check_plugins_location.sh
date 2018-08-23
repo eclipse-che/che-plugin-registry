@@ -21,7 +21,6 @@ for d in */ ; do
   fi
 
   VERSION_YAML=$(yq .version meta.yaml | sed 's/^"\(.*\)"$/\1/')
-  VERSION_YAML="${VERSION_YAML%\"}"
   if [[ "$VERSION_YAML" != "$VERSION_DIR_NAME" ]];then
     echo "!!! Version mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
     echo "!!!   version in meta.yaml: '${VERSION_YAML}'"
