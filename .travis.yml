@@ -1,7 +1,8 @@
 language: bash
 
-install:
-  - pip install --user yq
+sudo: required
+
+services: docker
 
 script:
-  - bash check_plugins_location.sh
+  - docker build .
