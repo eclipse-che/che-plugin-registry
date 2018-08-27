@@ -1,4 +1,4 @@
-id: org.eclipse.che.editor.theia
+id: org.eclipse.che.editor.thei
 version: 1.0.0
 type: Che Editor
 name: theia-ide
