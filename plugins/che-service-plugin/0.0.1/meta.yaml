@@ -5,4 +5,4 @@ name: Che Service
 title: Che Service Plugin
 description: Che Plug-in with Theia plug-in and container definition providing a service
 icon: https://www.eclipse.org/che/images/ico/16x16.png
-url: https://github.com/ws-skeleton/che-service-plugin/releases/download/untagged-23f4559d5c7944305898/che-service-plugin.tar.gz
+url: https://github.com/ws-skeleton/che-service-plugin/releases/download/untagged-5c4c888ff2de8ae7a5e2/che-service-plugin.tar.gz
