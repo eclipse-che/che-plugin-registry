@@ -1,0 +1,8 @@
+id: che-demo-plugin
+version: 0.0.1
+type: Che Plugin
+name: Che Demo
+title: Che Demo Plugin
+description: Che Plug-in with Theia plug-in and container definition providing a service
+icon: https://www.eclipse.org/che/images/ico/16x16.png
+url: https://github.com/garagatyi/che-service-plugin/releases/download/Demo2/che-service-plugin.tar.gz
