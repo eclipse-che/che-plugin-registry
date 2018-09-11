@@ -23,7 +23,7 @@ You can deploy Che plugin registry on Openshift with command.
 ```
 ## Docker
 ```
-docker run -it  -p 8080:8080 eclipse/che-plugin-registry
+docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
 ```
 
 ## Get index list of all plugins
