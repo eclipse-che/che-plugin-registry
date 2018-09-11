@@ -32,7 +32,7 @@ Example:
 curl  "http://localhost:8080/index.json"
 ```
 Response:
-```json
+```javascript
 [
   {
     "id": "org.eclipse.che.editor.theia",
