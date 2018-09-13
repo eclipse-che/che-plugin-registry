@@ -10,11 +10,10 @@ EXPOSE 80
 RUN chmod a+rwX            /etc/httpd/conf
 RUN chmod a+rwX            /run/httpd
 
+RUN mkdir /var/www/html/plugins
 COPY /plugins /var/www/html/plugins
-COPY index.sh /var/www/html/
-COPY .htaccess /var/www/html/
-RUN cd /var/www/html/ && ./index.sh > index.json && rm index.sh
-
+COPY index.sh .htaccess  README.md /var/www/html/
+RUN cd /var/www/html/ && ./index.sh > plugins/index.json && rm index.sh
 
 STOPSIGNAL SIGWINCH
 
