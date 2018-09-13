@@ -19,11 +19,3 @@ RUN cd /var/www/html/ && ./index.sh > plugins/index.json && rm index.sh
 STOPSIGNAL SIGWINCH
 
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-
-
-
-AllowOverride None
-
-
-
-sed -i -e "s,AllowOverride None,AllowOverride All," httpd.conf
