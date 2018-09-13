@@ -3,6 +3,7 @@ FROM quay.io/openshiftio/rhel-base-httpd:latest
 RUN sed -i -e "s,Listen 80,Listen 8080," /etc/httpd/conf/httpd.conf
 RUN sed -i -e "s,logs/error_log,/dev/stderr," /etc/httpd/conf/httpd.conf
 RUN sed -i -e "s,logs/access_log,/dev/stdout," /etc/httpd/conf/httpd.conf
+RUN sed -i -e "s,AllowOverride None,AllowOverride All," /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 
@@ -18,3 +19,11 @@ RUN cd /var/www/html/ && ./index.sh > plugins/index.json && rm index.sh
 STOPSIGNAL SIGWINCH
 
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+
+
+AllowOverride None
+
+
+
+sed -i -e "s,AllowOverride None,AllowOverride All," httpd.conf
