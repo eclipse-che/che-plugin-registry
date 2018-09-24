@@ -8,27 +8,29 @@ for d in */ ; do
   ID_DIR_NAME=${d%/}
   cd $d
 
-  VERSION_DIR_NAME=$(ls -d */)
-  VERSION_DIR_NAME=${VERSION_DIR_NAME%/}
-  cd $VERSION_DIR_NAME
+  for VERSION_DIR_NAME in */ ; do
+    VERSION_DIR_NAME=${VERSION_DIR_NAME%/}
+    cd $VERSION_DIR_NAME
 
-  ID_YAML=$(yq r meta.yaml id | sed 's/^"\(.*\)"$/\1/')
-  if [[ "$ID_YAML" != "$ID_DIR_NAME" ]];then
-    echo "!!! ID mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
-    echo "!!!   id in meta.yaml: '${ID_YAML}'"
-    echo "!!!   id directory name: '${ID_DIR_NAME}' "
-    FOUND=true
-  fi
+    ID_YAML=$(yq r meta.yaml id | sed 's/^"\(.*\)"$/\1/')
+    if [[ "$ID_YAML" != "$ID_DIR_NAME" ]];then
+      echo "!!! ID mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
+      echo "!!!   id in meta.yaml: '${ID_YAML}'"
+      echo "!!!   id directory name: '${ID_DIR_NAME}' "
+      FOUND=true
+    fi
 
-  VERSION_YAML=$(yq r meta.yaml version | sed 's/^"\(.*\)"$/\1/')
-  if [[ "$VERSION_YAML" != "$VERSION_DIR_NAME" ]];then
-    echo "!!! Version mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
-    echo "!!!   version in meta.yaml: '${VERSION_YAML}'"
-    echo "!!!   version directory name: '${VERSION_DIR_NAME}' "
-    FOUND=true
-  fi
+    VERSION_YAML=$(yq r meta.yaml version | sed 's/^"\(.*\)"$/\1/')
+    if [[ "$VERSION_YAML" != "$VERSION_DIR_NAME" ]];then
+      echo "!!! Version mismatch in plugin '${ID_DIR_NAME}/${VERSION_DIR_NAME}':"
+      echo "!!!   version in meta.yaml: '${VERSION_YAML}'"
+      echo "!!!   version directory name: '${VERSION_DIR_NAME}' "
+      FOUND=true
+    fi
+    cd ..
+  done
 
-  cd ../..
+  cd ..
 done
 
 if [[ $FOUND ]];then
