@@ -5,4 +5,4 @@ name: theia-ide
 title: Eclipse Theia for Eclipse Che
 description: Eclipse Theia
 icon: https://pbs.twimg.com/profile_images/929088242456190976/xjkS2L-0_400x400.jpg
-url: https://github.com/ws-skeleton/che-editor-theia/releases/download/untagged-892e01b21d0145207b0f/che-editor-plugin.tar.gz
+url: https://github.com/ws-skeleton/che-editor-theia/releases/download/untagged-32e907210f0dc3619bec/che-editor-plugin.tar.gz
