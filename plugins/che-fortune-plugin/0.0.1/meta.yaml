@@ -1,8 +1,8 @@
 id: che-fortune-plugin
 version: 0.0.1
-type: Che Plugin
+type: Theia remote plugin
 name: Che fortune
 title: Che fortune Plugin
 description: Che Plug-in with Theia plug-in
 icon: https://www.eclipse.org/che/images/ico/16x16.png
-url: https://github.com/ws-skeleton/che-fortune-plugin/releases/download/test/che-fortune-plugin.tar.gz
+url: https://github.com/ws-skeleton/che-fortune-plugin/releases/download/test9/che-fortune-plugin.tar.gz
