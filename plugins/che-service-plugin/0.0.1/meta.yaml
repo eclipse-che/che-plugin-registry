@@ -1,8 +1,8 @@
 id: che-service-plugin
 version: 0.0.1
 type: Che Plugin
-name: Che Samples: REST API Sidecar Plugin
-title: Che Samples: REST API Sidecar Plugin
+name: Che Samples REST API Sidecar Plugin
+title: Che Samples REST API Sidecar Plugin
 description: Che Plug-in with Theia plug-in and container definition providing a service
 icon: https://www.eclipse.org/che/images/ico/16x16.png
 url: https://github.com/ws-skeleton/che-service-plugin/releases/download/untagged-5c4c888ff2de8ae7a5e2/che-service-plugin.tar.gz
