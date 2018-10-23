@@ -1,0 +1,8 @@
+id: che-samples-container-fortune-plugin
+version: 0.0.1
+type: Theia plugin
+name: Che Samples Container Fortune Plugin
+title: Che Samples Container Fortune Plugin
+description: Fortune plug-in running in its own container that provides the fortune tool
+icon: https://www.eclipse.org/che/images/ico/16x16.png
+url: https://github.com/ws-skeleton/che-fortune-plugin/releases/download/untagged-bbffe2843692982f673b/che_fortune_plugin.theia
