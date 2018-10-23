@@ -1,4 +1,4 @@
-id: che-samples-container-fortune-plugin
+id: org.eclipse.che.samples.container-fortune
 version: 0.0.1
 type: Theia plugin
 name: Che Samples Container Fortune Plugin
