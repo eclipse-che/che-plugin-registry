@@ -1,4 +1,4 @@
-id: dirigible-che-editor-plugin
+id: org.eclipse.che.editor.dirigible
 version: 1.0.0
 type: Che Plugin
 name: dirigible-che-editor-plugin
