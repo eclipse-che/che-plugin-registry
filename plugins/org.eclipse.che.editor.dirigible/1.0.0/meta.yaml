@@ -1,6 +1,6 @@
 id: org.eclipse.che.editor.dirigible
 version: 1.0.0
-type: Che Plugin
+type: Che Editor
 name: dirigible-che-editor-plugin
 title: Eclipse Dirigible for Eclipse Che
 description: Eclipse Dirigible as App Development Platform for Eclipse Che
