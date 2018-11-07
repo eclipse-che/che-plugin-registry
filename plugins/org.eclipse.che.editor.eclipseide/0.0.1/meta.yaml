@@ -1,0 +1,8 @@
+id: org.eclipse.che.editor.eclipseide
+version: 0.0.1
+type: Che Editor
+name: eclipse-ide
+title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
+description: Eclipse IDE
+icon: https://github.com/eclipse/eclipse.platform/raw/master/platform/org.eclipse.sdk/eclipse256.png
+url: https://github.com/mickaelistria/che-editor-eclipseide/releases/download/untagged-267df4c0cbc3643d425b/che-editor-plugin.tar.gz
