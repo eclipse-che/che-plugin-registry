@@ -1,4 +1,4 @@
-id: org.eclipse.che.editor.eclipseide
+id: eclipse-ide-editor
 version: 0.0.1
 type: Che Editor
 name: eclipse-ide

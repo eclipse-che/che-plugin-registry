@@ -1,0 +1,8 @@
+id: che-container-exec
+version: 0.0.1
+type: Che Plugin
+name: Che Container Exec Service
+title: Container Exec Service Plugin for Che Workspaces
+description: Che Plug-in with container-exec service that provides the ability to creatie a terminal or to execute commands for Eclipse Che workspaces.
+icon: https://www.eclipse.org/che/images/ico/16x16.png
+url: https://github.com/ws-skeleton/che-machine-exec/releases/download/0.0.1alfa2/che-service-plugin.tar.gz

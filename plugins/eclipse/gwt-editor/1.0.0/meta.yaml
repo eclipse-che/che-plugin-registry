@@ -1,4 +1,4 @@
-id: org.eclipse.che.editor.gwt
+id: gwt-editor
 version: 1.0.0
 type: Che Editor
 name: gwt-ide
