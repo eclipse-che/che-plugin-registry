@@ -21,6 +21,31 @@ You can deploy Che plugin registry on Openshift with command.
              -p IMAGE_TAG="latest" \
              -p PULL_POLICY="IfNotPresent"
 ```
+
+## Kubernetes
+
+You can deploy Che plugin registry on Kubernetes using [helm](https://docs.helm.sh/).
+
+```bash
+
+NAMESPACE="kube-che"
+DOMAIN="$(minikube ip).nip.io"
+helm upgrade --install che-plugin-registry \
+    --debug \
+    --namespace ${NAMESPACE} \
+    --set global.ingressDomain=${DOMAIN} \
+    ./kubernetes/che-plugin-registry/
+
+```
+
+You can use the following command to uninstall it.
+
+```bash
+
+helm delete --purge che-plugin-registry
+
+```
+
 ## Docker
 ```
 docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
