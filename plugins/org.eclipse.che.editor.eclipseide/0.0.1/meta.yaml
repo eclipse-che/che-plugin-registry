@@ -4,5 +4,5 @@ type: Che Editor
 name: eclipse-ide
 title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
 description: Eclipse IDE
-icon: https://github.com/eclipse/eclipse.platform/raw/master/platform/org.eclipse.sdk/eclipse256.png
+icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
 url: https://github.com/ws-skeleton/che-editor-eclipseide/releases/download/0.0.1/che-editor-plugin.tar.gz

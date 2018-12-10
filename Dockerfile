@@ -2,7 +2,8 @@ FROM mikefarah/yq
 RUN apk add --no-cache bash
 COPY /plugins /test/plugins
 COPY check_plugins_location.sh /test/check_plugins_location.sh
-RUN cd /test/ && ./check_plugins_location.sh
+COPY check_plugins_images.sh /test/check_plugins_images.sh
+RUN cd /test/ && ./check_plugins_location.sh && ./check_plugins_images.sh
 
 FROM registry.centos.org/centos/httpd-24-centos7
 RUN mkdir /var/www/html/plugins

@@ -4,4 +4,5 @@ type: Che Editor
 name: gwt-ide
 title: Eclipse GWT IDE for Eclipse Che
 description: Eclipse GWT IDE
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 url: https://github.com/skabashnyuk/che-editor-gwt-ide/releases/download/untagged-c615b3964b2022b5896f/che-editor-plugin.tar.gz
