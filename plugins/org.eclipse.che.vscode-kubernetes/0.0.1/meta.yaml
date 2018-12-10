@@ -1,0 +1,10 @@
+id: org.eclipse.che.vscode-kubernetes
+version: 0.0.1
+type: VS Code extension
+name: Vscode k8s extension
+title: Develop, deploy and debug Kubernetes applications
+description: Kubernetes extension from VS Code marketplace https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+attributes:
+  extension: "vscode:extension/ms-kubernetes-tools.vscode-kubernetes-tools"
+  container-image: "garagatyi/remotetheia:kubectl"
