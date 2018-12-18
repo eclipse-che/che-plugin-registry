@@ -5,4 +5,4 @@ name: gwt-ide
 title: Eclipse GWT IDE for Eclipse Che
 description: Eclipse GWT IDE
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
-url: https://github.com/skabashnyuk/che-editor-gwt-ide/releases/download/untagged-c615b3964b2022b5896f/che-editor-plugin.tar.gz
+url: https://github.com/eclipse/che-editor-gwt-ide/releases/download/che-editor-gwt-ide-2018-12-18_1600-56/che-editor-plugin.tar.gz
