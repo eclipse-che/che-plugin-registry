@@ -1,0 +1,252 @@
+/**
+  Third Party / Dependency imports here
+*/
+$font-path: './fonts/';
+$img-path: './imgs/';
+$icon-font-path: './fonts/';
+
+/**
+  Patternfly Sass
+*/
+@import 'patternfly';
+
+/**
+  Patternfly React Specific Sass Extensions
+*/
+@import 'patternfly-react';
+
+/**
+  Patternfly React Specific Sass Extensions
+*/
+@import 'patternfly-react-extensions';
+
+/**
+  Application Overrides
+*/
+
+//override navbar-default from React Bootstrap NavBar
+.navbar-default .navbar-toggle {
+  &:focus,
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.navbar-pf-vertical {
+  .nav .nav-item-iconic > .pficon-user {
+    padding-right: 7px;
+  }
+}
+
+.container-pf-nav-pf-vertical {
+  background: #f5f5f5;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.overview-list-icon {
+  width: 50px;
+}
+
+.blank-slate-pf {
+  &.full-page-blank-slate {
+    border: none;
+    background-color: #fff;
+    border: none;
+    height: 100%;
+    margin: 0 -20px;
+  }
+}
+$catalog-item-icon-size-lg: 40px;
+$catalog-item-icon-size-sm: 24px;
+
+.catalog-tile-pf {
+  padding-bottom: 20px;
+}
+.catalog-item-icon {
+  padding-right: 10px;
+
+  &__icon {
+    font-size: $catalog-item-icon-size-sm;
+
+    &--large {
+      font-size: $catalog-item-icon-size-lg;
+    }
+  }
+
+  &__img {
+    max-height: $catalog-item-icon-size-sm;
+    max-width: $catalog-item-icon-size-sm;
+
+    &[src$=".svg"] {
+      height: $catalog-item-icon-size-sm;
+    }
+
+    &--large {
+      max-height: $catalog-item-icon-size-lg;
+      max-width: $catalog-item-icon-size-lg;
+
+      &[src$=".svg"] {
+        height: $catalog-item-icon-size-lg;
+      }
+    }
+  }
+}
+
+.catalog-page {
+  background: #fff;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(3,3,3,.2);
+  display: flex;
+  padding: ($grid-gutter-width / 2) 0 0;
+
+  &__content {
+    flex: 1 1 auto;
+    margin: 0 ($grid-gutter-width / 2);
+  }
+
+  &__heading {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 0 20px;
+  }
+
+  &__num-items {
+    border-bottom: 1px solid $color-pf-black-500;
+    font-weight: 700;
+    margin: 0 0 $grid-gutter-width 0;
+    padding: 0 0 20px;
+  }
+
+  &__tabs {
+    flex: 0 0 170px;
+    margin: 0 ($grid-gutter-width / 2) 0 0;
+  }
+
+  &__no-filter-results {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    &-title {
+      color: $color-pf-black-700;
+      font-size: 18px;
+    }
+  }
+}
+
+.catalog-create-instance {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+}
+
+.catalog-create-instance-dialog {
+  .modal-body {
+    padding-bottom: 0;
+  }
+  .catalog-create-instance-form {
+    padding-top: 10px;
+    [class*='col-'] {
+      padding: 0 10px;
+    }
+  }
+}
+
+
+.catalog-modal__body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.catalog-modal {
+  &__body {
+    display: flex;
+  }
+
+  &__description {
+    flex: 1;
+    padding-left: 20px;
+    &__header {
+      border-bottom: 1px solid $color-pf-black-300;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__subscribe {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  &__footer {
+    border-top: 1px solid $color-pf-black-200
+  }
+}
+
+.catalog-modal__long-description {
+  margin-top: 10px;
+}
+
+.catalog-form-control.form-control[readonly] {
+  background-color: $color-pf-white;
+  border: 0;
+  color: inherit;
+  font-weight: 700;
+  &[type=textarea] {
+    resize: none;
+  }
+}
+
+.catalog-dropdownselect {
+  .dropdown {
+    border-width: 0;
+    display: flex;
+    padding: 0;
+    width: 100%;
+
+    .dropdown-menu {
+      width: 100%;
+    }
+    .dropdown-toggle.btn {
+      text-align: left;
+      width: 100%;
+    }
+    .dropdown-toggle.btn {
+      > span:first-child {
+        width: 92%;
+      }
+      > span {
+        display:inline-block;
+      }
+    }
+
+    .catalog-dropdownselect-menuitem {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .catalog-dropdownselect-menuitem-selected,
+    .catalog-dropdownselect-menuitem-selected:hover,
+    .catalog-dropdownselect-menuitem-selected:focus {
+      background-color: $color-pf-blue-400;
+      border-width: 0;
+      color: $color-pf-white;
+
+      > a, > a:focus {
+        background-color: inherit;
+        border-color: $color-pf-blue-400;
+        color: inherit;
+        outline: inherit;
+      }
+    }
+    .catalog-dropdownselect-menuitemname {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .catalog-dropdownselect-menuitemcheck {
+      padding-right: 5px;
+      text-align: right;
+    }
+  }
+}
