@@ -1,0 +1,10 @@
+id: org.eclipse.che.vscode-sonarlint
+version: 0.0.1
+type: VS Code extension
+name: vscode-sonarlint
+title: Sonarlint code intelligence
+description: VS Code extension that provides sonarlint features
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+attributes:
+  extension: "vscode:extension/SonarSource.sonarlint-vscode"
+  container-image: "garagatyi/remotetheia:java"
