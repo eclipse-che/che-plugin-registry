@@ -38,8 +38,9 @@ function install_deps() {
   /usr/sbin/setenforce 0  || true
 
   # Get all the deps in
-  yum -y install \
-    docker \
+  yum install -y yum-utils device-mapper-persistent-data lvm2
+  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  yum install -y docker-ce \
     git
 
   service docker start
