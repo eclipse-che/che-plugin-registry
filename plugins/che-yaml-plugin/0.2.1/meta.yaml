@@ -1,0 +1,10 @@
+id: che-yaml-plugin
+version: 0.2.1
+type: VS Code extension
+name: Che YAML Plugin
+title: Che YAML Plugin
+description: YAML Language Support by Red Hat, with built-in Kubernetes and Kedge syntax support
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+attributes:
+  extension: "vscode:extension/redhat.vscode-yaml"
+  container-image: "jpinkney/che7-yaml" 
