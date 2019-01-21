@@ -6,6 +6,3 @@ title: Eclipse Dirigible for Eclipse Che
 description: Eclipse Dirigible as App Development Platform for Eclipse Che
 icon: https://www.dirigible.io/img/dirigible.svg
 url: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/releases/download/1.0.0/dirigible-che-editor-plugin.tar.gz
-publisher: Red Hat, Inc.
-category: Editor
-repository: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/
