@@ -6,6 +6,3 @@ title: Jupyter Notebook as Editor for Eclipse Che
 description: Jupyter Notebook as Editor for Eclipse Che
 icon: https://jupyter.org/assets/main-logo.svg
 url: https://github.com/ws-skeleton/che-editor-jupyter/releases/download/untagged-cc4e4c9a7741551b6776/che-editor-plugin.tar.gz
-publisher: Red Hat, Inc.
-category: Editor
-repository: https://github.com/ws-skeleton/che-editor-jupyter/

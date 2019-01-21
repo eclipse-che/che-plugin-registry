@@ -11,9 +11,6 @@ Useful when you change plugin metadata files and rebuild the image.
 
 ## https://hub.docker.com/
 
-Note that the Dockerfiles feature multi-stage build, so it requires Docker of version 17.05 and higher.  
-Though you may also just provide the image to the older versions of Docker (ex. on Minishift) by having it build on newer version, and pushing and pulling it from Docker Hub.
-
 ```eclipse/che-plugin-registry:latest``` image would be rebuilt after each commit in master
 
 ## OpenShift
