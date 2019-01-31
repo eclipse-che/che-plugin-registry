@@ -5,4 +5,4 @@ name: dirigible-che-editor-plugin
 title: Eclipse Dirigible for Eclipse Che
 description: Eclipse Dirigible as App Development Platform for Eclipse Che
 icon: https://www.dirigible.io/img/dirigible.svg
-url: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/releases/download/1.0.0/dirigible-che-editor-plugin.tar.gz
+url: https://raw.githubusercontent.com/dirigiblelabs/dirigible-che-editor-plugin/817f57ddd61cc4f5f0f99a18dc95b7507a31ab4d/etc/che-plugin.yaml
