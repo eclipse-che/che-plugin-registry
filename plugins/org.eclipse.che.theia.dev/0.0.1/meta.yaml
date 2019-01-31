@@ -5,4 +5,4 @@ name: Che Theia Dev Plugin
 title: Che Theia Dev Plugin
 description: Che Theia Dev Plugin
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
-url: https://github.com/che-incubator/che-theia-dev-plugin/releases/download/0.0.1/che-theia-dev-plugin.tar.gz
+url: https://github.com/che-incubator/che-theia-dev-plugin/releases/download/0.0.2/che-theia-dev-plugin.tar.gz
