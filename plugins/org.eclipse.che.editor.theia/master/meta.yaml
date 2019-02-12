@@ -2,8 +2,8 @@ id: org.eclipse.che.editor.theia
 version: master
 type: Che Editor
 name: theia-ide
-title: Eclipse Theia for Eclipse Che
-description: Eclipse Theia, Get the latest release each day
+title: Eclipse Theia development version
+description: Eclipse Theia, get the latest release each day
 icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
 url: https://github.com/eclipse/che-theia/releases/download/editor-master/che-editor-plugin.tar.gz
 publisher: Red Hat, Inc.
