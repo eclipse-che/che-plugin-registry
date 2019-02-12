@@ -9,3 +9,7 @@ attributes:
   extension: "vscode:extension/SonarSource.sonarlint-vscode"
   container-image: "garagatyi/remotetheia:java"
   containerImage: "garagatyi/remotetheia:java"
+firstPublicationDate: "2019-02-05"
+category: Linter
+publisher: SonarSource
+repository: https://www.sonarlint.org/
