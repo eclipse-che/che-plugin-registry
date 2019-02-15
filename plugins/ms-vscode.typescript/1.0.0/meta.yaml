@@ -1,0 +1,10 @@
+id: ms-vscode.typescript
+version: 1.0.0
+type: VS Code extension
+name: Typescript
+title: Typescript language features
+description: Typescript language features
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+url: https://github.com/tolusha/ms-code.typescript/releases/download/1.0.0/che-typescript-language.vsix
+attributes:
+  containerImage: "eclipse/che-theia-endpoint-runtime"
