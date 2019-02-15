@@ -2,7 +2,7 @@ id: ms-vscode.node-debug
 version: 1.0.0
 type: VS Code extension
 name: Node Debug (legacy)
-title: Node.js debugging support
+title: Node.js debugging support (legasy)
 description: Node debug (legacy) is the debugger for Node.js versions < 8.0. Together with Node Debug forms the Node.js debugging experience. https://marketplace.visualstudio.com/items?itemName=ms-vscode.node-debug
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
