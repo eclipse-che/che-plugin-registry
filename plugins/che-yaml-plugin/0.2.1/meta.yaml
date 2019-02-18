@@ -7,5 +7,5 @@ description: YAML Language Support by Red Hat, with built-in Kubernetes and Kedg
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 attributes:
   extension: "vscode:extension/redhat.vscode-yaml"
-  container-image: "eclipse/che-theia"
-  containerImage: "eclipse/che-theia"
+  container-image: "jpinkney/che7-yaml"
+  containerImage: "jpinkney/che7-yaml"
