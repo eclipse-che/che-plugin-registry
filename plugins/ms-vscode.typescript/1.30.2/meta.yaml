@@ -10,4 +10,4 @@ publisher: Red Hat, Inc.
 repository: https://github.com/Microsoft/vscode
 category: Language
 attributes:
-  containerImage: "eclipse/che-theia-endpoint-runtime"
+  containerImage: "eclipse/che-theia-endpoint-runtime:nightly"
