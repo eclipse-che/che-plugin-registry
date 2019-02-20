@@ -57,7 +57,7 @@ docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
 ## Get index list of all plugins
 Example:
 ```
-curl  "http://localhost:8080/index.json"
+curl  "http://localhost:8080/plugins/index.json"
 ```
 Response:
 ```javascript
