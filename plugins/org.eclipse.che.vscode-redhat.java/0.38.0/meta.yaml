@@ -1,0 +1,14 @@
+id: org.eclipse.che.vscode-redhat.java
+version: 0.38.0
+type: VS Code extension
+name: Java Language Server
+title: Language Support for Java
+description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/java/0.38.0/vspackage
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+publisher: Red Hat, Inc.
+repository: https://github.com/redhat-developer/vscode-java
+category: Language
+firstPublicationDate: "2019-02-20"
+attributes:
+  containerImage: "eclipse/che-remote-plugin-runner-java8:nightly"
