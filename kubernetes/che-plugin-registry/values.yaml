@@ -13,3 +13,5 @@ chePluginRegistryMemoryLimit: 256Mi
 
 global:
   ingressDomain: 192.168.99.100.nip.io
+  ingress:
+    class: 'nginx'
