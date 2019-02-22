@@ -60,5 +60,5 @@ RUN set -eux; \
     go version
 
 ENV GOPATH /go
-ENV GOROOT /user/local/go
+ENV GOROOT /usr/local/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
