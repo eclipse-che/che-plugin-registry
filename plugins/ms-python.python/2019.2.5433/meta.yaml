@@ -5,7 +5,8 @@ name: Python
 title: Python extension
 description: Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.
 icon: https://ms-python.gallerycdn.vsassets.io/extensions/ms-python/python/2019.2.5433/1551293607012/Microsoft.VisualStudio.Services.Icons.Default
-url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/python/2019.2.5433/vspackage
+--url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/python/2019.2.5433/vspackage
+url: https://github.com/tolusha/ms-python.python/releases/download/1.0.0/ms-python.python-2018.10.1.vsix
 publisher: Red Hat, Inc.
 repository: https://github.com/Microsoft/vscode-python
 category: Language
