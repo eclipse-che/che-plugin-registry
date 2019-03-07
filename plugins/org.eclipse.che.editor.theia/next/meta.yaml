@@ -1,5 +1,5 @@
 id: org.eclipse.che.editor.theia
-version: master
+version: next
 type: Che Editor
 name: theia-ide
 title: Eclipse Theia development version.
