@@ -1,14 +1,17 @@
-id: org.eclipse.che.vscode-redhat.java
+id: org.eclipse.che.vscode-redhat.java-and-yaml
 version: 0.38.0
 type: VS Code extension
 name: Language Support for Java(TM)
 title: Language Support for Java(TM) by Red Hat
 description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
-url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/java/0.38.0/vspackage
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
 firstPublicationDate: "2019-02-20"
+extensions:
+  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/vscode-yaml/0.3.0/vspackage
+  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/java/0.38.0/vspackage
+  - vscode:extension/redhat.vscode-xml
 attributes:
   containerImage: "eclipse/che-remote-plugin-runner-java8:nightly"
