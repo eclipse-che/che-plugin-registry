@@ -1,14 +1,14 @@
 id: ms-kubernetes-tools.vscode-kubernetes-tools
-version: 0.1.16
+version: 0.1.17
 type: VS Code extension
 name: Kubernetes
 title: Kubernetes Tools
 description: Develop, deploy and debug Kubernetes applications
-url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-kubernetes-tools/vsextensions/vscode-kubernetes-tools/0.1.16/vspackage
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-kubernetes-tools/vsextensions/vscode-kubernetes-tools/0.1.17/vspackage
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
 repository: https://github.com/Azure/vscode-kubernetes-tools
 category: Other
 firstPublicationDate: "2019-03-11"
 attributes:
-  containerImage: "eclipse/che-remote-plugin-kubernetes-tooling-0.1.16:nightly"
+  containerImage: "eclipse/che-remote-plugin-kubernetes-tooling-0.1.17:nightly"
