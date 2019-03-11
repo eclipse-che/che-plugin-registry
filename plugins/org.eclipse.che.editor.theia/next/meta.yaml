@@ -1,13 +1,13 @@
 id: org.eclipse.che.editor.theia
-version: master
+version: next
 type: Che Editor
 name: theia-ide
-title: Eclipse Theia development version. Deprecated, please use 'next' version
-description: Eclipse Theia, get the latest release each day.  Deprecated, please use 'next' version
+title: Eclipse Theia development version.
+description: Eclipse Theia, get the latest release each day.
 icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
 url: https://github.com/eclipse/che-theia/releases/download/next/che-editor-plugin.tar.gz
 publisher: Red Hat, Inc.
 category: Editor
 repository: https://github.com/eclipse/che-theia
-firstPublicationDate: "2019-02-12"
+firstPublicationDate: "2019-03-07"
 

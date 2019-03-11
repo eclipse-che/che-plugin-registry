@@ -5,7 +5,7 @@ name: theia-ide
 title: Eclipse Theia for Eclipse Che
 description: Eclipse Theia
 icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
-url: https://github.com/eclipse/che-theia/releases/download/v0.3.19/che-editor-plugin.tar.gz
+url: https://github.com/eclipse/che-theia/releases/download/v0.4.0/che-editor-plugin.tar.gz
 publisher: Red Hat, Inc.
 category: Editor
 repository: https://github.com/eclipse/che-theia
