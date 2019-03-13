@@ -10,5 +10,3 @@ publisher: Red Hat, Inc.
 repository: https://github.com/che-incubator/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-03-13"
-attributes:
-  containerImage: "vsvydenko/csharp:test"
