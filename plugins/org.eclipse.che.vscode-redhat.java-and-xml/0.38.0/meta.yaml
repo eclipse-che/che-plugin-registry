@@ -1,4 +1,4 @@
-id: org.eclipse.che.vscode-redhat.java-and-yaml
+id: org.eclipse.che.vscode-redhat.java-and-xml
 version: 0.38.0
 type: VS Code extension
 name: Language Support for Java(TM)
