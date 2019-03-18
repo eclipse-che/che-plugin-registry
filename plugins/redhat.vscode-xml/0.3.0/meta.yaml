@@ -11,4 +11,4 @@ repository: https://github.com/redhat-developer/vscode-xml
 category: Language
 firstPublicationDate: "2019-02-20"
 attributes:
-  containerImage: "eclipse/che-remote-plugin-runner-java8:nightly"
+  containerImage: "eclipse/che-remote-plugin-runner-java8:next"
