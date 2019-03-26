@@ -1,0 +1,14 @@
+id: ms-vscode.cpptools
+version: 0.22.1
+type: VS Code extension
+name: Cpp
+title: C/C++ extension
+description: C/C++ IntelliSense, debugging, and code browsing.
+icon: https://ms-vscode.gallerycdn.vsassets.io/extensions/ms-vscode/cpptools/0.22.1/1553213334373/Microsoft.VisualStudio.Services.Icons.Default
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/0.22.1/vspackage
+publisher: Red Hat, Inc.
+repository: https://github.com/Microsoft/vscode-cpptools
+category: Language
+firstPublicationDate: "2019-03-26"
+attributes:
+  containerImage: "mm4eche/ms-cpptools"
