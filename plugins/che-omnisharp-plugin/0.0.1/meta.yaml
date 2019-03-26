@@ -7,6 +7,6 @@ description: This plug-in registers omnisharp-roslyn as a language server and pr
 url: https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
-repository: https://github.com/che-incubator/omnisharp-theia-plugin
+repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-03-13"
