@@ -22,3 +22,9 @@ spec:
         backend:
           serviceName: che-plugin-registry
           servicePort: 8080
+{{- if .Values.chePluginRegistryIngressSecretName }}
+    tls:
+    - hosts:
+      - {{ printf "che-plugin-registry-%s.%s" .Release.Namespace .Values.global.ingressDomain }}
+      secretName: {{ .Values.chePluginRegistryIngressSecretName }}
+{{- end -}}
