@@ -1,0 +1,14 @@
+id: camel-tooling.vscode-apache-camel
+version: 0.0.14
+type: VS Code extension
+name: Camel
+title: Language Support for Apache Camel
+description: This VS Code extension provides support for Apache Camel.
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/camel-tooling/vsextensions/vscode-apache-camel/0.0.14/vspackage
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+publisher: Camel Tooling
+repository: https://github.com/camel-tooling/camel-lsp-client-vscode
+category: Language
+firstPublicationDate: "2018-04-23"
+attributes:
+  containerImage: "eclipse/che-remote-plugin-runner-java8:next"
