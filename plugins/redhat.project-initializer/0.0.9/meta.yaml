@@ -1,0 +1,12 @@
+id: redhat.project-initializer
+version: 0.0.9
+type: VS Code extension
+name: Project Initializer
+title: Project Initializer
+description: A lightweight extension based on Red Hat launcher to generate quickstart projects using Eclipse Che
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/project-initializer/0.0.9/vspackage
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+publisher: Red Hat, Inc.
+repository: https://github.com/fabric8-launcher/launcher-vscode-extension
+category: Other
+firstPublicationDate: "2019-04-18"
