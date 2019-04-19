@@ -9,6 +9,6 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
 repository: https://github.com/redhat-developer/vscode-xml
 category: Language
-firstPublicationDate: "2019-02-20"
+firstPublicationDate: "2019-04-19"
 attributes:
   containerImage: "eclipse/che-remote-plugin-runner-java8:next"
