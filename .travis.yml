@@ -5,4 +5,5 @@ sudo: required
 services: docker
 
 script:
+  - bash -c 'shopt -s globstar; shellcheck **/*.{sh,ksh,bash}'
   - docker build . --no-cache
