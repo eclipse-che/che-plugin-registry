@@ -9,7 +9,7 @@
 #
 set -e
 
-FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
+FIELDS=("title" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
 CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme" "Other")
 
 # check that field value, given in the parameter, is not null or empty
