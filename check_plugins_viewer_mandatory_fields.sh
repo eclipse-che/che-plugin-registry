@@ -14,7 +14,7 @@ CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme
 
 # check that field value, given in the parameter, is not null or empty
 function check_field() {
-  if [[ $1 == "null" || $1 = "\'\'" ]];then
+  if [[ $1 == "null" || $1 = "" ]];then
     return 1;
   fi
   return 0
