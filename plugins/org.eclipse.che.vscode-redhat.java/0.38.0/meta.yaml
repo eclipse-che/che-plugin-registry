@@ -5,7 +5,7 @@ name: Language Support for Java(TM)
 title: Language Support for Java(TM) by Red Hat
 description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
 extensions:
-  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/vscjava/vsextensions/vscode-java-debug/0.17.0/vspackage
+  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/vscjava/vsextensions/vscode-java-debug/0.16.0/vspackage
   - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/java/0.41.0/vspackage
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
