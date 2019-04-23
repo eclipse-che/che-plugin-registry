@@ -1,0 +1,14 @@
+id: camel-tooling.vscode-wsdl2rest
+version: 0.0.8
+type: VS Code extension
+name: wsdl2rest
+title: vscode-wsdl2rest
+description: A VS Code extension supporting wsdl2rest via Camel Rest DSL.
+url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/camel-tooling/vsextensions/vscode-wsdl2rest/0.0.7/vspackage
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+publisher: Camel Tooling
+repository: https://github.com/camel-tooling/vscode-wsdl2rest
+category: Other
+firstPublicationDate: "2019-02-26"
+attributes:
+  containerImage: "eclipse/che-remote-plugin-runner-java8:next"
