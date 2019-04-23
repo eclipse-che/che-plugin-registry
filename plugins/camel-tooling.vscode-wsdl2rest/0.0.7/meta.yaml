@@ -1,5 +1,5 @@
 id: camel-tooling.vscode-wsdl2rest
-version: 0.0.8
+version: 0.0.7
 type: VS Code extension
 name: wsdl2rest
 title: vscode-wsdl2rest
