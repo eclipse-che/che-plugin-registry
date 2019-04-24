@@ -10,7 +10,7 @@
 
 set -e
 
-FIELDS=("title" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
+FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
 CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme" "Other")
 
 source ./util.sh

@@ -18,7 +18,6 @@ RUN ./check_plugins_images.sh
 RUN ./set_plugin_dates.sh
 RUN ./check_plugins_viewer_mandatory_fields_v1.sh
 RUN ./check_plugins_viewer_mandatory_fields_v2.sh
-RUN ./check_v1_plugins_in_v2.sh
 RUN ./index.sh > /build/plugins/index.json
 RUN ./index_v2.sh > /build/v2/plugins/index.json
 

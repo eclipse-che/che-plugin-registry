@@ -16,26 +16,5 @@ function evaluate_plugin_id() {
     name_field=$(yq r "$1" name | sed 's/^"\(.*\)"$/\1/')
     version_field=$(yq r "$1" version | sed 's/^"\(.*\)"$/\1/')
     publisher_field=$(yq r "$1" publisher | sed 's/^"\(.*\)"$/\1/')
-    full_id=""
-    if [ ! -z "${publisher_field}" ]; then
-        full_id+="${publisher_field}/"
-    fi
-    full_id+="${name_field}/${version_field}"
-    echo "${full_id}"
-}
-
-# Prints plugin/editor publisher to STDOUT.
-# Arguments:
-#   1 - path to meta.yaml
-function evaluate_plugin_publisher() {
-    publisher_field=$(yq r "$1" publisher | sed 's/^"\(.*\)"$/\1/')
-    echo "${publisher_field}"
-}
-
-# Prints plugin/editor name to STDOUT.
-# Arguments:
-#   1 - path to meta.yaml
-function evaluate_plugin_name() {
-    name_field=$(yq r "$1" name | sed 's/^"\(.*\)"$/\1/')
-    echo "${name_field}"
+    echo "${publisher_field}/${name_field}/${version_field}"
 }
