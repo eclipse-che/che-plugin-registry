@@ -1,4 +1,4 @@
-# Eclipse Che plugin registry
+# Eclipse Che plugin registry 
 
 ## Build Eclipse Che plugin registry docker image
 
