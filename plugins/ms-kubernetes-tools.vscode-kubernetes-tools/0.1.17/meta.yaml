@@ -4,7 +4,7 @@ type: VS Code extension
 name: Kubernetes
 title: Kubernetes Tools
 description: Develop, deploy and debug Kubernetes applications
-url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-kubernetes-tools/vsextensions/vscode-kubernetes-tools/0.1.17/vspackage
+url: https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
 repository: https://github.com/Azure/vscode-kubernetes-tools
