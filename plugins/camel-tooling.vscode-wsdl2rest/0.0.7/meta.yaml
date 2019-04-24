@@ -3,7 +3,7 @@ version: 0.0.7
 type: VS Code extension
 name: wsdl2rest
 title: vscode-wsdl2rest
-description: A VS Code extension supporting wsdl2rest via Camel Rest DSL.
+description: Extension supporting the mapping of an existing SOAP service to a RESTful service in Camel Rest DSL generated via wsdl2rest.
 url: https://github.com/camel-tooling/vscode-wsdl2rest/releases/download/0.0.7/camel-tooling.vscode-wsdl2rest-0.0.7.vsix
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Camel Tooling
