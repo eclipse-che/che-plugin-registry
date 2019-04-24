@@ -46,4 +46,3 @@ workflows:
     jobs:
       - shellcheck
       - build
-# test CI
