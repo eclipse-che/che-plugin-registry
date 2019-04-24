@@ -16,8 +16,7 @@ source ./util.sh
 # Arguments:
 # 1 - meta.yaml location
 function getId() {
-    name_field=$(yq r "$1" id | sed 's/^"\(.*\)"$/\1/')
-    echo "${name_field}"
+    evaluate_plugin_id $1
 }
 
 # getId function MUST be defined to use this function
@@ -60,10 +59,10 @@ function buildIndex() {
             echo "  },"
         fi
 
-        echo "  \"links\": {\"self\":\"/$(echo $i)\" }"
+        echo "  \"links\": {\"self\":\"/$(echo $i|sed 's/\/meta.yaml$//g')\" }"
         echo "}"
     done
     echo "]"
 }
 
-buildIndex plugins
+buildIndex v2

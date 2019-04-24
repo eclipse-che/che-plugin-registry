@@ -1,0 +1,18 @@
+publisher: ""
+name: org.eclipse.che.vscode-sonarlint
+version: 0.0.1
+type: VS Code extension
+displayName: vscode-sonarlint
+title: Sonarlint code intelligence
+description: VS Code extension that provides sonarlint features
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+attributes:
+  extension: "vscode:extension/SonarSource.sonarlint-vscode"
+  container-image: "garagatyi/remotetheia:java"
+  containerImage: "garagatyi/remotetheia:java"
+firstPublicationDate: "2019-02-05"
+category: Linter
+repository: https://www.sonarlint.org/
+deprecate:
+  autoMigrate: false
+  migrateTo: sonarsource/sonarlint-vscode/0.0.1

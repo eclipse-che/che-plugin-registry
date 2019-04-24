@@ -8,11 +8,18 @@
 #
 FROM mikefarah/yq as builder
 RUN apk add --no-cache bash
-COPY .htaccess README.md /build/
+COPY .htaccess README.md *.sh /build/
 COPY /plugins /build/plugins
-COPY check_plugins_location.sh check_plugins_images.sh check_plugins_viewer_mandatory_fields.sh index.sh set_plugin_dates.sh /build/
-RUN cd /build/ && ./check_plugins_location.sh && ./check_plugins_images.sh && ./set_plugin_dates.sh && ./check_plugins_viewer_mandatory_fields.sh && ./index.sh > /build/plugins/index.json
-COPY .htaccess README.md /build/
+COPY /v2 /build/v2
+WORKDIR /build/
+RUN cd plugins && ./check_plugins_location_v1.sh
+RUN cd v2/plugins && ./check_plugins_location_v2.sh
+RUN ./check_plugins_images.sh
+RUN ./set_plugin_dates.sh
+RUN ./check_plugins_viewer_mandatory_fields_v1.sh
+RUN ./check_plugins_viewer_mandatory_fields_v2.sh
+RUN ./index.sh > /build/plugins/index.json
+RUN ./index_v2.sh > /build/v2/plugins/index.json
 
 FROM quay.io/openshiftio/rhel-base-httpd:latest
 

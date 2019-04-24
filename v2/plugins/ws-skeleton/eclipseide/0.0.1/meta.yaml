@@ -1,0 +1,12 @@
+publisher: ws-skeleton
+name: eclipseide
+version: 0.0.1
+type: Che Editor
+displayName: eclipse-ide
+title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
+description: Eclipse IDE
+icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
+url: https://github.com/ws-skeleton/che-editor-eclipseide/releases/download/0.0.2/che-editor-plugin.tar.gz
+category: Editor
+repository: https://github.com/ws-skeleton/che-editor-eclipseide/
+firstPublicationDate: "2019-02-05"

@@ -9,33 +9,29 @@
 #
 set -e
 
+# accepts meta.yaml path as one and only argument
 is_first_publication_date_present() {
   # check that first publication date is present in yaml,
   # and is not an null or empty value
-  VALUE=$(yq r meta.yaml firstPublicationDate)
+  VALUE=$(yq r "$1" firstPublicationDate)
+  if [ $? -ne 0 ]; then
+    exit 1
+  fi
+
   if [[ $VALUE == "null" || $VALUE = "\'\'" ]];then
     return 1
   fi
   return 0;
 }
 
-cd plugins
-for d in */ ; do
-  cd "$d"
-
-  for VERSION_DIR_NAME in */ ; do
-    # Remove trailing slash
-    VERSION_DIR_NAME=${VERSION_DIR_NAME%/}
-    cd "${VERSION_DIR_NAME}"
-
+declare -a arr=(`find . -name "meta.yaml"`)
+for i in "${arr[@]}"
+do
     DATE=$(date -I)
-    if ! is_first_publication_date_present; then
-      yq w meta.yaml firstPublicationDate "${DATE}" -i
+
+    if ! is_first_publication_date_present "$i"; then
+      yq w "$i" firstPublicationDate "${DATE}" -i
     fi
 
-    yq w meta.yaml latestUpdateDate "${DATE}" -i
-    cd ..
-  done
-
-  cd ..
+    yq w "$i" latestUpdateDate "${DATE}" -i
 done
