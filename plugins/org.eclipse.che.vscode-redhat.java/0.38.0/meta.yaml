@@ -3,8 +3,10 @@ version: 0.38.0
 type: VS Code extension
 name: Language Support for Java(TM)
 title: Language Support for Java(TM) by Red Hat
-description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
-url: https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/java/0.38.0/vspackage
+description: Java Linting, Intellisense, formatting, refactoring, debug, Maven/Gradle support and more...
+extensions:
+  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/vscjava/vsextensions/vscode-java-debug/0.16.0/vspackage
+  - https://github.com/redhat-developer/vscode-java/releases/download/v0.38.0/redhat.java-0.38.0.vsix
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: Red Hat, Inc.
 repository: https://github.com/redhat-developer/vscode-java
