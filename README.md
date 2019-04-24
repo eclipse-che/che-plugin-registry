@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/eclipse/che-plugin-registry.svg?style=svg)](https://circleci.com/gh/eclipse/che-plugin-registry)
-
+TEST DO NOT MERGE
 # Eclipse Che plugin registry
 
 ## Build Eclipse Che plugin registry docker image
