@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/eclipse/che-plugin-registry.svg?style=svg)](https://circleci.com/gh/eclipse/che-plugin-registry)
+[![Build Status](https://ci.centos.org/buildStatus/icon?job=devtools-che-plugin-registry-build-master/)](https://ci.centos.org/job/devtools-che-plugin-registry-build-master/)
 
 # Eclipse Che plugin registry
 
