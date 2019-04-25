@@ -16,10 +16,10 @@ set -e
 
 source ./util.sh
 
-declare -a arr=(`find "$1" -name "meta.yaml"`)
+readarray -d '' arr < <(find "$1" -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
-    plugin_id=$(evaluate_plugin_id $i)
+    plugin_id=$(evaluate_plugin_id "$i")
 
     expected_path="$1/plugins/${plugin_id}/meta.yaml"
     if [[ "${expected_path}" != "$i" ]]; then

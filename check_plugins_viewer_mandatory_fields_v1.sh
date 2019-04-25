@@ -42,7 +42,7 @@ function check_category() {
   return 1
 }
 
-declare -a arr=(`find plugins -name "meta.yaml"`)
+readarray -d '' arr < <(find plugins -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
     id=$(yq r "$i" id | sed 's/^"\(.*\)"$/\1/')
@@ -55,7 +55,7 @@ do
 
     for FIELD in "${FIELDS[@]}"
     do
-      VALUE=$(yq r $i "$FIELD")
+      VALUE=$(yq r "$i" "$FIELD")
       if [[ "${FIELD}" == "category" ]];then
         if ! check_category "$i" "${VALUE}";then
           echo "!!!   Invalid category in '${full_id}': $VALUE"
