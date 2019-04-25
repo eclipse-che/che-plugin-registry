@@ -8,6 +8,10 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+# Generated plugins index in JSON format.
+# Arguments:
+# 1 - plugin root folder, e.g. 'v3'
+
 set -e
 
 source ./util.sh
@@ -65,4 +69,4 @@ function buildIndex() {
     echo "]"
 }
 
-buildIndex v2
+buildIndex "$1"
