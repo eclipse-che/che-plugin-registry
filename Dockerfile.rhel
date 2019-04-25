@@ -12,8 +12,8 @@ COPY .htaccess README.md *.sh /build/
 COPY /plugins /build/plugins
 COPY /v2 /build/v2
 WORKDIR /build/
-RUN cd plugins && ./check_plugins_location_v1.sh
-RUN cd v2/plugins && ./check_plugins_location_v2.sh
+RUN ./check_plugins_location_v1.sh
+RUN ./check_plugins_location_v2.sh
 RUN ./check_plugins_images.sh
 RUN ./set_plugin_dates.sh
 RUN ./check_plugins_viewer_mandatory_fields_v1.sh
