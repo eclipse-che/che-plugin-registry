@@ -25,4 +25,5 @@ FROM registry.centos.org/centos/httpd-24-centos7
 RUN mkdir /var/www/html/plugins
 COPY --from=builder /build/ /var/www/html/
 USER 0
-RUN chmod -R g+rwX /var/www/html/plugins
+RUN chmod -R g+rwX /var/www/html/plugins && \
+    chmod -R g+rwX /var/www/html/v2/plugins
