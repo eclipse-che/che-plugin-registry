@@ -13,6 +13,6 @@ firstPublicationDate: "2019-04-25"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-runner-java8:next"
-  plugins:
+  extensions:
     - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/vscjava/vsextensions/vscode-java-debug/0.16.0/vspackage
     - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.43.0-1473.vsix

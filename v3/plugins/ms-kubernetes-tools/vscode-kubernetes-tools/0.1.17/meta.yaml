@@ -13,5 +13,5 @@ firstPublicationDate: "2019-03-11"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-kubernetes-tooling-0.1.17:next"
-  plugins:
+  extensions:
     - https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix

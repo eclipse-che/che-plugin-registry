@@ -13,5 +13,5 @@ firstPublicationDate: "2019-04-19"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-runner-java8:next"
-  plugins:
+  extensions:
     - https://github.com/redhat-developer/vscode-xml/releases/download/0.5.1/redhat.vscode-xml-0.5.1.vsix

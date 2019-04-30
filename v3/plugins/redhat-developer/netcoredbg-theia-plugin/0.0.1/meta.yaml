@@ -11,5 +11,5 @@ repository: https://github.com/redhat-developer/netcoredbg-theia-plugin
 category: Debugger
 firstPublicationDate: "2019-04-19"
 spec:
-  plugins:
+  extensions:
     - https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.1/netcoredbg_theia_plugin.theia

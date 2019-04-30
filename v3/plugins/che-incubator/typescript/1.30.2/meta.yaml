@@ -13,5 +13,5 @@ firstPublicationDate: "2019-02-19"
 spec:
   containers:
    - image: "eclipse/che-theia-endpoint-runtime:next"
-  plugins:
+  extensions:
    - https://github.com/che-incubator/ms-code.typescript/releases/download/v1.30.2/che-typescript-language.vsix

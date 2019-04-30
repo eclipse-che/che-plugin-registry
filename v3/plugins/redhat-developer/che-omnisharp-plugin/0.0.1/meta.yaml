@@ -11,5 +11,5 @@ repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-03-13"
 spec:
-  plugins:
+  extensions:
     - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia
