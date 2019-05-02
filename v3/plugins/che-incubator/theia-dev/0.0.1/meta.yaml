@@ -20,7 +20,7 @@ spec:
   containers:
    - name: theia-dev
      image: eclipse/che-theia-dev:nightly
-     editorCommands:
+     commands:
        - name: uname
          workingDir: "$(project)"
          command: ["uname", "-a"]
