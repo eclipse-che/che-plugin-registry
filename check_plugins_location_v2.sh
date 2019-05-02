@@ -8,16 +8,20 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+# Checks that plugin files are located at the expected path.
+# Arguments:
+# 1 - plugin root folder, e.g. 'v3'
+
 set -e
 
 source ./util.sh
 
-declare -a arr=(`find v2 -name "meta.yaml"`)
+declare -a arr=(`find "$1" -name "meta.yaml"`)
 for i in "${arr[@]}"
 do
     plugin_id=$(evaluate_plugin_id $i)
 
-    expected_path="v2/plugins/${plugin_id}/meta.yaml"
+    expected_path="$1/plugins/${plugin_id}/meta.yaml"
     if [[ "${expected_path}" != "$i" ]]; then
       echo "!!! Location mismatch in plugin '${plugin_id}':"
       echo "!!!   Expected location: '${expected_path}'"
