@@ -4,8 +4,8 @@ name: java
 version: 0.38.0
 type: VS Code extension
 displayName: Language Support for Java(TM)
-title: Language Support for Java(TM) by Red Hat
-description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
+title: Language and Debugger Support for Java(TM)
+description: Java Linting, debugging, Intellisense, formatting, refactoring, Maven/Gradle support and more...
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
