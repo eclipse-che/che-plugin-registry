@@ -50,15 +50,15 @@ function install_deps() {
 
 function tag_push() {
   local TARGET=$1
-  docker tag ${IMAGE} $TARGET
-  docker push $TARGET
+  docker tag "${IMAGE}" "$TARGET"
+  docker push "$TARGET"
 }
 
 function deploy() {
   TARGET=${TARGET:-"centos"}
   REGISTRY="quay.io"
 
-  if [ $TARGET == "rhel" ]; then
+  if [ "$TARGET" == "rhel" ]; then
     DOCKERFILE="Dockerfile.rhel"
     IMAGE="rhel-che-plugin-registry"
   else
@@ -66,8 +66,8 @@ function deploy() {
     IMAGE="che-plugin-registry"
   fi
 
-  if [ -n "${QUAY_USERNAME}" -a -n "${QUAY_PASSWORD}" ]; then
-    docker login -u ${QUAY_USERNAME} -p ${QUAY_PASSWORD} ${REGISTRY}
+  if [ -n "${QUAY_USERNAME}" ] && [ -n "${QUAY_PASSWORD}" ]; then
+    docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" "${REGISTRY}"
   else
     echo "Could not login, missing credentials for the registry"
   fi
@@ -75,10 +75,10 @@ function deploy() {
   # Let's deploy
   docker build -t ${IMAGE} -f ${DOCKERFILE} .
 
-  TAG=$(echo $GIT_COMMIT | cut -c1-${DEVSHIFT_TAG_LEN})
+  TAG=$(echo "$GIT_COMMIT" | cut -c1-"${DEVSHIFT_TAG_LEN}")
 
-  tag_push ${REGISTRY}/openshiftio/$IMAGE:$TAG
-  tag_push ${REGISTRY}/openshiftio/$IMAGE:latest
+  tag_push "${REGISTRY}/openshiftio/$IMAGE:$TAG"
+  tag_push "${REGISTRY}/openshiftio/$IMAGE:latest"
   echo 'CICO: Image pushed, ready to update deployed app'
 }
 
