@@ -21,6 +21,7 @@ RUN ./set_plugin_dates.sh
 RUN ./check_plugins_viewer_mandatory_fields_v1.sh
 RUN ./check_plugins_viewer_mandatory_fields_v2.sh
 RUN ./check_plugins_viewer_mandatory_fields_v3.sh
+RUN ./ensure_latest_exists.sh
 RUN ./index.sh > /build/plugins/index.json
 RUN ./index_v2.sh v2 > /build/v2/plugins/index.json
 RUN ./index_v2.sh v3 > /build/v3/plugins/index.json
