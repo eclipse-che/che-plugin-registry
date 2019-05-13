@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: gwt
-version: next
+version: nightly
 type: Che Editor
 displayName: gwt-ide
 title: Eclipse GWT IDE for Eclipse Che
