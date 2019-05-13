@@ -3,7 +3,7 @@ publisher: eclipse
 name: gwt
 version: 7.0.0-beta-1.0
 type: Che Editor
-displayName: gwt-ide
+displayName: Eclipse GWT IDE
 title: Eclipse GWT IDE for Eclipse Che
 description: Eclipse GWT IDE
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
