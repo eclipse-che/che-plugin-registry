@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: gwt
-version: 6.19.0
+version: 7.0.0-beta-3.0
 type: Che Editor
 displayName: gwt-ide
 title: Eclipse GWT IDE for Eclipse Che
@@ -69,7 +69,7 @@ spec:
         cookiesAuthEnabled: true
   containers:
    - name: che-editor-gwt-ide
-     image: eclipse/che-editor-gwt-ide:6.19.0
+     image: eclipse/che-editor-gwt-ide:7.0.0-beta-3.0
      env:
          - name: SERVER_PORT
            value: 8080
