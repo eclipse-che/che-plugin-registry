@@ -1,6 +1,6 @@
 apiVersion: v2
 publisher: eclipse
-name: gwt
+name: che-gwt-ide
 version: 7.0.0-beta-4.0
 type: Che Editor
 displayName: Eclipse GWT IDE
