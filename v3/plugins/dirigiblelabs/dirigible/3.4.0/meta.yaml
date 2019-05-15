@@ -1,9 +1,9 @@
 apiVersion: v2
 publisher: dirigiblelabs
 name: dirigible
-version: 1.0.0
+version: 3.4.0
 type: Che Editor
-displayName: dirigible-che-editor-plugin
+displayName: Eclipse Dirigible
 title: Eclipse Dirigible for Eclipse Che
 description: Eclipse Dirigible as App Development Platform for Eclipse Che
 icon: https://www.dirigible.io/img/dirigible.svg
@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: eclipse-dirigible
-     image: dirigiblelabs/dirigible-openshift
+     image: dirigiblelabs/dirigible-openshift:3.4.0
      env:
          - name: DIRIGIBLE_DATABASE_PROVIDER
            value: "local"
