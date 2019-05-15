@@ -1,11 +1,11 @@
 apiVersion: v2
 publisher: ws-skeleton
 name: eclipseide
-version: 0.0.1
+version: 4.9.0
 type: Che Editor
-displayName: eclipse-ide
+displayName: Eclipse IDE
 title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
-description: Eclipse IDE
+description: Eclipse running on the Web with Broadway
 icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
 category: Editor
 repository: https://github.com/ws-skeleton/che-editor-eclipseide/
