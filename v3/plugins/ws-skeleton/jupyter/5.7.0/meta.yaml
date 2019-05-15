@@ -1,9 +1,9 @@
 apiVersion: v2
 publisher: ws-skeleton
 name: jupyter
-version: 1.0.0
+version: 5.7.0
 type: Che Editor
-displayName: jupyter-notebook
+displayName: Jupyter Notebook
 title: Jupyter Notebook as Editor for Eclipse Che
 description: Jupyter Notebook as Editor for Eclipse Che
 icon: https://jupyter.org/assets/main-logo.svg
@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: jupyter-notebook
-     image: ksmster/s2i-minimal-notebook
+     image: ksmster/che-editor-jupyter:5.7.0
      env:
          - name: JUPYTER_NOTEBOOK_DIR
            value: /projects
