@@ -57,37 +57,73 @@ helm delete --purge che-plugin-registry
 docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
 ```
 ### Plugin meta YAML structure:
-Here is an overview of all fields that can be present in plugin meta YAML files
+Here is an overview of all fields that can be present in plugin meta YAML files. This document represents the current `v3` version.
 
-|field name in YAML | description | mandatory |
-|-------|-------|-------|
-| publisher | publisher name | yes |
-| name | plugin name | yes |
-| version | plugin version | yes |
-| deprecate.migrateTo | which plugin should be used instead when plugin is deprecated. Format: publisher/name/version | no |
-| deprecate.autoMigrate | if deprecated plugin should be automatically replaced by another plugin specified in deprecate.migrateTo | no |
-| type | plugin type | yes|
-| displayName | plugin name | yes|
-| title| plugin title | yes |
-| description| plugin description | yes |
-| icon| URL to plugin icon (must be in SVG format) | yes |
-| url| an URL to the plugin source | yes |
-| publisher| name of plugin publisher | yes |
-| repository | URL to repository of the plugin | yes |
-| category| plugin category | yes<sup>1</sup> |
-| firstPublicationDate | date of publishing the plugin (in ISO 8601) | no<sup>2</sup> |
-| latestUpdateDate | date of latest plugin update (in ISO 8601) | no<sup>3</sup> |
-| preview | a URL to devfile, to preview this plugin | no |
-| tags | a list of tags, related to this plugin | no|
-| mediaImage | links for images showcasing the plugin | no |
-| mediaVideo | links for video showcasing the plugin| no |
-| attributes | a map of special attributes, can be used for instance, imported plugins from VS Code | no |
+```yaml
+apiVersion:            # v2; v1 supported for backwards compatability
+publisher:             # publisher name
+name:                  # plugin name
+version:               # plugin version
+type:                  # plugin type; e.g. "Theia plugin", "Che Editor"
+displayName:           # name shown in user dashboard
+title:                 # plugin title
+description:           # short description of plugin's purpose
+icon:                  # link to SVG icon
+repository:            # repo hosting plugin sources
+category:              # see [1]
+firstPublicationDate:  # optional; see [2]
+latestUpdateDate:      # optional; see [3]
+deprecate:             # optional; section for deprecating plugins in favor of others
+  autoMigrate:         # boolean
+  migrateTo:           # new plugin id
+spec:                  # spec (used to be che-plugin.yaml)
+  endpoints:           # optional; plugin endpoints
+    - name:
+      public:            # boolean
+      targetPort:
+      attributes:
+        protocol:        # protocol used for communicating over endpoint
+        secure:          # use secure version of protocol above
+        discoverable:    # if false, no service is created for this endpoint
+        cookiesAuthEnabled:
+        type:
+        path:
+  containers:          # optional; sidecar containers for plugin
+    - image:
+      name:              # name used for sidecar container
+      memorylimit:       # Kubernetes/OpenShift-spec memory limit string (e.g. "512Mi")
+      env:               # list of env vars to set in sidecar
+        - name:
+          value:
+      volumes:           # volumes required by plugin
+          - mountPath:
+            name:
+      ports:             # ports exposed by plugin
+        - exposedPort:
+      commands:          # commands available to plugin container
+        - name:
+          workingDir:
+          command:       # list of commands + arguments, e.g.:
+            - rm
+            - -rf
+            - /cache/.m2/repository
+      mountSources:      # boolean
+  workspaceEnv:        # optional; env vars for the workspace
+    - name:
+      value:
+  extensions:            # optional; required for VS Code/Theia plugins; list of urls to plugin artifacts (.vsix/.theia files) -- examples follow
+    - https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix # example
+    - vscode:extension/redhat.vscode-xml # example
+    - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia # example
+```
 
 1 - Category must be equal to one of the following: "Editor", "Debugger", "Formatter", "Language", "Linter", "Snippet", "Theme", "Other"
 
 2 - firstPublicationDate is not required to be present in YAML, as if not present, it will be generated during Plugin Registry dockerimage build
 
 3 - latestUpdateDate is not required to be present in YAML, as it will be generated during Plugin Registry dockerimage build
+
+Note that the `spec` section above comes from the older `che-plugin.yaml` spec. The `endpoints`, `containers`, and `workspaceEnv` are passed back to Che server and are used to define the sidecar that is added to the workspace.
 
 At the moment, some of these fields (that are related to plugin viewer) are validated during the Plugin Registry dockerimage build.
 
