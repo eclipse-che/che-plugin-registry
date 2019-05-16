@@ -10,6 +10,7 @@
 
 set -e
 
+# shellcheck source=./scripts/util.sh
 source ./util.sh
 
 ## check that icon tags in meta.yaml files points to the .svg images

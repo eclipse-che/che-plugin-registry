@@ -8,13 +8,12 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# Checks whether mandatory fields are in place. Also checks value of 'category 'field.
-
 set -e
 
-FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate" "spec" "apiVersion")
+FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
 CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme" "Other")
 
+# shellcheck source=./scripts/util.sh
 source ./util.sh
 
 # check that field value, given in the parameter, is not null or empty
@@ -44,7 +43,7 @@ function check_category() {
   return 1
 }
 
-readarray -d '' arr < <(find v3 -name 'meta.yaml' -print0)
+readarray -d '' arr < <(find v2 -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
     plugin_id=$(evaluate_plugin_id "$i")

@@ -8,7 +8,7 @@
 #
 FROM mikefarah/yq as builder
 RUN apk add --no-cache bash
-COPY .htaccess README.md *.sh /build/
+COPY .htaccess README.md ./scripts/*.sh /build/
 COPY /plugins /build/plugins
 COPY /v2 /build/v2
 COPY /v3 /build/v3

@@ -10,6 +10,7 @@
 
 set -e
 
+# shellcheck source=./scripts/util.sh
 source ./util.sh
 
 # Returns generated plugin ID.
