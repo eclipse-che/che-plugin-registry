@@ -10,6 +10,7 @@
 
 set -e
 
+# shellcheck source=./scripts/util.sh
 source ./util.sh
 
 readarray -d '' arr < <(find plugins -name 'meta.yaml' -print0)
