@@ -61,15 +61,15 @@ Here is an overview of all fields that can be present in plugin meta YAML files.
 
 ```yaml
 apiVersion:            # v2; v1 supported for backwards compatability
-publisher:             # publisher name
-name:                  # plugin name
-version:               # plugin version
+publisher:             # publisher name; must match [-a-z0-9]+
+name:                  # plugin name; must match [-a-z0-9]+
+version:               # plugin version; must match [-.a-z0-9]+
 type:                  # plugin type; e.g. "Theia plugin", "Che Editor"
 displayName:           # name shown in user dashboard
 title:                 # plugin title
 description:           # short description of plugin's purpose
 icon:                  # link to SVG icon
-repository:            # repo hosting plugin sources
+repository:            # URL for plugin (e.g. Github repo)
 category:              # see [1]
 firstPublicationDate:  # optional; see [2]
 latestUpdateDate:      # optional; see [3]
@@ -77,15 +77,15 @@ deprecate:             # optional; section for deprecating plugins in favor of o
   autoMigrate:         # boolean
   migrateTo:           # new plugin id
 spec:                  # spec (used to be che-plugin.yaml)
-  endpoints:           # optional; plugin endpoints
+  endpoints:           # optional; plugin endpoints -- see https://www.eclipse.org/che/docs/che-6/servers.html for more details
     - name:
-      public:            # boolean
+      public:            # if true, endpoint is exposed publicly
       targetPort:
       attributes:
-        protocol:        # protocol used for communicating over endpoint
-        secure:          # use secure version of protocol above
-        discoverable:    # if false, no service is created for this endpoint
-        cookiesAuthEnabled:
+        protocol:        # protocol used for communicating over endpoint, e.g. 'ws' or 'http'
+        secure:          # use secure version of protocol above; convert 'ws' -> 'wss', 'http' -> 'https'
+        discoverable:    # if false, no k8s service is created for this endpoint
+        cookiesAuthEnabled: # if true, endpoint is exposed through JWTProxy
         type:
         path:
   containers:          # optional; sidecar containers for plugin
@@ -96,8 +96,8 @@ spec:                  # spec (used to be che-plugin.yaml)
         - name:
           value:
       volumes:           # volumes required by plugin
-          - mountPath:
-            name:
+        - mountPath:
+          name:
       ports:             # ports exposed by plugin
         - exposedPort:
       commands:          # commands available to plugin container
