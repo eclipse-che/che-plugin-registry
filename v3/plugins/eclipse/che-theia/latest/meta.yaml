@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: 1.0.0
+version: latest
 type: Che Editor
 displayName: theia-ide
 title: Eclipse Theia for Eclipse Che
