@@ -60,7 +60,7 @@ docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
 Here is an overview of all fields that can be present in plugin meta YAML files. This document represents the current `v3` version.
 
 ```yaml
-apiVersion:            # v2; v1 supported for backwards compatability
+apiVersion:            # plugin meta.yaml API version -- v2; v1 supported for backwards compatability
 publisher:             # publisher name; must match [-a-z0-9]+
 name:                  # plugin name; must match [-a-z0-9]+
 version:               # plugin version; must match [-.a-z0-9]+
@@ -98,7 +98,7 @@ spec:                  # spec (used to be che-plugin.yaml)
       volumes:           # volumes required by plugin
         - mountPath:
           name:
-      ports:             # ports exposed by plugin
+      ports:             # ports exposed by plugin (on the container)
         - exposedPort:
       commands:          # commands available to plugin container
         - name:
