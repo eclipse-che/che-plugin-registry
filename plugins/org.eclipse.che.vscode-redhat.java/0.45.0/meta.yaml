@@ -1,0 +1,16 @@
+id: org.eclipse.che.vscode-redhat.java
+version: 0.45.0
+type: VS Code extension
+name: Language Support for Java(TM)
+title: Language Support for Java(TM) by Red Hat
+description: Java Linting, Intellisense, formatting, refactoring, debug, Maven/Gradle support and more...
+extensions:
+  - https://github.com/microsoft/vscode-java-debug/releases/download/0.16.0/vscode-java-debug-0.16.0.vsix
+  - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.45.0-1523.vsix
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+publisher: Red Hat, Inc.
+repository: https://github.com/redhat-developer/vscode-java
+category: Language
+firstPublicationDate: "2019-04-25"
+attributes:
+  containerImage: "eclipse/che-remote-plugin-runner-java8:next"
