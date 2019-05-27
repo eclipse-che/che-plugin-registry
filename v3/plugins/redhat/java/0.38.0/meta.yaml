@@ -14,5 +14,5 @@ spec:
   containers:
     - image: "eclipse/che-remote-plugin-runner-java8:next"
   extensions:
-    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/vscjava/vsextensions/vscode-java-debug/0.16.0/vspackage
+    - https://github.com/microsoft/vscode-java-debug/releases/download/0.16.0/vscode-java-debug-0.16.0.vsix
     - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.38.0-1373.vsix
