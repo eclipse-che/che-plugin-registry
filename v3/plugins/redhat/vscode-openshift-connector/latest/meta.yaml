@@ -13,6 +13,6 @@ category: Other
 firstPublicationDate: '2019-04-19'
 spec:
   containers:
-  - image: eclipse/che-remote-plugin-openshift-connector-0.0.17:next
+  - image: eclipse/che-remote-plugin-openshift-connector-0.0.21:next
   extensions:
-  - https://github.com/redhat-developer/vscode-openshift-tools/releases/download/v0.0.19/openshift-connector-0.0.19-183.vsix
+  - https://github.com/redhat-developer/vscode-openshift-tools/releases/download/v0.0.21/openshift-connector-0.0.21-228.vsix
