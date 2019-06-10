@@ -12,6 +12,7 @@ category: Linter
 repository: https://www.sonarlint.org/
 spec:
   containers:
-    - image: "garagatyi/remotetheia:java"
+    - image: "eclipse/che-remote-plugin-runner-java8:next"
+      memoryLimit: "512Mi"
   extensions:
     - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.6.0/sonarlint-vscode-1.6.0.vsix

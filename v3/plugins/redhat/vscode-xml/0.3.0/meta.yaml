@@ -12,6 +12,6 @@ category: Language
 firstPublicationDate: "2019-02-20"
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-runner-java8:next"
+    - image: "eclipse/che-remote-plugin-runner-java11:next"
   extensions:
     - https://github.com/redhat-developer/vscode-xml/releases/download/0.3.0/redhat.vscode-xml-0.3.0.vsix
