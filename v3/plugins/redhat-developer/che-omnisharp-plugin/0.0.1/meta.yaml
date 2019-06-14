@@ -11,5 +11,8 @@ repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-03-13"
 spec:
+  containers:
+  - image: eclipse/che-remote-plugin-dotnet-2.2.105:next
+    memoryLimit: "1024Mi"
   extensions:
     - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia
