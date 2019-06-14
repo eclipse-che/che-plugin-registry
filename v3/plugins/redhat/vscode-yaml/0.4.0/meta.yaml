@@ -13,5 +13,6 @@ firstPublicationDate: "2019-04-19"
 spec:
   containers:
     - image: "eclipse/che-theia-endpoint-runtime:next"
+      memoryLimit: "256Mi"
   extensions:
     - https://github.com/redhat-developer/vscode-yaml/releases/download/0.4.0/redhat.vscode-yaml-0.4.0.vsix
