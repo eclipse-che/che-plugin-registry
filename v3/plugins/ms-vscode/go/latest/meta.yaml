@@ -13,6 +13,7 @@ firstPublicationDate: "2019-02-21"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-go-1.10.7:next"
+      name: vscode-go
       env:
       - name: GOPATH
         value: /go:$(CHE_PROJECTS_ROOT)
