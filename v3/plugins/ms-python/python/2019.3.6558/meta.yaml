@@ -13,5 +13,6 @@ firstPublicationDate: "2019-04-23"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-python-3.7.3:next"
+      name: "vscode-python"
   extensions:
     - https://github.com/Microsoft/vscode-python/releases/download/2019.3.6558/ms-python-release.vsix

@@ -14,5 +14,6 @@ firstPublicationDate: '2019-02-19'
 spec:
   containers:
   - image: eclipse/che-theia-endpoint-runtime:next
+    name: vscode-node-debug
   extensions:
   - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/node-debug2/1.31.6/vspackage
