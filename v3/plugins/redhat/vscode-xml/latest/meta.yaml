@@ -14,5 +14,6 @@ firstPublicationDate: '2019-04-19'
 spec:
   containers:
   - image: eclipse/che-remote-plugin-runner-java11:next
+    memoryLimit: "768Mi"
   extensions:
-  - https://github.com/redhat-developer/vscode-xml/releases/download/0.5.1/redhat.vscode-xml-0.5.1.vsix
+  - https://github.com/redhat-developer/vscode-xml/releases/download/0.7.0/vscode-xml-0.7.0-3205.vsix
