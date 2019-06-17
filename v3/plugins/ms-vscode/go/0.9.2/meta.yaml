@@ -13,5 +13,8 @@ firstPublicationDate: "2019-02-21"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-go-1.10.7:next"
+      env:
+      - name: GOPATH
+        value: /go:$(CHE_PROJECTS_ROOT)
   extensions:
     - https://github.com/Microsoft/vscode-go/releases/download/0.9.2/Go-0.9.2.vsix
