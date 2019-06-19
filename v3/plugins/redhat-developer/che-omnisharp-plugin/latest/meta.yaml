@@ -10,7 +10,7 @@ description: This plug-in registers omnisharp-roslyn as a language server and pr
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
-firstPublicationDate: '2019-03-13'
+firstPublicationDate: "2019-06-19"
 spec:
   containers:
   - image: eclipse/che-remote-plugin-dotnet-2.2.105:next
