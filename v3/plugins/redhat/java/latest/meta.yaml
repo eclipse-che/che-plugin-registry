@@ -10,7 +10,7 @@ description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle s
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
-firstPublicationDate: '2019-05-27'
+firstPublicationDate: "2019-06-18"
 spec:
   containers:
   - image: eclipse/che-remote-plugin-runner-java11:next
