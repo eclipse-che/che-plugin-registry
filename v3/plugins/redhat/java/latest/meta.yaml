@@ -17,4 +17,4 @@ spec:
     memoryLimit: "1500Mi"
   extensions:
   - https://github.com/microsoft/vscode-java-debug/releases/download/0.19.0/vscode-java-debug-0.19.0.vsix
-  - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.45.0-1523.vsix
+  - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.46.0-1549.vsix
