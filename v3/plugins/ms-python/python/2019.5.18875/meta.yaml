@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: ms-python
 name: python
-version: latest
+version: 2019.5.18875
 type: VS Code extension
 displayName: Python
 title: Python extension
@@ -14,7 +14,6 @@ firstPublicationDate: '2019-06-20'
 spec:
   containers:
   - image: eclipse/che-remote-plugin-python-3.7.3:next
-    name: vscode-python
     memoryLimit: '512Mi'
   extensions:
   - https://github.com/Microsoft/vscode-python/releases/download/2019.5.18875/ms-python-release.vsix
