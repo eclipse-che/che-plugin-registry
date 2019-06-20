@@ -10,7 +10,7 @@ description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle s
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
-firstPublicationDate: '2019-05-27'
+firstPublicationDate: "2019-06-18"
 spec:
   containers:
   - image: eclipse/che-remote-plugin-runner-java11:next
@@ -18,4 +18,4 @@ spec:
     memoryLimit: "1500Mi"
   extensions:
   - https://github.com/microsoft/vscode-java-debug/releases/download/0.19.0/vscode-java-debug-0.19.0.vsix
-  - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.45.0-1523.vsix
+  - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.46.0-1549.vsix
