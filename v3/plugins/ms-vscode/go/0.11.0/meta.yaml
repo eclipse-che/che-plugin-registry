@@ -13,6 +13,7 @@ firstPublicationDate: '2019-06-20'
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-go-1.10.7:next"
+      name: vscode-go
       memoryLimit: '512Mi'
       env:
       - name: GOPATH

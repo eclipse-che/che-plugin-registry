@@ -13,6 +13,7 @@ firstPublicationDate: '2019-06-20'
 spec:
   containers:
   - image: eclipse/che-theia-endpoint-runtime:next
+    name: vscode-typescript
     memoryLimit: '512Mi'
   extensions:
   - https://github.com/che-incubator/ms-code.typescript/releases/download/v1.35.1/che-typescript-language-1.35.1.vsix
