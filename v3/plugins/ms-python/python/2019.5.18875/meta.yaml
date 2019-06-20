@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: ms-python
 name: python
-version: latest
+version: 2019.5.18875
 type: VS Code extension
 displayName: Python
 title: Python extension
