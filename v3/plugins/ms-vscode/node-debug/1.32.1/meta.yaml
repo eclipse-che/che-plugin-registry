@@ -14,5 +14,6 @@ spec:
   containers:
     - image: "eclipse/che-theia-endpoint-runtime:next"
       name: vscode-node-debug-legacy
+      memoryLimit: '256Mi'
   extensions:
     - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/node-debug/1.32.1/vspackage
