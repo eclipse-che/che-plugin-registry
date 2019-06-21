@@ -14,6 +14,7 @@ spec:
   containers:
     - image: "eclipse/che-remote-plugin-runner-java11:next"
       name: vscode-java
+      memoryLimit: "1500Mi"
   extensions:
     - https://github.com/microsoft/vscode-java-debug/releases/download/0.16.0/vscode-java-debug-0.16.0.vsix
     - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.38.0-1373.vsix
