@@ -37,5 +37,11 @@
     },
     {
         "id": "che-incubator/typescript/latest"
+    },
+    {
+        "id": "eclipse/che-machine-exec-plugin/0.0.1"
+    },
+    {
+        "id": "eclipse/che-machine-exec-plugin/latest"
     }
 ]
