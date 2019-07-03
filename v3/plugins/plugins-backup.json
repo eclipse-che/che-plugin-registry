@@ -1,29 +1,5 @@
 [
     {
-        "id": "camel-tooling/vscode-apache-camel/0.0.14",
-        "displayName": "Language Support for Apache Camel",
-        "version": "0.0.14",
-        "type": "VS Code extension",
-        "name": "vscode-apache-camel",
-        "description": "This VS Code extension provides support for Apache Camel.",
-        "publisher": "camel-tooling",
-        "links": {
-            "self": "/v3/plugins/camel-tooling/vscode-apache-camel/0.0.14"
-        }
-    },
-    {
-        "id": "camel-tooling/vscode-apache-camel/latest",
-        "displayName": "Language Support for Apache Camel",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "vscode-apache-camel",
-        "description": "This VS Code extension provides support for Apache Camel.",
-        "publisher": "camel-tooling",
-        "links": {
-            "self": "/v3/plugins/camel-tooling/vscode-apache-camel/latest"
-        }
-    },
-    {
         "id": "che-incubator/theia-dev/0.0.1",
         "displayName": "Che Theia Dev Plugin",
         "version": "0.0.1",
