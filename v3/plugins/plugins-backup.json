@@ -1,65 +1,6 @@
 [
+       
     
-    {
-        "id": "eclipse/che-theia/latest",
-        "displayName": "theia-ide",
-        "version": "latest",
-        "type": "Che Editor",
-        "name": "che-theia",
-        "description": "Eclipse Theia",
-        "publisher": "eclipse",
-        "links": {
-            "self": "/v3/plugins/eclipse/che-theia/latest"
-        }
-    },
-    {
-        "id": "eclipse/che-theia/next",
-        "displayName": "theia-ide",
-        "version": "next",
-        "type": "Che Editor",
-        "name": "che-theia",
-        "description": "Eclipse Theia, get the latest release each day.",
-        "publisher": "eclipse",
-        "links": {
-            "self": "/v3/plugins/eclipse/che-theia/next"
-        }
-    },
-    {
-        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/0.1.17",
-        "displayName": "Kubernetes",
-        "version": "0.1.17",
-        "type": "VS Code extension",
-        "name": "vscode-kubernetes-tools",
-        "description": "Develop, deploy and debug Kubernetes applications",
-        "publisher": "ms-kubernetes-tools",
-        "links": {
-            "self": "/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/0.1.17"
-        }
-    },
-    {
-        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/1.0.0",
-        "displayName": "Kubernetes",
-        "version": "1.0.0",
-        "type": "VS Code extension",
-        "name": "vscode-kubernetes-tools",
-        "description": "Develop, deploy and debug Kubernetes applications",
-        "publisher": "ms-kubernetes-tools",
-        "links": {
-            "self": "/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/1.0.0"
-        }
-    },
-    {
-        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/latest",
-        "displayName": "Kubernetes",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "vscode-kubernetes-tools",
-        "description": "Develop, deploy and debug Kubernetes applications",
-        "publisher": "ms-kubernetes-tools",
-        "links": {
-            "self": "/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/latest"
-        }
-    },
     {
         "id": "ms-python/python/2019.2.5433",
         "displayName": "Python",

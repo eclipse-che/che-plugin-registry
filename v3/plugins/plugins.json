@@ -43,5 +43,14 @@
     },
     {
         "id": "eclipse/che-machine-exec-plugin/latest"
+    },
+    {
+        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/0.1.17"
+    },
+    {
+        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/1.0.0"
+    },
+    {
+        "id": "ms-kubernetes-tools/vscode-kubernetes-tools/latest"
     }
 ]

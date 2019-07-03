@@ -7,7 +7,7 @@ displayName: Kubernetes
 title: Kubernetes Tools
 description: Develop, deploy and debug Kubernetes applications
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
-repository: https://github.com/Azure/vscode-kubernetes-tools
+repository: https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/master/images/k8s-logo.png
 category: Other
 firstPublicationDate: "2019-03-11"
 spec:
