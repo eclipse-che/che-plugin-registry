@@ -14,7 +14,7 @@
         "description": "Che Theia Dev Plugin",
         "publisher": "che-incubator",
         "links": {
-            "self": "/v3/plugins/che-incubator/theia-dev/0.0.1"
+            "self": "che-incubator/theia-dev/0.0.1"
         }
     },
     {
@@ -26,7 +26,7 @@
         "description": "Che Theia Dev Plugin",
         "publisher": "che-incubator",
         "links": {
-            "self": "/v3/plugins/che-incubator/theia-dev/latest"
+            "self": "che-incubator/theia-dev/latest"
         }
     },
     {
