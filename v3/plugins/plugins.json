@@ -73,5 +73,14 @@
     },
     {
         "id": "ms-vscode/go/latest"
+    },
+    {
+        "id": "ms-vscode/node-debug/1.32.1"
+    },
+    {
+        "id": "ms-vscode/node-debug/1.35.2"
+    },
+    {
+        "id": "ms-vscode/node-debug/latest"
     }
 ]
