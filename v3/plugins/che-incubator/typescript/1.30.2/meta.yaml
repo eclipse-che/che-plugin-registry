@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Typescript
 title: Typescript language features
 description: Typescript language features
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/microsoft/vscode/1.30.2/extensions/typescript-language-features/icon.png
 repository: https://github.com/Microsoft/vscode
 category: Language
 firstPublicationDate: "2019-02-19"
