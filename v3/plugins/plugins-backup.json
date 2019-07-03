@@ -1,42 +1,7 @@
 [
        
     
-    {
-        "id": "ms-vscode/go/0.11.0",
-        "displayName": "Go",
-        "version": "0.11.0",
-        "type": "VS Code extension",
-        "name": "go",
-        "description": "This extension adds rich language support for the Go language",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/go/0.11.0"
-        }
-    },
-    {
-        "id": "ms-vscode/go/0.9.2",
-        "displayName": "Go",
-        "version": "0.9.2",
-        "type": "VS Code extension",
-        "name": "go",
-        "description": "This extension adds rich language support for the Go language",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/go/0.9.2"
-        }
-    },
-    {
-        "id": "ms-vscode/go/latest",
-        "displayName": "Go",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "go",
-        "description": "This extension adds rich language support for the Go language",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/go/latest"
-        }
-    },
+    
     {
         "id": "ms-vscode/node-debug/1.32.1",
         "displayName": "Node Debug (legacy)",
