@@ -52,5 +52,17 @@
     },
     {
         "id": "ms-kubernetes-tools/vscode-kubernetes-tools/latest"
+    },
+    {
+        "id": "ms-python/python/2019.2.5433"
+    },
+    {
+        "id": "ms-python/python/2019.3.6558"
+    },
+    {
+        "id": "ms-python/python/2019.5.18875"
+    },
+    {
+        "id": "ms-python/python/latest"
     }
 ]

@@ -2,54 +2,6 @@
        
     
     {
-        "id": "ms-python/python/2019.2.5433",
-        "displayName": "Python",
-        "version": "2019.2.5433",
-        "type": "VS Code extension",
-        "name": "python",
-        "description": "Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.",
-        "publisher": "ms-python",
-        "links": {
-            "self": "/v3/plugins/ms-python/python/2019.2.5433"
-        }
-    },
-    {
-        "id": "ms-python/python/2019.3.6558",
-        "displayName": "Python",
-        "version": "2019.3.6558",
-        "type": "VS Code extension",
-        "name": "python",
-        "description": "Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.",
-        "publisher": "ms-python",
-        "links": {
-            "self": "/v3/plugins/ms-python/python/2019.3.6558"
-        }
-    },
-    {
-        "id": "ms-python/python/2019.5.18875",
-        "displayName": "Python",
-        "version": "2019.5.18875",
-        "type": "VS Code extension",
-        "name": "python",
-        "description": "Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.",
-        "publisher": "ms-python",
-        "links": {
-            "self": "/v3/plugins/ms-python/python/2019.5.18875"
-        }
-    },
-    {
-        "id": "ms-python/python/latest",
-        "displayName": "Python",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "python",
-        "description": "Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.",
-        "publisher": "ms-python",
-        "links": {
-            "self": "/v3/plugins/ms-python/python/latest"
-        }
-    },
-    {
         "id": "ms-vscode/go/0.11.0",
         "displayName": "Go",
         "version": "0.11.0",

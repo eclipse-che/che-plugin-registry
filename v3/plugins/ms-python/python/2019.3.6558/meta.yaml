@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Python
 title: Python extension
 description: Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, and more.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/microsoft/vscode-python/2019.3.6558/icon.png
 repository: https://github.com/Microsoft/vscode-python
 category: Language
 firstPublicationDate: "2019-04-23"
