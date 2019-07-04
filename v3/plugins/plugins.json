@@ -148,5 +148,14 @@
     },
     {
         "id": "redhat/vscode-xml/latest"
+    },
+    {
+        "id": "redhat/vscode-yaml/0.3.0"
+    },
+    {
+        "id": "redhat/vscode-yaml/0.4.0"
+    },
+    {
+        "id": "redhat/vscode-yaml/latest"
     }
 ]

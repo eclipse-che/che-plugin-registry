@@ -1,41 +1,5 @@
 [
     {
-        "id": "redhat/vscode-yaml/0.3.0",
-        "displayName": "YAML",
-        "version": "0.3.0",
-        "type": "VS Code extension",
-        "name": "vscode-yaml",
-        "description": "Provides comprehensive YAML Language support to Visual Studio Code, via the yaml-language-server, with built-in Kubernetes and Kedge syntax support.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-yaml/0.3.0"
-        }
-    },
-    {
-        "id": "redhat/vscode-yaml/0.4.0",
-        "displayName": "YAML",
-        "version": "0.4.0",
-        "type": "VS Code extension",
-        "name": "vscode-yaml",
-        "description": "Provides comprehensive YAML Language support to Visual Studio Code, via the yaml-language-server, with built-in Kubernetes and Kedge syntax support.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-yaml/0.4.0"
-        }
-    },
-    {
-        "id": "redhat/vscode-yaml/latest",
-        "displayName": "YAML",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "vscode-yaml",
-        "description": "Provides comprehensive YAML Language support to Visual Studio Code, via the yaml-language-server, with built-in Kubernetes and Kedge syntax support.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-yaml/latest"
-        }
-    },
-    {
         "id": "redhat-developer/che-omnisharp-plugin/0.0.1",
         "displayName": "Omnisharp Theia Plug-in",
         "version": "0.0.1",
