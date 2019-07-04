@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Language Support for Java(TM)
 title: Language and Debugger Support for Java(TM)
 description: Java Linting, debugging, Intellisense, formatting, refactoring, Maven/Gradle support and more...
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/redhat-developer/vscode-java/v0.38.0/icons/icon128.png
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
 firstPublicationDate: "2019-02-20"

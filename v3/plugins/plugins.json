@@ -91,6 +91,20 @@
     },
     {
         "id": "ms-vscode/node-debug2/latest"
+    },
+    {
+        "id": "redhat/java/0.38.0"
+    },
+    {
+        "id": "redhat/java/0.43.0"
+    },
+    {
+        "id": "redhat/java/0.45.0"
+    },
+    {
+        "id": "redhat/java/0.46.0"
+    },
+    {
+        "id": "redhat/java/latest"
     }
-
 ]
