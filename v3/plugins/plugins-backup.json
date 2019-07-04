@@ -1,53 +1,5 @@
 [
     {
-        "id": "redhat/vscode-xml/0.3.0",
-        "displayName": "XML",
-        "version": "0.3.0",
-        "type": "VS Code extension",
-        "name": "vscode-xml",
-        "description": "This VS Code extension provides support for creating and editing XML documents, based on the LSP4XML language server, running with Java.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-xml/0.3.0"
-        }
-    },
-    {
-        "id": "redhat/vscode-xml/0.5.1",
-        "displayName": "XML",
-        "version": "0.5.1",
-        "type": "VS Code extension",
-        "name": "vscode-xml",
-        "description": "This VS Code extension provides support for creating and editing XML documents, based on the LSP4XML language server, running with Java.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-xml/0.5.1"
-        }
-    },
-    {
-        "id": "redhat/vscode-xml/0.7.0",
-        "displayName": "XML",
-        "version": "0.7.0",
-        "type": "VS Code extension",
-        "name": "vscode-xml",
-        "description": "This VS Code extension provides support for creating and editing XML documents, based on the LSP4XML language server, running with Java.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-xml/0.7.0"
-        }
-    },
-    {
-        "id": "redhat/vscode-xml/latest",
-        "displayName": "XML",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "vscode-xml",
-        "description": "This VS Code extension provides support for creating and editing XML documents, based on the LSP4XML language server, running with Java.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-xml/latest"
-        }
-    },
-    {
         "id": "redhat/vscode-yaml/0.3.0",
         "displayName": "YAML",
         "version": "0.3.0",

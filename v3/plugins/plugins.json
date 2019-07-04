@@ -136,5 +136,17 @@
     },
     {
         "id": "redhat/vscode-openshift-connector/latest"
+    },
+    {
+        "id": "redhat/vscode-xml/0.3.0"
+    },
+    {
+        "id": "redhat/vscode-xml/0.5.1"
+    },
+    {
+        "id": "redhat/vscode-xml/0.7.0"
+    },
+    {
+        "id": "redhat/vscode-xml/latest"
     }
 ]
