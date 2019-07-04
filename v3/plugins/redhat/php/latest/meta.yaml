@@ -6,7 +6,7 @@ displayName: PHP Intelephense
 title: PHP Intelephense
 description: This VS Code extension provides support for creating and editing PHP documents, based on the PHP Intelephense language server.
 type: VS Code extension
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/bmewburn/vscode-intelephense/v1.0.13/images/elephpant.png
 repository: https://github.com/bmewburn/vscode-intelephense
 category: Language
 firstPublicationDate: "2019-04-16"

@@ -1,29 +1,5 @@
 [
     {
-        "id": "redhat/php/1.0.13",
-        "displayName": "PHP Intelephense",
-        "version": "1.0.13",
-        "type": "VS Code extension",
-        "name": "php",
-        "description": "This VS Code extension provides support for creating and editing PHP documents, based on the PHP Intelephense language server.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/php/1.0.13"
-        }
-    },
-    {
-        "id": "redhat/php/latest",
-        "displayName": "PHP Intelephense",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "php",
-        "description": "This VS Code extension provides support for creating and editing PHP documents, based on the PHP Intelephense language server.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/php/latest"
-        }
-    },
-    {
         "id": "redhat/php-debugger/1.13.0",
         "displayName": "PHP Debugger",
         "version": "1.13.0",
