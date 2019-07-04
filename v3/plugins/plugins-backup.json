@@ -1,53 +1,5 @@
 [
     {
-        "id": "redhat/vscode-openshift-connector/0.0.17",
-        "displayName": "OpenShift Connector",
-        "version": "0.0.17",
-        "type": "VS Code extension",
-        "name": "vscode-openshift-connector",
-        "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-openshift-connector/0.0.17"
-        }
-    },
-    {
-        "id": "redhat/vscode-openshift-connector/0.0.19",
-        "displayName": "OpenShift Connector",
-        "version": "0.0.19",
-        "type": "VS Code extension",
-        "name": "vscode-openshift-connector",
-        "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-openshift-connector/0.0.19"
-        }
-    },
-    {
-        "id": "redhat/vscode-openshift-connector/0.0.21",
-        "displayName": "OpenShift Connector",
-        "version": "0.0.21",
-        "type": "VS Code extension",
-        "name": "vscode-openshift-connector",
-        "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-openshift-connector/0.0.21"
-        }
-    },
-    {
-        "id": "redhat/vscode-openshift-connector/latest",
-        "displayName": "OpenShift Connector",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "vscode-openshift-connector",
-        "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/vscode-openshift-connector/latest"
-        }
-    },
-    {
         "id": "redhat/vscode-xml/0.3.0",
         "displayName": "XML",
         "version": "0.3.0",

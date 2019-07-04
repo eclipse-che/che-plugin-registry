@@ -124,6 +124,17 @@
     },
     {
         "id": "redhat/project-initializer/latest"
+    },
+    {
+        "id": "redhat/vscode-openshift-connector/0.0.17"
+    },
+    {
+        "id": "redhat/vscode-openshift-connector/0.0.19"
+    },
+    {
+        "id": "redhat/vscode-openshift-connector/0.0.21"
+    },
+    {
+        "id": "redhat/vscode-openshift-connector/latest"
     }
-
 ]
