@@ -4,42 +4,6 @@
     
     
     {
-        "id": "ms-vscode/node-debug2/1.31.6",
-        "displayName": "Node Debug",
-        "version": "1.31.6",
-        "type": "VS Code extension",
-        "name": "node-debug2",
-        "description": "Node Debug is the debugger for Node.js versions >= 8.0. Together with Node Debug (legacy) forms the Node.js debugging experience. https://marketplace.visualstudio.com/items?itemName=ms-vscode.node-debug2",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/node-debug2/1.31.6"
-        }
-    },
-    {
-        "id": "ms-vscode/node-debug2/1.33.0",
-        "displayName": "Node Debug",
-        "version": "1.33.0",
-        "type": "VS Code extension",
-        "name": "node-debug2",
-        "description": "Node Debug is the debugger for Node.js versions >= 8.0. Together with Node Debug (legacy) forms the Node.js debugging experience. https://marketplace.visualstudio.com/items?itemName=ms-vscode.node-debug2",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/node-debug2/1.33.0"
-        }
-    },
-    {
-        "id": "ms-vscode/node-debug2/latest",
-        "displayName": "Node Debug",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "node-debug2",
-        "description": "Node Debug is the debugger for Node.js versions >= 8.0. Together with Node Debug (legacy) forms the Node.js debugging experience. https://marketplace.visualstudio.com/items?itemName=ms-vscode.node-debug2",
-        "publisher": "ms-vscode",
-        "links": {
-            "self": "/v3/plugins/ms-vscode/node-debug2/latest"
-        }
-    },
-    {
         "id": "redhat/java/0.38.0",
         "displayName": "Language Support for Java(TM)",
         "version": "0.38.0",

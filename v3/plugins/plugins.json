@@ -82,5 +82,15 @@
     },
     {
         "id": "ms-vscode/node-debug/latest"
+    },
+    {
+        "id": "ms-vscode/node-debug2/1.31.6"
+    },
+    {
+        "id": "ms-vscode/node-debug2/1.33.0"
+    },
+    {
+        "id": "ms-vscode/node-debug2/latest"
     }
+
 ]
