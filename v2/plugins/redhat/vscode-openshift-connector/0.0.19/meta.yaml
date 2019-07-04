@@ -11,4 +11,4 @@ repository: https://github.com/redhat-developer/vscode-openshift-tools
 category: Other
 firstPublicationDate: "2019-04-19"
 attributes:
-  containerImage: "eclipse/che-remote-plugin-openshift-connector-0.0.17:7.0.0-rc-3.0"
+  containerImage: "eclipse/che-remote-plugin-openshift-connector-0.0.17:next"
