@@ -118,5 +118,12 @@
     },
     {
         "id": "redhat/php-debugger/latest"
+    },
+    {
+        "id": "redhat/project-initializer/0.0.9"
+    },
+    {
+        "id": "redhat/project-initializer/latest"
     }
+
 ]

@@ -1,29 +1,5 @@
 [
     {
-        "id": "redhat/project-initializer/0.0.9",
-        "displayName": "Project Initializer by Red Hat",
-        "version": "0.0.9",
-        "type": "VS Code extension",
-        "name": "project-initializer",
-        "description": "A lightweight extension based on Red Hat launcher to generate quickstart projects using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/project-initializer/0.0.9"
-        }
-    },
-    {
-        "id": "redhat/project-initializer/latest",
-        "displayName": "Project Initializer by Red Hat",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "project-initializer",
-        "description": "A lightweight extension based on Red Hat launcher to generate quickstart projects using Eclipse Che",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/project-initializer/latest"
-        }
-    },
-    {
         "id": "redhat/vscode-openshift-connector/0.0.17",
         "displayName": "OpenShift Connector",
         "version": "0.0.17",
