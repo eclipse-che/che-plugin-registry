@@ -1,29 +1,5 @@
 [
     {
-        "id": "redhat/php-debugger/1.13.0",
-        "displayName": "PHP Debugger",
-        "version": "1.13.0",
-        "type": "VS Code extension",
-        "name": "php-debugger",
-        "description": "This VS Code extension provides support for PHP debugging, based on the PHP Debug extension from Felix Backer.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/php-debugger/1.13.0"
-        }
-    },
-    {
-        "id": "redhat/php-debugger/latest",
-        "displayName": "PHP Debugger",
-        "version": "latest",
-        "type": "VS Code extension",
-        "name": "php-debugger",
-        "description": "This VS Code extension provides support for PHP debugging, based on the PHP Debug extension from Felix Backer.",
-        "publisher": "redhat",
-        "links": {
-            "self": "/v3/plugins/redhat/php-debugger/latest"
-        }
-    },
-    {
         "id": "redhat/project-initializer/0.0.9",
         "displayName": "Project Initializer by Red Hat",
         "version": "0.0.9",

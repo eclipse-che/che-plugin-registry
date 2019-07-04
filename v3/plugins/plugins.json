@@ -112,5 +112,11 @@
     },
     {
         "id": "redhat/php/latest"
+    },
+    {
+        "id": "redhat/php-debugger/1.13.0"
+    },
+    {
+        "id": "redhat/php-debugger/latest"
     }
 ]
