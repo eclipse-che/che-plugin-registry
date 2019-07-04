@@ -11,4 +11,4 @@ repository: https://github.com/redhat-developer/vscode-yaml
 category: Language
 firstPublicationDate: "2019-04-19"
 attributes:
-  containerImage: "eclipse/che-theia-endpoint-runtime:next"
+  containerImage: "eclipse/che-theia-endpoint-runtime:7.0.0-rc-3.0"
