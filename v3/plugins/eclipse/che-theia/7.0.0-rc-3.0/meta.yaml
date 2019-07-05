@@ -1,15 +1,15 @@
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: latest
+version: 7.0.0-rc-3.0
 type: Che Editor
 displayName: theia-ide
-title: Eclipse Theia for Eclipse Che
-description: Eclipse Theia
+title: Eclipse Theia development version.
+description: Eclipse Theia, get the latest release each day.
 icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
 category: Editor
 repository: https://github.com/eclipse/che-theia
-firstPublicationDate: "2019-02-05"
+firstPublicationDate: "2019-03-07"
 spec:
   endpoints:
    -  name: "theia"
@@ -28,6 +28,24 @@ spec:
         protocol: http
         type: ide-dev
         discoverable: false
+   -  name: "theia-redirect-1"
+      public: true
+      targetPort: 13131
+      attributes:
+        protocol: http
+        discoverable: false
+   -  name: "theia-redirect-2"
+      public: true
+      targetPort: 13132
+      attributes:
+        protocol: http
+        discoverable: false
+   -  name: "theia-redirect-3"
+      public: true
+      targetPort: 13133
+      attributes:
+        protocol: http
+        discoverable: false
   containers:
    - name: theia-ide
      image: eclipse/che-theia:7.0.0-rc-3.0
@@ -45,4 +63,7 @@ spec:
      ports:
          - exposedPort: 3100
          - exposedPort: 3130
-     memoryLimit: "1536M"
+         - exposedPort: 13131
+         - exposedPort: 13132
+         - exposedPort: 13133
+     memoryLimit: "512M"
