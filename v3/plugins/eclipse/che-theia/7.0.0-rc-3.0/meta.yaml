@@ -51,7 +51,9 @@ spec:
      image: eclipse/che-theia:7.0.0-rc-3.0
      env:
          - name: THEIA_PLUGINS
-           value: local-dir:///plugins
+           value: local-dir:///plugins,local-dir:///vscode-plugins
+         - name: VSCODE_PLUGINS
+           value: /vscode-plugins
          - name: HOSTED_PLUGIN_HOSTNAME
            value: 0.0.0.0
          - name: HOSTED_PLUGIN_PORT
@@ -59,6 +61,10 @@ spec:
      volumes:
          - mountPath: "/plugins"
            name: plugins
+         - mountPath: "/vscode-plugins"
+           name: vscode-plugins
+         - mountPath: "/home/theia/.theia"
+           name: theia-data
      mountSources: true
      ports:
          - exposedPort: 3100
