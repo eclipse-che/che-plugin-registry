@@ -3,32 +3,31 @@
 
 # Eclipse Che plugin registry
 
-## Build Eclipse Che plugin registry docker image
+## Build Eclipse Che plugin registry container image
 
-Execute
+Most of the time you won't need to rebuild the image because we build ```quay.io/openshiftio/che-plugin-registry:latest``` after every commit in master. In case you needed to change the content of the registry (e.g. add or modify some plugins meta.yaml) you can build your own image executing
+
 ```shell
-docker build --no-cache -t eclipse/che-plugin-registry .
+docker build --no-cache -t quay.io/openshiftio/che-plugin-registry .
 ```
+
 Where `--no-cache` is needed to prevent usage of cached layers with plugin registry files.
 Useful when you change plugin metadata files and rebuild the image.
 
-## https://hub.docker.com/
+Note that the Dockerfiles feature multi-stage build, so it requires Docker version 17.05 or higher.
 
-Note that the Dockerfiles feature multi-stage build, so it requires Docker of version 17.05 and higher.
-Though you may also just provide the image to the older versions of Docker (ex. on Minishift) by having it build on newer version, and pushing and pulling it from Docker Hub.
+## Run Eclipse Che plugin registry on OpenShift
 
-```eclipse/che-plugin-registry:latest``` image would be rebuilt after each commit in master
-
-## OpenShift
 You can deploy Che plugin registry on Openshift with command.
-```
+
+```bash
   oc new-app -f openshift/che-plugin-registry.yml \
-             -p IMAGE="eclipse/che-plugin-registry" \
+             -p IMAGE="quay.io/openshiftio/che-plugin-registry" \
              -p IMAGE_TAG="latest" \
              -p PULL_POLICY="IfNotPresent"
 ```
 
-## Kubernetes
+## Run Eclipse Che plugin registry on Kubernetes
 
 You can deploy Che plugin registry on Kubernetes using [helm](https://docs.helm.sh/). For example if you want to deploy it in the namespace `kube-che` and you are using `minikube` you can use the following command.
 
@@ -52,11 +51,14 @@ helm delete --purge che-plugin-registry
 
 ```
 
-## Docker
+## Run Eclipse Che plugin registry using Docker
+
+```bash
+docker run -it  --rm  -p 8080:8080 quay.io/openshiftio/che-plugin-registry
 ```
-docker run -it  --rm  -p 8080:8080 eclipse/che-plugin-registry
-```
-### Plugin meta YAML structure:
+
+## Plugin meta YAML structure
+
 Here is an overview of all fields that can be present in plugin meta YAML files. This document represents the current `v3` version.
 
 ```yaml
@@ -128,105 +130,139 @@ Note that the `spec` section above comes from the older `che-plugin.yaml` spec. 
 At the moment, some of these fields (that are related to plugin viewer) are validated during the Plugin Registry dockerimage build.
 
 ## Get index list of all plugins
+
 Example:
+
+```bash
+curl  "http://localhost:8080/v3/plugins/index.json"
 ```
-curl  "http://localhost:8080/v2/plugins/index.json"
-```
+
 or
+
+```bash
+curl  "http://localhost:8080/v3/plugins/"
 ```
-curl  "http://localhost:8080/v2/plugins/"
-```
+
 Response:
-```javascript
+
+```json
 [
   {
-    "publisher": "che-incubator",
-    "name": "theia",
-    "version": "1.0.0",
-    "id": "che-incubator/theia/1.0.0",
+    "id": "eclipse/che-theia/latest",
+    "displayName": "theia-ide",
+    "version": "latest",
     "type": "Che Editor",
-    "displayName": "Eclipse Theia",
+    "name": "che-theia",
     "description": "Eclipse Theia",
+    "publisher": "eclipse",
     "links": {
-      "self": "/plugins/che-incubator/theia/1.0.0"
+      "self": "/v3/plugins/eclipse/che-theia/latest"
     }
   },
   {
-    "publisher": "che-incubator",
-    "name": "theia",
+    "id": "eclipse/che-theia/next",
+    "displayName": "theia-ide",
     "version": "next",
-    "id": "che-incubator/theia/next",
     "type": "Che Editor",
-    "displayName": "Eclipse Theia",
-    "description": "Eclipse Theia",
+    "name": "che-theia",
+    "description": "Eclipse Theia, get the latest release each day.",
+    "publisher": "eclipse",
     "links": {
-      "self": "/plugins/che-incubator/theia/next"
-    }
-  },
-  {
-    "publisher": "ws-skeleton",
-    "name": "che-service-plugin",
-    "version": "0.0.1",
-    "id": "ws-skeleton/che-service-plugin/0.0.1",
-    "type": "Che Plugin",
-    "displayName": "Che Service",
-    "description": "Che Plug-in with Theia plug-in and container definition providing a service",
-    "links": {
-      "self": "/plugins/ws-skeleton/che-service-plugin/0.0.1"
-    }
-  },
-  {
-    "publisher": "",
-    "name": "che-dummy-plugin",
-    "version": "0.0.1",
-    "deprecate": {
-      "migrateTo": "ws-skeleton/che-dummy-plugin/0.0.1",
-      "autoMigrate": true
-    },
-    "id": "che-dummy-plugin/0.0.1",
-    "type": "Che Plugin",
-    "displayName": "Che dummy plugin",
-    "description": "A hello world theia plug-in wrapped into a Che Plug-in",
-    "links": {
-      "self": "/plugins/che-dummy-plugin/0.0.1"
-    }
-  },
-  {
-    "publisher": "ws-skeleton",
-    "name": "che-dummy-plugin",
-    "version": "0.0.1",
-    "id": "ws-skeleton/che-dummy-plugin/0.0.1",
-    "type": "Che Plugin",
-    "displayName": "Che dummy plugin",
-    "description": "A hello world theia plug-in wrapped into a Che Plug-in",
-    "links": {
-      "self": "/plugins/ws-skeleton/che-dummy-plugin/0.0.1"
+      "self": "/v3/plugins/eclipse/che-theia/next"
     }
   }
 ]
 ```
+
 ## Get meta.yaml of a plugin
+
 Example:
+
+```bash
+curl  "http://localhost:8080/v3/plugins/eclipse/che-theia/next/meta.yaml"
 ```
-curl  "http://localhost:8080/v2/plugins/che-incubator/theia/1.0.0"
-```
+
 or
+
+```bash
+curl  "http://localhost:8080/v3/plugins/eclipse/che-theia/latest/meta.yaml"
 ```
-curl  "http://localhost:8080/v2/plugins/che-incubator/theia/1.0.0/meta.yaml"
-```
+
 Response:
+
 ```yaml
-publisher: che-incubator
-name: theia
-version: 1.0.0
-id: che-incubator/theia/1.0.0
+apiVersion: v2
+publisher: eclipse
+name: che-theia
+version: next
 type: Che Editor
-displayName: Eclipse Theia
-title: Eclipse Theia for Eclipse Che
-description: Eclipse Theia
-icon: https://pbs.twimg.com/profile_images/929088242456190976/xjkS2L-0_400x400.jpg
-url: https://github.com/ws-skeleton/che-editor-theia/releases/download/untagged-892e01b21d0145207b0f/che-editor-plugin.tar.gz
+displayName: theia-ide
+title: Eclipse Theia development version.
+description: Eclipse Theia, get the latest release each day.
+icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
+category: Editor
+repository: https://github.com/eclipse/che-theia
+firstPublicationDate: "2019-03-07"
+spec:
+  endpoints:
+  - name: theia
+    public: true
+    targetPort: 3100
+    attributes:
+      protocol: http
+      type: ide
+      secure: true
+      cookiesAuthEnabled: true
+      discoverable: false
+  - name: theia-dev
+    public: true
+    targetPort: 3130
+    attributes:
+      protocol: http
+      type: ide-dev
+      discoverable: false
+  - name: theia-redirect-1
+    public: true
+    targetPort: 13131
+    attributes:
+      protocol: http
+      discoverable: false
+  - name: theia-redirect-2
+    public: true
+    targetPort: 13132
+    attributes:
+      protocol: http
+      discoverable: false
+  - name: theia-redirect-3
+    public: true
+    targetPort: 13133
+    attributes:
+      protocol: http
+      discoverable: false
+  containers:
+  - name: theia-ide
+    image: eclipse/che-theia:next
+    env:
+    - name: THEIA_PLUGINS
+      value: local-dir:///plugins
+    - name: HOSTED_PLUGIN_HOSTNAME
+      value: 0.0.0.0
+    - name: HOSTED_PLUGIN_PORT
+      value: 3130
+    volumes:
+    - mountPath: /plugins
+      name: plugins
+    mountSources: true
+    ports:
+    - exposedPort: 3100
+    - exposedPort: 3130
+    - exposedPort: 13131
+    - exposedPort: 13132
+    - exposedPort: 13133
+    memoryLimit: 512M
+latestUpdateDate: "2019-07-05"
 ```
 
 ### License
+
 Che is open sourced under the Eclipse Public License 2.0.
