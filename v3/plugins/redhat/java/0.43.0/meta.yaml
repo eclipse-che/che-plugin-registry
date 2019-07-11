@@ -3,7 +3,7 @@ publisher: redhat
 name: java
 version: 0.43.0
 type: VS Code extension
-displayName: Language Support for Java 8
+displayName: Language Support for Java(TM)
 title: Language and Debugger Support for Java(TM)
 description: Java Linting, debugging, Intellisense, formatting, refactoring, Maven/Gradle support and more...
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
