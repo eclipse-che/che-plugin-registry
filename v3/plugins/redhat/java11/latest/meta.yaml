@@ -1,9 +1,9 @@
 apiVersion: v2
 publisher: redhat
-name: java
+name: java11
 version: latest
 type: VS Code extension
-displayName: Language Support for Java(TM)
+displayName: Language Support for Java 11
 title: Language Support for Java(TM) by Red Hat
 description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support
   and more...
@@ -13,7 +13,7 @@ category: Language
 firstPublicationDate: "2019-06-18"
 spec:
   containers:
-  - image: eclipse/che-remote-plugin-runner-java8:7.0.0-rc-3.0
+  - image: eclipse/che-remote-plugin-runner-java11:7.0.0-rc-3.0
     name: vscode-java
     memoryLimit: "1500Mi"
   extensions:
