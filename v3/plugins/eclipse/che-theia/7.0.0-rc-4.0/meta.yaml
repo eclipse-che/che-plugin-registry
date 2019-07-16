@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: 7.0.0-rc-4.0-SNAPSHOT
+version: 7.0.0-next
 type: Che Editor
 displayName: theia-ide
 title: Eclipse Theia development version.
@@ -48,7 +48,7 @@ spec:
         discoverable: false
   containers:
    - name: theia-ide
-     image: eclipse/che-theia:7.0.0-rc-4.0-SNPASHOT
+     image: eclipse/che-theia:7.0.0-next
      env:
          - name: THEIA_PLUGINS
            value: local-dir:///plugins
