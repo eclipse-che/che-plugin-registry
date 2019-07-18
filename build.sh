@@ -8,4 +8,4 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-docker build -t eclipse/che-plugin-registry:latest .
+docker build -t quay.io/eclipse/che-plugin-registry:nightly .

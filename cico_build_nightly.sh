@@ -20,8 +20,6 @@ function load_jenkins_vars() {
   if [ -e "jenkins-env.json" ]; then
     eval "$(./env-toolkit load -f jenkins-env.json \
             DEVSHIFT_TAG_LEN \
-            QUAY_USERNAME \
-            QUAY_PASSWORD \
             QUAY_ECLIPSE_CHE_USERNAME \
             QUAY_ECLIPSE_CHE_PASSWORD \
             JENKINS_URL \
@@ -46,7 +44,6 @@ function install_deps() {
     git
 
   service docker start
-
   echo 'CICO: Dependencies installed'
 }
 
@@ -56,36 +53,23 @@ function tag_push() {
   docker push "$TARGET"
 }
 
-function deploy() {
-  TARGET=${TARGET:-"centos"}
+function build_and_push() {
+  DOCKERFILE="Dockerfile"
   REGISTRY="quay.io"
+  ORGANIZATION="eclipse"
+  IMAGE="che-plugin-registry"
+  TAG="nightly"
 
-  if [ "$TARGET" == "rhel" ]; then
-    DOCKERFILE="Dockerfile.rhel"
-    ORGANIZATION="openshiftio"
-    IMAGE="rhel-che-plugin-registry"
+  if [ -n "${QUAY_ECLIPSE_CHE_USERNAME}" ] && [ -n "${QUAY_ECLIPSE_CHE_PASSWORD}" ]; then
+    docker login -u "${QUAY_ECLIPSE_CHE_USERNAME}" -p "${QUAY_ECLIPSE_CHE_PASSWORD}" "${REGISTRY}"
   else
-    DOCKERFILE="Dockerfile"
-    ORGANIZATION="eclipse"
-    IMAGE="che-plugin-registry"
-    # For pushing to quay.io 'eclipse' organization we need to use different credentials
-    QUAY_USERNAME=${QUAY_ECLIPSE_CHE_USERNAME}
-    QUAY_PASSWORD=${QUAY_ECLIPSE_CHE_PASSWORD}
+    echo "Could not login, missing credentials for pushing to the '${ORGANIZATION}' organization"
   fi
 
-  if [ -n "${QUAY_USERNAME}" ] && [ -n "${QUAY_PASSWORD}" ]; then
-    docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" "${REGISTRY}"
-  else
-    echo "Could not login, missing credentials for the registry"
-  fi
-
-  # Let's deploy
+  # Let's build and push images to 'quay.io'
   docker build -t ${IMAGE} -f ${DOCKERFILE} .
-
-  TAG=$(echo "$GIT_COMMIT" | cut -c1-"${DEVSHIFT_TAG_LEN}")
-
   tag_push "${REGISTRY}/${ORGANIZATION}/$IMAGE:$TAG"
-  echo "CICO: Image pushed to '${REGISTRY}/${ORGANIZATION}', ready to update deployed app"
+  echo "CICO: nightly images pushed to 'quay.io/eclipse' organization"
 }
 
 function cico_setup() {
@@ -93,4 +77,4 @@ function cico_setup() {
   install_deps;
 }
 cico_setup
-deploy
+build_and_push

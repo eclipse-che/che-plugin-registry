@@ -83,13 +83,13 @@ objects:
       name: che-plugin-registry
 parameters:
 - name: IMAGE
-  value: eclipse/che-plugin-registry
+  value: quay.io/eclipse/che-plugin-registry
   displayName: Eclipse Che plugin registry image
   description: Che plugin registry Docker image. Defaults to eclipse/che-plugin-registry
 - name: IMAGE_TAG
-  value: latest
+  value: nightly
   displayName: Eclipse Che plugin registry version
-  description: Eclipse Che plugin registry version which defaults to latest
+  description: Eclipse Che plugin registry version which defaults to nightly
 - name: MEMORY_LIMIT
   value: 256Mi
   displayName: Memory Limit

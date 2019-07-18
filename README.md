@@ -5,10 +5,10 @@
 
 ## Build Eclipse Che plugin registry container image
 
-Most of the time you won't need to rebuild the image because we build ```quay.io/openshiftio/che-plugin-registry:latest``` after every commit in master. In case you needed to change the content of the registry (e.g. add or modify some plugins meta.yaml) you can build your own image executing
+Most of the time you won't need to rebuild the image because we build ```quay.io/eclipse/che-plugin-registry:nightly``` after every commit in master. In case you needed to change the content of the registry (e.g. add or modify some plugins meta.yaml) you can build your own image executing
 
 ```shell
-docker build --no-cache -t quay.io/openshiftio/che-plugin-registry .
+docker build --no-cache -t quay.io/eclipse/che-plugin-registry:nightly .
 ```
 
 Where `--no-cache` is needed to prevent usage of cached layers with plugin registry files.
@@ -22,8 +22,8 @@ You can deploy Che plugin registry on Openshift with command.
 
 ```bash
   oc new-app -f openshift/che-plugin-registry.yml \
-             -p IMAGE="quay.io/openshiftio/che-plugin-registry" \
-             -p IMAGE_TAG="latest" \
+             -p IMAGE="quay.io/eclipse/che-plugin-registry" \
+             -p IMAGE_TAG="nightly" \
              -p PULL_POLICY="IfNotPresent"
 ```
 
@@ -54,7 +54,7 @@ helm delete --purge che-plugin-registry
 ## Run Eclipse Che plugin registry using Docker
 
 ```bash
-docker run -it  --rm  -p 8080:8080 quay.io/openshiftio/che-plugin-registry
+docker run -it  --rm  -p 8080:8080 quay.io/eclipse/che-plugin-registry:nightly
 ```
 
 ## Plugin meta YAML structure
