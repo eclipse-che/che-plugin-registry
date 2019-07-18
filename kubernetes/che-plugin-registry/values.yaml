@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-chePluginRegistryImage: eclipse/che-plugin-registry
+chePluginRegistryImage: quay.io/eclipse/che-plugin-registry:nightly
 chePluginRegistryImagePullPolicy: Always
 chePluginRegistryMemoryLimit: 256Mi
 #chePluginRegistryIngressSecretName: che-tls
