@@ -1,5 +1,5 @@
 apiVersion: v2
-publisher: camel-tooling
+publisher: redhat
 name: vscode-apache-camel
 version: latest
 type: VS Code extension
@@ -10,13 +10,10 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/camel-lsp-client-vscode
 category: Language
 firstPublicationDate: '2018-04-23'
-deprecate:
-  automigrate: true
-  migrateTo: redhat.vscode-apache-camel
 spec:
   containers:
-  - image: "docker.io/eclipse/che-remote-plugin-runner-java11:next"
+  - image: eclipse/che-remote-plugin-runner-java11:7.0.0-next
     name: vscode-apache-camel
     memoryLimit: "512Mi"
   extensions:
-  - https://github.com/camel-tooling/camel-lsp-client-vscode/releases/download/0.0.14/camel-tooling.vscode-apache-camel-0.0.14.vsix
+  - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.15-28.vsix	

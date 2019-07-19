@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/camel-lsp-client-vscode
 category: Language
 firstPublicationDate: "2018-04-23"
+deprecate:
+  automigrate: true
+  migrateTo: redhat.vscode-apache-camel
 spec:
   containers:
     - image: "docker.io/eclipse/che-remote-plugin-runner-java11:next"
