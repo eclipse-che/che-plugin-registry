@@ -14,9 +14,6 @@ set -x
 # Exit on error
 set -e
 
-SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
-export SCRIPT_DIR
-
 # Source environment variables of the jenkins slave
 # that might interest this worker.
 function load_jenkins_vars() {
