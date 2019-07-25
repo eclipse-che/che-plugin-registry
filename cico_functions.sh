@@ -58,14 +58,13 @@ function set_release_tag() {
 
 function set_ci_tag() {
   # Let's obtain the tag based on the 
-  # version defined in the 'VERSION' file
+  # git commit hash
   TAG=$(echo "$GIT_COMMIT" | cut -c1-"${DEVSHIFT_TAG_LEN}")
   export TAG
 }
 
 function set_nightly_tag() {
-  # Let's obtain the tag based on the 
-  # version defined in the 'VERSION' file
+  # Let's set the tag as nightly
   export TAG="nightly"
 }
 
