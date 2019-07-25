@@ -20,6 +20,8 @@ function load_jenkins_vars() {
   if [ -e "jenkins-env.json" ]; then
     eval "$(./env-toolkit load -f jenkins-env.json \
             DEVSHIFT_TAG_LEN \
+            QUAY_USERNAME \
+            QUAY_PASSWORD \
             QUAY_ECLIPSE_CHE_USERNAME \
             QUAY_ECLIPSE_CHE_PASSWORD \
             JENKINS_URL \
