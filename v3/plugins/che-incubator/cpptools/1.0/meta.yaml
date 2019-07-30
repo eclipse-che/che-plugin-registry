@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-07-23'
 spec:
   containers:
-    - image: 'eclipse/che-remote-plugin-clang-8:7.0.0-next'
+    - image: 'abazko/che-remote-plugin-clang-8:7.0.0-next'
       name: vscode-cpp
       memoryLimit: '512Mi'
   extensions:
