@@ -1,6 +1,7 @@
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "Authorization"
 DirectoryIndex README.md
+Redirect temp /plugins /v3/plugins
 <FilesMatch "\.(json|yaml)$">
     <IfModule mod_expires.c>
 	ExpiresActive Off

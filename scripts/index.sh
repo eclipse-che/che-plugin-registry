@@ -8,6 +8,10 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+# Generated plugins index in JSON format.
+# Arguments:
+# 1 - plugin root folder, e.g. 'v3'
+
 set -e
 
 # shellcheck source=./scripts/util.sh
@@ -17,8 +21,7 @@ source ./util.sh
 # Arguments:
 # 1 - meta.yaml location
 function getId() {
-    name_field=$(yq r "$1" id | sed 's/^"\(.*\)"$/\1/')
-    echo "${name_field}"
+    evaluate_plugin_id "$1"
 }
 
 # getId function MUST be defined to use this function
@@ -62,10 +65,11 @@ function buildIndex() {
             echo "  },"
         fi
 
-        echo "  \"links\": {\"self\":\"/$i\" }"
+        path=$(echo "$i" | sed 's/\/meta.yaml$//g')
+        echo "  \"links\": {\"self\":\"/$path\" }"
         echo "}"
     done
     echo "]"
 }
 
-buildIndex plugins
+buildIndex "$1"
