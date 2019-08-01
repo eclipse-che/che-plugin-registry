@@ -17,5 +17,3 @@ Redirect temp /plugins /v3/plugins
 	Header set Expires "Mon, 10 Apr 1972 00:00:00 GMT"
     </IfModule>
 </FilesMatch>
-
-
