@@ -11,12 +11,12 @@ RUN apk add --no-cache bash
 COPY .htaccess README.md ./scripts/*.sh /build/
 COPY /v3 /build/v3
 WORKDIR /build/
-RUN ./check_plugins_location_v2.sh v3
+RUN ./check_plugins_location.sh v3
 RUN ./check_plugins_images.sh
 RUN ./set_plugin_dates.sh
-RUN ./check_plugins_viewer_mandatory_fields_v3.sh
+RUN ./check_plugins_viewer_mandatory_fields.sh
 RUN ./ensure_latest_exists.sh
-RUN ./index_v2.sh v3 > /build/v3/plugins/index.json
+RUN ./index.sh v3 > /build/v3/plugins/index.json
 
 FROM quay.io/openshiftio/rhel-base-httpd:latest
 
