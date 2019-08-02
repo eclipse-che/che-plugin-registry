@@ -10,11 +10,14 @@
 
 # pull all external references to icons, vsix files
 
-set -e
+# set -e
 
 # path to where vsix and svg files will be found in the running plugin registry container image
 # this will be replaced at runtime via an entrypoint.sh script
 PLUGIN_REGISTRY_URL="http://0.0.0.0/resources/"
+
+# optionally, pull different file extensions
+if [[ $2 ]]; then EXTS=$2; else EXTS="svg|vsix"; fi
 
 # search in a plugin folder, eg., $1 = v3/
 echo "Fetch .svg and .vsix resources ... "
@@ -24,7 +27,7 @@ i=0; for metayaml in ${metayamls}; do
   let i=i+1
   echo "[$i/$c] Fetch from '${metayaml%/meta.yaml}'"
   # get files into local repo
-  for remotefile in $(cat $metayaml | egrep "https://|http://" | egrep "\.svg|\.vsix" | sed -e "s#\(icon: \|  - \)##g"); do
+  for remotefile in $(cat $metayaml | egrep "https://|http://" | egrep "\.(${EXTS})" | sed -e "s#\(icon: \|  - \)##g"); do
     remotefilepath=${remotefile#*//}; # trim off protocol
     remotefilepath=${remotefilepath%\?*}; # trim off querystring
     remotefiledir=${remotefilepath%/*}; # get the dir into which the file will be downloaded
