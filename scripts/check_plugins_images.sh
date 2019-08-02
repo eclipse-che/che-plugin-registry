@@ -17,12 +17,12 @@ source ./util.sh
 readarray -d '' arr < <(find . -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
-    ICON=$(yq r "$i" icon | sed 's/^"\(.*\)"$/\1/')
+    ICON=$(yq .icon "$i" | sed 's/^"\(.*\)"$/\1/')
     # Regex: contains .svg and not contains dots after it (to avoid xxx.svg.jpg hacks)
     if [[ ! $ICON =~ (\.svg)+[^\.]*$ ]]; then
       plugin_id=$(evaluate_plugin_id "$i")
-      plugin_version=$(yq r "$i" version | sed 's/^"\(.*\)"$/\1/')
-      plugin_publisher=$(yq r "$i" publisher | sed 's/^"\(.*\)"$/\1/')
+      plugin_version=$(yq .version "$i" | sed 's/^"\(.*\)"$/\1/')
+      plugin_publisher=$(yq .publisher "$i" | sed 's/^"\(.*\)"$/\1/')
       echo "!!!   Wrong icon type found in '${plugin_id}' of publisher '${plugin_publisher}' with version '${plugin_version}':"
       echo "!!!   '${ICON}' Make sure it is pointing to .svg image."
       FOUND=true

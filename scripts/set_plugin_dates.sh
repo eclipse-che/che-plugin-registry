@@ -13,7 +13,7 @@ set -e
 is_first_publication_date_present() {
   # check that first publication date is present in yaml,
   # and is not an null or empty value
-  if ! VALUE=$(yq r "$1" firstPublicationDate); then
+  if ! VALUE=$(yq .firstPublicationDate "$1"); then
     exit 1
   fi
 
@@ -29,8 +29,8 @@ do
     DATE=$(date -I)
 
     if ! is_first_publication_date_present "$i"; then
-      yq w "$i" firstPublicationDate "${DATE}" -i
+      yq -y '.firstPublicationDate |= sub(""; "'${DATE}'")' "${i}" > ${i}.2 && mv ${i}.2 ${i}
     fi
 
-    yq w "$i" latestUpdateDate "${DATE}" -i
+    yq -y '.latestUpdateDate |= sub(""; "'${DATE}'")' "${i}" > ${i}.2 && mv ${i}.2 ${i}
 done

@@ -48,7 +48,7 @@ function buildIndex() {
 
         for field in "${fields[@]}"
         do
-            value="$(yq ."${field}" "$i" | sed 's/^"\(.*\)"$/\1/')"
+            value="$(yq ."$field" "$i" | sed 's/^"\(.*\)"$/\1/')"
             echo "  \"$field\":\"$value\","
         done
 

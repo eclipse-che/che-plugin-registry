@@ -8,11 +8,9 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# Checks whether mandatory fields are in place. Also checks value of 'category 'field.
-
 set -e
 
-FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate" "spec" "apiVersion")
+FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate")
 CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme" "Other")
 
 # shellcheck source=./scripts/util.sh
@@ -46,12 +44,14 @@ function check_category() {
   return 1
 }
 
-readarray -d '' arr < <(find v3 -name 'meta.yaml' -print0)
+readarray -d '' arr < <(find plugins -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
-    plugin_id=$(evaluate_plugin_id "$i")
+    id=$(yq .id "$i" | sed 's/^"\(.*\)"$/\1/')
+    version=$(yq .version "$i" | sed 's/^"\(.*\)"$/\1/')
+    full_id=${id}${version}
 
-    echo "Checking plugin '${plugin_id}'"
+    echo "Checking plugin '${full_id}'"
 
     unset NULL_OR_EMPTY_FIELDS
 
@@ -60,7 +60,7 @@ do
       VALUE=$(yq ."${FIELD}" "$i")
       if [[ "${FIELD}" == "category" ]];then
         if ! check_category "$i" "${VALUE}";then
-          echo "!!!   Invalid category in '${plugin_id}': $VALUE"
+          echo "!!!   Invalid category in '${full_id}': $VALUE"
           INVALID_FIELDS=true;
           INVALID_FIELDS=true;
         fi
@@ -73,7 +73,7 @@ do
     done
 
     if [[ -n "${NULL_OR_EMPTY_FIELDS}" ]];then
-      echo "!!!   Null or empty mandatory fields in '${plugin_id}': $NULL_OR_EMPTY_FIELDS"
+      echo "!!!   Null or empty mandatory fields in '${full_id}': $NULL_OR_EMPTY_FIELDS"
       INVALID_FIELDS=true
     fi
 done
