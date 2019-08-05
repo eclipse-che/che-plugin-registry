@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: redhat
 name: vscode-apache-camel
-version: latest
+version: 0.0.16
 type: VS Code extension
 displayName: Language Support for Apache Camel
 title: Language Support for Apache Camel
