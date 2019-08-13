@@ -14,8 +14,7 @@
 
 set -e
 
-# shellcheck source=./scripts/util.sh
-source ./util.sh
+source $(dirname "$0")/util.sh
 
 readarray -d '' arr < <(find "$1" -name 'meta.yaml' -print0)
 for i in "${arr[@]}"

@@ -14,8 +14,7 @@
 
 set -e
 
-# shellcheck source=./scripts/util.sh
-source ./util.sh
+source $(dirname "$0")/util.sh
 
 # Returns generated plugin ID.
 # Arguments:

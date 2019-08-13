@@ -10,8 +10,7 @@
 
 set -e
 
-# shellcheck source=./scripts/util.sh
-source ./util.sh
+source $(dirname "$0")/util.sh
 
 ## check that icon tags in meta.yaml files points to the .svg images
 readarray -d '' arr < <(find . -name 'meta.yaml' -print0)

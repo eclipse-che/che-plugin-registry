@@ -9,15 +9,16 @@
 #
 set -e
 
-# accepts meta.yaml path as one and only argument
-is_first_publication_date_present() {
+# accepts meta.yaml path as first argument, and field to check as second argument
+is_field_present() {
+  FIELD="$2"
   # check that first publication date is present in yaml,
   # and is not an null or empty value
-  if ! VALUE=$(yq .firstPublicationDate "$1"); then
+  if ! VALUE=$(yq ${FIELD} "$1" | tr -d "\""); then # trim quotes from the field value
     exit 1
   fi
 
-  if [[ $VALUE == "null" || $VALUE = "\'\'" ]];then
+  if [[ $VALUE == "null" || $VALUE = "\'\'" || $2 = "\"\"" ]];then
     return 1
   fi
   return 0;
@@ -27,10 +28,12 @@ readarray -d '' arr < <(find . -name 'meta.yaml' -print0)
 for i in "${arr[@]}"
 do
     DATE=$(date -I)
-
-    if ! is_first_publication_date_present "$i"; then
-      yq -y '.firstPublicationDate |= sub(""; "'${DATE}'")' "${i}" > ${i}.2 && mv ${i}.2 ${i}
+    if [[ "$(egrep "^firstPublicationDate:" ${i})" == "" ]]; then 
+      echo >> ${i}; echo "firstPublicationDate: '$DATE'" >> ${i}
     fi
-
-    yq -y '.latestUpdateDate |= sub(""; "'${DATE}'")' "${i}" > ${i}.2 && mv ${i}.2 ${i}
+    if [[ $(egrep "^latestUpdateDate:" ${i}) == "" ]]; then 
+      echo >> ${i}; echo "latestUpdateDate: '$DATE'" >> ${i}
+    else
+      sed -i -e "s#^latestUpdateDate: .\+#latestUpdateDate: '${DATE}'#g" "${i}"
+    fi
 done

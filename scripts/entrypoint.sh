@@ -1,16 +1,13 @@
-#!/bin/bash
+#!/bin/bash -x
 
-# fetch resources from the internet into the container
-# generate the index.json files
-pushd /var/www/html/ 2>/dev/null
-popd 2>/dev/null
+# NOTE: this env var may not be declared in the pod, so you must declare it thus:
+#   oc set env deployment/plugin-registry CHE_WORKSPACE_PLUGIN__REGISTRY__URL=plugin-registry-che7w.192.168.99.112.nip.io
+# once set, this entrypoint will re-run and replace 0.0.0.0 with the correct URL 
 
-# TODO: test if this works, or else use env var CHE_WORKSPACE_PLUGIN__REGISTRY__URL
-CHE_WORKSPACE_PLUGIN__REGISTRY__URL=$(oc get route plugin-registry  -o yaml | egrep "targetPort|host" | grep -v "host.generated" | \
-  sed -e "s#  ##g" | sort | uniq | tr -d "\n" | sed -e "s#host: #https://#" -e "s#targetPort: #:#")
-sed -i -e "s#http://0.0.0.0/#${CHE_WORKSPACE_PLUGIN__REGISTRY__URL}#g" /var/www/html/v3/plugins/index.json
+# replace 0.0.0.0 with the plugin registry's URL
+source $(dirname "$0")/replace_0.0.0.0.sh
 
-# start the server
-# /var/www/html/httpd.sh
-/usr/bin/run-httpd
-
+# start httpd
+if [[ -x /usr/sbin/httpd ]]; then /usr/sbin/httpd -D FOREGROUND
+elif [[ -x /usr/bin/run-httpd ]]; then /usr/bin/run-httpd
+fi

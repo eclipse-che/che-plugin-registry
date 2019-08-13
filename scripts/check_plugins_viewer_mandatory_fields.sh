@@ -15,8 +15,7 @@ set -e
 FIELDS=("title" "publisher" "category" "icon" "description" "repository" "firstPublicationDate" "latestUpdateDate" "spec" "apiVersion")
 CATEGORIES=("Editor" "Debugger" "Formatter" "Language" "Linter" "Snippet" "Theme" "Other")
 
-# shellcheck source=./scripts/util.sh
-source ./util.sh
+source $(dirname "$0")/util.sh
 
 # check that field value, given in the parameter, is not null or empty
 function check_field() {
@@ -32,14 +31,13 @@ function check_field() {
 # 2 - value of category field
 function check_category() {
   # If category is absent, replace is with "Other" and consider it valid
-  if [[ $2 == "null" || $2 = "\'\'" ]];then
-    yq -y '.category |= sub(""; "Other")' "${1}" > ${1}.2 && mv ${1}.2 ${1}
-    yq -y '.category |= sub("null"; "Other")' "${1}" > ${1}.2 && mv ${1}.2 ${1}
+  if [[ $2 == "null" || $2 = "\'\'" || $2 = "\"\"" ]];then
+    echo "category: 'Other'" >> $1
     return 0;
   fi
   for CATEGORY in "${CATEGORIES[@]}"
   do
-    if [[ ${CATEGORY} == "$2" ]];then
+    if [[ "${CATEGORY}" == "${2//\"/}" ]];then # trim quotes from the field value
       return 0
     fi
   done
@@ -57,8 +55,8 @@ do
 
     for FIELD in "${FIELDS[@]}"
     do
-      VALUE=$(yq ."${FIELD}" "$i")
-      if [[ "${FIELD}" == "category" ]];then
+      VALUE=$(yq ."${FIELD}" "$i" | tr -d "\"") # trim quotes from the field value
+      if [[ "${FIELD}" == "category" ]];then # echo "$i: $FIELD = $VALUE"
         if ! check_category "$i" "${VALUE}";then
           echo "!!!   Invalid category in '${plugin_id}': $VALUE"
           INVALID_FIELDS=true;
