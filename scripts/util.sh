@@ -13,8 +13,10 @@
 # Arguments:
 #   1 - path to meta.yaml
 function evaluate_plugin_id() {
-    name_field=$(yq r "$1" name | sed 's/^"\(.*\)"$/\1/')
-    version_field=$(yq r "$1" version | sed 's/^"\(.*\)"$/\1/')
-    publisher_field=$(yq r "$1" publisher | sed 's/^"\(.*\)"$/\1/')
+    # yq command to do the same; not used as it is much slower.
+    # yq -r '"\(.publisher)/\(.name)/\(.version)"' $1
+    name_field=$(sed -nr 's|^name: ([-.0-9A-Za-z]+)|\1|p' "$1")
+    version_field=$(sed -nr 's|^version: ([-.0-9A-Za-z]+)|\1|p' "$1")
+    publisher_field=$(sed -nr 's|^publisher: ([-.0-9A-Za-z]+)|\1|p' "$1")
     echo "${publisher_field}/${name_field}/${version_field}"
 }

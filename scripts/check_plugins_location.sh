@@ -17,16 +17,14 @@ set -e
 # shellcheck source=./scripts/util.sh
 source ./util.sh
 
-readarray -d '' arr < <(find "$1" -name 'meta.yaml' -print0)
-for i in "${arr[@]}"
-do
-    plugin_id=$(evaluate_plugin_id "$i")
-
+readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
+for meta in "${metas[@]}"; do
+    plugin_id=$(evaluate_plugin_id "$meta")
     expected_path="$1/plugins/${plugin_id}/meta.yaml"
-    if [[ "${expected_path}" != "$i" ]]; then
+    if [[ "${expected_path}" != "${meta}" ]]; then
       echo "!!! Location mismatch in plugin '${plugin_id}':"
       echo "!!!   Expected location: '${expected_path}'"
-      echo "!!!   Actual location: '${i}' "
+      echo "!!!   Actual location: '${meta}' "
       FOUND=true
     fi
 done

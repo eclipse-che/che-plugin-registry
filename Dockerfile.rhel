@@ -6,15 +6,15 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-FROM mikefarah/yq as builder
-RUN apk add --no-cache bash
-COPY .htaccess README.md ./scripts/*.sh /build/
+FROM alpine:3.10 AS builder
+RUN apk add --no-cache py-pip jq bash && pip install yq jsonschema
+
+COPY .htaccess README.md ./scripts/*.sh ./scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3
 WORKDIR /build/
 RUN ./check_plugins_location.sh v3
-RUN ./check_plugins_images.sh
-RUN ./set_plugin_dates.sh
-RUN ./check_plugins_viewer_mandatory_fields.sh
+RUN ./set_plugin_dates.sh v3
+RUN ./check_plugins_viewer_mandatory_fields.sh v3
 RUN ./ensure_latest_exists.sh
 RUN ./index.sh v3 > /build/v3/plugins/index.json
 

@@ -14,62 +14,15 @@
 
 set -e
 
-# shellcheck source=./scripts/util.sh
-source ./util.sh
+PLUGINS_DIR="/v3/plugins"
 
-# Returns generated plugin ID.
-# Arguments:
-# 1 - meta.yaml location
-function getId() {
-    evaluate_plugin_id "$1"
-}
-
-# getId function MUST be defined to use this function
-# Arguments:
-# 1 - folder to search files in
-function buildIndex() {
-    fields=('displayName' 'version' 'type' 'name' 'description' 'publisher')
-    ## search for all editors and plugins
-    readarray -d '' arr < <(find "$1" -name 'meta.yaml' -print0)
-    FIRST_LINE=true
-    echo "["
-    ## now loop through meta files
-    for i in "${arr[@]}"
-    do
-        if [ "$FIRST_LINE" = true ] ; then
-            echo "{"
-            FIRST_LINE=false
-        else
-            echo ",{"
-        fi
-
-        plugin_id=$(getId "$i")
-        echo "  \"id\": \"$plugin_id\","
-
-        for field in "${fields[@]}"
-        do
-            value="$(yq r "$i" "$field" | sed 's/^"\(.*\)"$/\1/')"
-            echo "  \"$field\":\"$value\","
-        done
-
-        # Add deprecate section
-        migrate_to_field=$(yq r "$i" deprecate.migrateTo | sed 's/^"\(.*\)"$/\1/')
-        if [ "${migrate_to_field}" != "null" ]; then
-            echo "  \"deprecate\":{"
-            echo "     \"migrateTo\":\"${migrate_to_field}\","
-            auto_migrate_field=$(yq r "$i" deprecate.autoMigrate)
-            if [ "${auto_migrate_field}" = "null" ]; then
-                auto_migrate_field=false
-            fi
-            echo "     \"autoMigrate\":${auto_migrate_field}"
-            echo "  },"
-        fi
-
-        path=$(echo "$i" | sed 's/\/meta.yaml$//g')
-        echo "  \"links\": {\"self\":\"/$path\" }"
-        echo "}"
-    done
-    echo "]"
-}
-
-buildIndex "$1"
+readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
+# CI will complain since jq uses the same variable syntax as bash; we
+# *don't* want variable substitution/expansion in the yq script.
+# shellcheck disable=SC2016
+yq -sS 'map(
+    "\(.publisher)/\(.name)/\(.version)" as $id |
+    {
+        $id, displayName, version, type, name, description, publisher,
+        links: {self: "\($PLUGINS_DIR)/\($id)"}
+    }) | sort_by(.id)' "${metas[@]}" --arg "PLUGINS_DIR" "$PLUGINS_DIR"
