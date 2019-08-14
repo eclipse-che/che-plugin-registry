@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: '2019-05-15'
 spec:
   containers:
-  - image: eclipse/che-remote-plugin-kubernetes-tooling-1.0.0:7.0.0-next
+  - image: eclipse/che-remote-plugin-kubernetes-tooling-1.0.0:next
     name: vscode-kubernetes-tools
   extensions:
   - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix
