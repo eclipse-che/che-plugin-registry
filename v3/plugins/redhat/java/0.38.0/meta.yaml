@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-02-20"
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-runner-java8:7.0.0-next"
+    - image: "eclipse/che-remote-plugin-runner-java8:next"
       name: vscode-java
       memoryLimit: "1500Mi"
   extensions:
