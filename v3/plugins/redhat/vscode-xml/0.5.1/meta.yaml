@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-04-19"
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-runner-java11:next"
+    - image: "eclipse/che-remote-plugin-runner-java11:7.0.0-next"
       name: vscode-xml
       memoryLimit: "768Mi"
   extensions:

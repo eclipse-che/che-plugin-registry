@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-04-16"
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-php7:next"
+    - image: "eclipse/che-remote-plugin-php7:7.0.0-next"
       name: php-debugger
   extensions:
     - https://github.com/felixfbecker/vscode-php-debug/releases/download/v1.13.0/php-debug.vsix
