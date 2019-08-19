@@ -13,7 +13,7 @@ category: Other
 firstPublicationDate: '2019-04-19'
 spec:
   containers:
-  - image: eclipse/che-remote-plugin-openshift-connector-0.0.21:next
+  - image: eclipse/che-remote-plugin-openshift-connector-0.0.21:7.0.0-next
     name: "vscode-openshift-connector"
     memoryLimit: "512Mi"
   extensions:

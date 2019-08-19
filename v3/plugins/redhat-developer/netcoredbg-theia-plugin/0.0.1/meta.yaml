@@ -12,7 +12,7 @@ category: Debugger
 firstPublicationDate: "2019-04-19"
 spec:
   containers:
-  - image: eclipse/che-remote-plugin-dotnet-2.2.105:next
+  - image: eclipse/che-remote-plugin-dotnet-2.2.105:7.0.0-next
     name: theia-netcoredbg
     memoryLimit: "512Mi"
   extensions:

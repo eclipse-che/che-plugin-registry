@@ -13,7 +13,7 @@ category: Debugger
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: eclipse/che-theia-endpoint-runtime:next
+  - image: eclipse/che-theia-endpoint-runtime:7.0.0-next
     name: vscode-node-debug-legacy
     memoryLimit: '256Mi'
   extensions:
