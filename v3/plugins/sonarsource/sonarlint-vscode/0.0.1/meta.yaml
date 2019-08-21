@@ -12,7 +12,7 @@ category: Linter
 repository: https://www.sonarlint.org/
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-runner-java8:7.0.0-next"
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:7.0.0-next"
       name: vscode-sonarlint
       memoryLimit: "512Mi"
   extensions:
