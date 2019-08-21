@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: jupyter-notebook
-     image: ksmster/che-editor-jupyter:5.7.0
+     image: "docker.io/ksmster/che-editor-jupyter:5.7.0"
      env:
          - name: JUPYTER_NOTEBOOK_DIR
            value: /projects

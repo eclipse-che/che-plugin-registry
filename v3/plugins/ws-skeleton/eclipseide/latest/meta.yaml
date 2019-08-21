@@ -20,7 +20,7 @@ spec:
       type: ide
   containers:
   - name: eclipse-ide
-    image: wsskeleton/eclipse-broadway
+    image: "docker.io/wsskeleton/eclipse-broadway"
     mountSources: true
     ports:
     - exposedPort: 5000

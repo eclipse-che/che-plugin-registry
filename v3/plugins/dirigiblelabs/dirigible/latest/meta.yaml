@@ -20,7 +20,7 @@ spec:
       type: ide
   containers:
   - name: eclipse-dirigible
-    image: dirigiblelabs/dirigible-openshift:3.4.0
+    image: "docker.io/dirigiblelabs/dirigible-openshift:3.4.0"
     env:
     - name: DIRIGIBLE_DATABASE_PROVIDER
       value: local
