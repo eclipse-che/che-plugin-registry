@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-04-16"
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-php7:7.0.0-next"
+    - image: "docker.io/eclipse/che-remote-plugin-php7:next"
       name: php-intelephense
       memoryLimit: "1000Mi"
   extensions:
