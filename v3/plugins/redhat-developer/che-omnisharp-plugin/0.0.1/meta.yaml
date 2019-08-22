@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-03-13"
 spec:
   containers:
-  - image: "docker.io/eclipse/che-remote-plugin-dotnet-2.2.105:7.0.0-next"
+  - image: "docker.io/eclipse/che-remote-plugin-dotnet-2.2.105:next"
     name: theia-omnisharp
     memoryLimit: "1024Mi"
   extensions:
