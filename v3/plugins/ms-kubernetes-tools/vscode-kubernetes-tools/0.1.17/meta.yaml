@@ -14,5 +14,6 @@ spec:
   containers:
     - image: "docker.io/eclipse/che-remote-plugin-kubernetes-tooling-0.1.17:7.0.0-next"
       name: "vscode-kubernetes-tools"
+      memoryLimit: "1G"
   extensions:
     - https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix
