@@ -56,16 +56,16 @@ function set_release_tag() {
   export TAG
 }
 
-function set_ci_tag() {
-  # Let's obtain the tag based on the 
-  # git commit hash
-  TAG=$(echo "$GIT_COMMIT" | cut -c1-"${DEVSHIFT_TAG_LEN}")
-  export TAG
-}
-
 function set_nightly_tag() {
   # Let's set the tag as nightly
   export TAG="nightly"
+}
+
+function set_git_commit_tag() {
+  # Let's obtain the tag based on the 
+  # git commit hash
+  GIT_COMMIT_TAG=$(echo "$GIT_COMMIT" | cut -c1-"${DEVSHIFT_TAG_LEN}")
+  export GIT_COMMIT_TAG
 }
 
 function tag_push() {
@@ -97,8 +97,15 @@ function build_and_push() {
     echo "Could not login, missing credentials for pushing to the '${ORGANIZATION}' organization"
   fi
 
-  # Let's build and push images to 'quay.io'
+  # Let's build and push image to 'quay.io' using git commit hash as tag first
+  set_git_commit_tag
   docker build -t ${IMAGE} -f ${DOCKERFILE} .
-  tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}"
-  echo "CICO: '${TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
+  tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
+  echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
+
+  # If additional tag is set (e.g. "nightly"), let's tag the image accordingly and also push to 'quay.io'
+  if [ -n "${TAG}" ]; then
+    tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}"
+    echo "CICO: '${TAG}'  version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
+  fi
 }
