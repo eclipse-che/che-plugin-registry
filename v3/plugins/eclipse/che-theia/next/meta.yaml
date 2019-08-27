@@ -51,8 +51,8 @@ spec:
     pluginContainerCommand: ["sh", "-c"]
     pluginContainerArgs: ["/plugins/remote-launcher/entrypoint.sh"]
     initContainers:
-      - name: theia-remote-plugin-laucher
-        image: aandrienko/che-theia-endpoint-runtime:next
+      - name: theia-remote-plugin-launcher
+        image: eclipse/che-theia-endpoint-runtime:next
         initContainer: true
         command: ['cp']
         args: ['-rf', '/remote-plugin-launcher', '/plugins/remote-launcher']
