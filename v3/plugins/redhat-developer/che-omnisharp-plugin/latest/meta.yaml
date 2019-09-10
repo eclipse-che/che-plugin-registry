@@ -7,7 +7,7 @@ displayName: Omnisharp Theia Plug-in
 title: C# Language Support for Theia
 description: This plug-in registers omnisharp-roslyn as a language server and provides
   project dependencies and language syntax.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/vitaliy-guliy/che-plugin-registry/master/v3/plugins/eclipse-che-logo.png
 repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-06-19"

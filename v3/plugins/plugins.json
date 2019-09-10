@@ -139,5 +139,26 @@
     },
     {
         "id": "redhat/vscode-yaml/latest"
+    },
+    {
+        "id": "redhat-developer/che-omnisharp-plugin/0.0.1"
+    },
+    {
+        "id": "redhat-developer/che-omnisharp-plugin/0.0.2"
+    },
+    {
+        "id": "redhat-developer/che-omnisharp-plugin/latest"
+    },
+    {
+        "id": "redhat-developer/netcoredbg-theia-plugin/0.0.1"
+    },
+    {
+        "id": "redhat-developer/netcoredbg-theia-plugin/latest"
+    },
+    {
+        "id": "sonarsource/sonarlint-vscode/0.0.1"
+    },
+    {
+        "id": "sonarsource/sonarlint-vscode/latest"
     }
 ]
