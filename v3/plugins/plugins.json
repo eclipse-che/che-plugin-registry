@@ -6,28 +6,10 @@
         "id": "camel-tooling/vscode-apache-camel/latest"
     },
     {
-        "id": "che-incubator/theia-dev/0.0.1",
-        "displayName": "Che Theia Dev Plugin",
-        "version": "0.0.1",
-        "type": "Che Plugin",
-        "name": "theia-dev",
-        "description": "Che Theia Dev Plugin",
-        "publisher": "che-incubator",
-        "links": {
-            "self": "che-incubator/theia-dev/0.0.1"
-        }
+        "id": "che-incubator/theia-dev/0.0.1"
     },
     {
-        "id": "che-incubator/theia-dev/latest",
-        "displayName": "Che Theia Dev Plugin",
-        "version": "latest",
-        "type": "Che Plugin",
-        "name": "theia-dev",
-        "description": "Che Theia Dev Plugin",
-        "publisher": "che-incubator",
-        "links": {
-            "self": "che-incubator/theia-dev/latest"
-        }
+        "id": "che-incubator/theia-dev/latest"
     },
     {
         "id": "che-incubator/typescript/1.30.2"
