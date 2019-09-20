@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: ms-python
 name: python
-version: 2019.2.5433
+version: 2019.2.5558
 type: VS Code extension
 displayName: Python
 title: Python extension
@@ -16,4 +16,4 @@ spec:
       name: "vscode-python"
       memoryLimit: '512Mi'
   extensions:
-    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/python/2019.2.5433/vspackage
+    - https://github.com/microsoft/vscode-python/releases/download/2019.2.5558/ms-python-release.vsix
