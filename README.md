@@ -173,6 +173,34 @@ Response:
     "links": {
       "self": "/v3/plugins/eclipse/che-theia/next"
     }
+  },
+  {
+    "id": "eclipse/x-lang-ls/2019.08.20",
+    "displayName": "x lang support",
+    "version": "2019.08.20",
+    "type": "VS Code extension",
+    "name": "x-lang-ls",
+    "description": "Provides support for language x",
+    "publisher": "eclipse",
+    "deprecate": {
+      "automigrate": true,
+      "migrateTo": "eclipse/x-lang-ls/2019.11.05"
+    },
+     "links": {
+      "self": "/v3/plugins/eclipse/x-lang-ls/2019.08.20"
+    }
+  },
+  {
+    "id": "eclipse/x-lang-ls/2019.11.05",
+    "displayName": "x lang support",
+    "version": "2019.11.05",
+    "type": "VS Code extension",
+    "name": "x-lang-ls",
+    "description": "Provides support for language x",
+    "publisher": "eclipse",
+    "links": {
+      "self": "/v3/plugins/eclipse/x-lang-ls/2019.11.05"
+    }
   }
 ]
 ```
@@ -271,7 +299,7 @@ The following [CentOS CI jobs](https://ci.centos.org/) are associated with the r
 
 - [`master`](https://ci.centos.org/job/devtools-che-plugin-registry-build-master/) - builds CentOS images on each commit to the [`master`](https://github.com/eclipse/che-plugin-registry/tree/master) branch and pushes them to [quay.io](https://quay.io/organization/eclipse).
 - [`nightly`](https://ci.centos.org/job/devtools-che-plugin-registry-nightly/) - builds CentOS images and pushes them to [quay.io](https://quay.io/organization/eclipse) on a daily basis from the [`master`](https://github.com/eclipse/che-plugin-registry/tree/master) branch. The `nightly` version of the plugin registry is used by default by the `nightly` version of the [Eclipse Che](https://github.com/eclipse/che), which is also built on a daily basis by the [`all-che-docker-images-nightly`](all-che-docker-images-nightly/) CI job.
-- [`release`](https://ci.centos.org/job/devtools-che-plugin-registry-release/) - builds CentOS and corresponding RHEL images from the [`release`](https://github.com/eclipse/che-plugin-registry/tree/release) branch. CentOS images are public and pushed to [quay.io](https://quay.io/organization/eclipse). RHEL images are also pushed to quay.io, but to the private repositories and then used by the ["Hosted Che"](https://www.eclipse.org/che/docs/che-7/hosted-che/) plugin registry - https://che-plugin-registry.openshift.io/. 
+- [`release`](https://ci.centos.org/job/devtools-che-plugin-registry-release/) - builds CentOS and corresponding RHEL images from the [`release`](https://github.com/eclipse/che-plugin-registry/tree/release) branch. CentOS images are public and pushed to [quay.io](https://quay.io/organization/eclipse). RHEL images are also pushed to quay.io, but to the private repositories and then used by the ["Hosted Che"](https://www.eclipse.org/che/docs/che-7/hosted-che/) plugin registry - https://che-plugin-registry.openshift.io/.
 - [`release-preview`](https://ci.centos.org/job/devtools-che-plugin-registry-release-preview/) - builds CentOS and corresponding RHEL images from the [`release-preview`](https://github.com/eclipse/che-plugin-registry/tree/release-preview) branch and automatically updates ["Hosted Che"](https://www.eclipse.org/che/docs/che-7/hosted-che/) staging plugin registry deployment based on the new version of images - https://che-plugin-registry.prod-preview.openshift.io/. CentOS images are public and pushed to [quay.io](https://quay.io/organization/eclipse). RHEL images are also pushed to quay.io, but to the private repositories.
 
 ### License

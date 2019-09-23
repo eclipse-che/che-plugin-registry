@@ -25,4 +25,5 @@ yq -sS 'map(
     {
         $id, displayName, version, type, name, description, publisher,
         links: {self: "\($PLUGINS_DIR)/\($id)"}
-    }) | sort_by(.id)' "${metas[@]}" --arg "PLUGINS_DIR" "$PLUGINS_DIR"
+    } + if has("deprecate") then {deprecate} else null end ) |
+    sort_by(.id)' "${metas[@]}" --arg "PLUGINS_DIR" "$PLUGINS_DIR"
