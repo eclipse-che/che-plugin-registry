@@ -100,15 +100,15 @@ spec:                  # spec (used to be che-plugin.yaml)
       env:               # list of env vars to set in sidecar
         - name:
           value:
-      command:           # optinal; definition of root process command inside container
+      command:           # optional; definition of root process command inside container
         - /bin/sh
-      args:              # optinal; list arguments for root process command inside container
+      args:              # optional; list arguments for root process command inside container
         - -c
           ./entrypoint.sh
       volumes:           # volumes required by plugin
         - mountPath:
           name:
-          persistVolume: # boolean; if true volume will be persisted, otherwise volume will be ephemeral; default value is true
+          ephemeral: # boolean; if true volume will be ephemeral, otherwise volume will be persisted
       ports:             # ports exposed by plugin (on the container)
         - exposedPort:
       commands:          # development commands available to plugin container
@@ -126,15 +126,15 @@ spec:                  # spec (used to be che-plugin.yaml)
       env:               # list of env vars to set in sidecar
         - name:
           value:
-      command:           # optinal; definition of root process command inside container
+      command:           # optional; definition of root process command inside container
         - /bin/sh
-      args:              # optinal; list arguments for root process command inside container
+      args:              # optional; list arguments for root process command inside container
         - -c
           ./entrypoint.sh
       volumes:           # volumes required by plugin
         - mountPath:
           name:
-          persistVolume: # boolean; if true volume will be persisted, otherwise volume will be ephemeral; default value is true
+          ephemeral: # boolean; if true volume will be ephemeral, otherwise volume will be persisted
       ports:             # ports exposed by plugin (on the container)
         - exposedPort:
       commands:          # development commands available to plugin container
