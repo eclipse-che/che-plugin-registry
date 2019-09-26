@@ -100,12 +100,44 @@ spec:                  # spec (used to be che-plugin.yaml)
       env:               # list of env vars to set in sidecar
         - name:
           value:
+      command:           # optional; definition of root process command inside container
+        - /bin/sh
+      args:              # optional; list arguments for root process command inside container
+        - -c
+          ./entrypoint.sh
       volumes:           # volumes required by plugin
         - mountPath:
           name:
+          ephemeral: # boolean; if true volume will be ephemeral, otherwise volume will be persisted
       ports:             # ports exposed by plugin (on the container)
         - exposedPort:
-      commands:          # commands available to plugin container
+      commands:          # development commands available to plugin container
+        - name:
+          workingDir:
+          command:       # list of commands + arguments, e.g.:
+            - rm
+            - -rf
+            - /cache/.m2/repository
+      mountSources:      # boolean
+  initContainers:      # optional; init containers for sidecar plugin
+    - image:
+      name:              # name used for sidecar container
+      memorylimit:       # Kubernetes/OpenShift-spec memory limit string (e.g. "512Mi")
+      env:               # list of env vars to set in sidecar
+        - name:
+          value:
+      command:           # optional; definition of root process command inside container
+        - /bin/sh
+      args:              # optional; list arguments for root process command inside container
+        - -c
+          ./entrypoint.sh
+      volumes:           # volumes required by plugin
+        - mountPath:
+          name:
+          ephemeral: # boolean; if true volume will be ephemeral, otherwise volume will be persisted
+      ports:             # ports exposed by plugin (on the container)
+        - exposedPort:
+      commands:          # development commands available to plugin container
         - name:
           workingDir:
           command:       # list of commands + arguments, e.g.:
