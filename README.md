@@ -19,6 +19,16 @@ Useful when you change plugin metadata files and rebuild the image.
 
 Note that the Dockerfiles feature multi-stage build, so it requires Docker version 17.05 or higher.
 
+### Offline and airgapped registry images
+
+It's possible to build an image for the plugin registry that includes all referenced extension artifacts (i.e. all `.theia` and `.vsix` archives). This is done using the `Dockerfile.caching` dockerfile during the build, which downloads artifacts and rewrites the devfiles to extensions cached in `v3/resources/`.
+
+```shell
+docker build --no-cache -t quay.io/eclipse/che-plugin-registry:offline -f ./Dockerfile.caching .
+```
+
+Note that support for relative extensions was added in `v0.20` of the plugin broker.
+
 ## Run Eclipse Che plugin registry on OpenShift
 
 You can deploy Che plugin registry on Openshift with command.
@@ -152,6 +162,7 @@ spec:                  # spec (used to be che-plugin.yaml)
     - https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix # example
     - vscode:extension/redhat.vscode-xml # example
     - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia # example
+    - relative:extension/resources/java-0.46.0-1549.vsix # example; see [4]
 ```
 
 1 - Category must be equal to one of the following: "Editor", "Debugger", "Formatter", "Language", "Linter", "Snippet", "Theme", "Other"
@@ -159,6 +170,8 @@ spec:                  # spec (used to be che-plugin.yaml)
 2 - firstPublicationDate is not required to be present in YAML, as if not present, it will be generated during Plugin Registry dockerimage build
 
 3 - latestUpdateDate is not required to be present in YAML, as it will be generated during Plugin Registry dockerimage build
+
+4 - extensions starting with `relative:extension` are resolved relative to the path of `index.json` -- e.g. `v3`. This is primarily to support an offline or airgapped instance of the plugin registry. See [Offline and airgapped registry images](#offline-and-airgapped-registry-images) for details.
 
 Note that the `spec` section above comes from the older `che-plugin.yaml` spec. The `endpoints`, `containers`, and `workspaceEnv` are passed back to Che server and are used to define the sidecar that is added to the workspace.
 
