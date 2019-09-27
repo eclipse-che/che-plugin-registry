@@ -75,32 +75,12 @@ RUN ./check_plugins_location.sh v3 && \
 # PHASE THREE: create ubi8-minimal image with httpd
 ################# 
 
-ENV SUMMARY="Red Hat CodeReady Workspaces plugin registry container" \
-    DESCRIPTION="Red Hat CodeReady Workspaces plugin registry container" \
-    PRODNAME="codeready-workspaces" \
-    COMPNAME="pluginregistry-rhel8"
-
-LABEL summary="$SUMMARY" \
-      description="$DESCRIPTION" \
-      io.k8s.description="$DESCRIPTION" \
-      io.k8s.display-name="$DESCRIPTION" \
-      io.openshift.tags="$PRODNAME,$COMPNAME" \
-      com.redhat.component="$PRODNAME-$COMPNAME-container" \
-      name="$PRODNAME/$COMPNAME" \
-      version="2.0" \
-      license="EPLv2" \
-      maintainer="Nick Boldt <nboldt@redhat.com>" \
-      io.openshift.expose-services="" \
-      usage=""
-
-USER root
-
 # Build registry, copying meta.yamls and index.json from builder
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-104 AS registry
+USER 0
 
 # BEGIN these steps might not be required
-USER 0
 RUN sed -i /etc/httpd/conf/httpd.conf \
     -e "s,Listen 80,Listen 8080," \
     -e "s,logs/error_log,/dev/stderr," \
@@ -122,7 +102,27 @@ FROM builder AS offline-builder
 # and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
 RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
-# Offline registry: copy updated meta.yamls and cached extensions
 FROM registry AS offline-registry
+USER 0
+
+# Offline registry: copy updated meta.yamls and cached extensions
+ENV SUMMARY="Red Hat CodeReady Workspaces plugin registry container" \
+    DESCRIPTION="Red Hat CodeReady Workspaces plugin registry container" \
+    PRODNAME="codeready-workspaces" \
+    COMPNAME="pluginregistry-rhel8"
+
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="$DESCRIPTION" \
+      io.openshift.tags="$PRODNAME,$COMPNAME" \
+      com.redhat.component="$PRODNAME-$COMPNAME-container" \
+      name="$PRODNAME/$COMPNAME" \
+      version="2.0" \
+      license="EPLv2" \
+      maintainer="Nick Boldt <nboldt@redhat.com>" \
+      io.openshift.expose-services="" \
+      usage=""
+
 COPY --from=offline-builder /build/v3 /var/www/html/v3
 WORKDIR /var/www/html
