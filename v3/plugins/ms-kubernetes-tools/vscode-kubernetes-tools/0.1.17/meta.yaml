@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: "2019-03-11"
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-kubernetes-tooling-0.1.17:next"
+    - image: "docker.io/eclipse/che-remote-plugin-kubernetes-tooling-0.1.17:7.2.0"
       name: "vscode-kubernetes-tools"
       memoryLimit: "1G"
   extensions:
