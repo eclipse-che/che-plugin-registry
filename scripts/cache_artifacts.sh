@@ -14,7 +14,11 @@
 
 set -e
 
-readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
+if [[ $2 == "--latest-only" ]]; then
+  readarray -d '' metas < <(find "$1" -name 'meta.yaml' | grep "/latest/" | tr "\r\n" "\0")
+else
+  readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
+fi
 
 RESOURCES_DIR="${1}/resources/"
 TEMP_DIR="${1}/extensions_temp/"
