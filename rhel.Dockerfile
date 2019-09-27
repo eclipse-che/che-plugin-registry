@@ -58,12 +58,13 @@ RUN microdnf install -y findutils bash wget yum gzip tar jq python3-six python3-
 # PHASE TWO: configure registry image
 #################
 
-# if only including the /latest/ plugins, apply this line to remove them from builder 
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
-
 COPY ./scripts/*.sh ./scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3
 WORKDIR /build/
+
+# if only including the /latest/ plugins, apply this line to remove them from builder
+# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+
 RUN ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_plugins_viewer_mandatory_fields.sh v3 && \

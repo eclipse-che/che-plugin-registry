@@ -14,12 +14,13 @@
 FROM alpine:3.10 AS builder
 RUN apk add --no-cache py-pip jq bash wget && pip install yq jsonschema
 
-# if only including the /latest/ plugins, apply this line to remove them from builder 
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
-
 COPY ./scripts/*.sh ./scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3
 WORKDIR /build/
+
+# if only including the /latest/ plugins, apply this line to remove them from builder 
+# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+
 RUN ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_plugins_viewer_mandatory_fields.sh v3 && \
