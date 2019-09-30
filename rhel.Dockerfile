@@ -31,7 +31,7 @@ ENV BOOTSTRAP=${BOOTSTRAP}
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz 
 
-# built in Brew, use tarball in lookaside cache
+# built in Brew, use tarball in lookaside cache; built locally, comment this out
 # COPY root-local.tgz /tmp/root-local.tgz
 
 # NOTE: uncomment for local build. Must also set full registry path in FROM to registry.redhat.io or registry.access.redhat.com
@@ -112,15 +112,18 @@ WORKDIR /var/www/html
 ENTRYPOINT ["/usr/local/bin/uid_entrypoint.sh", "/usr/local/bin/entrypoint.sh"]
 
 # Offline build: cache .theia and .vsix files in registry itself and update metas
+# multiple temp stages does not work in Brew
 FROM builder AS offline-builder
 
 # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
 # and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
-RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
+# RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
+# multiple temp stages does not work in Brew
 FROM registry AS offline-registry
 USER 0
 
+# multiple temp stages does not work in Brew
 COPY --from=offline-builder /build/v3 /var/www/html/v3
 
 # append Brew metadata here
