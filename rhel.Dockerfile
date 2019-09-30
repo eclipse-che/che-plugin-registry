@@ -121,23 +121,6 @@ RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 FROM registry AS offline-registry
 USER 0
 
-# Offline registry: copy updated meta.yamls and cached extensions
-ENV SUMMARY="Red Hat CodeReady Workspaces plugin registry container" \
-    DESCRIPTION="Red Hat CodeReady Workspaces plugin registry container" \
-    PRODNAME="codeready-workspaces" \
-    COMPNAME="pluginregistry-rhel8"
-
-LABEL summary="$SUMMARY" \
-      description="$DESCRIPTION" \
-      io.k8s.description="$DESCRIPTION" \
-      io.k8s.display-name="$DESCRIPTION" \
-      io.openshift.tags="$PRODNAME,$COMPNAME" \
-      com.redhat.component="$PRODNAME-$COMPNAME-container" \
-      name="$PRODNAME/$COMPNAME" \
-      version="2.0" \
-      license="EPLv2" \
-      maintainer="Nick Boldt <nboldt@redhat.com>" \
-      io.openshift.expose-services="" \
-      usage=""
-
 COPY --from=offline-builder /build/v3 /var/www/html/v3
+
+# append Brew metadata here
