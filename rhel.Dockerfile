@@ -72,7 +72,7 @@ COPY /v3 /build/v3
 WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
 
 # not supported in Brew unless we prefetch the content via tarball injection
 # optional steps for air gap - replace references to docker.io, quay.io, registry.access.redhat.com, registry.redhat.io with internal registry
@@ -116,7 +116,7 @@ ENTRYPOINT ["/usr/local/bin/uid_entrypoint.sh", "/usr/local/bin/entrypoint.sh"]
 FROM builder AS offline-builder
 
 # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
-# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
 # RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
 # multiple temp stages does not work in Brew

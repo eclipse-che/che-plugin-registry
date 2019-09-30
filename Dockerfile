@@ -19,7 +19,7 @@ COPY /v3 /build/v3
 WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder 
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
 
 RUN ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
@@ -37,7 +37,7 @@ COPY --from=builder /build/v3 /var/www/html/v3
 FROM builder AS offline-builder
 
 # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
-# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/")
+# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
 RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
 # Offline registry: copy updated meta.yamls and cached extensions
