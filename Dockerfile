@@ -12,6 +12,10 @@
 
 # Builder: check meta.yamls and create index.json
 FROM alpine:3.10 AS builder
+USER 0
+
+ARG LATEST_ONLY=false
+ENV LATEST_ONLY=${LATEST_ONLY}
 RUN apk add --no-cache py-pip jq bash wget && pip install yq jsonschema
 
 COPY ./scripts/*.sh ./scripts/meta.yaml.schema /build/
@@ -19,7 +23,9 @@ COPY /v3 /build/v3
 WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder 
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
+RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
+      rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/"); \
+    fi
 
 RUN ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
@@ -30,17 +36,21 @@ RUN ./check_plugins_location.sh v3 && \
 
 # Build registry, copying meta.yamls and index.json from builder
 FROM registry.centos.org/centos/httpd-24-centos7 AS registry
+USER 0
 COPY README.md .htaccess /var/www/html/
 COPY --from=builder /build/v3 /var/www/html/v3
+COPY ./scripts/*entrypoint.sh /usr/local/bin/
+
+WORKDIR /var/www/html
+ENTRYPOINT ["/usr/local/bin/uid_entrypoint.sh", "/usr/local/bin/entrypoint.sh"]
 
 # Offline build: cache .theia and .vsix files in registry itself and update metas
 FROM builder AS offline-builder
 
-# To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
-# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
 RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
 # Offline registry: copy updated meta.yamls and cached extensions
 FROM registry AS offline-registry
+USER 0
+
 COPY --from=offline-builder /build/v3 /var/www/html/v3
-WORKDIR /var/www/html
