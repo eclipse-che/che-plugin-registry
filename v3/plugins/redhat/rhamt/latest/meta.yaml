@@ -26,7 +26,7 @@ spec:
   containers:
   - image: "windup3/rhamt-vscode-extension:java8"
     name: rhamt-extension
-    memoryLimit: 4G
+    memoryLimit: 1500Mi
     ports:
       - exposedPort: 61435
       - exposedPort: 61436
