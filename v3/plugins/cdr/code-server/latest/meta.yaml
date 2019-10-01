@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: cdr
 name: code-server
-version: 2.1523-vsc1.38.1-openshift
+version: latest
 type: Che Editor
 displayName: code-server
 title: Visual Studio Code - Web (code-server)
@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:v2-openshift"
+     image: "docker.io/chinodesuuu/coder:che-v2"
      mountSources: true
      ports:
          - exposedPort: 9000
