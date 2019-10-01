@@ -117,7 +117,7 @@ FROM builder AS offline-builder
 
 # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
 # and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
-# RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
+RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
 
 # multiple temp stages does not work in Brew
 FROM registry AS offline-registry
