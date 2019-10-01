@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:che-v2"
+     image: "docker.io/chinodesuuu/coder:v2-openshift"
      mountSources: true
      ports:
          - exposedPort: 9000
