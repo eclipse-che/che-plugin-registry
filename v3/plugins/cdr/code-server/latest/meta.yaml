@@ -24,4 +24,12 @@ spec:
      mountSources: true
      ports:
          - exposedPort: 9000
-     memoryLimit: "1024M"
+     memoryLimit: "1024M" 
+     volumes:
+        - mountPath: '/projects'
+          name: 'projects'
+          ephemeral: true
+
+        - mountPath: '/home/coder/.local/share/code-server'
+          name: 'user-data'
+
