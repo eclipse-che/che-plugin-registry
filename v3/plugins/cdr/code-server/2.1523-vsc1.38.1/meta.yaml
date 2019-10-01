@@ -1,6 +1,6 @@
 apiVersion: v2
 publisher: cdr
-name: eclipseide
+name: code-server
 version: 2.1523-vsc1.38.1
 type: Che Editor
 displayName: code-server
