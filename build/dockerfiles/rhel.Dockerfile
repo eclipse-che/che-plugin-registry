@@ -20,9 +20,7 @@ USER 0
 ################# 
 
 ARG BOOTSTRAP=false
-ENV BOOTSTRAP=${BOOTSTRAP}
 ARG LATEST_ONLY=false
-ENV LATEST_ONLY=${LATEST_ONLY}
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
@@ -38,7 +36,7 @@ ENV LATEST_ONLY=${LATEST_ONLY}
 
 # NOTE: uncomment for local build. Must also set full registry path in FROM to registry.redhat.io or registry.access.redhat.com
 # enable rhel 7 or 8 content sets (from Brew) to resolve jq as rpm
-COPY content_sets_epel7.repo /etc/yum.repos.d/
+COPY ./build/dockerfiles/content_sets_epel7.repo /etc/yum.repos.d/
 
 RUN microdnf install -y findutils bash wget yum gzip tar jq python3-six python3-pip && microdnf -y clean all && \
     # install yq (depends on jq and pyyaml - if jq and pyyaml not already installed, this will try to compile it)
@@ -69,7 +67,7 @@ RUN microdnf install -y findutils bash wget yum gzip tar jq python3-six python3-
 # PHASE TWO: configure registry image
 #################
 
-COPY ./scripts/*.sh ./scripts/meta.yaml.schema /build/
+COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3
 WORKDIR /build/
 
@@ -77,10 +75,6 @@ WORKDIR /build/
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
       rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/"); \
     fi
-
-# not supported in Brew unless we prefetch the content via tarball injection
-# optional steps for air gap - replace references to docker.io, quay.io, registry.access.redhat.com, registry.redhat.io with internal registry
-# RUN ./list_containers.sh v3 && ./replace_container_repos.sh v3 myquay.mycorp.com
 
 RUN ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
@@ -115,10 +109,11 @@ STOPSIGNAL SIGWINCH
 
 COPY README.md .htaccess /var/www/html/
 COPY --from=builder /build/v3 /var/www/html/v3
-COPY ./scripts/*entrypoint.sh /usr/local/bin/
+COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /usr/local/bin/
 
 WORKDIR /var/www/html
-ENTRYPOINT ["/usr/local/bin/uid_entrypoint.sh", "/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/usr/local/bin/rhel.entrypoint.sh"]
 
 # Offline build: cache .theia and .vsix files in registry itself and update metas
 # multiple temp stages does not work in Brew
@@ -135,14 +130,8 @@ FROM builder AS offline-builder
 
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz v3.tgz
-RUN if [[ ! -f /tmp/v3.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then \
-      # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
-      # and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
-      if [[ ${LATEST_ONLY} == "true" ]]; then \
-        ./cache_artifacts.sh v3 --latest-only && chmod -R g+rwX /build; \
-      else \
-        ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
-        fi \
+RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
+      ./cache_artifacts.sh v3 && chmod -c -R g+rwX /build; \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
       mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz;  \
