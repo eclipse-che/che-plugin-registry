@@ -27,15 +27,15 @@ spec:
          - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER
            value: /projects/dirigible/repository
          - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER_IS_ABSOLUTE
-           value: true
+           value: "true"
          - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER
            value: /projects/dirigible/repository
          - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER_IS_ABSOLUTE
-           value: true
+           value: "true"
          - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER
            value: /projects/dirigible/cms
          - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER_IS_ABSOLUTE
-           value: true
+           value: "true"
          - name: DIRIGIBLE_DATABASE_H2_ROOT_FOLDER_DEFAULT
            value: /projects/dirigible/h2
          - name: DIRIGIBLE_DATABASE_H2_URL
