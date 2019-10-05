@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: pizzafactory
+name: xtend-lang
+version: 0.1.0
+type: VS Code extension
+displayName: Xtend Language
+title: Language support for Xtend
+description: VS Code extension that provides Xtend Language Server
+icon: https://camino.pizzafactory.jp/images/logos/pizza-flat.svg
+firstPublicationDate: "2019-08-12"
+category: Language
+repository: https://github.com/PizzaFactory/xtend-ide-extensions/
+spec:
+  containers:
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:next"
+      name: vscode-xtend-lang
+      memoryLimit: "768Mi"
+  extensions:
+    - https://github.com/PizzaFactory/xtend-ide-extensions/releases/download/v0.1.0/xtend-lang-0.1.0.vsix
