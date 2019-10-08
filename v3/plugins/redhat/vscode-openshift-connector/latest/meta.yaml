@@ -9,8 +9,7 @@ description: Interacting with Red Hat OpenShift clusters and providing a streaml
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-plugin-registry/tree/master/v3/plugins/redhat/vscode-openshift-connector
 category: Other
-firstPublicationDate: "2019-03-11"
-latestUpdateDate: "2019-10-02"
+firstPublicationDate: "2019-10-08"
 spec:
   containers:
     - image: "docker.io/eclipse/che-remote-plugin-openshift-connector-0.1.0:next"
