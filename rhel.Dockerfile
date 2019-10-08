@@ -21,8 +21,10 @@ USER 0
 
 ARG BOOTSTRAP=false
 ENV BOOTSTRAP=${BOOTSTRAP}
-# to get all the python deps pre-fetched so we can build in Brew:
+ARG LATEST_ONLY=false
+ENV LATEST_ONLY=${LATEST_ONLY}
 
+# to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
 #    CONTAINERNAME="pluginregistrybuilder" && docker build -t ${CONTAINERNAME} . --target=builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/root-local/ && docker run -it -v /tmp/root-local/:/tmp/root-local/ ${CONTAINERNAME} /bin/bash -c "cd /root/.local/ && cp -r bin/ lib/ /tmp/root-local/"
@@ -72,7 +74,9 @@ COPY /v3 /build/v3
 WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
-# RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
+RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
+      rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/"); \
+    fi
 
 # not supported in Brew unless we prefetch the content via tarball injection
 # optional steps for air gap - replace references to docker.io, quay.io, registry.access.redhat.com, registry.redhat.io with internal registry
@@ -90,8 +94,13 @@ RUN ./check_plugins_location.sh v3 && \
 ################# 
 
 # Build registry, copying meta.yamls and index.json from builder
+# UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-104 AS registry
+
+# DOWNSTREAM: use RHEL8/httpd
+# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
+# FROM registry.redhat.io/rhel8/httpd-24:1-60 AS registry
 USER 0
 
 # BEGIN these steps might not be required
@@ -115,9 +124,29 @@ ENTRYPOINT ["/usr/local/bin/uid_entrypoint.sh", "/usr/local/bin/entrypoint.sh"]
 # multiple temp stages does not work in Brew
 FROM builder AS offline-builder
 
-# To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
-# and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
-RUN ./cache_artifacts.sh v3 && chmod -R g+rwX /build
+# built in Brew, use tarball in lookaside cache; built locally, comment this out
+# COPY v3.tgz /tmp/v3.tgz
+
+# to get all the python deps pre-fetched so we can build in Brew:
+# 1. extract files in the container to your local filesystem
+#    CONTAINERNAME="pluginregistryoffline" && docker build -t ${CONTAINERNAME} . --target=offline-builder --no-cache --squash --build-arg BOOTSTRAP=true
+#    mkdir -p /tmp/pr-res/ && docker run -it -v /tmp/pr-res/:/tmp/pr-res/ ${CONTAINERNAME} /bin/bash -c "cd /build/v3/ && cp -r ./* /tmp/pr-res/"
+#    pushd /tmp/pr-res >/dev/null && sudo tar czf v3.tgz ./* && popd >/dev/null && mv -f /tmp/pr-res/v3.tgz . && sudo rm -fr /tmp/pr-res/
+
+# 2. then add it to dist-git so it's part of this repo
+#    rhpkg new-sources root-local.tgz v3.tgz
+RUN if [[ ! -f /tmp/v3.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then \
+      # To only cache files from /latest/ folders, use ./cache_artifacts.sh v3 --latest-only 
+      # and uncomment line above to remove files so they're not included in index.json -- RUN rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/")
+      if [[ ${LATEST_ONLY} == "true" ]]; then \
+        ./cache_artifacts.sh v3 --latest-only && chmod -R g+rwX /build; \
+      else \
+        ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
+        fi \
+    else \
+      # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
+      mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz;  \
+    fi
 
 # multiple temp stages does not work in Brew
 FROM registry AS offline-registry
