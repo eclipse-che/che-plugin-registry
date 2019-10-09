@@ -6,44 +6,44 @@
   "properties": {
     "apiVersion": {
       "type": "string",
-      "pattern": "^[^\\s]+$"
+      "pattern": "^[-._a-zA-Z0-9]+$"
     },
     "publisher": {
       "type": "string",
-      "pattern": "^[^\\s]+$"
+      "pattern": "^[-._a-zA-Z0-9]+$"
     },
     "name": {
       "type": "string",
-      "pattern": "^[^\\s]+$"
+      "pattern": "^[-._a-zA-Z0-9]+$"
     },
     "version": {
       "type": ["number", "string"],
-      "pattern": "^[^\\s]+$",
+      "pattern": "^[-._a-zA-Z0-9]+$",
       "minimum": 0
     },
     "title": {
       "type": "string",
-      "pattern": "[^\\s]+"
+      "pattern": "[-._a-zA-Z0-9]+"
     },
     "icon": {
       "type": "string",
-      "pattern": "[^\\s]+.svg[^.]*$"
+      "pattern": "[-._a-zA-Z0-9]+.svg[^.]*$"
     },
     "description": {
       "type": "string",
-      "pattern": "[^\\s]+"
+      "pattern": "[-._a-zA-Z0-9]+"
     },
     "repository": {
       "type": "string",
-      "pattern": "[^\\s]+"
+      "pattern": "[-._a-zA-Z0-9]+"
     },
     "firstPublicationDate": {
       "type": "string",
-      "pattern": "[^\\s]+"
+      "pattern": "[-._a-zA-Z0-9]+"
     },
     "latestUpdateDate": {
       "type": "string",
-      "pattern": "[^\\s]+"
+      "pattern": "[-._a-zA-Z0-9]+"
     },
     "spec": {
       "type": "object"
