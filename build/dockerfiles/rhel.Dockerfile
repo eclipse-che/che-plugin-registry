@@ -106,10 +106,10 @@ FROM builder AS offline-builder
 #    CONTAINERNAME="pluginregistryoffline" && docker build -t ${CONTAINERNAME} . --target=offline-builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/pr-res/ && docker run -it -v /tmp/pr-res/:/tmp/pr-res/ ${CONTAINERNAME} /bin/bash -c "cd /build/v3/ && cp -r ./* /tmp/pr-res/"
 #    pushd /tmp/pr-res >/dev/null && sudo tar czf v3.tgz ./* && popd >/dev/null && mv -f /tmp/pr-res/v3.tgz . && sudo rm -fr /tmp/pr-res/
-
+ 
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz v3.tgz
-RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
+RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \ 
       ./cache_artifacts.sh v3 && chmod -c -R g+rwX /build; \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
