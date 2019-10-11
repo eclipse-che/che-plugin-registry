@@ -20,10 +20,13 @@ USER 0
 ################# 
 
 ARG BOOTSTRAP=false
+ENV BOOTSTRAP=${BOOTSTRAP}
 ARG LATEST_ONLY=false
+ENV LATEST_ONLY=${LATEST_ONLY}
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
+#    find v3 -type f -exec dos2unix {} \;
 #    CONTAINERNAME="pluginregistrybuilder" && docker build -t ${CONTAINERNAME} . --target=builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/root-local/ && docker run -it -v /tmp/root-local/:/tmp/root-local/ ${CONTAINERNAME} /bin/bash -c "cd /root/.local/ && cp -r bin/ lib/ /tmp/root-local/"
 #    pushd /tmp/root-local >/dev/null && sudo tar czf root-local.tgz lib/ bin/ && popd >/dev/null && mv -f /tmp/root-local/root-local.tgz . && sudo rm -fr /tmp/root-local/
@@ -122,7 +125,7 @@ FROM builder AS offline-builder
 # built in Brew, use tarball in lookaside cache; built locally, comment this out
 # COPY v3.tgz /tmp/v3.tgz
 
-# to get all the python deps pre-fetched so we can build in Brew:
+# to get all the cached vsix files pre-fetched so we can use them in Brew:
 # 1. extract files in the container to your local filesystem
 #    CONTAINERNAME="pluginregistryoffline" && docker build -t ${CONTAINERNAME} . --target=offline-builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/pr-res/ && docker run -it -v /tmp/pr-res/:/tmp/pr-res/ ${CONTAINERNAME} /bin/bash -c "cd /build/v3/ && cp -r ./* /tmp/pr-res/"
@@ -130,8 +133,13 @@ FROM builder AS offline-builder
 
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz v3.tgz
-RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
-      ./cache_artifacts.sh v3 && chmod -c -R g+rwX /build; \
+RUN if [[ ! -f /tmp/v3.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then \
+      # To only cache files from /latest/ folders, use --build-arg LATEST_ONLY=true 
+      if [[ ${LATEST_ONLY} == "true" ]]; then \
+        ./cache_artifacts.sh v3 --latest-only && chmod -R g+rwX /build; \
+      else \
+        ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
+        fi \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
       mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz;  \
