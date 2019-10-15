@@ -15,5 +15,9 @@ spec:
     - image: "docker.io/eclipse/che-remote-plugin-openshift-connector-0.0.21:next"
       name: "vscode-openshift-connector"
       memoryLimit: "512Mi"
+      command: 
+      - sh
+      - -c
+      - /entrypoint.sh
   extensions:
     - https://github.com/redhat-developer/vscode-openshift-tools/releases/download/v0.0.21/openshift-connector-0.0.21-228.vsix
