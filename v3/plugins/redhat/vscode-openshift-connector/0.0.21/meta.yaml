@@ -20,4 +20,6 @@ spec:
       - -c
       - /entrypoint.sh
   extensions:
+    - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix
+    - https://github.com/redhat-developer/vscode-yaml/releases/download/0.4.0/redhat.vscode-yaml-0.4.0.vsix
     - https://github.com/redhat-developer/vscode-openshift-tools/releases/download/v0.0.21/openshift-connector-0.0.21-228.vsix
