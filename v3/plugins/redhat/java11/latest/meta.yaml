@@ -10,7 +10,7 @@ description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle s
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
-firstPublicationDate: "2019-06-18"
+firstPublicationDate: "2019-10-03"
 spec:
   containers:
   - image: "docker.io/eclipse/che-remote-plugin-runner-java11:next"
@@ -20,6 +20,9 @@ spec:
       - sh
       - -c
       - /before-start.sh && ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
+    volumes:
+    - mountPath: "/home/theia/.m2"
+      name: m2
   extensions:
-  - https://github.com/microsoft/vscode-java-debug/releases/download/0.19.0/vscode-java-debug-0.19.0.vsix
-  - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.46.0-1549.vsix
+  - https://github.com/microsoft/vscode-java-debug/releases/download/0.20.0/vscode-java-debug-0.20.0.vsix
+  - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.50.0-1825.vsix

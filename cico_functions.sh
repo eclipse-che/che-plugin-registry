@@ -79,7 +79,7 @@ function build_and_push() {
   REGISTRY="quay.io"
 
   if [ "$TARGET" == "rhel" ]; then
-    DOCKERFILE="Dockerfile.rhel"
+    DOCKERFILE="rhel.Dockerfile"
     ORGANIZATION="openshiftio"
     IMAGE="rhel-che-plugin-registry"
   else
@@ -99,7 +99,7 @@ function build_and_push() {
 
   # Let's build and push image to 'quay.io' using git commit hash as tag first
   set_git_commit_tag
-  docker build -t ${IMAGE} -f ${DOCKERFILE} --target registry .
+  docker build -t ${IMAGE} -f ./build/dockerfiles/${DOCKERFILE} --target registry .
   tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
   echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
 

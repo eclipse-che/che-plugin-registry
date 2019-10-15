@@ -12,6 +12,12 @@ chePluginRegistryImagePullPolicy: Always
 chePluginRegistryMemoryLimit: 256Mi
 #chePluginRegistryIngressSecretName: che-tls
 
+# Used to override plugin sidecar image references
+chePluginSidecarOverride:
+  url:
+  organization:
+  tag:
+
 global:
   ingressDomain: 192.168.99.100.nip.io
   ingress:

@@ -1,0 +1,20 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-camelk
+version: 0.0.9
+type: VS Code extension
+displayName: Tooling for Apache Camel K
+title: Tooling for Apache Camel K
+description: VS Code support for Apache Camel K functionality
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/camel-tooling/vscode-camelk
+category: Language
+firstPublicationDate: '2019-07-10'
+spec:
+  containers:
+  - image: "docker.io/eclipse/che-remote-plugin-camelk-0.0.9:next"
+    name: vscode-camelk
+    memoryLimit: "1G"
+  extensions:
+  - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.9-86.vsix
+  - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix

@@ -11,7 +11,7 @@
 
 set -e
 
-# shellcheck source=./scripts/util.sh
+# shellcheck source=./build/scripts/util.sh
 source "$(dirname "$0")/util.sh"
 
 readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
