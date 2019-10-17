@@ -40,9 +40,9 @@ function install_deps() {
   /usr/sbin/setenforce 0  || true
 
   # Get all the deps in
-  yum install -y yum-utils device-mapper-persistent-data lvm2
+  yum install -d1 -y yum-utils device-mapper-persistent-data lvm2
   yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  yum install -y docker-ce \
+  yum install -d1 -y docker-ce \
     git
 
   service docker start
@@ -71,7 +71,7 @@ function set_git_commit_tag() {
 function tag_push() {
   local TARGET=$1
   docker tag "${IMAGE}" "$TARGET"
-  docker push "$TARGET"
+  docker push "$TARGET" | cat
 }
 
 function build_and_push() {
@@ -99,7 +99,7 @@ function build_and_push() {
 
   # Let's build and push image to 'quay.io' using git commit hash as tag first
   set_git_commit_tag
-  docker build -t ${IMAGE} -f ./build/dockerfiles/${DOCKERFILE} --target registry .
+  docker build -t ${IMAGE} -f ./build/dockerfiles/${DOCKERFILE} --target registry . | cat
   tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
   echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
 
