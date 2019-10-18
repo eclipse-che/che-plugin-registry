@@ -24,6 +24,7 @@ ARG LATEST_ONLY=false
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
+#    find v3 -type f -exec dos2unix {} \;
 #    CONTAINERNAME="pluginregistrybuilder" && docker build -t ${CONTAINERNAME} . --target=builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/root-local/ && docker run -it -v /tmp/root-local/:/tmp/root-local/ ${CONTAINERNAME} /bin/bash -c "cd /root/.local/ && cp -r bin/ lib/ /tmp/root-local/"
 #    pushd /tmp/root-local >/dev/null && sudo tar czf root-local.tgz lib/ bin/ && popd >/dev/null && mv -f /tmp/root-local/root-local.tgz . && sudo rm -fr /tmp/root-local/
@@ -38,30 +39,8 @@ ARG LATEST_ONLY=false
 # enable rhel 7 or 8 content sets (from Brew) to resolve jq as rpm
 COPY ./build/dockerfiles/content_sets_epel7.repo /etc/yum.repos.d/
 
-RUN microdnf install -y findutils bash wget yum gzip tar jq python3-six python3-pip && microdnf -y clean all && \
-    # install yq (depends on jq and pyyaml - if jq and pyyaml not already installed, this will try to compile it)
-    if [[ -f /tmp/root-local.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then \
-      mkdir -p /root/.local; tar xf /tmp/root-local.tgz -C /root/.local/; rm -fr /tmp/root-local.tgz;  \
-      /usr/bin/pip3.6 install --user yq jsonschema; \
-      # could be installed in /opt/app-root/src/.local/bin or /root/.local/bin
-      for d in /opt/app-root/src/.local /root/.local; do \
-        if [[ -d ${d} ]]; then \
-          cp ${d}/bin/yq ${d}/bin/jsonschema /usr/local/bin/; \
-          pushd ${d}/lib/python3.6/site-packages/ >/dev/null; \
-            cp -r PyYAML* xmltodict* yaml* yq* jsonschema* /usr/lib/python3.6/site-packages/; \
-          popd >/dev/null; \
-        fi; \
-      done; \
-      chmod -c +x /usr/local/bin/*; \
-    else \
-      /usr/bin/pip3.6 install yq jsonschema; \
-    fi && \
-    ln -s /usr/bin/python3.6 /usr/bin/python && \
-    # test install worked
-    for d in python yq jq jsonschema; do echo -n "$d: "; $d --version; done
-
-# for debugging only
-# RUN microdnf install -y util-linux && whereis python pip jq yq && python --version && jq --version && yq --version
+COPY ./build/dockerfiles/rhel.install.sh /tmp
+RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 
 ################# 
 # PHASE TWO: configure registry image
@@ -103,7 +82,7 @@ RUN sed -i /etc/httpd/conf/httpd.conf \
     -e "s,logs/error_log,/dev/stderr," \
     -e "s,logs/access_log,/dev/stdout," \
     -e "s,AllowOverride None,AllowOverride All," && \
-    chmod a+rwX /etc/httpd/conf /run/httpd
+    chmod a+rwX /etc/httpd/conf /run/httpd /etc/httpd/logs/
 STOPSIGNAL SIGWINCH
 # END these steps might not be required
 
@@ -122,7 +101,7 @@ FROM builder AS offline-builder
 # built in Brew, use tarball in lookaside cache; built locally, comment this out
 # COPY v3.tgz /tmp/v3.tgz
 
-# to get all the python deps pre-fetched so we can build in Brew:
+# to get all the cached vsix files pre-fetched so we can use them in Brew:
 # 1. extract files in the container to your local filesystem
 #    CONTAINERNAME="pluginregistryoffline" && docker build -t ${CONTAINERNAME} . --target=offline-builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/pr-res/ && docker run -it -v /tmp/pr-res/:/tmp/pr-res/ ${CONTAINERNAME} /bin/bash -c "cd /build/v3/ && cp -r ./* /tmp/pr-res/"
