@@ -1,0 +1,20 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-quarkus
+version: 1.1.0
+type: VS Code extension
+displayName: Quarkus
+title: Quarkus Tools for Visual Studio Code, by Red Hat
+description: This VSCode extension provides support for Quarkus development via a Quarkus language server and a Quarkus jdt.ls extension.
+icon: https://simpleicons.org/icons/quarkus.svg
+repository: https://github.com/redhat-developer/vscode-quarkus
+category: Language
+firstPublicationDate: "2019-10-21"
+spec:
+  containers:
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java11:next"
+      name: vscode-quarkus
+      memoryLimit: "768Mi"
+  extensions:
+    - https://github.com/microsoft/vscode-java-debug/releases/download/0.20.0/vscode-java-debug-0.20.0.vsix
+    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/redhat/vsextensions/vscode-quarkus/1.1.0/vspackage
