@@ -15,6 +15,10 @@ spec:
     - image: "docker.io/eclipse/che-remote-plugin-runner-java11:next"
       name: vscode-java
       memoryLimit: "1500Mi"
+      command:
+        - sh
+        - -c
+        - /before-start.sh && ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
       volumes:
       - mountPath: "/home/theia/.m2"
         name: m2

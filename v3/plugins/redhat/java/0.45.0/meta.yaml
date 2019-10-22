@@ -15,10 +15,6 @@ spec:
     - image: "docker.io/eclipse/che-remote-plugin-runner-java8:next"
       name: vscode-java
       memoryLimit: "1500Mi"
-      command:
-        - sh
-        - -c
-        - /before-start.sh && ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
   extensions:
     - https://github.com/microsoft/vscode-java-debug/releases/download/0.16.0/vscode-java-debug-0.16.0.vsix
     - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.45.0-1523.vsix
