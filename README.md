@@ -11,7 +11,7 @@
 Most of the time you won't need to rebuild the image because we build ```quay.io/eclipse/che-plugin-registry:nightly``` after every commit in master. In case you needed to change the content of the registry (e.g. add or modify some plugins meta.yaml) you can build your own image executing:
 
 ```shell
-docker build --no-cache -t quay.io/eclipse/che-plugin-registry:nightly --target registry .
+./build.sh
 ```
 
 Where `--no-cache` is needed to prevent usage of cached layers with plugin registry files.
