@@ -23,63 +23,58 @@ fi
 RESOURCES_DIR="${1}/resources/"
 TEMP_DIR="${1}/extensions_temp/"
 
-PREBUILT_VSIX_ARCHIVE_DIR_NAME="${1}/vsix"
+mkdir -p "${RESOURCES_DIR}" "${TEMP_DIR}"
 
-if [ -f "${PREBUILT_VSIX_ARCHIVE_DIR_NAME}.tar.gz" ]; then
-echo "found ${PREBUILT_VSIX_ARCHIVE_DIR_NAME}.tar.gz, unpacking"
-  tar -zxvf ${PREBUILT_VSIX_ARCHIVE_DIR_NAME}.tar.gz -C ${1}
-  rm -fr ${PREBUILT_VSIX_ARCHIVE_DIR_NAME}.tar.gz
-  readarray -d '' prebuilt_extensions < <(find "${PREBUILT_VSIX_ARCHIVE_DIR_NAME}" -name '*.vsix' -print0)
+# Unpack prebuilt .vsix files, if archive exists
+# File structure for the archive must mirror structure used for storing downloaded
+# vsix files (i.e. .vsix files are stored in subdirs according to the path in their
+# URL)
+PREBUILT_VSIX_ARCHIVE_NAME="${1}/vsix.tar.gz"
+if [ -f "${PREBUILT_VSIX_ARCHIVE_NAME}" ]; then
+  echo "Found ${PREBUILT_VSIX_ARCHIVE_NAME}, unpacking"
+  tar -zxvf "${PREBUILT_VSIX_ARCHIVE_NAME}" -C "${TEMP_DIR}"
+  mv "${TEMP_DIR%/}/vsix"/* "${RESOURCES_DIR}"
+  rm -rf "${PREBUILT_VSIX_ARCHIVE_NAME}" "${TEMP_DIR:?}"/*
 fi
 
-mkdir -p "${RESOURCES_DIR}" "${TEMP_DIR}"
+# Download required extension files and update plugin meta.yamls as necessary
 for extension in $(yq -r '.spec.extensions[]?' "${metas[@]}" | sort | uniq); do
-  echo -en "Caching extension ${extension}\n    "
+  echo "Caching extension ${extension}"
 
-  # Before attempting to download, check if we already have this file in supplied prebuilt plugins
-  # archive. If found, skip the download
-  for plugin_file_path in "${prebuilt_extensions[@]}"; do
-    # strip root directory from path on filesystem to match it with extension URL
-    rel_plugin_file_path=${plugin_file_path#${PREBUILT_VSIX_ARCHIVE_DIR_NAME}/}
-    rel_plugin_file_path=${rel_plugin_file_path%/*.vsix}
+  # Strip protocol and filename from URL to get destination path for vsix file
+  relative_subdir="${extension#*//}"
+  relative_subdir="${relative_subdir%/*}"
+  mkdir -p "${RESOURCES_DIR%/}/${relative_subdir}"
 
-    extension_location=${extension#*//}
+  # Path to current extension's .vsix file, relative to $RESOURCES_DIR
+  extension_location=""
 
-    if [[ ${rel_plugin_file_path} == ${extension_location} ]]; then
-      matched_plugin_path=${plugin_file_path}
-      echo "found prebuilt extension: ${matched_plugin_path}    "
-      break
-    fi
-  done
-
-  if [[ ! -z "$matched_plugin_path" ]]; then
-    mv "${matched_plugin_path}" ${TEMP_DIR}
-  else
-    # Workaround for getting filenames through content-disposition: copy to temp
-    # dir and read filename before moving to /resources.
+  readarray -d '' prebuilt_extension < <(find "${RESOURCES_DIR%/}/${relative_subdir}" -name '*.vsix' -print0)
+  if [ "${#prebuilt_extension[@]}" = 1 ]; then
+    # We found a prebuilt extension in this directory, no need to download
+    echo "    Found prebuilt extension ${prebuilt_extension[0]}"
+    extension_location="${prebuilt_extension[0]#${RESOURCES_DIR}}"
+  elif [ "${#prebuilt_extension[@]}" = 0 ]; then
+    # No vsix files in target directory 
+    echo "    Downloading extension $extension"
     wget -P "${TEMP_DIR}" -nv --content-disposition "${extension}"
-  fi
-
-  file=$(find "${TEMP_DIR}" -type f)
-  filename=$(basename "${file}")
-
-  # Strip protocol and filename from URL
-  target_dir=${extension#*//}
-  target_dir=${target_dir%/*}
-  mkdir -p "${RESOURCES_DIR%/}/${target_dir}"
-
-  destination="${target_dir%/}/${filename}"
-  if [ -f "${RESOURCES_DIR%/}/${destination}" ]; then
-    echo "    Encoutered duplicate file: ${RESOURCES_DIR%/}/${destination}"
-    echo "    while processing ${extension}"
+    file=$(find "${TEMP_DIR}" -type f)
+    filename=$(basename "${file}")
+    extension_location="${relative_subdir%/}/${filename}"
+    if [ -f "${RESOURCES_DIR%/}/${extension_location}" ]; then
+      echo "    Encoutered duplicate file: ${RESOURCES_DIR%/}/${extension_location}"
+      echo "    while processing ${extension}"
+      exit 1
+    fi
+    mv "${file}" "${RESOURCES_DIR%/}/${extension_location}"
+  else
+    echo "    Found multiple extensions in directory ${RESOURCES_DIR%/}/${relative_subdir}; unable to determine"
+    echo "    which file is used for extension ${extension}"
     exit 1
   fi
 
-  # echo "    Caching ${filename} to ${RESOURCES_DIR%/}/${destination}"
-  mv "${file}" "${RESOURCES_DIR%/}/${destination}"
-
-  echo "    Rewriting meta.yaml '${extension}' -> 'relative:extension/resources/${destination#/}''"
-  sed -i "s|${extension}|relative:extension/resources/${destination#/}|" "${metas[@]}"
+  echo "    Rewriting meta.yaml '${extension}' -> 'relative:extension/resources/${extension_location#/}'"
+  sed -i "s|${extension}|relative:extension/resources/${extension_location#/}|" "${metas[@]}"
 done
 
 rm -rf "${TEMP_DIR}"
