@@ -15,6 +15,7 @@ ORGANIZATION="eclipse"
 TAG="nightly"
 LATEST_ONLY=false
 OFFLINE=false
+DOCKERFILE="./build/dockerfiles/Dockerfile"
 
 USAGE="
 Usage: ./build.sh [OPTIONS]
@@ -32,6 +33,8 @@ Options:
     --offline
         Build offline version of registry, with all extension artifacts
         cached in the registry; disabled by default.
+    --rhel
+        Build using the rhel.Dockerfile instead of the default
 "
 
 function print_usage() {
@@ -62,6 +65,10 @@ function parse_arguments() {
             OFFLINE=true
             shift
             ;;
+            --rhel)
+            DOCKERFILE=./build/dockerfiles/rhel.Dockerfile
+            shift
+            ;;
             *)
             print_usage
             exit 0
@@ -77,14 +84,14 @@ if [ "$OFFLINE" = true ]; then
     echo "in offline mode"
     docker build \
         -t "$IMAGE" \
-        -f ./build/dockerfiles/Dockerfile \
+        -f "$DOCKERFILE" \
         --build-arg LATEST_ONLY="${LATEST_ONLY}" \
         --target offline-registry .
 else
     echo ""
     docker build \
         -t "$IMAGE" \
-        -f ./build/dockerfiles/Dockerfile \
+        -f "$DOCKERFILE" \
         --build-arg LATEST_ONLY="${LATEST_ONLY}" \
         --target registry .
 fi
