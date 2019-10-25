@@ -1,0 +1,24 @@
+#
+# Copyright (c) 2018 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+chePluginRegistryImage: quay.io/eclipse/che-plugin-registry:nightly
+chePluginRegistryImagePullPolicy: Always
+chePluginRegistryMemoryLimit: 256Mi
+#chePluginRegistryIngressSecretName: che-tls
+
+# Used to override plugin sidecar image references
+chePluginSidecarOverride:
+  url:
+  organization:
+  tag:
+
+global:
+  ingressDomain: 192.168.99.100.nip.io
+  ingress:
+    class: 'nginx'

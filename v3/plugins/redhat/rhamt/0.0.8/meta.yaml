@@ -24,7 +24,7 @@ spec:
     attributes:
       protocol: http
   containers:
-  - image: "windup3/rhamt-vscode-extension:java8"
+  - image: "docker.io/windup3/rhamt-vscode-extension:java8"
     name: rhamt-extension
     memoryLimit: 1500Mi
     ports:
