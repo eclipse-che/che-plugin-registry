@@ -60,7 +60,8 @@ RUN ./generate_latest_metas.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_plugins_viewer_mandatory_fields.sh v3 && \
     ./index.sh v3 > /build/v3/plugins/index.json && \
-    chmod -c -R g+rwX /build
+    ./list_referenced_images.sh v3 > /build/v3/external_images.txt && \
+    chmod -R g+rwX /build
 
 ################# 
 # PHASE THREE: create ubi8-minimal image with httpd
@@ -97,7 +98,6 @@ CMD ["/usr/local/bin/rhel.entrypoint.sh"]
 # Offline build: cache .theia and .vsix files in registry itself and update metas
 # multiple temp stages does not work in Brew
 FROM builder AS offline-builder
-RUN ./list_referenced_images.sh v3 > /build/v3/external_images.txt
 
 # built in Brew, use tarball in lookaside cache; built locally, comment this out
 # COPY v3.tgz /tmp/v3.tgz
@@ -111,7 +111,7 @@ RUN ./list_referenced_images.sh v3 > /build/v3/external_images.txt
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz v3.tgz
 RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
-      ./cache_artifacts.sh v3 && chmod -c -R g+rwX /build; \
+      ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
       mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz;  \
