@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: pizzafactory
+name: xtext-lang
+version: 0.4.0
+type: VS Code extension
+displayName: Xtext Language
+title: Language support for Xtext
+description: VS Code extension that provides Xtext Language Server
+icon: https://camino.pizzafactory.jp/images/logos/pizza-flat.svg
+firstPublicationDate: "2019-08-12"
+category: Language
+repository: https://github.com/PizzaFactory/xtext-ide-extensions/
+spec:
+  containers:
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:next"
+      name: vscode-xtext-lang
+      memoryLimit: "768Mi"
+  extensions:
+    - https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix

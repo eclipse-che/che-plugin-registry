@@ -52,13 +52,13 @@ WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
-      rm -fr $(find /build/v3 -name 'meta.yaml' | grep -v "/latest/" | grep -o ".*/"); \
+      ./keep_only_latest.sh; \
     fi
 
-RUN ./check_plugins_location.sh v3 && \
+RUN ./generate_latest_metas.sh v3 && \
+    ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_plugins_viewer_mandatory_fields.sh v3 && \
-    ./ensure_latest_exists.sh && \
     ./index.sh v3 > /build/v3/plugins/index.json && \
     chmod -c -R g+rwX /build
 
@@ -69,7 +69,7 @@ RUN ./check_plugins_location.sh v3 && \
 # Build registry, copying meta.yamls and index.json from builder
 # UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-104 AS registry
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-105 AS registry
 
 # DOWNSTREAM: use RHEL8/httpd
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
@@ -97,6 +97,7 @@ CMD ["/usr/local/bin/rhel.entrypoint.sh"]
 # Offline build: cache .theia and .vsix files in registry itself and update metas
 # multiple temp stages does not work in Brew
 FROM builder AS offline-builder
+RUN ./list_referenced_images.sh v3 > /build/v3/external_images.txt
 
 # built in Brew, use tarball in lookaside cache; built locally, comment this out
 # COPY v3.tgz /tmp/v3.tgz
