@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: cdr
 name: code-server
-version: next
+version: 2.1650-vsc1.39.2
 type: Che Editor
 displayName: code-server
 title: Visual Studio Code - Web (code-server)
