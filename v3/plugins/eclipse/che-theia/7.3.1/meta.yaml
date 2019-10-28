@@ -4,8 +4,8 @@ name: che-theia
 version: 7.3.1
 type: Che Editor
 displayName: theia-ide
-title: Eclipse Theia development version.
-description: Eclipse Theia, get the latest release each day.
+title: Eclipse Theia for Eclipse Che
+description: Eclipse Theia
 icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
 category: Editor
 repository: https://github.com/eclipse/che-theia
