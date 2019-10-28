@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:next"
+     image: "docker.io/chinodesuuu/coder:2.1650-vsc1.39.2-che"
      mountSources: true
      ports:
          - exposedPort: 9000
