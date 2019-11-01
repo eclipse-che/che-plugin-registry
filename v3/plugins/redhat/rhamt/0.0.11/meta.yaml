@@ -1,6 +1,6 @@
 apiVersion: v2
 id: redhat.rhamt-vscode-extension
-version: 0.0.10
+version: 0.0.11
 type: VS Code extension
 name: rhamt
 displayName: Red Hat Application Migration Toolkit
@@ -32,5 +32,5 @@ spec:
       - exposedPort: 61436
     mountSources: true
   extensions:
-    - https://download.jboss.org/jbosstools/adapters/stable/rhamt-vscode-extension/rhamt-vscode-extension-0.0.10-266.vsix
+    - https://download.jboss.org/jbosstools/adapters/stable/rhamt-vscode-extension/rhamt-vscode-extension-0.0.11-267.vsix
 
