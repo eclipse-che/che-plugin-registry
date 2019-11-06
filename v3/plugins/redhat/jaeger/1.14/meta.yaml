@@ -1,0 +1,60 @@
+apiVersion: v2
+publisher: redhat
+name: jaeger
+version: 1.14
+type: Che Plugin
+displayName: Jaeger
+title: Jaeger, Distributed Tracing System
+description: OpenTracing/OpenTelemetry compliant distributed tracing plugin for Eclipse Che
+icon: https://raw.githubusercontent.com/jaegertracing/documentation/master/static/img/jaeger-vector.svg
+category: Other
+repository: https://github.com/jaegertracing/jaeger/
+firstPublicationDate: "2019-11-06"
+spec:
+  endpoints:
+  - name: 'tracing-ui'
+    port: 16686
+  - name: 'collector-grpc'
+    port: 14250
+    attributes:
+      public: 'false'
+  - name: 'collector-http'
+    port: 14268
+    attributes:
+      public: 'false'
+  - name: 'collector-zipkin'
+    port: 9411
+    attributes:
+      public: 'false'
+  - name: 'agent-config'
+    port: 5778
+    attributes:
+      public: 'false'
+  - name: '6831/udp'
+    port: 6831
+    attributes:
+      public: 'false'
+  - name: '6832/udp'
+    port: 6832
+    attributes:
+      public: 'false'
+  volumes:
+  - name: tmp
+    containerPath: /tmp
+  containers:
+  - name: jaeger
+    image: "docker.io/aegertracing/all-in-one:1.14"
+    env:
+    - name: MEMORY_MAX_TRACES
+      value: "5000"
+    - name: COLLECTOR_ZIPKIN_HTTP_PORT
+      value: "9411"
+    ports:
+    - exposedPort: 16686
+    - exposedPort: 14250
+    - exposedPort: 14268
+    - exposedPort: 9411
+    - exposedPort: 5778
+    - exposedPort: 6831
+    - exposedPort: 6832
+    memoryLimit: "128Mi"
