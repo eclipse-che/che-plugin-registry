@@ -5,7 +5,7 @@ version: 0.0.9
 type: VS Code extension
 displayName: Tooling for Apache Camel K
 title: Tooling for Apache Camel K
-description: VS Code support for Apache Camel K functionality
+description: Support for Apache Camel K functionality
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
