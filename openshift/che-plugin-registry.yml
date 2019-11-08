@@ -58,7 +58,11 @@ objects:
             periodSeconds: 10
             timeoutSeconds: 3
           resources:
+            requests:
+              cpu: 1m
+              memory: 5Mi
             limits:
+              cpu: 100m
               memory: ${MEMORY_LIMIT}
           envFrom:
           - configMapRef:
