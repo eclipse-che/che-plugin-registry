@@ -10,6 +10,9 @@ description: Che Plug-in with che-machine-exec service to provide creation termi
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-machine-exec/
 firstPublicationDate: "2019-02-05"
+deprecate:
+  automigrate: true
+  migrateTo: eclipse/che-machine-exec-plugin/nightly
 category: Other
 spec:
   endpoints:
@@ -24,6 +27,6 @@ spec:
         cookiesAuthEnabled: true
   containers:
    - name: che-machine-exec
-     image: "docker.io/eclipse/che-machine-exec:next"
+     image: "quay.io/eclipse/che-machine-exec:nightly"
      ports:
        - exposedPort: 4444
