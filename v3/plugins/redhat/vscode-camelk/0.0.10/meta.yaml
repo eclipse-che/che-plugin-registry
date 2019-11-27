@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-07-10'
 spec:
   containers:
-  - image: "eclipse/che-remote-plugin-camelk-0.0.10:next"
+  - image: "eclipse/che-remote-plugin-camelk-0.0.10:7.5.0"
     name: vscode-camelk
     memoryLimit: "1G"
   extensions:
