@@ -12,7 +12,7 @@ category: Language
 repository: https://github.com/PizzaFactory/xtend-ide-extensions/
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:7.5.0"
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:7.5.1"
       name: vscode-xtend-lang
       memoryLimit: "768Mi"
   extensions:
