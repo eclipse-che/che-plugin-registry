@@ -13,7 +13,7 @@ category: Debugger
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "docker.io/eclipse/che-remote-plugin-node:7.5.0"
+  - image: "docker.io/eclipse/che-remote-plugin-node:7.5.1"
     name: vscode-node-debug-legacy
     memoryLimit: '256Mi'
   extensions:
