@@ -19,7 +19,7 @@ spec:
       protocol: http
   containers:
    - name: theia-dev
-     image: "docker.io/eclipse/che-theia-dev:nightly"
+     image: "docker.io/eclipse/che-theia-dev:next"
      commands:
        - name: uname
          workingDir: "$(project)"
