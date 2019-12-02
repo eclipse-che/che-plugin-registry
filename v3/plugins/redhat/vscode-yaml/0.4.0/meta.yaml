@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-04-19"
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-node:next"
+    - image: "quay.io/eclipse/che-sidecar-node:10-09f63ac"
       name: vscode-yaml
       memoryLimit: "256Mi"
   extensions:
