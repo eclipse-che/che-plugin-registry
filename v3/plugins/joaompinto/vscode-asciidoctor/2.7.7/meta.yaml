@@ -1,6 +1,6 @@
 publisher: joaompinto
 apiVersion: v2
-version: 2.7.6
+version: 2.7.7
 type: VS Code extension
 name: vscode-asciidoctor
 displayName: AsciiDoc support
@@ -9,7 +9,7 @@ description: This extension provides a live preview, syntax highlighting and sni
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 category: Language
 repository: https://github.com/asciidoctor/asciidoctor-vscode
-firstPublicationDate: "2019-09-09"
+firstPublicationDate: "2019-12-02"
 spec:
   extensions:
-  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/joaompinto/vsextensions/asciidoctor-vscode/2.7.6/vspackage
+  - https://github.com/asciidoctor/asciidoctor-vscode/releases/download/v2.7.7/asciidoctor-vscode-2.7.7.vsix
