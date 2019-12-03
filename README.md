@@ -90,7 +90,7 @@ firstPublicationDate:  # optional; see [2]
 latestUpdateDate:      # optional; see [3]
 deprecate:             # optional; section for deprecating plugins in favor of others
   autoMigrate:         # boolean
-  migrateTo:           # new plugin id
+  migrateTo:           # new org/plugin-id/version, e.g. redhat/vscode-apache-camel/latest
 spec:                  # spec (used to be che-plugin.yaml)
   endpoints:           # optional; plugin endpoints -- see https://www.eclipse.org/che/docs/che-6/servers.html for more details
     - name:
