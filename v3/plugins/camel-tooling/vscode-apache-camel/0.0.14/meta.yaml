@@ -15,7 +15,7 @@ deprecate:
   migrateTo: redhat/vscode-apache-camel/latest
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-runner-java11:7.3.2"
+    - image: "docker.io/eclipse/che-remote-plugin-runner-java11:7.3.3"
       name: vscode-apache-camel
       memoryLimit: "512Mi"
   extensions:
