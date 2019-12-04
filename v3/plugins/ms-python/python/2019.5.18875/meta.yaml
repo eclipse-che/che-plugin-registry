@@ -13,7 +13,7 @@ category: Language
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-python:3.7.3-7db4b1f"
+  - image: "quay.io/eclipse/che-sidecar-python:3.7.3-8f39348"
     name: vscode-python
     memoryLimit: '512Mi'
   extensions:

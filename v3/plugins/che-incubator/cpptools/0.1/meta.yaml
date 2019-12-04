@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-08-06'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-clang:8-2ac897d"
+    - image: "quay.io/eclipse/che-sidecar-clang:8-83adb3a"
       name: cpp-plugins
       memoryLimit: '512Mi'
   extensions:

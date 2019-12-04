@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: "2019-04-19"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.0.17-cdaa03d"
+    - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.0.17-eec0eef"
       name: "vscode-openshift-connector"
       memoryLimit: "512Mi"
   extensions:
