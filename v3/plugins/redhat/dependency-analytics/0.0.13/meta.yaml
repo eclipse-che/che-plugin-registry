@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: '2019-09-12'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-dependency-analytics:0.0.13-83f9a11"
+    - image: "quay.io/eclipse/che-sidecar-dependency-analytics:0.0.13-a38cb0c"
       name: dependency-analytics
       memoryLimit: "512Mi"
   extensions:
