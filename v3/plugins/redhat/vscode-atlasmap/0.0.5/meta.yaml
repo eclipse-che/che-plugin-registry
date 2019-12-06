@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-atlasmap
+version: 0.0.5
+type: VS Code extension
+displayName: AtlasMap Data Transformation editor by Red Hat
+title: AtlasMap Data Transformation editor by Red Hat
+description: Opens a webview for AtlasMap Data Transformation editor
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/jboss-fuse/vscode-atlasmap
+category: Language
+firstPublicationDate: '2020-02-26'
+spec:
+  endpoints:
+  - name: "atlasmap-endpoint"
+    public: true
+    targetPort: 8585
+    attributes:
+      protocol: http
+  containers:
+  - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    name: vscode-atlasmap
+    memoryLimit: "512Mi"
+    ports:
+      - exposedPort: 8585
+  extensions:
+  - https://download.jboss.org/jbosstools/vscode/snapshots/vscode-atlasmap/vscode-atlasmap-0.0.5-126.vsix
