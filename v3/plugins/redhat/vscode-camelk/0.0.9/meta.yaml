@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-07-10'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-camelk:0.0.9-b94109d"
+  - image: "quay.io/eclipse/che-sidecar-camelk:0.0.9-9e8538e"
     name: vscode-camelk
     memoryLimit: "1G"
   extensions:
