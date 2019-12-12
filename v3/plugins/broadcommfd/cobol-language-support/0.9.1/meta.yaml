@@ -1,0 +1,17 @@
+apiVersion: v2
+publisher: broadcommfd
+name: cobol-language-support
+version: 0.9.1
+type: VS Code extension
+displayName: COBOL Language Support
+title: COBOL Language Support
+description: COBOL Language Support standardizes the communication between language tooling and your code editor using the Language Server Protocol (LSP)
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
+category: Language
+spec:
+  containers:
+    - image: eclipse/che-remote-plugin-runner-java8:next
+      memoryLimit: 512Mi
+  extensions:
+    - https://github.com/eclipse/che-che4z-lsp-for-cobol/releases/download/0.9.1/cobol-language-support-0.9.1.vsix

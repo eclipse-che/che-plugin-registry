@@ -1,0 +1,14 @@
+apiVersion: v2
+publisher: broadcommfd
+name: hlasm-language-support
+version: 0.8.1
+type: VS Code extension
+displayName: HLASM Language Support
+title: HLASM Language Support
+description: Code completion, highlighting, browsing and validation for High Level Assembler
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm
+category: Language
+spec:
+  extensions:
+    - https://github.com/eclipse/che-che4z/releases/download/1.1.0/hlasm-language-support-0.8.1.vsix
