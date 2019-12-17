@@ -1,7 +1,7 @@
 publisher: vscodevim
 apiVersion: v2
 name: vim
-version: 1.12.2
+version: 1.11.3
 type: VS Code extension
 displayName: Vim
 title: Vim
@@ -12,4 +12,4 @@ category: Editor
 firstPublicationDate: '2019-12-11'
 spec:
   extensions:
-  - https://github.com/che-incubator/Vim/releases/download/v1.12.2/vscodevim.vim-1.12.2.vsix
+  - https://github.com/VSCodeVim/Vim/releases/download/v1.11.3/vim-1.11.3.vsix
