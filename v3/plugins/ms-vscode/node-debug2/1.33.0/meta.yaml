@@ -13,8 +13,8 @@ category: Debugger
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "docker.io/eclipse/che-theia-endpoint-runtime:next"
+  - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
     name: vscode-node-debug
     memoryLimit: '512Mi'
   extensions:
-  - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/node-debug2/1.33.0/vspackage
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-node-debug2/node-debug2-1.33.0.vsix

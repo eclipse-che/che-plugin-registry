@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-03-05"
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-python-3.7.3:next"
+    - image: "quay.io/eclipse/che-sidecar-python:3.7.3-8f39348"
       name: "vscode-python"
       memoryLimit: '512Mi'
   extensions:

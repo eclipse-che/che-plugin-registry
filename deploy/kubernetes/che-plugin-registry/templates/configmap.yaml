@@ -14,4 +14,4 @@ metadata:
 data:
   CHE_SIDECAR_CONTAINERS_REGISTRY_URL: {{ .Values.chePluginSidecarOverride.url }}
   CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: {{ .Values.chePluginSidecarOverride.organization }}
-  CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: {{ .Values.chePluginSidecarOverride.tag }}}
+  CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: {{ .Values.chePluginSidecarOverride.tag }}

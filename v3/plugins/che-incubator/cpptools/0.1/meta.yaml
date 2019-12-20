@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-08-06'
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-clang-8:next"
+    - image: "quay.io/eclipse/che-sidecar-clang:8-83adb3a"
       name: cpp-plugins
       memoryLimit: '512Mi'
   extensions:

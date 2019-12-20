@@ -3,6 +3,9 @@ apiVersion: v2
 version: 2.7.6
 type: VS Code extension
 name: vscode-asciidoctor
+deprecate:
+  autoMigrate: true
+  migrateTo: joaompinto/vscode-asciidoctor/latest
 displayName: AsciiDoc support
 title: AsciiDoctor Plugin.
 description: This extension provides a live preview, syntax highlighting and snippets for the AsciiDoc format using Asciidoctor flavor.

@@ -5,14 +5,14 @@ version: 0.0.9
 type: VS Code extension
 displayName: Tooling for Apache Camel K
 title: Tooling for Apache Camel K
-description: VS Code support for Apache Camel K functionality
+description: Support for Apache Camel K functionality
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
 firstPublicationDate: '2019-07-10'
 spec:
   containers:
-  - image: "docker.io/eclipse/che-remote-plugin-camelk-0.0.9:next"
+  - image: "quay.io/eclipse/che-sidecar-camelk:0.0.9-9e8538e"
     name: vscode-camelk
     memoryLimit: "1G"
   extensions:

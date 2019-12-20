@@ -12,7 +12,7 @@ category: Language
 repository: https://github.com/PizzaFactory/xtext-ide-extensions/
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-runner-java8:next"
+    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
       name: vscode-xtext-lang
       memoryLimit: "768Mi"
   extensions:

@@ -12,7 +12,7 @@
 
 # Builder: check meta.yamls and create index.json
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8-minimal
-FROM registry.access.redhat.com/ubi8-minimal:8.0-213 as builder
+FROM registry.access.redhat.com/ubi8-minimal:8.1-279 as builder
 USER 0
 
 ################# 
@@ -70,11 +70,11 @@ RUN ./generate_latest_metas.sh v3 && \
 # Build registry, copying meta.yamls and index.json from builder
 # UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-105 AS registry
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-106 AS registry
 
 # DOWNSTREAM: use RHEL8/httpd
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
-# FROM registry.redhat.io/rhel8/httpd-24:1-60 AS registry
+# FROM registry.redhat.io/rhel8/httpd-24:1-63 AS registry
 USER 0
 
 # BEGIN these steps might not be required
@@ -114,7 +114,7 @@ RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
       ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
-      mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz;  \
+      mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz; chmod -R g+rwX /build/v3/; \
     fi
 
 # multiple temp stages does not work in Brew

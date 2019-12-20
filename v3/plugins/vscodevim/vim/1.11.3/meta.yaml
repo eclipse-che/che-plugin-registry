@@ -1,0 +1,15 @@
+publisher: vscodevim
+apiVersion: v2
+name: vim
+version: 1.11.3
+type: VS Code extension
+displayName: Vim
+title: Vim
+description: Vim editor emulation.
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/VSCodeVim/Vim
+category: Editor
+firstPublicationDate: '2019-12-11'
+spec:
+  extensions:
+  - https://github.com/VSCodeVim/Vim/releases/download/v1.11.3/vim-1.11.3.vsix

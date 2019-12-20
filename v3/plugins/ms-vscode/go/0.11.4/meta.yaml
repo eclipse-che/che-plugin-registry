@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2019-09-19'
 spec:
   containers:
-    - image: "docker.io/eclipse/che-remote-plugin-go-1.12.9:next"
+    - image: "quay.io/eclipse/che-sidecar-go:1.12.9-304cd66"
       name: vscode-go
       memoryLimit: '512Mi'
       env:
