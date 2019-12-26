@@ -16,4 +16,4 @@ spec:
     name: vscode-typescript
     memoryLimit: '512Mi'
   extensions:
-  - https://github.com/che-incubator/ms-code.typescript/releases/download/v1.35.1/che-typescript-language-1.35.1.vsix
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/ms-code.typescript/che-typescript-language-1.35.1.vsix

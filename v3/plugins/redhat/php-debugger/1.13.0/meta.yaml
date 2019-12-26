@@ -15,4 +15,4 @@ spec:
     - image: "quay.io/eclipse/che-sidecar-php:7-5c5ecc5"
       name: php-debugger
   extensions:
-    - https://github.com/felixfbecker/vscode-php-debug/releases/download/v1.13.0/php-debug.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
