@@ -1,9 +1,9 @@
 apiVersion: v2
 publisher: redhat
-name: quarkus
+name: quarkus-java8
 version: 1.2.0
 type: VS Code extension
-displayName: Quarkus Tools
+displayName: Quarkus Tools with Java 8
 title: Quarkus Tools by Red Hat
 description: This plug-in provides support for Quarkus development via a Quarkus language server, Java jdt.ls and Java Debugger.
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
