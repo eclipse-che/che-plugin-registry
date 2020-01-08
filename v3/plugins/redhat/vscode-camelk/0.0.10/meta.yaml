@@ -17,4 +17,4 @@ spec:
     memoryLimit: "1G"
   extensions:
   - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.10-153.vsix
-  - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.0.4.vsix
