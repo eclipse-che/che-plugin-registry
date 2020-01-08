@@ -26,7 +26,7 @@ spec:
       targetPort: 3100
       attributes:
         protocol: http
-        type: ide
+        type: webview
         secure: true
         cookiesAuthEnabled: true
         discoverable: false
