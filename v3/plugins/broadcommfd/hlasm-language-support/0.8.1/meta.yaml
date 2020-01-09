@@ -9,6 +9,7 @@ description: Code completion, highlighting, browsing and validation for High Lev
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm
 category: Language
+firstPublicationDate: "2019-12-12"
 spec:
   extensions:
     - https://github.com/eclipse/che-che4z/releases/download/1.1.0/hlasm-language-support-0.8.1.vsix

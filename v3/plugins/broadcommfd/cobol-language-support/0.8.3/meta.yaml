@@ -9,6 +9,7 @@ description: COBOL Language Support standardizes the communication between langu
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
 category: Language
+firstPublicationDate: "2019-11-25"
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-fac2415"
