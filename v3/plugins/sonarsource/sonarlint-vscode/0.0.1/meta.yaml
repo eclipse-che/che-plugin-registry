@@ -16,4 +16,4 @@ spec:
       name: vscode-sonarlint
       memoryLimit: "512Mi"
   extensions:
-    - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.6.0/sonarlint-vscode-1.6.0.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/sonarlint-vscode/sonarlint-vscode-1.13.0.vsix
