@@ -143,14 +143,14 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^[-._a-zA-Z0-9]+$"
+                  "pattern": "^.+$"
                 }
               },
               "args": {
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^[-._a-zA-Z0-9]+$"
+                  "pattern": "^.+$"
                 }
               },
               "volumes": {

@@ -58,7 +58,7 @@ RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
 RUN ./generate_latest_metas.sh v3 && \
     ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
-    ./check_plugins_viewer_mandatory_fields.sh v3 && \
+    ./check_metas_schema.sh v3 && \
     ./index.sh v3 > /build/v3/plugins/index.json && \
     ./list_referenced_images.sh v3 > /build/v3/external_images.txt && \
     chmod -R g+rwX /build
