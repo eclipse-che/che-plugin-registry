@@ -9,7 +9,7 @@ type: VS Code extension
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/bmewburn/vscode-intelephense
 category: Language
-firstPublicationDate: "2019-06-13"
+firstPublicationDate: "2020-01-14"
 spec:
   containers:
     - image: "eclipse/che-remote-plugin-php7:next"
