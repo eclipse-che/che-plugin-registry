@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/vscode-wsdl2rest
 category: Other
 firstPublicationDate: "2019-02-26"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-wsdl2rest/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
