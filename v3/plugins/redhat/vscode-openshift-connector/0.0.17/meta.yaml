@@ -17,3 +17,5 @@ spec:
       memoryLimit: "512Mi"
   extensions:
     - https://github.com/redhat-developer/vscode-openshift-tools/releases/download/v0.0.17/openshift-connector-0.0.17-127.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.0.9.vsix
+    - https://github.com/redhat-developer/vscode-yaml/releases/download/0.4.0/redhat.vscode-yaml-0.4.0.vsix
