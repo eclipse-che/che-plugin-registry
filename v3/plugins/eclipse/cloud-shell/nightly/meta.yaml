@@ -3,9 +3,9 @@ publisher: eclipse
 name: cloud-shell
 version: nightly
 type: Che Editor
-displayName: Cloud Shell Service
-title: Cloud Shell Plugin
-description: Cloud Shell Plugin discover ability to use terminal widget instead of text editor.
+displayName: Cloud Shell Editor
+title: Cloud Shell Editor
+description: Cloud Shell Editor provides ab ability to use terminal widget instead of text editor.
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-machine-exec/
 firstPublicationDate: "2019-12-17"
