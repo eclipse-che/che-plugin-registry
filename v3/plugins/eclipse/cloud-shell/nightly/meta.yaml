@@ -17,11 +17,10 @@ spec:
       targetPort: 4444
       attributes:
         protocol: http
-        path: "/static"
         type: ide
         discoverable: false
-        secure: false
-        cookiesAuthEnabled: false
+        secure: true
+        cookiesAuthEnabled: true
   containers:
    - name: che-machine-exec
      image: "quay.io/eclipse/che-machine-exec:nightly"
