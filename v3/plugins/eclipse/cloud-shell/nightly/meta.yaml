@@ -14,7 +14,7 @@ spec:
   endpoints:
    -  name: cloud-shell
       public: true
-      targetPort: 5555
+      targetPort: 4444
       attributes:
         protocol: http
         path: "/static"
@@ -26,4 +26,4 @@ spec:
    - name: che-machine-exec
      image: "eclipse/che-machine-exec:nightly"
      ports:
-       - exposedPort: 5555
+       - exposedPort: 4444
