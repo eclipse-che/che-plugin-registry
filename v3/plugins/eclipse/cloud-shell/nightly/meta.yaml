@@ -8,7 +8,7 @@ title: Cloud Shell Editor
 description: Cloud Shell Editor provides ab ability to use terminal widget instead of text editor.
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-machine-exec/
-firstPublicationDate: "2019-12-17"
+firstPublicationDate: "2020-01-29"
 category: Other
 spec:
   endpoints:
