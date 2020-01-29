@@ -5,7 +5,7 @@ version: nightly
 type: Che Editor
 displayName: Cloud Shell Editor
 title: Cloud Shell Editor
-description: Cloud Shell Editor provides ab ability to use terminal widget instead of text editor.
+description: Cloud Shell provides an ability to use terminal widget like an editor.
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-machine-exec/
 firstPublicationDate: "2020-01-29"
