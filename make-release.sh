@@ -66,7 +66,7 @@ createNewPlugins () {
     sed -i "${m}" \
         -e "s#firstPublicationDate:.\+#firstPublicationDate: \"$(date +%Y-%m-%d)\"#" \
         -e "s#version: \(nightly\|next\)#version: ${newVERSION}#" \
-        -e "s#image: \"\(.\+\):\(nightly\|next\)\"#image: \"\1:${newVERSION}#" \
+        -e "s#image: \"\(.\+\):\(nightly\|next\)\"#image: \"\1:${newVERSION}\"#" \
         -e "s# development version\.##" \
         -e "s#, get the latest release each day\.##"
   done
