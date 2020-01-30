@@ -66,11 +66,11 @@ createNewPlugins () {
     sed -i "${m}" \
         -e "s#firstPublicationDate:.\+#firstPublicationDate: \"$(date +%Y-%m-%d)\"#" \
         -e "s#version: \(nightly\|next\)#version: ${newVERSION}#" \
-        -e "s#image: \"\(.\+\):\(nightly\|next\)\"#image: \"\1:${newVERSION}#" \
+        -e "s#image: \"\(.\+\):\(nightly\|next\)\"#image: \"\1:${newVERSION}\"#" \
         -e "s# development version\.##" \
         -e "s#, get the latest release each day\.##"
   done
-  for m in v3/plugins/eclipse/che-machine-exec-plugin/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
+  for m in v3/plugins/eclipse/che-theia/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
     echo "${newVERSION}" > $m
   done
 }
@@ -146,7 +146,7 @@ ${lastCommitComment}" -b "${BRANCH}" -h "${PR_BRANCH}"
   fi 
 fi
 
+popd > /dev/null || exit
+
 # cleanup tmp dir
 cd /tmp && rm -fr "$TMP"
-
-popd > /dev/null || exit
