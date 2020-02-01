@@ -12,6 +12,14 @@ apiVersion: v1
 metadata:
   name: che-plugin-registry
 data:
-  CHE_SIDECAR_CONTAINERS_REGISTRY_URL: {{ .Values.chePluginSidecarOverride.url }}
-  CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: {{ .Values.chePluginSidecarOverride.organization }}
-  CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: {{ .Values.chePluginSidecarOverride.tag }}
+{{- with .Values.chePluginSidecarOverride -}}
+  {{- with .url }}
+  CHE_SIDECAR_CONTAINERS_REGISTRY_URL: {{ . }}
+  {{- end }}
+  {{- with .organization }}
+  CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: {{ . | quote }}
+  {{- end }}
+  {{- with .tag }}
+  CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: {{ . | quote }}
+  {{- end }}
+{{- end }}
