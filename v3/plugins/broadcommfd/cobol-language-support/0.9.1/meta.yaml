@@ -9,9 +9,10 @@ description: COBOL Language Support standardizes the communication between langu
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
 category: Language
+firstPublicationDate: "2019-12-12"
 spec:
   containers:
-    - image: eclipse/che-remote-plugin-runner-java8:next
+    - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
       memoryLimit: 512Mi
   extensions:
     - https://github.com/eclipse/che-che4z-lsp-for-cobol/releases/download/0.9.1/cobol-language-support-0.9.1.vsix

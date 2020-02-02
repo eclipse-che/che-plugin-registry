@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
 firstPublicationDate: '2019-07-10'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-camelk/latest
 spec:
   containers:
   - image: "quay.io/eclipse/che-sidecar-camelk:0.0.10-70f9d17"
@@ -17,4 +20,5 @@ spec:
     memoryLimit: "1G"
   extensions:
   - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.10-153.vsix
-  - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.0.0.vsix
+  - https://github.com/redhat-developer/vscode-yaml/releases/download/0.4.0/redhat.vscode-yaml-0.4.0.vsix

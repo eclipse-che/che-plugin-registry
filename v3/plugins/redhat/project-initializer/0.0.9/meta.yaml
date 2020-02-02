@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/fabric8-launcher/launcher-vscode-extension
 category: Other
 firstPublicationDate: "2019-04-18"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/project-initializer/latest
 spec:
   extensions:
     - https://download.jboss.org/jbosstools/adapters/stable/vscode-project-initializer/project_initializer-0.0.9-92.vsix

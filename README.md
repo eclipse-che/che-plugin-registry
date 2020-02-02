@@ -6,6 +6,9 @@
 
 # Eclipse Che plugin registry
 
+## Building and publishing third party VSIX extensions for plugin registry
+See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc/building/build-vsix-extension.adoc
+
 ## Build Eclipse Che plugin registry container image
 
 The plugin registry is automatically built for every Che release (e.g. `quay.io/eclipse/che-plugin-registry:7.6.0`) in addition to nightly builds available at `quay.io/eclipse/che-plugin-registry:nightly`. If a custom build of the registry is desired, there is a `build.sh` script at the root of this repository that can be used to easily build the image:

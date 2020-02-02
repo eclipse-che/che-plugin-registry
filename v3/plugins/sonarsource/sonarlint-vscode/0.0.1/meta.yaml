@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 firstPublicationDate: "2019-02-05"
 category: Linter
 repository: https://www.sonarlint.org/
+deprecate:
+  automigrate: true
+  migrateTo: sonarsource/sonarlint-vscode/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
