@@ -21,6 +21,16 @@ spec:
         secure: true
         cookiesAuthEnabled: true
         discoverable: false
+   -  name: "webviews"
+      public: true
+      targetPort: 3100
+      attributes:
+        protocol: http
+        type: webview
+        secure: true
+        cookiesAuthEnabled: true
+        discoverable: false
+        unique: true
    -  name: "theia-dev"
       public: true
       targetPort: 3130
