@@ -21,4 +21,3 @@ spec:
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.24.0.vsix
     - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.55.1-1984.vsix
-    
