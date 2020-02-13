@@ -14,7 +14,7 @@ REGISTRY="quay.io"
 ORGANIZATION="eclipse"
 TAG="nightly"
 LATEST_ONLY=false
-USE_DIGESTS=true
+USE_DIGESTS=false
 OFFLINE=false
 DOCKERFILE="./build/dockerfiles/Dockerfile"
 
@@ -31,8 +31,8 @@ Options:
         Docker image organization to be used for image; default: 'eclipse'
     --latest-only
         Build registry to only contain 'latest' meta.yamls; default: 'false'
-    --no-digests
-        Build registry to use images pinned by tag instead of by digest
+    --use-digests
+        Build registry to use images pinned by digest instead of tag
     --offline
         Build offline version of registry, with all extension artifacts
         cached in the registry; disabled by default.
@@ -64,8 +64,8 @@ function parse_arguments() {
             LATEST_ONLY=true
             shift
             ;;
-            --no-digests)
-            USE_DIGESTS=false
+            --use-digests)
+            USE_DIGESTS=true
             shift
             ;;
             --offline)

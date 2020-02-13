@@ -15,7 +15,7 @@ FROM alpine:3.10 AS builder
 RUN apk add --no-cache py-pip jq bash wget skopeo && pip install yq jsonschema
 
 ARG LATEST_ONLY=false
-ARG USE_DIGESTS=true
+ARG USE_DIGESTS=false
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3

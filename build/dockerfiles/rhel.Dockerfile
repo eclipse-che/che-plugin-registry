@@ -21,7 +21,7 @@ USER 0
 
 ARG BOOTSTRAP=false
 ARG LATEST_ONLY=false
-ARG USE_DIGESTS=true
+ARG USE_DIGESTS=false
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
