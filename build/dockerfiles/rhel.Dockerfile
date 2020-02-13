@@ -23,6 +23,10 @@ ARG BOOTSTRAP=false
 ARG LATEST_ONLY=false
 ARG USE_DIGESTS=false
 
+ENV BOOTSTRAP=${BOOTSTRAP} \
+    LATEST_ONLY=${LATEST_ONLY} \
+    USE_DIGESTS=${USE_DIGESTS}
+
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
 #    find v3 -type f -exec dos2unix {} \;
