@@ -21,6 +21,11 @@ USER 0
 
 ARG BOOTSTRAP=false
 ARG LATEST_ONLY=false
+ARG USE_DIGESTS=false
+
+ENV BOOTSTRAP=${BOOTSTRAP} \
+    LATEST_ONLY=${LATEST_ONLY} \
+    USE_DIGESTS=${USE_DIGESTS}
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
@@ -37,7 +42,7 @@ ARG LATEST_ONLY=false
 
 # NOTE: uncomment for local build. Must also set full registry path in FROM to registry.redhat.io or registry.access.redhat.com
 # enable rhel 7 or 8 content sets (from Brew) to resolve jq as rpm
-COPY ./build/dockerfiles/content_sets_epel7.repo /etc/yum.repos.d/
+COPY ./build/dockerfiles/content_sets_centos8_appstream.repo /etc/yum.repos.d/
 
 COPY ./build/dockerfiles/rhel.install.sh /tmp
 RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
@@ -59,6 +64,7 @@ RUN ./generate_latest_metas.sh v3 && \
     ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_metas_schema.sh v3 && \
+    [[ ${USE_DIGESTS} == "true" ]] && ./write_image_digests.sh v3 || \
     ./index.sh v3 > /build/v3/plugins/index.json && \
     ./list_referenced_images.sh v3 > /build/v3/external_images.txt && \
     chmod -R g+rwX /build
