@@ -120,6 +120,18 @@
                 "type": "string",
                 "pattern": "[1-9][0-9]*([Gg]i|(Mm)i|(Kk)i|b)?"
               },
+              "memoryRequest": {
+                 "type": "string",
+                 "pattern": "[1-9][0-9]*([Gg]i|(Mm)i|(Kk)i|b)?"
+              },
+              "cpuLimit": {
+                 "type": "string",
+                 "pattern": "(^[0-9]+(\.[0-9][0-9]*)?$|^[1-9][0-9]+(m)?$)"
+              },
+              "cpuRequest": {
+                 "type": "string",
+                 "pattern": "(^[0-9]+(\.[0-9][0-9]*)?$|^[1-9][0-9]+(m)?$)"
+              },
               "env": {
                 "type": "array",
                 "items": {
