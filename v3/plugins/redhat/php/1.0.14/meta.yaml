@@ -15,4 +15,4 @@ spec:
     - image: "eclipse/che-remote-plugin-php7:next"
       memoryLimit: "1000Mi"
   extensions:
-    - https://github.com/che-incubator/vscode-intelephense/releases/download/v1.0.14/bmewburn.vscode-intelephense-client-1.0.14.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.0.14.vsix
