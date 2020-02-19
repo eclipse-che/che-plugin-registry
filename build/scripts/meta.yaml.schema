@@ -126,7 +126,7 @@
               },
               "cpuLimit": {
                  "type": "string",
-                 "pattern": "(^[0-9]+(.[0-9]+)?$|^[1-9][0-9]*(m)$)"
+                 "pattern": "^[0-9]+(\\.[0-9]+)?$|^[1-9][0-9]*m$"
               },
               "cpuRequest": {
                  "type": "string",
