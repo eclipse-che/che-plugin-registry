@@ -76,7 +76,7 @@ RUN ./generate_latest_metas.sh v3 && \
 # Build registry, copying meta.yamls and index.json from builder
 # UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-108.1575996463 AS registry
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-109 AS registry
 
 # DOWNSTREAM: use RHEL8/httpd
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
@@ -116,7 +116,7 @@ FROM builder AS offline-builder
 
 # 2. then add it to dist-git so it's part of this repo
 #    rhpkg new-sources root-local.tgz v3.tgz
-RUN if [ ! -f /tmp/v3.tgz ] || [ ${BOOTSTRAP} == "true" ]; then \
+RUN if [[ ! -f /tmp/v3.tgz ]] || [[ "${BOOTSTRAP}" == "true" ]]; then \
       ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
     else \
       # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
