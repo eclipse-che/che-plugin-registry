@@ -15,9 +15,5 @@ spec:
   - image: "quay.io/eclipse/che-sidecar-dotnet:2.2.105-2fd6e78"
     name: theia-netcoredbg
     memoryLimit: "512Mi"
-    args:
-      - sh
-      - -c
-      - ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
   extensions:
     - https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.3/netcoredbg_theia_plugin.theia
