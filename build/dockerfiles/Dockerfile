@@ -29,7 +29,7 @@ RUN ./generate_latest_metas.sh v3 && \
     ./check_plugins_location.sh v3 && \
     ./set_plugin_dates.sh v3 && \
     ./check_metas_schema.sh v3 && \
-    [[ ${USE_DIGESTS} == "true" ]] && ./write_image_digests.sh v3 || \
+    if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh v3; fi && \
     ./index.sh v3 > /build/v3/plugins/index.json && \
     ./list_referenced_images.sh v3 > /build/v3/external_images.txt && \
     chmod -R g+rwX /build
