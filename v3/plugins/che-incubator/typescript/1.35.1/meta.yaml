@@ -17,3 +17,5 @@ spec:
     memoryLimit: '512Mi'
   extensions:
   - https://download.jboss.org/jbosstools/vscode/3rdparty/ms-code.typescript/che-typescript-language-1.35.1.vsix
+  - https://github.com/theia-ide/vscode-node-debug/releases/download/v1.35.3/node-debug-1.35.3.vsix
+  - https://github.com/theia-ide/vscode-node-debug2/releases/download/v1.33.0/node-debug2-1.33.0.vsix
