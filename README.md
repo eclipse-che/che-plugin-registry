@@ -111,7 +111,10 @@ spec:                  # spec (used to be che-plugin.yaml)
   containers:          # optional; sidecar containers for plugin
     - image:
       name:              # name used for sidecar container
-      memorylimit:       # Kubernetes/OpenShift-spec memory limit string (e.g. "512Mi")
+      memoryLimit:       # Kubernetes/OpenShift-spec memory limit string (e.g. "512Mi"). Refer to https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory for details.
+      memoryRequest:     # Kubernetes/OpenShift-spec memory request string (e.g. "256Mi"). Refer to https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory for details.
+      cpuLimit:          # Kubernetes/OpenShift-spec CPU limit string (e.g. "500m"). Refer to https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu for details.
+      cpuRequest:        # Kubernetes/OpenShift-spec CPU request string (e.g. "125m"). Refer to https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu for details.
       env:               # list of env vars to set in sidecar
         - name:
           value:
