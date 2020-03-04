@@ -1,0 +1,15 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: test-
+projects: []
+components:
+  - type: chePlugin
+    alias: test_suite
+    reference:
+  - type: chePlugin
+    alias: test_plugin
+    reference:
+  - type: cheEditor
+    alias: theia-editor
+    reference: https://gist.githubusercontent.com/JPinkney/e98391dcf7d852e9e2581b0f3b062303/raw/57f66ee8c987a45b9894b90ad2d8bf6b39d2f38a/meta.yaml
+    
