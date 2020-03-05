@@ -26,3 +26,4 @@ spec:
      image: "quay.io/eclipse/che-machine-exec:nightly"
      ports:
        - exposedPort: 4444
+     command: ['/go/bin/che-machine-exec', '--static', '/cloud-shell', '--url', '127.0.0.1:4444']
