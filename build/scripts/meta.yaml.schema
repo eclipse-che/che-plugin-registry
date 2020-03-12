@@ -17,9 +17,8 @@
       "pattern": "^[-._a-zA-Z0-9]+$"
     },
     "version": {
-      "type": ["number", "string"],
-      "pattern": "^[-._a-zA-Z0-9]+$",
-      "minimum": 0
+      "type": ["string"],
+      "pattern": "^[-._a-zA-Z0-9]+$"
     },
     "type": {
       "type": "string",
