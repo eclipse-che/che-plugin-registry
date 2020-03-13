@@ -34,7 +34,7 @@
     },
     "icon": {
       "type": "string",
-      "pattern": "[-._a-zA-Z0-9]+.svg[^.]*$"
+      "pattern": "[-._a-zA-Z0-9]+?\\.(?:svg|png)(?:\\?.*)?$"
     },
     "description": {
       "type": "string"
