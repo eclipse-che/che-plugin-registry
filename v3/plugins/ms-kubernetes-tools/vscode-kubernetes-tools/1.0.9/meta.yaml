@@ -6,13 +6,13 @@ type: VS Code extension
 displayName: Kubernetes
 title: Kubernetes Tools
 description: Develop, deploy and debug Kubernetes applications
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/1.0.9/images/k8s-logo.png
 repository: https://github.com/Azure/vscode-kubernetes-tools
 category: Other
 firstPublicationDate: "2020-01-14"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.0.9-a40b3bb"
+    - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.0.9-82c704e"
       name: "vscode-kubernetes-tools"
       memoryLimit: "1G"
   extensions:

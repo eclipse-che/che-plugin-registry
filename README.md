@@ -88,7 +88,7 @@ type:                  # plugin type; e.g. "Theia plugin", "Che Editor"
 displayName:           # name shown in user dashboard
 title:                 # plugin title
 description:           # short description of plugin's purpose
-icon:                  # link to SVG icon
+icon:                  # link to SVG or PNG icon
 repository:            # URL for plugin (e.g. Github repo)
 category:              # see [1]
 firstPublicationDate:  # optional; see [2]
