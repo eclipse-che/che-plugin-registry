@@ -1,0 +1,37 @@
+apiVersion: v2
+publisher: mm4eche
+name: git-ui-tools
+version: 1.0.0
+type: Theia plugin
+category: Other
+displayName: Git UI Tools
+title: Che Theia Git UI Tools plugin
+description: Brings desktop git tools into Che workspace
+icon: https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png
+repository: https://github.com/mmorhun/che-theia-plugin-git-ui-tools
+firstPublicationDate: "2019-04-23"
+spec:
+  containers:
+    - image: "docker.io/mm4eche/che-theia-plugin-git-ui-tools"
+      name: "git-ui-tools"
+      memoryLimit: '512Mi'
+      memoryRequest: '256Mi'
+      ports:
+         - exposedPort: 6080
+      command:
+        - /bin/sh
+      args:
+        - -c
+        - ./entrypoint.sh & /remote-endpoint/plugin-remote-endpoint
+  endpoints:
+   -  name: "desktop"
+      public: true
+      targetPort: 6080
+      attributes:
+        protocol: http
+        type: desktop
+        secure: true
+        cookiesAuthEnabled: true
+        discoverable: false
+  extensions:
+    - https://github.com/mmorhun/che-theia-plugin-git-ui-tools/releases/download/0.0.1-pre/che_theia_plugin_git_ui_tools.theia
