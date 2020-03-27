@@ -9,7 +9,7 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 publisher: redhat
 repository: https://github.com/windup/rhamt-vscode-extension
 category: Other
-firstPublicationDate: "2019-11-01"
+firstPublicationDate: "2020-03-27"
 spec:
   endpoints:
   - name: "configuration-endpoint"
