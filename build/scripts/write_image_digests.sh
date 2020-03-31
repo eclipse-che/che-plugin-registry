@@ -18,7 +18,7 @@ function handle_error() {
   echo -n "  Reason: "
   sed 's|^|    |g' $LOG_FILE
 }
-
+  
 readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
 for image in $(yq -r '.spec | .containers[]?,.initContainers[]? | .image' "${metas[@]}" | sort | uniq); do
   digest="$(skopeo --tls-verify=false inspect "docker://${image}" 2>"$LOG_FILE" | jq -r '.Digest')"
