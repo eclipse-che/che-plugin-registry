@@ -137,6 +137,21 @@ spec:                  # spec (used to be che-plugin.yaml)
             - -rf
             - /cache/.m2/repository
       mountSources:      # boolean
+      lifecycle:         # container lifecycle hooks -- see https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/
+        postStart:       # the postStart event immediately after a Container is started -- see https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
+          exec:          # Executes a specific command, resources consumed by the command are counted against the Container
+            command: ["/bin/sh", "-c", "/bin/post-start.sh"]  # Command is the command line to execute inside the container, the working directory for the command is root ('/') 
+                                                              # in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell
+                                                              # instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status 
+                                                              # of 0 is treated as live/healthy and non-zero is unhealthy
+                                                              # -- see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#execaction-v1-core
+        preStop:         # the preStop event immediately before the Container is terminated -- see https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
+          exec:          # Executes a specific command, resources consumed by the command are counted against the Container
+            command: ["/bin/sh","-c","/bin/pre-stop.sh"]      # Command is the command line to execute inside the container, the working directory for the command is root ('/') 
+                                                              # in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell
+                                                              # instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status 
+                                                              # of 0 is treated as live/healthy and non-zero is unhealthy
+                                                              # -- see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#execaction-v1-core
   initContainers:      # optional; init containers for sidecar plugin
     - image:
       name:              # name used for sidecar container

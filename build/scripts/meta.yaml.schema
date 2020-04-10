@@ -219,9 +219,38 @@
                         "type": "string",
                         "pattern": "^[-._a-zA-Z0-9]+$"
                       }
-                    },
-                    "mountSources": {
-                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "mountSources": {
+                "type": "boolean"
+              }
+            },
+            "lifecycle": {
+              "type": "object",
+              "postStart": {
+                "type": "object",
+                "exec": {
+                  "type": "object",
+                  "command": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^.+$"
+                    }
+                  }
+                }
+              },
+              "preStop": {
+                "type": "object",
+                "exec": {
+                  "type": "object",
+                  "command": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^.+$"
                     }
                   }
                 }
