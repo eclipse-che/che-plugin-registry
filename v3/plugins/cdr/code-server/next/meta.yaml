@@ -5,7 +5,7 @@ version: next
 type: Che Editor
 displayName: code-server
 title: Visual Studio Code - Web (code-server)
-description: A open source distribution of Visual Studio Code as a cloud IDE
+description: An open source distribution of Visual Studio Code as a cloud IDE
 icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg 
 category: Editor
 repository: https://github.com/cdr/code-server
