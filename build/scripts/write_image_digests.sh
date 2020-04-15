@@ -8,26 +8,37 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+SCRIPT_DIR=$(cd "$(dirname "$0")" || exit; pwd)
 LOG_FILE="/tmp/image_digests.log"
 
 function handle_error() {
-  echo "  Could not read image metadata through skopeo inspect; skipping"
+  the_image="$1"
+  # NOTE: need --tls-verify=false to bypass SSL/TLD Cert validation errors - https://github.com/nmasse-itix/OpenShift-Examples/blob/master/Using-Skopeo/README.md#ssltls-issues
+  echo "  Could not read image metadata through skopeo --tls-verify=false inspect; skip $the_image"
   echo -n "  Reason: "
   sed 's|^|    |g' $LOG_FILE
 }
-
+  
 readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
 for image in $(yq -r '.spec | .containers[]?,.initContainers[]? | .image' "${metas[@]}" | sort | uniq); do
-  echo "Rewriting image $image"
-  # Need to look before we leap in case image is not accessible
-  if ! image_data=$(skopeo inspect "docker://${image}" 2>"$LOG_FILE"); then
-    handle_error
+  digest="$(skopeo --tls-verify=false inspect "docker://${image}" 2>"$LOG_FILE" | jq -r '.Digest')"
+  if [[ ${digest} ]]; then
+    echo "    $digest # ${image}"
+  else 
+    # for other build methods or for falling back to other registries when not found, can apply transforms here
+    if [[ -x "${SCRIPT_DIR}/write_image_digests_alternate_urls.sh" ]]; then
+      # since extension file may not exist, disable this check
+      # shellcheck disable=SC1090
+      source "${SCRIPT_DIR}/write_image_digests_alternate_urls.sh"
+    fi
+  fi
+
+  # don't rewrite if we couldn't get a digest from either the basic image or the alternative image
+  if [[ ! ${digest} ]]; then
+    handle_error "$image"
     continue
   fi
-  # Grab digest from image metadata json
-  digest=$(echo "$image_data" | jq -r '.Digest')
 
-  echo "  to use digest $digest"
   digest_image="${image%:*}@${digest}"
 
   # Rewrite images to use sha-256 digests
