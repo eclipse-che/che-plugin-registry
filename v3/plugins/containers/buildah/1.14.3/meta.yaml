@@ -14,9 +14,5 @@ spec:
   containers:
    - name: buildah-dev
      image: "quay.io/vgulyy/che-buildah-base:1.14.3"
-     commands:
-       - name: uname
-         workingDir: "$(project)"
-         command: ["uname", "-a"]
      mountSources: true
      memoryLimit: "3Gi"
