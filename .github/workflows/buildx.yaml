@@ -1,0 +1,28 @@
+# Copyright (c) 2017 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Buildx
+      uses: crazy-max/ghaction-docker-buildx@v1.4.0
+      with:
+        version: v0.3.1
+    - name: Build multi-arch images
+      run: |
+        docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" quay.io
+        docker buildx build --platform linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7 -t "quay.io/eclipse/che-plugin-registry:tmp-buildx" --push --file ./build/dockerfiles/Dockerfile --target registry .
+      env:
+        QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+        QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}      
