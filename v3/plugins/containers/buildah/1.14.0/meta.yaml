@@ -15,4 +15,4 @@ spec:
    - name: buildah-dev
      image: "quay.io/eclipse/che-buildah-base:1.14.0-b0c91d3"
      mountSources: true
-     memoryLimit: "3Gi"
+     memoryLimit: "1Gi"
