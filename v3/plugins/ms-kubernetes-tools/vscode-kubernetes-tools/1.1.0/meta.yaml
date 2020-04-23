@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: "2020-03-10"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.1.0-31a8464"
+    - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.1.0-24dc4a3"
       name: "vscode-kubernetes-tools"
       memoryLimit: "1G"
   extensions:
