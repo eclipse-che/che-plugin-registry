@@ -272,19 +272,19 @@ function createTestWorkspaceAndRunTest() {
   do
     echo "Starting workspace with devfile: $devfile"
     rm workspace_url.txt
-    chectl workspace:start --access-token "$USER_ACCESS_TOKEN" -f https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/java-maven/devfile.yaml --start > workspace_url.txt
+    chectl workspace:create --access-token "$USER_ACCESS_TOKEN" -f https://raw.githubusercontent.com/eclipse/che-devfile-registry/master/devfiles/java-maven/devfile.yaml --start > workspace_url.txt
     workspace_url=$(tail -n 1 workspace_url.txt)
 
     cat "$devfile"
 
-    pods=$(oc get pods --all-namespaces -l che.workspace_id 2>&1)
-    while [ "$pods" == 'No resources found.' ];
+    while [ "$(oc get pods --all-namespaces -l che.workspace_id)" == 'No resources found.' ];
     do
         echo "No pod found with che.workspace_id"
         echo "Current available pods are"
         oc get pods
         echo "Current deployments are"
         oc get deployments
+        oc get pods --all-namespaces -l che.workspace_id
         sleep 10
     done
 

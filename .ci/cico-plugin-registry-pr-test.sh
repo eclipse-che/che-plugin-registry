@@ -19,7 +19,6 @@ installCheCtl
 installAndStartMinishift
 createCert
 loginToOpenshiftAndSetDevRole
-prepareCustomResourceFile
 deployCheIntoCluster
 createTestUserAndObtainUserToken
 downloadAndCheckoutBranch
