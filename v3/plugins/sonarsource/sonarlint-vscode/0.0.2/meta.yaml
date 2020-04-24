@@ -12,8 +12,9 @@ category: Linter
 repository: https://www.sonarlint.org/
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    # - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
+    - image: quay.io/eclipse/che-sidecar-java@sha256:4fb35b4e112a05c82353ad0e1f5eb35d1ba204be475b72f3c753b0e26c9e668d
       name: vscode-sonarlint
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/sonarlint-vscode/sonarlint-vscode-1.13.0.vsix

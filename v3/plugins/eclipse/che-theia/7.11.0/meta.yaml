@@ -58,7 +58,8 @@ spec:
         discoverable: false
   containers:
    - name: theia-ide
-     image: "quay.io/eclipse/che-theia:7.11.0"
+    #  image: quay.io/eclipse/che-theia:7.11.0
+     image: quay.io/eclipse/che-theia@sha256:d0a7b5ed17656f3c76207dcede53165cf9eafd7d77f840165d5544bb8a502880
      env:
          - name: THEIA_PLUGINS
            value: local-dir:///plugins
@@ -78,7 +79,7 @@ spec:
          - exposedPort: 13131
          - exposedPort: 13132
          - exposedPort: 13133
-     memoryLimit: "512M"
+     memoryLimit: 512M
   initContainers:
   - name: remote-runtime-injector
     image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.11.0"

@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: "2020-04-15"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    # - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
+    - image: quay.io/eclipse/che-sidecar-java@sha256:54a5f721588455403d8c2a81d1fbc8fef2c6a32aead44f2fb3e24a8a1fddb9a2
       name: vscode-xml
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
   extensions:
     - https://github.com/redhat-developer/vscode-xml/releases/download/0.11.0/redhat.vscode-xml-0.11.0.vsix

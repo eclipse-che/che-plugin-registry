@@ -20,11 +20,12 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:2.1650-vsc1.39.2-che"
+    #  image: docker.io/chinodesuuu/coder:2.1650-vsc1.39.2-che
+     image: docker.io/chinodesuuu/coder@sha256:1af9c45c3f8c9836dba10c4a2c7b43915bc04fa4b9b9cc598d4bad5cf036817e
      mountSources: true
      ports:
          - exposedPort: 9000
-     memoryLimit: "1024M" 
+     memoryLimit: 1024M
      volumes:
         - mountPath: '/home/coder/.local/share/code-server'
           name: 'user-data'

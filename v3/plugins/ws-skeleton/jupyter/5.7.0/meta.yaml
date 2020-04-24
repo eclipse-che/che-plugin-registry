@@ -20,11 +20,12 @@ spec:
         type: ide
   containers:
    - name: jupyter-notebook
-     image: "docker.io/ksmster/che-editor-jupyter:5.7.0"
+    #  image: docker.io/ksmster/che-editor-jupyter:5.7.0
+     image: docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47
      env:
          - name: JUPYTER_NOTEBOOK_DIR
            value: /projects
      mountSources: true
      ports:
          - exposedPort: 8888
-     memoryLimit: "512M"
+     memoryLimit: 512M

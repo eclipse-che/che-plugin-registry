@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: "2020-01-05"
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-dotnet:2.2.105-2fd6e78"
+  # - image: quay.io/eclipse/che-sidecar-dotnet:2.2.105-2fd6e78
+  - image: quay.io/eclipse/che-sidecar-dotnet@sha256:5c0957a726a0cafb4ffa9e757425128e3f702123d11c5e673ff8ee58c712aea2
     name: theia-omnisharp
-    memoryLimit: "1024Mi"
+    memoryLimit: 1024Mi
     volumes:
     - mountPath: "/home/theia/.nuget"
       name: nuget

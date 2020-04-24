@@ -19,7 +19,8 @@ spec:
       protocol: http
   containers:
    - name: theia-dev
-     image: "quay.io/eclipse/che-theia-dev:next"
+    #  image: quay.io/eclipse/che-theia-dev:next
+     image: quay.io/eclipse/che-theia-dev@sha256:e44091f25b6a33a852431b6e5ae5f44b7e21b8c8f1182509854fdca03e081839
      commands:
        - name: uname
          workingDir: "$(project)"
@@ -27,4 +28,4 @@ spec:
      mountSources: true
      ports:
        - exposedPort: 3010
-     memoryLimit: "2Gi"
+     memoryLimit: 2Gi

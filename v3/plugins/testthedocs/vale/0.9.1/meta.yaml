@@ -12,8 +12,9 @@ category: Other
 firstPublicationDate: "2020-01-30"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-vale:0.9.1-9cc9d68"
-      name: "vscode-vale"
-      memoryLimit: "512Mi"
+    # - image: quay.io/eclipse/che-sidecar-vale:0.9.1-9cc9d68
+    - image: quay.io/eclipse/che-sidecar-vale@sha256:96ed03f5219b837f1e3ba2f7d3404e866b06a62960eee6a5ce41f0c8b02bdd24
+      name: vscode-vale
+      memoryLimit: 512Mi
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-vale/vale-0.9.1.vsix

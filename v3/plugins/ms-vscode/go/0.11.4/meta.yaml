@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: '2019-09-19'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-go:1.12.9-f82cdd5"
+    # - image: quay.io/eclipse/che-sidecar-go:1.12.9-f82cdd5
+    - image: quay.io/eclipse/che-sidecar-go@sha256:765f811a4c88a77ace7dc09e5a488824356493376fa722e3cd3421108974dcd6
       name: vscode-go
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
       env:
       - name: GOPATH
         value: /go:$(CHE_PROJECTS_ROOT)

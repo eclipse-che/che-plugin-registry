@@ -13,8 +13,9 @@ category: Debugger
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
+  # - image: quay.io/eclipse/che-sidecar-node:10-0cb5d78
+  - image: quay.io/eclipse/che-sidecar-node@sha256:0370b2c3d52d31c9fd52bff3edb84bd36bbcc2aff6224957d6dd94935843ee59
     name: vscode-node-debug
-    memoryLimit: '512Mi'
+    memoryLimit: 512Mi
   extensions:
   - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-node-debug2/node-debug2-1.33.0.vsix

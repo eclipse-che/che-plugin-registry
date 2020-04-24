@@ -24,7 +24,8 @@ spec:
         cookiesAuthEnabled: true
   containers:
    - name: che-machine-exec
-     image: "quay.io/eclipse/che-machine-exec:nightly"
+    #  image: quay.io/eclipse/che-machine-exec:nightly
+     image: quay.io/eclipse/che-machine-exec@sha256:df43419720820ec85df556ae89135b6f42b93869a0b72dc36b80564eb0e785cc
      ports:
        - exposedPort: 4444
      command: ['/go/bin/che-machine-exec', '--static', '/cloud-shell', '--url', '127.0.0.1:4444']

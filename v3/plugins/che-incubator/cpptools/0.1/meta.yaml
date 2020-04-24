@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: '2019-08-06'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-clang:8-83adb3a"
+    # - image: quay.io/eclipse/che-sidecar-clang:8-83adb3a
+    - image: quay.io/eclipse/che-sidecar-clang@sha256:1c217f34ca69108fdd1ab844c0bcf960edff92519677bde4f8a5f4841b104745
       name: cpp-plugins
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.90-ba3a21.vsix
     - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-vscode/cdt-vscode-0.0.7-75cf95.vsix

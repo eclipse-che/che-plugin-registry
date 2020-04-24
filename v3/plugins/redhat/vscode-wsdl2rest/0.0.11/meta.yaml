@@ -12,7 +12,8 @@ category: Other
 firstPublicationDate: "2020-01-13"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
-      memoryLimit: "256Mi"
+    # - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
+    - image: quay.io/eclipse/che-sidecar-java@sha256:4fb35b4e112a05c82353ad0e1f5eb35d1ba204be475b72f3c753b0e26c9e668d
+      memoryLimit: 256Mi
   extensions:
     - https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix

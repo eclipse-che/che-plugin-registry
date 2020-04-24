@@ -12,8 +12,9 @@ category: Language
 repository: https://github.com/PizzaFactory/xtext-ide-extensions/
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    # - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
+    - image: quay.io/eclipse/che-sidecar-java@sha256:4fb35b4e112a05c82353ad0e1f5eb35d1ba204be475b72f3c753b0e26c9e668d
       name: vscode-xtext-lang
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
   extensions:
     - https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix

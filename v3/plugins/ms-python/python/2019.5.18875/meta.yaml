@@ -13,8 +13,9 @@ category: Language
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-python:3.7.3-8f39348"
+  # - image: quay.io/eclipse/che-sidecar-python:3.7.3-8f39348
+  - image: quay.io/eclipse/che-sidecar-python@sha256:9d910486a81d92ebdeaab4c2fc71546bee23ff7e3a986fdb9df4e458819cb958
     name: vscode-python
-    memoryLimit: '512Mi'
+    memoryLimit: 512Mi
   extensions:
   - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-python/python-2019.5.18875.vsix

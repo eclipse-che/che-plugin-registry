@@ -12,7 +12,8 @@ category: Language
 firstPublicationDate: "2020-01-14"
 spec:
   containers:
-    - image: "eclipse/che-remote-plugin-php7:next"
-      memoryLimit: "1000Mi"
+    # - image: eclipse/che-remote-plugin-php7:next
+    - image: docker.io/eclipse/che-remote-plugin-php7@sha256:edcaa67f112c0e9fc3214ceca0a9d95a026315727d7101570e85de3d74e5a5b7
+      memoryLimit: 1000Mi
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.0.14.vsix
