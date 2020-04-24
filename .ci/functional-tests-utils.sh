@@ -120,6 +120,46 @@ function installKVM() {
   echo "======== KVM has been installed successfully ========"
 }
 
+function generateCerts() {
+  CA_CN="Local Eclipse Che Signer"
+  DOMAIN=\*.$( minishift ip ).nip.io
+  OPENSSL_CNF=/etc/pki/tls/openssl.cnf
+  
+  openssl genrsa -out ca.key 4096
+  
+  openssl req -x509 \
+  -new -nodes \
+  -key ca.key \
+  -sha256 \
+  -days 1024 \
+  -out ca.crt \
+  -subj /CN="${CA_CN}" \
+  -reqexts SAN \
+  -extensions SAN \
+  -config <(cat ${OPENSSL_CNF} \
+      <(printf '[SAN]\nbasicConstraints=critical, CA:TRUE\nkeyUsage=keyCertSign, cRLSign, digitalSignature'))
+  
+  openssl genrsa -out domain.key 2048
+  
+  openssl req -new -sha256 \
+    -key domain.key \
+    -subj "/O=Local {prod}/CN=${DOMAIN}" \
+    -reqexts SAN \
+    -config <(cat ${OPENSSL_CNF} \
+        <(printf "\n[SAN]\nsubjectAltName=DNS:${DOMAIN}\nbasicConstraints=critical, CA:FALSE\nkeyUsage=digitalSignature, keyEncipherment, keyAgreement, dataEncipherment\nextendedKeyUsage=serverAuth")) \
+    -out domain.csr
+  
+  openssl x509 \
+    -req \
+    -sha256 \
+    -extfile <(printf "subjectAltName=DNS:${DOMAIN}\nbasicConstraints=critical, CA:FALSE\nkeyUsage=digitalSignature, keyEncipherment, keyAgreement, dataEncipherment\nextendedKeyUsage=serverAuth") \
+    -days 365 \
+    -in domain.csr \
+    -CA ca.crt \
+    -CAkey ca.key \
+    -CAcreateserial -out domain.crt
+}
+
 function installAndStartMinishift() {
   echo "======== Start to install minishift ========"
   curl -Lo minishift.tgz https://github.com/minishift/minishift/releases/download/v1.34.2/minishift-1.34.2-linux-amd64.tgz
@@ -165,7 +205,7 @@ function getOpenshiftLogs() {
 
 function deployCheIntoCluster() {
   echo "======== Start to install CHE ========"
-  if chectl server:start -a operator -p openshift --k8spodreadytimeout=360000 $1 $2; then
+  if chectl server:start -a operator -p openshift --k8spodreadytimeout=360000 --self-signed-cert --chenamespace=che; then
     echo "Started succesfully"
     oc get checluster -o yaml
   else

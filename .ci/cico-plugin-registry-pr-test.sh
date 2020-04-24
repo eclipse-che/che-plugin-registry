@@ -7,13 +7,6 @@
 
 set -x
 
-function prepareCustomResourceFile() {
-  cd /tmp
-  wget https://raw.githubusercontent.com/eclipse/che-operator/master/deploy/crds/org_v1_che_cr.yaml -O custom-resource.yaml
-  sed -i "s@tlsSupport: true@tlsSupport: false@g" /tmp/custom-resource.yaml
-  cat /tmp/custom-resource.yaml
-}
-
 echo "========Starting PR Check test job $(date)========"
 # shellcheck disable=SC1091
 source .ci/functional-tests-utils.sh
@@ -27,7 +20,7 @@ installAndStartMinishift
 createCert
 loginToOpenshiftAndSetDevRole
 prepareCustomResourceFile
-deployCheIntoCluster --chenamespace=che --che-operator-cr-yaml=/tmp/custom-resource.yaml
+deployCheIntoCluster
 createTestUserAndObtainUserToken
 downloadAndCheckoutBranch
 downloadFiles
