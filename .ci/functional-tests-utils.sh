@@ -225,6 +225,7 @@ function deployCheIntoCluster() {
 }
 
 function loginToOpenshiftAndSetDevRole() {
+  generateCerts
   oc login -u system:admin --insecure-skip-tls-verify
   oc adm policy add-cluster-role-to-user cluster-admin developer
   oc project default
