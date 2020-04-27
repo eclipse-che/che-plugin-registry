@@ -17,4 +17,5 @@ spec:
     name: vscode-node-debug
     memoryLimit: '512Mi'
   extensions:
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-node-debug/node-debug-1.44.5.vsix
   - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-node-debug2/node-debug2-1.33.0.vsix
