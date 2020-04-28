@@ -38,6 +38,12 @@ else
   BASEBRANCH="${BRANCH}"
 fi
 
+fetchAndCheckout ()
+{
+  bBRANCH="$1"
+  git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
+}
+
 # work in tmp dir
 TMP=$(mktemp -d); pushd "$TMP" > /dev/null || exit 1
 
@@ -54,14 +60,10 @@ if [[ "${BASEBRANCH}" != "${BRANCH}" ]]; then
   fetchAndCheckout "${BRANCH}"
 fi
 
-fetchAndCheckout ()
-  bBRANCH="$1"
-  git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
-}
 commitChangeOrCreatePR()
 {
   if [[ ${NOCOMMIT} -eq 1 ]]; then
-    echo "NOCOMMIT = 1; so nothing will be committed. "
+    echo "[INFO] NOCOMMIT = 1; so nothing will be committed. Run this script with no flags for usage + list of flags/options."
   else
     aVERSION="$1"
     aBRANCH="$2"
@@ -155,7 +157,7 @@ fi
 
 # add new plugins + update latest.txt files, and bump VERSION file to NEXTVERSION
 createNewPlugins "${VERSION}" "${NEXTVERSION}"
-commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-master-to-${NEXTVERSION}"
+commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${NEXTVERSION}"
 
 # now, if we're doing a 7.y.z release, push new plugins into master branch too (#16476)
 if [[ ${BASEBRANCH} != "master" ]]; then
@@ -163,7 +165,7 @@ if [[ ${BASEBRANCH} != "master" ]]; then
 
   # add new plugins but do not update latest.txt files or VERSION file
   createNewPlugins "${VERSION}" false
-  commitChangeOrCreatePR "${NEXTVERSION}" "master" "pr-add-${NEXTVERSION}-to-master"
+  commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
 fi
 
 popd > /dev/null || exit
