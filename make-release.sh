@@ -146,6 +146,39 @@ ${lastCommitComment}" -b "${BRANCH}" -h "${PR_BRANCH}"
   fi 
 fi
 
+# 16476 - push new plugins into master branch too, if we're doing a 7.y.z release
+if [[ ${BASEBRANCH} != "master" ]] && [[ ${NOCOMMIT} -eq 0 ]]; then
+  BRANCH=master
+  BASEBRANCH=master
+
+  git fetch origin "${BASEBRANCH}":"${BASEBRANCH}"
+  git checkout "${BASEBRANCH}"
+
+  # add new plugins + update latest.txt files
+  createNewPlugins "${VERSION}"
+
+  # commit change into branch
+  COMMIT_MSG="[release] Add ${NEXTVERSION} plugins in ${BRANCH}"
+  git add v3/plugins/eclipse/ || true
+  git commit -s -m "${COMMIT_MSG}" VERSION v3/plugins/eclipse/
+  git pull origin "${BRANCH}"
+
+  PUSH_TRY="$(git push origin "${BRANCH}")"
+  # shellcheck disable=SC2181
+  if [[ $? -gt 0 ]] || [[ $PUSH_TRY == *"protected branch hook declined"* ]]; then
+  PR_BRANCH=pr-add-${NEXTVERSION}-to-master
+    # create pull request for master branch, as branch is restricted
+    git branch "${PR_BRANCH}"
+    git checkout "${PR_BRANCH}"
+    git pull origin "${PR_BRANCH}"
+    git push origin "${PR_BRANCH}"
+    lastCommitComment="$(git log -1 --pretty=%B)"
+    hub pull-request -o -f -m "${lastCommitComment}
+
+${lastCommitComment}" -b "${BRANCH}" -h "${PR_BRANCH}"
+  fi 
+fi
+
 popd > /dev/null || exit
 
 # cleanup tmp dir
