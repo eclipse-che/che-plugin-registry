@@ -38,6 +38,12 @@ else
   BASEBRANCH="${BRANCH}"
 fi
 
+fetchAndCheckout ()
+{
+  bBRANCH="$1"
+  git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
+}
+
 # work in tmp dir
 TMP=$(mktemp -d); pushd "$TMP" > /dev/null || exit 1
 
@@ -45,20 +51,55 @@ TMP=$(mktemp -d); pushd "$TMP" > /dev/null || exit 1
 echo "Check out ${REPO} to ${TMP}/${REPO##*/}"
 git clone "${REPO}" -q
 cd "${REPO##*/}" || exit 1
-git fetch origin "${BASEBRANCH}":"${BASEBRANCH}"
-git checkout "${BASEBRANCH}"
+fetchAndCheckout "${BASEBRANCH}"
 
 # create new branch off ${BASEBRANCH} (or check out latest commits if branch already exists), then push to origin
 if [[ "${BASEBRANCH}" != "${BRANCH}" ]]; then
   git branch "${BRANCH}" || git checkout "${BRANCH}" && git pull origin "${BRANCH}"
   git push origin "${BRANCH}"
-  git fetch origin "${BRANCH}:${BRANCH}"
-  git checkout "${BRANCH}"
+  fetchAndCheckout "${BRANCH}"
 fi
 
-# generate new meta.yaml files for the plugins, and update the latest.txt files
+commitChangeOrCreatePR()
+{
+  if [[ ${NOCOMMIT} -eq 1 ]]; then
+    echo "[INFO] NOCOMMIT = 1; so nothing will be committed. Run this script with no flags for usage + list of flags/options."
+  else
+    aVERSION="$1"
+    aBRANCH="$2"
+    PR_BRANCH="$3"
+
+    if [[ ${PR_BRANCH} == *"add"* ]]; then
+      COMMIT_MSG="[release] Add ${aVERSION} plugins in ${aBRANCH}"
+    else 
+      COMMIT_MSG="[release] Bump to ${aVERSION} in ${aBRANCH}"
+    fi
+
+    # commit change into branch
+    git add v3/plugins/eclipse/ || true
+    git commit -s -m "${COMMIT_MSG}" VERSION v3/plugins/eclipse/
+    git pull origin "${aBRANCH}"
+
+    PUSH_TRY="$(git push origin "${aBRANCH}")"
+    # shellcheck disable=SC2181
+    if [[ $? -gt 0 ]] || [[ $PUSH_TRY == *"protected branch hook declined"* ]]; then
+      # create pull request for master branch, as branch is restricted
+      git branch "${PR_BRANCH}"
+      git checkout "${PR_BRANCH}"
+      git pull origin "${PR_BRANCH}"
+      git push origin "${PR_BRANCH}"
+      lastCommitComment="$(git log -1 --pretty=%B)"
+      hub pull-request -o -f -m "${lastCommitComment}
+
+${lastCommitComment}" -b "${aBRANCH}" -h "${PR_BRANCH}"
+    fi
+  fi
+}
+
+# generate new meta.yaml files for the plugins, and update the latest.txt files; also update the VERSION file
 createNewPlugins () {
-  newVERSION=$1
+  newVERSION="$1"
+  thisVERSION="$2" # if false, don't update latest.txt and VERSION file; otherwise use this value in VERSION file and use newVERSION in latest.txt
   rsync -aPrz v3/plugins/eclipse/che-machine-exec-plugin/nightly/* "v3/plugins/eclipse/che-machine-exec-plugin/${newVERSION}/"
   rsync -aPrz v3/plugins/eclipse/che-theia/next/* "v3/plugins/eclipse/che-theia/${newVERSION}/"
   pwd
@@ -70,29 +111,27 @@ createNewPlugins () {
         -e "s# development version\.##" \
         -e "s#, get the latest release each day\.##"
   done
-  for m in v3/plugins/eclipse/che-theia/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
-    echo "${newVERSION}" > $m
-  done
+
+  # for .0 releases (master and .x branch) update in both branches
+  # for .z releases, latest & VERSION files should not be updated in master branch (only in .z branch)
+  if [[ ${thisVERSION} != "false" ]]; then
+    for m in v3/plugins/eclipse/che-theia/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
+      echo "${newVERSION}" > $m
+    done
+    # update VERSION file with VERSION or NEWVERSION
+    echo "${thisVERSION}" > VERSION
+  fi
 }
 
-# change VERSION file
-echo "${VERSION}" > VERSION
-# add new plugins + update latest.txt files
-createNewPlugins "${VERSION}"
+# add new plugins + update latest.txt files, and bump VERSION file to VERSION
+createNewPlugins "${VERSION}" "${VERSION}"
 
 # commit change into branch
-if [[ ${NOCOMMIT} -eq 0 ]]; then
-  COMMIT_MSG="[release] Bump to ${VERSION} in ${BRANCH}"
-  git add v3/plugins/eclipse/ || true
-  git commit -s -m "${COMMIT_MSG}" VERSION v3/plugins/eclipse/
-  git pull origin "${BRANCH}"
-  git push origin "${BRANCH}"
-fi
+commitChangeOrCreatePR "${VERSION}" "${BRANCH}" "pr-${BRANCH}-to-${VERSION}"
 
 if [[ $TRIGGER_RELEASE -eq 1 ]]; then
   # push new branch to release branch to trigger CI build
-  git fetch origin "${BRANCH}:${BRANCH}"
-  git checkout "${BRANCH}"
+  fetchAndCheckout "${BRANCH}"
   git branch release -f 
   git push origin release -f
 
@@ -103,8 +142,7 @@ if [[ $TRIGGER_RELEASE -eq 1 ]]; then
 fi
 
 # now update ${BASEBRANCH} to the new snapshot version
-git fetch origin "${BASEBRANCH}":"${BASEBRANCH}"
-git checkout "${BASEBRANCH}"
+fetchAndCheckout "${BASEBRANCH}"
 
 # change VERSION file + commit change into ${BASEBRANCH} branch
 if [[ "${BASEBRANCH}" != "${BRANCH}" ]]; then
@@ -117,33 +155,17 @@ else
   NEXTVERSION="${BASE}.${NEXT}-SNAPSHOT"
 fi
 
-# change VERSION file
-echo "${NEXTVERSION}" > VERSION
-# add new plugins + update latest.txt files
-createNewPlugins "${VERSION}"
+# add new plugins + update latest.txt files, and bump VERSION file to NEXTVERSION
+createNewPlugins "${VERSION}" "${NEXTVERSION}"
+commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${NEXTVERSION}"
 
-if [[ ${NOCOMMIT} -eq 0 ]]; then
-  BRANCH=${BASEBRANCH}
-  # commit change into branch
-  COMMIT_MSG="[release] Bump to ${NEXTVERSION} in ${BRANCH}"
-  git add v3/plugins/eclipse/ || true
-  git commit -s -m "${COMMIT_MSG}" VERSION v3/plugins/eclipse/
-  git pull origin "${BRANCH}"
+# now, if we're doing a 7.y.z release, push new plugins into master branch too (#16476)
+if [[ ${BASEBRANCH} != "master" ]]; then
+  fetchAndCheckout "master"
 
-  PUSH_TRY="$(git push origin "${BRANCH}")"
-  # shellcheck disable=SC2181
-  if [[ $? -gt 0 ]] || [[ $PUSH_TRY == *"protected branch hook declined"* ]]; then
-  PR_BRANCH=pr-master-to-${NEXTVERSION}
-    # create pull request for master branch, as branch is restricted
-    git branch "${PR_BRANCH}"
-    git checkout "${PR_BRANCH}"
-    git pull origin "${PR_BRANCH}"
-    git push origin "${PR_BRANCH}"
-    lastCommitComment="$(git log -1 --pretty=%B)"
-    hub pull-request -o -f -m "${lastCommitComment}
-
-${lastCommitComment}" -b "${BRANCH}" -h "${PR_BRANCH}"
-  fi 
+  # add new plugins but do not update latest.txt files or VERSION file
+  createNewPlugins "${VERSION}" false
+  commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
 fi
 
 popd > /dev/null || exit
