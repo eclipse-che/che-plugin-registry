@@ -277,7 +277,8 @@ function createTestWorkspaceAndRunTest() {
 
     cat "$devfile"
 
-    while [ "$(oc get pods --all-namespaces -l che.workspace_id)" == 'No resources found.' ];
+    pods=$(oc get pods --all-namespaces -l che.workspace_id --field-selector status.phase=Running 2>&1)
+    while [ "$pods" == 'No resources found.' ];
     do
         echo "No pod found with che.workspace_id"
         echo "Current available pods are"
@@ -286,6 +287,7 @@ function createTestWorkspaceAndRunTest() {
         oc get deployments
         oc get pods --all-namespaces -l che.workspace_id
         sleep 10
+        pods=$(oc get pods --all-namespaces -l che.workspace_id --field-selector status.phase=Running 2>&1)
     done
 
     oc get pods
