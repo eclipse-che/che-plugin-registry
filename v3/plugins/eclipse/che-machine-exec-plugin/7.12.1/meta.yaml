@@ -9,7 +9,7 @@ description: Che Plug-in with che-machine-exec service to provide creation termi
   or tasks for Eclipse Che workspace containers.
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-machine-exec/
-firstPublicationDate: "2020-04-30"
+firstPublicationDate: "2020-05-01"
 category: Other
 spec:
   endpoints:
