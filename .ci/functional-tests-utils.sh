@@ -312,7 +312,7 @@ function createTestWorkspaceAndRunTest() {
     do
         echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
         sleep 10
-        oc cp che/${workspace_name}:/projects/test.log ./test.log
+        oc cp che/${workspace_name}:/projects/test.log ./test.log -c ${theia_ide_container_name}
         ls
         cat test.log
     done
