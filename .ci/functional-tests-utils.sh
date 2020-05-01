@@ -305,29 +305,18 @@ function createTestWorkspaceAndRunTest() {
     echo "Theia IDE Container Name is: "
     echo "$theia_ide_container_name"
 
-    # Now we are inside of the theia-ide container
-    oc exec -it "${workspace_name}" --container="${theia_ide_container_name}" -- /bin/bash
-
-    while ! [ -f /projects/test.log ];
+    oc cp che/${workspace_name}:/projects/test.log ./test.log -c ${theia_ide_container_name}
+    while ! grep -q "TESTS FAILED" test.log && ! grep -q "TESTS PASSED" test.log;
     do
-        echo "Waiting for log file to be created"
+        echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
         sleep 10
+        oc cp che/${workspace_name}:/projects/test.log ./test.log
+        ls
+        cat test.log
     done
-
-    # Wait until the tests either fail or succeed
-    tail -f /projects/test.log -n +1 | while read -r LOGLINE
-    do
-        [[ "${LOGLINE}" == "TESTS FAILED"* || "${LOGLINE}" == "TESTS PASSED"* ]] && pkill -P $$ tail
-    done
-
-    exit
-    # Exiting the theia container
-
-    # Get the log file from the container
-    test_log=$(oc exec -it "${workspace_name}" --container="${theia_ide_container_name}" -- cat /projects/test.log)
 
     # Test to see if the tests failed, the TEST_PASSED default is set to true
-    if echo "${test_log}" | grep -q "TESTS FAILED"
+    if cat test.log | grep -q "TESTS FAILED"
     then
       TESTS_PASSED=false
     fi
