@@ -9,12 +9,12 @@ from selenium.webdriver.common.by import By
 
 options = Options()
 options.log.level = "trace"
-# options.headless = True
+options.headless = True
 
 NEW_USER="testUser1"
 
 browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver")
-wait = WebDriverWait(browser, 10)
+wait = WebDriverWait(browser, 1000)
 browser.get(sys.argv[1])
 
 wait.until(EC.title_contains('Log in'))
@@ -28,6 +28,5 @@ password_elem.send_keys(NEW_USER)
 login_btn_elem = browser.find_element_by_id('kc-login')
 login_btn_elem.click()
 
-while True:
-    time.sleep(10)
-
+# Waiting for theia itself to be loaded so that git will clone and tests will be run
+wait.until(EC.presence_of_element_located((By.XPATH, "//*[@class='theia-ApplicationShell']")))

@@ -94,7 +94,13 @@ function installDependencies() {
     golang \
     make \
     java-1.8.0-openjdk \
-    java-1.8.0-openjdk-devel
+    java-1.8.0-openjdk-devel \
+    python3
+  python3 -m pip install selenium
+  wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+  tar -xvzf geckodriver*
+  chmod +x geckodriver
+  mv geckodriver /usr/local/bin/
   installMvn
   installNodejs
   installYarn
@@ -306,6 +312,9 @@ function createTestWorkspaceAndRunTest() {
     echo "$workspace_name"
     echo "Theia IDE Container Name is: "
     echo "$theia_ide_container_name"
+
+    # Start the python3 selenium script that will connect to the workspace so that git clone will finish and tests will be run
+    python3 test.py ${workspace_url} &
 
     oc cp che/${workspace_name}:/projects/test.log ./test.log -c ${theia_ide_container_name}
     while ! grep -q "TESTS FAILED" test.log && ! grep -q "TESTS PASSED" test.log;
