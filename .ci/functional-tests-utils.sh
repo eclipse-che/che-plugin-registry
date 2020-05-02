@@ -314,7 +314,7 @@ function createTestWorkspaceAndRunTest() {
     echo "$theia_ide_container_name"
 
     # Start the python3 selenium script that will connect to the workspace so that git clone will finish and tests will be run
-    python3 test.py ${workspace_url} &
+    python3 .ci/test.py ${workspace_url} &
 
     oc cp che/${workspace_name}:/projects/test.log ./test.log -c ${theia_ide_container_name}
     while ! grep -q "TESTS FAILED" test.log && ! grep -q "TESTS PASSED" test.log;
