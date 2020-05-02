@@ -95,7 +95,8 @@ function installDependencies() {
     make \
     java-1.8.0-openjdk \
     java-1.8.0-openjdk-devel \
-    python3
+    python3 \
+    firefox
   python3 -m pip install selenium
   wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
   tar -xvzf geckodriver*
@@ -320,10 +321,11 @@ function createTestWorkspaceAndRunTest() {
     while ! grep -q "TESTS FAILED" test.log && ! grep -q "TESTS PASSED" test.log;
     do
         echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
-        sleep 10
+        sleep 60
         oc cp che/${workspace_name}:/projects/test.log ./test.log -c ${theia_ide_container_name}
         ls
         cat test.log
+        cat geckodriver.log
     done
 
     # Test to see if the tests failed, the TEST_PASSED default is set to true
