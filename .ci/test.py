@@ -28,5 +28,7 @@ password_elem.send_keys(NEW_USER)
 login_btn_elem = browser.find_element_by_id('kc-login')
 login_btn_elem.click()
 
+browser.get(sys.argv[1])
+
 # Waiting for theia itself to be loaded so that git will clone and tests will be run
 wait.until(EC.presence_of_element_located((By.XPATH, "//*[@class='theia-ApplicationShell']")))
