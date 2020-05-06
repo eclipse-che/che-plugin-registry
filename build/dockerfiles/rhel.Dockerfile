@@ -44,7 +44,7 @@ ENV BOOTSTRAP=${BOOTSTRAP} \
 # enable rhel 7 or 8 content sets (from Brew) to resolve jq as rpm
 COPY ./build/dockerfiles/content_set*.repo /etc/yum.repos.d/
 
-RUN ARCH=`arch` && sed -i "s|arch|${ARCH}|g" /etc/yum.repos.d/content_set*.repo
+RUN ARCH=`arch` && sed -i "s|arch|${ARCH}|g" /etc/yum.repos.d/content_set*.repo 
 
 COPY ./build/dockerfiles/rhel.install.sh /tmp
 RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
