@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-didact
+version: 0.1.14
+type: VS Code extension
+displayName: YAML
+title: Didact Tutorial Tools by Red Hat
+description: Provides interactive tutorial support to Visual Studio Code, via didact links calling VS Code commands, Markdown, AsciiDoc, and the VS Code webview.
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/redhat-developer/vscode-didact
+category: Other
+firstPublicationDate: "2020-05-06"
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
+      name: vscode-didact
+      memoryLimit: "256Mi"
+  extensions:
+    - https://github.com/redhat-developer/vscode-didact/releases/download/0.1.14/vscode-didact-0.1.14.vsix
