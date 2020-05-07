@@ -14,6 +14,7 @@ spec:
   containers:
    - name: che-rsync
      image: "vparfonov/workspace-data-sync:nightly"
+     memoryLimit: "512M"
      lifecycle:
       postStart:
         exec:
