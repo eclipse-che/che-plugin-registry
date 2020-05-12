@@ -18,6 +18,6 @@ spec:
      memoryLimit: "2Gi"
      volumes:
       - name: buildkit-share
-        containerPath: /home/user/.local/share/buildkit
+        mountPath: /home/user/.local/share/buildkit
       - name: buildkit-lib
-        containerPath: /var/lib/buildkit
+        mountPath: /var/lib/buildkit
