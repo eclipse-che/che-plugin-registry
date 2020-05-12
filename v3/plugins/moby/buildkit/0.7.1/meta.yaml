@@ -15,7 +15,7 @@ spec:
    - name: buildkit-dev
      image: "quay.io/eclipse/che-buildkit-base:0.7.1-bacb069"
      mountSources: true
-     memoryLimit: "2Gi"
+     memoryLimit: "1Gi"
      volumes:
       - name: buildkit-share
         mountPath: /home/user/.local/share/buildkit
