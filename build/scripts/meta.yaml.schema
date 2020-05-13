@@ -32,7 +32,8 @@
       "pattern": "[-._a-zA-Z0-9]+"
     },
     "icon": {
-      "type": "string"
+      "type": "string",
+      "pattern": "[-_a-zA-Z0-9]+?(?:\\.(?:svg|png))?(?:\\?.*)?$"
     },
     "description": {
       "type": "string"
