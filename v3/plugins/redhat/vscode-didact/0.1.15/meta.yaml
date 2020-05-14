@@ -13,3 +13,4 @@ firstPublicationDate: "2020-05-06"
 spec:
   extensions:
     - https://github.com/bfitzpat/vsxtemp/releases/download/0.1.15/vscode-didact-0.1.15.vsix
+
