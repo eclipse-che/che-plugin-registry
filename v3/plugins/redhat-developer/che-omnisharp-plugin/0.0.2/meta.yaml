@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/omnisharp-theia-plugin
 category: Language
 firstPublicationDate: "2019-06-19"
+deprecate:
+  automigrate: true
+  migrateTo: redhat-developer/che-omnisharp-plugin/latest
 spec:
   containers:
   - image: "quay.io/eclipse/che-sidecar-dotnet:2.2.105-2fd6e78"
