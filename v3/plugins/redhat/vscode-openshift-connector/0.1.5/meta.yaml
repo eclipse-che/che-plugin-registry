@@ -14,7 +14,7 @@ spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.1.5-af96c17"
       name: "vscode-openshift-connector"
-      memoryLimit: "2G"
+      memoryLimit: "1500Mi"
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-openshift-tools/vscode-openshift-connector-0.1.5.vsix
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
