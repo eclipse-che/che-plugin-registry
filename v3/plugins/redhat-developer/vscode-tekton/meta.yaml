@@ -1,0 +1,21 @@
+apiVersion: v2
+publisher: ms-vscode
+name: tekton
+version: 0.1.0
+type: VS Code extension
+displayName: Tekton
+title: Tekton pipelines support
+description: This extension adds rich pipeline support for Tekton
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/redhat-developer/vscode-tekton
+category: Language
+firstPublicationDate: '2020-05-22'
+spec:
+  containers:
+    - image: "quay.io/ericwill/che-testing:latest"
+      name: vscode-tekton
+      memoryLimit: '512Mi'
+  extensions:
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.7.2.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.1.0.vsix
