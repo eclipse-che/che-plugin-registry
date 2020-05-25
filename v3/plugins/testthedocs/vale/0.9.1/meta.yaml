@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: "2020-01-30"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-vale:0.9.1-82a757a"
+    - image: "quay.io/eclipse/che-sidecar-vale:0.9.1-ad53ccf"
       name: "vscode-vale"
       memoryLimit: "512Mi"
   extensions:
