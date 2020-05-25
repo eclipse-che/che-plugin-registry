@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: "2020-05-07"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
+    - image: quay.io/eclipse/che-sidecar-node:10-0cb5d78
       name: vscode-yaml
-      memoryLimit: "256Mi"
+      memoryLimit: 256Mi
+      cpuLimit: 500m
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.7.2.vsix

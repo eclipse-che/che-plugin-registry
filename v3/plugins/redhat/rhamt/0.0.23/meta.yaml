@@ -23,13 +23,13 @@ spec:
     attributes:
       protocol: http
   containers:
-  - image: "docker.io/windup3/rhamt-vscode-extension:java8"
+  - image: docker.io/windup3/rhamt-vscode-extension:java8
     name: rhamt-extension
     memoryLimit: 1500Mi
+    cpuLimit: 500m
     ports:
       - exposedPort: 61435
       - exposedPort: 61436
     mountSources: true
   extensions:
     - https://download.jboss.org/jbosstools/adapters/stable/rhamt-vscode-extension/rhamt-vscode-extension-0.0.23-427.vsix
-

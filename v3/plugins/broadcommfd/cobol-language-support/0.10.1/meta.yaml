@@ -13,5 +13,6 @@ spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
       memoryLimit: 1Gi
+      cpuLimit: 500m
   extensions:
     - https://github.com/eclipse/che-che4z-lsp-for-cobol/releases/download/0.10.1/cobol-language-support-0.10.1.vsix

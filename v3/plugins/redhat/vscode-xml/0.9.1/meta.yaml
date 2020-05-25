@@ -15,8 +15,9 @@ deprecate:
   migrateTo: redhat/vscode-xml/latest
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
       name: vscode-xml
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/redhat-developer/vscode-xml/releases/download/0.9.1/redhat.vscode-xml-0.9.1.vsix

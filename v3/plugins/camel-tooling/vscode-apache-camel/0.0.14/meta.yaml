@@ -15,8 +15,9 @@ deprecate:
   migrateTo: redhat/vscode-apache-camel/latest
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
       name: vscode-apache-camel
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/camel-tooling/camel-lsp-client-vscode/releases/download/0.0.14/camel-tooling.vscode-apache-camel-0.0.14.vsix

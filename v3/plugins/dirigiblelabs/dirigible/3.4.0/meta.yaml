@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: eclipse-dirigible
-     image: "docker.io/dirigiblelabs/dirigible-openshift:3.4.0"
+     image: docker.io/dirigiblelabs/dirigible-openshift:3.4.0
      env:
          - name: DIRIGIBLE_DATABASE_PROVIDER
            value: "local"
@@ -45,4 +45,5 @@ spec:
      mountSources: true
      ports:
          - exposedPort: 8080
-     memoryLimit: "1024M"
+     memoryLimit: 1024M
+     cpuLimit: 500m

@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: '2020-01-10'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+  - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
     name: vscode-apache-camel
-    memoryLimit: "300Mi"
+    memoryLimit: 300Mi
+    cpuLimit: 500m
   extensions:
   - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.22-167.vsix

@@ -20,12 +20,12 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:next"
+     image: docker.io/chinodesuuu/coder:next
      mountSources: true
      ports:
          - exposedPort: 9000
-     memoryLimit: "1024M" 
+     memoryLimit: 1024M
+     cpuLimit: 500m
      volumes:
         - mountPath: '/home/coder/.local/share/code-server'
           name: 'user-data'
-

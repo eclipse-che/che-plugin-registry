@@ -12,9 +12,10 @@ category: Other
 firstPublicationDate: "2019-10-08"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.1.0-5460589"
-      name: "vscode-openshift-connector"
-      memoryLimit: "512Mi"
+    - image: quay.io/eclipse/che-sidecar-openshift-connector:0.1.0-5460589
+      name: vscode-openshift-connector
+      memoryLimit: 512Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix
     - https://github.com/redhat-developer/vscode-yaml/releases/download/0.4.0/redhat.vscode-yaml-0.4.0.vsix

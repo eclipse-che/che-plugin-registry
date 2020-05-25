@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: '2019-07-10'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-camelk:0.0.9-9e8538e"
+  - image: quay.io/eclipse/che-sidecar-camelk:0.0.9-9e8538e
     name: vscode-camelk
-    memoryLimit: "1G"
+    memoryLimit: 1G
+    cpuLimit: 500m
   extensions:
   - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.9-86.vsix
   - https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.0.0/vscode-kubernetes-tools-1.0.0.vsix

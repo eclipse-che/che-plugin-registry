@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: "2019-04-16"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-php:7-5c5ecc5"
+    - image: quay.io/eclipse/che-sidecar-php:7-5c5ecc5
       name: php-intelephense
-      memoryLimit: "1000Mi"
+      memoryLimit: 1000Mi
+      cpuLimit: 500m
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.0.13.vsix

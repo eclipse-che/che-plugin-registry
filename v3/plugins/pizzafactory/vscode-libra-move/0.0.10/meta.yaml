@@ -12,8 +12,9 @@ category: Language
 repository: https://github.com/pizzafactory-contorno/vscode-libra-move/
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
       name: vscode-libra-move
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/pizzafactory-contorno/vscode-libra-move/releases/download/v0.0.10-ddc0d3d/vscode-libra-move-0.0.10.vsix

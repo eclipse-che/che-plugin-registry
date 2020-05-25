@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: '2019-06-20'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
+  - image: quay.io/eclipse/che-sidecar-node:10-0cb5d78
     name: vscode-typescript
-    memoryLimit: '512Mi'
+    memoryLimit: 512Mi
+    cpuLimit: 500m
   extensions:
   - https://download.jboss.org/jbosstools/vscode/3rdparty/ms-code.typescript/che-typescript-language-1.35.1.vsix

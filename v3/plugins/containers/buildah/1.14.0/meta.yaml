@@ -13,6 +13,7 @@ category: Other
 spec:
   containers:
    - name: buildah-dev
-     image: "quay.io/eclipse/che-buildah-base:1.14.0-b0c91d3"
+     image: quay.io/eclipse/che-buildah-base:1.14.0-b0c91d3
      mountSources: true
-     memoryLimit: "1Gi"
+     memoryLimit: 1Gi
+     cpuLimit: 500m

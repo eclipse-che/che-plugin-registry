@@ -13,5 +13,6 @@ spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
       memoryLimit: 512Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/BroadcomMFD/debugger-for-mainframe/releases/download/1.0.2/debugger-for-mainframe-1.0.2.vsix

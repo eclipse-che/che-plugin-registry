@@ -20,8 +20,9 @@ spec:
         type: ide
   containers:
    - name: eclipse-ide
-     image: "docker.io/wsskeleton/eclipse-broadway"
+     image: docker.io/wsskeleton/eclipse-broadway
      mountSources: true
      ports:
          - exposedPort: 5000
-     memoryLimit: "2048M"
+     memoryLimit: 2048M
+     cpuLimit: 500m

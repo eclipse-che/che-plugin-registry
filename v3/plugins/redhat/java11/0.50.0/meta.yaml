@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: "2019-10-03"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
       name: vscode-java
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
       volumes:
       - mountPath: "/home/theia/.m2"
         name: m2

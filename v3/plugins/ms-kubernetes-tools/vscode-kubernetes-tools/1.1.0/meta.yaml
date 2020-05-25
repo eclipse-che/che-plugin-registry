@@ -12,9 +12,10 @@ category: Other
 firstPublicationDate: "2020-03-10"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.1.0-31a8464"
-      name: "vscode-kubernetes-tools"
-      memoryLimit: "1G"
+    - image: quay.io/eclipse/che-sidecar-kubernetes-tooling:1.1.0-31a8464
+      name: vscode-kubernetes-tools
+      memoryLimit: 1G
+      cpuLimit: 500m
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
     - https://github.com/redhat-developer/vscode-yaml/releases/download/0.7.2/redhat.vscode-yaml-0.7.2.vsix

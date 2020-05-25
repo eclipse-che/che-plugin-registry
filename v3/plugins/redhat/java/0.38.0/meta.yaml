@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: "2019-02-20"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
       name: vscode-java
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/microsoft/vscode-java-debug/releases/download/0.16.0/vscode-java-debug-0.16.0.vsix
     - http://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.38.0-1373.vsix

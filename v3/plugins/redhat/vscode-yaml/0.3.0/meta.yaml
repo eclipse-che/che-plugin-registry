@@ -12,8 +12,9 @@ category: Language
 firstPublicationDate: "2019-02-20"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
+    - image: quay.io/eclipse/che-sidecar-node:10-0cb5d78
       name: vscode-yaml
-      memoryLimit: "256Mi"
+      memoryLimit: 256Mi
+      cpuLimit: 500m
   extensions:
     - https://github.com/redhat-developer/vscode-yaml/releases/download/0.3.0/redhat.vscode-yaml-0.3.0.vsix

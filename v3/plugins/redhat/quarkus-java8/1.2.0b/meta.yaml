@@ -12,9 +12,10 @@ category: Language
 firstPublicationDate: "2020-02-06"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
       name: vscode-quarkus
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
       volumes:
       - mountPath: "/home/theia/.m2"
         name: m2
