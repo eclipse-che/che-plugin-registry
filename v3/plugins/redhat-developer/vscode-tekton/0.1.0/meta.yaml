@@ -1,6 +1,6 @@
 apiVersion: v2
-publisher: ms-vscode
-name: tekton
+publisher: redhat-developer
+name: vscode-tekton
 version: 0.1.0
 type: VS Code extension
 displayName: Tekton
