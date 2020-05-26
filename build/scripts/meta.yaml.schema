@@ -33,7 +33,7 @@
     },
     "icon": {
       "type": "string",
-      "pattern": "[-._a-zA-Z0-9]+?\\.(?:svg|png)(?:\\?.*)?$"
+      "pattern": "[-._a-zA-Z0-9]+?(?:\\?.*)?$"
     },
     "description": {
       "type": "string"
