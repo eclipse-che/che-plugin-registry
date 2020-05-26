@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: broadcommfd
+name: cobol-language-support
+version: 0.11.1
+type: VS Code extension
+displayName: COBOL Language Support
+title: COBOL Language Support
+description: Autocomplete, highlighting and diagnostics for COBOL code and copybooks.
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
+category: Language
+spec:
+  containers:
+    - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
+      memoryLimit: 1Gi
+      name: cobol-language-support
+      mountSources: true
+      env:
+      - name: ZOWE_CLI_HOME
+        value: /projects/.zowe
+  extensions:
+    - https://github.com/eclipse/che-che4z-lsp-for-cobol/releases/download/0.11.1/cobol-language-support-0.11.1.vsix
