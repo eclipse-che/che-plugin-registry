@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-plugin-registry/tree/master/v3/plugins/redhat/vscode-openshift-connector
 category: Other
 firstPublicationDate: "2019-10-08"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-openshift-connector/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.1.0-5460589"
