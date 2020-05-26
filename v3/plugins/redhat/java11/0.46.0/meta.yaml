@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
 firstPublicationDate: "2019-06-18"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/java11/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
