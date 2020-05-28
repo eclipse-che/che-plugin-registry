@@ -10,6 +10,9 @@ icon: https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/1.0.4/imag
 repository: https://github.com/Azure/vscode-kubernetes-tools
 category: Other
 firstPublicationDate: "2019-10-16"
+deprecate:
+  automigrate: true
+  migrateTo: ms-kubernetes-tools/vscode-kubernetes-tools/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.0.4-a46d022"
