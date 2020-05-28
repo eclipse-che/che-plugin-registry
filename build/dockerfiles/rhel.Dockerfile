@@ -12,7 +12,7 @@
 
 # Builder: check meta.yamls and create index.json
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8-minimal
-FROM registry.access.redhat.com/ubi8-minimal:8.1-409 as builder
+FROM registry.access.redhat.com/ubi8-minimal:8.2-267 as builder
 USER 0
 
 ################# 
@@ -20,17 +20,16 @@ USER 0
 ################# 
 
 ARG BOOTSTRAP=false
-ARG LATEST_ONLY=false
+ENV BOOTSTRAP=${BOOTSTRAP}
 ARG USE_DIGESTS=false
-
-ENV BOOTSTRAP=${BOOTSTRAP} \
-    LATEST_ONLY=${LATEST_ONLY} \
-    USE_DIGESTS=${USE_DIGESTS}
+ENV USE_DIGESTS=${USE_DIGESTS}
+ARG LATEST_ONLY=false
+ENV LATEST_ONLY=${LATEST_ONLY}
 
 # to get all the python deps pre-fetched so we can build in Brew:
 # 1. extract files in the container to your local filesystem
 #    find v3 -type f -exec dos2unix {} \;
-#    CONTAINERNAME="pluginregistrybuilder" && docker build -t ${CONTAINERNAME} . --target=builder --no-cache --squash --build-arg BOOTSTRAP=true
+#    CONTAINERNAME="tmpregistrybuilder" && docker build -t ${CONTAINERNAME} . --target=builder --no-cache --squash --build-arg BOOTSTRAP=true
 #    mkdir -p /tmp/root-local/ && docker run -it -v /tmp/root-local/:/tmp/root-local/ ${CONTAINERNAME} /bin/bash -c "cd /root/.local/ && cp -r bin/ lib/ /tmp/root-local/"
 #    pushd /tmp/root-local >/dev/null && sudo tar czf root-local.tgz lib/ bin/ && popd >/dev/null && mv -f /tmp/root-local/root-local.tgz . && sudo rm -fr /tmp/root-local/
 
@@ -43,7 +42,7 @@ ENV BOOTSTRAP=${BOOTSTRAP} \
 # NOTE: uncomment for local build. Must also set full registry path in FROM to registry.redhat.io or registry.access.redhat.com
 # enable rhel 7 or 8 content sets (from Brew) to resolve jq as rpm
 COPY ./build/dockerfiles/content_set*.repo /etc/yum.repos.d/
-COPY ./build/dockerfiles/fedora.repo /etc/yum.repos.d/
+
 COPY ./build/dockerfiles/rhel.install.sh /tmp
 RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 
@@ -52,7 +51,7 @@ RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 #################
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
-COPY /v3 /build/v3
+COPY ./v3 /build/v3
 WORKDIR /build/
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
@@ -64,25 +63,27 @@ RUN ./generate_latest_metas.sh v3
 RUN ./check_plugins_location.sh v3
 RUN ./set_plugin_dates.sh v3
 RUN ./check_metas_schema.sh v3
-RUN if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh v3;fi
+RUN if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh v3; fi
 RUN ./index.sh v3 > /build/v3/plugins/index.json
 RUN ./list_referenced_images.sh v3 > /build/v3/external_images.txt
 RUN chmod -R g+rwX /build
 
 ################# 
-# PHASE THREE: create ubi8-minimal image with httpd
+# PHASE THREE: configure registry image
 ################# 
 
 # Build registry, copying meta.yamls and index.json from builder
 # UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-110 AS registry
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-115 AS registry
 
 # DOWNSTREAM: use RHEL8/httpd
 # https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
-# FROM registry.redhat.io/rhel8/httpd-24:1-89 AS registry
-
+# FROM registry.redhat.io/rhel8/httpd-24:1-92 AS registry
 USER 0
+# latest httpd container doesn't include ssl cert, so generate one
+RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
+    /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh
 RUN yum update -y systemd && yum clean all && rm -rf /var/cache/yum && \
     echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages"
 
@@ -96,41 +97,23 @@ RUN sed -i /etc/httpd/conf/httpd.conf \
 STOPSIGNAL SIGWINCH
 # END these steps might not be required
 
+WORKDIR /var/www/html
+
+RUN mkdir -m 777 /var/www/html/v3
 COPY README.md .htaccess /var/www/html/
 COPY --from=builder /build/v3 /var/www/html/v3
 COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /usr/local/bin/
-
-WORKDIR /var/www/html
+RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]
 
 # Offline build: cache .theia and .vsix files in registry itself and update metas
 # multiple temp stages does not work in Brew
 FROM builder AS offline-builder
+RUN ./cache_artifacts.sh v3 && \
+    chmod -R g+rwX /build
 
-# built in Brew, use tarball in lookaside cache; built locally, comment this out
-# COPY v3.tgz /tmp/v3.tgz
-
-# to get all the cached vsix files pre-fetched so we can use them in Brew:
-# 1. extract files in the container to your local filesystem
-#    CONTAINERNAME="pluginregistryoffline" && docker build -t ${CONTAINERNAME} . --target=offline-builder --no-cache --squash --build-arg BOOTSTRAP=true
-#    mkdir -p /tmp/pr-res/ && docker run -it -v /tmp/pr-res/:/tmp/pr-res/ ${CONTAINERNAME} /bin/bash -c "cd /build/v3/ && cp -r ./* /tmp/pr-res/"
-#    pushd /tmp/pr-res >/dev/null && sudo tar czf v3.tgz ./* && popd >/dev/null && mv -f /tmp/pr-res/v3.tgz . && sudo rm -fr /tmp/pr-res/
-
-# 2. then add it to dist-git so it's part of this repo
-#    rhpkg new-sources root-local.tgz v3.tgz
-RUN if [[ ! -f /tmp/v3.tgz ]] || [[ "${BOOTSTRAP}" == "true" ]]; then \
-      ./cache_artifacts.sh v3 && chmod -R g+rwX /build; \
-    else \
-      # in Brew use /var/www/html/; in upstream/ offline-builder use /build/
-      mkdir -p /build/v3/; tar xf /tmp/v3.tgz -C /build/v3/; rm -fr /tmp/v3.tgz; chmod -R g+rwX /build/v3/; \
-    fi
-
-# multiple temp stages does not work in Brew
 FROM registry AS offline-registry
-USER 0
-
-# multiple temp stages does not work in Brew
 COPY --from=offline-builder /build/v3 /var/www/html/v3
 
 # append Brew metadata here
