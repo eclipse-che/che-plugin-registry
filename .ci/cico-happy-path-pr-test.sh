@@ -12,10 +12,10 @@
 
 function getOpenshiftLogs() {
   mkdir -p /root/payload/report/oc-logs
-  cd /root/payload/report/oc-logs
+  cd /root/payload/report/oc-logs || exit
   for POD in $(oc get pods -o name); do
-    for CONTAINER in $(oc get ${POD} -o jsonpath="{.spec.containers[*].name}"); do
-      oc logs ${POD} -c ${CONTAINER} |tee $(echo ${POD}-${CONTAINER}.log | sed 's|pod/||g')
+    for CONTAINER in $(oc get "${POD}" -o jsonpath="{.spec.containers[*].name}"); do
+      oc logs "$POD" -c "$CONTAINER" | tee "${POD#pod/}-${CONTAINER}.log"
     done
   done
   echo "======== oc get events ========"
@@ -32,11 +32,11 @@ createTestWorkspaceAndRunTest() {
   chectl workspace:create --start --access-token "$USER_ACCESS_TOKEN" --devfile=https://raw.githubusercontent.com/eclipse/che/master/tests/e2e/files/happy-path/happy-path-workspace.yaml
 
   ### Create directory for report
-  cd /root/payload
+  cd /root/payload || exit
   mkdir report
   REPORT_FOLDER=$(pwd)/report
   ### Run tests
-  docker run --shm-size=1g --net=host  --ipc=host -v $REPORT_FOLDER:/tmp/e2e/report:Z \
+  docker run --shm-size=1g --net=host  --ipc=host -v "$REPORT_FOLDER":/tmp/e2e/report:Z \
   -e TS_SELENIUM_BASE_URL="$CHE_URL" \
   -e TS_SELENIUM_LOG_LEVEL=DEBUG \
   -e TS_SELENIUM_MULTIUSER=true \
@@ -52,9 +52,10 @@ createTestWorkspaceAndRunTest() {
 set -x
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-. $SCRIPT_DIR/cico_common.sh
+# shellcheck source=.ci/che-cert_generation.sh
+. "${SCRIPT_DIR}"/cico_common.sh
 
-SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
+SCRIPT_DIR=$(cd "$(dirname "$0")" || exit; pwd)
 export SCRIPT_DIR
 
 # shellcheck disable=SC1090
@@ -65,7 +66,7 @@ install_deps
 
 # Build & push.
 
-export TAG="PR-${ghprbPullId}"
+export TAG="PR-${ghprbPullId:?}"
 export IMAGE_NAME="quay.io/eclipse/che-plugin-registry:$TAG"
 build_and_push
 
@@ -102,6 +103,7 @@ else
     getOpenshiftLogs
     archiveArtifacts "che-plugin-registry-prcheck"
     echo "Failed while starting chectl. Please check logs available in http://artifacts.ci.centos.org/devtools/che/che-plugin-registry-prcheck/${ghprbPullId}/"
+    # shellcheck disable=SC2242
     exit 1337
 fi
 
