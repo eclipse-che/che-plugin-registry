@@ -35,6 +35,32 @@ function load_jenkins_vars() {
   fi
 }
 
+# Sorts two versions and returns the lower version to check if its supported for using docker buildx.
+function check_supported_version() {
+  local query=$1
+  local target=$2
+  echo "$target" "$query" | tr ' ' '\n' | sort -V | head -n1 2> /dev/null
+}
+
+# Checks whether docker and kernel versions are greater than or equal to the specified version, such that docker buildx requirements are met.
+function check_buildx_support() {
+  docker_version="$(docker --version | cut -d' ' -f3 | tr -cd '0-9.')"
+  if [[ $(check_supported_version "$docker_version" "19.03") != 19.03 ]]; then
+    echo "CICO: Docker $docker_version greater than or equal to 19.03 is required."
+    exit 1
+  else
+         # Kernel
+         kernel_version="$(uname -r)"
+         if [[ $(check_supported_version "$kernel_version" "4.8") != "4.8" ]]; then
+                 echo "Kernel $kernel_version too old - need >= 4.8." \
+                         " Install a newer kernel."
+                 exit 1
+         else
+                 echo "kernel $kernel_version has binfmt_misc fix-binary (F) support."
+         fi
+  fi
+}
+
 function install_deps() {
   # We need to disable selinux for now, XXX
   /usr/sbin/setenforce 0  || true
@@ -46,6 +72,14 @@ function install_deps() {
     git
 
   service docker start
+
+  #set buildx env
+  export DOCKER_BUILD_KIT=1
+  export DOCKER_CLI_EXPERIMENTAL=enabled
+
+  #Enable qemu and binfmt support
+  docker run --rm --privileged docker/binfmt:a7996909642ee92942dcd6cff44b9b95f08dad64
+  docker run --rm --privileged multiarch/qemu-user-static:4.2.0-7 --reset -p yes  
   echo 'CICO: Dependencies installed'
 }
 
@@ -68,10 +102,9 @@ function set_git_commit_tag() {
   export GIT_COMMIT_TAG
 }
 
-function tag_push() {
+function build_and_push_using_buildx() {
   local TARGET=$1
-  docker tag "${IMAGE}" "$TARGET"
-  docker push "$TARGET" | cat
+  docker buildx build --platform=linux/amd64,linux/s390x -t "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TARGET}" -f ./build/dockerfiles/${DOCKERFILE} --target registry --push --progress plain --no-cache .
 }
 
 function build_and_push() {
@@ -97,15 +130,19 @@ function build_and_push() {
     echo "Could not login, missing credentials for pushing to the '${ORGANIZATION}' organization"
   fi
 
-  # Let's build and push image to 'quay.io' using git commit hash as tag first
+  # Create a new builder instance using buildx
+  docker buildx create --use --name plugin_builder
+  docker buildx inspect --bootstrap
+
   set_git_commit_tag
-  docker build -t ${IMAGE} -f ./build/dockerfiles/${DOCKERFILE} --target registry . | cat
-  tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
+
+  # Let's build and push image to 'quay.io' using git commit hash as tag first
+  docker buildx build --platform=linux/amd64,linux/s390x -t "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}" -f ./build/dockerfiles/${DOCKERFILE} --target registry --push --progress plain --no-cache .
   echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
 
-  # If additional tag is set (e.g. "nightly"), let's tag the image accordingly and also push to 'quay.io'
+  # If additional tag is set (e.g. "nightly"), let's build the image accordingly and also push to 'quay.io'
   if [ -n "${TAG}" ]; then
-    tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}"
+    build_and_push_using_buildx "${TAG}"
     echo "CICO: '${TAG}'  version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
   fi
 }

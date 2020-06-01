@@ -23,4 +23,5 @@ export SCRIPT_DIR
 load_jenkins_vars
 install_deps
 set_nightly_tag
+check_buildx_support
 build_and_push
