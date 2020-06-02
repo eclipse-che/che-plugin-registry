@@ -37,6 +37,47 @@ METAS_DIR="${METAS_DIR:-${DEFAULT_METAS_DIR}}"
 #   \7 - Optional quotation following image reference
 IMAGE_REGEX='([[:space:]]*"?)([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)(@sha256)?:([._a-zA-Z0-9-]*)("?)'
 
+if [[ ! -z $(env | grep .*plugin_registry_image.*) ]];then
+  declare -A imageMap
+  ENV_IMAGES=$(env | grep .*plugin_registry_image.*)
+  for image in  ${ENV_IMAGES[@]}; do
+    tag=$(echo ${image} | sed -e 's;.*registry_image_\(.*\)=.*;\1;' | tr _ = | base32 -d)
+    digest=$(echo ${image} | sed -e 's;\(.*\)\(@sha256:\)\([._a-zA-Z0-9-]*\);\2\3;')
+    imageToReplace=$(echo ${image} | sed -e 's;.*=\(.*\)\@.*;\1;'):${tag}
+    imageMap[${imageToReplace}]=${digest}
+  done
+
+  echo "--------------------------Digest map--------------------------"
+  for KEY in "${!imageMap[@]}"; do
+    echo "Key: $KEY Value: ${imageMap[$KEY]}"
+  done
+  echo "--------------------------------------------------------------"
+
+  readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
+  for meta in "${metas[@]}"; do
+    images=$(cat "${meta}" | grep "image:" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"')
+    for image in ${images[@]}; do
+      digest=${imageMap[${image}]}
+      if [[ ! -z "${digest}" ]]; then
+        if [[ ${image} == *"@"* ]]
+        then
+          imageName=$(echo "${image}" | sed -e "s;\(.*\)@.*;\1;")
+          tagOrDigest=$(echo "${image}" | sed -e "s;.*@\(.*\);\1;")
+        elif [[ ${image} == *":"* ]]
+        then
+          imageName=$(echo "${image}" | sed -e "s;\(.*\):.*;\1;")
+          tagOrDigest=$(echo "${image}" | sed -e "s;.*:\(.*\);\1;")
+        else
+          imageName=${image}
+        fi
+
+        IMAGE_REGEX="([[:space:]]*\"?)(${imageName})(@sha256)?:?(${tagOrDigest})(\"?)"
+        sed -i -E "s|image:${IMAGE_REGEX}|image:\1\2\3${digest}\5|" "$meta"
+      fi
+    done
+  done
+fi
+
 # We can't use the `-d` option for readarray because
 # registry.centos.org/centos/httpd-24-centos7 ships with Bash 4.2
 # The below command will fail if any path contains whitespace
