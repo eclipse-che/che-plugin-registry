@@ -14,7 +14,8 @@
 #Declare CN
 export CA_CN=eclipse-che-signer
 
-export DOMAIN=*.$(minishift ip).nip.io
+DOMAIN="*.$(minishift ip).nip.io"
+export DOMAIN
 
 #Create Root Key
 openssl genrsa -out rootCA.key 4096
