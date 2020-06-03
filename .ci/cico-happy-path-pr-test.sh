@@ -14,7 +14,7 @@ function getOpenshiftLogs() {
   mkdir -p /root/payload/report/oc-logs
   cd /root/payload/report/oc-logs || exit 1
   for POD in $(oc get pods -o name); do
-    for CONTAINER in $(oc get ${POD} -o jsonpath="{.spec.containers[*].name}"); do
+    for CONTAINER in $(oc get "${POD}" -o jsonpath="{.spec.containers[*].name}"); do
       oc logs "${POD}" -c "${CONTAINER}" | tee "$(echo "${POD}-${CONTAINER}.log" | sed 's|pod/||g')"
     done
   done

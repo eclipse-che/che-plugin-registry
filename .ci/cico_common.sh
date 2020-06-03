@@ -115,9 +115,9 @@ function archiveArtifacts() {
   ls -la ./artifacts.key
   chmod 600 ./artifacts.key
   chown "$(whoami)" ./artifacts.key
-  mkdir -p ./che/${JOB_NAME}/${BUILD_NUMBER}
-  cp -R ./report ./che/${JOB_NAME}/${BUILD_NUMBER}/ || true
-  rsync --password-file=./artifacts.key -Hva --partial --relative ./che/${JOB_NAME}/${BUILD_NUMBER} devtools@artifacts.ci.centos.org::devtools/
+  mkdir -p "./che/${JOB_NAME}/${BUILD_NUMBER}"
+  cp -R ./report "./che/${JOB_NAME}/${BUILD_NUMBER}/" || true
+  rsync --password-file=./artifacts.key -Hva --partial --relative "./che/${JOB_NAME}/${BUILD_NUMBER}" devtools@artifacts.ci.centos.org::devtools/
 }
 
 
@@ -129,7 +129,7 @@ function obtainUserToken() {
   TEST_USERNAME="admin"
   TEST_PASSWORD="admin"
 
-  USER_ACCESS_TOKEN="$(curl -k -v -X POST $KEYCLOAK_BASE_URL/realms/che/protocol/openid-connect/token -H "Content-Type: application/x-www-form-urlencoded" -d "username=${TEST_USERNAME}" -d "password=${TEST_PASSWORD}" -d "grant_type=password" -d "client_id=che-public" | jq -r .access_token)"
+  USER_ACCESS_TOKEN="$(curl -k -v -X POST "$KEYCLOAK_BASE_URL"/realms/che/protocol/openid-connect/token -H "Content-Type: application/x-www-form-urlencoded" -d "username=${TEST_USERNAME}" -d "password=${TEST_PASSWORD}" -d "grant_type=password" -d "client_id=che-public" | jq -r .access_token)"
   export USER_ACCESS_TOKEN
   echo "========User Access Token: $USER_ACCESS_TOKEN "
 }
