@@ -113,11 +113,12 @@ createNewPlugins () {
   done
 
   # for .0 releases (master and .x branch) update in both branches
-  # for .z releases, latest & VERSION files should not be updated in master branch (only in .z branch)
+  # for .z releases, latest files should be updated in both branch
+  for m in v3/plugins/eclipse/che-theia/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
+    echo "${newVERSION}" > $m
+  done
+  # for .z releases, VERSION files should not be updated in master branch (only in .z branch)
   if [[ ${thisVERSION} != "false" ]]; then
-    for m in v3/plugins/eclipse/che-theia/latest.txt v3/plugins/eclipse/che-machine-exec-plugin/latest.txt; do
-      echo "${newVERSION}" > $m
-    done
     # update VERSION file with VERSION or NEWVERSION
     echo "${thisVERSION}" > VERSION
   fi
@@ -163,7 +164,7 @@ commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${N
 if [[ ${BASEBRANCH} != "master" ]]; then
   fetchAndCheckout "master"
 
-  # add new plugins but do not update latest.txt files or VERSION file
+  # add new plugins + update latest.txt files; do not update VERSION file in master
   createNewPlugins "${VERSION}" false
   commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
 fi
