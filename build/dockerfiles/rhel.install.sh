@@ -23,9 +23,9 @@ if [[ -f /tmp/root-local.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then
     for d in /opt/app-root/src/.local /root/.local; do
         if [[ -d ${d} ]]; then
             cp ${d}/bin/yq ${d}/bin/jsonschema /usr/local/bin/
-            pushd ${d}/lib/python3.6/site-packages/ >/dev/null
+            pushd ${d}/lib/python3.6/site-packages/ >/dev/null || exit
             cp -r PyYAML* xmltodict* yaml* yq* jsonschema* /usr/lib/python3.6/site-packages/
-            popd >/dev/null
+            popd >/dev/null || exit
         fi
     done
     chmod -c +x /usr/local/bin/*

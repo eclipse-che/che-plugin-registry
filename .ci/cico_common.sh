@@ -69,6 +69,7 @@ function installAndStartMinishift() {
   oc login -u developer -p developer
 
   # shellcheck source=.ci/che-cert_generation.sh
+  # shellcheck disable=SC1091
   . "${SCRIPT_DIR}"/che-cert_generation.sh
   
   oc project default
