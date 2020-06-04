@@ -12,6 +12,7 @@
 set -e
 set -x
 
+
 export IS_TESTS_FAILED="false"
 CHE_SERVER_PATCH="$(cat <<EOL
 spec:
