@@ -51,11 +51,12 @@ IMAGE_REGEX='([[:space:]]*"?)([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-
 # RELATED_IMAGE__che_sidecar_clang_plugin_registry_image_HAWTQM3BMRRDGYIK="quay.io/eclipse/che-sidecar-clang@sha256:1c217f34ca69108fdd1ab844c0bcf960edff92519677bde4f8a5f4841b104745"
 if env | grep -q ".*plugin_registry_image.*"; then
   declare -A imageMap
-  ENV_IMAGES=($(env | grep ".*plugin_registry_image.*"))
-  for image in "${ENV_IMAGES[@]}"; do
-    tag=$(echo "${image}" | sed -e 's;.*registry_image_\(.*\)=.*;\1;' | tr _ = | base32 -d)
-    digest=$(echo "${image}" | sed -e 's;\(.*\)\(@sha256:\)\([._a-zA-Z0-9-]*\);\2\3;')
-    imageToReplace=$(echo "${image}" | sed -e 's;.*=\(.*\)\@.*;\1;'):${tag}
+  readarray -t ENV_IMAGES < <(env | grep ".*plugin_registry_image.*")
+  for imageEnv in "${ENV_IMAGES[@]}"; do
+    tag=$(echo "${imageEnv}" | sed -e 's;.*registry_image_\(.*\)=.*;\1;' | tr _ = | base32 -d)
+    imageWithDigest=${imageEnv#*=};
+    imageToReplace="${imageWithDigest%@*}:${tag}"
+    digest="@${imageWithDigest#*@}"
     imageMap["${imageToReplace}"]="${digest}"
   done
 
@@ -67,14 +68,14 @@ if env | grep -q ".*plugin_registry_image.*"; then
 
   readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
   for meta in "${metas[@]}"; do
-    images=($(grep "image:" "${meta}" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"'))
+    readarray -t images < <(grep "image:" "${meta}" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"')
     for image in "${images[@]}"; do
       digest="${imageMap[${image}]}"
-      if [[ ! -z "${digest}" ]]; then
+      if [[ -n "${digest}" ]]; then
         if [[ ${image} == *"@"* ]]
         then
           imageName="${image%@*}"
-          tagOrDigest="${image#*@}"
+          tagOrDigest="@${image#*@}"
         elif [[ ${image} == *":"* ]]
         then
           imageName="${image%:*}"
