@@ -12,7 +12,6 @@
 set -e
 set -x
 
-
 export IS_TESTS_FAILED="false"
 
 #Download and import the "common-qe" functions
