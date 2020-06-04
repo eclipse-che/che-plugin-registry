@@ -9,11 +9,10 @@
 #
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
-
+set -e
+set -x
 
 export IS_TESTS_FAILED="false"
-export TAG="PR-${ghprbPullId:?}"
-export IMAGE_NAME="quay.io/eclipse/che-plugin-registry:$TAG"
 CHE_SERVER_PATCH="$(cat <<EOL
 spec:
   server:
@@ -31,6 +30,9 @@ chmod u+x downloader.sh
 . ./downloader.sh
 
 setup_environment
+
+export TAG="PR-${ghprbPullId:?}"
+export IMAGE_NAME="quay.io/eclipse/che-plugin-registry:$TAG"
 
 buildAndPushRepoDockerImage "$TAG"
 
