@@ -52,11 +52,9 @@ createTestWorkspaceAndRunTest() {
 set -x
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-# shellcheck source=.ci/che-cert_generation.sh
-. "${SCRIPT_DIR}"/cico_common.sh
-
-SCRIPT_DIR=$(cd "$(dirname "$0")" || exit; pwd)
 export SCRIPT_DIR
+# shellcheck disable=SC1090
+. "${SCRIPT_DIR}"/cico_common.sh
 
 # shellcheck disable=SC1090
 . "${SCRIPT_DIR}"/../cico_functions.sh
