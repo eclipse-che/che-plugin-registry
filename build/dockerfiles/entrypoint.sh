@@ -68,7 +68,7 @@ if env | grep -q ".*plugin_registry_image.*"; then
 
   readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
   for meta in "${metas[@]}"; do
-    readarray -t images < <(grep "image:" "${meta}" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"')
+    readarray -t images < <(grep "image:" "${meta}" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"' | tr -d ' ')
     for image in "${images[@]}"; do
       digest="${imageMap[${image}]}"
       if [[ -n "${digest}" ]]; then
