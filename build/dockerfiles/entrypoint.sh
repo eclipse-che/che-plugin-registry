@@ -76,7 +76,7 @@ if env | grep -q ".*plugin_registry_image.*"; then
 
   readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
   for meta in "${metas[@]}"; do
-    readarray -t images < <(grep "image:" "${meta}" | sed -E "s;.*image:[[:space:]]*"?\(.*\)"?[[:space:]]*;\1;" | tr -d '"' | tr -d ' ')
+    readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([a-zA-Z0-9:.@_/-]*)'?\"?[[:space:]]*;\1;")
     for image in "${images[@]}"; do
       digest="${imageMap[${image}]}"
       if [[ -n "${digest}" ]]; then
@@ -88,8 +88,8 @@ if env | grep -q ".*plugin_registry_image.*"; then
           tag=""
         fi
 
-        IMAGE_REGEX="([[:space:]]*\"?)(${imageName})(@sha256)?:?(${tag})(\"?)"
-        sed -i -E "s|image:${IMAGE_REGEX}|image:\1\2\3${digest}\5|" "$meta"
+        REGEX="([[:space:]]*\"?'?)(${imageName})(@sha256)?:?(${tag})(\"?'?)"
+        sed -i -E "s|image:${REGEX}|image:\1\2\3${digest}\5|" "$meta"
       fi
     done
   done
