@@ -15,6 +15,7 @@
 set -e
 
 # shellcheck source=./build/scripts/util.sh
+# shellcheck disable=SC1091
 source "$(dirname "$0")/util.sh"
 
 readarray -d '' metas < <(find "$1" -name 'meta.yaml' -print0)
