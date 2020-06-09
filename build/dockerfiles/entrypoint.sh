@@ -48,7 +48,7 @@ IMAGE_REGEX='([[:space:]]*"?)([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-
 # INFO: "=" for base32 it is pad character. If encoded string contains this char(s), then it is always located at the end of the string.
 # Env value it is image with digest to use.
 # Example env variable:
-# RELATED_IMAGE__che_sidecar_clang_plugin_registry_image_HAWTQM3BMRRDGYIK="quay.io/eclipse/che-sidecar-clang@sha256:1c217f34ca69108fdd1ab844c0bcf960edff92519677bde4f8a5f4841b104745"
+# RELATED_IMAGE_che_sidecar_clang_plugin_registry_image_HAWTQM3BMRRDGYIK="quay.io/eclipse/che-sidecar-clang@sha256:1c217f34ca69108fdd1ab844c0bcf960edff92519677bde4f8a5f4841b104745"
 if env | grep -q ".*plugin_registry_image.*"; then
   declare -A imageMap
   readarray -t ENV_IMAGES < <(env | grep ".*plugin_registry_image.*")
@@ -76,20 +76,28 @@ if env | grep -q ".*plugin_registry_image.*"; then
 
   readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
   for meta in "${metas[@]}"; do
-    readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([a-zA-Z0-9:.@_/-]*)'?\"?[[:space:]]*;\1;")
+    readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([._:a-zA-Z0-9-]*/?[._a-zA-Z0-9-]*/[._a-zA-Z0-9-]*(@sha256)?:?[._a-zA-Z0-9-]*)'?\"?[[:space:]]*;\1;")
     for image in "${images[@]}"; do
-      digest="${imageMap[${image}]}"
+      separators="${image//[^\/]}"
+      imageWithRegistry=""
+      if [ "${#separators}" == "1" ]; then
+        imageWithRegistry="docker.io/${image}"
+      else
+        imageWithRegistry="${image}"
+      fi
+
+      digest="${imageMap[${imageWithRegistry}]}"
       if [[ -n "${digest}" ]]; then
         if [[ ${image} == *":"* ]]; then
-          imageName="${image%:*}"
+          imageWithoutTag="${image%:*}"
           tag="${image#*:}"
         else
-          imageName=${image}
+          imageWithoutTag=${image}
           tag=""
         fi
 
-        REGEX="([[:space:]]*\"?'?)(${imageName})(@sha256)?:?(${tag})(\"?'?)"
-        sed -i -E "s|image:${REGEX}|image:\1\2\3${digest}\5|" "$meta"
+        REGEX="([[:space:]]*\"?'?)(${imageWithoutTag}):?(${tag})(\"?'?)"
+        sed -i -E "s|image:${REGEX}|image:\1\2${digest}\4|" "$meta"
       fi
     done
   done
