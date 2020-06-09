@@ -34,7 +34,8 @@ spec:
 EOL
 )"
 
-buildAndPushRepoDockerImage "$TAG"
+. ./../cico_functions.sh
+build_and_push 
 
 installChectl
 
