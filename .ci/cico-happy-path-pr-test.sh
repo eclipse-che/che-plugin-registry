@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC1090
 #
 # Copyright (c) 2012-2020 Red Hat, Inc.
 # This program and the accompanying materials are made
