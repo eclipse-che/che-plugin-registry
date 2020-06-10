@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# shellcheck disable=SC1091
+#
 # Copyright (c) 2012-2020 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -47,7 +48,7 @@ runTest
 
 getOpenshiftLogs
 
-archiveArtifacts "che-devfile-registry-prcheck"
+archiveArtifacts "che-plugin-registry-prcheck"
 
 if [ "$IS_TESTS_FAILED" == "true" ]; then
   exit 1;
