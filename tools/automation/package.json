@@ -1,0 +1,24 @@
+{
+  "name": "plugin-build-update-automation",
+  "version": "0.0.0",
+  "description": "Scripts for updating, adding, removing, and building plugins in the Che Plugin Registry",
+  "main": "check-plugin-updates.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclipse/che-plugin-registry.git"
+  },
+  "author": "",
+  "license": "EPL-2.0",
+  "bugs": {
+    "url": "https://github.com/eclipse/che-plugin-registry/issues"
+  },
+  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
+  "dependencies": {
+    "moment": "^2.27.0",
+    "semver": "^7.3.2",
+    "vuepress": "^1.5.2"
+  }
+}
