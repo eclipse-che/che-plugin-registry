@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
 firstPublicationDate: '2020-03-24'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-camelk/latest
 spec:
   containers:
   - image: "quay.io/eclipse/che-sidecar-camelk:0.0.13-c3287d6"
