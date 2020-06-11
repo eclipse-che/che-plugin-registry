@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: sonarsource
 name: sonarlint-vscode
-version: 0.0.2
+version: 1.13.0
 type: VS Code extension
 displayName: vscode-sonarlint
 title: Sonarlint code intelligence
@@ -9,10 +9,7 @@ description: VS Code extension that provides sonarlint features
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 firstPublicationDate: "2020-01-09"
 category: Linter
-repository: https://www.sonarlint.org/
-deprecate:
-  automigrate: true
-  migrateTo: sonarsource/sonarlint-vscode/latest
+repository: https://github.com/SonarSource/sonarlint-vscode
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
