@@ -18,4 +18,4 @@ spec:
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.7.2.vsix
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
-    - https://github.com/redhat-developer/vscode-tekton/releases/download/v0.2.0/tekton-pipelines-0.2.0-253.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
