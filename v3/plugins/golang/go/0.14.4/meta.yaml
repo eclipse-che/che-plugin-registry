@@ -1,10 +1,10 @@
 apiVersion: v2
-publisher: ms-vscode
+publisher: golang
 name: go
 version: 0.14.4
 type: VS Code extension
 displayName: Go
-title: Go for Visual Studio Code
+title: Rich Go language support for Visual Studio Code
 description: This extension provides rich language support for the Go programming language in VS Code.
 icon: https://raw.githubusercontent.com/golang/vscode-go/v0.14.4/images/go-logo-blue.png
 repository: https://github.com/golang/vscode-go
