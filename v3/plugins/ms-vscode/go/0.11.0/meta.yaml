@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/Microsoft/vscode-go.git
 category: Language
 firstPublicationDate: '2019-06-20'
+deprecate:
+  automigrate: true
+  migrateTo: golang/go/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-go:1.10.7-c05dfb0"
