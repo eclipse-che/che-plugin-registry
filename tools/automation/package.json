@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
   "dependencies": {
+    "fs-extra": "^9.0.1",
     "moment": "^2.27.0",
     "semver": "^7.3.2",
     "vuepress": "^1.5.2"

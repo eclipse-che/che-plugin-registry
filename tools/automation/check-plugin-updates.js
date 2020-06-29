@@ -9,7 +9,7 @@
  ********************************************************************************/
 
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const semver = require('semver');
 const execSync = require('child_process').execSync;
@@ -20,9 +20,22 @@ const moment = require('moment');
  */
 function cleanUpTempRepo() {
   try {
-    execSync('rm -rf /tmp/repository', {stdio : 'pipe'});
+    fs.removeSync('/tmp/repository');
   } catch (err) {
     console.log("Failed to clean up repository");
+  }
+}
+
+/**
+ * @param {string | number | Buffer | import("url").URL} pathToPackageJSON
+ * @return {object} Parsed package.json file.
+ */
+function readPackageJSON(pathToPackageJSON) {
+  try {
+    var rawData = fs.readFileSync(pathToPackageJSON, 'utf-8');
+    return JSON.parse(rawData);
+  } catch (err) {
+    console.log("Error parsing package.json");
   }
 }
 
@@ -34,7 +47,7 @@ report += "| Plugin Name | Repository | Registry Version | Upstream Version |\n"
 report += "| ------ | ------ | ------ | ------ |\n";
 
 // Read extension list and iterate over each one
-const { extensions } = JSON.parse(fs.readFileSync('./../../vscode-extensions.json', 'utf-8'));
+const { extensions } = readPackageJSON('./../../vscode-extensions.json');
 for (const extension of extensions) {
   var upstreamVersion;
   var upstreamName;
@@ -49,21 +62,15 @@ for (const extension of extensions) {
   }
 
   // Parse package.json file and extract version information
-  try {
-    var packageJSONPath;
-    if (extension.vsixDir) {
-      packageJSONPath = path.join('/tmp/repository', extension.vsixDir, 'package.json');
-    } else {
-      packageJSONPath = path.join('/tmp/repository', 'package.json');
-    }
-    let packageJSON = require(packageJSONPath);
-    upstreamVersion = packageJSON.version;
-    upstreamName = packageJSON.name;
-  } catch (err) {
-    console.log(`Error reading package.json for ${extension.repository}`);
-    cleanUpTempRepo();
-    continue;
+  var packageJSONPath;
+  if (extension.vsixDir) {
+    packageJSONPath = path.join('/tmp/repository', extension.vsixDir, 'package.json');
+  } else {
+    packageJSONPath = path.join('/tmp/repository', 'package.json');
   }
+  let packageJSON = readPackageJSON(packageJSONPath);
+  upstreamVersion = packageJSON.version;
+  upstreamName = packageJSON.name;
 
   // Compare versions, publish table row with extension information
   try {
