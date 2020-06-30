@@ -121,7 +121,7 @@
     },
     {
       "version": "0.0.23",
-      "checkout": "master", 
+      "checkout": "634e59e7800d46dfe4308295f615dc5d4032f4c6#diff-b9cfc7f2cdf78a7f4b91a753d10865a2", 
       "repository": "https://github.com/windup/rhamt-vscode-extension"
     },
     {
