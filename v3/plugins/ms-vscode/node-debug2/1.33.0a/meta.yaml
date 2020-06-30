@@ -11,6 +11,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/Microsoft/vscode-node-debug2
 category: Debugger
 firstPublicationDate: '2020-05-01'
+deprecate:
+  automigrate: true
+  migrateTo: ms-vscode/node-debug2/latest
 spec:
   containers:
   - image: "quay.io/eclipse/che-sidecar-node:10-0cb5d78"
