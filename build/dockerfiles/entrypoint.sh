@@ -79,14 +79,14 @@ if env | grep -q ".*plugin_registry_image.*"; then
     readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([._:a-zA-Z0-9-]*/?[._a-zA-Z0-9-]*/[._a-zA-Z0-9-]*(@sha256)?:?[._a-zA-Z0-9-]*)'?\"?[[:space:]]*;\1;")
     for image in "${images[@]}"; do
       separators="${image//[^\/]}"
-      imageWithRegistry=""
-      if [ "${#separators}" == "1" ]; then
-        imageWithRegistry="docker.io/${image}"
-      else
-        imageWithRegistry="${image}"
+      # Warning, keep in mind: image without registry name is it possible case. It's mean, that image comes from private registry, where is we have organization name, but no registry name...
+      digest="${imageMap[${image}]}"
+
+      if [[ -z "${digest}" ]] && [ "${#separators}" == "1" ]; then
+        imageWithDefaultRegistry="docker.io/${image}"
+        digest="${imageMap[${imageWithDefaultRegistry}]}"
       fi
 
-      digest="${imageMap[${imageWithRegistry}]}"
       if [[ -n "${digest}" ]]; then
         if [[ ${image} == *":"* ]]; then
           imageWithoutTag="${image%:*}"
