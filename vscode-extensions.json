@@ -1,152 +1,152 @@
 {
   "extensions": [
     {
-      "revision": "6.0.19",
-      "repository": "https://github.com/spgennard/vscode_cobol"
+      "repository": "https://github.com/asciidoctor/asciidoctor-vscode",
+      "revision": "v2.7.7"
     },
     {
-      "revision": "0.11.1",
-      "vsixDirectory": "clients/cobol-lsp-vscode-extension/",
-      "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol"
+      "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
+      "revision": "0.0.24"
     },
     {
-      "revision": "0.9.1",
-      "repository": "https://github.com/eclipse/che-che4z-explorer-for-endevor"
+      "repository": "https://github.com/eclipse/che-che4z-explorer-for-endevor",
+      "revision": "0.9.1"
     },
     {
-      "revision": "0.11.0",
-      "vsixDirectory": "clients/vscode-hlasmplugin/",	
-      "repository": "https://github.com/eclipse/che-che4z-lsp-for-hlasm"
+      "directory": "clients/cobol-lsp-vscode-extension/",
+      "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
+      "revision": "0.11.1"
     },
     {
-      "revision": "2.1650-vsc1.39.2",
-      "repository": "https://github.com/cdr/code-server"
+      "directory": "clients/vscode-hlasmplugin/",
+      "repository": "https://github.com/eclipse/che-che4z-lsp-for-hlasm",
+      "revision": "0.11.0"
     },
     {
-      "revision": "v10.2.1",
-      "repository": "https://github.com/eamodio/vscode-gitlens"
+      "repository": "https://github.com/cdr/code-server",
+      "revision": "2.1650-vsc1.39.2"
     },
     {
-      "revision": "v2.7.7",
-      "repository": "https://github.com/asciidoctor/asciidoctor-vscode"
+      "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
+      "revision": "0.0.13"
     },
     {
-      "revision": "660a6102103745f8e9e5affaa06a29e73ce9065e",
-      "repository": "https://github.com/SebastianZaha/vscode-emacs-friendly"
+      "repository": "https://github.com/scalameta/metals-vscode",
+      "revision": "v1.9.0"
     },
     {
-      "revision": "0.2.0",
-      "repository": "https://github.com/MicroShed/mp-starter-vscode-ext"
+      "repository": "https://github.com/MicroShed/mp-starter-vscode-ext",
+      "revision": "0.2.0"
     },
     {
-      "revision": "1.2.0",
-      "repository": "https://github.com/Azure/vscode-kubernetes-tools"
+      "repository": "https://github.com/redhat-developer/netcoredbg-theia-plugin",
+      "revision": "v0.0.3"
     },
     {
-      "revision": "2019.5.18875",
-      "repository": "https://github.com/Microsoft/vscode-python"
+      "repository": "https://github.com/redhat-developer/omnisharp-theia-plugin",
+      "revision": "v0.0.6"
     },
     {
-      "revision": "0.14.4",
-      "repository": "https://github.com/golang/vscode-go"
+      "repository": "https://github.com/windup/rhamt-vscode-extension",
+      "revision": "ca5adb5786114250fb9d4cebe6a327fd8d4d793c"
     },
     {
-      "revision": "v1.42.3",
-      "repository": "https://github.com/Microsoft/vscode-node-debug2"
+      "repository": "https://github.com/VSCodeVim/Vim",
+      "revision": "v1.14.5"
     },
     {
-      "revision": "v0.8.0",
-      "repository": "https://github.com/microsoft/vscode-pull-request-github"
+      "repository": "https://github.com/camel-tooling/vscode-camelk",
+      "revision": "0.0.14"
     },
     {
-      "revision": "v0.0.10-ddc0d3d", 
-      "repository": "https://github.com/pizzafactory-contorno/vscode-libra-move"
+      "repository": "https://github.com/spgennard/vscode_cobol",
+      "revision": "6.0.19"
     },
     {
-      "revision": "v0.1.0",
-      "vsixDirectory": "xtend-vscode-extension/",
-      "repository": "https://github.com/PizzaFactory/xtend-ide-extensions"
+      "repository": "https://github.com/SebastianZaha/vscode-emacs-friendly",
+      "revision": "660a6102103745f8e9e5affaa06a29e73ce9065e"
     },
     {
-      "revision": "v0.4.0",
-      "vsixDirectory": "xtext-vscode-extension/",
-      "repository": "https://github.com/PizzaFactory/xtext-ide-extensions/"
+      "repository": "https://github.com/zowe/vscode-extension-for-zowe",
+      "revision": "v1.5.1"
     },
     {
-      "revision": "v0.0.6", 
-      "repository": "https://github.com/redhat-developer/omnisharp-theia-plugin"
+      "repository": "https://github.com/eamodio/vscode-gitlens",
+      "revision": "v10.2.1"
     },
     {
-      "revision": "v0.0.3", 
-      "repository": "https://github.com/redhat-developer/netcoredbg-theia-plugin"
+      "repository": "https://github.com/golang/vscode-go",
+      "revision": "0.14.4"
     },
     {
-      "revision": "0.0.13",
-      "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension"
+      "repository": "https://github.com/bmewburn/vscode-intelephense",
+      "revision": "v1.3.11"
     },
     {
-      "revision": "v0.63.0", 
-      "repository": "https://github.com/redhat-developer/vscode-java"
+      "repository": "https://github.com/redhat-developer/vscode-java",
+      "revision": "v0.63.0"
     },
     {
-      "revision": "v1.13.0", 
-      "repository": "https://github.com/felixfbecker/vscode-php-debug"
+      "repository": "https://github.com/Azure/vscode-kubernetes-tools",
+      "revision": "1.2.0"
     },
     {
-      "revision": "v1.3.11", 
-      "repository": "https://github.com/bmewburn/vscode-intelephense"
+      "repository": "https://github.com/pizzafactory-contorno/vscode-libra-move",
+      "revision": "v0.0.10-ddc0d3d"
     },
     {
-      "revision": "v0.0.10", 
-      "repository": "https://github.com/redhat-developer/vscode-project-initializer"
+      "repository": "https://github.com/Microsoft/vscode-node-debug2",
+      "revision": "v1.42.3"
     },
     {
-      "revision": "v1.3.0", 
-      "repository": "https://github.com/redhat-developer/vscode-quarkus"
+      "repository": "https://github.com/redhat-developer/vscode-openshift-tools",
+      "revision": "v0.1.5"
     },
     {
-      "revision": "ca5adb5786114250fb9d4cebe6a327fd8d4d793c", 
-      "repository": "https://github.com/windup/rhamt-vscode-extension"
+      "repository": "https://github.com/felixfbecker/vscode-php-debug",
+      "revision": "v1.13.0"
     },
     {
-      "revision": "0.0.24",
-      "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode"
+      "repository": "https://github.com/redhat-developer/vscode-project-initializer",
+      "revision": "v0.0.10"
     },
     {
-      "revision": "0.0.14",
-      "repository": "https://github.com/camel-tooling/vscode-camelk"
+      "repository": "https://github.com/microsoft/vscode-pull-request-github",
+      "revision": "v0.8.0"
     },
     {
-      "revision": "v0.1.5",
-      "repository": "https://github.com/redhat-developer/vscode-openshift-tools"
+      "repository": "https://github.com/Microsoft/vscode-python",
+      "revision": "2019.5.18875"
     },
     {
-      "revision": "0.0.11",
-      "repository": "https://github.com/camel-tooling/vscode-wsdl2rest"
+      "repository": "https://github.com/redhat-developer/vscode-quarkus",
+      "revision": "v1.3.0"
     },
     {
-      "revision": "0.11.0",
-      "repository": "https://github.com/redhat-developer/vscode-xml"
+      "repository": "https://github.com/testthedocs/vscode-vale",
+      "revision": "0.9.1"
     },
     {
-      "revision": "0.8.0",
-      "repository": "https://github.com/redhat-developer/vscode-yaml"
+      "repository": "https://github.com/camel-tooling/vscode-wsdl2rest",
+      "revision": "0.0.11"
     },
     {
-      "revision": "v1.9.0",
-      "repository": "https://github.com/scalameta/metals-vscode"
+      "repository": "https://github.com/redhat-developer/vscode-xml",
+      "revision": "0.11.0"
     },
     {
-      "revision": "0.9.1",
-      "repository": "https://github.com/testthedocs/vscode-vale"
+      "repository": "https://github.com/redhat-developer/vscode-yaml",
+      "revision": "0.8.0"
     },
     {
-      "revision": "v1.5.1",
-      "repository": "https://github.com/zowe/vscode-extension-for-zowe"
+      "directory": "xtend-vscode-extension/",
+      "repository": "https://github.com/PizzaFactory/xtend-ide-extensions",
+      "revision": "v0.1.0"
     },
     {
-      "revision": "v1.14.5",
-      "repository": "https://github.com/VSCodeVim/Vim"
+      "directory": "xtext-vscode-extension/",
+      "repository": "https://github.com/PizzaFactory/xtext-ide-extensions/",
+      "revision": "v0.4.0"
     }
   ]
 }
