@@ -9,7 +9,7 @@ description: This is a SIMPLE bashdb debugger frontend. Useful for learning bash
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/rogalmic/vscode-bash-debug
 category: Other
-firstPublicationDate: '2020-07-4'
+firstPublicationDate: '2020-07-04'
 spec:
   extensions:
     - https://open-vsx.org/api/rogalmic/bash-debug/0.3.9/file/rogalmic.bash-debug-0.3.9.vsix
