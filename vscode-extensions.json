@@ -1,6 +1,10 @@
 {
   "extensions": [
     {
+      "repository": "https://github.com/bash-lsp/bash-language-server",
+      "revision": "vscode-client-1.10.2"
+    },
+    {
       "repository": "https://github.com/asciidoctor/asciidoctor-vscode",
       "revision": "v2.7.7"
     },
