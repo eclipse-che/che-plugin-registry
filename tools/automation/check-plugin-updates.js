@@ -12,32 +12,9 @@
 const fs = require('fs-extra');
 const path = require('path');
 const semver = require('semver');
-const execSync = require('child_process').execSync;
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const moment = require('moment');
-
-/**
- * Removes the '/tmp/repository' folder
- */
-function cleanUpTempRepo() {
-  try {
-    fs.removeSync('/tmp/repository');
-  } catch (err) {
-    console.log("Failed to clean up repository");
-  }
-}
-
-/**
- * @param {string | number | Buffer | import("url").URL} pathToPackageJSON
- * @return {object} Parsed package.json file.
- */
-function readPackageJSON(pathToPackageJSON) {
-  try {
-    var rawData = fs.readFileSync(pathToPackageJSON, 'utf-8');
-    return JSON.parse(rawData);
-  } catch (err) {
-    console.log("Error parsing package.json");
-  }
-}
 
 // Report title, description, and table column headers
 var report = "# Automated Plugin Report\n";
@@ -46,53 +23,66 @@ report += `### Report accurate as of: ${reportTime} UTC\n`;
 report += "| Plugin Name | Repository | Registry Version | Upstream Version |\n";
 report += "| ------ | ------ | ------ | ------ |\n";
 
-// Read extension list and iterate over each one
-const { extensions } = readPackageJSON('./../../vscode-extensions.json');
-for (const extension of extensions) {
-  var upstreamVersion;
-  var upstreamName;
-  var registryVersion = extension.version;
+(async () => {
+  // Type declaration for extensions
+  /** @type {{ extensions: { repository: string, revision: string, directory?: string }[] }} */
+  const { extensions } = JSON.parse(await fs.readFile('./../../vscode-extensions.json', 'utf-8'));
   
-  // Clone the repo to the /tmp/repository location
-  try {
-    execSync(`git clone ${extension.repository} /tmp/repository`, {stdio : 'pipe'});
-  } catch (err) {
-    console.log(`Failed to clone repository " ${extension.repository}`);
-    continue;
-  }
-
-  // Parse package.json file and extract version information
-  var packageJSONPath;
-  if (extension.vsixDir) {
-    packageJSONPath = path.join('/tmp/repository', extension.vsixDir, 'package.json');
-  } else {
-    packageJSONPath = path.join('/tmp/repository', 'package.json');
-  }
-  let packageJSON = readPackageJSON(packageJSONPath);
-  upstreamVersion = packageJSON.version;
-  upstreamName = packageJSON.name;
-
-  // Compare versions, publish table row with extension information
-  try {
-    let needsUpdating = semver.gt(upstreamVersion, registryVersion);
-    if (needsUpdating) {
-      report += `| ${upstreamName} | [${extension.repository}](${extension.repository}) | ${extension.version} | **${upstreamVersion}** |\n`;
-    } else {
-      report += `| ${upstreamName} | [${extension.repository}](${extension.repository}) | ${extension.version} | ${upstreamVersion} |\n`;
+  for (const extension of extensions) {
+    var upstreamVersion;
+    var upstreamName;
+    var registryVersion;
+    
+    // Clone repo with default branch to check current version
+    try {
+      await exec(`git clone ${extension.repository} /tmp/repository`, {stdio : 'pipe'});
+    } catch (err) {
+      console.log(`Error cloning ${extension.repository} ${err}`)
+      continue;
     }
-  } catch(err) {
-    console.log(`Error comparing versions ${registryVersion} and ${upstreamVersion} for ${upstreamName}`);
-    cleanUpTempRepo();
-    continue;
+
+    // Parse package.json file and extract current version information
+    var packageJSONPath;
+    if (extension.directory) {
+      packageJSONPath = path.join('/tmp/repository', extension.directory, 'package.json');
+    } else {
+      packageJSONPath = path.join('/tmp/repository', 'package.json');
+    }
+    let packageJSON = JSON.parse(await fs.readFile(packageJSONPath, 'utf-8'));
+    upstreamVersion = packageJSON.version;
+    upstreamName = packageJSON.name;
+
+    // Checkout git repo @ 'revision' field specified, to get the version in the registry
+    try {
+      await exec(`git checkout ${extension.revision}`, { cwd: '/tmp/repository' })
+    } catch (err) {
+      console.log(`Failure checking out extension.revision for ${extension.repository}`);
+      await exec('rm -rf /tmp/repository');
+      continue;
+    }
+    packageJSON = JSON.parse(await fs.readFile(packageJSONPath, 'utf-8'));
+    registryVersion = packageJSON.version;
+
+    // Compare versions, publish table row with extension information
+    try {
+      let needsUpdating = semver.gt(upstreamVersion, registryVersion);
+      if (needsUpdating) {
+        report += `| ${upstreamName} | [${extension.repository}](${extension.repository}) | ${registryVersion} | **${upstreamVersion}** |\n`;
+      } else {
+        report += `| ${upstreamName} | [${extension.repository}](${extension.repository}) | ${registryVersion} | ${upstreamVersion} |\n`;
+      }
+    } catch(err) {
+      console.log(`Error comparing versions ${registryVersion} and ${upstreamVersion} for ${upstreamName}`);
+      await exec('rm -rf /tmp/repository');
+      continue;
+    }
+    await exec('rm -rf /tmp/repository');
   }
 
-  // Clean up repository folder
-  cleanUpTempRepo();
-}
-
-// Write the file
-try {
-  fs.writeFileSync('./../../index.md', report);
-} catch(err) {
-  console.log(`Error writing report file ${err.stderr}`);
-}
+  // Write the report file
+  try {
+    await fs.writeFile('./index.md', report);
+  } catch (err) {
+    console.log(`Failed to write the report file (index.md)`);
+  }
+})();
