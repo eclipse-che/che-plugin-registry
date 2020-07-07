@@ -57,7 +57,7 @@ report += "| ------ | ------ | ------ | ------ |\n";
       await exec(`git checkout ${extension.revision}`, { cwd: '/tmp/repository' })
     } catch (err) {
       console.log(`Failure checking out extension.revision for ${extension.repository}`);
-      await exec('rm -rf /tmp/repository');
+      await fs.remove('/tmp/repository');
       continue;
     }
     packageJSON = JSON.parse(await fs.readFile(packageJSONPath, 'utf-8'));
@@ -73,10 +73,10 @@ report += "| ------ | ------ | ------ | ------ |\n";
       }
     } catch(err) {
       console.log(`Error comparing versions ${registryVersion} and ${upstreamVersion} for ${upstreamName}`);
-      await exec('rm -rf /tmp/repository');
+      await fs.remove('/tmp/repository');
       continue;
     }
-    await exec('rm -rf /tmp/repository');
+    await fs.remove('/tmp/repository');
   }
 
   // Write the report file
