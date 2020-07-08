@@ -12,10 +12,10 @@ Every day at 01:00 UTC, the `vscode-extensions.json` file is parsed and a report
 
 The report format (with two sample entries) is as follows:
 
-| Plugin Name | Repository | Registry Version | Upstream Version |
-| ------ | ------ | ------ | ------ |
-| gitlens | [https://github.com/eamodio/vscode-gitlens](https://github.com/eamodio/vscode-gitlens) | 10.2.1 | **10.2.2** |
-| asciidoctor-vscode | [https://github.com/asciidoctor/asciidoctor-vscode](https://github.com/asciidoctor/asciidoctor-vscode) | 2.7.7 | **2.7.16** |
+| Plugin Name | Repository | Registry Version | Upstream Version | Error |
+| ------ | ------ | ------ | ------ | ------ |
+| gitlens | [https://github.com/eamodio/vscode-gitlens](https://github.com/eamodio/vscode-gitlens) | 10.2.1 | **10.2.2** | |
+| asciidoctor-vscode | [https://github.com/asciidoctor/asciidoctor-vscode](https://github.com/asciidoctor/asciidoctor-vscode) | 2.7.7 | **2.7.16** | |
 
 
-When the registry version of a plugin's VS Code extension is out of date, the far-right column "Upstream Version" entry is bolded.
+When the registry version of a plugin's VS Code extension is out of date, the far-right column "Upstream Version" entry is bolded. If an error occurred while checking the plugin, it will be reported in the "Error" column.
