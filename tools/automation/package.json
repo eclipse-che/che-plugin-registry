@@ -1,0 +1,84 @@
+{
+  "name": "plugin-build-update-automation",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Scripts for updating, adding, removing, and building plugins in the Che Plugin Registry",
+  "main": "check-plugin-updates.js",
+  "scripts": {
+    "build": "yarn run format && yarn run compile && yarn run lint",
+    "compile": "tsc --project .",
+    "format": "prettier --write **/*.ts **/**/*.ts package.json",
+    "format-check": "prettier --check **/*.ts **/**/*.ts package.json",
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclipse/che-plugin-registry.git"
+  },
+  "author": "",
+  "license": "EPL-2.0",
+  "bugs": {
+    "url": "https://github.com/eclipse/che/issues"
+  },
+  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "handlebars": "^4.7.6",
+    "moment": "^2.27.0",
+    "semver": "^7.3.2",
+    "simple-git": "^2.12.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/jest": "^25.2.2",
+    "@types/semver": "^7.3.1",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.11.0",
+    "import-sort-style-eslint": "^6.0.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "prettier-plugin-import-sort": "^0.0.4",
+    "ts-jest": "^26.1.0",
+    "ts-mockito": "^2.5.0",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.0",
+    "vuepress": "^1.5.2"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "./coverage",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "importSort": {
+    ".ts": {
+      "style": "eslint",
+      "parser": "typescript"
+    }
+  }
+}
