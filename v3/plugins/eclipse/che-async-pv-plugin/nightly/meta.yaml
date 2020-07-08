@@ -11,18 +11,27 @@ repository: https://github.com/che-incubator/workspace-data-sync
 firstPublicationDate: "2020-05-01"
 category: Other
 spec:
+  endpoints:
+   -  name: "che-rsync-events"
+      public: true
+      targetPort: 4445
+      attributes:
+        protocol: ws
+        type: rsync
+        discoverable: false
+        secure: false
+        cookiesAuthEnabled: true
   containers:
    - name: che-rsync
-     image: "vparfonov/workspace-data-sync:nightly"
+     image: "quay.io/eclipse/che-sidecar-workspace-data-sync:latest"
      memoryLimit: "512M"
      lifecycle:
-      postStart:
-        exec:
-          command: ["/bin/sh", "-c", "/scripts/restore.sh"]
       preStop:
         exec:
-          command: ["/bin/sh","-c","/scripts/backup.sh"] 
+          command: ["/bin/sh", "-c", "/scripts/backup.sh"] 
      mountSources: true
+     ports:
+       - exposedPort: 4445
      env:
          - name: RSYNC_PORT
            value: "2222"
