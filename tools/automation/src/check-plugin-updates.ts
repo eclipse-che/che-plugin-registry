@@ -132,9 +132,9 @@ export class Report {
     };
     const generatedReport = template(env);
     try {
-      await fs.writeFile('./index.md', generatedReport);
+      await fs.writeFile('./report/index.md', generatedReport);
     } catch (err) {
-      console.log(`Failed to write the report file (index.md)`);
+      console.log(`Failed to write the report file (./report/index.md)`);
     }
 
     // cleanup root cloned path
