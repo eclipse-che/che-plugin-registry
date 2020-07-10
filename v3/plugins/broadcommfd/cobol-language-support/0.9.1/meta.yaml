@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
 category: Language
 firstPublicationDate: "2019-12-12"
+deprecate:
+  automigrate: true
+  migrateTo: broadcommfd/cobol-language-support/latest
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
