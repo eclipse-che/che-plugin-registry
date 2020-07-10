@@ -43,7 +43,7 @@
     },
     {
       "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
-      "revision": "0.11.1",
+      "revision": "0.12.0",
       "directory": "clients/cobol-lsp-vscode-extension/"
     },
     {
