@@ -146,6 +146,10 @@
       "revision": "660a6102103745f8e9e5affaa06a29e73ce9065e"
     },
     {
+      "repository": "https://github.com/SonarSource/sonarlint-vscode",
+      "revision": "1.16.0"
+    },
+    {
       "repository": "https://github.com/spgennard/vscode_cobol",
       "revision": "6.0.19"
     },
