@@ -1,6 +1,10 @@
 {
   "extensions": [
     {
+      "repository": "https://bitbucket.org/atlassianlabs/atlascode",
+      "revision": "2.6.6"
+    },
+    {
       "repository": "https://github.com/asciidoctor/asciidoctor-vscode",
       "revision": "v2.7.7"
     },
@@ -160,10 +164,6 @@
     {
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
       "revision": "v1.5.1"
-    },
-    {
-      "repository": "https://bitbucket.org/atlassianlabs/atlascode",
-      "revision": "2.6.6"
     }
   ]
 }
