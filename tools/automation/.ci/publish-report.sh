@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2020 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
@@ -8,7 +9,6 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-#!/bin/bash
 set -e
 set -o pipefail
 
@@ -23,6 +23,6 @@ git config --global user.email "che-bot@eclipse.org"
 git config --global user.name "CHE Bot"
 git init .
 git checkout --orphan gh-pages
-git add *
+git add ./*
 git commit -m "Automated Plugin Report $DATE_TIME" -s
 git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/eclipse/che-plugin-registry.git" gh-pages
