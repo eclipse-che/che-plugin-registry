@@ -1,6 +1,10 @@
 {
   "extensions": [
     {
+      "repository": "https://bitbucket.org/atlassianlabs/atlascode",
+      "revision": "2.6.6"
+    },
+    {
       "repository": "https://github.com/asciidoctor/asciidoctor-vscode",
       "revision": "v2.7.7"
     },
