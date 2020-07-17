@@ -19,10 +19,8 @@ ARG USE_DIGESTS=false
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
 COPY /v3 /build/v3
-COPY ./vscode-extensions.json /build/
 WORKDIR /build/
 
-RUN ./check_sorted_json.sh
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
       ./keep_only_latest.sh; \
     fi
