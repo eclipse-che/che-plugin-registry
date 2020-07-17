@@ -107,7 +107,7 @@
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-didact",
-      "revision": "0.1.15"
+      "revision": "0.1.16"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-java",
