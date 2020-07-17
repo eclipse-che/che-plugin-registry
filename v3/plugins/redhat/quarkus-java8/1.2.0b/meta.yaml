@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2020-02-06"
 deprecate:
   automigrate: true
-  migrateTo: redhat/quarkus-java8/latest
+  migrateTo: redhat/quarkus-java11/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"

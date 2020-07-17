@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/redhat-developer/vscode-quarkus
 category: Language
 firstPublicationDate: "2020-06-11"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/quarkus-java11/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
