@@ -52,10 +52,7 @@ RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
 COPY ./v3 /build/v3
-COPY ./vscode-extensions.json /build/
 WORKDIR /build/
-
-RUN ./check_sorted_json.sh
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
