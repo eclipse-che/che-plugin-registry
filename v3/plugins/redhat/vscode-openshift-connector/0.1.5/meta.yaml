@@ -15,6 +15,9 @@ spec:
     - image: "quay.io/eclipse/che-sidecar-openshift-connector:0.1.5-70438d2"
       name: "vscode-openshift-connector"
       memoryLimit: "1500Mi"
+      volumes:
+        - mountPath: "/home/theia/.kube"
+          name: "oc-config"
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-openshift-tools/vscode-openshift-connector-0.1.5.vsix
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
