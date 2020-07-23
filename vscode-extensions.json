@@ -23,7 +23,7 @@
     },
     {
       "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
-      "revision": "0.0.24"
+      "revision": "0.0.26"
     },
     {
       "repository": "https://github.com/camel-tooling/vscode-camelk",
