@@ -10,6 +10,9 @@ publisher: redhat
 repository: https://github.com/windup/rhamt-vscode-extension
 category: Other
 firstPublicationDate: "2020-03-27"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/mta/latest
 spec:
   endpoints:
   - name: "configuration-endpoint"
