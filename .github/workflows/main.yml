@@ -11,4 +11,4 @@ jobs:
     - name: Run script which checks container image digest
       run: |
         sudo pip install yq
-        /bin/bash .ci/devfile-images-check.sh
+        /bin/bash .ci/digest-validation-pr.sh

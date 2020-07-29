@@ -16,7 +16,7 @@ PR_FILES_CHANGED=$(git --no-pager diff --name-only HEAD "$(git merge-base HEAD o
 export PR_FILES_CHANGED
 
 # filterPluginsYamls function filter yamls from PR into a new array => FILES_CHANGED_ARRAY.
-function filterDevFileYamls() {
+function filterPluginsYamls() {
     local SCRIPT
     SCRIPT=$(readlink -f "$0")
 
@@ -27,15 +27,15 @@ function filterDevFileYamls() {
     do  
         # Filter only files which are in v3 folder and finish with .yaml extension
         if [[ $files =~ ^v3.*meta.yaml$ ]]; then
-            echo "[INFO] Added/Changed new devfile in the current PR: ${files}"
-            FILES_CHANGED_ARRAY+=("${ROOT_DIR}/"$files)
+            echo "[INFO] Added/Changed new plugins in the current PR: ${files}"
+            FILES_CHANGED_ARRAY+=("${ROOT_DIR}/""$files")
             export FILES_CHANGED_ARRAY
         fi
     done 
 }
 
-# checkDevFileImages get the container images from changed meta.yaml files in PR and check if they have digest.
-function checkDevFileImages() {
+# checkDecheckPluginsImagesvFileImages get the container images from changed meta.yaml files in PR and check if they have digest.
+function checkPluginsImages() {
     IMAGES=$(yq -r '..|.image?' "${FILES_CHANGED_ARRAY[@]}" | grep -v "null" | uniq)
     export IMAGES
 
@@ -52,5 +52,5 @@ function checkDevFileImages() {
     done
 }
 
-filterDevFileYamls
-checkDevFileImages
+filterPluginsYamls
+checkPluginsImages
