@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/eclipse-cdt/cdt-vscode.git
 category: Language
 firstPublicationDate: '2020-06-03'
+deprecate:
+  automigrate: true
+  migrateTo: eclipse-cdt/cdt-vscode/latest
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-clang:8-83adb3a
