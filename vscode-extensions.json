@@ -10,7 +10,8 @@
     },
     {
       "repository": "https://github.com/Azure/vscode-kubernetes-tools",
-      "revision": "1.2.0"
+      "revision": "1.2.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-kubernetes-tooling"
     },
     {
       "repository": "https://github.com/bash-lsp/bash-language-server",
@@ -19,19 +20,26 @@
     },
     {
       "repository": "https://github.com/bmewburn/vscode-intelephense",
-      "revision": "v1.3.11"
+      "revision": "v1.3.11",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-php",
+      "dockerfileRevision": "7"
     },
     {
       "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
-      "revision": "0.0.26"
+      "revision": "0.0.26",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "11"
     },
     {
       "repository": "https://github.com/camel-tooling/vscode-camelk",
-      "revision": "0.0.14"
+      "revision": "0.0.14",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-camelk"
     },
     {
       "repository": "https://github.com/camel-tooling/vscode-wsdl2rest",
-      "revision": "0.0.11"
+      "revision": "0.0.11",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "8"
     },
     {
       "repository": "https://github.com/cdr/code-server",
@@ -48,7 +56,9 @@
     {
       "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
       "revision": "0.12.0",
-      "directory": "clients/cobol-lsp-vscode-extension/"
+      "directory": "clients/cobol-lsp-vscode-extension/",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "11"
     },
     {
       "repository": "https://github.com/eclipse/che-che4z-lsp-for-hlasm",
@@ -57,15 +67,20 @@
     },
     {
       "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
-      "revision": "0.1.0"
+      "revision": "0.1.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-dependency-analytics",
+      "dockerfileRevision": "0.0.13"
     },
     {
       "repository": "https://github.com/felixfbecker/vscode-php-debug",
-      "revision": "v1.13.0"
+      "revision": "v1.13.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-php",
+      "dockerfileRevision": "7"
     },
     {
       "repository": "https://github.com/golang/vscode-go",
-      "revision": "v0.14.4"
+      "revision": "v0.14.4",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-go"
     },
     {
       "repository": "https://github.com/MicroShed/mp-starter-vscode-ext",
@@ -73,7 +88,9 @@
     },
     {
       "repository": "https://github.com/Microsoft/vscode-node-debug2",
-      "revision": "v1.42.3"
+      "revision": "v1.42.3",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-node",
+      "dockerfileRevision": "10"
     },
     {
       "repository": "https://github.com/microsoft/vscode-pull-request-github",
@@ -81,29 +98,41 @@
     },
     {
       "repository": "https://github.com/Microsoft/vscode-python",
-      "revision": "2019.5.18875"
+      "revision": "2019.5.18875",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-python",
+      "dockerfileRevision": "3.7.3"
     },
     {
       "repository": "https://github.com/pizzafactory-contorno/vscode-libra-move",
-      "revision": "v0.0.10-ddc0d3d"
+      "revision": "v0.0.10-ddc0d3d",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "8"
     },
     {
       "repository": "https://github.com/PizzaFactory/xtend-ide-extensions",
       "revision": "v0.1.0",
-      "directory": "xtend-vscode-extension/"
+      "directory": "xtend-vscode-extension/",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "8"
     },
     {
       "repository": "https://github.com/PizzaFactory/xtext-ide-extensions/",
       "revision": "v0.4.0",
-      "directory": "xtext-vscode-extension/"
+      "directory": "xtext-vscode-extension/",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "8"
     },
     {
       "repository": "https://github.com/redhat-developer/netcoredbg-theia-plugin",
-      "revision": "v0.0.3"
+      "revision": "v0.0.3",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-dotnet",
+      "dockerfileRevision": "3.1.301"
     },
     {
       "repository": "https://github.com/redhat-developer/omnisharp-theia-plugin",
-      "revision": "v0.0.6"
+      "revision": "v0.0.6",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-dotnet",
+      "dockerfileRevision": "3.1.301"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-didact",
@@ -111,11 +140,14 @@
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-java",
-      "revision": "v0.63.0"
+      "revision": "v0.63.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "11"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-openshift-tools",
-      "revision": "v0.1.5"
+      "revision": "v0.1.5",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-openshift-connector"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-project-initializer",
@@ -123,15 +155,21 @@
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-quarkus",
-      "revision": "v1.3.0"
+      "revision": "v1.5.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "11"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-xml",
-      "revision": "0.13.0"
+      "revision": "0.13.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-java",
+      "dockerfileRevision": "11"
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-yaml",
-      "revision": "0.8.0"
+      "revision": "0.8.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-node",
+      "dockerfileRevision": "10"
     },
     {
       "repository": "https://github.com/rogalmic/vscode-bash-debug",
@@ -139,7 +177,9 @@
     },
     {
       "repository": "https://github.com/scalameta/metals-vscode",
-      "revision": "v1.9.1"
+      "revision": "v1.9.1",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-scala",
+      "dockerfileRevision": "0.9.0"
     },
     {
       "repository": "https://github.com/SebastianZaha/vscode-emacs-friendly",
@@ -147,7 +187,8 @@
     },
     {
       "repository": "https://github.com/SonarSource/sonarlint-vscode",
-      "revision": "1.16.0"
+      "revision": "1.16.0",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-sonarlint"
     },
     {
       "repository": "https://github.com/spgennard/vscode_cobol",
@@ -155,7 +196,8 @@
     },
     {
       "repository": "https://github.com/testthedocs/vscode-vale",
-      "revision": "0.9.1"
+      "revision": "0.9.1",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-vale"
     },
     {
       "repository": "https://github.com/VSCodeVim/Vim",
@@ -167,7 +209,9 @@
     },
     {
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
-      "revision": "v1.5.1"
+      "revision": "v1.5.1",
+      "dockerfile": "https://github.com/che-dockerfiles/che-sidecar-node",
+      "dockerfileRevision": "10"
     }
   ]
 }
