@@ -17,7 +17,7 @@ spec:
       memoryLimit: '384Mi'
       volumes:
         - mountPath: "/home/theia/.kube"
-          name: "kube-config"
+          name: "kube"
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix
