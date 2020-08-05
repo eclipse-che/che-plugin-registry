@@ -6,7 +6,7 @@ type: Che Plugin
 displayName: Che Theia Dev Plugin
 title: Che Theia Dev Plugin
 description: Che Theia Dev Plugin
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/images/eclipse-che-logo.png
 repository: https://github.com/che-incubator/che-theia-dev-plugin/
 firstPublicationDate: "2019-02-05"
 category: Other

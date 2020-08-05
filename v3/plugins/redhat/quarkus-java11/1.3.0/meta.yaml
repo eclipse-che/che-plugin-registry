@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Quarkus Tools with Java 11
 title: Quarkus Tools by Red Hat
 description: This plug-in provides support for Quarkus development via a Quarkus language server, Java jdt.ls and Java Debugger.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/redhat-developer/vscode-quarkus/v1.3.0/icons/logo.png
 repository: https://github.com/redhat-developer/vscode-quarkus
 category: Language
 firstPublicationDate: "2020-05-04"

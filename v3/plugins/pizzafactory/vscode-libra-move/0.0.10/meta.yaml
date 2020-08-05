@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Libra's Move Language
 title: Libra's Move Language
 description: VS Code extension that provides Libra's Move Language Server. Code is provided by SDKBox. Packaging by PizzaFactory.
-icon: https://commons.wikimedia.org/wiki/File:Libra_logo_icon.svg
+icon: https://raw.githubusercontent.com/pizzafactory-contorno/vscode-libra-move/v0.0.10-ddc0d3d/logo.png
 firstPublicationDate: "2019-09-24"
 category: Language
 repository: https://github.com/pizzafactory-contorno/vscode-libra-move/

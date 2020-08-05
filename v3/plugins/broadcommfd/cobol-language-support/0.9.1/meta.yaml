@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: COBOL Language Support
 title: COBOL Language Support
 description: COBOL Language Support standardizes the communication between language tooling and your code editor using the Language Server Protocol (LSP)
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/eclipse/che-che4z-lsp-for-cobol/0.9.1/clients/cobol-lsp-vscode-extension/resources/logo.png
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
 category: Language
 firstPublicationDate: "2019-12-12"

@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Emacs keybindings
 title: vscode-emacs-friendly
 description: This plugin provides emacs keybindings and workflow.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/SebastianZaha/vscode-emacs-friendly/master/emacs_pacifica.png
 repository: https://github.com/SebastianZaha/vscode-emacs-friendly
 category: Editor
 firstPublicationDate: '2019-12-16'

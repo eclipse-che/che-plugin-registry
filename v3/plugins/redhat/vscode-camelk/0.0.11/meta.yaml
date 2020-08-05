@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Tooling for Apache Camel K
 title: Tooling for Apache Camel K
 description: Support for Apache Camel K functionality
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/camel-tooling/vscode-camelk/0.0.11/icons/icon128.png
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
 firstPublicationDate: '2020-01-15'

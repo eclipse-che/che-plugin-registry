@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Bash IDE
 title: A launguage server for Bash.
 description: Visual Studio Code extension utilizing the bash language server, that is based on Tree Sitter and its grammar for Bash and supports explainshell integration.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/bash-lsp/bash-language-server/vscode-client-1.10.2/vscode-client/assets/bash-logo.png
 repository: https://github.com/bash-lsp/bash-language-server
 category: Other
 firstPublicationDate: '2020-07-04'
