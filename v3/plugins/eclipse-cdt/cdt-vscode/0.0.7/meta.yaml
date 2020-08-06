@@ -1,18 +1,15 @@
 apiVersion: v2
-publisher: che-incubator
-name: cpptools
-version: 0.1.5
+publisher: eclipse-cdt
+name: cdt-vscode
+version: 0.0.7
 type: VS Code extension
 displayName: C/C++ tools
 title: C/C++ intelliSense, debugging and code browsing
 description: C/C++ intelliSense, debugging and code browsing
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
-repository: https://github.com/eclipse-cdt/cdt-vscode.git
+repository: https://github.com/eclipse-cdt/cdt-vscode
 category: Language
 firstPublicationDate: '2020-06-03'
-deprecate:
-  automigrate: true
-  migrateTo: eclipse-cdt/cdt-vscode/latest
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-clang:8-83adb3a

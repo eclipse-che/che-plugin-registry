@@ -96,6 +96,10 @@
       "directory": "clients/vscode-hlasmplugin/"
     },
     {
+      "repository": "https://github.com/eclipse-cdt/cdt-vscode",
+      "revision": "0.0.7"
+    },
+    {
       "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
       "revision": "0.1.0",
       "sidecar": {
