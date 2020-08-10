@@ -6,7 +6,7 @@ name: rhamt
 displayName: Red Hat Application Migration Toolkit
 title: Red Hat Application Migration Toolkit
 description: Application Migration and Modernization using RHAMT
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/windup/rhamt-vscode-extension/master/resources/mta.png
 publisher: redhat
 repository: https://github.com/windup/rhamt-vscode-extension
 category: Other

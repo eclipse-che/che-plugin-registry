@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: YAML
 title: YAML Language Support by Red Hat, with built-in Kubernetes and Kedge syntax support
 description: Provides comprehensive YAML Language support to Visual Studio Code, via the yaml-language-server, with built-in Kubernetes and Kedge syntax support.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/redhat-developer/vscode-yaml/0.7.2/icon/icon128.png
 repository: https://github.com/redhat-developer/vscode-yaml
 category: Language
 firstPublicationDate: "2020-05-07"

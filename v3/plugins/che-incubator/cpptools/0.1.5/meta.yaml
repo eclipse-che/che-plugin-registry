@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: C/C++ tools
 title: C/C++ intelliSense, debugging and code browsing
 description: C/C++ intelliSense, debugging and code browsing
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/eclipse-cdt/cdt-vscode/master/images/cdt_logo.png
 repository: https://github.com/eclipse-cdt/cdt-vscode.git
 category: Language
 firstPublicationDate: '2020-06-03'

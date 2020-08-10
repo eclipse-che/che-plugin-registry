@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Zowe Explorer
 title: Zowe Explorer
 description: VS Code extension, powered by Zowe CLI, that streamlines interaction with mainframe data sets, USS files, and jobs
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/zowe/vscode-extension-for-zowe/v1.5.1/resources/zowe_logo.png
 repository: https://github.com/zowe/vscode-extension-for-zowe
 category: Other
 spec:

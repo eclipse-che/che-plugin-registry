@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: GitHub Pull Requests
 title: Pull Request Provider for GitHub.
 description: This extension allows you to review and manage GitHub pull requests.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/microsoft/vscode-pull-request-github/v0.8.0/resources/icons/github_logo.png
 repository: https://github.com/microsoft/vscode-pull-request-github
 category: Other
 firstPublicationDate: '2019-07-4'

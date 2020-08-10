@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: GitLens
 title: GitLens
 description: Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more
-icon: https://raw.githubusercontent.com/eamodio/vscode-gitlens/master/images/gitlens-icon.png
+icon: https://raw.githubusercontent.com/eamodio/vscode-gitlens/v10.2.1/images/gitlens-icon.png
 repository: https://github.com/eamodio/vscode-gitlens
 category: Other
 firstPublicationDate: '2020-05-26'

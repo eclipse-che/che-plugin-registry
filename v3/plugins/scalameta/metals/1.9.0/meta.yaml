@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Scala (Metals)
 title: Scala language server with rich IDE features
 description: This plug-in provides support for Scala development via the Metals language server.
-icon: https://rawcdn.githack.com/OlegIlyenko/scala-icon/c453c6f67dfcc1dbf0ca1e437d32d04f1d710983/scala-icon.svg
+icon: https://raw.githubusercontent.com/scalameta/metals-vscode/v1.9.0/images/logo.png
 repository: https://github.com/scalameta/metals-vscode
 category: Language
 firstPublicationDate: "2020-02-04"

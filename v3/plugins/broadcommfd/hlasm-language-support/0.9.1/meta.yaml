@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: HLASM Language Support
 title: HLASM Language Support
 description: Code completion, highlighting, browsing and validation for High Level Assembler
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/eclipse/che-che4z-lsp-for-hlasm/0.9.1/clients/vscode-hlasmplugin/resources/logo.png
 repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm
 category: Language
 spec:
