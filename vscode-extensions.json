@@ -97,7 +97,7 @@
     },
     {
       "repository": "https://github.com/eclipse-cdt/cdt-vscode",
-      "revision": "0.0.7"
+      "revision": "2edfc3a3474bc7a732014e1a4631561b991f845a"
     },
     {
       "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
