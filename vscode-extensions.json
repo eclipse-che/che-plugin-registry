@@ -27,10 +27,9 @@
       "repository": "https://github.com/bmewburn/vscode-intelephense",
       "revision": "v1.3.11",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-5c5ecc5",
+        "image": "quay.io/eclipse/che-sidecar-php:7-fc377b6",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-php",
-          "revision": "7"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
       }
     },
@@ -114,10 +113,9 @@
       "repository": "https://github.com/felixfbecker/vscode-php-debug",
       "revision": "v1.13.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-5c5ecc5",
+        "image": "quay.io/eclipse/che-sidecar-php:7-fc377b6",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-php",
-          "revision": "7"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
       }
     },
