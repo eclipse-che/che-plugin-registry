@@ -161,9 +161,8 @@ export class Report {
                 upstreamSidecarImageVersion = `${extension.sidecar.source.revision}-${sidecarSHA1}`;
                 entry.sidecarNeedsUpdating = registryImageVersion !== upstreamSidecarImageVersion;
               } else {
-                const sidecarVersion = (await fs.readFile(path.join(entry.sidecarClonePath, 'VERSION'), 'utf-8')).split(
-                  /\r?\n/
-                )[0];
+                const sidecarRepoVersion = await fs.readFile(path.join(entry.sidecarClonePath, 'VERSION'), 'utf-8');
+                const sidecarVersion = sidecarRepoVersion.replace(/\n/gi, '');
                 upstreamSidecarImageVersion = `${sidecarVersion}-${sidecarSHA1}`;
               }
               entry.upstreamSidecarImage = upstreamSidecarImageVersion;
