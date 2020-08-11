@@ -11,7 +11,7 @@ repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
 category: Language
 spec:
   containers:
-    - image: quay.io/eclipse/che-sidecar-java:11-f76ca45
+    - image: quay.io/eclipse/che-sidecar-java:11-a06cbb1
       memoryLimit: 1Gi
       name: cobol-language-support
       mountSources: true
