@@ -139,10 +139,9 @@
       "repository": "https://github.com/Microsoft/vscode-node-debug2",
       "revision": "v1.42.3",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-0cb5d78",
+        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-node",
-          "revision": "10"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
       }
     },
@@ -273,10 +272,9 @@
       "repository": "https://github.com/redhat-developer/vscode-yaml",
       "revision": "0.8.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-0cb5d78",
+        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-node",
-          "revision": "10"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
       }
     },
@@ -335,10 +333,9 @@
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
       "revision": "v1.5.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-0cb5d78",
+        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-node",
-          "revision": "10"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
       }
     }
