@@ -195,10 +195,9 @@
       "repository": "https://github.com/redhat-developer/netcoredbg-theia-plugin",
       "revision": "v0.0.3",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-117e653",
+        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-4bdcdc2",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet",
-          "revision": "3.1.301"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet"
         }
       }
     },
@@ -206,10 +205,9 @@
       "repository": "https://github.com/redhat-developer/omnisharp-theia-plugin",
       "revision": "v0.0.6",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-117e653",
+        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-4bdcdc2",
         "source": {
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet",
-          "revision": "3.1.301"
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet"
         }
       }
     },
