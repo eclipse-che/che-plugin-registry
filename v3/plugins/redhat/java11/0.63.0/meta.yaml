@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2020-06-11"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+    - image: "quay.io/eclipse/che-sidecar-java:11-a06cbb1"
       name: vscode-java
       memoryLimit: "1500Mi"
       volumes:
