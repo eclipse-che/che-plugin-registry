@@ -81,7 +81,7 @@
       "revision": "0.12.0",
       "directory": "clients/cobol-lsp-vscode-extension/",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-a06cbb1",
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -218,7 +218,7 @@
       "repository": "https://github.com/redhat-developer/vscode-java",
       "revision": "v0.63.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-a06cbb1",
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -242,7 +242,7 @@
       "repository": "https://github.com/redhat-developer/vscode-quarkus",
       "revision": "v1.5.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-a06cbb1",
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -252,7 +252,7 @@
       "repository": "https://github.com/redhat-developer/vscode-xml",
       "revision": "0.13.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-a06cbb1",
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
