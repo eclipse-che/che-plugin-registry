@@ -11,7 +11,7 @@ repository: https://github.com/zowe/vscode-extension-for-zowe
 category: Other
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-node:10-89911cf"
+    - image: "quay.io/eclipse/che-sidecar-node:12-026416c"
       name: zowe-explorer
       memoryLimit: "512Mi"
       env:

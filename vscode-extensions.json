@@ -27,7 +27,7 @@
       "repository": "https://github.com/bmewburn/vscode-intelephense",
       "revision": "v1.3.11",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-fc377b6",
+        "image": "quay.io/eclipse/che-sidecar-php:7-9854327",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
@@ -100,7 +100,7 @@
       "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
       "revision": "0.1.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-dependency-analytics:0.0.13-ff8919f",
+        "image": "quay.io/eclipse/che-sidecar-dependency-analytics:0.0.13-2f3b058",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-dependency-analytics"
         }
@@ -110,7 +110,7 @@
       "repository": "https://github.com/felixfbecker/vscode-php-debug",
       "revision": "v1.13.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-fc377b6",
+        "image": "quay.io/eclipse/che-sidecar-php:7-9854327",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
@@ -134,7 +134,7 @@
       "repository": "https://github.com/Microsoft/vscode-node-debug2",
       "revision": "v1.42.3",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
@@ -262,7 +262,7 @@
       "repository": "https://github.com/redhat-developer/vscode-yaml",
       "revision": "0.8.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
@@ -322,7 +322,7 @@
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
       "revision": "v1.5.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-89911cf",
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }

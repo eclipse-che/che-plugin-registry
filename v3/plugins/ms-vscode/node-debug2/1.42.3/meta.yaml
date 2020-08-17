@@ -13,7 +13,7 @@ category: Debugger
 firstPublicationDate: '2020-06-23'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-node:10-89911cf"
+  - image: "quay.io/eclipse/che-sidecar-node:12-026416c"
     name: vscode-node-debug
     memoryLimit: '512Mi'
   extensions:
