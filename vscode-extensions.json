@@ -10,9 +10,9 @@
     },
     {
       "repository": "https://github.com/Azure/vscode-kubernetes-tools",
-      "revision": "1.2.0",
+      "revision": "1.2.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.0-3ea57d5",
+        "image": "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.1-6144144",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-kubernetes-tooling"
         }
