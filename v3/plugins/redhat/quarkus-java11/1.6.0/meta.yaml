@@ -1,0 +1,24 @@
+apiVersion: v2
+publisher: redhat
+name: quarkus-java11
+version: 1.6.0
+type: VS Code extension
+displayName: Quarkus Tools with Java 11
+title: Quarkus Tools by Red Hat
+description: This plug-in provides support for Quarkus development via a Quarkus language server, Java jdt.ls and Java Debugger.
+icon: https://raw.githubusercontent.com/redhat-developer/vscode-quarkus/v1.6.0/icons/logo.png
+repository: https://github.com/redhat-developer/vscode-quarkus
+category: Language
+firstPublicationDate: "2020-08-18"
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-java:11-f76ca45"
+      name: vscode-quarkus
+      memoryLimit: "1500Mi"
+      volumes:
+      - mountPath: "/home/theia/.m2"
+        name: m2
+  extensions:
+    - https://open-vsx.org/api/vscjava/vscode-java-debug/0.27.1/file/vscjava.vscode-java-debug-0.27.1.vsix
+    - https://open-vsx.org/api/redhat/java/0.65.0/file/redhat.java-0.65.0.vsix
+    - https://open-vsx.org/api/redhat/vscode-quarkus/1.6.0/file/redhat.vscode-quarkus-1.6.0.vsix
