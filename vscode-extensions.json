@@ -320,7 +320,7 @@
     },
     {
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
-      "revision": "v1.5.1",
+      "revision": "v1.8.0",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
         "source": {
