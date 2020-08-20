@@ -1,5 +1,5 @@
 apiVersion: v2
-version: 0.0.37
+version: 0.0.46
 type: VS Code extension
 name: mta
 displayName: Migration Toolkit for Applications (MTA)
@@ -9,10 +9,7 @@ icon: https://raw.githubusercontent.com/windup/rhamt-vscode-extension/master/res
 publisher: redhat
 repository: https://github.com/windup/rhamt-vscode-extension
 category: Other
-firstPublicationDate: "2020-06-26"
-deprecate:
-  automigrate: true
-  migrateTo: redhat/mta/latest
+firstPublicationDate: "2020-08-20"
 spec:
   endpoints:
   - name: "configuration-endpoint"
@@ -37,4 +34,4 @@ spec:
       - name: mta-vscode
         mountPath: "/home/theia/home/theia/redhat.rhamt-vscode-extension"
   extensions:
-    - https://download.jboss.org/jbosstools/adapters/stable/rhamt-vscode-extension/rhamt-vscode-extension-0.0.37-589.vsix
+    - https://download.jboss.org/jbosstools/adapters/stable/rhamt-vscode-extension/rhamt-vscode-extension-0.0.46-639.vsix
