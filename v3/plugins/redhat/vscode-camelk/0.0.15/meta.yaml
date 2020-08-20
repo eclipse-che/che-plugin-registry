@@ -10,6 +10,9 @@ icon: https://raw.githubusercontent.com/camel-tooling/vscode-camelk/0.0.15/icons
 repository: https://github.com/camel-tooling/vscode-camelk
 category: Language
 firstPublicationDate: '2020-07-06'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-camelk/latest
 spec:
   containers:
   - image: "quay.io/eclipse/che-sidecar-camelk:0.0.15-a578c4a"

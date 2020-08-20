@@ -45,9 +45,9 @@
     },
     {
       "repository": "https://github.com/camel-tooling/vscode-camelk",
-      "revision": "0.0.14",
+      "revision": "0.0.16",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-camelk:0.0.15-a578c4a",
+        "image": "quay.io/eclipse/che-sidecar-camelk:0.0.16-7d7538f",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-camelk"
         }
