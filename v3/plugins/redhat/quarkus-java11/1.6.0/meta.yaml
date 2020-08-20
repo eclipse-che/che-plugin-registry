@@ -20,5 +20,5 @@ spec:
         name: m2
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-    - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.65.0-2321.vsix
+    - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
     - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.6.0-390.vsix
