@@ -24,6 +24,16 @@
       "directory": "vscode-client"
     },
     {
+      "repository": "https://github.com/bazelbuild/vscode-bazel",
+      "revision": "0.3.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-bazel:3.2.0-e352e6b",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-bazel"
+        }
+      }
+    },
+    {
       "repository": "https://github.com/bmewburn/vscode-intelephense",
       "revision": "v1.3.11",
       "sidecar": {
