@@ -18,4 +18,4 @@ spec:
        - name: ZOWE_CLI_HOME
          value: /projects/.zowe
   extensions:
-    - https://github.com/zowe/vscode-extension-for-zowe/releases/download/v1.8.0/vscode-extension-for-zowe-v1.8.0.vsix
+    - https://github.com/eclipse/che-che4z/releases/download/v2.1.0/vscode-extension-for-zowe-v1.8.0-che.vsix
