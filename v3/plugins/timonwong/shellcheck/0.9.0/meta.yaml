@@ -1,0 +1,20 @@
+
+apiVersion: v2
+publisher: timonwong
+name: shellcheck
+version: 0.9.0
+type: VS Code extension
+displayName: ShellCheck
+title: shellcheck
+description: 
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/timonwong/vscode-shellcheck
+category: Language
+firstPublicationDate: '2020-08-21'
+spec:
+  containers:
+  - image: "quay.io/aandriienko/che-sidecar-shellcheck:v0.7.1-d3cfda6"
+    name: shellcheck
+    memoryLimit: '128Mi'
+  extensions:
+  - https://open-vsx.org/api/timonwong/shellcheck/0.9.0/file/timonwong.shellcheck-0.9.0.vsix

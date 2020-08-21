@@ -1,6 +1,10 @@
 {
   "extensions": [
     {
+      "repository": "https://github.com/timonwong/vscode-shellcheck",
+      "revision": "v0.9.0"
+    },
+    {
       "repository": "https://bitbucket.org/atlassianlabs/atlascode",
       "revision": "2.6.6"
     },
