@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: ms-vscode
+name: protobuf
+version: 0.4.2
+type: VS Code extension
+displayName: Protobuf
+title: Google's protobuf .proto file support
+description: This extension adds rich language support for the proto3 syntax
+icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+repository: https://github.com/zxh0/vscode-proto3
+category: Language
+firstPublicationDate: '2016-08-25'
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-protobuf:0.4.2-a79a2ff"
+      name: vscode-proto3
+      memoryLimit: '256Mi'
+  extensions:
+    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/zxh404/vsextensions/vscode-proto3/0.4.2/vspackage
