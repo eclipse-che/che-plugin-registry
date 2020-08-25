@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: vuejs
+name: vetur
+version: 0.26.1
+type: VS Code extension
+displayName: Vetur
+title: Rich Vue.js support
+description: Vue tooling for VS Code
+icon: https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg
+repository: https://github.com/vuejs/vetur.git
+category: Language
+firstPublicationDate: "2016-11-06"
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-sidecar-node:10-e025a40'
+      name: vetur
+      memoryLimit: '512Mi'
+  extensions:
+    - https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix
