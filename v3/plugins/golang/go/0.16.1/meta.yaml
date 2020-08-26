@@ -9,7 +9,7 @@ description: This extension provides rich language support for the Go programmin
 icon: https://raw.githubusercontent.com/golang/vscode-go/v0.16.1/images/go-logo-blue.png
 repository: https://github.com/golang/vscode-go
 category: Language
-firstPublicationDate: '2020-06-08'
+firstPublicationDate: '2015-11-23'
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-go:1.14.4-afebf70"
