@@ -31,6 +31,7 @@ spec:
     selfSignedCert: true
   auth:
     updateAdminPassword: false
+    openShiftoAuth: false
 EOL
 )"
 
