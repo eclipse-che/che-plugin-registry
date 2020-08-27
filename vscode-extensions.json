@@ -85,6 +85,16 @@
       }
     },
     {
+      "repository": "https://github.com/castwide/vscode-solargraph",
+      "revision": "212e76d",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-ruby:2.6-76f1125",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-ruby"
+        }
+      }
+    },
+    {
       "repository": "https://github.com/cdr/code-server",
       "revision": "2.1650-vsc1.39.2"
     },
