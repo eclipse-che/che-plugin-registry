@@ -328,7 +328,7 @@
       "repository": "https://github.com/vuejs/vetur",
       "revision": "0.26.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:10-e025a40",
+        "image": "quay.io/eclipse/che-sidecar-node:12-da9c36b",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
