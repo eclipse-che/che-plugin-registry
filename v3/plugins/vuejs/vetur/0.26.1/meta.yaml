@@ -9,7 +9,7 @@ description: Vue tooling for VS Code
 icon: https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg
 repository: https://github.com/vuejs/vetur.git
 category: Language
-firstPublicationDate: "2016-11-06"
+firstPublicationDate: "2020-08-26"
 spec:
   containers:
     - image: 'quay.io/eclipse/che-sidecar-node:10-e025a40'
