@@ -7,7 +7,7 @@ displayName: Vetur
 title: Rich Vue.js support
 description: Vue tooling for VS Code
 icon: https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg
-repository: https://github.com/vuejs/vetur.git
+repository: https://github.com/vuejs/vetur
 category: Language
 firstPublicationDate: "2020-08-26"
 spec:
