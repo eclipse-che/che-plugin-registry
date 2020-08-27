@@ -325,6 +325,16 @@
       "revision": "v1.14.5"
     },
     {
+      "repository": "https://github.com/vuejs/vetur",
+      "revision": "0.26.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-node:12-da9c36b",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
+        }
+      }
+    },
+    {
       "repository": "https://github.com/windup/rhamt-vscode-extension",
       "revision": "617222def40678e2ef375f713b969c93ea313a69"
     },
