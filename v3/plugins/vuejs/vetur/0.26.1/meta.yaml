@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2020-08-26"
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-sidecar-node:10-e025a40'
+    - image: 'quay.io/eclipse/che-sidecar-node:12-da9c36b'
       name: vetur
       memoryLimit: '512Mi'
   extensions:
