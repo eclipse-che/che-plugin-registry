@@ -9,7 +9,7 @@ description: This extension adds rich language support for the proto3 syntax
 icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://github.com/zxh0/vscode-proto3
 category: Language
-firstPublicationDate: '2016-08-25'
+firstPublicationDate: '2020-08-26'
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-protobuf:0.4.2-a79a2ff"
