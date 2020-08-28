@@ -1,5 +1,5 @@
 apiVersion: v2
-publisher: ms-vscode
+publisher: zxh404
 name: protobuf
 version: 0.4.2
 type: VS Code extension
