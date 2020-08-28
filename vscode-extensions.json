@@ -340,7 +340,7 @@
     },
     {
       "repository": "https://github.com/zxh0/vscode-proto3",
-      "revision": "0.4.2",
+      "revision": "c4d9eeb54294e3cee86254261edf036901f29dec",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-protobuf:0.4.2-a79a2ff",
         "source": {
