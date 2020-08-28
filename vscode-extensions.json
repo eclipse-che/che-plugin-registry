@@ -332,7 +332,7 @@
     },
     {
       "repository": "https://github.com/VSCodeVim/Vim",
-      "revision": "v1.15.0"
+      "revision": "v1.16.0"
     },
     {
       "repository": "https://github.com/vuejs/vetur",
