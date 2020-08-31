@@ -10,6 +10,9 @@ icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
 repository: https://techdocs.broadcom.com/content/broadcom/techdocs/us/en/ca-mainframe-software/devops/ca-intertest-eclipse-help/11-0/ca-intertest-help.html
 category: Debugger
 firstPublicationDate: "2019-12-12"
+deprecate:
+  automigrate: true
+  migrateTo: broadcommfd/debugger-for-mainframe/latest
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb
