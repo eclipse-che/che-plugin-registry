@@ -1,6 +1,6 @@
 apiVersion: v2
 publisher: bazelbuild
-name: bazel
+name: vscode-bazel
 version: 0.3.0
 type: VS Code extension
 displayName: Bazel
