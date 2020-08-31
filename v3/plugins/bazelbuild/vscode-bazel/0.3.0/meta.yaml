@@ -1,12 +1,12 @@
 apiVersion: v2
-publisher: ms-vscode
-name: bazel
+publisher: bazelbuild
+name: vscode-bazel
 version: 0.3.0
 type: VS Code extension
 displayName: Bazel
 title: Starlark files and bazel build support
 description: This extension adds rich language support for Starlark
-icon: https://upload.wikimedia.org/wikipedia/en/7/7d/Bazel_logo.svg
+icon: https://raw.githubusercontent.com/bazelbuild/vscode-bazel/master/media/bazel-logo.png
 repository: https://github.com/bazelbuild/vscode-bazel
 category: Language
 firstPublicationDate: '2018-11-28'
