@@ -54,7 +54,9 @@ export interface Entry {
 export class Report {
   // log the error and cleanup clone folder
   async handleError(entry: Entry, error: string): Promise<Entry> {
-    entry.errors.push(error);
+    // remove any carriage return, etc from the error message
+    const cleanupError = error.replace(/(\r\n|\n|\r)/gm, '');
+    entry.errors.push(cleanupError);
     console.log(`❌ ${entry.repositoryName} error:`, entry.errors);
 
     // cleanup any clone folder
