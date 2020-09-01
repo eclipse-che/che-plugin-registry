@@ -13,8 +13,6 @@
 set -e
 set -x
 
-source .ci/functional-tests-utils.sh
-
 #Download and import the "common-qe" functions
 export IS_TESTS_FAILED="false"
 DOWNLOADER_URL=https://raw.githubusercontent.com/eclipse/che/master/tests/.infra/centos-ci/common-qe/downloader.sh
