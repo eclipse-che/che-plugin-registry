@@ -44,6 +44,7 @@ installChectl
 yum install --assumeyes -d1 \
     patch \
     pcp \
+    wget \
     bzip2 \
     python3 \
     firefox
