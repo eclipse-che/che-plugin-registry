@@ -109,7 +109,7 @@ done
 cat test.log
 
 # Test to see if the tests failed, the TEST_PASSED default is set to true
-if test.log | grep -q "TESTS FAILED"
+if grep -q "TESTS FAILED" test.log;
 then
     IS_TESTS_FAILED=false
 fi
@@ -118,6 +118,7 @@ getOpenshiftLogs
 
 archiveArtifacts "che-plugin-registry-prcheck"
 
-if [ "$IS_TESTS_FAILED" == "true" ]; then
+if [ "$IS_TESTS_FAILED" == "true" ]; 
+then
   exit 1;
 fi
