@@ -34,7 +34,6 @@
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^25.2.2",
     "@types/js-yaml": "^3.12.5",
-    "@types/semver": "^7.3.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "eslint": "^7.0.0",
