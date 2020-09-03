@@ -53,7 +53,7 @@ async function iconsExtensions404Check() {
           if (metaYamlObject.icon) {
             extension.icon = metaYamlObject.icon;
             try {
-              await Axios.get(metaYamlObject.icon)
+              await Axios.get(metaYamlObject.icon);
             } catch (err) {
               extension.error = true;
               extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
@@ -98,6 +98,6 @@ async function iconsExtensions404Check() {
       break;
     case 'all':
     default:
-      console.log("all")
-    }
+      await iconsExtensions404Check();
+  }
 })();
