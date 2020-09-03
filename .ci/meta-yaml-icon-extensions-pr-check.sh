@@ -12,7 +12,7 @@
 set -e
 set -o pipefail
 
-cd ./tools/automation
+cd ./.ci/pr-check
 yarn
 yarn run compile
-node ./lib/pr-check-icons-extensions-404.js
+node ./lib/pr-check.js icons-extensions-404

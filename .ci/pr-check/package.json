@@ -1,9 +1,9 @@
 {
-  "name": "plugin-build-update-automation",
+  "name": "plugin-registry-pr-checks",
   "version": "0.0.0",
   "private": true,
-  "description": "Scripts for updating, adding, removing, and building plugins in the Che Plugin Registry",
-  "main": "check-plugin-updates.js",
+  "description": "Scripts for running all PR checks in the Che Plugin Registry",
+  "main": "pr-check.js",
   "scripts": {
     "build": "yarn run format && yarn run compile && yarn run lint",
     "compile": "tsc --project .",
@@ -21,17 +21,19 @@
   "bugs": {
     "url": "https://github.com/eclipse/che/issues"
   },
-  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
+  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/.ci/pr-check/README.md",
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/glob": "^7.1.3",
+    "axios": "^0.20.0",
     "fs-extra": "^9.0.1",
-    "handlebars": "^4.7.6",
-    "moment": "^2.27.0",
-    "semver": "^7.3.2",
-    "simple-git": "^2.12.0"
+    "glob": "^7.1.6",
+    "js-yaml": "^3.14.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^25.2.2",
+    "@types/js-yaml": "^3.12.5",
     "@types/semver": "^7.3.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
@@ -47,8 +49,7 @@
     "ts-mockito": "^2.5.0",
     "ts-node": "^8.10.1",
     "tslint": "^6.1.2",
-    "typescript": "^3.9.0",
-    "vuepress": "^1.5.2"
+    "typescript": "^3.9.0"
   },
   "jest": {
     "collectCoverage": true,

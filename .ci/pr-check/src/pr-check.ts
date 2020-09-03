@@ -18,17 +18,17 @@ export interface Extension {
   name?: string;
   version?: string;
   icon?: string;
-  vsix?: string[];
+  vsixList?: string[];
   error: boolean;
   errorMessage?: string;
 }
 
 const metaYamlFiles = glob.sync('./../../v3/plugins/**/*.yaml');
 
-async function checkAllPlugins() {
+async function iconsExtensions404Check() {
   const extensions: Extension[] = await Promise.all(
     metaYamlFiles.map(
-      async (metaYamlFile): Promise<Extension> => {
+      async (metaYamlFile: string): Promise<Extension> => {
         let metaYaml = await fs.readFile(metaYamlFile, 'utf-8');
         let metaYamlString;
         let extension: Extension = {
@@ -44,32 +44,33 @@ async function checkAllPlugins() {
 
         if (metaYamlString) {
           let metaYamlObject: { icon?: string; name: string; version: string; spec?: { extensions?: [string] } };
-          metaYamlObject = JSON.parse(JSON.stringify(metaYamlString, null, 2));
+          metaYamlObject = JSON.parse(JSON.stringify(metaYamlString));
+          // metaYamlObject = JSON.parse(JSON.stringify(metaYamlString, null, 2));
           extension.name = metaYamlObject.name;
           extension.version = metaYamlObject.version;
 
           // Check the icon
           if (metaYamlObject.icon) {
             extension.icon = metaYamlObject.icon;
-            await Axios.get(metaYamlObject.icon)
-              .then((response) => {})
-              .catch((err) => {
-                extension.error = true;
-                extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
-              });
+            try {
+              await Axios.get(metaYamlObject.icon)
+            } catch (err) {
+              extension.error = true;
+              extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
+            }
           }
 
           // Check the vsix files, if there are any
           if (metaYamlObject.spec && metaYamlObject.spec.extensions) {
-            extension.vsix = [];
+            extension.vsixList = [];
             for (let vsix of metaYamlObject.spec.extensions) {
-              extension.vsix.push(vsix);
-              await Axios.get(vsix)
-                .then((response) => {})
-                .catch((err) => {
-                  extension.error = true;
-                  extension.errorMessage = `Failed to download ${metaYamlObject.name}'s vsix at ${vsix}`;
-                });
+              extension.vsixList.push(vsix);
+              try {
+                await Axios.get(vsix);
+              } catch (err) {
+                extension.error = true;
+                extension.errorMessage = `Failed to download ${metaYamlObject.name}'s vsix at ${vsix}`;
+              }
             }
           }
         }
@@ -90,5 +91,13 @@ async function checkAllPlugins() {
 }
 
 (async (): Promise<void> => {
-  await checkAllPlugins();
+  let myArgs = process.argv.slice(2);
+  switch (myArgs[0]) {
+    case 'icons-extensions-404':
+      await iconsExtensions404Check();
+      break;
+    case 'all':
+    default:
+      console.log("all")
+    }
 })();
