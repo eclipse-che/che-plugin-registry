@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Xtext Language
 title: Language support for Xtext
 description: VS Code extension that provides Xtext Language Server
-icon: https://camino.pizzafactory.jp/images/logos/pizza-flat.svg
+icon: https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/images/eclipse-che-logo.png
 firstPublicationDate: "2019-08-12"
 category: Language
 repository: https://github.com/PizzaFactory/xtext-ide-extensions/
