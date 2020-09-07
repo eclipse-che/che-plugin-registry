@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: blues-man
+name: quarkus-kotlin
+version: 0.1.0
+type: VS Code extension
+displayName: Quarkus Tools with Java 11 and Kotlin
+title: Quarkus Tools for Kotlin
+description: This plug-in provides support for Quarkus development via a Quarkus language server and Kotlin syntax.
+icon: https://raw.githubusercontent.com/JetBrains/logos/master/web/kotlin/kotlin.svg
+repository: https://github.com/redhat-developer/vscode-quarkus-kotlin
+category: Language
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
+      name: vscode-quarkus-kotlin
+      memoryLimit: "1500Mi"
+      volumes:
+      - mountPath: "/home/theia/.m2"
+        name: m2
+  extensions:
+    - https://github.com/mathiasfrohlich/vscode-kotlin/releases/download/1.7.1/Kotlin-1.7.1.vsix
+    - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.6.0-390.vsix
