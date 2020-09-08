@@ -37,7 +37,6 @@ async function iconsExtensions404Check() {
         try {
           metaYamlString = jsyaml.safeLoad(metaYaml, { schema: jsyaml.JSON_SCHEMA });
         } catch (yamlErr) {
-          console.error(`Error parsing YAML for ${metaYamlFile}: ${yamlErr}`);
           extension.error = true;
           extension.errorMessage = `Error parsing YAML for ${metaYamlFile}: ${yamlErr}`;
           return extension;
@@ -55,7 +54,6 @@ async function iconsExtensions404Check() {
             try {
               await Axios.get(metaYamlObject.icon);
             } catch (err) {
-              console.error(`Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`);
               extension.error = true;
               extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
             }
@@ -69,7 +67,6 @@ async function iconsExtensions404Check() {
               try {
                 await Axios.get(vsix);
               } catch (err) {
-                console.error(`Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`);
                 extension.error = true;
                 extension.errorMessage = `Failed to download ${metaYamlObject.name}'s vsix at ${vsix}`;
               }
