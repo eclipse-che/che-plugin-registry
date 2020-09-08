@@ -328,9 +328,9 @@
     },
     {
       "repository": "https://github.com/SonarSource/sonarlint-vscode",
-      "revision": "1.16.0",
+      "revision": "1.17.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-sonarlint:1.16.0-4af5039",
+        "image": "quay.io/eclipse/che-sidecar-sonarlint:1.17.0-5b46fa6",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-sonarlint"
         }

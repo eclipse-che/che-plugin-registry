@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: sonarsource
+name: sonarlint-vscode
+version: 1.17.0
+type: VS Code extension
+displayName: vscode-sonarlint
+title: Sonarlint code intelligence
+description: VS Code extension that provides sonarlint features
+icon: https://raw.githubusercontent.com/SonarSource/sonarlint-vscode/1.17.0/images/sonarlint_wave_128px.png
+firstPublicationDate: "2020-09-08"
+category: Linter
+repository: https://github.com/SonarSource/sonarlint-vscode
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-sonarlint:1.17.0-5b46fa6"
+      name: vscode-sonarlint
+      memoryLimit: "512Mi"
+      volumes:
+        - mountPath: "/home/theia/.m2"
+          name: m2      
+  extensions:
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/sonarlint-vscode/sonarlint-vscode-1.17.0.vsix
