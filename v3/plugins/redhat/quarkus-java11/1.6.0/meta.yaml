@@ -10,6 +10,9 @@ icon: https://raw.githubusercontent.com/redhat-developer/vscode-quarkus/v1.6.0/i
 repository: https://github.com/redhat-developer/vscode-quarkus
 category: Language
 firstPublicationDate: "2020-08-18"
+deprecate:
+  automigrate: true
+  migrateTo: redhat/quarkus-java11/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
