@@ -12,7 +12,7 @@ name: Icon and extensions PR check
 on:
   pull_request:
     paths:
-    - '/v3/plugins/**'
+    - 'v3/plugins/**'
 
 jobs:
   build:
