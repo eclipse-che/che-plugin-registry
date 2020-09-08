@@ -7,7 +7,7 @@ displayName: Quarkus Tools with Java 11 and Kotlin
 title: Quarkus Tools for Kotlin
 description: This plug-in provides support for Quarkus development via a Quarkus language server and Kotlin syntax.
 icon: https://raw.githubusercontent.com/JetBrains/logos/master/web/kotlin/kotlin.svg
-repository: https://github.com/redhat-developer/vscode-quarkus-kotlin
+repository: https://github.com/blues-man/che-plugin-registry
 category: Language
 spec:
   containers:
