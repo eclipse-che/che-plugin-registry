@@ -85,9 +85,11 @@ async function iconsExtensions404Check() {
   let errors = extensions.filter((extension) => {
     if (extension.error) {
       console.log(`${extension.errorMessage} (${extension.name} version ${extension.version})`);
+      return true;
     }
+    return false;
   });
-  if (errors) {
+  if (errors && errors.length > 0) {
     process.exit(1);
   }
 }
