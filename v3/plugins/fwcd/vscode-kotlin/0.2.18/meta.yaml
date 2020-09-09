@@ -1,0 +1,21 @@
+apiVersion: v2
+publisher: fwcd
+name: vscode-kotlin
+version: 0.2.18
+type: VS Code extension
+displayName: Kotlin
+title: Kotlin tooling for VS Code
+description: This plug-in provides support for Kotlin development.
+icon: https://raw.githubusercontent.com/JetBrains/logos/master/web/kotlin/kotlin.svg
+repository: https://github.com/fwcd/vscode-kotlin/
+category: Language
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
+      name: vscode-kotlin
+      memoryLimit: "1500Mi"
+      volumes:
+      - mountPath: "/home/theia/.m2"
+        name: m2
+  extensions:
+    - https://github.com/fwcd/vscode-kotlin/releases/download/0.2.18/kotlin-0.2.18.vsix

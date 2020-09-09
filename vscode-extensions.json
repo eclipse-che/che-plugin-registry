@@ -367,6 +367,16 @@
           "repository": "https://github.com/che-dockerfiles/che-sidecar-protobuf"
         }
       }
+    },
+    {
+      "repository": "https://github.com/fwcd/vscode-kotlin/",
+      "revision": "0.2.18",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
     }
   ]
 }
