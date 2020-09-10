@@ -45,7 +45,6 @@ async function iconsExtensions404Check() {
         if (metaYamlString) {
           let metaYamlObject: { icon?: string; name: string; version: string; spec?: { extensions?: [string] } };
           metaYamlObject = JSON.parse(JSON.stringify(metaYamlString));
-          // metaYamlObject = JSON.parse(JSON.stringify(metaYamlString, null, 2));
           extension.name = metaYamlObject.name;
           extension.version = metaYamlObject.version;
 
@@ -83,9 +82,11 @@ async function iconsExtensions404Check() {
   let errors = extensions.filter((extension) => {
     if (extension.error) {
       console.log(`${extension.errorMessage} (${extension.name} version ${extension.version})`);
+      return true;
     }
+    return false;
   });
-  if (errors) {
+  if (errors && errors.length > 0) {
     process.exit(1);
   }
 }
