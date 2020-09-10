@@ -82,7 +82,7 @@ oc get pods -l che.workspace_id -o json
 oc get pods --all-namespaces -l che.workspace_id -o json
 oc get pods -l che.workspace_id
 
-### Now we need to wait until we see some arguments in the output of the theia? pod
+### Now we need to wait until we see some arguments in the output of the theia pod
 ### Once we see this correct output then we can proceed by running cat on the created file
 ### that lives in the workspace
 workspace_name=$(oc get pods -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
