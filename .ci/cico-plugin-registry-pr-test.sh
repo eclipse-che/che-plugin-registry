@@ -21,7 +21,7 @@ chmod u+x downloader.sh
 . ./downloader.sh
 
 setup_environment
-setConfigProperty "test.workspace.devfile.url" "https://raw.githubusercontent.com/svor/che-java-tests/sv/tests/devfile.yaml"
+setConfigProperty "test.workspace.devfile.url" "https://raw.githubusercontent.com/che-incubator/che-java-tests/master/devfile.yaml"
 
 export TAG="PR-${ghprbPullId:?}"
 export IMAGE_NAME="quay.io/eclipse/che-plugin-registry:$TAG"
