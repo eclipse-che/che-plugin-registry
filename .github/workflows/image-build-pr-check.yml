@@ -1,0 +1,32 @@
+#
+# Copyright (c) 2020 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: Image Build PR check
+
+on: [push, pull_request]
+
+jobs:
+  image-build:
+    strategy:
+      matrix:
+        dist: [ 'alpine', 'rhel' ]
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Clone source code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: image-build
+      run: |
+        if [[ "${{matrix.dist}}" == "alpine" ]]; then
+          docker pull quay.io/eclipse/che-plugin-registry:nightly
+          docker build --cache-from=quay.io/eclipse/che-plugin-registry:nightly -t che-plugin-registry-image -f ./build/dockerfiles/Dockerfile --target registry . | cat
+        elif [[ "${{matrix.dist}}" == "rhel" ]]; then
+          docker build -t che-plugin-registry-image -f ./build/dockerfiles/rhel.Dockerfile --target registry . | cat
+        fi  
