@@ -73,7 +73,7 @@ do
     echo "Current deployments are"
     oc get deployments
     oc get pods --all-namespaces -l che.workspace_id
-    sleep 20
+    sleep 10
     pods=$(oc get pods --all-namespaces -l che.workspace_id --field-selector status.phase=Running 2>&1)
 done
 
@@ -102,7 +102,7 @@ oc cp che/"${workspace_name}":/projects/test.log ./test.log -c "${theia_ide_cont
 while ! grep -q "TESTS PASSED" test.log && ! grep -q "TESTS FAILED" test.log;
 do
     echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
-    sleep 60
+    sleep 10
     oc cp che/"${workspace_name}":/projects/test.log ./test.log -c "${theia_ide_container_name}"
 done
 
