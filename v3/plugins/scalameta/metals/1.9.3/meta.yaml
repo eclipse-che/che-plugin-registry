@@ -1,21 +1,18 @@
 apiVersion: v2
 publisher: scalameta
 name: metals
-version: 1.9.0
+version: 1.9.3
 type: VS Code extension
 displayName: Scala (Metals)
 title: Scala language server with rich IDE features
 description: This plug-in provides support for Scala development via the Metals language server.
-icon: https://raw.githubusercontent.com/scalameta/metals-vscode/v1.9.0/images/logo.png
+icon: https://raw.githubusercontent.com/scalameta/metals-vscode/v1.9.3/images/logo.png
 repository: https://github.com/scalameta/metals-vscode
 category: Language
-firstPublicationDate: "2020-02-04"
-deprecate:
-  automigrate: true
-  migrateTo: scalameta/metals/latest
+firstPublicationDate: "2020-09-11"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-scala:0.9.0-6a833ec"
+    - image: "quay.io/eclipse/che-sidecar-scala:0.9.0-bb84244"
       name: vscode-metals
       memoryLimit: "1500Mi"
       volumes:
@@ -30,5 +27,5 @@ spec:
       - name: bloop
         mountPath: "/home/theia/.cache/bloop"
   extensions:
-    - https://github.com/scala/vscode-scala-syntax/releases/download/0.3.9/scala-lang.scala-0.3.9.vsix
-    - https://github.com/scalameta/metals-vscode/releases/download/v1.9.0/scalameta.metals-1.9.0.vsix
+    - https://github.com/scala/vscode-scala-syntax/releases/download/0.4.3/scala-lang.scala-0.4.3.vsix
+    - https://github.com/scalameta/metals-vscode/releases/download/v1.9.3/scalameta.metals-1.9.3.vsix
