@@ -52,7 +52,7 @@ async function iconsExtensions404Check() {
           if (metaYamlObject.icon) {
             extension.icon = metaYamlObject.icon;
             try {
-              await Axios.get(metaYamlObject.icon);
+              await Axios.head(metaYamlObject.icon);
             } catch (err) {
               extension.error = true;
               extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
@@ -64,11 +64,21 @@ async function iconsExtensions404Check() {
             extension.vsixList = [];
             for (let vsix of metaYamlObject.spec.extensions) {
               extension.vsixList.push(vsix);
+              let hostedOnGitHub = vsix.includes("github.com")
               try {
-                await Axios.get(vsix);
+                // GitHub release assets redirect to AWS, but AWS returns 403 for HEAD requests.
+                // In this case, don't follow redirects and check for a 302 code instead.
+                if (hostedOnGitHub) {
+                  await Axios.head(vsix, {maxRedirects: 0});
+                } else {
+                  await Axios.head(vsix);
+                }
               } catch (err) {
+                if (hostedOnGitHub && err.response.status == 302) {
+                  break;
+                }
                 extension.error = true;
-                extension.errorMessage = `Failed to download ${metaYamlObject.name}'s vsix at ${vsix}`;
+                extension.errorMessage = `Failed to download ${metaYamlObject.name}'s vsix at ${vsix} -- ${err}`;
               }
             }
           }

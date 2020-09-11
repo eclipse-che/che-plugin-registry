@@ -1,0 +1,4 @@
+{
+    "private": true,
+    "workspaces": [".ci/pr-check", "tools/automation"]
+}
