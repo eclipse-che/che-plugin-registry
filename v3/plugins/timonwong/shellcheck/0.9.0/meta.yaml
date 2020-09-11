@@ -13,7 +13,7 @@ category: Language
 firstPublicationDate: '2020-08-21'
 spec:
   containers:
-  - image: "quay.io/aandriienko/che-sidecar-shellcheck:v0.7.1-d3cfda6"
+  - image: "quay.io/eclipse/che-sidecar-shellcheck:v0.7.1-b16c5b5"
     name: shellcheck
     memoryLimit: '128Mi'
   extensions:
