@@ -26,7 +26,7 @@ jobs:
       run: |
         if [[ "${{matrix.dist}}" == "alpine" ]]; then
           docker pull quay.io/eclipse/che-plugin-registry:nightly
-          docker build --cache-from=quay.io/eclipse/che-plugin-registry:nightly -t che-plugin-registry-image -f ./build/dockerfiles/Dockerfile --target registry . | cat
+          docker build --cache-from=quay.io/eclipse/che-plugin-registry:nightly -t che-plugin-registry-image -f ./build/dockerfiles/Dockerfile --target registry .
         elif [[ "${{matrix.dist}}" == "rhel" ]]; then
-          docker build -t che-plugin-registry-image -f ./build/dockerfiles/rhel.Dockerfile --target registry . | cat
+          docker build -t che-plugin-registry-image -f ./build/dockerfiles/rhel.Dockerfile --target registry .
         fi  
