@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: redhat
 name: java8
-version: 0.63.0
+version: 0.63.0a
 type: VS Code extension
 displayName: Language Support for Java 8
 title: Language Support for Java(TM) by Red Hat
@@ -9,10 +9,7 @@ description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle s
 icon: https://raw.githubusercontent.com/redhat-developer/vscode-java/v0.63.0/icons/icon128.png
 repository: https://github.com/redhat-developer/vscode-java
 category: Language
-firstPublicationDate: "2020-06-11"
-deprecate:
-  automigrate: true
-  migrateTo: redhat/java8/latest
+firstPublicationDate: "2020-08-31"
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
@@ -24,3 +21,4 @@ spec:
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
     - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+    - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
