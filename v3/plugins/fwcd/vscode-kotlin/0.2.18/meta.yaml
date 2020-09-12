@@ -11,7 +11,7 @@ repository: https://github.com/fwcd/vscode-kotlin/
 category: Language
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
+    - image: "quay.io/bluesman/che-sidecar-maven:latest"
       name: vscode-kotlin
       memoryLimit: "1500Mi"
       volumes:
