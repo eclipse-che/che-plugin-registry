@@ -17,5 +17,7 @@ spec:
       volumes:
       - mountPath: "/home/theia/.m2"
         name: m2
+      - mountPath: "/home/theia/home/theia"
+        name: vscode-theia-workaround
   extensions:
     - https://github.com/fwcd/vscode-kotlin/releases/download/0.2.18/kotlin-0.2.18.vsix
