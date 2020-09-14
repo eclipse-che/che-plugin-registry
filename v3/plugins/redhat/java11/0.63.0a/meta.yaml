@@ -14,7 +14,7 @@ spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
       name: vscode-java
-      memoryLimit: "1500Mi"
+      memoryLimit: "1000Mi"
       volumes:
       - mountPath: "/home/theia/.m2"
         name: m2
