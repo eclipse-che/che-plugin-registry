@@ -1,0 +1,40 @@
+{
+    "private": true,
+    "name": "@che-plugin-registry/monorepo",
+    "version": "0.0.0",
+    "dependencies": {
+        "@types/axios": "^0.14.0",
+        "@types/glob": "^7.1.3",
+        "axios": "^0.20.0",
+        "handlebars": "^4.7.6",
+        "moment": "^2.27.0",
+        "semver": "^7.3.2",
+        "simple-git": "^2.12.0",
+        "fs-extra": "^9.0.1",
+        "glob": "^7.1.6",
+        "js-yaml": "^3.14.0"
+      },
+      "devDependencies": {
+        "@types/fs-extra": "^9.0.1",
+        "@types/jest": "^25.2.2",
+        "@types/semver": "^7.3.1",
+        "@types/js-yaml": "^3.12.5",
+        "@typescript-eslint/eslint-plugin": "^2.33.0",
+        "@typescript-eslint/parser": "^2.33.0",
+        "eslint": "^7.0.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jest": "^23.11.0",
+        "import-sort-style-eslint": "^6.0.0",
+        "jest": "^26.0.1",
+        "prettier": "^2.0.5",
+        "prettier-plugin-import-sort": "^0.0.4",
+        "ts-jest": "^26.1.0",
+        "ts-mockito": "^2.5.0",
+        "ts-node": "^8.10.1",
+        "tslint": "^6.1.2",
+        "typescript": "^3.9.0",
+        "vuepress": "^1.5.2"
+      },
+    "workspaces": ["tools/pr-check", "tools/automation"]
+}

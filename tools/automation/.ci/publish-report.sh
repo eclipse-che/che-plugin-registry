@@ -12,8 +12,8 @@
 set -e
 set -o pipefail
 
-cd ./tools/automation
 yarn
+cd ./tools/automation
 yarn run compile
 node ./lib/check-plugin-updates.js
 cd ./report
