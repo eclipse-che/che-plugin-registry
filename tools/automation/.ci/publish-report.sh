@@ -17,7 +17,7 @@ cd ./tools/automation
 yarn run compile
 node ./lib/check-plugin-updates.js
 cd ./report
-../node_modules/.bin/vuepress build
+../../../node_modules/.bin/vuepress build
 cd ./.vuepress/dist
 git config --global user.email "che-bot@eclipse.org"
 git config --global user.name "CHE Bot"
