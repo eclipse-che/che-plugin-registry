@@ -147,6 +147,16 @@
       }
     },
     {
+      "repository": "https://github.com/gattytto/vscode-plantuml",
+      "revision": "2.13.13",
+      "sidecar":  {
+        "image": "quay.io/eclipse/che-sidecar-plantuml:2.13.13-ee2987c",
+	"source":  {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-plantuml"
+	}
+      }
+    },
+    {
       "repository": "https://github.com/golang/vscode-go",
       "revision": "v0.16.1",
       "sidecar": {
