@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: gattytto
+name: plantuml
+version: 2.13.13
+type: VS Code extension
+displayName: PlantUML
+title: PlantUML support
+description: This extension adds support for the PlantUML Server
+icon: https://github.com/gattytto/vscode-plantuml/raw/master/images/icon.png
+repository: https://github.com/gattytto/vscode-plantuml
+category: Language
+firstPublicationDate: '2020-09-22'
+spec:
+  containers:
+    - image: "quay.io/eclipse/che-sidecar-plantuml:2.13.13-ee2987c"
+      name: vscode-plantuml
+      memoryLimit: '512Mi'
+  extensions:
+    - https://github.com/gattytto/vscode-plantuml/releases/download/2.13.13/plantuml-2.13.13.vsix
