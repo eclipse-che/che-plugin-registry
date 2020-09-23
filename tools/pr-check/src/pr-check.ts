@@ -11,10 +11,43 @@
 import * as fs from 'fs-extra';
 import * as glob from 'glob';
 import * as jsyaml from 'js-yaml';
-
+import * as path from 'path';
 import Axios from 'axios';
+import simpleGit, { SimpleGit } from 'simple-git';
 
-export interface Extension {
+const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
+
+// Object matching each entry in vscode-extensions.json
+export interface VSCodeExtensionEntry {
+  repository: string;
+  revision: string;
+  directory?: string;
+  sidecar?: {
+    image: string;
+    source: {
+      repository: string;
+      revision?: string;
+      directory?: string;
+    };
+  };
+}
+
+export interface VSCodeExtension {
+  repository: string;
+  revision: string;
+  sidecar?: {
+    image: string;
+    source: {
+      repository: string;
+      revision?: string;
+      directory?: string;
+    };
+  };
+  error: boolean;
+  errorMessages: string[];
+}
+
+export interface MetaYamlExtension {
   name?: string;
   version?: string;
   icon?: string;
@@ -25,13 +58,88 @@ export interface Extension {
 
 const metaYamlFiles = glob.sync('./../../v3/plugins/**/*.yaml');
 
+async function vscodeExtensionsFieldValidation() {
+  const { extensions } = JSON.parse(await fs.readFile('./../../vscode-extensions.json', 'utf-8'));
+  const vsCodeExtensions: VSCodeExtension[] = await Promise.all(
+    extensions.map(
+      async (extensionEntry: VSCodeExtensionEntry): Promise<VSCodeExtension> => {
+        let vscodeExtension: VSCodeExtension = {
+          repository: extensionEntry.repository,
+          revision: extensionEntry.revision,
+          error: false,
+          errorMessages: [],
+        };
+        const git: SimpleGit = simpleGit();
+        let extensionRepoValid = true;
+
+        // Check repository validity before cloning and checking out revision
+        try {
+          await Axios.head(vscodeExtension.repository);
+        } catch (err) {
+          // Sometimes valid repos return 400, even though they are clone-able
+          if (!err || !err.response) {
+            extensionRepoValid = false;
+            vscodeExtension.error = true;
+            vscodeExtension.errorMessages.push(`Error cloning extension repository ${vscodeExtension.repository}`);
+          }
+          if (err.response && err.response.status == 404) {
+            extensionRepoValid = false;
+            vscodeExtension.error = true;
+            vscodeExtension.errorMessages.push(`Extension repository ${vscodeExtension.repository} is not valid (response: 404)`);
+          }
+        }
+        // If the repository is valid, proceed with the clone and checkout the revision
+        if (extensionRepoValid) {
+          const cloneName = extensionEntry.repository.replace(/[^\w\s]/gi, '');
+          const clonePath = path.resolve(EXTENSION_ROOT_DIR, cloneName);
+          await git.clone(vscodeExtension.repository, clonePath);
+          try {
+            await simpleGit(clonePath).checkout(vscodeExtension.revision);
+          } catch (err) {
+            vscodeExtension.error = true;
+            vscodeExtension.errorMessages.push(`Error checking out revision ${vscodeExtension.revision} for ${vscodeExtension.repository}`);
+          }
+          await fs.remove(clonePath);
+        }
+
+        if (extensionEntry.sidecar) {
+          vscodeExtension.sidecar = extensionEntry.sidecar;
+          try {
+            await Axios.head(vscodeExtension.sidecar.source.repository);
+          } catch (err) {
+            vscodeExtension.error = true;
+            vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid`);
+          }
+        }
+        return vscodeExtension;
+      }
+    )
+  );
+  // Clean up any cloned paths
+  await fs.remove(EXTENSION_ROOT_DIR)
+
+  // Check for errors, print them, and exit with code 1 if there are any
+  let errors = vsCodeExtensions.filter((extension) => {
+    if (extension.error) {
+      extension.errorMessages.forEach((error: string) => {
+        console.error(error)
+      });
+      return true;
+    }
+    return false;
+  });
+  if (errors && errors.length > 0) {
+    process.exit(1);
+  }
+}
+
 async function iconsExtensions404Check() {
-  const extensions: Extension[] = await Promise.all(
+  const extensions: MetaYamlExtension[] = await Promise.all(
     metaYamlFiles.map(
-      async (metaYamlFile: string): Promise<Extension> => {
+      async (metaYamlFile: string): Promise<MetaYamlExtension> => {
         let metaYaml = await fs.readFile(metaYamlFile, 'utf-8');
         let metaYamlString;
-        let extension: Extension = {
+        let extension: MetaYamlExtension = {
           error: false,
         };
         try {
@@ -106,6 +214,9 @@ async function iconsExtensions404Check() {
   switch (myArgs[0]) {
     case 'icons-extensions-404':
       await iconsExtensions404Check();
+      break;
+    case 'validate-vscode-extensions.json-fields':
+      await vscodeExtensionsFieldValidation();
       break;
     case 'all':
     default:
