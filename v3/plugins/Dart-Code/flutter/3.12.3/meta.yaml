@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: Dart-Code
 name: flutter
-version: 3.15.0
+version: 3.12.3
 type: VS Code extension
 displayName: Dart
 title: Google's Dart language support
@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: '2020-09-22'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-flutter:3.15.0-4d7f0c4"
+    - image: "quay.io/eclipse/che-sidecar-flutter:3.12.3-cf08255"
       name: vscode-flutter
       memoryLimit: '2Gi'
   extensions:
