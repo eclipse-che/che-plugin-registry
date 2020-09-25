@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: Dart-Code
 name: flutter
-version: 3.13.2
+version: 3.14.1
 type: VS Code extension
 displayName: Dart
 title: Google's Dart language support
@@ -12,10 +12,10 @@ category: Other
 firstPublicationDate: '2020-09-22'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-flutter:3.13.2-988fad0"
+    - image: "quay.io/eclipse/che-sidecar-flutter:3.14.1-5725632"
       name: vscode-flutter
       memoryLimit: '2Gi'
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
     - https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
-    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/Dart-Code/vsextensions/flutter/3.13.2/vspackage
+    - https://marketplace.visualstudio.com/_apis/public/gallery/publishers/Dart-Code/vsextensions/flutter/3.14.1/vspackage
