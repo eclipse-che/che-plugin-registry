@@ -99,7 +99,7 @@
       "revision": "2.1650-vsc1.39.2"
     },
     {
-      "repository": "https://github.com/Dart-Code/flutter",
+      "repository": "https://github.com/dart-code/flutter",
       "revision": "v3.14.1",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-flutter:3.14.1-5725632",
