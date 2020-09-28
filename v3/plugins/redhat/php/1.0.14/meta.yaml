@@ -10,6 +10,9 @@ icon: https://raw.githubusercontent.com/bmewburn/vscode-intelephense/v1.0.14/ima
 repository: https://github.com/bmewburn/vscode-intelephense
 category: Language
 firstPublicationDate: "2020-01-14"
+deprecate:
+  automigrate: true
+  migrateTo: bmewburn/vscode-intelephense-client/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-php:7-5c5ecc5"

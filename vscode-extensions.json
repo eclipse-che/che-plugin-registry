@@ -45,7 +45,7 @@
     },
     {
       "repository": "https://github.com/bmewburn/vscode-intelephense",
-      "revision": "v1.3.11",
+      "revision": "v1.5.4",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-php:7-9e9715e",
         "source": {
