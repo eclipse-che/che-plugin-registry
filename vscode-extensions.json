@@ -147,6 +147,16 @@
       }
     },
     {
+      "repository": "https://github.com/gattytto/Dart-Code",
+      "revision": "v3.15.0-che",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-dart:2.10-a2959e6",
+	"source": {
+	  "repository": "https://github.com/che-dockerfiles/che-sidecar-dart"
+	}
+      }	
+    },     
+    {
       "repository": "https://github.com/golang/vscode-go",
       "revision": "v0.16.1",
       "sidecar": {
