@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2020-08-26'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-dart:d27178e"
+    - image: "quay.io/eclipse/che-sidecar-dart:2.10-a2959e6"
       name: vscode-dart
       memoryLimit: '2Gi'
   extensions:

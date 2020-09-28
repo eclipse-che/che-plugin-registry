@@ -150,7 +150,7 @@
       "repository": "https://github.com/gattytto/Dart-Code",
       "revision": "v3.15.0-che",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-dart:3.15.0-d27178e",
+        "image": "quay.io/eclipse/che-sidecar-dart:2.10-a2959e6",
 	"source": {
 	  "repository": "https://github.com/che-dockerfiles/che-sidecar-dart"
 	}
