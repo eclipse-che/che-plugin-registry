@@ -1,0 +1,56 @@
+{
+  "name": "plugin-registry-pr-checks",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Scripts for running all PR checks in the Che Plugin Registry",
+  "main": "pr-check.js",
+  "scripts": {
+    "build": "yarn run format && yarn run compile && yarn run lint",
+    "compile": "tsc --project .",
+    "format": "prettier --write **/*.ts **/**/*.ts package.json",
+    "format-check": "prettier --check **/*.ts **/**/*.ts package.json",
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclipse/che-plugin-registry.git"
+  },
+  "author": "",
+  "license": "EPL-2.0",
+  "bugs": {
+    "url": "https://github.com/eclipse/che/issues"
+  },
+  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/.ci/pr-check/README.md",
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "./coverage",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "importSort": {
+    ".ts": {
+      "style": "eslint",
+      "parser": "typescript"
+    }
+  }
+}

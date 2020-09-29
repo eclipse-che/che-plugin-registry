@@ -138,7 +138,7 @@
                   "properties": {
                     "name": {
                       "type": "string",
-                      "pattern": "^[-._a-zA-Z0-9]+$"
+                      "pattern": "^[a-zA-Z][_a-zA-Z0-9]*$"
                     },
                     "value": {
                       "type": "string"
@@ -285,7 +285,7 @@
                   "properties": {
                     "name": {
                       "type": "string",
-                      "pattern": "^[-._a-zA-Z0-9]+$"
+                      "pattern": "^[a-zA-Z][_a-zA-Z0-9]*$"
                     },
                     "value": {
                       "type": "string"
@@ -386,7 +386,7 @@
             "properties": {
               "name": {
                 "type": "string",
-                "pattern": "^[-._a-zA-Z0-9]+$"
+                "pattern": "^[a-zA-Z][_a-zA-Z0-9]*$"
               },
               "value": {
                 "type": "string"

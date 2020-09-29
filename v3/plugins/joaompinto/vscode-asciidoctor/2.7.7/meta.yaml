@@ -6,7 +6,7 @@ name: vscode-asciidoctor
 displayName: AsciiDoc support
 title: AsciiDoctor Plugin.
 description: This extension provides a live preview, syntax highlighting and snippets for the AsciiDoc format using Asciidoctor flavor.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/asciidoctor/asciidoctor-vscode/v2.7.7/images/icon.png
 category: Language
 repository: https://github.com/asciidoctor/asciidoctor-vscode
 firstPublicationDate: "2019-12-02"

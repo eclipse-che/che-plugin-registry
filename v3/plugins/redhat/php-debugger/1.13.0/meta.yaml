@@ -6,13 +6,13 @@ displayName: PHP Debugger
 title: PHP Debugger
 type: VS Code extension
 description: This VS Code extension provides support for PHP debugging, based on the PHP Debug extension from Felix Backer.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://raw.githubusercontent.com/felixfbecker/vscode-php-debug/v1.13.0/images/logo.png
 repository: https://github.com/felixfbecker/vscode-php-debug
 category: Language
 firstPublicationDate: "2019-04-16"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-php:7-5c5ecc5"
+    - image: "quay.io/eclipse/che-sidecar-php:7-9e9715e"
       name: php-debugger
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix

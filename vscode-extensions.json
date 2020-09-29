@@ -1,0 +1,402 @@
+{
+  "extensions": [
+    {
+      "repository": "https://github.com/timonwong/vscode-shellcheck",
+      "revision": "v0.10.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-shellcheck:v0.7.1-b16c5b5",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-shellcheck"
+        }
+      }      
+    },
+    {
+      "repository": "https://bitbucket.org/atlassianlabs/atlascode",
+      "revision": "2.6.6"
+    },
+    {
+      "repository": "https://github.com/asciidoctor/asciidoctor-vscode",
+      "revision": "v2.7.7"
+    },
+    {
+      "repository": "https://github.com/Azure/vscode-kubernetes-tools",
+      "revision": "1.2.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.1-6144144",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-kubernetes-tooling"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/bash-lsp/bash-language-server",
+      "revision": "vscode-client-1.10.2",
+      "directory": "vscode-client"
+    },
+    {
+      "repository": "https://github.com/bazelbuild/vscode-bazel",
+      "revision": "0.3.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-bazel:3.2.0-e352e6b",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-bazel"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/bmewburn/vscode-intelephense",
+      "revision": "v1.5.4",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-php:7-9e9715e",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
+      "revision": "0.0.27",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/camel-tooling/vscode-camelk",
+      "revision": "0.0.17",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-camelk:0.0.17-3d78c07",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-camelk"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/camel-tooling/vscode-wsdl2rest",
+      "revision": "0.0.11",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:8-0cfbacb",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java",
+          "revision": "8"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/castwide/vscode-solargraph",
+      "revision": "212e76d",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-ruby:2.6-76f1125",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-ruby"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/cdr/code-server",
+      "revision": "2.1650-vsc1.39.2"
+    },
+    {
+      "repository": "https://github.com/eamodio/vscode-gitlens",
+      "revision": "v10.2.1"
+    },
+    {
+      "repository": "https://github.com/eclipse/che-che4z-explorer-for-endevor",
+      "revision": "0.10.0"
+    },
+    {
+      "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
+      "revision": "0.13.0",
+      "directory": "clients/cobol-lsp-vscode-extension/",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/eclipse/che-che4z-lsp-for-hlasm",
+      "revision": "0.11.0",
+      "directory": "clients/vscode-hlasmplugin/"
+    },
+    {
+      "repository": "https://github.com/eclipse-cdt/cdt-vscode",
+      "revision": "2edfc3a3474bc7a732014e1a4631561b991f845a"
+    },
+    {
+      "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
+      "revision": "0.1.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-dependency-analytics:0.0.13-2f3b058",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dependency-analytics"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/felixfbecker/vscode-php-debug",
+      "revision": "v1.13.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-php:7-9e9715e",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/gattytto/Dart-Code",
+      "revision": "v3.15.0-che",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-dart:2.10-a2959e6",
+	"source": {
+	  "repository": "https://github.com/che-dockerfiles/che-sidecar-dart"
+	}
+      }	
+    },     
+    {
+      "repository": "https://github.com/golang/vscode-go",
+      "revision": "v0.16.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-go:1.14.4-afebf70",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-go"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/MicroShed/mp-starter-vscode-ext",
+      "revision": "0.2.0"
+    },
+    {
+      "repository": "https://github.com/Microsoft/vscode-node-debug2",
+      "revision": "v1.42.3",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/microsoft/vscode-pull-request-github",
+      "revision": "v0.8.0"
+    },
+    {
+      "repository": "https://github.com/Microsoft/vscode-python",
+      "revision": "2019.5.18875",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-python:3.7.3-8f39348",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-python",
+          "revision": "3.7.3"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/pizzafactory-contorno/vscode-libra-move",
+      "revision": "v0.0.10-ddc0d3d",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:8-0cfbacb",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java",
+          "revision": "8"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/PizzaFactory/xtend-ide-extensions",
+      "revision": "v0.1.0",
+      "directory": "xtend-vscode-extension/",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:8-0cfbacb",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java",
+          "revision": "8"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/PizzaFactory/xtext-ide-extensions/",
+      "revision": "v0.4.0",
+      "directory": "xtext-vscode-extension/",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:8-0cfbacb",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java",
+          "revision": "8"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/netcoredbg-theia-plugin",
+      "revision": "v0.0.3",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-4bdcdc2",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/omnisharp-theia-plugin",
+      "revision": "v0.0.6",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-dotnet:3.1.301-4bdcdc2",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dotnet"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-didact",
+      "revision": "0.1.16"
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-java",
+      "revision": "v0.63.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-openshift-tools",
+      "revision": "v0.1.5",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-openshift-connector:0.1.5-620dbc7",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-openshift-connector"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-project-initializer",
+      "revision": "v0.0.10"
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-quarkus",
+      "revision": "v1.6.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-tekton",
+      "revision": "v0.2.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-tekton:0.2.0-7a8b4ad",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-tekton"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-xml",
+      "revision": "0.13.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/redhat-developer/vscode-yaml",
+      "revision": "0.8.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/rogalmic/vscode-bash-debug",
+      "revision": "v0.3.9"
+    },
+    {
+      "repository": "https://github.com/scalameta/metals-vscode",
+      "revision": "v1.9.3",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-scala:0.9.0-bb84244",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-scala"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/SebastianZaha/vscode-emacs-friendly",
+      "revision": "660a6102103745f8e9e5affaa06a29e73ce9065e"
+    },
+    {
+      "repository": "https://github.com/SonarSource/sonarlint-vscode",
+      "revision": "1.16.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-sonarlint:1.16.0-4af5039",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-sonarlint"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/spgennard/vscode_cobol",
+      "revision": "6.0.19"
+    },
+    {
+      "repository": "https://github.com/testthedocs/vscode-vale",
+      "revision": "0.9.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-vale:0.9.1-ad53ccf",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-vale"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/VSCodeVim/Vim",
+      "revision": "v1.16.0"
+    },
+    {
+      "repository": "https://github.com/vuejs/vetur",
+      "revision": "v0.26.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-node:12-da9c36b",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/windup/rhamt-vscode-extension",
+      "revision": "617222def40678e2ef375f713b969c93ea313a69"
+    },
+    {
+      "repository": "https://github.com/zowe/vscode-extension-for-zowe",
+      "revision": "v1.8.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
+        }
+      }
+    },
+    {
+      "repository": "https://github.com/zxh0/vscode-proto3",
+      "revision": "c4d9eeb54294e3cee86254261edf036901f29dec",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-protobuf:0.4.2-a79a2ff",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-protobuf"
+        }
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Debugger for Mainframe
 title: Debugger for Mainframe
 description: Provides a modern debugging experience for COBOL applications running in a CICS region.
-icon: https://www.eclipse.org/che/images/logo-eclipseche.svg
+icon: https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.1.0/file/logo.png
 repository: https://github.com/BroadcomMFD/debugger-for-mainframe
 category: Debugger
 spec:
