@@ -99,6 +99,16 @@
       "revision": "2.1650-vsc1.39.2"
     },
     {
+      "repository": "https://github.com/dart-code/flutter",
+      "revision": "v3.14.1",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-flutter:3.14.1-54a951d",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-flutter"
+        }
+      }
+    },
+    {
       "repository": "https://github.com/eamodio/vscode-gitlens",
       "revision": "v10.2.1"
     },
