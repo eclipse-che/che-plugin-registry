@@ -12,7 +12,7 @@ category: Other
 firstPublicationDate: '2020-09-22'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-flutter:3.14.1-5725632"
+    - image: "quay.io/eclipse/che-sidecar-flutter:3.14.1-54a951d"
       name: vscode-flutter
       memoryLimit: '2Gi'
   extensions:

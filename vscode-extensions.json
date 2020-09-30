@@ -102,7 +102,7 @@
       "repository": "https://github.com/dart-code/flutter",
       "revision": "v3.14.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-flutter:3.14.1-5725632",
+        "image": "quay.io/eclipse/che-sidecar-flutter:3.14.1-54a951d",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-flutter"
         }
