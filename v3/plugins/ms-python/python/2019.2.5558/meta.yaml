@@ -10,6 +10,9 @@ icon: https://raw.githubusercontent.com/microsoft/vscode-python/2019.2.5558/icon
 repository: https://github.com/Microsoft/vscode-python
 category: Language
 firstPublicationDate: "2019-03-05"
+deprecate:
+  automigrate: true
+  migrateTo: ms-python/python/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-python:3.7.3-8f39348"
