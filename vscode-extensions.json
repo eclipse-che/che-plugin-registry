@@ -364,7 +364,7 @@
       "repository": "https://github.com/testthedocs/vscode-vale",
       "revision": "0.9.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-vale:0.9.1-ad53ccf",
+        "image": "quay.io/eclipse/che-sidecar-vale:0.9.1-04f254e",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-vale"
         }
