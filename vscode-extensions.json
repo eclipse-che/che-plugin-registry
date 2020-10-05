@@ -118,7 +118,7 @@
     },
     {
       "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
-      "revision": "0.13.0",
+      "revision": "0.15.0",
       "directory": "clients/cobol-lsp-vscode-extension/",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
