@@ -170,7 +170,7 @@
       "repository": "https://github.com/golang/vscode-go",
       "revision": "v0.16.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-go:1.14.4-afebf70",
+        "image": "quay.io/eclipse/che-sidecar-go:1.14.4-3edc927",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-go"
         }
