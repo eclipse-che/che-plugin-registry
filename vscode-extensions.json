@@ -276,9 +276,9 @@
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-openshift-tools",
-      "revision": "v0.1.5",
+      "revision": "v0.2.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-openshift-connector:0.1.5-620dbc7",
+        "image": "quay.io/eclipse/che-sidecar-openshift-connector:0.2.0-6d2214b",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-openshift-connector"
         }
