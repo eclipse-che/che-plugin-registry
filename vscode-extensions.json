@@ -192,7 +192,7 @@
     },
     {
       "repository": "https://github.com/microsoft/vscode-pull-request-github",
-      "revision": "v0.8.0"
+      "revision": "0.20.0"
     },
     {
       "repository": "https://github.com/Microsoft/vscode-python",
