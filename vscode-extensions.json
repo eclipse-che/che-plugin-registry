@@ -178,7 +178,7 @@
     },
     {
       "repository": "https://github.com/haskell/vscode-haskell",
-      "revision": "8.10.1",
+      "revision": "1.2.0",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-haskell:8.10.1-eccd503",
         "source": {
