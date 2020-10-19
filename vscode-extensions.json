@@ -177,6 +177,16 @@
       }
     },
     {
+      "repository": "https://github.com/haskell/vscode-haskell",
+      "revision": "1.2.0",
+      "sidecar": {
+        "image": "quay.io/eclipse/che-sidecar-haskell:8.10.1-eccd503",
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-haskell"
+        }
+      }
+    },
+    {
       "repository": "https://github.com/MicroShed/mp-starter-vscode-ext",
       "revision": "0.2.0"
     },
