@@ -82,10 +82,15 @@ async function vscodeExtensionsFieldValidation() {
             vscodeExtension.error = true;
             vscodeExtension.errorMessages.push(`Error cloning extension repository ${vscodeExtension.repository}`);
           }
-          if (err.response && err.response.status == 404) {
-            extensionRepoValid = false;
-            vscodeExtension.error = true;
-            vscodeExtension.errorMessages.push(`Extension repository ${vscodeExtension.repository} is not valid (response: 404)`);
+          if (err.response && err.response.status) {
+            if (err.response.status == 404) {
+              extensionRepoValid = false;
+              vscodeExtension.error = true;
+              vscodeExtension.errorMessages.push(`Extension repository ${vscodeExtension.repository} is not valid (response: 404)`);
+            }
+            if (err.response.status == 429) {
+              console.error(`Unable to check ${vscodeExtension.repository} due to rate limiting (response: 429)`);
+            }
           }
         }
         // If the repository is valid, proceed with the clone and checkout the revision
@@ -107,8 +112,18 @@ async function vscodeExtensionsFieldValidation() {
           try {
             await Axios.head(vscodeExtension.sidecar.source.repository);
           } catch (err) {
-            vscodeExtension.error = true;
-            vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid`);
+            if (err.response && err.response.status) {
+              if (err.response.status == 404) {
+                vscodeExtension.error = true;
+                vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid (response: 404)`);
+              }
+              if (err.response.status == 429) {
+                console.error(`Unable to check ${vscodeExtension.sidecar.source.repository} due to rate limiting (response: 429)`);
+              }
+            } else {
+              vscodeExtension.error = true;
+              vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid`);
+            }
           }
         }
         return vscodeExtension;
