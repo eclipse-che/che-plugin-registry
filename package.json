@@ -36,5 +36,8 @@
         "typescript": "^3.9.0",
         "vuepress": "^1.5.2"
       },
+    "resolutions": {
+        "node-forge": "0.10.0"
+    },
     "workspaces": ["tools/pr-check", "tools/automation"]
 }
