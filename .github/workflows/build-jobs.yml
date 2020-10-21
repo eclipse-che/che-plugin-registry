@@ -1,0 +1,40 @@
+#
+# Copyright (c) 2020 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: Build/Push
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  nightly-build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone source code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Login to quay.io
+        uses: docker/login-action@v1
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Build and push plugin registry image
+        run: |
+          SHORT_SHA1=$(git rev-parse --short HEAD)
+          docker build -t che-plugin-registry -f ./build/dockerfiles/Dockerfile --target registry .
+          docker tag che-plugin-registry quay.io/eclipse/che-plugin-registry:nightly
+          docker push quay.io/eclipse/che-plugin-registry:nightly
+          docker tag che-plugin-registry quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+          docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
