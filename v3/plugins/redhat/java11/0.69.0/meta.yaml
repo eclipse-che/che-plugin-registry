@@ -20,5 +20,5 @@ spec:
         name: m2
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-    - https://open-vsx.org/api/redhat/java/0.69.0/file/redhat.java-0.69.0.vsix
+    - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
     - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
