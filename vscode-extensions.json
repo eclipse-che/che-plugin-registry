@@ -276,7 +276,7 @@
     },
     {
       "repository": "https://github.com/redhat-developer/vscode-java",
-      "revision": "v0.63.0",
+      "revision": "v0.69.0",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
         "source": {
