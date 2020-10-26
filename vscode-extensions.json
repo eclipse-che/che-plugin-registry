@@ -47,7 +47,7 @@
       "repository": "https://github.com/bmewburn/vscode-intelephense",
       "revision": "v1.5.4",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-9e9715e",
+        "image": "quay.io/eclipse/che-sidecar-php:7-b95f23f",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
@@ -57,7 +57,7 @@
       "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
       "revision": "0.0.27",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -121,7 +121,7 @@
       "revision": "0.15.0",
       "directory": "clients/cobol-lsp-vscode-extension/",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -150,7 +150,7 @@
       "repository": "https://github.com/felixfbecker/vscode-php-debug",
       "revision": "v1.13.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-php:7-9e9715e",
+        "image": "quay.io/eclipse/che-sidecar-php:7-b95f23f",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-php"
         }
@@ -278,7 +278,7 @@
       "repository": "https://github.com/redhat-developer/vscode-java",
       "revision": "v0.69.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -302,7 +302,7 @@
       "repository": "https://github.com/redhat-developer/vscode-quarkus",
       "revision": "v1.7.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -322,7 +322,7 @@
       "repository": "https://github.com/redhat-developer/vscode-xml",
       "revision": "0.13.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-java:11-7bd8c8c",
+        "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-java"
         }
@@ -346,7 +346,7 @@
       "repository": "https://github.com/scalameta/metals-vscode",
       "revision": "v1.9.4",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-scala:0.9.0-bb84244",
+        "image": "quay.io/eclipse/che-sidecar-scala:0.9.0-b92a5f9",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-scala"
         }
@@ -374,7 +374,7 @@
       "repository": "https://github.com/testthedocs/vscode-vale",
       "revision": "0.9.1",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-vale:0.9.1-04f254e",
+        "image": "quay.io/eclipse/che-sidecar-vale:0.9.1-a8fe390",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-vale"
         }

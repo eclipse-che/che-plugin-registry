@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2020-09-08'
 spec:
   containers:
-  - image: "quay.io/eclipse/che-sidecar-java:11-7bd8c8c"
+  - image: "quay.io/eclipse/che-sidecar-java:11-86274e3"
     name: vscode-apache-camel
     memoryLimit: "300Mi"
   extensions:
