@@ -14,7 +14,7 @@ spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-haskell:8.10.2-a79c68a"
       name: vscode-haskell
-      memoryLimit: 1500Mi
+      memoryLimit: 3Gi
   extensions:
     - https://open-vsx.org/api/justusadam/language-haskell/3.3.0/file/justusadam.language-haskell-3.3.0.vsix
     - https://open-vsx.org/api/haskell/haskell/1.1.0/file/haskell.haskell-1.1.0.vsix
