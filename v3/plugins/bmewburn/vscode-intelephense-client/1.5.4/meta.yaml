@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2020-09-23"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-php:7-9e9715e"
+    - image: "quay.io/eclipse/che-sidecar-php:7-b95f23f"
       memoryLimit: "1000Mi"
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.5.4.vsix

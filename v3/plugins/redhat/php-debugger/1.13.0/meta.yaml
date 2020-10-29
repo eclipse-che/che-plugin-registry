@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2019-04-16"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-php:7-9e9715e"
+    - image: "quay.io/eclipse/che-sidecar-php:7-b95f23f"
       name: php-debugger
   extensions:
     - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
