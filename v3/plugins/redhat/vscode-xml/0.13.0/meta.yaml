@@ -16,4 +16,4 @@ spec:
       name: vscode-xml
       memoryLimit: "768Mi"
   extensions:
-    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-xml/vscode-xml-0.13.0.vsix
+    - https://open-vsx.org/api/redhat/vscode-xml/0.13.0/file/redhat.vscode-xml-0.13.0.vsix
