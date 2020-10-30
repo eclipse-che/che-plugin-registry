@@ -180,7 +180,7 @@
       "repository": "https://github.com/haskell/vscode-haskell",
       "revision": "1.2.0",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-haskell:8.10.1-eccd503",
+        "image": "quay.io/eclipse/che-sidecar-haskell:8.10.1-3857c2e",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-haskell"
         }
