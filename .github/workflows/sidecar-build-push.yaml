@@ -17,7 +17,7 @@ on:
 
 jobs:
   build-push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Clone source code
@@ -45,4 +45,4 @@ jobs:
 
     - name: Get list of changed sidecar files
       run: |
-        ./.ci/sidecar-build-pr-check.sh build HEAD^1 HEAD
+        ./.ci/sidecar-build-publish.sh build-publish HEAD^1 HEAD

@@ -16,7 +16,7 @@ on:
 
 jobs:
   sidecar-build-pr-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Clone source code
@@ -38,4 +38,4 @@ jobs:
 
     - name: Get list of changed sidecar files
       run: |
-        ./.ci/sidecar-build-pr-check.sh check origin/${{ github.base_ref }} ${{ github.event.pull_request.head.sha }}
+        ./.ci/sidecar-build-publish.sh build origin/${{ github.base_ref }} ${{ github.event.pull_request.head.sha }}
