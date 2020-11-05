@@ -194,7 +194,7 @@
       "repository": "https://github.com/Microsoft/vscode-node-debug2",
       "revision": "v1.42.5",
       "sidecar": {
-        "image": "quay.io/eclipse/che-sidecar-node:12-cb8a920",
+        "image": "quay.io/eclipse/che-sidecar-node:12-026416c",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-node"
         }
