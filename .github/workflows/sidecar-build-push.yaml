@@ -43,6 +43,6 @@ jobs:
       with:
         version: latest
 
-    - name: Get list of changed sidecar files
+    - name: Build and publish changed sidecar definitions
       run: |
         ./.ci/sidecar-build-publish.sh build-publish HEAD^1 HEAD
