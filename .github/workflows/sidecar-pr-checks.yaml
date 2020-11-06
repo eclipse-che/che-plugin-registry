@@ -36,6 +36,6 @@ jobs:
       with:
         version: latest
 
-    - name: Get list of changed sidecar files
+    - name: Build changed sidecar files
       run: |
         ./.ci/sidecar-build-publish.sh build origin/${{ github.base_ref }} ${{ github.event.pull_request.head.sha }}
