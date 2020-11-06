@@ -8,7 +8,7 @@
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-shellcheck"
         }
-      }      
+      }
     },
     {
       "repository": "https://bitbucket.org/atlassianlabs/atlascode",
@@ -137,6 +137,10 @@
       "revision": "2edfc3a3474bc7a732014e1a4631561b991f845a"
     },
     {
+      "repository": "https://github.com/editorconfig/editorconfig-vscode",
+      "revision": "e12fdc236439d89bd41b3cfc50840023a240f074"
+    },
+    {
       "repository": "https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension",
       "revision": "0.1.0",
       "sidecar": {
@@ -161,11 +165,11 @@
       "revision": "v3.15.0-che",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-dart:2.10-a2959e6",
-	"source": {
-	  "repository": "https://github.com/che-dockerfiles/che-sidecar-dart"
-	}
-      }	
-    },     
+        "source": {
+          "repository": "https://github.com/che-dockerfiles/che-sidecar-dart"
+        }
+      }
+    },
     {
       "repository": "https://github.com/golang/vscode-go",
       "revision": "v0.16.1",

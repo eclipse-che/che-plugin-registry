@@ -1,0 +1,15 @@
+apiVersion: v2
+publisher: EditorConfig
+name: EditorConfig
+version: 0.14.4
+type: VS Code extension
+displayName: EditorConfig
+title: EditorConfig Plugin
+description: This plugin attempts to override user/workspace settings with settings found in .editorconfig files. No additional files are required. As with any EditorConfig plugin, if root=true is not specified, EditorConfig will continue to look for an .editorconfig file outside of the project.
+icon: https://open-vsx.org/api/EditorConfig/EditorConfig/0.14.4/file/EditorConfig_icon.png
+category: Other
+repository: https://github.com/editorconfig/editorconfig-vscode
+firstPublicationDate: "2020-11-06"
+spec:
+  extensions:
+  - https://open-vsx.org/api/EditorConfig/EditorConfig/0.14.4/file/EditorConfig.EditorConfig-0.14.4.vsix
