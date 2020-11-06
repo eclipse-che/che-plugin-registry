@@ -1,6 +1,6 @@
 apiVersion: v2
-publisher: redhat
-name: php-debugger
+publisher: felixfbecker
+name: vscode-php-debug
 version: 1.13.0
 displayName: PHP Debugger
 title: PHP Debugger
