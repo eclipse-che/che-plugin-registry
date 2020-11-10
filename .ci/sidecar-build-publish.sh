@@ -25,6 +25,7 @@ do
             SIDECARS_TO_TEST+=("$SIDECAR_NAME")
             PLATFORMS=$(cat sidecars/"$SIDECAR_NAME"/PLATFORMS)
             SHORT_SHA1=$(git rev-parse --short HEAD)
+            find sidecars/"$SIDECAR_NAME"/ -type f -iname "*.sh" -exec chmod +x {} \;
             if [[ $BUILD_PUBLISH == 'build-publish' ]]; then
                 IMAGE_NAME=quay.io/eclipse/che-plugin-sidecar:"$SIDECAR_NAME"-"$SHORT_SHA1"
                 echo "Building $IMAGE_NAME"
