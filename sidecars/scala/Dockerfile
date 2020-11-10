@@ -41,5 +41,10 @@ RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
+RUN for f in "/projects" "$HOME/.cache" "$HOME/.ivy2" "$HOME/.sbt"; do \
+      echo "Changing permissions on ${f}" && chgrp -R 0 ${f} && \
+      chmod -R g+rwX ${f}; \
+    done 
+
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
