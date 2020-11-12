@@ -19,6 +19,7 @@ spec:
       attributes:
         protocol: http
         type: ide
+        discoverable: false
         path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
   containers:
    - name: intellij-novnc
