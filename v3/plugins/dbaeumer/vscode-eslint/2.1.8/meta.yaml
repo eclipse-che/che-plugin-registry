@@ -1,0 +1,15 @@
+apiVersion: v2
+publisher: dbaeumer
+name: vscode-eslint
+version: 2.1.8
+type: VS Code extension
+displayName: ESLint
+title: ESLint JavaScript
+description: Integrates ESLint JavaScript into Che-Theia.
+icon: https://open-vsx.org/api/dbaeumer/vscode-eslint/2.1.8/file/eslint_icon.png
+repository: https://github.com/microsoft/vscode-eslint
+category: Other
+firstPublicationDate: '2020-11-13'
+spec:
+  extensions:
+  - https://open-vsx.org/api/dbaeumer/vscode-eslint/2.1.8/file/dbaeumer.vscode-eslint-2.1.8.vsix
