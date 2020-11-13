@@ -12,13 +12,13 @@ repository: https://github.com/che-incubator/che-editor-intellij-community
 firstPublicationDate: "2020-09-29"
 spec:
   endpoints:
-  # hack (use dirigible endpoint name as it is part of liveness probes)
-   -  name: "dirigible"
+   -  name: "intellij"
       public: true
       targetPort: 8080
       attributes:
         protocol: http
         type: ide
+        discoverable: false
         path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
   containers:
    - name: intellij-novnc

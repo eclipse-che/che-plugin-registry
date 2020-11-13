@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: COBOL
 title: COBOL
 description: COBOL, JCL, PL/I & DIR syntax support
-icon: https://raw.githubusercontent.com/spgennard/vscode_cobol/v5.2.2/images/cobol.png
+icon: https://raw.githubusercontent.com/spgennard/vscode_cobol_extension/main/images/cobol.png
 repository: https://github.com/spgennard/vscode_cobol
 category: Language
 spec:
