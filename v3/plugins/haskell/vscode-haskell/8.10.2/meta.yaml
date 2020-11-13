@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: '2020-10-15'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-haskell:8.10.2-2fde373"
+    - image: "quay.io/eclipse/che-plugin-sidecar:haskell-b64039f"
       name: vscode-haskell
       memoryLimit: 3072Mi
   extensions:
