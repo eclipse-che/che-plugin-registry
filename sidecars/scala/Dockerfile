@@ -20,23 +20,28 @@ RUN mkdir /projects ${HOME} && \
     done
 
 RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
-    apk --no-cache add bash curl procps nss
+    apk --no-cache add bash curl git procps nss
 
 WORKDIR /projects
 
-ENV JAVA_HOME=/usr/lib/jvm/default-jvm/
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm/ \
+    METALS_VERSION="0.9.5+12-c5a9a2ac-SNAPSHOT"
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
     mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
-    curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
-    chmod 0755 /usr/local/bin/sbt && \
-    curl -Ls https://raw.githubusercontent.com/lefou/millw/main/millw > /usr/local/bin/mill && \
-    chmod 0755 /usr/local/bin/mill && \
+    git clone https://github.com/sideeffffect/console-scala-simple.git && \
+    cd console-scala-simple && \
+    ./sbt check && \
+    cd .. && \
+    rm -Rf console-scala-simple && \
     curl -Ls https://git.io/coursier-cli > /usr/local/bin/cs && \
     chmod 0755 /usr/local/bin/cs && \
-    (echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.2.0/2.12-2.2.0) > /usr/local/bin/amm && \
-    chmod 0755 /usr/local/bin/amm
+    cs launch -r sonatype:snapshots org.scalameta:metals_2.12:$METALS_VERSION --main scala.meta.metals.DownloadDependencies && \
+    du -h -d 2 $HOME/.sbt/ && \
+    du -h -d 2 $HOME/.ivy2/ && \
+    du -h -d 7 $HOME/.cache/ && \
+    echo "Cache warmed up!"
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
