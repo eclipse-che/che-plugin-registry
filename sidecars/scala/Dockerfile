@@ -20,7 +20,7 @@ RUN mkdir /projects ${HOME} && \
     done
 
 RUN apk --no-cache add openjdk11-jre-headless --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
-    apk --no-cache add bash curl procps nss
+    apk --no-cache add procps nss
 
 WORKDIR /projects
 
@@ -28,15 +28,7 @@ ENV JAVA_HOME=/usr/lib/jvm/default-jvm/
 
 RUN mkdir -p $HOME/.cache && ln -s $HOME/.cache /root/.cache && \
     mkdir -p $HOME/.ivy2 && ln -s $HOME/.ivy2 /root/.ivy2 && \
-    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt && \
-    curl -Ls https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > /usr/local/bin/sbt && \
-    chmod 0755 /usr/local/bin/sbt && \
-    curl -Ls https://raw.githubusercontent.com/lefou/millw/main/millw > /usr/local/bin/mill && \
-    chmod 0755 /usr/local/bin/mill && \
-    curl -Ls https://git.io/coursier-cli > /usr/local/bin/cs && \
-    chmod 0755 /usr/local/bin/cs && \
-    (echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.2.0/2.12-2.2.0) > /usr/local/bin/amm && \
-    chmod 0755 /usr/local/bin/amm
+    mkdir -p $HOME/.sbt && ln -s $HOME/.sbt /root/.sbt
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
