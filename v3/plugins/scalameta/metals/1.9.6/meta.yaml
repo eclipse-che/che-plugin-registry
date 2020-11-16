@@ -12,7 +12,7 @@ category: Language
 firstPublicationDate: "2020-11-10"
 spec:
   containers:
-    - image: "quay.io/eclipse/che-plugin-sidecar:scala-0275d91"
+    - image: "quay.io/eclipse/che-plugin-sidecar:scala-1be6877"
       name: vscode-metals
       memoryLimit: "1500Mi"
       volumes:

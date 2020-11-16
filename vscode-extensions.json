@@ -346,7 +346,7 @@
       "repository": "https://github.com/scalameta/metals-vscode",
       "revision": "v1.9.6",
       "sidecar": {
-        "image": "quay.io/eclipse/che-plugin-sidecar:scala-0275d91",
+        "image": "quay.io/eclipse/che-plugin-sidecar:scala-1be6877",
         "source": {
           "repository": "https://github.com/che-dockerfiles/che-sidecar-scala"
         }
