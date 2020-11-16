@@ -367,10 +367,6 @@
       }
     },
     {
-      "repository": "https://github.com/spgennard/vscode_cobol_extension",
-      "revision": "6.0.19"
-    },
-    {
       "repository": "https://github.com/testthedocs/vscode-vale",
       "revision": "0.9.1",
       "sidecar": {
