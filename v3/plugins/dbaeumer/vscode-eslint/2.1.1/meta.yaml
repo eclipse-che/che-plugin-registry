@@ -12,4 +12,4 @@ category: Other
 firstPublicationDate: '2020-11-13'
 spec:
   extensions:
-  - https://open-vsx.org/api/dbaeumer/vscode-eslint/2.1.1/file/dbaeumer.vscode-eslint-2.1.1.vsix
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
