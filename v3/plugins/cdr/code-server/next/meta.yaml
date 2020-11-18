@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "docker.io/chinodesuuu/coder:next"
+     image: "quay.io/eclipse/che--codercom--code-server:3.6.2-ef07281004909bb2c228422df2e99a5ba5e450fce7546b8fa186852f23bf6751"
      mountSources: true
      ports:
          - exposedPort: 9000
