@@ -114,7 +114,7 @@
     },
     {
       "repository": "https://github.com/eclipse/che-che4z-explorer-for-endevor",
-      "revision": "0.10.0"
+      "revision": "0.11.0"
     },
     {
       "repository": "https://github.com/eclipse/che-che4z-lsp-for-cobol",
