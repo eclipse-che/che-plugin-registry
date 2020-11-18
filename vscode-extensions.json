@@ -192,7 +192,7 @@
     },
     {
       "repository": "https://github.com/microsoft/vscode-eslint",
-      "revision": "release/2.1.8"
+      "revision": "release/2.1.0-next.1"
     },
     {
       "repository": "https://github.com/microsoft/vscode-node-debug2",
