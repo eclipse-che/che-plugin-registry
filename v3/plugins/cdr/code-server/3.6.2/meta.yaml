@@ -5,11 +5,11 @@ version: 3.6.2
 type: Che Editor
 displayName: code-server
 title: Visual Studio Code - Web (code-server)
-description: A open source distribution of Visual Studio Code as a cloud IDE
+description: An open source distribution of Visual Studio Code as a cloud IDE
 icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg 
 category: Editor
 repository: https://github.com/cdr/code-server
-firstPublicationDate: "2020-11-03"
+firstPublicationDate: "2020-11-18"
 spec:
   endpoints:
    -  name: "code-server"
@@ -20,7 +20,7 @@ spec:
         type: ide
   containers:
    - name: code-server
-     image: "codercom/code-server:3.6.2"
+     image: "quay.io/eclipse/che--codercom--code-server:3.6.2-ef07281004909bb2c228422df2e99a5ba5e450fce7546b8fa186852f23bf6751"
      mountSources: true
      ports:
          - exposedPort: 8080

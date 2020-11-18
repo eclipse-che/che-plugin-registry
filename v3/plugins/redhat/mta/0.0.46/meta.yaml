@@ -23,7 +23,7 @@ spec:
     attributes:
       protocol: http
   containers:
-  - image: "docker.io/windup3/rhamt-vscode-extension:java8"
+  - image: "quay.io/windupeng/mta-vscode-extension:latest"
     name: mta-extension
     memoryLimit: 1500Mi
     mountSources: true
