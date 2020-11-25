@@ -11,8 +11,8 @@ plugins:
     sidecar:
       directory: node
     extensions:
-      - https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
       - https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix
+      - https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
       url: https://github.com/bazelbuild/vscode-bazel
       revision: 0.3.0
@@ -45,8 +45,8 @@ plugins:
     sidecar:
       directory: clang
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-vscode/cdt-vscode-0.0.7-75cf95.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix
   - repository:
       url: https://github.com/bmewburn/vscode-intelephense
@@ -85,8 +85,8 @@ plugins:
     sidecar:
       directory: haskell
     extensions:
-      - https://open-vsx.org/api/justusadam/language-haskell/3.3.0/file/justusadam.language-haskell-3.3.0.vsix
       - https://open-vsx.org/api/haskell/haskell/1.1.0/file/haskell.haskell-1.1.0.vsix
+      - https://open-vsx.org/api/justusadam/language-haskell/3.3.0/file/justusadam.language-haskell-3.3.0.vsix
       - https://open-vsx.org/api/gattytto/phoityne-vscode/0.0.28/file/gattytto.phoityne-vscode-0.0.28.vsix
   - repository:
       url: https://github.com/dart-code/flutter
@@ -94,9 +94,9 @@ plugins:
     sidecar:
       directory: flutter
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
-      - https://github.com/gattytto/dart-code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
       - https://github.com/dart-code/flutter/releases/download/v3.14.1/flutter-3.14.1.vsix
+      - https://github.com/gattytto/dart-code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
       url: https://github.com/camel-tooling/vscode-camelk
       revision: 0.0.18
@@ -112,10 +112,10 @@ plugins:
     sidecar:
       directory: java11
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
       - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
       - https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - repository:
       url: https://github.com/camel-tooling/vscode-wsdl2rest
@@ -137,9 +137,9 @@ plugins:
     sidecar:
       directory: tekton
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-project-initializer
       revision: v0.0.10
@@ -169,8 +169,8 @@ plugins:
     sidecar:
       directory: java11
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - id: redhat/java8
     repository:
@@ -179,8 +179,8 @@ plugins:
     sidecar:
       directory: java8
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - repository:
       url: https://github.com/felixfbecker/vscode-php-debug
@@ -248,8 +248,8 @@ plugins:
     sidecar:
       directory: scala
     extensions:
-      - https://github.com/scala/vscode-scala-syntax/releases/download/0.4.5/scala-lang.scala-0.4.5.vsix
       - https://github.com/scalameta/metals-vscode/releases/download/v1.9.6/scalameta.metals-1.9.6.vsix
+      - https://github.com/scala/vscode-scala-syntax/releases/download/0.4.5/scala-lang.scala-0.4.5.vsix
   - repository:
       url: https://github.com/SonarSource/sonarlint-vscode
       revision: 1.16.0
