@@ -8,7 +8,7 @@ title: Language support for Xtend
 description: VS Code extension that provides Xtend Language Server
 icon: https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/images/eclipse-che-logo.png
 firstPublicationDate: "2019-08-12"
-category: Language
+category: Programming Languages
 repository: https://github.com/PizzaFactory/xtend-ide-extensions/
 spec:
   containers:

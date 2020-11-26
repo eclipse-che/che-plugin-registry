@@ -8,7 +8,7 @@ title: YAML Language Support by Red Hat, with built-in Kubernetes support
 description: Provides comprehensive YAML Language support to Visual Studio Code, via the yaml-language-server, with built-in Kubernetes support.
 icon: https://raw.githubusercontent.com/redhat-developer/vscode-yaml/0.11.1/icon/icon128.png
 repository: https://github.com/redhat-developer/vscode-yaml
-category: Language
+category: Programming Languages
 firstPublicationDate: "2020-10-20"
 spec:
   containers:

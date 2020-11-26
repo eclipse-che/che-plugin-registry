@@ -8,7 +8,7 @@ title: Language Support for Apache Camel
 description: This VS Code extension provides support for Apache Camel.
 icon: https://raw.githubusercontent.com/camel-tooling/camel-lsp-client-vscode/0.0.28/icons/icon128.png
 repository: https://github.com/camel-tooling/camel-lsp-client-vscode
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-10-27'
 spec:
   containers:

@@ -8,7 +8,7 @@ title: Google's protobuf .proto file support
 description: This extension adds rich language support for the proto3 syntax
 icon: https://raw.githubusercontent.com/zxh0/vscode-proto3/master/images/vscode_extension_icon.png
 repository: https://github.com/zxh0/vscode-proto3
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-08-26'
 spec:
   containers:

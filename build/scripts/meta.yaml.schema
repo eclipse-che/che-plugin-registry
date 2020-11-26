@@ -409,14 +409,22 @@
     },
     "category": {
       "enum": [
-        "Editor",
-        "Debugger",
-        "Formatter",
-        "Language",
-        "Linter",
-        "Snippet",
-        "Theme",
-        "Other"
+        "Programming Languages",
+        "Snippets",
+        "Linters",
+        "Themes",
+        "Debuggers",
+        "Formatters",
+        "Keymaps",
+        "SCM Providers",
+        "Other",
+        "Extension Packs",
+        "Language Packs",
+        "Data Science",
+        "Machine Learning",
+        "Visualization",
+        "Notebooks",
+        "Editor"
       ]
     }
   },

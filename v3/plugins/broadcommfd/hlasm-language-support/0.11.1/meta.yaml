@@ -8,7 +8,7 @@ title: HLASM Language Support
 description: Code completion, highlighting, browsing and validation for High Level Assembler
 icon: https://raw.githubusercontent.com/eclipse/che-che4z-lsp-for-hlasm/0.11.1/clients/vscode-hlasmplugin/resources/logo.png
 repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm
-category: Language
+category: Programming Languages
 spec:
   extensions:
     - https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix

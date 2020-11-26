@@ -8,7 +8,7 @@ title: Typescript language features
 description: Typescript language features
 icon: https://raw.githubusercontent.com/microsoft/vscode/1.35.1/extensions/typescript-language-features/icon.png
 repository: https://github.com/Microsoft/vscode
-category: Language
+category: Programming Languages
 firstPublicationDate: '2019-06-20'
 spec:
   containers:

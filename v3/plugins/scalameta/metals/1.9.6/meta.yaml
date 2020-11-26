@@ -8,7 +8,7 @@ title: Scala language server with rich IDE features
 description: This plug-in provides support for Scala development via the Metals language server.
 icon: https://raw.githubusercontent.com/scalameta/metals-vscode/v1.9.6/images/logo.png
 repository: https://github.com/scalameta/metals-vscode
-category: Language
+category: Programming Languages
 firstPublicationDate: "2020-11-10"
 spec:
   containers:

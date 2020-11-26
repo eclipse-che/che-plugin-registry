@@ -8,7 +8,7 @@ title: Haskell language support
 description: This extension adds rich language support for the Haskell syntax
 icon: https://github.com/haskell/vscode-haskell/blob/master/images/haskell-logo.png
 repository: https://github.com/haskell/vscode-haskell
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-10-15'
 spec:
   containers:
