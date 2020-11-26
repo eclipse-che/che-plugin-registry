@@ -8,7 +8,7 @@ title: Google's Dart language support
 description: This extension adds rich language support for the Dart syntax
 icon: https://dart.dev/assets/shared/dart/logo+text/horizontal/white-e71fb382ad5229792cc704b3ee7a88f8013e986d6e34f0956d89c453b454d0a5.svg
 repository: https://github.com/gattytto/Dart-Code
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-08-26'
 spec:
   containers:

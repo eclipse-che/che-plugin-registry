@@ -8,7 +8,7 @@ title: COBOL Language Support
 description: Autocomplete, highlighting and diagnostics for COBOL code and copybooks.
 icon: https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.15.0/file/logo.png
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol
-category: Language
+category: Programming Languages
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:11-86274e3

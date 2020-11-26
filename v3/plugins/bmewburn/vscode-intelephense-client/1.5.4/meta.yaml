@@ -8,7 +8,7 @@ description: This VS Code extension provides support for creating and editing PH
 type: VS Code extension
 icon: https://raw.githubusercontent.com/bmewburn/vscode-intelephense/v1.5.4/images/elephpant.png
 repository: https://github.com/bmewburn/vscode-intelephense
-category: Language
+category: Programming Languages
 firstPublicationDate: "2020-09-23"
 spec:
   containers:

@@ -8,7 +8,7 @@ title: MicroProfile Starter
 description: VS Code MicroProfile Starter Extension
 icon: https://raw.githubusercontent.com/MicroShed/mp-starter-vscode-ext/0.2.0/images/microprofile-logo.png
 firstPublicationDate: "2019-11-22"
-category: Language
+category: Programming Languages
 repository: https://github.com/MicroShed/mp-starter-vscode-ext
 spec:
   extensions:

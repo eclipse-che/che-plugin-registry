@@ -8,7 +8,7 @@ title: Rich Go language support for Visual Studio Code
 description: This extension provides rich language support for the Go programming language in VS Code.
 icon: https://raw.githubusercontent.com/golang/vscode-go/v0.16.1/images/go-logo-blue.png
 repository: https://github.com/golang/vscode-go
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-06-08'
 spec:
   containers:

@@ -8,7 +8,7 @@ title: Debugger for .NET Core runtime
 description: This plug-in provides Samsung/netcoredbg which implements VSCode Debug Adapter protocol and allows to debug .NET apps under .NET Core runtime.
 icon: https://raw.githubusercontent.com/redhat-developer/netcoredbg-theia-plugin/master/redhat-developer-icon.png
 repository: https://github.com/redhat-developer/netcoredbg-theia-plugin
-category: Debugger
+category: Debuggers
 firstPublicationDate: "2020-07-07"
 spec:
   containers:

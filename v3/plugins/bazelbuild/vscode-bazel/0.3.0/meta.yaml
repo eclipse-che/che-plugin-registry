@@ -8,7 +8,7 @@ title: Starlark files and bazel build support
 description: This extension adds rich language support for Starlark
 icon: https://raw.githubusercontent.com/bazelbuild/vscode-bazel/master/media/bazel-logo.png
 repository: https://github.com/bazelbuild/vscode-bazel
-category: Language
+category: Programming Languages
 firstPublicationDate: '2018-11-28'
 spec:
   containers:

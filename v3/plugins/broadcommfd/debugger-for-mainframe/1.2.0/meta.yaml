@@ -8,7 +8,7 @@ title: Debugger for Mainframe
 description: Provides a modern debugging experience for COBOL applications running in a CICS region.
 icon: https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.2.0/file/logo.png
 repository: https://github.com/BroadcomMFD/debugger-for-mainframe
-category: Debugger
+category: Programming Languages
 spec:
   containers:
     - image: quay.io/eclipse/che-sidecar-java:8-0cfbacb

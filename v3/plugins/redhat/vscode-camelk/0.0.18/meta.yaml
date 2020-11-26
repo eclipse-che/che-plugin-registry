@@ -8,7 +8,7 @@ title: Tooling for Apache Camel K
 description: Support for Apache Camel K functionality
 icon: https://raw.githubusercontent.com/camel-tooling/vscode-camelk/0.0.18/icons/icon128.png
 repository: https://github.com/camel-tooling/vscode-camelk
-category: Language
+category: Programming Languages
 firstPublicationDate: '2020-10-14'
 spec:
   containers:

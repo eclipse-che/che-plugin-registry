@@ -8,7 +8,7 @@ type: VS Code extension
 description: This VS Code extension provides support for PHP debugging, based on the PHP Debug extension from Felix Becker.
 icon: https://raw.githubusercontent.com/felixfbecker/vscode-php-debug/v1.13.0/images/logo.png
 repository: https://github.com/felixfbecker/vscode-php-debug
-category: Language
+category: Programming Languages
 firstPublicationDate: "2019-04-16"
 spec:
   containers:

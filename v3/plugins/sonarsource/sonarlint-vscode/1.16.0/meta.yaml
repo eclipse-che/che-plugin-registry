@@ -8,7 +8,7 @@ title: Sonarlint code intelligence
 description: VS Code extension that provides sonarlint features
 icon: https://raw.githubusercontent.com/SonarSource/sonarlint-vscode/1.16.0/images/sonarlint_wave_128px.png
 firstPublicationDate: "2020-01-09"
-category: Linter
+category: Linters
 repository: https://github.com/SonarSource/sonarlint-vscode
 spec:
   containers:

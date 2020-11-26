@@ -8,7 +8,7 @@ title: C# Language Support for Theia
 description: This plug-in registers omnisharp-roslyn as a language server and provides project dependencies and language syntax.
 icon: https://raw.githubusercontent.com/redhat-developer/omnisharp-theia-plugin/master/redhat-developer-icon.png
 repository: https://github.com/redhat-developer/omnisharp-theia-plugin
-category: Language
+category: Programming Languages
 firstPublicationDate: "2020-07-07"
 spec:
   containers:
