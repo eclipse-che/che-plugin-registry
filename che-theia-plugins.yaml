@@ -3,6 +3,8 @@ plugins:
   - repository:
       url: https://github.com/microsoft/vscode-pull-request-github
       revision: 0.20.0
+    aliases:
+      - ms-vscode/vscode-github-pullrequest
     extensions:
       - https://github.com/microsoft/vscode-pull-request-github/releases/download/0.20.0/vscode-pull-request-github-0.20.0.vsix
   - repository:
@@ -23,6 +25,8 @@ plugins:
   - repository:
       url: https://github.com/vuejs/vetur
       revision: v0.26.1
+    aliases:
+      - vuejs/vetur
     sidecar:
       directory: node
     extensions:
@@ -70,6 +74,8 @@ plugins:
   - repository:
       url: https://github.com/eamodio/vscode-gitlens
       revision: v10.2.1
+    aliases:
+      - eamodio/vscode-gitlens
     extensions:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
   - repository:
@@ -106,7 +112,8 @@ plugins:
       - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.18-16.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
-  - repository:
+  - id: redhat/quarkus-java11
+    repository:
       url: https://github.com/redhat-developer/vscode-quarkus
       revision: v1.7.0
     sidecar:
@@ -117,6 +124,16 @@ plugins:
       - https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+  - id: redhat/quarkus-java8
+    repository:
+      url: https://github.com/redhat-developer/vscode-quarkus
+      revision: v1.5.0
+    sidecar:
+      directory: java8
+    extensions:
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.5.0-324.vsix
+      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
   - repository:
       url: https://github.com/camel-tooling/vscode-wsdl2rest
       revision: 0.0.11
@@ -127,6 +144,8 @@ plugins:
   - repository:
       url: https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension
       revision: 0.1.0
+    aliases:
+      - redhat/dependency-analytics
     sidecar:
       directory: dependency-analytics
     extensions:
@@ -134,6 +153,8 @@ plugins:
   - repository:
       url: https://github.com/redhat-developer/vscode-tekton
       revision: v0.2.0
+    aliases:
+      - redhat/vscode-tekton
     sidecar:
       directory: tekton
     extensions:
@@ -185,6 +206,8 @@ plugins:
   - repository:
       url: https://github.com/felixfbecker/vscode-php-debug
       revision: v1.13.0
+    aliases:
+      - felixfbecker/vscode-php-debug
     sidecar:
       directory: php
     extensions:
@@ -192,6 +215,8 @@ plugins:
   - repository:
       url: https://github.com/windup/rhamt-vscode-extension
       revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
+    aliases:
+      - redhat/mta
     sidecar:
       image: quay.io/windupeng/mta-vscode-extension:latest
     extensions:
@@ -284,6 +309,8 @@ plugins:
   - repository:
       url: https://github.com/zxh0/vscode-proto3
       revision: c4d9eeb54294e3cee86254261edf036901f29dec
+    aliases:
+      - zxh404/protobuf
     sidecar:
       directory: protobuf
     extensions:
@@ -298,6 +325,8 @@ plugins:
   - repository:
       url: https://github.com/pizzafactory-contorno/vscode-libra-move/
       revision: v0.0.10-ddc0d3d
+    aliases:
+      - pizzafactory/vscode-libra-move
     sidecar:
       directory: java8
     extensions:
@@ -321,11 +350,16 @@ plugins:
   - repository:
       url: https://github.com/MicroShed/mp-starter-vscode-ext
       revision: 0.2.0
+    aliases:
+      - microshed/mp-starter-vscode-ext
     extensions:
       - https://github.com/MicroShed/mp-starter-vscode-ext/releases/download/0.2.0/mp-starter-vscode-ext-0.2.0.vsix
-  - repository:
+  - id: dart-code/dart-code
+    repository:
       url: https://github.com/gattytto/Dart-Code
       revision: v3.15.0-che
+    aliases:
+      - gattytto/dart-code
     sidecar:
       directory: dart
     extensions:
@@ -353,5 +387,7 @@ plugins:
   - repository:
       url: https://github.com/bash-lsp/bash-language-server
       revision: vscode-client-1.10.2
+    aliases:
+      - mads-hartmann/bash-ide
     extensions:
       - https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix
