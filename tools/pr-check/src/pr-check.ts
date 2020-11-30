@@ -1,19 +1,21 @@
-/********************************************************************************
+/**********************************************************************
  * Copyright (c) 2020 Red Hat, Inc.
  *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- ********************************************************************************/
+ ***********************************************************************/
 
 import * as fs from 'fs-extra';
 import * as glob from 'glob';
 import * as jsyaml from 'js-yaml';
 import * as path from 'path';
-import Axios from 'axios';
+
 import simpleGit, { SimpleGit } from 'simple-git';
+
+import Axios from 'axios';
 
 const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
 
@@ -63,7 +65,7 @@ async function vscodeExtensionsFieldValidation() {
   const vsCodeExtensions: VSCodeExtension[] = await Promise.all(
     extensions.map(
       async (extensionEntry: VSCodeExtensionEntry): Promise<VSCodeExtension> => {
-        let vscodeExtension: VSCodeExtension = {
+        const vscodeExtension: VSCodeExtension = {
           repository: extensionEntry.repository,
           revision: extensionEntry.revision,
           error: false,
@@ -83,12 +85,14 @@ async function vscodeExtensionsFieldValidation() {
             vscodeExtension.errorMessages.push(`Error cloning extension repository ${vscodeExtension.repository}`);
           }
           if (err.response && err.response.status) {
-            if (err.response.status == 404) {
+            if (err.response.status === 404) {
               extensionRepoValid = false;
               vscodeExtension.error = true;
-              vscodeExtension.errorMessages.push(`Extension repository ${vscodeExtension.repository} is not valid (response: 404)`);
+              vscodeExtension.errorMessages.push(
+                `Extension repository ${vscodeExtension.repository} is not valid (response: 404)`
+              );
             }
-            if (err.response.status == 429) {
+            if (err.response.status === 429) {
               console.error(`Unable to check ${vscodeExtension.repository} due to rate limiting (response: 429)`);
             }
           }
@@ -102,7 +106,9 @@ async function vscodeExtensionsFieldValidation() {
             await simpleGit(clonePath).checkout(vscodeExtension.revision);
           } catch (err) {
             vscodeExtension.error = true;
-            vscodeExtension.errorMessages.push(`Error checking out revision ${vscodeExtension.revision} for ${vscodeExtension.repository}`);
+            vscodeExtension.errorMessages.push(
+              `Error checking out revision ${vscodeExtension.revision} for ${vscodeExtension.repository}`
+            );
           }
           await fs.remove(clonePath);
         }
@@ -113,16 +119,22 @@ async function vscodeExtensionsFieldValidation() {
             await Axios.head(vscodeExtension.sidecar.source.repository);
           } catch (err) {
             if (err.response && err.response.status) {
-              if (err.response.status == 404) {
+              if (err.response.status === 404) {
                 vscodeExtension.error = true;
-                vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid (response: 404)`);
+                vscodeExtension.errorMessages.push(
+                  `Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid (response: 404)`
+                );
               }
-              if (err.response.status == 429) {
-                console.error(`Unable to check ${vscodeExtension.sidecar.source.repository} due to rate limiting (response: 429)`);
+              if (err.response.status === 429) {
+                console.error(
+                  `Unable to check ${vscodeExtension.sidecar.source.repository} due to rate limiting (response: 429)`
+                );
               }
             } else {
               vscodeExtension.error = true;
-              vscodeExtension.errorMessages.push(`Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid`);
+              vscodeExtension.errorMessages.push(
+                `Sidecar repository ${vscodeExtension.sidecar.source.repository} is not valid`
+              );
             }
           }
         }
@@ -131,13 +143,13 @@ async function vscodeExtensionsFieldValidation() {
     )
   );
   // Clean up any cloned paths
-  await fs.remove(EXTENSION_ROOT_DIR)
+  await fs.remove(EXTENSION_ROOT_DIR);
 
   // Check for errors, print them, and exit with code 1 if there are any
-  let errors = vsCodeExtensions.filter((extension) => {
+  const errors = vsCodeExtensions.filter(extension => {
     if (extension.error) {
       extension.errorMessages.forEach((error: string) => {
-        console.error(error)
+        console.error(error);
       });
       return true;
     }
@@ -152,9 +164,9 @@ async function iconsExtensions404Check() {
   const extensions: MetaYamlExtension[] = await Promise.all(
     metaYamlFiles.map(
       async (metaYamlFile: string): Promise<MetaYamlExtension> => {
-        let metaYaml = await fs.readFile(metaYamlFile, 'utf-8');
+        const metaYaml = await fs.readFile(metaYamlFile, 'utf-8');
         let metaYamlString;
-        let extension: MetaYamlExtension = {
+        const extension: MetaYamlExtension = {
           error: false,
         };
         try {
@@ -166,8 +178,12 @@ async function iconsExtensions404Check() {
         }
 
         if (metaYamlString) {
-          let metaYamlObject: { icon?: string; name: string; version: string; spec?: { extensions?: [string] } };
-          metaYamlObject = JSON.parse(JSON.stringify(metaYamlString));
+          const metaYamlObject: {
+            icon?: string;
+            name: string;
+            version: string;
+            spec?: { extensions?: [string] };
+          } = JSON.parse(JSON.stringify(metaYamlString));
           extension.name = metaYamlObject.name;
           extension.version = metaYamlObject.version;
 
@@ -185,19 +201,19 @@ async function iconsExtensions404Check() {
           // Check the vsix files, if there are any
           if (metaYamlObject.spec && metaYamlObject.spec.extensions) {
             extension.vsixList = [];
-            for (let vsix of metaYamlObject.spec.extensions) {
+            for (const vsix of metaYamlObject.spec.extensions) {
               extension.vsixList.push(vsix);
-              let hostedOnGitHub = vsix.includes("github.com")
+              const hostedOnGitHub = vsix.includes('github.com');
               try {
                 // GitHub release assets redirect to AWS, but AWS returns 403 for HEAD requests.
                 // In this case, don't follow redirects and check for a 302 code instead.
                 if (hostedOnGitHub) {
-                  await Axios.head(vsix, {maxRedirects: 0});
+                  await Axios.head(vsix, { maxRedirects: 0 });
                 } else {
                   await Axios.head(vsix);
                 }
               } catch (err) {
-                if (hostedOnGitHub && err.response.status == 302) {
+                if (hostedOnGitHub && err.response.status === 302) {
                   break;
                 }
                 extension.error = true;
@@ -212,7 +228,7 @@ async function iconsExtensions404Check() {
   );
 
   // Check for errors, print them, and exit with code 1 if there are any
-  let errors = extensions.filter((extension) => {
+  const errors = extensions.filter(extension => {
     if (extension.error) {
       console.log(`${extension.errorMessage} (${extension.name} version ${extension.version})`);
       return true;
@@ -225,7 +241,7 @@ async function iconsExtensions404Check() {
 }
 
 (async (): Promise<void> => {
-  let myArgs = process.argv.slice(2);
+  const myArgs = process.argv.slice(2);
   switch (myArgs[0]) {
     case 'icons-extensions-404':
       await iconsExtensions404Check();
