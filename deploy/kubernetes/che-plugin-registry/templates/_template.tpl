@@ -1,3 +1,3 @@
-{{- define "plugin.hostname" -}}
-{{- .Values.hostnameOverride | default (printf "che-plugin-registry-%s" .Release.Namespace) -}}
+{{- define "pluginRegistryHost" -}}
+{{- .Values.chePluginRegistryHost | default (printf .Values.chePluginRegistryUrlFormat .Release.Namespace .Values.global.ingressDomain) -}}
 {{- end -}}
