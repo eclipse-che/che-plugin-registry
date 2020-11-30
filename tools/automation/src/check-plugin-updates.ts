@@ -214,7 +214,7 @@ export class Report {
 }
 
 (async (): Promise<void> => {
-  await new Report().generate().catch((error) => {
+  await new Report().generate().catch(error => {
     console.log('Error:', error);
   });
 })();

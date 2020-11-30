@@ -21,3 +21,5 @@ che-dto.ts
 v3/**/latest/
 
 node_modules/
+.eslintcache
+coverage
