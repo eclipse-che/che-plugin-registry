@@ -25,6 +25,6 @@ spec:
 {{- if .Values.chePluginRegistryIngressSecretName }}
   tls:
   - hosts:
-    - {{ template "chePluginRegistryHost" . }}
+    - {{ template "pluginRegistryHost" . }}
     secretName: {{ .Values.chePluginRegistryIngressSecretName }}
 {{- end -}}
