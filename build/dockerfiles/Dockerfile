@@ -11,16 +11,24 @@
 #
 
 # Builder: check meta.yamls and create index.json
-FROM docker.io/alpine:3.11.5 AS builder
-RUN apk add --no-cache py3-pip jq bash wget skopeo && pip3 install yq jsonschema
+FROM docker.io/node:12.19.0-alpine3.12 AS builder
+RUN apk add --no-cache py3-pip jq bash git wget skopeo && pip3 install yq jsonschema
 
 ARG LATEST_ONLY=false
 ARG USE_DIGESTS=false
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
+COPY /.eslintrc.js /.eslintrc.js
+COPY /.git /.git
+COPY /sidecars /sidecars
+COPY /package.json /package.json
+COPY /yarn.lock /yarn.lock
+COPY ./tools /tools
+COPY /che-theia-plugins.yaml /che-theia-plugins.yaml
 COPY /v3 /build/v3
 WORKDIR /build/
 
+RUN ./generate_vscode_extensions.sh
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
       ./keep_only_latest.sh; \
     fi

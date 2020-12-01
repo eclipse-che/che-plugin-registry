@@ -11,12 +11,12 @@
 #
 
 # Builder: check meta.yamls and create index.json
-# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8-minimal
-FROM registry.access.redhat.com/ubi8-minimal:8.2-267 as builder
+# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/nodejs-12
+FROM registry.access.redhat.com/ubi8/nodejs-12:1-59 as builder
 USER 0
 
 ################# 
-# PHASE ONE: create ubi8-minimal image with yq
+# PHASE ONE: create ubi8 image with yq
 ################# 
 
 ARG BOOTSTRAP=false
@@ -51,8 +51,17 @@ RUN /tmp/rhel.install.sh && rm -f /tmp/rhel.install.sh
 #################
 
 COPY ./build/scripts/*.sh ./build/scripts/meta.yaml.schema /build/
-COPY ./v3 /build/v3
+COPY /.eslintrc.js /.eslintrc.js
+COPY /.git /.git
+COPY /sidecars /sidecars
+COPY /package.json /package.json
+COPY /yarn.lock /yarn.lock
+COPY ./tools /tools
+COPY /che-theia-plugins.yaml /che-theia-plugins.yaml
+COPY /v3 /build/v3
 WORKDIR /build/
+
+RUN ./generate_vscode_extensions.sh
 
 # if only including the /latest/ plugins, apply this line to remove them from builder
 RUN if [[ ${LATEST_ONLY} == "true" ]]; then \
