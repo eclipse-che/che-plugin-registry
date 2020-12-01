@@ -9,8 +9,8 @@
 #
 set -x
 
-microdnf --disablerepo=fedora30-updates --disablerepo=fedora30-secondary-updates install -y findutils bash wget yum gzip tar python3-six python3-pip && microdnf -y clean all
-microdnf --enablerepo=fedora30-updates --enablerepo=fedora30-secondary-updates install -y skopeo jq && microdnf update -y skopeo containers-common jq oniguruma && microdnf -y clean all
+dnf --disablerepo=fedora30-updates --disablerepo=fedora30-secondary-updates install -y findutils bash wget yum gzip tar python3-six python3-pip && dnf -y clean all
+dnf --enablerepo=fedora30-updates --enablerepo=fedora30-secondary-updates install -y skopeo jq && dnf update -y skopeo containers-common jq oniguruma && dnf -y clean all
 # install yq (depends on jq and pyyaml - if jq and pyyaml not already installed, this will try to compile it)
 if [[ -f /tmp/root-local.tgz ]] || [[ ${BOOTSTRAP} == "true" ]]; then
     mkdir -p /root/.local
@@ -37,4 +37,5 @@ ln -s /usr/bin/python3.6 /usr/bin/python
 for d in python yq jq jsonschema; do echo -n "$d: "; $d --version; done
 
 # for debugging only
-# microdnf install -y util-linux && whereis python pip jq yq && python --version && jq --version && yq --version
+# dnf install -y util-linux && whereis python pip jq yq && python --version && jq --version && yq --version
+npm install yarn -g
