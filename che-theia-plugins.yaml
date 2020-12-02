@@ -340,7 +340,8 @@ plugins:
       revision: v0.3.9
     extensions:
       - https://open-vsx.org/api/rogalmic/bash-debug/0.3.9/file/rogalmic.bash-debug-0.3.9.vsix
-  - repository:
+  - id: redhat-developer/netcoredbg-theia-plugin
+    repository:
       url: https://github.com/redhat-developer/netcoredbg-theia-plugin
       revision: v0.0.3
     sidecar:
@@ -349,7 +350,8 @@ plugins:
       memoryLimit: "512Mi"
     extensions:
       - https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.3/netcoredbg_theia_plugin.theia
-  - repository:
+  - id: redhat-developer/che-omnisharp-plugin
+    repository:
       url: https://github.com/redhat-developer/omnisharp-theia-plugin
       revision: v0.0.6
     sidecar:
