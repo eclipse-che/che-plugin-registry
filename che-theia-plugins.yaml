@@ -238,6 +238,8 @@ plugins:
     repository:
       url: https://github.com/redhat-developer/vscode-java
       revision: v0.69.0
+    aliases:
+      - redhat/java
     sidecar:
       directory: java
       name: vscode-java
