@@ -12,7 +12,7 @@ category: Programming Languages
 firstPublicationDate: "2019-04-16"
 deprecate:
   automigrate: true
-  migrateTo: felixfbecker/vscode-php-debug/latest
+  migrateTo: felixfbecker/php-debug/latest
 spec:
   containers:
     - image: "quay.io/eclipse/che-sidecar-php:7-b95f23f"
