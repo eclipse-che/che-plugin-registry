@@ -379,13 +379,13 @@ plugins:
   - repository:
       url: https://github.com/SonarSource/sonarlint-vscode
       revision: 1.16.0
-      sidecar:
-        directory: sonarlint
-        name: vscode-sonarlint
-        memoryLimit: "512Mi"
-        volumeMounts:
-          - name: m2
-            path: "/home/theia/.m2"
+    sidecar:
+      directory: sonarlint
+      name: vscode-sonarlint
+      memoryLimit: "512Mi"
+      volumeMounts:
+        - name: m2
+          path: "/home/theia/.m2"
     extensions:
       - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
   - repository:
