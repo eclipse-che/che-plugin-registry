@@ -4,16 +4,16 @@ name: xtext-lang
 version: 0.4.0
 type: VS Code extension
 displayName: Xtext Language
-title: Language support for Xtext
-description: VS Code extension that provides Xtext Language Server
-icon: https://raw.githubusercontent.com/eclipse/che-plugin-registry/master/v3/images/eclipse-che-logo.png
-firstPublicationDate: "2019-08-12"
+title: Xtext Language
+description: Xtext Grammar Specification Language
+icon: /images/eclipse-che-logo.png
 category: Programming Languages
-repository: https://github.com/PizzaFactory/xtext-ide-extensions/
+repository: 'https://github.com/PizzaFactory/xtext-ide-extensions.git'
+firstPublicationDate: '2019-08-12'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-java:8-0cfbacb"
+    - image: 'quay.io/eclipse/che-plugin-sidecar:java8-b8f0528'
       name: vscode-xtext-lang
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
   extensions:
-    - https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix
+    - 'https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix'

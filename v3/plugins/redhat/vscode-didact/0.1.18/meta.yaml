@@ -4,12 +4,12 @@ name: vscode-didact
 version: 0.1.18
 type: VS Code extension
 displayName: Didact
-title: Didact Tutorial Tools by Red Hat
-description: Provides interactive tutorial support to Visual Studio Code, via didact links calling VS Code commands, Markdown, AsciiDoc, and the VS Code webview.
-icon: https://raw.githubusercontent.com/redhat-developer/vscode-didact/0.1.18/icon/logo.png
-repository: https://github.com/redhat-developer/vscode-didact
+title: Didact
+description: Didact Tutorial Tools for Visual Studio Code
+icon: /images/redhat-vscode-didact-icon.png
 category: Other
-firstPublicationDate: "2020-06-18"
+repository: 'https://github.com/redhat-developer/vscode-didact'
+firstPublicationDate: '2020-11-05'
 spec:
   extensions:
-    - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix
+    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix'

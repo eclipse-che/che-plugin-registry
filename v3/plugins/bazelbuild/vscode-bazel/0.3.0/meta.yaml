@@ -3,20 +3,20 @@ publisher: bazelbuild
 name: vscode-bazel
 version: 0.3.0
 type: VS Code extension
-displayName: Bazel
-title: Starlark files and bazel build support
-description: This extension adds rich language support for Starlark
-icon: https://raw.githubusercontent.com/bazelbuild/vscode-bazel/master/media/bazel-logo.png
-repository: https://github.com/bazelbuild/vscode-bazel
+displayName: vscode-bazel
+title: vscode-bazel
+description: Bazel BUILD integration
+icon: /images/bazelbuild-vscode-bazel-icon.png
 category: Programming Languages
-firstPublicationDate: '2018-11-28'
+repository: 'https://github.com/bazelbuild/vscode-bazel.git'
+firstPublicationDate: '2019-09-19'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-bazel:3.2.0-e352e6b"
+    - image: 'quay.io/eclipse/che-plugin-sidecar:bazel-b64039f'
       name: vscode-bazel
-      memoryLimit: '2Gi'
       volumes:
-      - mountPath: "/home/theia/.cache/bazel"
-        name: bazelcache
+        - name: bazelcache
+          mountPath: /home/theia/.cache/bazel
+      memoryLimit: 2Gi
   extensions:
-    - https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix
+    - 'https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix'

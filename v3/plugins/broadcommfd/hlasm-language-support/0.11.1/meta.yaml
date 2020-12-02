@@ -5,10 +5,12 @@ version: 0.11.1
 type: VS Code extension
 displayName: HLASM Language Support
 title: HLASM Language Support
-description: Code completion, highlighting, browsing and validation for High Level Assembler
-icon: https://raw.githubusercontent.com/eclipse/che-che4z-lsp-for-hlasm/0.11.1/clients/vscode-hlasmplugin/resources/logo.png
-repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm
+description: 'Code completion, highlighting, browsing and validation for High Level Assembler.'
+icon: /images/broadcommfd-hlasm-language-support-icon.png
 category: Programming Languages
+repository: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm.git'
+firstPublicationDate: '2020-11-09'
 spec:
   extensions:
-    - https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
+    - >-
+      https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix

@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-tekton
+version: 0.2.0
+type: VS Code extension
+displayName: Tekton Pipelines
+title: Tekton Pipelines
+description: Tekton Pipelines extension by Red Hat
+icon: /images/redhat-vscode-tekton-pipelines-icon.png
+category: Snippets
+repository: 'https://github.com/redhat-developer/vscode-tekton.git'
+firstPublicationDate: '2020-06-24'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-tekton-pipelines/latest
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar:tekton-b64039f'
+      name: vscode-tekton
+      volumes:
+        - name: kube
+          mountPath: /home/theia/.kube
+      memoryLimit: 384Mi
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix'
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix'
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix'

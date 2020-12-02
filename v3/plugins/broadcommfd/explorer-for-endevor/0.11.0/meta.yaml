@@ -6,9 +6,11 @@ type: VS Code extension
 displayName: Explorer for Endevor
 title: Explorer for Endevor
 description: Explorer for Endevor
-icon: https://raw.githubusercontent.com/eclipse/che-che4z-explorer-for-endevor/0.11.0/resources/logo.png
-repository: https://github.com/eclipse/che-che4z-explorer-for-endevor
-category: Programming Languages
+icon: /images/broadcommfd-explorer-for-endevor-icon.png
+category: SCM Providers
+repository: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
+firstPublicationDate: '2020-11-13'
 spec:
   extensions:
-    - https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.0/explorer-for-endevor-0.11.0.vsix
+    - >-
+      https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.0/explorer-for-endevor-0.11.0.vsix

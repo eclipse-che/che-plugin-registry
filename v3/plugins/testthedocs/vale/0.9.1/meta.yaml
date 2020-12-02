@@ -3,17 +3,17 @@ publisher: testthedocs
 name: vale
 version: 0.9.1
 type: VS Code extension
-displayName: Vale
-title: Vale
+displayName: vale
+title: vale
 description: Lint documents with Vale
-icon: https://raw.githubusercontent.com/testthedocs/vscode-vale/0.9.1/vale.png
-repository: https://github.com/testthedocs/vscode-vale
-category: Other
-firstPublicationDate: "2020-10-01"
+icon: /images/testthedocs-vale-icon.png
+category: Linters
+repository: 'https://github.com/testthedocs/vscode-vale.git'
+firstPublicationDate: '2020-02-05'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-vale:0.9.1-a8fe390"
-      name: "vscode-vale"
-      memoryLimit: "512Mi"
+    - image: 'quay.io/eclipse/che-plugin-sidecar:vale-c939ba4'
+      name: vscode-vale
+      memoryLimit: 512Mi
   extensions:
-    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-vale/vale-0.9.1.vsix
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-vale/vale-0.9.1.vsix'

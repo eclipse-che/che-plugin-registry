@@ -1,0 +1,20 @@
+apiVersion: v2
+publisher: sdkbox
+name: vscode-libra-move
+version: 0.0.10
+type: VS Code extension
+displayName: Libra Move Language VSCode
+title: Libra Move Language VSCode
+description: 'Libra Move language (syntax highlighting, snippets) for Visual Studio Code'
+icon: /images/sdkbox-vscode-libra-move-icon.png
+category: Snippets
+repository: 'https://github.com/sdkbox/vscode-libra-move'
+firstPublicationDate: '2019-09-24'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar:java8-b8f0528'
+      name: vscode-libra-move
+      memoryLimit: 512Mi
+  extensions:
+    - >-
+      https://github.com/pizzafactory-contorno/vscode-libra-move/releases/download/v0.0.10-ddc0d3d/vscode-libra-move-0.0.10.vsix

@@ -1,0 +1,20 @@
+apiVersion: v2
+publisher: dart-code
+name: dart-code
+version: 3.15.0-dev
+type: VS Code extension
+displayName: Dart
+title: Dart
+description: Dart language support and debugger for Visual Studio Code.
+icon: /images/dart-code-dart-code-icon.png
+category: Programming Languages
+repository: 'https://github.com/Dart-Code/Dart-Code.git'
+firstPublicationDate: '2020-09-09'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar:dart-b64039f'
+      name: vscode-dart
+      memoryLimit: 2Gi
+  extensions:
+    - 'https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix'
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix'

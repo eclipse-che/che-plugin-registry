@@ -3,20 +3,22 @@ publisher: sonarsource
 name: sonarlint-vscode
 version: 1.16.0
 type: VS Code extension
-displayName: vscode-sonarlint
-title: Sonarlint code intelligence
-description: VS Code extension that provides sonarlint features
-icon: https://raw.githubusercontent.com/SonarSource/sonarlint-vscode/1.16.0/images/sonarlint_wave_128px.png
-firstPublicationDate: "2020-01-09"
+displayName: SonarLint
+title: SonarLint
+description: >-
+  SonarLint is an IDE extension that helps you detect and fix quality issues as you write code in JavaScript,
+  TypeScript, Python, Java, HTML and PHP.
+icon: /images/sonarsource-sonarlint-vscode-icon.png
 category: Linters
-repository: https://github.com/SonarSource/sonarlint-vscode
+repository: 'https://github.com/SonarSource/sonarlint-vscode.git'
+firstPublicationDate: '2020-06-08'
 spec:
   containers:
-    - image: "quay.io/eclipse/che-sidecar-sonarlint:1.16.0-4af5039"
+    - image: 'quay.io/eclipse/che-plugin-sidecar:sonarlint-2fcf341'
       name: vscode-sonarlint
-      memoryLimit: "512Mi"
       volumes:
-        - mountPath: "/home/theia/.m2"
-          name: m2      
+        - name: m2
+          mountPath: /home/theia/.m2
+      memoryLimit: 512Mi
   extensions:
-    - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
+    - 'https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix'

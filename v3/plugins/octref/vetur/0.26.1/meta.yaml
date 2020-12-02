@@ -4,16 +4,16 @@ name: vetur
 version: 0.26.1
 type: VS Code extension
 displayName: Vetur
-title: Rich Vue.js support
+title: Vetur
 description: Vue tooling for VS Code
-icon: https://raw.githubusercontent.com/vuejs/vetur/v0.26.1/asset/vue.png
-repository: https://github.com/vuejs/vetur
+icon: /images/octref-vetur-icon.png
 category: Programming Languages
-firstPublicationDate: "2020-08-26"
+repository: 'https://github.com/vuejs/vetur.git'
+firstPublicationDate: '2020-08-07'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-sidecar-node:12-da9c36b'
+    - image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
       name: vetur
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
   extensions:
-    - https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix
+    - 'https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix'
