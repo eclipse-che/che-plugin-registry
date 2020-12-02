@@ -18,6 +18,14 @@ plugins:
       - https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix
       - https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
+      url: https://github.com/Microsoft/vscode
+      revision: 1.49.3
+      directory: extensions/typescript-language-features
+    sidecar:
+      directory: node
+    extensions:
+      - https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
+  - repository:
       url: https://github.com/bazelbuild/vscode-bazel
       revision: 0.3.0
     sidecar:
