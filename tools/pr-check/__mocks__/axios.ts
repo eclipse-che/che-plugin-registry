@@ -7,9 +7,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const axios: any = jest.createMockFromModule('axios');
 
-describe('Empty Test', () => {
-  test('basics', async () => {
-    expect('empty').toBeDefined();
-  });
-});
+module.exports = axios;

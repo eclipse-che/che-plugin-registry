@@ -16,6 +16,7 @@ import * as path from 'path';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 import Axios from 'axios';
+import { IconCheck } from './pr-icon-check';
 
 const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
 
@@ -59,7 +60,7 @@ export interface MetaYamlExtension {
 }
 
 const metaYamlFiles = glob.sync('./../../v3/plugins/**/*.yaml');
-
+const prIconCheck = new IconCheck();
 async function vscodeExtensionsFieldValidation() {
   const { extensions } = JSON.parse(await fs.readFile('./../../vscode-extensions.json', 'utf-8'));
   const vsCodeExtensions: VSCodeExtension[] = await Promise.all(
@@ -191,7 +192,7 @@ async function iconsExtensions404Check() {
           if (metaYamlObject.icon) {
             extension.icon = metaYamlObject.icon;
             try {
-              await Axios.head(metaYamlObject.icon);
+              prIconCheck.check(metaYamlObject.icon);
             } catch (err) {
               extension.error = true;
               extension.errorMessage = `Failed to download ${metaYamlObject.name}'s icon at ${metaYamlObject.icon}`;
