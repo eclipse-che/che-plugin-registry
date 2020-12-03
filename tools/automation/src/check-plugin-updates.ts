@@ -10,10 +10,10 @@
 
 import * as fs from 'fs-extra';
 import * as handlerbars from 'handlebars';
+import * as jsyaml from 'js-yaml';
 import * as moment from 'moment';
 import * as path from 'path';
 import * as semver from 'semver';
-import * as jsyaml from 'js-yaml';
 
 import simpleGit, { SimpleGit } from 'simple-git';
 
@@ -31,7 +31,7 @@ export interface CheTheiaPlugin {
 
 export interface CheTheiaPluginsFile {
   version: string;
-  plugins: Array<any>;
+  plugins: Array<CheTheiaPlugin>;
 }
 
 // Entry generated when inspecting an extension
@@ -64,7 +64,7 @@ export class Report {
     const cheTheiaPluginsFile = await fs.readFile('./../../che-theia-plugins.yaml', 'utf-8');
     let plugins;
     try {
-      let cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.safeLoad(cheTheiaPluginsFile);
+      const cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.safeLoad(cheTheiaPluginsFile);
       plugins = cheTheiaPlugins.plugins;
     } catch (e) {
       console.error(`Error reading che-theia-plugins YAML file: ${e}`);
