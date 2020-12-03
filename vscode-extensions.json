@@ -396,7 +396,7 @@
     },
     {
       "repository": "https://github.com/windup/rhamt-vscode-extension",
-      "revision": "ece569b2a6222ee6b2a16ede8241e4817a574ea4"
+      "revision": "5ae3dd17a290b249fecea4a031b8debd71b5da24"
     },
     {
       "repository": "https://github.com/zowe/vscode-extension-for-zowe",
