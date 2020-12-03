@@ -55,7 +55,7 @@
     },
     {
       "repository": "https://github.com/camel-tooling/camel-lsp-client-vscode",
-      "revision": "0.0.28",
+      "revision": "0.0.29",
       "sidecar": {
         "image": "quay.io/eclipse/che-sidecar-java:11-86274e3",
         "source": {
