@@ -1,0 +1,36 @@
+#
+# Copyright (c) 2020 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: typescript
+
+on:
+  pull_request:
+    paths:
+    - '**/package.json'
+    - 'tools/**/*.ts'
+  push:
+    paths:
+    - '**/package.json'
+    - 'tools/**/*.ts'
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Clone source code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 10
+    - name: typescript
+      run: |
+        yarn
+        yarn workspaces run build
