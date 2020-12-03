@@ -1,4 +1,4 @@
-FROM rust:1.48.0-slim
+FROM rust:1.48.0-slim-buster
 
 ENV HOME=/home/theia
 
