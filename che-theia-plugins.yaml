@@ -278,7 +278,7 @@ plugins:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
   - repository:
       url: https://github.com/windup/rhamt-vscode-extension
-      revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
+      revision: 5ae3dd17a290b249fecea4a031b8debd71b5da24
     aliases:
       - redhat/mta
     sidecar:
@@ -301,7 +301,7 @@ plugins:
           attributes:
             protocol: http
     extensions:
-      - https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
+      - https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.58-790.vsix
   - repository:
       url: https://github.com/camel-tooling/camel-lsp-client-vscode
       revision: 0.0.28
