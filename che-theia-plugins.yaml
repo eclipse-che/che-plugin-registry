@@ -109,6 +109,8 @@ plugins:
   - repository:
       url: https://github.com/haskell/vscode-haskell
       revision: 1.1.0
+    aliases:
+      - haskell/vscode-haskell
     sidecar:
       directory: haskell
       name: vscode-haskell
@@ -271,6 +273,7 @@ plugins:
       revision: v1.13.0
     aliases:
       - felixfbecker/vscode-php-debug
+      - redhat/php-debugger
     sidecar:
       directory: php
       name: php-debugger
