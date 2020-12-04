@@ -13,6 +13,18 @@ on:
     branches: 
       - master
 jobs:
+  # check EOF newline
+  linelint:
+    runs-on: ubuntu-20.04
+    name: eof-newline
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
+      - name: Linelint
+        uses: fernandrone/linelint@0.0.5
+        id: linelint
   digest-validation:
     runs-on: ubuntu-latest
     steps:
