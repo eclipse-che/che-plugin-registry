@@ -1,46 +1,72 @@
 # Adding a VS Code extension to Che
-Che uses a similar system to OpenVSX when it comes to adding VS Code extensions. In the root of this repository is a [`vscode-extensions.json`](./vscode-extensions.json) file. In order to add/update a VS Code extension in Che, simply add/edit this file with the relevant extension information.
+Che uses a similar system to OpenVSX when it comes to adding VS Code extensions. In the root of this repository is a [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) file. In order to add/update a VS Code extension in Che, simply add/edit this file with the relevant extension information.
 
-Here is the expected format of an [`vscode-extensions.json`](./vscode-extensions.json) entry:
+Here is the expected format of a [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) plugin entry:
 
-```js
-    {
-      // Repository URL to clone and publish from
-      "repository": "https://github.com/redhat-developer/vscode-yaml",
-      // Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
-      "revision": "0.8.0"
-    },
+```yaml
+  - repository:
+      # Repository URL to clone and from
+      url: https://github.com/redhat-developer/vscode-java
+      # Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
+      revision: v0.69.0
+    # Direct link(s) to the vsix files included with this plugin. The vsix build by the repository specified must be listed first
+    extensions:
+      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
 ```
 
 Here are all the supported values, including optional ones:
 
-```js
-    {
-      // (OPTIONAL) The subfolder where the code to build the VS Code extension is located, in the event it's not located at the repository root.
-      "directory": "extension/vscode-yaml/",
-      // Repository URL to clone and publish from
-      "repository": "https://github.com/redhat-developer/vscode-yaml",
-      // Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
-      "revision": "0.8.0",
-      // (OPTIONAL) Details about the plugin's sidecar container, if one exists
-      "sidecar": {
-        // The image location
-        "image": "quay.io/eclipse/che-sidecar-node:10-0cb5d78",
-        // Source details about the Dockerfile that builds the sidecar image
-        "source": {
-          // Repository URL where the Dockerfile is located
-          "repository": "https://github.com/che-dockerfiles/che-sidecar-node",
-          // (OPTIONAL) Tag or SHA1 ID of the sidecar repository, in the event that the Dockerfile is not located on the default branch
-          "revision": "10",
-          // (OPTIONAL) The subfolder where the Dockerfile is located, in the event that the Dockerfile is not located at the repository root
-          "directory": "./subfolder/foo"
-        }
-      }
-    },
+```yaml
+  # (OPTIONAL) The ID of the plugin, useful if a plugin has multiple entries for one repository (for example, Java 8 vs. Java 11)
+  - id: redhat/java11
+  # Repository information about the plugin. If ID is specified then this field is not a list element.
+  - repository:
+      # Repository URL to clone and from
+      url: https://github.com/redhat-developer/vscode-java
+      # Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
+      revision: v0.69.0
+    # (OPTIONAL) An alias for this plugin: this means anything listed here will get its own meta.yaml generated
+    aliases:
+      - redhat/java
+    # (OPTIONAL) If the plugin runs in a sidecar, then the sidecar information is specified here
+    sidecar:
+      # Directory where the Dockerfile that builds this extension is located
+      directory: java
+      # (OPTIONAL) The name of the container
+      name: vscode-java
+      # (OPTIONAL) The memory limit of the container
+      memoryLimit: "1500Mi"
+      # (OPTIONAL) The memory request of the container
+      memoryRequest: "1000Mi"
+      # (OPTIONAL) The CPU limit of the container
+      cpuLimit: "500m"
+      # (OPTIONAL) The CPU request of the container
+      cpuRequest: "125m"
+      # (OPTIONAL) Any volume mounting information for the container
+      volumeMounts:
+          # The name of the mount
+        - name: m2
+          # The path of the mount
+          path: "/home/theia/.m2"
+      # (OPTIONAL) Any endpoint information for the container
+      endpoints:
+          # Endpoint name
+        - name: "configuration-endpoint"
+          # Whether or not the endpoint is exposed publically or not
+          public: true
+          # The port number
+          targetPort: 61436
+          # Attributes relating to the endpoint
+          attributes:
+            protocol: http
+    # Direct link(s) to the vsix files included with this plugin. The vsix build by the repository specified must be listed first
+    extensions:
+      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
 ```
-The file is sorted alphabetically A - Z, based on the repository name (i.e. `vscode-yaml`).
-
-Automation is in progress to automate the testing and validation of extensions in this JSON file. Stay tuned for more updates as this work is ongoing.
 
 ## Sidecars
 Sometimes a VS Code extension will need to run in a sidecar container. Any plugin can run in any of the sidecar containers already defined in this repository. If an extension needs a specialized container not already available, then a new sidecar can be contributed.
