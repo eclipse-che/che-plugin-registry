@@ -10,6 +10,7 @@
 
 import * as fs from 'fs-extra';
 import * as handlerbars from 'handlebars';
+import * as jsyaml from 'js-yaml';
 import * as moment from 'moment';
 import * as path from 'path';
 import * as semver from 'semver';
@@ -17,36 +18,30 @@ import * as semver from 'semver';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
-const SIDECAR_ROOT_DIR = '/tmp/sidecar_repository';
 
 // struct for the array of vscode-extensions.json file
-export interface Extension {
-  repository: string;
-  revision: string;
-  directory?: string;
-  sidecar?: {
-    image: string;
-    source: {
-      repository: string;
-      revision?: string;
-      directory?: string;
-    };
+export interface CheTheiaPlugin {
+  id?: string;
+  repository: {
+    url: string;
+    revision: string;
+    directory?: string;
   };
+}
+
+export interface CheTheiaPluginsFile {
+  version: string;
+  plugins: Array<CheTheiaPlugin>;
 }
 
 // Entry generated when inspecting an extension
 export interface Entry {
   repositoryName: string;
   clonePath: string;
-  sidecarClonePath?: string;
   extensionName?: string;
   registryVersion?: string;
   upstreamVersion?: string;
   extensionNeedsUpdating?: boolean;
-  registrySidecarImage?: string;
-  upstreamSidecarImage?: string;
-  sidecarLocation?: string;
-  sidecarNeedsUpdating?: boolean;
   errors: string[];
 }
 
@@ -66,36 +61,47 @@ export class Report {
 
   async generate(): Promise<void> {
     const start = moment();
-    const { extensions } = JSON.parse(await fs.readFile('./../../vscode-extensions.json', 'utf-8'));
+    const cheTheiaPluginsFile = await fs.readFile('./../../che-theia-plugins.yaml', 'utf-8');
+    let plugins;
+    try {
+      const cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.safeLoad(cheTheiaPluginsFile);
+      plugins = cheTheiaPlugins.plugins;
+    } catch (e) {
+      console.error(`Error reading che-theia-plugins YAML file: ${e}`);
+      return;
+    }
 
     // cleanup folders
     await fs.remove(EXTENSION_ROOT_DIR);
-    await fs.remove(SIDECAR_ROOT_DIR);
 
     // grab results in parallel
     const entries: Entry[] = await Promise.all(
-      extensions.map(
-        async (extension: Extension): Promise<Entry> => {
+      plugins.map(
+        async (plugin: CheTheiaPlugin): Promise<Entry> => {
           // path where to clone extension (remove all invalid characters)
-          const cloneName = extension.repository.replace(/[^\w\s]/gi, '');
+          const cloneName = plugin.repository.url.replace(/[^\w\s]/gi, '');
           const entry: Entry = {
             clonePath: path.resolve(EXTENSION_ROOT_DIR, cloneName),
-            repositoryName: extension.repository,
+            repositoryName: plugin.repository.url,
             errors: [],
           };
+          if (plugin.id) {
+            entry.clonePath += plugin.id;
+            entry.repositoryName += ` (${plugin.id})`;
+          }
 
           // Clone repo with default branch to check current version
           const git: SimpleGit = simpleGit();
           try {
-            await git.clone(extension.repository, entry.clonePath);
+            await git.clone(plugin.repository.url, entry.clonePath);
           } catch (err) {
             return this.handleError(entry, `Error cloning: ${err}`);
           }
 
           // Parse package.json file and extract current version information
           let packageJSONPath;
-          if (extension.directory) {
-            packageJSONPath = path.join(entry.clonePath, extension.directory, 'package.json');
+          if (plugin.repository.directory) {
+            packageJSONPath = path.join(entry.clonePath, plugin.repository.directory, 'package.json');
           } else {
             packageJSONPath = path.join(entry.clonePath, 'package.json');
           }
@@ -105,7 +111,7 @@ export class Report {
 
           // Checkout git repo @ 'revision' field specified, to get the version in the registry
           try {
-            await simpleGit(entry.clonePath).checkout(extension.revision);
+            await simpleGit(entry.clonePath).checkout(plugin.repository.revision);
           } catch (err) {
             return this.handleError(entry, `Failure checking out extension.revision: ${err}`);
           }
@@ -121,61 +127,7 @@ export class Report {
             entry.extensionNeedsUpdating = semver.gt(entry.upstreamVersion, entry.registryVersion);
           }
 
-          // cleanup cloned directory for this extension
-          await fs.remove(entry.clonePath);
-
-          // If the extension has a sidecar image, let's check it too
-          if (extension.sidecar) {
-            const sidecarCloneName = extension.sidecar.source.repository.replace(/[^\w\s]/gi, '');
-            // Create unique clone path for the sidecar, otherwise there may be collisions
-            entry.sidecarClonePath = path.resolve(SIDECAR_ROOT_DIR, sidecarCloneName, entry.clonePath);
-
-            await fs.remove(entry.sidecarClonePath);
-            // Clone sidecar repository
-            try {
-              await git.clone(extension.sidecar.source.repository, entry.sidecarClonePath);
-            } catch (err) {
-              return this.handleError(entry, `Error cloning sidecar repository: ${err}`);
-            }
-
-            const sidecarNameSplit = extension.sidecar.image.split(':');
-            entry.sidecarLocation = `https://${sidecarNameSplit[0]}`;
-            const registryImageVersion = sidecarNameSplit[1];
-            // Filter out cases that do not adhere to the sidecar naming scheme
-            if (
-              registryImageVersion &&
-              (!registryImageVersion.includes('latest') || !registryImageVersion.includes('next'))
-            ) {
-              let sidecarSHA1;
-              entry.registrySidecarImage = registryImageVersion;
-              // Run git rev-parse --short HEAD and get hash of the upstream image
-              try {
-                const gitRevision = extension.sidecar.source.revision
-                  ? `origin/${extension.sidecar.source.revision}`
-                  : 'HEAD';
-                sidecarSHA1 = await simpleGit(entry.sidecarClonePath).revparse(['--short', `${gitRevision}`]);
-              } catch (err) {
-                return this.handleError(entry, `Error executing git rev-parse in sidecar repository: ${err}`);
-              }
-              // Compare versions
-              let upstreamSidecarImageVersion;
-              if (extension.sidecar.source.revision) {
-                upstreamSidecarImageVersion = `${extension.sidecar.source.revision}-${sidecarSHA1}`;
-                entry.sidecarNeedsUpdating = registryImageVersion !== upstreamSidecarImageVersion;
-              } else {
-                const sidecarRepoVersion = await fs.readFile(path.join(entry.sidecarClonePath, 'VERSION'), 'utf-8');
-                const sidecarVersion = sidecarRepoVersion.replace(/\n/gi, '');
-                upstreamSidecarImageVersion = `${sidecarVersion}-${sidecarSHA1}`;
-              }
-              entry.upstreamSidecarImage = upstreamSidecarImageVersion;
-              entry.sidecarNeedsUpdating = registryImageVersion !== upstreamSidecarImageVersion;
-            } else {
-              return this.handleError(entry, `Error checking sidecar image versions: image name format not supported.`);
-            }
-            await fs.remove(entry.sidecarClonePath);
-          }
-
-          console.log(`✅ ${extension.repository}`);
+          console.log(`✅ ${entry.repositoryName}`);
           return entry;
         }
       )
@@ -207,8 +159,6 @@ export class Report {
 
     // cleanup root cloned paths
     await fs.remove(EXTENSION_ROOT_DIR);
-    await fs.remove(SIDECAR_ROOT_DIR);
-
     return;
   }
 }

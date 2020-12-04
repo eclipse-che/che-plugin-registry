@@ -528,6 +528,7 @@ plugins:
   - repository:
       url: https://github.com/bash-lsp/bash-language-server
       revision: vscode-client-1.10.2
+      directory: vscode-client
     aliases:
       - mads-hartmann/bash-ide
     extensions:
