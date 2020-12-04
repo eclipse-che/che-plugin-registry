@@ -13,4 +13,3 @@ ENV KAMEL_VERSION 1.2.1
 
 RUN curl -L https://github.com/apache/camel-k/releases/download/v${KAMEL_VERSION}/camel-k-client-${KAMEL_VERSION}-linux-64bit.tar.gz | tar -C /usr/local/bin -xz \
     && chmod +x /usr/local/bin/kamel
-
