@@ -46,4 +46,3 @@ The release process is the same as for the Major / Minor one, but the values pas
 ```
 
 Note that nNew che-machine-exec and che-theia plugins for the 7.7.1 release should ALSO be added to the master branch.
-
