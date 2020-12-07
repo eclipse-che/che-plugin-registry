@@ -21,6 +21,8 @@ plugins:
       url: https://github.com/Microsoft/vscode
       revision: 1.49.3
       directory: extensions/typescript-language-features
+    aliases:
+      - che-incubator/typescript
     sidecar:
       directory: node
     extensions:
