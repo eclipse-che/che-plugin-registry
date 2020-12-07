@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-name: Build/Publish
+name: Release Che Plugin Registry
 
 on:
   push:
