@@ -542,3 +542,8 @@ plugins:
       - mads-hartmann/bash-ide
     extensions:
       - https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix
+  - repository:
+      url: https://github.com/prettier/prettier-vscode
+      revision: v5.8.0
+    extensions:
+      - https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
