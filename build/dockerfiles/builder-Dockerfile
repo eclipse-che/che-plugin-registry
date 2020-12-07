@@ -1,0 +1,2 @@
+FROM docker.io/alpine:3.11.5 AS builder
+RUN apk add --no-cache py3-pip jq bash wget skopeo && pip3 install yq jsonschema
