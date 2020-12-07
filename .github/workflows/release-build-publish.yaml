@@ -10,11 +10,11 @@
 name: Build/Publish
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'The version that is going to be released. Should be in format 7.x.y'
-        required: true
+  push:
+    branches: 
+      - release
+    paths:
+      - VERSION
 
 jobs:
   release-build-publish:
@@ -36,9 +36,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Run release script
+      - name: Build and push images
         run: |
-          git config --global user.name "Mykhailo Kuznietsov"
-          git config --global user.email "mkuznets@redhat.com"
-          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          /bin/bash make-release.sh --repo git@github.com:eclipse/che-plugin-registry --version ${{ github.event.inputs.version }} --trigger-release
+          SHORT_SHA1=$(git rev-parse --short HEAD)
+          VERSION=$(head -n 1 VERSION)
+          IMAGE=che-plugin-registry
+          DOCKERFILE_PATH=./build/dockerfiles/Dockerfile
+          docker build -t ${IMAGE} -f ${DOCKERFILE_PATH} --target registry .
+          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
+          docker push quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
+          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${VERSION}
+          docker push quay.io/eclipse/${IMAGE}:${VERSION}

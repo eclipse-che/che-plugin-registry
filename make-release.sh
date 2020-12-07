@@ -136,14 +136,6 @@ if [[ $TRIGGER_RELEASE -eq 1 ]]; then
   git branch release -f 
   git push origin release -f
 
-  # build and publish devfile registry image
-  SHORT_SHA1="$(git rev-parse --short HEAD)"
-  docker build -t che-plugin-registry -f ./build/dockerfiles/Dockerfile --target registry .
-  docker tag che-plugin-registry quay.io/eclipse/che-plugin-registry:"${SHORT_SHA1}"
-  docker push quay.io/eclipse/che-plugin-registry:"${SHORT_SHA1}"
-  docker tag che-plugin-registry quay.io/eclipse/che-plugin-registry:"${VERSION}"
-  docker push quay.io/eclipse/che-plugin-registry:"${VERSION}"
-
   # tag the release
   git checkout "${BRANCH}"
   git tag "${VERSION}"
