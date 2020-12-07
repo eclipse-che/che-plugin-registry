@@ -367,6 +367,15 @@ plugins:
     extensions:
       - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia
   - repository:
+      url: https://github.com/rust-lang/vscode-rust
+      revision: v0.7.8
+    sidecar:
+      directory: rust
+      name: vscode-rust
+      memoryLimit: "1024Mi"
+    extensions:
+      - https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix
+  - repository:
       url: https://github.com/scalameta/metals-vscode
       revision: v1.9.6
     sidecar:
