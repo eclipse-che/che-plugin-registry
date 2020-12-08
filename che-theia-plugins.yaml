@@ -406,7 +406,7 @@ plugins:
       - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
   - repository:
       url: https://bitbucket.org/atlassianlabs/atlascode
-      revision: 2.6.6
+      revision: 2.8.5
     extensions:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
   - repository:
