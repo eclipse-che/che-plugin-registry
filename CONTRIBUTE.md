@@ -93,4 +93,4 @@ The resulting image built and pushed via GitHub action will be named according t
 One PR can modify/add/remove multiple sidecars, they do not need to be split up into separate PRs.
 
 #### PR 2: Plugin Changes
-Now that the sidecar image has been built and pushed, the second PR can make use of it. The second PR will be the one that modifies the [`vscode-extensions.json`](./vscode-extensions.json) file, as well as any `meta.yaml` files needed for the change.
+Now that the sidecar image has been built and pushed, the second PR can make use of it. The second PR will be the one that modifies the [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) file.
