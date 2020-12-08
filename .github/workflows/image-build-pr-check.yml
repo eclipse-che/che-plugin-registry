@@ -30,3 +30,30 @@ jobs:
         elif [[ "${{matrix.dist}}" == "rhel" ]]; then
           docker build -t che-plugin-registry-image -f ./build/dockerfiles/rhel.Dockerfile --target registry .
         fi  
+        docker create --name pluginRegistry che-plugin-registry-image sh
+        mkdir root-dir
+        docker cp pluginRegistry:/var/www/html/v3 root-dir/v3
+        docker rm -f pluginRegistry
+        cp root-dir/v3/plugins/index.json root-dir/index.json
+        tar zcvf content-${{matrix.dist}}.tgz -C root-dir .
+    - uses: actions/upload-artifact@v2
+      with:
+        name: plugin-registry-content-${{matrix.dist}}
+        path: content-${{matrix.dist}}.tgz
+  pull-request-info:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-20.04
+    needs: [image-build]
+    steps:
+     - name: Store PR info
+       run: |
+         echo "${{ github.event.number }}" > PR_NUMBER
+         echo "${{ github.event.pull_request.head.sha }}" > PR_SHA
+     - uses: actions/upload-artifact@v2
+       with:
+         name: pull-request-number
+         path: PR_NUMBER
+     - uses: actions/upload-artifact@v2
+       with:
+         name: pull-request-sha
+         path: PR_SHA
