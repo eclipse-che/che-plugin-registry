@@ -1,0 +1,192 @@
+version: 1.0.0
+editors:
+  - repository:
+      url: https://github.com/eclipse/che-theia
+      revision: master
+      endpoints:
+        - name: "theia"
+          public: true
+          targetPort: 3100
+          attributes:
+            protocol: http
+            type: ide
+            secure: true
+            cookiesAuthEnabled: true
+            discoverable: false
+        - name: "webviews"
+          public: true
+          targetPort: 3100
+          attributes:
+            protocol: http
+            type: webview
+            secure: true
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+        - name: "mini-browser"
+          public: true
+          targetPort: 3100
+          attributes:
+            protocol: http
+            type: mini-browser
+            secure: true
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+        - name: "theia-dev"
+          public: true
+          targetPort: 3130
+          attributes:
+            protocol: http
+            type: ide-dev
+            discoverable: false
+        - name: "theia-redirect-1"
+          public: true
+          targetPort: 13131
+          attributes:
+            protocol: http
+            discoverable: false
+        - name: "theia-redirect-2"
+          public: true
+          targetPort: 13132
+          attributes:
+            protocol: http
+            discoverable: false
+        - name: "theia-redirect-3"
+          public: true
+          targetPort: 13133
+          attributes:
+            protocol: http
+            discoverable: false
+      containers:
+        - name: theia-ide
+          image: "quay.io/eclipse/che-theia:next"
+          env:
+            - name: THEIA_PLUGINS
+              value: local-dir:///plugins
+            - name: HOSTED_PLUGIN_HOSTNAME
+              value: 0.0.0.0
+            - name: HOSTED_PLUGIN_PORT
+              value: "3130"
+            - name: THEIA_HOST
+              value: 127.0.0.1
+          volumes:
+            - name: plugins
+              path: "/plugins"
+          mountSources: true
+          memoryLimit: "512M"
+      initContainers:
+        - name: remote-runtime-injector
+          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:next"
+          volumes:
+            - name: remote-endpoint
+              path: "/remote-endpoint"
+              ephemeral: true
+          env:
+            - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+              value: /remote-endpoint/plugin-remote-endpoint
+            - name: REMOTE_ENDPOINT_VOLUME_NAME
+              value: remote-endpoint
+  - repository:
+      url: https://github.com/ws-skeleton/che-editor-jupyter/
+      revision: 5.7.0
+      endpoints:
+        - name: "jupyter"
+          public: true
+          targetPort: 8888
+          attributes:
+            protocol: http
+            type: ide
+      containers:
+        - name: jupyter-notebook
+          image: "docker.io/ksmster/che-editor-jupyter:5.7.0"
+          env:
+            - name: JUPYTER_NOTEBOOK_DIR
+              value: /projects
+          mountSources: true
+          memoryLimit: "512M"
+  - repository:
+      url: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/
+      endpoints:
+        - name: "dirigible"
+          public: true
+          targetPort: 8080
+          attributes:
+            protocol: http
+            type: ide
+      containers:
+        - name: eclipse-dirigible
+          image: "docker.io/dirigiblelabs/dirigible-openshift:3.4.0"
+          env:
+            - name: DIRIGIBLE_DATABASE_PROVIDER
+              value: "local"
+            - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER
+              value: /projects/dirigible/repository
+            - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER_IS_ABSOLUTE
+              value: "true"
+            - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER
+              value: /projects/dirigible/repository
+            - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER_IS_ABSOLUTE
+              value: "true"
+            - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER
+              value: /projects/dirigible/cms
+            - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER_IS_ABSOLUTE
+              value: "true"
+            - name: DIRIGIBLE_DATABASE_H2_ROOT_FOLDER_DEFAULT
+              value: /projects/dirigible/h2
+            - name: DIRIGIBLE_DATABASE_H2_URL
+              value: jdbc:h2:/projects/dirigible/h2
+            - name: DIRIGIBLE_OPERATIONS_LOGS_ROOT_FOLDER_DEFAULT
+              value: /usr/local/tomcat/logs
+          mountSources: true
+          memoryLimit: "1024M"
+  - repository:
+      url: https://github.com/che-incubator/che-editor-intellij-community
+      endpoints:
+        - name: "intellij"
+          public: true
+          targetPort: 8080
+          attributes:
+            protocol: http
+            type: ide
+            discoverable: false
+            path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
+      containers:
+        - name: intellij-novnc
+          image: "quay.io/che-incubator/che-editor-intellij-community:2020.2-cdc002c"
+          mountSources: true
+          volumes:
+            - name: idea-configuration
+              path: "/JetBrains/IdeaIC"
+          memoryLimit: "2048M"
+  - repository:
+      url: https://github.com/ws-skeleton/che-editor-eclipseide/
+      endpoints:
+        - name: "eclipse-ide"
+          public: true
+          targetPort: 5000
+          attributes:
+            protocol: http
+            type: ide
+      containers:
+        - name: eclipse-ide
+          image: "docker.io/wsskeleton/eclipse-broadway"
+          mountSources: true
+          memoryLimit: "2048M"
+  - repository:
+      url: https://github.com/cdr/code-server
+      endpoints:
+        - name: "code-server"
+          public: true
+          targetPort: 8080
+          attributes:
+            protocol: http
+            type: ide
+      containers:
+        - name: code-server
+          image: "codercom/code-server:3.6.2"
+          mountSources: true
+          memoryLimit: "1024M"
+          volumes:
+            - name: 'user-data'
+              path: '/home/coder/.local/share/code-server'
