@@ -547,3 +547,8 @@ plugins:
       revision: v5.8.0
     extensions:
       - https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
+  - repository:
+      url: https://github.com/microsoft/vscode-eslint
+      revision: 1e15d3495da89072d48cf583d48d92829f0c4b82
+    extensions:
+      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
