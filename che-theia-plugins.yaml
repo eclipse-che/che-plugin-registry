@@ -547,3 +547,15 @@ plugins:
       revision: v5.8.0
     extensions:
       - https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
+  - repository:
+      url: https://github.com/GabrielBB/vscode-lombok
+      revision: v1.0.2
+    sidecar:
+      directory: java8
+      name: vscode-lombok
+      memoryLimit: "1500Mi"
+      volumeMounts:
+      - path: "/home/theia/.m2"
+        name: m2
+    extensions:
+      - https://open-vsx.org/api/cool2k/vscode-lombok/1.0.2/file/cool2k.vscode-lombok-1.0.2.vsix
