@@ -12,6 +12,14 @@ components:
     image: sunix/git-devtools
     alias: git
 
+  - alias: didact-plugin
+    type: chePlugin
+    id: redhat/vscode-didact/latest
+    preferences:
+      didact.openDefaultTutorialAtStartup: true
+      che.welcome.enable: false
+      didact.defaultUrl: /projects/che-plugin-registry/.che-didact-guide.md
+
   - id: ms-vscode/vscode-github-pullrequest/latest
     type: chePlugin
 
