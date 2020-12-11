@@ -433,6 +433,17 @@ plugins:
           value: /projects/.zowe
     extensions:
       - https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.16.1/file/BroadcomMFD.cobol-language-support-0.16.1.vsix
+  - id: broadcommfd/debugger-for-mainframe/1.2.0
+    isClosedSource: true
+    repository:
+      url: https://github.com/BroadcomMFD/debugger-for-mainframe
+    sidecar:
+      directory: java
+      memoryLimit: 512Mi
+      name: debugger-for-mainframe
+      mountSources: true
+    extensions:
+      - https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.2.0/file/BroadcomMFD.debugger-for-mainframe-1.2.0.vsix
   - repository:
       url: https://github.com/eclipse/che-che4z-lsp-for-hlasm
       directory: clients/vscode-hlasmplugin/

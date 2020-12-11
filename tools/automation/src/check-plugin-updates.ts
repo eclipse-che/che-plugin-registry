@@ -22,6 +22,7 @@ const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
 // struct for the array of vscode-extensions.json file
 export interface CheTheiaPlugin {
   id?: string;
+  isClosedSource?: boolean;
   repository: {
     url: string;
     revision: string;
@@ -88,6 +89,16 @@ export class Report {
           if (plugin.id) {
             entry.clonePath += plugin.id;
             entry.repositoryName += ` (${plugin.id})`;
+          }
+          if (plugin.isClosedSource === true) {
+            if (!plugin.id) {
+              return this.handleError(entry, `Closed source plug-in without id`);
+            }
+            entry.extensionName = `${plugin.id.split('/')[1]}`;
+            entry.upstreamVersion = `SKIP (closed source)`;
+            entry.registryVersion = `SKIP (closed source)`;
+            entry.extensionNeedsUpdating = false;
+            return entry;
           }
 
           // Clone repo with default branch to check current version
