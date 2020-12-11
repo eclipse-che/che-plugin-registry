@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-name: Build/Push
+name: Build/Publish
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
       - master
 
 jobs:
-  nightly-build-push:
+  nightly-build-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Clone source code

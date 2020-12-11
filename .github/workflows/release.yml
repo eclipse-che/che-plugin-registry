@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2020 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: Release Che Plugin Registry
+
+on:
+  push:
+    branches: 
+      - release
+    paths:
+      - VERSION
+
+jobs:
+  release-build-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone source code
+        uses: actions/checkout@v1
+
+      - name: Login to Quay.io
+        uses: azure/docker-login@v1
+        with:
+          login-server: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      
+      - name: Login to Docker Hub
+        uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push images
+        run: |
+          SHORT_SHA1=$(git rev-parse --short HEAD)
+          VERSION=$(head -n 1 VERSION)
+          IMAGE=che-plugin-registry
+          DOCKERFILE_PATH=./build/dockerfiles/Dockerfile
+          docker build -t ${IMAGE} -f ${DOCKERFILE_PATH} --target registry .
+          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
+          docker push quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
+          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${VERSION}
+          docker push quay.io/eclipse/${IMAGE}:${VERSION}
