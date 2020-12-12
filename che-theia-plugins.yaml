@@ -549,7 +549,7 @@ plugins:
       - https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
   - repository:
       url: https://github.com/gabrielbb/vscode-lombok
-      revision: v1.0.2
+      revision: master
     sidecar:
       directory: java8
       name: vscode-lombok
