@@ -566,7 +566,7 @@ plugins:
       url: https://github.com/gabrielbb/vscode-lombok
       revision: master
     sidecar:
-      directory: java8
+      directory: java
       name: vscode-lombok
       memoryLimit: "1500Mi"
       volumeMounts:
