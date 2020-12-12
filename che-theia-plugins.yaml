@@ -562,3 +562,15 @@ plugins:
       revision: 1e15d3495da89072d48cf583d48d92829f0c4b82
     extensions:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
+  - repository:
+      url: https://github.com/gabrielbb/vscode-lombok
+      revision: master
+    sidecar:
+      directory: java8
+      name: vscode-lombok
+      memoryLimit: "1500Mi"
+      volumeMounts:
+      - path: "/home/theia/.m2"
+        name: m2
+    extensions:
+      - https://open-vsx.org/api/cool2k/vscode-lombok/1.0.2/file/cool2k.vscode-lombok-1.0.2.vsix
