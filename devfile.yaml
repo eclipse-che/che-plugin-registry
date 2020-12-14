@@ -2,8 +2,6 @@ apiVersion: 1.0.0
 
 metadata:
   generateName: che-plugin-registry-dev-
-
-
 components:
 
   - alias: didact-plugin
