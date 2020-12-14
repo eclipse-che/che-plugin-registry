@@ -84,6 +84,6 @@ commands:
       - workdir: '${CHE_PROJECTS_ROOT}/build'
         type: exec
         command: |
-          set -o xtrace;
-          surge;
+          surge ${CHE_PROJECTS_ROOT}/build ${CHE_WORKSPACE_NAME}.surge.sh &&
+          echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/index.json
         component: builder
