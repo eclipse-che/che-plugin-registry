@@ -25,6 +25,7 @@ plugins:
       - che-incubator/typescript
     sidecar:
       directory: node
+      memoryLimit: "512Mi"
     extensions:
       - https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
   - repository:
