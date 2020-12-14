@@ -6,12 +6,6 @@ metadata:
 
 components:
 
-  - mountSources: true
-    memoryLimit: 256M
-    type: dockerimage
-    image: sunix/git-devtools
-    alias: git
-
   - alias: didact-plugin
     type: chePlugin
     reference: https://che-plugin-registry.openshift.io/v3/plugins/redhat/vscode-didact/latest/meta.yaml
