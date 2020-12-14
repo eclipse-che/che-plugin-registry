@@ -8,16 +8,16 @@ components:
 
   - alias: didact-plugin
     type: chePlugin
-    reference: https://che-plugin-registry.openshift.io/v3/plugins/redhat/vscode-didact/latest/meta.yaml
-    # id: redhat/vscode-didact/latest
+    id: redhat/vscode-didact/latest
     preferences:
       didact.openDefaultTutorialAtStartup: true
       che.welcome.enable: false
       didact.defaultUrl: /projects/che-plugin-registry/.che-didact-guide.md
+    registryUrl: 'https://che-plugin-registry.openshift.io/v3/'
 
-  - reference: https://che-plugin-registry.openshift.io/v3/plugins/ms-vscode/vscode-github-pullrequest/latest/meta.yaml
-    # id: ms-vscode/vscode-github-pullrequest/latest
+  - id: ms-vscode/vscode-github-pullrequest/latest
     type: chePlugin
+    registryUrl: 'https://che-plugin-registry.openshift.io/v3/'
 
   - mountSources: true
     memoryLimit: 2G
