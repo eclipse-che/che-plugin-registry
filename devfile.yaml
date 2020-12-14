@@ -11,11 +11,11 @@ components:
       didact.openDefaultTutorialAtStartup: true
       che.welcome.enable: false
       didact.defaultUrl: /projects/che-plugin-registry/.che-didact-guide.md
-    registryUrl: 'https://che-plugin-registry.openshift.io/v3/'
+    registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
 
   - id: ms-vscode/vscode-github-pullrequest/latest
     type: chePlugin
-    registryUrl: 'https://che-plugin-registry.openshift.io/v3/'
+    registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
 
   - mountSources: true
     memoryLimit: 2G
