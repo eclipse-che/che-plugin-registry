@@ -8,6 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-null/no-null */
 import 'reflect-metadata';
 
 import { Container } from 'inversify';
@@ -30,5 +31,16 @@ describe('Test Sidecar', () => {
     await sidecarDockerImage.init();
     const result = await sidecarDockerImage.getDockerImageFor('go');
     expect(result).toContain('quay.io/eclipse/che-plugin-sidecar:go-');
+  });
+
+  test('exception if no-log', async () => {
+    await sidecarDockerImage.init();
+    const git = sidecarDockerImage['git'];
+    const spyLog = jest.spyOn(git, 'log');
+    const logResult = { all: [], total: 1, latest: null } as any;
+    spyLog.mockResolvedValue(logResult);
+    await expect(sidecarDockerImage.getDockerImageFor('unknown')).rejects.toThrow(
+      'Unable to find result when executing'
+    );
   });
 });
