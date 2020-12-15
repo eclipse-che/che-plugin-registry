@@ -1,0 +1,174 @@
+version: 1.0.0
+plugins:
+  - id: che-incubator/theia-dev/0.0.1
+    displayName: Che Theia Dev Plugin
+    description: Che Theia Dev Plugin
+    repository: 'https://github.com/che-incubator/che-theia-dev-plugin/'
+    firstPublicationDate: '2019-02-05'
+    endpoints:
+      - name: theia-dev-flow
+        public: true
+        targetPort: 3010
+        attributes:
+          protocol: http
+    containers:
+      - name: theia-dev
+        image: 'quay.io/eclipse/che-theia-dev:next'
+        commands:
+          - name: uname
+            workingDir: $(project)
+            command:
+              - uname
+              - '-a'
+        mountSources: true
+        ports:
+          - exposedPort: 3010
+        memoryLimit: 2Gi
+  - id: containers/buildah/1.14.0
+    displayName: Buildah Base Dev Plugin
+    description: Container to build docker images with buildah
+    icon: >-
+      https://raw.githubusercontent.com/containers/buildah/v1.14.0/logos/buildah-logomark_large.png
+    repository: 'https://github.com/containers/buildah'
+    firstPublicationDate: '2020-04-15'
+    containers:
+      - name: buildah-dev
+        image: 'quay.io/eclipse/che-buildah-base:1.14.0-b0c91d3'
+        mountSources: true
+        memoryLimit: 1Gi
+  - id: eclipse/che-async-pv-plugin/nightly
+    displayName: Che Async Storage Service
+    description: >-
+      Che Plug-in with service to provide abilty for backup/restore project
+      source from async storage
+    repository: 'https://github.com/che-incubator/workspace-data-sync'
+    firstPublicationDate: '2020-07-10'
+    endpoints:
+      - name: che-rsync-events
+        public: true
+        targetPort: 4445
+        attributes:
+          protocol: ws
+          type: rsync
+          discoverable: false
+          secure: false
+          cookiesAuthEnabled: true
+    containers:
+      - name: che-rsync
+        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:latest'
+        memoryLimit: 512M
+        lifecycle:
+          preStop:
+            exec: null
+            command:
+              - /bin/sh
+              - '-c'
+              - /scripts/backup.sh
+        mountSources: true
+        ports:
+          - exposedPort: 4445
+        env:
+          - name: RSYNC_PORT
+            value: '2222'
+  - id: eclipse/che-async-pv-plugin/1.0.0
+    displayName: Che Async Storage Service
+    description: >-
+      Che Plug-in with service to provide abilty for backup/restore project
+      source from async storage
+    repository: 'https://github.com/che-incubator/workspace-data-sync'
+    firstPublicationDate: '2020-07-10'
+    endpoints:
+      - name: che-rsync-events
+        public: true
+        targetPort: 4445
+        attributes:
+          protocol: ws
+          type: rsync
+          discoverable: false
+          secure: false
+          cookiesAuthEnabled: true
+    containers:
+      - name: che-rsync
+        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:latest'
+        memoryLimit: 512M
+        lifecycle:
+          preStop:
+            exec: null
+            command:
+              - /bin/sh
+              - '-c'
+              - /scripts/backup.sh
+        mountSources: true
+        ports:
+          - exposedPort: 4445
+        env:
+          - name: RSYNC_PORT
+            value: '2222'
+  - id: eclipse/che-machine-exec-plugin/nightly
+    displayName: Che machine-exec Service
+    description: >-
+      Che Plug-in with che-machine-exec service to provide creation terminal or
+      tasks for Eclipse Che workspace containers.
+    repository: 'https://github.com/eclipse/che-machine-exec/'
+    firstPublicationDate: '2019-11-07'
+    endpoints:
+      - name: che-machine-exec
+        public: true
+        targetPort: 4444
+        attributes:
+          protocol: ws
+          type: terminal
+          discoverable: false
+          secure: true
+          cookiesAuthEnabled: true
+    containers:
+      - name: che-machine-exec
+        image: 'quay.io/eclipse/che-machine-exec:nightly'
+        ports:
+          - exposedPort: 4444
+        command:
+          - /go/bin/che-machine-exec
+          - '--url'
+          - '127.0.0.1:4444'
+  - id: eclipse/che-machine-exec-plugin/7.23.0
+    displayName: Che machine-exec Service
+    description: >-
+      Che Plug-in with che-machine-exec service to provide creation terminal or
+      tasks for Eclipse Che workspace containers.
+    repository: 'https://github.com/eclipse/che-machine-exec/'
+    firstPublicationDate: '2019-11-07'
+    endpoints:
+      - name: che-machine-exec
+        public: true
+        targetPort: 4444
+        attributes:
+          protocol: ws
+          type: terminal
+          discoverable: false
+          secure: true
+          cookiesAuthEnabled: true
+    containers:
+      - name: che-machine-exec
+        image: 'quay.io/eclipse/che-machine-exec:7.23.0'
+        ports:
+          - exposedPort: 4444
+        command:
+          - /go/bin/che-machine-exec
+          - '--url'
+          - '127.0.0.1:4444'
+  - id: moby/buildkit/0.7.1
+    displayName: Buildkit Base Dev Plugin
+    description: Container to build docker images with buildkit
+    icon: 'https://avatars3.githubusercontent.com/u/27259197'
+    repository: 'https://github.com/moby/buildkit'
+    firstPublicationDate: '2020-05-11'
+    containers:
+      - name: buildkit-dev
+        image: 'quay.io/eclipse/che-buildkit-base:0.7.1-bacb069'
+        mountSources: true
+        memoryLimit: 1Gi
+        volumeMounts:
+          - name: buildkit-share
+            path: /home/user/.local/share/buildkit
+          - name: buildkit-lib
+            path: /var/lib/buildkit
