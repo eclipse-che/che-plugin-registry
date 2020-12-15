@@ -84,7 +84,6 @@ commands:
       - workdir: '${CHE_PROJECTS_ROOT}/build'
         type: exec
         command: |
-          find v3 -name "index.html" | xargs rm
           for directory in `find v3/ -type d`
           do
             (cd $directory && tree -H '.' -L 1 --noreport --charset utf-8 | sed '/<p class="VERSION">/,/<\/p>/d' > index.html);
