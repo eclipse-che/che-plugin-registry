@@ -23,7 +23,8 @@ export class SidecarDockerImage {
   private gitRootDirectory: string;
 
   constructor() {
-    this.git = simpleGit();
+    // reduce concurrent processes
+    this.git = simpleGit({ maxConcurrentProcesses: 1 });
   }
 
   @postConstruct()
@@ -47,6 +48,9 @@ export class SidecarDockerImage {
     };
     const result = await this.git.log(logOptions);
     const latest = result.latest;
+    if (!latest) {
+      throw new Error(`Unable to find result when executing ${JSON.stringify(logOptions)}`);
+    }
     const hash = latest.hash;
     return `${SidecarDockerImage.PREFIX_IMAGE}:${sidecarShortDirectory}-${hash}`;
   }
