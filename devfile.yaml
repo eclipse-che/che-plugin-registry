@@ -84,6 +84,16 @@ commands:
       - workdir: '${CHE_PROJECTS_ROOT}/build'
         type: exec
         command: |
-          surge ${CHE_PROJECTS_ROOT}/build ${CHE_WORKSPACE_NAME}.surge.sh &&
-          echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/index.json
+          find v3 -name "index.html" | xargs rm
+          for directory in `find v3/ -type d`
+          do
+            (cd $directory && tree -H '.' -L 1 --noreport --charset utf-8 | sed '/<p class="VERSION">/,/<\/p>/d' > index.html);
+          done
+          # Make meta.yaml as index
+          for file in $(find v3 -name 'meta.yaml' -type f)
+          do
+            PARENT_DIR=$(dirname $file);
+            cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.html;
+          done
+          surge ${CHE_PROJECTS_ROOT}/build ${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh && echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/
         component: builder
