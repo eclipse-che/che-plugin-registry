@@ -12,7 +12,7 @@
     "lint": "if-env SKIP_LINT=true && echo 'skip lint check' || eslint --cache=true --no-error-on-unmatched-pattern=true '{src,tests}/**/*.ts'",
     "lint:fix": "eslint --fix --cache=true --no-error-on-unmatched-pattern=true \"{src,tests}/**/*.{ts,tsx}\"",
     "compile": "tsc && cpx './tests/_data/**/*' './lib/tests/_data'",
-    "build": "concurrently -n \"format,lint,compile,test\" -c \"red,green,blue,magenta\" \"yarn format\" \"yarn lint\" \"yarn compile\" \"yarn test\"",
+    "build": "concurrently ${CONCURRENTLY_OPTS} -n \"format,lint,compile,test\" -c \"red,green,blue,magenta\" \"yarn format\" \"yarn lint\" \"yarn compile\" \"yarn test\"",
     "test": "if-env SKIP_TEST=true && echo 'skip test' || jest --forceExit"
   },
   "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",

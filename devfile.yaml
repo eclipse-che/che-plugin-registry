@@ -1,0 +1,98 @@
+apiVersion: 1.0.0
+
+metadata:
+  generateName: che-plugin-registry-dev-
+components:
+
+  - alias: didact-plugin
+    type: chePlugin
+    id: redhat/vscode-didact/latest
+    preferences:
+      didact.openDefaultTutorialAtStartup: true
+      che.welcome.enable: false
+      didact.defaultUrl: /projects/che-plugin-registry/.che-didact-guide.md
+    registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
+
+  - id: ms-vscode/vscode-github-pullrequest/latest
+    type: chePlugin
+    registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
+
+  - mountSources: true
+    memoryLimit: 2G
+    type: dockerimage
+    image: 'quay.io/eclipse/che-plugin-registry-dev:latest'
+    alias: builder
+    env:
+      - value: '-m 1'
+        name: CONCURRENTLY_OPTS
+  - mountSources: true
+    endpoints:
+      - name: registry
+        port: 8080
+    memoryLimit: 256Mi
+    type: dockerimage
+    volumes:
+      - name: registryv3
+        containerPath: /usr/local/apache2/htdocs/v3
+    image: 'quay.io/eclipse/che-plugin-registry:nightly'
+    alias: eclipse-che-plugin-registry
+
+commands:
+
+  - name: 1. build
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}'
+        type: exec
+        command: |
+          set -o xtrace;
+          rm -rf build;
+          mkdir build;
+          cp che-plugin-registry/build/scripts/meta.yaml.schema build/ &&
+          cp -rf che-plugin-registry/v3 build/v3 &&
+          ## generate_vscode_extension.sh
+          cd /projects/che-plugin-registry/tools/build &&
+          export SKIP_TEST=true SKIP_FORMAT=true SKIP_LINT=true  &&
+          yarn &&
+          yarn build &&
+          node -max-old-space-size=1024 lib/entrypoint.js --output-folder:/projects/build &&
+          ##
+          cd /projects/build &&
+          /projects/che-plugin-registry/build/scripts/keep_only_latest.sh;
+          /projects/che-plugin-registry/build/scripts/generate_latest_metas.sh v3 &&
+          /projects/che-plugin-registry/build/scripts/check_plugins_location.sh v3 &&
+          /projects/che-plugin-registry/build/scripts/set_plugin_dates.sh v3 &&
+          /projects/che-plugin-registry/build/scripts/check_metas_schema.sh v3 &&
+          /projects/che-plugin-registry/build/scripts/index.sh v3 > v3/plugins/index.json &&
+          /projects/che-plugin-registry/build/scripts/list_referenced_images.sh v3 > v3/external_images.txt
+        component: builder
+
+  - name: 2. copy to che-plugin-registry server
+    previewUrl:
+      port: 8080
+      path: /v3/
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}'
+        type: exec
+        command: |
+          set -o xtrace;
+          rm -rf /usr/local/apache2/htdocs/v3/*;
+          cp -rf /projects/build/v3/* /usr/local/apache2/htdocs/v3
+        component: eclipse-che-plugin-registry
+
+  - name: 3. publish to surge.sh
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/build'
+        type: exec
+        command: |
+          for directory in `find v3/ -type d`
+          do
+            (cd $directory && tree -H '.' -L 1 --noreport --charset utf-8 | sed '/<p class="VERSION">/,/<\/p>/d' > index.html);
+          done
+          # Make meta.yaml as index
+          for file in $(find v3 -name 'meta.yaml' -type f)
+          do
+            PARENT_DIR=$(dirname $file);
+            cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.html;
+          done
+          surge ${CHE_PROJECTS_ROOT}/build ${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh && echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/
+        component: builder
