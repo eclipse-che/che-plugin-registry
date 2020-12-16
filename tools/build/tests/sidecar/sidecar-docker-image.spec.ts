@@ -43,4 +43,14 @@ describe('Test Sidecar', () => {
       'Unable to find result when executing'
     );
   });
+
+  test('check hash', async () => {
+    await sidecarDockerImage.init();
+    const git = sidecarDockerImage['git'];
+    const spyLog = jest.spyOn(git, 'log');
+    const logResult = { all: [], total: 1, latest: { hash: 'b8f0528ec5026a175114506b7c41ce4a1c833196' } } as any;
+    spyLog.mockResolvedValue(logResult);
+    const result = await sidecarDockerImage.getDockerImageFor('mycustom');
+    expect(result).toBe('quay.io/eclipse/che-plugin-sidecar:mycustom-b8f0528');
+  });
 });
