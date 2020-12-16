@@ -33,9 +33,9 @@ export class SidecarDockerImage {
   }
 
   async getDockerImageFor(sidecarShortDirectory: string): Promise<string> {
-    // use of short hash (abbreviated)
+    // Use long hash (and not short hash) as the value may vary across different git implementations and simple-git does not support abbrev parameter
     const format = {
-      hash: '%h',
+      hash: '%H',
     };
     const fullPathSideCarDirectory = path.resolve(this.gitRootDirectory, 'sidecars', sidecarShortDirectory);
 
@@ -52,6 +52,6 @@ export class SidecarDockerImage {
       throw new Error(`Unable to find result when executing ${JSON.stringify(logOptions)}`);
     }
     const hash = latest.hash;
-    return `${SidecarDockerImage.PREFIX_IMAGE}:${sidecarShortDirectory}-${hash}`;
+    return `${SidecarDockerImage.PREFIX_IMAGE}:${sidecarShortDirectory}-${hash.substring(0, 7)}`;
   }
 }
