@@ -23,7 +23,7 @@ spec:
         cookiesAuthEnabled: true
   containers:
    - name: che-rsync
-     image: "quay.io/eclipse/che-sidecar-workspace-data-sync:latest"
+     image: "quay.io/eclipse/che-sidecar-workspace-data-sync:0.0.1"
      memoryLimit: "512M"
      lifecycle:
       preStop:
