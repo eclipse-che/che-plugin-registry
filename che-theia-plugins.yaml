@@ -336,9 +336,9 @@ plugins:
       - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-didact
-      revision: 0.1.18
+      revision: 0.2.0
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.2.0-119.vsix
   - repository:
       url: https://github.com/Azure/vscode-kubernetes-tools
       revision: 1.2.1
