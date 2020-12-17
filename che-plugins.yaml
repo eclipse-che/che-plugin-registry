@@ -55,7 +55,7 @@ plugins:
           cookiesAuthEnabled: true
     containers:
       - name: che-rsync
-        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:latest'
+        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:0.0.1'
         memoryLimit: 512M
         lifecycle:
           preStop:
@@ -70,7 +70,7 @@ plugins:
         env:
           - name: RSYNC_PORT
             value: '2222'
-  - id: eclipse/che-async-pv-plugin/1.0.0
+  - id: eclipse/che-async-pv-plugin/0.0.1
     displayName: Che Async Storage Service
     description: >-
       Che Plug-in with service to provide abilty for backup/restore project
@@ -89,7 +89,7 @@ plugins:
           cookiesAuthEnabled: true
     containers:
       - name: che-rsync
-        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:latest'
+        image: 'quay.io/eclipse/che-sidecar-workspace-data-sync:0.0.1'
         memoryLimit: 512M
         lifecycle:
           preStop:
