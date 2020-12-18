@@ -453,9 +453,9 @@ plugins:
       - https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
   - repository:
       url: https://github.com/eclipse/che-che4z-explorer-for-endevor
-      revision: 0.10.0
+      revision: 0.11.1
     extensions:
-      - https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.0/explorer-for-endevor-0.11.0.vsix
+      - https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.1/explorer-for-endevor-0.11.1.vsix
   - repository:
       url: https://github.com/zxh0/vscode-proto3
       revision: c4d9eeb54294e3cee86254261edf036901f29dec
@@ -546,7 +546,7 @@ plugins:
       - https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
   - repository:
       url: https://github.com/zowe/vscode-extension-for-zowe
-      revision: v1.8.0
+      revision: v1.11.0
     sidecar:
       directory: node
       name: zowe-explorer
@@ -555,7 +555,7 @@ plugins:
        - name: ZOWE_CLI_HOME
          value: /projects/.zowe
     extensions:
-      - https://github.com/eclipse/che-che4z/releases/download/v2.1.0/vscode-extension-for-zowe-v1.8.0-che.vsix
+      - https://github.com/eclipse/che-che4z/releases/download/v2.2.0/vscode-extension-for-zowe-1.11.0-che.vsix
   - repository:
       url: https://github.com/bash-lsp/bash-language-server
       revision: vscode-client-1.10.2
