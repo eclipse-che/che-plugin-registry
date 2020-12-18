@@ -9,10 +9,12 @@
  ***********************************************************************/
 import { ContainerModule, interfaces } from 'inversify';
 
-import { MetaYamlWriter } from './meta-yaml-writer';
+import { CheTheiaPluginsAnalyzer } from './che-theia-plugins-analyzer';
+import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugins-meta-yaml-generator';
 
-const metaYamlModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind(MetaYamlWriter).toSelf().inSingletonScope();
+const cheTheiaPluginModule = new ContainerModule((bind: interfaces.Bind) => {
+  bind(CheTheiaPluginsAnalyzer).toSelf().inSingletonScope();
+  bind(CheTheiaPluginsMetaYamlGenerator).toSelf().inSingletonScope();
 });
 
-export { metaYamlModule };
+export { cheTheiaPluginModule };

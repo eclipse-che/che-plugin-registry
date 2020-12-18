@@ -57,7 +57,7 @@ COPY /sidecars /sidecars
 COPY /package.json /package.json
 COPY /yarn.lock /yarn.lock
 COPY ./tools /tools
-COPY /che-theia-plugins.yaml /che-theia-plugins.yaml
+COPY /che-*.yaml /
 COPY /v3 /build/v3
 WORKDIR /build/
 

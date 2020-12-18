@@ -12,12 +12,20 @@ import * as path from 'path';
 
 import { inject, injectable, named } from 'inversify';
 
-import { CheTheiaPluginAnalyzerMetaInfo } from './plugin/che-theia-plugin-analyzer-meta-info';
-import { CheTheiaPluginYaml } from './plugin/che-theia-plugins-yaml';
-import { CheTheiaPluginsAnalyzer } from './plugin/che-theia-plugins-analyzer';
+import { CheEditorMetaInfo } from './editor/che-editors-meta-info';
+import { CheEditorYaml } from './editor/che-editors-yaml';
+import { CheEditorsAnalyzer } from './editor/che-editors-analyzer';
+import { CheEditorsMetaYamlGenerator } from './editor/che-editors-meta-yaml-generator';
+import { ChePluginMetaInfo } from './che-plugin/che-plugins-meta-info';
+import { ChePluginYaml } from './che-plugin/che-plugins-yaml';
+import { ChePluginsAnalyzer } from './che-plugin/che-plugins-analyzer';
+import { ChePluginsMetaYamlGenerator } from './che-plugin/che-plugins-meta-yaml-generator';
+import { CheTheiaPluginAnalyzerMetaInfo } from './che-theia-plugin/che-theia-plugin-analyzer-meta-info';
+import { CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
+import { CheTheiaPluginsAnalyzer } from './che-theia-plugin/che-theia-plugins-analyzer';
+import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { FeaturedAnalyzer } from './featured/featured-analyzer';
 import { FeaturedWriter } from './featured/featured-writer';
-import { MetaYamlGenerator } from './meta-yaml/meta-yaml-generator';
 import { MetaYamlWriter } from './meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from './recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from './recommendations/recommendations-writer';
@@ -51,8 +59,14 @@ export class Build {
   @inject(FeaturedAnalyzer)
   private featuredAnalyzer: FeaturedAnalyzer;
 
-  @inject(MetaYamlGenerator)
-  private metaYamlGenerator: MetaYamlGenerator;
+  @inject(CheTheiaPluginsMetaYamlGenerator)
+  private cheTheiaPluginsMetaYamlGenerator: CheTheiaPluginsMetaYamlGenerator;
+
+  @inject(CheEditorsMetaYamlGenerator)
+  private cheEditorsMetaYamlGenerator: CheEditorsMetaYamlGenerator;
+
+  @inject(ChePluginsMetaYamlGenerator)
+  private chePluginsMetaYamlGenerator: ChePluginsMetaYamlGenerator;
 
   @inject(MetaYamlWriter)
   private metaYamlWriter: MetaYamlWriter;
@@ -72,11 +86,11 @@ export class Build {
   @inject(CheTheiaPluginsAnalyzer)
   private cheTheiaPluginsAnalyzer: CheTheiaPluginsAnalyzer;
 
-  private cheTheiaPlugins: CheTheiaPluginMetaInfo[];
+  @inject(CheEditorsAnalyzer)
+  private cheEditorsAnalyzer: CheEditorsAnalyzer;
 
-  constructor() {
-    this.cheTheiaPlugins = [];
-  }
+  @inject(ChePluginsAnalyzer)
+  private chePluginsAnalyzer: ChePluginsAnalyzer;
 
   public async analyzeCheTheiaPlugin(
     cheTheiaPlugin: CheTheiaPluginAnalyzerMetaInfo,
@@ -93,7 +107,7 @@ export class Build {
   /**
    * Analyze che-theia-plugins.yaml and download all related vsix files
    */
-  protected async analyzeCheTheiaPluginsYaml(): Promise<void> {
+  protected async analyzeCheTheiaPluginsYaml(): Promise<CheTheiaPluginMetaInfo[]> {
     const cheTheiaPluginsPath = path.resolve(this.pluginRegistryRootDirectory, 'che-theia-plugins.yaml');
     const cheTheiaPluginsYaml = await this.cheTheiaPluginsAnalyzer.analyze(cheTheiaPluginsPath);
 
@@ -149,24 +163,68 @@ export class Build {
       return { ...plugin, id };
     });
 
-    // update plug-ins
-    this.cheTheiaPlugins = analyzingCheTheiaPluginsWithIds;
+    return analyzingCheTheiaPluginsWithIds;
+  }
+
+  /**
+   * Analyze che-editors.yaml
+   */
+  protected async analyzeCheEditorsYaml(): Promise<CheEditorMetaInfo[]> {
+    const cheEditorsPath = path.resolve(this.pluginRegistryRootDirectory, 'che-editors.yaml');
+    const cheEditorsYaml = await this.cheEditorsAnalyzer.analyze(cheEditorsPath);
+
+    // First, parse che-editors yaml
+    const cheEditors: CheEditorMetaInfo[] = await Promise.all(
+      cheEditorsYaml.editors.map(async (cheEditorYaml: CheEditorYaml) => {
+        const cheEditorMetaInfo: CheEditorMetaInfo = { ...cheEditorYaml };
+        return cheEditorMetaInfo;
+      })
+    );
+
+    return cheEditors;
+  }
+
+  /**
+   * Analyze che-plugins.yaml
+   */
+  protected async analyzeChePluginsYaml(): Promise<ChePluginMetaInfo[]> {
+    const chePluginsPath = path.resolve(this.pluginRegistryRootDirectory, 'che-plugins.yaml');
+    const chePluginsYaml = await this.chePluginsAnalyzer.analyze(chePluginsPath);
+
+    // First, parse che-plugins yaml
+    const chePlugins: ChePluginMetaInfo[] = await Promise.all(
+      chePluginsYaml.plugins.map(async (chePluginYaml: ChePluginYaml) => {
+        const chePluginMetaInfo: ChePluginMetaInfo = { ...chePluginYaml };
+        return chePluginMetaInfo;
+      })
+    );
+
+    // update editors
+    return chePlugins;
   }
 
   public async build(): Promise<void> {
     // analyze the che-theia-plugins.yaml yaml file
-    await this.analyzeCheTheiaPluginsYaml();
+    const cheTheiaPlugins = await this.analyzeCheTheiaPluginsYaml();
+    const cheTheiaPluginsMetaYaml = await this.cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPlugins);
 
-    // generate v3/plugins
-    const cheMetaYamlPlugins = await this.metaYamlGenerator.compute(this.cheTheiaPlugins);
-    await this.metaYamlWriter.write(cheMetaYamlPlugins);
+    const cheEditors = await this.analyzeCheEditorsYaml();
+    const cheEditorsMetaYaml = await this.cheEditorsMetaYamlGenerator.compute(cheEditors);
+
+    const chePlugins = await this.analyzeChePluginsYaml();
+    const chePluginsMetaYaml = await this.chePluginsMetaYamlGenerator.compute(chePlugins);
+
+    const allMetaYamls = [...cheTheiaPluginsMetaYaml, ...cheEditorsMetaYaml, ...chePluginsMetaYaml];
+
+    // generate v3/plugins folder
+    await this.metaYamlWriter.write(allMetaYamls);
 
     // generate featured.json
-    const jsonOutput = await this.featuredAnalyzer.generate(this.cheTheiaPlugins);
+    const jsonOutput = await this.featuredAnalyzer.generate(cheTheiaPlugins);
     await this.featuredWriter.writeReport(jsonOutput);
 
     // generate Recommendations
-    const recommendations = await this.recommendationsAnalyzer.generate(this.cheTheiaPlugins);
+    const recommendations = await this.recommendationsAnalyzer.generate(cheTheiaPlugins);
     await this.recommendationsWriter.writeRecommendations(recommendations);
   }
 }

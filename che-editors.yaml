@@ -97,7 +97,7 @@ editors:
             value: /remote-endpoint/plugin-remote-endpoint
           - name: REMOTE_ENDPOINT_VOLUME_NAME
             value: remote-endpoint
-  - id: eclipse/che-theia/7.23.0
+  - id: eclipse/che-theia/7.24.0
     title: Eclipse Theia
     displayName: theia-ide
     description: Eclipse Theia
@@ -161,7 +161,7 @@ editors:
           discoverable: false
     containers:
       - name: theia-ide
-        image: "quay.io/eclipse/che-theia:7.23.0"
+        image: "quay.io/eclipse/che-theia:7.24.0"
         env:
           - name: THEIA_PLUGINS
             value: local-dir:///plugins
@@ -184,7 +184,7 @@ editors:
         memoryLimit: "512M"
     initContainers:
       - name: remote-runtime-injector
-        image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.23.0"
+        image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.24.0"
         volumeMounts:
           - name: remote-endpoint
             path: "/remote-endpoint"
