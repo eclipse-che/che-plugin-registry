@@ -130,7 +130,7 @@ plugins:
           - /go/bin/che-machine-exec
           - '--url'
           - '127.0.0.1:4444'
-  - id: eclipse/che-machine-exec-plugin/7.23.0
+  - id: eclipse/che-machine-exec-plugin/7.24.0
     displayName: Che machine-exec Service
     description: >-
       Che Plug-in with che-machine-exec service to provide creation terminal or
@@ -149,7 +149,7 @@ plugins:
           cookiesAuthEnabled: true
     containers:
       - name: che-machine-exec
-        image: 'quay.io/eclipse/che-machine-exec:7.23.0'
+        image: 'quay.io/eclipse/che-machine-exec:7.24.0'
         ports:
           - exposedPort: 4444
         command:

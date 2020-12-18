@@ -13,7 +13,7 @@ import 'reflect-metadata';
 import * as fs from 'fs-extra';
 
 import { Container } from 'inversify';
-import { MetaYamlPluginInfo } from '../../src/meta-yaml/meta-yaml-generator';
+import { MetaYamlPluginInfo } from '../../src/meta-yaml/meta-yaml-plugin-info';
 import { MetaYamlWriter } from '../../src/meta-yaml/meta-yaml-writer';
 
 describe('Test MetaYamlWriter', () => {
@@ -120,6 +120,8 @@ spec:
     fsCopyFileSpy.mockReturnValue();
     fsWriteFileSpy.mockReturnValue();
     delete metaPluginYaml.iconFile;
+    delete metaPluginYaml.aliases;
+    metaPluginYaml.disableLatest = true;
     const metaYamlPlugins: MetaYamlPluginInfo[] = [metaPluginYaml];
     await metaYamlWriter.write(metaYamlPlugins);
     // no copy of the icon
@@ -153,10 +155,7 @@ spec:
       '/fake-output/v3/plugins/custom-publisher/custom-name/my-version/meta.yaml',
       content
     );
-    expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
-      2,
-      '/fake-output/v3/plugins/custom-publisher/custom-name/latest.txt',
-      'my-version\n'
-    );
+    // no version written with disable Latest
+    expect(fsWriteFileSpy).toHaveBeenCalledTimes(1);
   });
 });

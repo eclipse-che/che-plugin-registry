@@ -7,12 +7,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
-import { ContainerModule, interfaces } from 'inversify';
 
-import { MetaYamlWriter } from './meta-yaml-writer';
+import { CheEditorYaml } from './che-editors-yaml';
 
-const metaYamlModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind(MetaYamlWriter).toSelf().inSingletonScope();
-});
-
-export { metaYamlModule };
+export interface CheEditorMetaInfo extends CheEditorYaml {
+  iconFile?: string;
+}

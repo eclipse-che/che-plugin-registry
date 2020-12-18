@@ -9,15 +9,21 @@
  ***********************************************************************/
 import 'reflect-metadata';
 
-import { CheTheiaPluginYaml, CheTheiaPluginsYaml } from '../src/plugin/che-theia-plugins-yaml';
+import { CheEditorYaml, CheEditorsYaml } from '../src/editor/che-editors-yaml';
+import { ChePluginYaml, ChePluginsYaml } from '../src/che-plugin/che-plugins-yaml';
+import { CheTheiaPluginYaml, CheTheiaPluginsYaml } from '../src/che-theia-plugin/che-theia-plugins-yaml';
 
 import { Build } from '../src/build';
-import { CheTheiaPluginAnalyzerMetaInfo } from '../src/plugin/che-theia-plugin-analyzer-meta-info';
-import { CheTheiaPluginsAnalyzer } from '../src/plugin/che-theia-plugins-analyzer';
+import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
+import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
+import { ChePluginsAnalyzer } from '../src/che-plugin/che-plugins-analyzer';
+import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-yaml-generator';
+import { CheTheiaPluginAnalyzerMetaInfo } from '../src/che-theia-plugin/che-theia-plugin-analyzer-meta-info';
+import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
+import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Container } from 'inversify';
 import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
 import { FeaturedWriter } from '../src/featured/featured-writer';
-import { MetaYamlGenerator } from '../src/meta-yaml/meta-yaml-generator';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
@@ -33,6 +39,16 @@ describe('Test Build', () => {
   const cheTheiaPluginsAnalyzerAnalyzeMock = jest.fn();
   const cheTheiaPluginsAnalyzer: any = {
     analyze: cheTheiaPluginsAnalyzerAnalyzeMock,
+  };
+
+  const chePluginsAnalyzerAnalyzeMock = jest.fn();
+  const chePluginsAnalyzer: any = {
+    analyze: chePluginsAnalyzerAnalyzeMock,
+  };
+
+  const cheEditorsAnalyzerAnalyzeMock = jest.fn();
+  const cheEditorsAnalyzer: any = {
+    analyze: cheEditorsAnalyzerAnalyzeMock,
   };
 
   const vsixUrlAnalyzerAnalyzeMock = jest.fn();
@@ -66,8 +82,18 @@ describe('Test Build', () => {
   };
 
   const metaYamlGeneratorComputeMock = jest.fn();
-  const metaYamlGenerator: any = {
+  const cheTheiaPluginsMetaYamlGenerator: any = {
     compute: metaYamlGeneratorComputeMock,
+  };
+
+  const metaYamlPluginsGeneratorComputeMock = jest.fn();
+  const chePluginsMetaYamlGenerator: any = {
+    compute: metaYamlPluginsGeneratorComputeMock,
+  };
+
+  const metaYamlEditorGeneratorComputeMock = jest.fn();
+  const cheEditorMetaYamlGenerator: any = {
+    compute: metaYamlEditorGeneratorComputeMock,
   };
 
   let build: Build;
@@ -84,6 +110,66 @@ describe('Test Build', () => {
     };
   }
 
+  async function buildChePluginYaml(): Promise<ChePluginYaml> {
+    return {
+      id: 'che-incubator/theia-dev/0.0.1',
+      icon: '',
+      displayName: 'Che Theia Dev Plugin',
+      description: 'Che Theia Dev Plugin',
+      repository: 'https://github.com/che-incubator/che-theia-dev-plugin/',
+      firstPublicationDate: '2019-02-05',
+      endpoints: [
+        {
+          name: 'theia-dev-flow',
+          public: true,
+          targetPort: 3010,
+          attributes: {
+            protocol: 'http',
+          },
+        },
+      ],
+      containers: [
+        {
+          name: 'theia-dev',
+          image: 'quay.io/eclipse/che-theia-dev:next',
+          mountSources: true,
+          memoryLimit: '2Gi',
+        },
+      ],
+    };
+  }
+
+  async function buildCheEditorYaml(): Promise<CheEditorYaml> {
+    return {
+      id: 'ws-skeleton/eclipseide/4.9.0',
+      displayName: 'Eclipse IDE',
+      description: 'Eclipse running on the Web with Broadway',
+      title: 'Eclipse IDE (in browser using Broadway) as editor for Eclipse Che',
+      icon: 'https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg',
+      repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/',
+      firstPublicationDate: '2019-02-05',
+      endpoints: [
+        {
+          name: 'eclipse-ide',
+          public: true,
+          targetPort: 5000,
+          attributes: {
+            protocol: 'http',
+            type: 'ide',
+          },
+        },
+      ],
+      containers: [
+        {
+          name: 'eclipse-ide',
+          image: 'docker.io/wsskeleton/eclipse-broadway',
+          mountSources: true,
+          memoryLimit: '2048M',
+        },
+      ],
+    };
+  }
+
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
@@ -94,10 +180,14 @@ describe('Test Build', () => {
     container.bind(FeaturedWriter).toConstantValue(featuredWriter);
     container.bind(RecommendationsAnalyzer).toConstantValue(recommendationsAnalyzer);
     container.bind(RecommendationsWriter).toConstantValue(recommendationsWriter);
-    container.bind(CheTheiaPluginsAnalyzer).toConstantValue(cheTheiaPluginsAnalyzer);
     container.bind(VsixUrlAnalyzer).toConstantValue(vsixUrlAnalyzer);
 
-    container.bind(MetaYamlGenerator).toConstantValue(metaYamlGenerator);
+    container.bind(CheTheiaPluginsAnalyzer).toConstantValue(cheTheiaPluginsAnalyzer);
+    container.bind(CheTheiaPluginsMetaYamlGenerator).toConstantValue(cheTheiaPluginsMetaYamlGenerator);
+    container.bind(ChePluginsAnalyzer).toConstantValue(chePluginsAnalyzer);
+    container.bind(ChePluginsMetaYamlGenerator).toConstantValue(chePluginsMetaYamlGenerator);
+    container.bind(CheEditorsAnalyzer).toConstantValue(cheEditorsAnalyzer);
+    container.bind(CheEditorsMetaYamlGenerator).toConstantValue(cheEditorMetaYamlGenerator);
     container.bind(MetaYamlWriter).toConstantValue(metaYamlWriter);
 
     container.bind(Build).toSelf().inSingletonScope();
@@ -119,11 +209,28 @@ describe('Test Build', () => {
     const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
       plugins: [cheTheiaPluginYaml],
     };
-
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
+    const chePluginYaml = await buildChePluginYaml();
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [chePluginYaml],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorPluginYaml = await buildCheEditorYaml();
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [cheEditorPluginYaml],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
+
+    metaYamlGeneratorComputeMock.mockResolvedValueOnce([]);
+    metaYamlEditorGeneratorComputeMock.mockResolvedValueOnce([]);
+    metaYamlPluginsGeneratorComputeMock.mockResolvedValueOnce([]);
+
     await build.build();
-    expect(metaYamlGenerator.compute).toBeCalled();
+    expect(chePluginsMetaYamlGenerator.compute).toBeCalled();
+    expect(cheEditorMetaYamlGenerator.compute).toBeCalled();
+    expect(cheTheiaPluginsMetaYamlGenerator.compute).toBeCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     // computed id should be all lowercase
     expect(computeCall[0][0].id).toBe('foobar-publisher/acustomname');
@@ -154,6 +261,15 @@ describe('Test Build', () => {
       plugins: [cheTheiaPluginYaml],
     };
 
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
     await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
@@ -169,6 +285,16 @@ describe('Test Build', () => {
     const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
       plugins: [cheTheiaPluginYaml],
     };
+
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
@@ -189,6 +315,15 @@ describe('Test Build', () => {
       plugins: [cheTheiaPluginYaml],
     };
 
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
     await expect(build.build()).rejects.toThrow('Unable to find a publisher field in package.json file for extension');
@@ -210,6 +345,15 @@ describe('Test Build', () => {
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     await expect(build.build()).rejects.toThrow('Unable to find a name field in package.json file for extension');
   });
 
@@ -223,8 +367,23 @@ describe('Test Build', () => {
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
 
+    const chePluginYaml = await buildChePluginYaml();
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [chePluginYaml],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorPluginYaml = await buildCheEditorYaml();
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [cheEditorPluginYaml],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
+
+    metaYamlGeneratorComputeMock.mockResolvedValueOnce([]);
+    metaYamlEditorGeneratorComputeMock.mockResolvedValueOnce([]);
+    metaYamlPluginsGeneratorComputeMock.mockResolvedValueOnce([]);
     await build.build();
-    expect(metaYamlGenerator.compute).toBeCalled();
+    expect(cheTheiaPluginsMetaYamlGenerator.compute).toBeCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     expect(computeCall[0][0].id).toBe('my/id');
 

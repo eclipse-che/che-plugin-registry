@@ -7,7 +7,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
-import { CheTheiaPluginSidecarDirectoryYaml, CheTheiaPluginSidecarImageYaml } from '../plugin/che-theia-plugins-yaml';
+import {
+  CheTheiaPluginSidecarDirectoryYaml,
+  CheTheiaPluginSidecarImageYaml,
+} from '../che-theia-plugin/che-theia-plugins-yaml';
 import { inject, injectable } from 'inversify';
 
 import { CheTheiaPluginMetaInfo } from '../build';

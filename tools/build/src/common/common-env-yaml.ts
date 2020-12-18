@@ -7,12 +7,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
-import { ContainerModule, interfaces } from 'inversify';
 
-import { MetaYamlWriter } from './meta-yaml-writer';
-
-const metaYamlModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind(MetaYamlWriter).toSelf().inSingletonScope();
-});
-
-export { metaYamlModule };
+export interface CommonEnvYaml {
+  name: string;
+  value: string;
+}

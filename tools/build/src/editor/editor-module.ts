@@ -9,10 +9,12 @@
  ***********************************************************************/
 import { ContainerModule, interfaces } from 'inversify';
 
-import { MetaYamlWriter } from './meta-yaml-writer';
+import { CheEditorsAnalyzer } from './che-editors-analyzer';
+import { CheEditorsMetaYamlGenerator } from './che-editors-meta-yaml-generator';
 
-const metaYamlModule = new ContainerModule((bind: interfaces.Bind) => {
-  bind(MetaYamlWriter).toSelf().inSingletonScope();
+const editorModule = new ContainerModule((bind: interfaces.Bind) => {
+  bind(CheEditorsAnalyzer).toSelf().inSingletonScope();
+  bind(CheEditorsMetaYamlGenerator).toSelf().inSingletonScope();
 });
 
-export { metaYamlModule };
+export { editorModule };

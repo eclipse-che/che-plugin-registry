@@ -15,10 +15,13 @@ import * as path from 'path';
 
 import { Build } from './build';
 import { Container } from 'inversify';
+import { chePluginsModule } from './che-plugin/che-plugins-module';
+import { cheTheiaPluginModule } from './che-theia-plugin/che-theia-plugin-module';
+import { commonModule } from './common/common-module';
+import { editorModule } from './editor/editor-module';
 import { extensionsModule } from './extensions/extension-module';
 import { featuredModule } from './featured/featured-module';
 import { metaYamlModule } from './meta-yaml/meta-yaml-module';
-import { pluginModule } from './plugin/plugin-module';
 import { recommendationsModule } from './recommendations/recommendations-module';
 import { sidecarModule } from './sidecar/plugin-module';
 
@@ -39,9 +42,12 @@ export class InversifyBinding {
       }
     });
     this.container = new Container();
+    this.container.load(commonModule);
+    this.container.load(chePluginsModule);
+    this.container.load(cheTheiaPluginModule);
+    this.container.load(editorModule);
     this.container.load(extensionsModule);
     this.container.load(featuredModule);
-    this.container.load(pluginModule);
     this.container.load(metaYamlModule);
     this.container.load(recommendationsModule);
     this.container.load(sidecarModule);

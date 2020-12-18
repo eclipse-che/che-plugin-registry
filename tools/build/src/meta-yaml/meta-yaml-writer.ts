@@ -14,7 +14,7 @@ import * as path from 'path';
 
 import { inject, injectable, named } from 'inversify';
 
-import { MetaYamlPluginInfo } from './meta-yaml-generator';
+import { MetaYamlPluginInfo } from './meta-yaml-plugin-info';
 
 @injectable()
 export class MetaYamlWriter {
@@ -37,7 +37,6 @@ export class MetaYamlWriter {
     await fs.ensureDir(imagesFolder);
 
     const apiVersion = 'v2';
-    const type = 'VS Code extension';
 
     await Promise.all(
       metaYamlPluginInfos.map(async plugin => {
@@ -45,6 +44,7 @@ export class MetaYamlWriter {
         const version = plugin.version;
         const name = plugin.name;
         const publisher = plugin.publisher;
+        const type = plugin.type;
 
         // write icon if iconfFile is specified or use default icon
         let icon: string;
@@ -65,7 +65,12 @@ export class MetaYamlWriter {
         const repository = plugin.repository;
         const firstPublicationDate = plugin.firstPublicationDate;
         const spec = plugin.spec;
-        const aliases = plugin.aliases;
+        let aliases: string[];
+        if (plugin.aliases) {
+          aliases = plugin.aliases;
+        } else {
+          aliases = [];
+        }
 
         // generate for the id and for all aliases
         const pluginsToGenerate = [
@@ -73,45 +78,50 @@ export class MetaYamlWriter {
           ...aliases.map(item => this.convertIdToPublisherAndName(item)),
         ];
         const promises: Promise<unknown>[] = [];
-        pluginsToGenerate.map(async pluginToWrite => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const metaYaml: any = {
-            apiVersion,
-            publisher: pluginToWrite[0],
-            name: pluginToWrite[1],
-            version,
-            type,
-            displayName,
-            title,
-            description,
-            icon,
-            category,
-            repository,
-            firstPublicationDate,
-          };
-
-          const computedId = `${metaYaml.publisher}/${metaYaml.name}`;
-
-          // add deprecate/migrate info if it is an alias
-          if (computedId !== id) {
-            metaYaml.deprecate = {
-              automigrate: true,
-              migrateTo: `${id}/latest`,
+        await Promise.all(
+          pluginsToGenerate.map(async pluginToWrite => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const metaYaml: any = {
+              apiVersion,
+              publisher: pluginToWrite[0],
+              name: pluginToWrite[1],
+              version,
+              type,
+              displayName,
+              title,
+              description,
+              icon,
+              category,
+              repository,
+              firstPublicationDate,
             };
-          }
 
-          // add spec object
-          metaYaml.spec = spec;
+            const computedId = `${metaYaml.publisher}/${metaYaml.name}`;
 
-          const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: 120 });
+            // add deprecate/migrate info if it is an alias
+            if (computedId !== id) {
+              metaYaml.deprecate = {
+                automigrate: true,
+                migrateTo: `${id}/latest`,
+              };
+            }
 
-          const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
-          const latestPath = path.resolve(pluginsFolder, computedId, 'latest.txt');
+            // add spec object
+            metaYaml.spec = spec;
 
-          await fs.ensureDir(path.dirname(pluginPath));
-          promises.push(fs.writeFile(pluginPath, yamlString));
-          promises.push(fs.writeFile(latestPath, `${version}\n`));
-        });
+            const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: 120 });
+
+            const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
+            const latestPath = path.resolve(pluginsFolder, computedId, 'latest.txt');
+
+            await fs.ensureDir(path.dirname(pluginPath));
+            promises.push(fs.writeFile(pluginPath, yamlString));
+            // do not write latest.txt if not asked
+            if (!plugin.disableLatest) {
+              promises.push(fs.writeFile(latestPath, `${version}\n`));
+            }
+          })
+        );
         return Promise.all(promises);
       })
     );

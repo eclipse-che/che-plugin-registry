@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
-import { CheTheiaPluginAnalyzerMetaInfo } from '../plugin/che-theia-plugin-analyzer-meta-info';
+import { CheTheiaPluginAnalyzerMetaInfo } from '../che-theia-plugin/che-theia-plugin-analyzer-meta-info';
 
 /**
  * Describe information about a vsix
