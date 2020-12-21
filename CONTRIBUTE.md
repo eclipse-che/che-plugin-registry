@@ -68,6 +68,212 @@ Here are all the supported values, including optional ones:
       - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
 ```
 
+# Adding a Che Editor to Che
+Che supports multiple editors and each workspace can use its own editor. In the root of this repository is a [`che-editors.yaml`](./che-editors.yaml) file. In order to add/update a Che Editor in Che, simply add/edit this file with the relevant editor information.
+
+Here is the expected format of a [`che-editors.yaml`](./che-editors.yaml) editor entry:
+
+```yaml
+  - id: my/editor/1.0.0
+    title: This is my editor
+    displayName: Editor Name
+    description: Run Editor Foo on top of Eclipse Che
+    icon: http://my-nice-icon.foobar/icon.png
+    repository: https://my-git-repository-foo-bar.com/
+    firstPublicationDate: "2020-01-01"
+    endpoints:
+      - name: "editor-name"
+        public: true
+        targetPort: 8080
+        attributes:
+          protocol: http
+          type: ide
+    containers:
+      - name: my-editor-container
+        image: "quay.io/image:foo"
+        mountSources: true
+        ports:
+         - exposedPort: 8080
+        memoryLimit: "512M"
+```
+
+Here are all the supported values, including optional ones:
+
+```yaml
+    # The ID of the editor
+  - id: my/editor/1.0.0
+    # Meta information of the editor
+    title: This is my editor
+    displayName: Editor Name
+    description: Run Editor Foo on top of Eclipse Che
+    icon: http://my-nice-icon.foobar/icon.png
+    firstPublicationDate: "2020-01-01"
+    # Repository information about the editor.
+    repository: https://my-git-repository-foo-bar.com/
+    # Specify at least one endpoint
+    endpoints:
+      - # Name of the editor
+        name: "editor-name"
+        # public
+        public: true
+        # listening port of the editor in the container
+        targetPort: 8080
+        # the type should be ide to be an editor
+        attributes:
+          protocol: http
+          type: ide
+    # Specify at least one container
+    containers:
+      - # Name of the container
+        name: my-editor-container
+        # image of the container
+        image: "quay.io/image:foo"
+        # (OPTIONAL) Any environment variable entry for the container
+        env:
+          # The name of the environment variable
+          - name: MY_KEY
+          # The value of the environment variable
+            value: my-value
+        # (OPTIONAL) mount the source code of the projects in the container
+        # Should be true for the editor's container as usually editor is to open files from projects
+        mountSources: true
+        # (OPTIONAL) ports exposed by this container
+        ports:
+         - 
+           # Should at least expose the port used by the default endpoint
+           exposedPort: 8080
+        # (OPTIONAL) The memory limit of the container
+        memoryLimit: "1500Mi"
+        # (OPTIONAL) The memory request of the container
+        memoryRequest: "1000Mi"
+        # (OPTIONAL) The CPU limit of the container
+        cpuLimit: "500m"
+        # (OPTIONAL) The CPU request of the container
+        cpuRequest: "125m"
+        # (OPTIONAL) Any volume mounting information for the container
+        volumeMounts:
+          # The name of the mount
+        - name: m2
+          # The path of the mount
+          path: "/home/theia/.m2"
+
+    # (OPTIONAL) Any init container
+    initContainers:
+      - # Name of the container
+        name: my-editor-container
+        # image of the container
+        image: "quay.io/image:foo"
+        # (OPTIONAL) Any environment variable entry for the container
+        env:
+          # The name of the environment variable
+          - name: MY_KEY
+          # The value of the environment variable
+            value: my-value
+        # (OPTIONAL) Any volume mounting information for the container
+        volumeMounts:
+          # The name of the mount
+        - name: my-path
+          # The path of the mount
+          path: "/home/theia/path"          
+```
+
+# Adding a Che Plugin to Che (Not a VS Code extension or a Theia Plug-in)
+Che supports plug-ins. These plug-ins are not VS Code extensions, and only bring new endpoints and containers. In the root of this repository is a [`che-plugins.yaml`](./che-plugins.yaml) file. In order to add/update a Che Plugin in Che, simply add/edit this file with the relevant plug-in information.
+
+Here is the expected format of a [`che-plugins.yaml`](./che-plugins.yaml) editor entry:
+
+```yaml
+  - id: my/plugin/1.0.0
+    displayName: Foo container
+    description: Brings Foo Container on top of Eclipse Che Workspace
+    icon: http://my-nice-icon.foobar/icon.png
+    repository: https://my-git-repository-foo-bar.com/
+    firstPublicationDate: "2020-01-01"
+    containers:
+      - name: my-foo-container
+        image: "quay.io/image:foo"
+        mountSources: true
+        memoryLimit: "512M"
+```
+
+Here are all the supported values, including optional ones:
+
+```yaml
+    # The ID of the che plugin
+  - id: my/plugin/1.0.0
+    # Meta information of the plug-in
+    displayName: Foo container
+    description: Brings Foo Container on top of Eclipse Che Workspace
+    icon: http://my-nice-icon.foobar/icon.png
+    firstPublicationDate: "2020-01-01"
+    # Repository information about the plug-in.
+    repository: https://my-git-repository-foo-bar.com/
+    #(OPTIONAL) Specify endpoints
+    endpoints:
+      - # Name of the endpoint
+        name: "endpoint-name"
+        # public
+        public: <boolean>
+        # listening port of the endpoint in the container
+        targetPort: 8080
+        # optional attributes
+        attributes:
+          protocol: http
+          ...
+    # Specify at least one container
+    containers:
+      - # Name of the container
+        name: my-foo-container
+        # image of the container
+        image: "quay.io/image:foo"
+        # (OPTIONAL) Any environment variable entry for the container
+        env:
+          # The name of the environment variable
+          - name: MY_KEY
+          # The value of the environment variable
+            value: my-value
+        volumeMounts:
+          # The name of the mount
+        - name: m2
+          # The path of the mount
+          path: "/home/theia/.m2"
+        # (OPTIONAL) mount the source code of the projects in the container
+        mountSources: true
+        # (OPTIONAL) ports exposed by this container
+        ports:
+         - 
+           # Should at least expose the port used by endpoint (if any)
+           exposedPort: 8080
+        # (OPTIONAL) The memory limit of the container
+        memoryLimit: "1500Mi"
+        # (OPTIONAL) The memory request of the container
+        memoryRequest: "1000Mi"
+        # (OPTIONAL) The CPU limit of the container
+        cpuLimit: "500m"
+        # (OPTIONAL) The CPU request of the container
+        cpuRequest: "125m"
+        # (OPTIONAL) Any volume mounting information for the container
+
+    # (OPTIONAL) Any init container
+    initContainers:
+      - # Name of the container
+        name: my-foo-container
+        # image of the container
+        image: "quay.io/image:foo"
+        # (OPTIONAL) Any environment variable entry for the container
+        env:
+          # The name of the environment variable
+          - name: MY_KEY
+          # The value of the environment variable
+            value: my-value
+        # (OPTIONAL) Any volume mounting information for the container
+        volumeMounts:
+          # The name of the mount
+        - name: my-path
+          # The path of the mount
+          path: "/home/theia/path"          
+```
+
 ## Sidecars
 Sometimes a VS Code extension will need to run in a sidecar container. Any plugin can run in any of the sidecar containers already defined in this repository. If an extension needs a specialized container not already available, then a new sidecar can be contributed.
 
