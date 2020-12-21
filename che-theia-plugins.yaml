@@ -21,6 +21,7 @@ plugins:
       url: https://github.com/Microsoft/vscode
       revision: 1.49.3
       directory: extensions/typescript-language-features
+    featured: true
     aliases:
       - che-incubator/typescript
     sidecar:
@@ -68,6 +69,7 @@ plugins:
   - repository:
       url: https://github.com/eclipse-cdt/cdt-vscode
       revision: 2edfc3a3474bc7a732014e1a4631561b991f845a
+    featured: true
     sidecar:
       directory: clang
       name: cpp-plugins
@@ -79,6 +81,7 @@ plugins:
   - repository:
       url: https://github.com/bmewburn/vscode-intelephense
       revision: v1.5.4
+    featured: true
     sidecar:
       directory: php
       memoryLimit: "1000Mi"
@@ -87,6 +90,7 @@ plugins:
   - repository:
       url: https://github.com/Microsoft/vscode-python
       revision: 2020.7.94776
+    featured: true
     sidecar:
       directory: python
       name: vscode-python
@@ -108,6 +112,7 @@ plugins:
   - repository:
       url: https://github.com/golang/vscode-go
       revision: v0.16.1
+    featured: true
     sidecar:
       directory: go
       name: vscode-go
@@ -120,6 +125,7 @@ plugins:
   - repository:
       url: https://github.com/haskell/vscode-haskell
       revision: 1.1.0
+    featured: true
     aliases:
       - haskell/vscode-haskell
     sidecar:
@@ -241,6 +247,7 @@ plugins:
   - repository:
       url: https://github.com/redhat-developer/vscode-yaml
       revision: 0.11.1
+    featured: true
     sidecar:
       directory: node
       name: vscode-yaml
@@ -251,6 +258,7 @@ plugins:
     repository:
       url: https://github.com/redhat-developer/vscode-java
       revision: v0.69.0
+    featured: true
     aliases:
       - redhat/java
     sidecar:
@@ -328,6 +336,7 @@ plugins:
   - repository:
       url: https://github.com/redhat-developer/vscode-xml
       revision: 0.13.0
+    featured: true
     sidecar:
       directory: java
       name: vscode-xml
