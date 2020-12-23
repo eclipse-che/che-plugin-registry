@@ -102,6 +102,14 @@ plugins:
       revision: v2.7.7
     extensions:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/asciidoctor-vscode/asciidoctor-vscode-2.7.7.vsix
+    sidecar:
+      directory: asciidoc
+      name: asciidoctor-vscode
+      memoryLimit: '128Mi'
+      volumeMounts:
+        # this is a workaround for openshift3
+        - name: documents
+          path: "/documents"
   - repository:
       url: https://github.com/eamodio/vscode-gitlens
       revision: v10.2.1
