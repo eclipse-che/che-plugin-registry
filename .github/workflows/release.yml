@@ -28,7 +28,7 @@ jobs:
       - name: Clone source code
         uses: actions/checkout@v1
         with:
-          fetch-depth: 1
+          fetch-depth: 0
           ref: release
 
       - name: Login to Quay.io
