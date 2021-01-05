@@ -334,13 +334,13 @@ plugins:
       - https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
   - repository:
       url: https://github.com/camel-tooling/camel-lsp-client-vscode
-      revision: 0.0.29
+      revision: 0.0.30
     sidecar:
       directory: java
       name: vscode-apache-camel
       memoryLimit: "300Mi"
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.29-72.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.30-103.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-xml
       revision: 0.13.0
