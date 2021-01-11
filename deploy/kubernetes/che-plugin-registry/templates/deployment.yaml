@@ -10,15 +10,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: che-plugin-registry
   name: che-plugin-registry
+  labels:
+    app: che
+    component: plugin-registry
+    app.kubernetes.io/name: che
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: che-plugin-registry
+      app: che
+      component: plugin-registry
   strategy:
     type: RollingUpdate
     rollingUpdate:

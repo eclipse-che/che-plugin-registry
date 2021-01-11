@@ -18,6 +18,9 @@ objects:
     labels:
       app: che
       component: plugin-registry
+      app.kubernetes.io/name: che
+      app.kubernetes.io/instance: che
+      app.kubernetes.io/managed-by: OpenShift
     name: plugin-registry
   spec:
     replicas: 1
