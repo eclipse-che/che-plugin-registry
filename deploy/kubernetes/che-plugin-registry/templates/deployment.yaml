@@ -33,7 +33,8 @@ spec:
   template:
     metadata:
       labels:
-        app: che-plugin-registry
+        app: che
+        component: plugin-registry
     spec:
       containers:
       - image: {{ .Values.chePluginRegistryImage }}
