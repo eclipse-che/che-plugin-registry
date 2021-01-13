@@ -58,14 +58,14 @@ plugins:
     extensions:
       - https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix
   - repository:
-      url: https://github.com/testthedocs/vscode-vale
-      revision: 0.9.1
+      url: https://github.com/errata-ai/vale-vscode/
+      revision: 0.12.0
     sidecar:
       directory: vale
       name: "vscode-vale"
       memoryLimit: "512Mi"
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-vale/vale-0.9.1.vsix
+      - https://open-vsx.org/api/errata-ai/vale-server/0.12.0/file/errata-ai.vale-server-0.12.0.vsix
   - repository:
       url: https://github.com/eclipse-cdt/cdt-vscode
       revision: 2edfc3a3474bc7a732014e1a4631561b991f845a
