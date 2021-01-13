@@ -15,6 +15,7 @@ metadata:
     app: che
     component: plugin-registry
     app.kubernetes.io/name: che
+    app.kubernetes.io/component: plugin-registry
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
@@ -35,6 +36,11 @@ spec:
       labels:
         app: che
         component: plugin-registry
+        app.kubernetes.io/name: che
+        app.kubernetes.io/component: plugin-registry
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     spec:
       containers:
       - image: {{ .Values.chePluginRegistryImage }}
