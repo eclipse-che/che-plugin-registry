@@ -254,14 +254,14 @@ plugins:
       - https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-yaml
-      revision: 0.11.1
+      revision: 0.14.0
     featured: true
     sidecar:
       directory: node
       name: vscode-yaml
       memoryLimit: "256Mi"
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.11.1.vsix
+      - https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix
   - id: redhat/java11
     repository:
       url: https://github.com/redhat-developer/vscode-java
