@@ -32,6 +32,8 @@ Options:
         Build artifacts but do not create the image        
 ```
 
+Note that the Dockerfiles in this repository utilize multi-stage builds, so Docker version 17.05 or higher is required. Additionally this script will try to use podman, if it's installed, then buildah. If neither podman nor buildah are installed, the script will finally try to build with docker. If all three build tools are not installed, the script will fail.
+
 ### Offline and airgapped registry images
 
 Using the `--offline` option in `build.sh` will build the registry to contain all referenced extension artifacts (i.e. all `.theia` and `.vsix` archives). The offline version of the plugin registry is useful in network-limited scenarios, as it avoids the need to download plugin extensions from the outside internet.

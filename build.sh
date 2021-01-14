@@ -87,8 +87,36 @@ echo "Generate artifacts..."
 eval node "${NODE_BUILD_OPTIONS}" tools/build/lib/entrypoint.js --output-folder:"$(pwd)/output" ${BUILD_FLAGS}
 
 if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
-  IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
-  VERSION=$(head -n 1 VERSION)
-  echo "Building che plugin registry ${VERSION}."
-  docker build -t "${IMAGE}" -f "${DOCKERFILE}" .
+    BUILD_COMMAND="build"
+    if [[ -z $BUILDER ]]; then
+        echo "BUILDER not specified, trying with podman"
+        BUILDER=$(command -v podman || true)
+        if [[ ! -x $BUILDER ]]; then
+            echo "[WARNING] podman is not installed, trying with buildah"
+            BUILDER=$(command -v buildah || true)
+            if [[ ! -x $BUILDER ]]; then
+                echo "[WARNING] buildah is not installed, trying with docker"
+                BUILDER=$(command -v docker || true)
+                if [[ ! -x $BUILDER ]]; then
+                    echo "[ERROR] neither docker, buildah, nor podman are installed. Aborting"; exit 1
+                fi
+            else
+                BUILD_COMMAND="bud"
+            fi
+        fi
+    else
+        if [[ ! -x $(command -v "$BUILDER" || true) ]]; then
+            echo "Builder $BUILDER is missing. Aborting."; exit 1
+        fi
+        if [[ $BUILDER =~ "docker" || $BUILDER =~ "podman" ]]; then
+            if [[ ! $($BUILDER ps) ]]; then
+                echo "Builder $BUILDER is not functioning. Aborting."; exit 1
+            fi
+        fi
+    fi
+    echo "Building with $BUILDER $BUILD_COMMAND"
+    IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
+    VERSION=$(head -n 1 VERSION)
+    echo "Building che plugin registry ${VERSION}."
+    ${BUILDER} ${BUILD_COMMAND} -t "${IMAGE}" -f "${DOCKERFILE}" .
 fi
