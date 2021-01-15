@@ -419,7 +419,7 @@ plugins:
           path: "/home/theia/.cache"
     extensions:
       - https://github.com/scalameta/metals-vscode/releases/download/v1.9.10/scalameta.metals-1.9.10.vsix
-      - https://github.com/scala/vscode-scala-syntax/releases/download/0.4.5/scala-lang.scala-0.4.5.vsix
+      - https://github.com/scala/vscode-scala-syntax/releases/download/0.5.0/scala.vsix
   - repository:
       url: https://github.com/SonarSource/sonarlint-vscode
       revision: 1.16.0
