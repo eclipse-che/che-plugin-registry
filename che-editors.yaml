@@ -77,6 +77,8 @@ editors:
         volumeMounts:
           - name: plugins
             path: "/plugins"
+          - name: workspaceStorage
+            path: "/home/theia/.theia/workspace-storage"
         mountSources: true
         ports:
           - exposedPort: 3100
@@ -174,6 +176,8 @@ editors:
         volumeMounts:
           - name: plugins
             path: "/plugins"
+          - name: workspaceStorage
+            path: "/home/theia/.theia/workspace-storage"
         mountSources: true
         ports:
           - exposedPort: 3100
