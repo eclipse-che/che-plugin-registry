@@ -100,17 +100,24 @@ ${lastCommitComment}" -b "${aBRANCH}" -h "${PR_BRANCH}"
 createNewPlugins () {
   newVERSION="$1"
   thisVERSION="$2" # if false, don't update latest.txt and VERSION file; otherwise use this value in VERSION file and use newVERSION in latest.txt
-  rsync -aPrz v3/plugins/eclipse/che-machine-exec-plugin/nightly/* "v3/plugins/eclipse/che-machine-exec-plugin/${newVERSION}/"
-  rsync -aPrz v3/plugins/eclipse/che-theia/next/* "v3/plugins/eclipse/che-theia/${newVERSION}/"
   pwd
-  for m in "v3/plugins/eclipse/che-theia/${newVERSION}/meta.yaml" "v3/plugins/eclipse/che-machine-exec-plugin/${newVERSION}/meta.yaml"; do
-    sed -i "${m}" \
-        -e "s#firstPublicationDate:.\+#firstPublicationDate: \"$(date +%Y-%m-%d)\"#" \
-        -e "s#version: \(nightly\|next\)#version: ${newVERSION}#" \
-        -e "s#image: \"\(.\+\):\(nightly\|next\)\"#image: \"\1:${newVERSION}\"#" \
-        -e "s# development version\.##" \
-        -e "s#, get the latest release each day\.##"
-  done
+
+  # First bump id and image fields for che-machine-exec in che-plugins.yaml
+  cheMachineExec="eclipse/che-machine-exec"
+  sed -i "che-plugins.yaml" \
+      -e "s#id: ${cheMachineExec}-plugin/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheMachineExec}-plugin/${newVERSION}#"
+  sed -i "che-plugins.yaml" \
+      -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:7.25.0\1#"
+
+  # Now do che-theia in che-editors.yaml
+  cheTheia="eclipse/che-theia"
+  cheTheiaEndpointRuntimeBinary="${cheTheia}-endpoint-runtime-binary"
+  sed -i "che-editors.yaml" \
+      -e "s#id: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheTheia}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
+      -e "s#image: \(['\"]*\)quay.io/${cheTheia}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheia}:${newVERSION}\1#"
+  sed -i "che-editors.yaml" \
+      -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
 
   # for .0 releases (master and .x branch) update in both branches
   # for .z releases, latest files should be updated in both branch
