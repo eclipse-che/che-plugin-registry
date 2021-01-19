@@ -13,7 +13,7 @@ components:
       didact.defaultUrl: /projects/che-plugin-registry/.che-didact-guide.md
     registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
 
-  - id: ms-vscode/vscode-github-pullrequest/latest
+  - id: github/vscode-pull-request-github/latest
     type: chePlugin
     registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
 
