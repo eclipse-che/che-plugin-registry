@@ -310,4 +310,4 @@ The job names are `surge(alpine)` and `surge(rhel)`. Clicking on `Details` in th
 For example, alpine build of PR 805 would be hosted at: https://pr-check-805-alpine-che-plugin-registry.surge.sh/
 
 ### Nightly
-A nightly build of the plugin registry is also hosted on [surge.sh](https://surge.sh/), and is updated every time a change is merged in the registry. You can find a link to this hosted registry [here](https://che-plugin-registry-main.surge.sh/).
+A nightly build of the plugin registry is also hosted on [surge.sh](https://surge.sh/), and is updated at every commit to the master branch. You can find a link to this hosted registry [here](https://che-plugin-registry-main.surge.sh/).
