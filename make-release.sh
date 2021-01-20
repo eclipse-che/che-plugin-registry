@@ -76,8 +76,8 @@ commitChangeOrCreatePR()
     fi
 
     # commit change into branch
-    git add v3/plugins/eclipse/ || true
-    git commit -s -m "${COMMIT_MSG}" VERSION v3/plugins/eclipse/
+    git add -A || true
+    git commit -s -m "${COMMIT_MSG}"
     git pull origin "${aBRANCH}"
 
     PUSH_TRY="$(git push origin "${aBRANCH}")"
