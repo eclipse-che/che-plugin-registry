@@ -300,3 +300,14 @@ One PR can modify/add/remove multiple sidecars, they do not need to be split up 
 
 #### PR 2: Plugin Changes
 Now that the sidecar image has been built and pushed, the second PR can make use of it. The second PR will be the one that modifies the [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) file.
+
+## Registry Publishing
+### Pull Requests
+All PRs in the plugin registry are published to [surge.sh](https://surge.sh/), for ease of testing. This means that a CI job will automatically build the plugin registry with a PR's changes, and publish it. The resulting link can then be used to test the PR inside Che, without needing to create a `meta.yaml` file.
+
+The job names are `surge(alpine)` and `surge(rhel)`. Clicking on `Details` in the GitHub PR view will take you to the surge.sh link. Alternatively, you can look at the link directly, which is in the following format: `https://pr-check-<PR_NUMBER>-<alpine|rhel>-che-plugin-registry.surge.sh/`
+
+For example, alpine build of PR 805 would be hosted at: https://pr-check-805-alpine-che-plugin-registry.surge.sh/
+
+### Nightly
+A nightly build of the plugin registry is also hosted on [surge.sh](https://surge.sh/), and is updated at every commit to the master branch. You can find a link to this hosted registry [here](https://che-plugin-registry-main.surge.sh/).
