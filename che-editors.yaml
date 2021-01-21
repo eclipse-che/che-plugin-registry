@@ -77,7 +77,7 @@ editors:
         volumeMounts:
           - name: plugins
             path: "/plugins"
-          - name: home
+          - name: theia-local
             path: "/home/theia/.theia"
         mountSources: true
         ports:
