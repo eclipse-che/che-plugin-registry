@@ -14,11 +14,11 @@ name: Happy Path
 on:
   pull_request:
     paths:
-      - '.github/workflows/happy-path.yaml'
+      - '**/*'
       - '!sidecars/**'
   push:
     paths:
-      - '.github/workflows/happy-path.yaml'
+      - '**/*'
       - '!sidecars/**'
 
 jobs:

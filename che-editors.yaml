@@ -77,6 +77,8 @@ editors:
         volumeMounts:
           - name: plugins
             path: "/plugins"
+          - name: theia-local
+            path: "/home/theia/.theia"
         mountSources: true
         ports:
           - exposedPort: 3100
@@ -176,6 +178,8 @@ editors:
         volumeMounts:
           - name: plugins
             path: "/plugins"
+          - name: theia-local
+            path: "/home/theia/.theia"
         mountSources: true
         ports:
           - exposedPort: 3100
