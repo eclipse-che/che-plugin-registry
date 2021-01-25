@@ -13,6 +13,10 @@ FROM ruby:2.7.2-buster
 
 ENV HOME=/home/theia
 
+RUN apt-get update && \
+    apt-get install jq -y && \
+    apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
+
 RUN mkdir /projects ${HOME} && \
     # Change permissions to let any arbitrary user
     for f in "${HOME}" "/etc/passwd" "/projects"; do \
