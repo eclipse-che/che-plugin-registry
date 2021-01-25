@@ -39,6 +39,7 @@ RUN ./check_metas_schema.sh v3
 RUN if [[ ${USE_DIGESTS} == "true" ]]; then ./write_image_digests.sh v3;fi
 RUN ./index.sh v3 > /build/v3/plugins/index.json
 RUN ./list_referenced_images.sh v3 > /build/v3/external_images.txt
+RUN ./check_referenced_images.sh < /build/v3/external_images.txt
 RUN chmod -R g+rwX /build
 
 # Build registry, copying meta.yamls and index.json from builder
