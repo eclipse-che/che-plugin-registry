@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -24,8 +24,11 @@ import { CheTheiaPluginAnalyzerMetaInfo } from './che-theia-plugin/che-theia-plu
 import { CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
 import { CheTheiaPluginsAnalyzer } from './che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugin/che-theia-plugins-meta-yaml-generator';
+import { DigestImagesHelper } from './meta-yaml/digest-images-helper';
+import { ExternalImagesWriter } from './meta-yaml/external-images-writer';
 import { FeaturedAnalyzer } from './featured/featured-analyzer';
 import { FeaturedWriter } from './featured/featured-writer';
+import { IndexWriter } from './meta-yaml/index-writer';
 import { MetaYamlWriter } from './meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from './recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from './recommendations/recommendations-writer';
@@ -70,6 +73,15 @@ export class Build {
 
   @inject(MetaYamlWriter)
   private metaYamlWriter: MetaYamlWriter;
+
+  @inject(ExternalImagesWriter)
+  private externalImagesWriter: ExternalImagesWriter;
+
+  @inject(IndexWriter)
+  private indexWriter: IndexWriter;
+
+  @inject(DigestImagesHelper)
+  private digestImagesHelper: DigestImagesHelper;
 
   @inject(FeaturedWriter)
   private featuredWriter: FeaturedWriter;
@@ -214,10 +226,19 @@ export class Build {
     const chePlugins = await this.analyzeChePluginsYaml();
     const chePluginsMetaYaml = await this.chePluginsMetaYamlGenerator.compute(chePlugins);
 
-    const allMetaYamls = [...cheTheiaPluginsMetaYaml, ...cheEditorsMetaYaml, ...chePluginsMetaYaml];
+    const computedYamls = [...cheTheiaPluginsMetaYaml, ...cheEditorsMetaYaml, ...chePluginsMetaYaml];
+
+    // update all images to use digest instead of tags
+    const allMetaYamls = await this.digestImagesHelper.updateImages(computedYamls);
+
+    // generate v3/external_images.txt
+    await this.externalImagesWriter.write(allMetaYamls);
 
     // generate v3/plugins folder
-    await this.metaYamlWriter.write(allMetaYamls);
+    const generatedYamls = await this.metaYamlWriter.write(allMetaYamls);
+
+    // generate index.json
+    await this.indexWriter.write(generatedYamls);
 
     // generate featured.json
     const jsonOutput = await this.featuredAnalyzer.generate(cheTheiaPlugins);

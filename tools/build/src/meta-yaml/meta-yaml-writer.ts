@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
 
 import * as fs from 'fs-extra';
 import * as jsyaml from 'js-yaml';
+import * as moment from 'moment';
 import * as path from 'path';
 
 import { inject, injectable, named } from 'inversify';
@@ -22,6 +23,10 @@ export class MetaYamlWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
+  @inject('boolean')
+  @named('EMBED_VSIX')
+  private embedVsix: boolean;
+
   public static readonly DEFAULT_ICON = '/v3/images/eclipse-che-logo.png';
 
   convertIdToPublisherAndName(id: string): [string, string] {
@@ -29,19 +34,22 @@ export class MetaYamlWriter {
     return [values[0], values[1]];
   }
 
-  async write(metaYamlPluginInfos: MetaYamlPluginInfo[]): Promise<void> {
+  async write(metaYamlPluginInfos: MetaYamlPluginInfo[]): Promise<MetaYamlPluginInfo[]> {
     // now, write the files
     const pluginsFolder = path.resolve(this.outputRootDirectory, 'v3', 'plugins');
     await fs.ensureDir(pluginsFolder);
     const imagesFolder = path.resolve(this.outputRootDirectory, 'v3', 'images');
     await fs.ensureDir(imagesFolder);
+    const resourcesFolder = path.resolve(this.outputRootDirectory, 'v3', 'resources');
+    await fs.ensureDir(resourcesFolder);
 
     const apiVersion = 'v2';
 
+    const metaYamlPluginGenerated: MetaYamlPluginInfo[] = [];
     await Promise.all(
       metaYamlPluginInfos.map(async plugin => {
         const id = plugin.id;
-        const version = plugin.version;
+        let version = plugin.version;
         const name = plugin.name;
         const publisher = plugin.publisher;
         const type = plugin.type;
@@ -58,12 +66,39 @@ export class MetaYamlWriter {
         } else {
           icon = MetaYamlWriter.DEFAULT_ICON;
         }
+
+        // copy vsix for offline storage
+        if (this.embedVsix) {
+          // need to write vsix file downloaded
+          if (plugin.spec && plugin.spec.extensions) {
+            await Promise.all(
+              plugin.spec.extensions.map(async (extension, index) => {
+                const vsixInfo = plugin.vsixInfos.get(extension);
+                if (vsixInfo && vsixInfo.downloadedArchive) {
+                  const directoryPattern = path
+                    .dirname(extension)
+                    .replace('http://', '')
+                    .replace('https://', '')
+                    .replace(/[^a-zA-Z0-9-/]/g, '_');
+                  const filePattern = path.basename(extension);
+                  const destFolder = path.join(resourcesFolder, directoryPattern);
+                  const destFile = path.join(destFolder, filePattern);
+                  await fs.ensureDir(destFolder);
+                  await fs.copyFile(vsixInfo.downloadedArchive, destFile);
+                  plugin.spec.extensions[index] = `relative:extension/resources/${directoryPattern}/${filePattern}`;
+                }
+              })
+            );
+          }
+        }
+
         const displayName = plugin.displayName;
         const title = plugin.title;
         const description = plugin.description;
         const category = plugin.category;
         const repository = plugin.repository;
         const firstPublicationDate = plugin.firstPublicationDate;
+        const latestUpdateDate = moment.utc().format('YYYY-MM-DD');
         const spec = plugin.spec;
         let aliases: string[];
         if (plugin.aliases) {
@@ -80,6 +115,11 @@ export class MetaYamlWriter {
         const promises: Promise<unknown>[] = [];
         await Promise.all(
           pluginsToGenerate.map(async pluginToWrite => {
+            // replace the version number by latest
+            if (!plugin.disableLatest) {
+              version = 'latest';
+            }
+
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const metaYaml: any = {
               apiVersion,
@@ -94,6 +134,7 @@ export class MetaYamlWriter {
               category,
               repository,
               firstPublicationDate,
+              latestUpdateDate,
             };
 
             const computedId = `${metaYaml.publisher}/${metaYaml.name}`;
@@ -108,22 +149,20 @@ export class MetaYamlWriter {
 
             // add spec object
             metaYaml.spec = spec;
-
             const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: 120 });
+            const generated = { ...metaYaml };
+            generated.id = `${computedId}/${version}`;
+            metaYamlPluginGenerated.push(generated);
 
             const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
-            const latestPath = path.resolve(pluginsFolder, computedId, 'latest.txt');
 
             await fs.ensureDir(path.dirname(pluginPath));
             promises.push(fs.writeFile(pluginPath, yamlString));
-            // do not write latest.txt if not asked
-            if (!plugin.disableLatest) {
-              promises.push(fs.writeFile(latestPath, `${version}\n`));
-            }
           })
         );
         return Promise.all(promises);
       })
     );
+    return metaYamlPluginGenerated;
   }
 }

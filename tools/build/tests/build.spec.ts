@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -22,8 +22,11 @@ import { CheTheiaPluginAnalyzerMetaInfo } from '../src/che-theia-plugin/che-thei
 import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Container } from 'inversify';
+import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
+import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
 import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
 import { FeaturedWriter } from '../src/featured/featured-writer';
+import { IndexWriter } from '../src/meta-yaml/index-writer';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
@@ -69,6 +72,21 @@ describe('Test Build', () => {
   const metaYamlWriterWriteMock = jest.fn();
   const metaYamlWriter: any = {
     write: metaYamlWriterWriteMock,
+  };
+
+  const externalImagesWriterWriteMock = jest.fn();
+  const externalImagesWriter: any = {
+    write: externalImagesWriterWriteMock,
+  };
+
+  const indexWriterWriteMock = jest.fn();
+  const indexWriter: any = {
+    write: indexWriterWriteMock,
+  };
+
+  const digestImagesHelperUpdateImagesMock = jest.fn();
+  const digestImagesHelper: any = {
+    updateImages: digestImagesHelperUpdateImagesMock,
   };
 
   const recommendationsAnalyzerGenerateMock = jest.fn();
@@ -189,6 +207,9 @@ describe('Test Build', () => {
     container.bind(CheEditorsAnalyzer).toConstantValue(cheEditorsAnalyzer);
     container.bind(CheEditorsMetaYamlGenerator).toConstantValue(cheEditorMetaYamlGenerator);
     container.bind(MetaYamlWriter).toConstantValue(metaYamlWriter);
+    container.bind(ExternalImagesWriter).toConstantValue(externalImagesWriter);
+    container.bind(IndexWriter).toConstantValue(indexWriter);
+    container.bind(DigestImagesHelper).toConstantValue(digestImagesHelper);
 
     container.bind(Build).toSelf().inSingletonScope();
     build = container.get(Build);
@@ -241,6 +262,9 @@ describe('Test Build', () => {
     expect(featuredWriter.writeReport).toBeCalled();
     expect(recommendationsAnalyzer.generate).toBeCalled();
     expect(recommendationsWriter.writeRecommendations).toBeCalled();
+    expect(externalImagesWriter.write).toBeCalled();
+    expect(metaYamlWriter.write).toBeCalled();
+    expect(indexWriter.write).toBeCalled();
   });
 
   test('basics without package.json', async () => {
@@ -393,5 +417,8 @@ describe('Test Build', () => {
     expect(featuredWriter.writeReport).toBeCalled();
     expect(recommendationsAnalyzer.generate).toBeCalled();
     expect(recommendationsWriter.writeRecommendations).toBeCalled();
+    expect(externalImagesWriter.write).toBeCalled();
+    expect(metaYamlWriter.write).toBeCalled();
+    expect(indexWriter.write).toBeCalled();
   });
 });

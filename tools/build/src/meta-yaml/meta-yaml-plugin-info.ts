@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
-import { VsixCategory } from '../extensions/vsix-info';
+import { VsixCategory, VsixInfo } from '../extensions/vsix-info';
 
 export interface MetaYamlPluginInfo {
   id: string;
@@ -27,8 +27,11 @@ export interface MetaYamlPluginInfo {
   aliases?: string[];
   spec: {
     containers?: [{ image: string }];
+    initContainers?: [{ image: string }];
     extensions: string[];
   };
   // do not write latest alias
   disableLatest?: boolean;
+
+  vsixInfos: Map<string, VsixInfo>;
 }

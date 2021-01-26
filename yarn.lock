@@ -3919,6 +3919,11 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
+docker-image-name-parser@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/docker-image-name-parser/-/docker-image-name-parser-0.1.0.tgz#6ffab704de5e3b5697245bb903ecd8f97e1331c1"
+  integrity sha512-ycjbvZ//yfRzFJNHDEfpaSZWR6AFeEHbuS15y5RxiwgPdzUYvrYQqDE3vfmjxNuIDoX9iRIv+1ehoeVNRmdDdg==
+
 docsearch.js@^2.5.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/docsearch.js/-/docsearch.js-2.6.3.tgz#57cb4600d3b6553c677e7cbbe6a734593e38625d"

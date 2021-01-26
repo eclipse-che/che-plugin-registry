@@ -23,3 +23,4 @@ v3/**/latest/
 node_modules/
 .eslintcache
 coverage
+output

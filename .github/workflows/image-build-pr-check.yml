@@ -22,17 +22,51 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - uses: actions/cache@v2
+      name: Cache yarn dependencies
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - uses: actions/cache@v2
+      name: Cache vsix dependencies
+      id: download-unpacked-cache
+      with:
+        path: | 
+          /tmp/che-plugin-registry/download-folder
+          /tmp/che-plugin-registry/unpack-folder
+        key: download-unpacked-cache-${{ hashFiles('**/che-theia-plugins.yaml') }}
+        restore-keys: |
+          download-unpacked-cache-
+
     - name: image-build
       run: |
+        export SKIP_FORMAT=true
+        export SKIP_LINT=true
+        export SKIP_TEST=true
         if [[ "${{matrix.dist}}" == "alpine" ]]; then
           docker pull quay.io/eclipse/che-plugin-registry:nightly
-          docker build --cache-from=quay.io/eclipse/che-plugin-registry:nightly -t che-plugin-registry-image -f ./build/dockerfiles/Dockerfile --target registry .
+          ./build.sh --tag pr-check
+          EXPORTED_FOLDER=/usr/local/apache2/htdocs/v3
         elif [[ "${{matrix.dist}}" == "rhel" ]]; then
-          docker build -t che-plugin-registry-image -f ./build/dockerfiles/rhel.Dockerfile --target registry .
-        fi  
-        docker create --name pluginRegistry che-plugin-registry-image sh
+          ./build.sh --rhel --tag pr-check
+          EXPORTED_FOLDER=/var/www/html/v3
+        fi
+        ls -la output/
+        docker run --rm --entrypoint=sh quay.io/eclipse/che-plugin-registry:pr-check -c "ls -la ${EXPORTED_FOLDER}"
+        docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:pr-check sh
         mkdir root-dir
-        docker cp pluginRegistry:/var/www/html/v3 root-dir/v3
+        docker cp pluginRegistry:${EXPORTED_FOLDER} root-dir/v3
         docker rm -f pluginRegistry
         cp root-dir/v3/plugins/index.json root-dir/index.json
         tar zcvf content-${{matrix.dist}}.tgz -C root-dir .

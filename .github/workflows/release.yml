@@ -44,14 +44,35 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push images
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        name: Cache yarn dependencies
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - uses: actions/cache@v2
+        name: Cache vsix dependencies
+        id: download-unpacked-cache
+        with:
+          path: | 
+            /tmp/che-plugin-registry/download-folder
+            /tmp/che-plugin-registry/unpack-folder
+          key: download-unpacked-cache-${{ hashFiles('**/che-theia-plugins.yaml') }}
+          restore-keys: |
+            download-unpacked-cache-
+
+      - name: image-build
         run: |
           SHORT_SHA1=$(git rev-parse --short HEAD)
           VERSION=$(head -n 1 VERSION)
-          IMAGE=che-plugin-registry
-          DOCKERFILE_PATH=./build/dockerfiles/Dockerfile
-          docker build -t ${IMAGE} -f ${DOCKERFILE_PATH} --target registry .
-          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
-          docker push quay.io/eclipse/${IMAGE}:${SHORT_SHA1}
-          docker tag ${IMAGE} quay.io/eclipse/${IMAGE}:${VERSION}
-          docker push quay.io/eclipse/${IMAGE}:${VERSION}
+          SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag ${VERSION}
+          docker tag ${IMAGE} quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+          docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+          docker push quay.io/eclipse/che-plugin-registry:${VERSION}

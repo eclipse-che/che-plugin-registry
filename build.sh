@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018-2020 Red Hat, Inc.
+# Copyright (c) 2018-2021 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -13,10 +13,10 @@ set -e
 REGISTRY="quay.io"
 ORGANIZATION="eclipse"
 TAG="nightly"
-TARGET="registry" # or offline-registry
-USE_DIGESTS=false
-LATEST_ONLY=false
 DOCKERFILE="./build/dockerfiles/Dockerfile"
+BUILD_FLAGS=""
+SKIP_OCI_IMAGE="false"
+NODE_BUILD_OPTIONS="${NODE_BUILD_OPTIONS:-}"
 
 USAGE="
 Usage: ./build.sh [OPTIONS]
@@ -29,15 +29,13 @@ Options:
         Docker registry to be used for image; default 'quay.io'
     --organization, -o [ORGANIZATION]
         Docker image organization to be used for image; default: 'eclipse'
-    --latest-only
-        Build registry to only contain 'latest' meta.yamls; default: 'false'
-    --use-digests
-        Build registry to use images pinned by digest instead of tag
     --offline
         Build offline version of registry, with all artifacts included
         cached in the registry; disabled by default.
     --rhel
         Build using the rhel.Dockerfile (UBI images) instead of default
+    --skip-oci-image
+        Build artifacts but do not create the image
 "
 
 function print_usage() {
@@ -60,17 +58,13 @@ function parse_arguments() {
             ORGANIZATION="$2"
             shift; shift;
             ;;
-            --latest-only)
-            LATEST_ONLY=true
-            shift
-            ;;
-            --use-digests)
-            USE_DIGESTS=true
-            shift
-            ;;
             --offline)
-            TARGET="offline-registry"
-            shift
+            BUILD_FLAGS="--embed-vsix:true"
+            shift;
+            ;;
+            --skip-oci-image)
+            SKIP_OCI_IMAGE="true"
+            shift;
             ;;
             --rhel)
             DOCKERFILE="./build/dockerfiles/rhel.Dockerfile"
@@ -85,26 +79,16 @@ function parse_arguments() {
 
 parse_arguments "$@"
 
-IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
-VERSION=$(head -n 1 VERSION)
-case $VERSION in
-  *SNAPSHOT)
-    echo "Snapshot version (${VERSION}) specified in $(find . -name VERSION): building nightly plugin registry."
-    docker build \
-        -t "${IMAGE}" \
-        -f ${DOCKERFILE} \
-        --build-arg LATEST_ONLY="${LATEST_ONLY}" \
-        --build-arg "USE_DIGESTS=${USE_DIGESTS}" \
-        --target "${TARGET}" .
-    ;;
-  *)
-    echo "Release version specified in $(find . -name VERSION): Building plugin registry for release ${VERSION}."
-    docker build \
-        -t "${IMAGE}" \
-        -f "${DOCKERFILE}" \
-        --build-arg "PATCHED_IMAGES_TAG=${VERSION}" \
-        --build-arg LATEST_ONLY="${LATEST_ONLY}" \
-        --build-arg "USE_DIGESTS=${USE_DIGESTS}" \
-        --target "${TARGET}" .
-    ;;
-esac
+echo "Update yarn dependencies..."
+yarn
+echo "Build tooling..."
+yarn --cwd "$(pwd)/tools/build" build
+echo "Generate artifacts..."
+eval node "${NODE_BUILD_OPTIONS}" tools/build/lib/entrypoint.js --output-folder:"$(pwd)/output" ${BUILD_FLAGS}
+
+if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
+  IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
+  VERSION=$(head -n 1 VERSION)
+  echo "Building che plugin registry ${VERSION}."
+  docker build -t "${IMAGE}" -f "${DOCKERFILE}" .
+fi
