@@ -18,6 +18,7 @@
   "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
   "dependencies": {
     "decompress": "^4.2.1",
+    "docker-image-name-parser": "^0.1.0",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "simple-git": "^2.24.0"
@@ -26,6 +27,7 @@
     "@types/decompress": "^4.2.3"
   },
   "jest": {
+    "testEnvironment": "node",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts"

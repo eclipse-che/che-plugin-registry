@@ -5,6 +5,10 @@ This repository holds ready-to-use plugins for different languages and technolog
 ## Building and publishing third party VSIX extensions for plugin registry
 See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc/building/build-vsix-extension.adoc
 
+
+## Prerequisites
+ - nodejs 12.x and yarn v1
+
 ## Build registry container image
 
 This repository contains a `build.sh` script at its root that can be used to build the registry:
@@ -19,16 +23,14 @@ Options:
         Docker registry to be used for image; default 'quay.io'
     --organization, -o [ORGANIZATION]
         Docker image organization to be used for image; default: 'eclipse'
-    --latest-only
-        Build registry to only contain 'latest' meta.yamls; default: 'false'
     --offline
         Build offline version of registry, with all artifacts included
         cached in the registry; disabled by default.
     --rhel
-        Build using the rhel.Dockerfile (UBI images) instead of default
+        Build using the rhel.Dockerfile (UBI images) instead of Alpine
+    --skip-oci-image
+        Build artifacts but do not create the image        
 ```
-
-Note that the Dockerfiles in this repository utilize multi-stage builds, so Docker version 17.05 or higher is required.
 
 ### Offline and airgapped registry images
 

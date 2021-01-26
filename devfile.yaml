@@ -41,29 +41,13 @@ commands:
 
   - name: 1. build
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}'
+      - workdir: '${CHE_PROJECTS_ROOT}/che-plugin-registry'
         type: exec
         command: |
           set -o xtrace;
-          rm -rf build;
-          mkdir build;
-          cp che-plugin-registry/build/scripts/meta.yaml.schema build/ &&
-          cp -rf che-plugin-registry/v3 build/v3 &&
-          ## generate_vscode_extension.sh
-          cd /projects/che-plugin-registry/tools/build &&
-          export SKIP_TEST=true SKIP_FORMAT=true SKIP_LINT=true  &&
-          yarn &&
-          yarn build &&
-          node -max-old-space-size=1024 lib/entrypoint.js --output-folder:/projects/build &&
-          ##
-          cd /projects/build &&
-          /projects/che-plugin-registry/build/scripts/keep_only_latest.sh;
-          /projects/che-plugin-registry/build/scripts/generate_latest_metas.sh v3 &&
-          /projects/che-plugin-registry/build/scripts/check_plugins_location.sh v3 &&
-          /projects/che-plugin-registry/build/scripts/set_plugin_dates.sh v3 &&
-          /projects/che-plugin-registry/build/scripts/check_metas_schema.sh v3 &&
-          /projects/che-plugin-registry/build/scripts/index.sh v3 > v3/plugins/index.json &&
-          /projects/che-plugin-registry/build/scripts/list_referenced_images.sh v3 > v3/external_images.txt
+          rm -rf output;
+          mkdir output;
+          SKIP_TEST=true SKIP_FORMAT=true SKIP_LINT=true NODE_BUILD_OPTIONS="-max-old-space-size=1024" ./build.sh --skip-oci-image
         component: builder
 
   - name: 2. copy to che-plugin-registry server
@@ -71,17 +55,17 @@ commands:
       port: 8080
       path: /v3/
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}'
+      - workdir: '${CHE_PROJECTS_ROOT}/che-plugin-registry'
         type: exec
         command: |
           set -o xtrace;
-          rm -rf /usr/local/apache2/htdocs/v3/*;
-          cp -rf /projects/build/v3/* /usr/local/apache2/htdocs/v3
+          rm -rf /usr/local/apache2/htdocs/v3;
+          cp -rf output/v3 /usr/local/apache2/htdocs/
         component: eclipse-che-plugin-registry
 
   - name: 3. publish to surge.sh
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/build'
+      - workdir: '${CHE_PROJECTS_ROOT}/che-plugin-registry/output'
         type: exec
         command: |
           for directory in `find v3/ -type d`
@@ -94,5 +78,5 @@ commands:
             PARENT_DIR=$(dirname $file);
             cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.html;
           done
-          surge ${CHE_PROJECTS_ROOT}/build ${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh && echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/
+          surge ./ ${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh && echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/
         component: builder

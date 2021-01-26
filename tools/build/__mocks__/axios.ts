@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -30,12 +30,21 @@ function get(url: string): any {
 
   return Promise.resolve({ data: myContent.get(url) });
 }
+
+function head(url: string): any {
+  if (myErrors.has(url)) {
+    throw myErrors.get(url);
+  }
+
+  return Promise.resolve({ data: myContent.get(url) });
+}
 function __clearMock(): void {
   myContent.clear();
   myErrors.clear();
 }
 
 axios.get = jest.fn(get);
+axios.head = jest.fn(head);
 axios.__setContent = __setContent;
 axios.__setError = __setError;
 axios.__clearMock = __clearMock;

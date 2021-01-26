@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020 Red Hat, Inc.
+ * Copyright (c) 2020-2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -23,6 +23,7 @@ import { extensionsModule } from './extensions/extension-module';
 import { featuredModule } from './featured/featured-module';
 import { metaYamlModule } from './meta-yaml/meta-yaml-module';
 import { recommendationsModule } from './recommendations/recommendations-module';
+import { registryModule } from './registry/registry-module';
 import { sidecarModule } from './sidecar/plugin-module';
 
 export class InversifyBinding {
@@ -35,10 +36,15 @@ export class InversifyBinding {
 
     const pluginRegistryRootDirectory = path.resolve(__dirname, '..', '..', '..');
 
+    let embedVsix = false;
+
     const args = process.argv.slice(2);
     args.forEach(arg => {
       if (arg.startsWith('--output-folder:')) {
         outputDirectory = arg.substring('--output-folder:'.length);
+      }
+      if (arg.startsWith('--embed-vsix:')) {
+        embedVsix = 'true' === arg.substring('--embed-vsix:'.length);
       }
     });
     this.container = new Container();
@@ -50,6 +56,7 @@ export class InversifyBinding {
     this.container.load(featuredModule);
     this.container.load(metaYamlModule);
     this.container.load(recommendationsModule);
+    this.container.load(registryModule);
     this.container.load(sidecarModule);
 
     this.container.bind(Build).toSelf().inSingletonScope();
@@ -63,6 +70,8 @@ export class InversifyBinding {
       .toConstantValue(pluginRegistryRootDirectory)
       .whenTargetNamed('PLUGIN_REGISTRY_ROOT_DIRECTORY');
     this.container.bind('string').toConstantValue(outputDirectory).whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
+
+    this.container.bind('boolean').toConstantValue(embedVsix).whenTargetNamed('EMBED_VSIX');
 
     await fs.mkdirs(unpackedDirectory);
     await fs.mkdirs(downloadDirectory);
