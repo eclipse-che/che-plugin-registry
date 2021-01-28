@@ -107,7 +107,7 @@ createNewPlugins () {
   sed -i "che-plugins.yaml" \
       -e "s#id: ${cheMachineExec}-plugin/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheMachineExec}-plugin/${newVERSION}#"
   sed -i "che-plugins.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:7.25.0\1#"
+      -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:${newVERSION}\1#"
 
   # Now do che-theia in che-editors.yaml
   cheTheia="eclipse/che-theia"
