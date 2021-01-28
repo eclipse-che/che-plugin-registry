@@ -32,7 +32,12 @@ Options:
         Build artifacts but do not create the image        
 ```
 
-Note that the Dockerfiles in this repository utilize multi-stage builds, so Docker version 17.05 or higher is required. Additionally this script will try to use podman, if it's installed, then buildah. If neither podman nor buildah are installed, the script will finally try to build with docker. If all three build tools are not installed, the script will fail.
+This script listens to the `BUILDER` variable, and will use the tool specified there to build the image. For example:
+```sh
+BUILDER=buildah ./build.sh
+```
+
+will force the build to use `buildah`. If `BUILDER` is not specified, the script will try to use `podman` by default. If `podman` is not installed, then `buildah` will be chosen. If neither `podman` nor `buildah` are installed, the script will finally try to build with `docker`.
 
 ### Offline and airgapped registry images
 
