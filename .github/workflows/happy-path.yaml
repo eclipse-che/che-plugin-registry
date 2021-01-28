@@ -71,9 +71,9 @@ jobs:
           export SKIP_TEST=true
           if [[ "${{matrix.dist}}" == "alpine" ]]; then
             docker pull quay.io/eclipse/che-plugin-registry:nightly
-            ./build.sh --tag happy-path
+            BUILDER=docker ./build.sh --tag happy-path
           elif [[ "${{matrix.dist}}" == "rhel" ]]; then
-            ./build.sh --rhel --tag happy-path
+            BUILDER=docker ./build.sh --rhel --tag happy-path
           fi  
 
           # save locally built image
