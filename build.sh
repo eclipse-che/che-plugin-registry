@@ -113,6 +113,9 @@ if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
                 echo "Builder $BUILDER is not functioning. Aborting."; exit 1
             fi
         fi
+        if [[ $BUILDER =~ "buildah" ]]; then
+            BUILD_COMMAND="bud"
+        fi
     fi
     echo "Building with $BUILDER $BUILD_COMMAND"
     IMAGE="${REGISTRY}/${ORGANIZATION}/che-plugin-registry:${TAG}"
