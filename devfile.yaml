@@ -47,7 +47,7 @@ commands:
           set -o xtrace;
           rm -rf output;
           mkdir output;
-          SKIP_TEST=true SKIP_FORMAT=true SKIP_LINT=true NODE_BUILD_OPTIONS="-max-old-space-size=1024" ./build.sh --skip-oci-image
+          BUILDER=docker SKIP_TEST=true SKIP_FORMAT=true SKIP_LINT=true NODE_BUILD_OPTIONS="-max-old-space-size=1024" ./build.sh --skip-oci-image
         component: builder
 
   - name: 2. copy to che-plugin-registry server

@@ -61,7 +61,7 @@ jobs:
       - name: image-build
         run: |
           docker pull quay.io/eclipse/che-plugin-registry:nightly
-          SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag nightly
+          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag nightly
 
       - name: push plugin registry image
         run: |

@@ -72,7 +72,7 @@ jobs:
         run: |
           SHORT_SHA1=$(git rev-parse --short HEAD)
           VERSION=$(head -n 1 VERSION)
-          SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag ${VERSION}
+          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag ${VERSION}
           docker tag ${IMAGE} quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
           docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
           docker push quay.io/eclipse/che-plugin-registry:${VERSION}
