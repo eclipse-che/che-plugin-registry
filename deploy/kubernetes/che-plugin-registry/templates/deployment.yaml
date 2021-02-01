@@ -64,11 +64,17 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 10
           timeoutSeconds: 3
+        securityContext:
+          capabilities:
+            drop:
+              - ALL
         resources:
           limits:
+            cpu: 500m
             memory: {{ .Values.chePluginRegistryMemoryLimit }}
           requests:
-            memory: 256Mi
+            cpu: 100m
+            memory: 32Mi
         envFrom:
         - configMapRef:
             name: che-plugin-registry

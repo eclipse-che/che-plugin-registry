@@ -20,7 +20,7 @@ objects:
       component: plugin-registry
       app.kubernetes.io/name: che
       app.kubernetes.io/instance: che
-      app.kubernetes.io/managed-by: OpenShift
+      app.kubernetes.io/component: plugin-registry
     name: plugin-registry
   spec:
     replicas: 1
@@ -40,6 +40,9 @@ objects:
         labels:
           app: che
           component: plugin-registry
+          app.kubernetes.io/name: che
+          app.kubernetes.io/instance: che
+          app.kubernetes.io/component: plugin-registry
       spec:
         containers:
         - image: ${IMAGE}:${IMAGE_TAG}
@@ -61,12 +64,16 @@ objects:
             initialDelaySeconds: 3
             periodSeconds: 10
             timeoutSeconds: 3
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
           resources:
             requests:
-              cpu: 1m
-              memory: 5Mi
-            limits:
               cpu: 100m
+              memory: 32Mi
+            limits:
+              cpu: 500m
               memory: ${MEMORY_LIMIT}
           envFrom:
           - configMapRef:
@@ -78,6 +85,10 @@ objects:
   kind: Service
   metadata:
     name: plugin-registry
+    labels:
+      app.kubernetes.io/name: che
+      app.kubernetes.io/instance: che
+      app.kubernetes.io/component: plugin-registry
   spec:
     ports:
       - name: http
@@ -90,10 +101,11 @@ objects:
 - apiVersion: v1
   kind: Route
   metadata:
-    labels:
-      app: che
-      component: plugin-registry
     name: plugin-registry
+    labels:
+      app.kubernetes.io/name: che
+      app.kubernetes.io/instance: che
+      app.kubernetes.io/component: plugin-registry
   spec:
     to:
       kind: Service
@@ -108,6 +120,10 @@ objects:
   kind: ConfigMap
   metadata:
     name: plugin-registry
+    labels:
+      app.kubernetes.io/name: che
+      app.kubernetes.io/instance: che
+      app.kubernetes.io/component: plugin-registry
   data:
     CHE_SIDECAR_CONTAINERS_REGISTRY_URL: ${CHE_SIDECAR_CONTAINERS_REGISTRY_URL}
     CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: ${CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION}
