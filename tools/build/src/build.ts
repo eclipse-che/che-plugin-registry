@@ -8,6 +8,8 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
+import * as moment from 'moment';
+import * as ora from 'ora';
 import * as path from 'path';
 
 import { inject, injectable, named } from 'inversify';
@@ -24,6 +26,7 @@ import { CheTheiaPluginAnalyzerMetaInfo } from './che-theia-plugin/che-theia-plu
 import { CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
 import { CheTheiaPluginsAnalyzer } from './che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugin/che-theia-plugins-meta-yaml-generator';
+import { Deferred } from './util/deferred';
 import { DigestImagesHelper } from './meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from './meta-yaml/external-images-writer';
 import { FeaturedAnalyzer } from './featured/featured-analyzer';
@@ -58,6 +61,10 @@ export class Build {
   @inject('string')
   @named('PLUGIN_REGISTRY_ROOT_DIRECTORY')
   private pluginRegistryRootDirectory: string;
+
+  @inject('string')
+  @named('OUTPUT_ROOT_DIRECTORY')
+  private outputRootDirectory: string;
 
   @inject(FeaturedAnalyzer)
   private featuredAnalyzer: FeaturedAnalyzer;
@@ -116,12 +123,19 @@ export class Build {
     await this.vsixUrlAnalyzer.analyze(vsixInfo);
   }
 
+  updateTask<T>(promise: Promise<T>, task: ora.Ora, success: { (): void }, failureMessage: string): void {
+    promise.then(success, () => task.fail(failureMessage));
+  }
+
   /**
    * Analyze che-theia-plugins.yaml and download all related vsix files
    */
   protected async analyzeCheTheiaPluginsYaml(): Promise<CheTheiaPluginMetaInfo[]> {
     const cheTheiaPluginsPath = path.resolve(this.pluginRegistryRootDirectory, 'che-theia-plugins.yaml');
-    const cheTheiaPluginsYaml = await this.cheTheiaPluginsAnalyzer.analyze(cheTheiaPluginsPath);
+    const cheTheiaPluginsYaml = await this.wrapIntoTask(
+      'Read che-theia-plugins.yaml file',
+      this.cheTheiaPluginsAnalyzer.analyze(cheTheiaPluginsPath)
+    );
 
     // First, parse che-theia-plugins yaml
     const analyzingCheTheiaPlugins: CheTheiaPluginAnalyzerMetaInfo[] = await Promise.all(
@@ -137,16 +151,33 @@ export class Build {
       })
     );
 
+    let current = 0;
     // analyze vsix of each che-theia plug-in
+    const title = 'Download/Unpack/Analyze CheTheiaPlugins in parallel (may take a while)';
+    const downloadAndAnalyzeTask = ora(title).start();
+    const deferred = new Deferred();
+    this.wrapIntoTask(title, deferred.promise, downloadAndAnalyzeTask);
     await Promise.all(
       analyzingCheTheiaPlugins.map(async cheTheiaPlugin => {
-        await Promise.all(
-          cheTheiaPlugin.extensions.map(async vsixExtension => {
-            await this.analyzeCheTheiaPlugin(cheTheiaPlugin, vsixExtension);
-          })
+        const analyzePromise = Promise.all(
+          cheTheiaPlugin.extensions.map(async vsixExtension =>
+            this.analyzeCheTheiaPlugin(cheTheiaPlugin, vsixExtension)
+          )
         );
+        this.updateTask(
+          analyzePromise,
+          downloadAndAnalyzeTask,
+          () => {
+            current++;
+            downloadAndAnalyzeTask.text = `${title} [${current}/${analyzingCheTheiaPlugins.length}] ...`;
+          },
+          `Error analyzing extensions ${cheTheiaPlugin.extensions} from ${cheTheiaPlugin.repository.url}`
+        );
+
+        return analyzePromise;
       })
     );
+    deferred.resolve();
 
     // now need to add ids (if not existing) in the analyzed plug-ins
     const analyzingCheTheiaPluginsWithIds: CheTheiaPluginMetaInfo[] = analyzingCheTheiaPlugins.map(plugin => {
@@ -215,37 +246,85 @@ export class Build {
     return chePlugins;
   }
 
+  async wrapIntoTask<T>(title: string, promise: Promise<T>, customTask?: ora.Ora): Promise<T> {
+    let task: ora.Ora;
+    if (customTask) {
+      task = customTask;
+    } else {
+      task = ora(title).start();
+    }
+    if (promise) {
+      promise.then(
+        () => task.succeed(),
+        () => task.fail()
+      );
+    }
+    return promise;
+  }
+
   public async build(): Promise<void> {
+    const start = moment();
+
     // analyze the che-theia-plugins.yaml yaml file
     const cheTheiaPlugins = await this.analyzeCheTheiaPluginsYaml();
-    const cheTheiaPluginsMetaYaml = await this.cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPlugins);
 
-    const cheEditors = await this.analyzeCheEditorsYaml();
-    const cheEditorsMetaYaml = await this.cheEditorsMetaYamlGenerator.compute(cheEditors);
+    const cheTheiaPluginsMetaYaml = await this.wrapIntoTask(
+      'Compute meta.yaml for che-theia-plugins',
+      this.cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPlugins)
+    );
 
-    const chePlugins = await this.analyzeChePluginsYaml();
-    const chePluginsMetaYaml = await this.chePluginsMetaYamlGenerator.compute(chePlugins);
+    const cheEditors = await this.wrapIntoTask('Analyze che-editors.yaml file', this.analyzeCheEditorsYaml());
+    const cheEditorsMetaYaml = await this.wrapIntoTask(
+      'Compute meta.yaml for che-editors',
+      this.cheEditorsMetaYamlGenerator.compute(cheEditors)
+    );
+
+    const chePlugins = await this.wrapIntoTask('Analyze che-plugins.yaml file', this.analyzeChePluginsYaml());
+
+    const chePluginsMetaYaml = await this.wrapIntoTask(
+      'Compute meta.yaml for che-plugins',
+      this.chePluginsMetaYamlGenerator.compute(chePlugins)
+    );
 
     const computedYamls = [...cheTheiaPluginsMetaYaml, ...cheEditorsMetaYaml, ...chePluginsMetaYaml];
 
     // update all images to use digest instead of tags
-    const allMetaYamls = await this.digestImagesHelper.updateImages(computedYamls);
+    const allMetaYamls = await this.wrapIntoTask(
+      'Update tags by digests for OCI images',
+      this.digestImagesHelper.updateImages(computedYamls)
+    );
 
     // generate v3/external_images.txt
-    await this.externalImagesWriter.write(allMetaYamls);
+    await this.wrapIntoTask('Generate v3/external_images.txt', this.externalImagesWriter.write(allMetaYamls));
 
     // generate v3/plugins folder
-    const generatedYamls = await this.metaYamlWriter.write(allMetaYamls);
+    const generatedYamls = await this.wrapIntoTask(
+      'Write meta.yamls in v3/plugins folder',
+      this.metaYamlWriter.write(allMetaYamls)
+    );
 
     // generate index.json
-    await this.indexWriter.write(generatedYamls);
+    await this.wrapIntoTask('Generate v3/plugins/index.json file', this.indexWriter.write(generatedYamls));
 
     // generate featured.json
-    const jsonOutput = await this.featuredAnalyzer.generate(cheTheiaPlugins);
-    await this.featuredWriter.writeReport(jsonOutput);
+    const jsonOutput = await this.wrapIntoTask(
+      'Generates Che-Theia featured.json file',
+      this.featuredAnalyzer.generate(cheTheiaPlugins)
+    );
+    await this.wrapIntoTask('Write Che-Theia featured.json file', this.featuredWriter.writeReport(jsonOutput));
 
     // generate Recommendations
-    const recommendations = await this.recommendationsAnalyzer.generate(cheTheiaPlugins);
-    await this.recommendationsWriter.writeRecommendations(recommendations);
+    const recommendations = await this.wrapIntoTask(
+      'Generate Che-Theia recommendations files',
+      this.recommendationsAnalyzer.generate(cheTheiaPlugins)
+    );
+    await this.wrapIntoTask(
+      'Write Che-Theia recommentations files',
+      this.recommendationsWriter.writeRecommendations(recommendations)
+    );
+
+    const end = moment();
+    const duration = moment.duration(start.diff(end)).humanize();
+    console.log(`🎉 Successfully generated in ${this.outputRootDirectory}. Took ${duration}.`);
   }
 }

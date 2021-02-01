@@ -9,6 +9,8 @@
  ***********************************************************************/
 import 'reflect-metadata';
 
+import * as ora from 'ora';
+
 import { CheEditorYaml, CheEditorsYaml } from '../src/editor/che-editors-yaml';
 import { ChePluginYaml, ChePluginsYaml } from '../src/che-plugin/che-plugins-yaml';
 import { CheTheiaPluginYaml, CheTheiaPluginsYaml } from '../src/che-theia-plugin/che-theia-plugins-yaml';
@@ -22,6 +24,7 @@ import { CheTheiaPluginAnalyzerMetaInfo } from '../src/che-theia-plugin/che-thei
 import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Container } from 'inversify';
+import { Deferred } from '../src/util/deferred';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
 import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
@@ -193,6 +196,7 @@ describe('Test Build', () => {
     jest.resetAllMocks();
     container = new Container();
     container.bind('string').toConstantValue('/fake-root-directory').whenTargetNamed('PLUGIN_REGISTRY_ROOT_DIRECTORY');
+    container.bind('string').toConstantValue('/fake-root-directory/output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
     container.bind('string[]').toConstantValue([]).whenTargetNamed('ARGUMENTS');
     container.bind(FeaturedAnalyzer).toConstantValue(featuredAnalyzer);
     container.bind(FeaturedWriter).toConstantValue(featuredWriter);
@@ -420,5 +424,41 @@ describe('Test Build', () => {
     expect(externalImagesWriter.write).toBeCalled();
     expect(metaYamlWriter.write).toBeCalled();
     expect(indexWriter.write).toBeCalled();
+  });
+
+  test('succed task', async () => {
+    const deferred = new Deferred();
+    let currentValue = false;
+    const task = ora('my-task').start();
+    build.updateTask(deferred.promise, task, () => (currentValue = true), 'error');
+    expect(currentValue).toBeFalsy();
+    deferred.resolve();
+    await deferred.promise;
+    expect(currentValue).toBeTruthy();
+  });
+
+  test('with a fail task', async () => {
+    const deferred = new Deferred();
+    let currentValue = false;
+    const task = ora('my-task').start();
+    const spyTask = jest.spyOn(task, 'fail');
+    build.updateTask(deferred.promise, task, () => (currentValue = true), 'error');
+    expect(currentValue).toBeFalsy();
+    deferred.reject('rejecting');
+    await expect(deferred.promise).rejects.toMatch('rejecting');
+    expect(currentValue).toBeFalsy();
+    expect(spyTask).toBeCalled();
+    expect(spyTask.mock.calls[0][0]).toBe('error');
+  });
+
+  test('with a fail wrapIntoTask', async () => {
+    const deferred = new Deferred();
+    const task = ora('my-task').start();
+    const spyFailTask = jest.spyOn(task, 'fail');
+    build.wrapIntoTask('This is my task', deferred.promise, task);
+    deferred.reject('rejecting');
+    await expect(deferred.promise).rejects.toMatch('rejecting');
+    expect(spyFailTask).toBeCalled();
+    expect(spyFailTask.mock.calls[0][0]).toBeUndefined();
   });
 });
