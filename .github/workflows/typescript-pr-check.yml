@@ -14,12 +14,12 @@ on:
     paths:
     - '**/package.json'
     - 'tools/**/*.ts'
-    - '.github/workflows/typescript-pr-check.yaml'
+    - '.github/workflows/typescript-pr-check.yml'
   push:
     paths:
     - '**/package.json'
     - 'tools/**/*.ts'
-    - '.github/workflows/typescript-pr-check.yaml'
+    - '.github/workflows/typescript-pr-check.yml'
 
 jobs:
   check:
