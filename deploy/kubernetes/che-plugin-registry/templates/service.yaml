@@ -23,5 +23,5 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    app: che
-    component: plugin-registry
+    app.kubernetes.io/name: che
+    app.kubernetes.io/component: plugin-registry
