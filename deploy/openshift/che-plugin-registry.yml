@@ -15,13 +15,13 @@ objects:
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
+    name: che-plugin-registry
     labels:
       app: che
       component: plugin-registry
       app.kubernetes.io/name: che
       app.kubernetes.io/instance: che
       app.kubernetes.io/component: plugin-registry
-    name: plugin-registry
   spec:
     replicas: 1
     selector:
@@ -47,7 +47,7 @@ objects:
         containers:
         - image: ${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: "${PULL_POLICY}"
-          name: plugin-registry
+          name: che-plugin-registry
           ports:
           - containerPort: 8080
           livenessProbe:
@@ -77,14 +77,14 @@ objects:
               memory: ${MEMORY_LIMIT}
           envFrom:
           - configMapRef:
-              name: plugin-registry
+              name: che-plugin-registry
               optional: true
     triggers:
     - type: ConfigChange
 - apiVersion: v1
   kind: Service
   metadata:
-    name: plugin-registry
+    name: che-plugin-registry
     labels:
       app.kubernetes.io/name: che
       app.kubernetes.io/instance: che
@@ -101,7 +101,7 @@ objects:
 - apiVersion: v1
   kind: Route
   metadata:
-    name: plugin-registry
+    name: che-plugin-registry
     labels:
       app.kubernetes.io/name: che
       app.kubernetes.io/instance: che
@@ -109,7 +109,7 @@ objects:
   spec:
     to:
       kind: Service
-      name: plugin-registry
+      name: che-plugin-registry
       weight: 100
     port:
       targetPort: 8080
@@ -119,7 +119,7 @@ objects:
 - apiVersion: v1
   kind: ConfigMap
   metadata:
-    name: plugin-registry
+    name: che-plugin-registry
     labels:
       app.kubernetes.io/name: che
       app.kubernetes.io/instance: che
