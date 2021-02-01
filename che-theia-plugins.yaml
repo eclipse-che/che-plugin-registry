@@ -357,6 +357,11 @@ plugins:
     extensions:
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
       - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+  - repository:
+      url: https://github.com/rogalmic/vscode-bash-debug
+      revision: v0.3.9
+    extensions:
+      - https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix
   - id: redhat-developer/netcoredbg-theia-plugin
     repository:
       url: https://github.com/redhat-developer/netcoredbg-theia-plugin
