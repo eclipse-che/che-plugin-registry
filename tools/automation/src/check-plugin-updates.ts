@@ -19,7 +19,7 @@ import simpleGit, { SimpleGit } from 'simple-git';
 
 const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
 
-// struct for the array of vscode-extensions.json file
+// struct for an entry in the che-theia-plugins.yaml file
 export interface CheTheiaPlugin {
   id?: string;
   isClosedSource?: boolean;
