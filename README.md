@@ -1,3 +1,5 @@
+[![codecov](https://img.shields.io/codecov/c/github/eclipse/che-plugin-registry)](https://codecov.io/gh/eclipse/che-plugin-registry)
+
 # Eclipse Che Plugin Registry
 
 This repository holds ready-to-use plugins for different languages and technologies. A [nightly build](https://che-plugin-registry-main.surge.sh/) of this registry is published on surge.sh.
