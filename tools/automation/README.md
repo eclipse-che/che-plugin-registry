@@ -1,14 +1,13 @@
 # Automation
 
 Most Che plugins depend on VS Code extensions, and these are usually hosted on other repositories. Sometimes these extensions can be out of date,
-as a newer version of the extension has been released upstream. All such plugins are listed in a file `vscode-extensions.json`, which sits at the root
-of this repository.
+as a newer version of the extension has been released upstream. All such plugins are listed in a file named `che-theia-plugins.yaml`, which sits at the root of this repository.
 
 This directory contains various scripts which automate various maintenance steps of the registry.
 
 ## Automatic Plugin Reports
 
-Every day at 01:00 UTC, the `vscode-extensions.json` file is parsed and a report is generated. The report can be found at https://eclipse.github.io/che-plugin-registry/
+Every day at 01:00 UTC, the `che-theia-plugins.yaml` file is parsed and a report is generated. The report can be found at https://eclipse.github.io/che-plugin-registry/
 
 The report format (with two sample entries) is as follows:
 
