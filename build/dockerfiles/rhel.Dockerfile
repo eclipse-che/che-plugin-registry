@@ -42,6 +42,9 @@ COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /u
 RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 COPY README.md .htaccess /var/www/html/
 COPY output/v3 /var/www/html/v3
+COPY v3/plugins/.htaccess /var/www/html/v3/plugins/
+COPY v3/images/eclipse-che-logo.png /var/www/html/v3/images/
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]
 
