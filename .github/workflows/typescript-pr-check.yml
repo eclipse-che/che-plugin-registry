@@ -45,3 +45,7 @@ jobs:
       run: |
         yarn
         yarn workspaces run build
+    - name: report-coverage
+      uses: codecov/codecov-action@v1
+      with:
+        files: ./tools/pr-check/coverage/coverage-final.json,./tools/automation/coverage/coverage-final.json,./tools/build/coverage/coverage-final.json
