@@ -324,7 +324,7 @@ plugins:
     sidecar:
       directory: java
       name: vscode-apache-camel
-      memoryLimit: "300Mi"
+      memoryLimit: "350Mi"
     extensions:
       - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.30-103.vsix
   - repository:
