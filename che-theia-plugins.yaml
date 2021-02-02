@@ -1,29 +1,35 @@
 version: 1.0.0
 plugins:
   - repository:
-      url: https://github.com/DonJayamanne/gitHistoryVSCode
+      url: 'https://github.com/DonJayamanne/gitHistoryVSCode'
       revision: v0.6.14
     extensions:
-      - https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix
+      - >-
+        https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix
   - repository:
-      url: https://github.com/microsoft/vscode-pull-request-github
+      url: 'https://github.com/microsoft/vscode-pull-request-github'
       revision: 0.20.0
     aliases:
       - ms-vscode/vscode-github-pullrequest
     extensions:
-      - https://github.com/microsoft/vscode-pull-request-github/releases/download/0.20.0/vscode-pull-request-github-0.20.0.vsix
+      - >-
+        https://github.com/microsoft/vscode-pull-request-github/releases/download/0.20.0/vscode-pull-request-github-0.20.0.vsix
   - repository:
-      url: https://github.com/Microsoft/vscode-node-debug2
+      url: 'https://github.com/Microsoft/vscode-node-debug2'
       revision: v1.42.5
     sidecar:
       directory: node
       name: vscode-node-debug
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix
-      - https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
+      - >-
+        https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix
+      - >-
+        https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
-      url: https://github.com/Microsoft/vscode
+      url: 'https://github.com/Microsoft/vscode'
       revision: 1.49.3
       directory: extensions/typescript-language-features
     featured: true
@@ -31,231 +37,304 @@ plugins:
       - che-incubator/typescript
     sidecar:
       directory: node
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
+      - >-
+        https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
   - repository:
-      url: https://github.com/bazelbuild/vscode-bazel
+      url: 'https://github.com/bazelbuild/vscode-bazel'
       revision: 0.3.0
     sidecar:
       directory: bazel
       name: vscode-bazel
-      memoryLimit: '2Gi'
+      memoryLimit: 2Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: bazelcache
-          path: "/home/theia/.cache/bazel"
+          path: /home/theia/.cache/bazel
     extensions:
-      - https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix
+      - >-
+        https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix
   - repository:
-      url: https://github.com/vuejs/vetur
+      url: 'https://github.com/vuejs/vetur'
       revision: v0.26.1
     aliases:
       - vuejs/vetur
     sidecar:
       directory: node
       name: vetur
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix
+      - >-
+        https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix
   - repository:
-      url: https://github.com/VSCodeVim/Vim
+      url: 'https://github.com/VSCodeVim/Vim'
       revision: v1.16.0
     extensions:
-      - https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix
+      - >-
+        https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix
   - repository:
-      url: https://github.com/errata-ai/vale-vscode/
+      url: 'https://github.com/errata-ai/vale-vscode'
       revision: v0.14.2
     sidecar:
       directory: vale
-      name: "vscode-vale"
-      memoryLimit: "512Mi"
+      name: vscode-vale
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/errata-ai/vale-vscode/releases/download/v0.14.2/vale-server-0.14.2.vsix
+      - >-
+        https://github.com/errata-ai/vale-vscode/releases/download/v0.14.2/vale-server-0.14.2.vsix
   - repository:
-      url: https://github.com/eclipse-cdt/cdt-vscode
+      url: 'https://github.com/eclipse-cdt/cdt-vscode'
       revision: 2edfc3a3474bc7a732014e1a4631561b991f845a
     featured: true
     sidecar:
       directory: clang
       name: cpp-plugins
       memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-vscode/cdt-vscode-0.0.7-75cf95.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-vscode/cdt-vscode-0.0.7-75cf95.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix
   - repository:
-      url: https://github.com/bmewburn/vscode-intelephense
+      url: 'https://github.com/bmewburn/vscode-intelephense'
       revision: v1.5.4
     featured: true
     sidecar:
       directory: php
-      memoryLimit: "1000Mi"
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.5.4.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.5.4.vsix
   - repository:
-      url: https://github.com/Microsoft/vscode-python
+      url: 'https://github.com/Microsoft/vscode-python'
       revision: 2020.7.94776
     featured: true
     sidecar:
       directory: python
       name: vscode-python
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix
+      - >-
+        https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix
   - repository:
-      url: https://github.com/asciidoctor/asciidoctor-vscode
+      url: 'https://github.com/asciidoctor/asciidoctor-vscode'
       revision: v2.7.7
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/asciidoctor-vscode/asciidoctor-vscode-2.7.7.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/asciidoctor-vscode/asciidoctor-vscode-2.7.7.vsix
     sidecar:
       directory: asciidoc
       name: asciidoctor-vscode
-      memoryLimit: '128Mi'
+      memoryLimit: 128Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
-        # this is a workaround for openshift3
         - name: documents
-          path: "/documents"
+          path: /documents
   - repository:
-      url: https://github.com/eamodio/vscode-gitlens
+      url: 'https://github.com/eamodio/vscode-gitlens'
       revision: v10.2.1
     aliases:
       - eamodio/vscode-gitlens
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
   - repository:
-      url: https://github.com/golang/vscode-go
+      url: 'https://github.com/golang/vscode-go'
       revision: v0.16.1
     featured: true
     sidecar:
       directory: go
       name: vscode-go
-      memoryLimit: '512Mi'
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       env:
         - name: GOPATH
-          value: /go:$(CHE_PROJECTS_ROOT)
+          value: '/go:$(CHE_PROJECTS_ROOT)'
     extensions:
-      - https://github.com/golang/vscode-go/releases/download/v0.16.1/go-0.16.1.vsix
+      - >-
+        https://github.com/golang/vscode-go/releases/download/v0.16.1/go-0.16.1.vsix
   - repository:
-      url: https://github.com/dart-code/flutter
+      url: 'https://github.com/dart-code/flutter'
       revision: v3.14.1
     sidecar:
       directory: flutter
       name: vscode-flutter
-      memoryLimit: '2Gi'
+      memoryLimit: 2Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/dart-code/flutter/releases/download/v3.14.1/flutter-3.14.1.vsix
-      - https://github.com/gattytto/dart-code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+      - >-
+        https://github.com/dart-code/flutter/releases/download/v3.14.1/flutter-3.14.1.vsix
+      - >-
+        https://github.com/gattytto/dart-code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
-      url: https://github.com/camel-tooling/vscode-camelk
+      url: 'https://github.com/camel-tooling/vscode-camelk'
       revision: 0.0.20
     sidecar:
       directory: camelk
       name: vscode-camelk
-      memoryLimit: "1G"
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.20-83.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.11.1.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.20-83.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.11.1.vsix
   - id: redhat/quarkus-java11
     repository:
-      url: https://github.com/redhat-developer/vscode-quarkus
+      url: 'https://github.com/redhat-developer/vscode-quarkus'
       revision: v1.7.0
     sidecar:
       directory: java
       name: vscode-quarkus
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
-      - name: m2
-        path: "/home/theia/.m2"
+        - name: m2
+          path: /home/theia/.m2
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
+      - >-
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - >-
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - id: redhat/quarkus-java8
     repository:
-      url: https://github.com/redhat-developer/vscode-quarkus
+      url: 'https://github.com/redhat-developer/vscode-quarkus'
       revision: v1.5.0
     sidecar:
       directory: java8
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
-      - name: m2
-        path: "/home/theia/.m2"
+        - name: m2
+          path: /home/theia/.m2
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.5.0-324.vsix
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.5.0-324.vsix
+      - >-
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
   - repository:
-      url: https://github.com/camel-tooling/vscode-wsdl2rest
+      url: 'https://github.com/camel-tooling/vscode-wsdl2rest'
       revision: 0.0.11
     sidecar:
       directory: java8
-      memoryLimit: "256Mi"
+      memoryLimit: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix
   - repository:
-      url: https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension
+      url: 'https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension'
       revision: 0.1.0
     aliases:
       - redhat/dependency-analytics
     sidecar:
       directory: dependency-analytics
       name: dependency-analytics
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.2.1/fabric8-analytics-0.2.1.vsix
+      - >-
+        https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.2.1/fabric8-analytics-0.2.1.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-tekton
+      url: 'https://github.com/redhat-developer/vscode-tekton'
       revision: v0.2.0
     aliases:
       - redhat/vscode-tekton
     sidecar:
       directory: tekton
       name: vscode-tekton
-      memoryLimit: '384Mi'
+      memoryLimit: 384Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
-        - name: "kube"
-          path: "/home/theia/.kube"
+        - name: kube
+          path: /home/theia/.kube
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-project-initializer
+      url: 'https://github.com/redhat-developer/vscode-project-initializer'
       revision: v0.0.10
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-openshift-tools
+      url: 'https://github.com/redhat-developer/vscode-openshift-tools'
       revision: v0.2.0
     sidecar:
       directory: openshift-tooling
-      name: "vscode-openshift-connector"
-      memoryLimit: "1500Mi"
+      name: vscode-openshift-connector
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
-        - name: "kube"
-          path: "/home/theia/.kube"
+        - name: kube
+          path: /home/theia/.kube
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-openshift-tools/vscode-openshift-connector-0.2.0.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
-      - https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-openshift-tools/vscode-openshift-connector-0.2.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+      - >-
+        https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-yaml
+      url: 'https://github.com/redhat-developer/vscode-yaml'
       revision: 0.14.0
     featured: true
     sidecar:
       directory: node
       name: vscode-yaml
-      memoryLimit: "256Mi"
+      memoryLimit: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix
+      - >-
+        https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix
   - id: redhat/java11
     repository:
-      url: https://github.com/redhat-developer/vscode-java
+      url: 'https://github.com/redhat-developer/vscode-java'
       revision: v0.69.0
     featured: true
     aliases:
@@ -263,31 +342,41 @@ plugins:
     sidecar:
       directory: java
       name: vscode-java
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: m2
-          path: "/home/theia/.m2"
+          path: /home/theia/.m2
     extensions:
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - >-
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - id: redhat/java8
     repository:
-      url: https://github.com/redhat-developer/vscode-java
+      url: 'https://github.com/redhat-developer/vscode-java'
       revision: v0.63.0
     sidecar:
       directory: java8
       name: vscode-java
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: m2
-          path: "/home/theia/.m2"
+          path: /home/theia/.m2
     extensions:
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+      - >-
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
   - repository:
-      url: https://github.com/felixfbecker/vscode-php-debug
+      url: 'https://github.com/felixfbecker/vscode-php-debug'
       revision: v1.13.0
     aliases:
       - felixfbecker/vscode-php-debug
@@ -295,278 +384,349 @@ plugins:
     sidecar:
       directory: php
       name: php-debugger
+      memoryLimit: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
   - repository:
-      url: https://github.com/windup/rhamt-vscode-extension
+      url: 'https://github.com/windup/rhamt-vscode-extension'
       revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
     aliases:
       - redhat/mta
     sidecar:
-      image: quay.io/windupeng/mta-vscode-extension:latest
+      image: 'quay.io/windupeng/mta-vscode-extension:latest'
       name: mta-extension
       memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       mountSources: true
       volumeMounts:
-        - name: mta-vscode 
-          path: "/home/theia/home/theia/redhat.rhamt-vscode-extension"
+        - name: mta-vscode
+          path: /home/theia/home/theia/redhat.rhamt-vscode-extension
       endpoints:
-        - name: "configuration-endpoint"
+        - name: configuration-endpoint
           public: true
           targetPort: 61436
           attributes:
             protocol: http
-        - name: "report-endpoint"
+        - name: report-endpoint
           public: true
           targetPort: 61435
           attributes:
             protocol: http
     extensions:
-      - https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
+      - >-
+        https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
   - repository:
-      url: https://github.com/camel-tooling/camel-lsp-client-vscode
+      url: 'https://github.com/camel-tooling/camel-lsp-client-vscode'
       revision: 0.0.30
     sidecar:
       directory: java
       name: vscode-apache-camel
-      memoryLimit: "350Mi"
+      memoryLimit: 768Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.30-103.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.30-103.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-xml
+      url: 'https://github.com/redhat-developer/vscode-xml'
       revision: 0.13.0
     featured: true
     sidecar:
       directory: java
       name: vscode-xml
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix
+      - >-
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix
   - repository:
-      url: https://github.com/redhat-developer/vscode-didact
+      url: 'https://github.com/redhat-developer/vscode-didact'
       revision: 0.1.18
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix
   - repository:
-      url: https://github.com/Azure/vscode-kubernetes-tools
+      url: 'https://github.com/Azure/vscode-kubernetes-tools'
       revision: 1.2.1
     sidecar:
       directory: kubernetes-tooling
-      name: "vscode-kubernetes-tools"
-      memoryLimit: "1G"
+      name: vscode-kubernetes-tools
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
-      url: https://github.com/rogalmic/vscode-bash-debug
+      url: 'https://github.com/rogalmic/vscode-bash-debug'
       revision: v0.3.9
     extensions:
-      - https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix
+      - >-
+        https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix
   - id: redhat-developer/netcoredbg-theia-plugin
     repository:
-      url: https://github.com/redhat-developer/netcoredbg-theia-plugin
+      url: 'https://github.com/redhat-developer/netcoredbg-theia-plugin'
       revision: v0.0.3
     sidecar:
       directory: dotnet
       name: theia-netcoredbg
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.3/netcoredbg_theia_plugin.theia
+      - >-
+        https://github.com/redhat-developer/netcoredbg-theia-plugin/releases/download/v0.0.3/netcoredbg_theia_plugin.theia
   - id: redhat-developer/che-omnisharp-plugin
     repository:
-      url: https://github.com/redhat-developer/omnisharp-theia-plugin
+      url: 'https://github.com/redhat-developer/omnisharp-theia-plugin'
       revision: v0.0.6
     sidecar:
       directory: dotnet
       name: theia-omnisharp
-      memoryLimit: "1024Mi"
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: nuget
-          path: "/home/theia/.nuget"
+          path: /home/theia/.nuget
     extensions:
-      - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia
+      - >-
+        https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia
   - repository:
-      url: https://github.com/rust-lang/vscode-rust
+      url: 'https://github.com/rust-lang/vscode-rust'
       revision: v0.7.8
     sidecar:
       directory: rust
       name: vscode-rust
-      memoryLimit: "1024Mi"
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix
+      - >-
+        https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix
   - repository:
-      url: https://github.com/scalameta/metals-vscode
+      url: 'https://github.com/scalameta/metals-vscode'
       revision: v1.9.13
     sidecar:
       directory: scala
       name: vscode-metals
-      memoryLimit: "1500Mi"
+      memoryLimit: 1500Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: sbt
-          path: "/home/theia/.sbt"
+          path: /home/theia/.sbt
         - name: ivy2
-          path: "/home/theia/.ivy2"
+          path: /home/theia/.ivy2
         - name: cache
-          path: "/home/theia/.cache"
+          path: /home/theia/.cache
     extensions:
-      - https://github.com/scalameta/metals-vscode/releases/download/v1.9.13/scalameta.metals-1.9.13.vsix
-      - https://github.com/scala/vscode-scala-syntax/releases/download/0.5.0/scala.vsix
+      - >-
+        https://github.com/scalameta/metals-vscode/releases/download/v1.9.13/scalameta.metals-1.9.13.vsix
+      - >-
+        https://github.com/scala/vscode-scala-syntax/releases/download/0.5.0/scala.vsix
   - repository:
-      url: https://github.com/SonarSource/sonarlint-vscode
+      url: 'https://github.com/SonarSource/sonarlint-vscode'
       revision: 1.16.0
     sidecar:
       directory: sonarlint
       name: vscode-sonarlint
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: m2
-          path: "/home/theia/.m2"
+          path: /home/theia/.m2
     extensions:
-      - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
+      - >-
+        https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
   - repository:
-      url: https://bitbucket.org/atlassianlabs/atlascode
+      url: 'https://bitbucket.org/atlassianlabs/atlascode'
       revision: 2.6.6
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
   - repository:
-      url: https://github.com/eclipse/che-che4z-lsp-for-cobol
+      url: 'https://github.com/eclipse/che-che4z-lsp-for-cobol'
       revision: 0.16.1
       directory: clients/cobol-lsp-vscode-extension/
     sidecar:
       directory: java
-      memoryLimit: 1Gi
       name: cobol-language-support
+      memoryLimit: 1Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
       mountSources: true
       env:
         - name: ZOWE_CLI_HOME
           value: /projects/.zowe
     extensions:
-      - https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.16.1/file/BroadcomMFD.cobol-language-support-0.16.1.vsix
+      - >-
+        https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.16.1/file/BroadcomMFD.cobol-language-support-0.16.1.vsix
   - id: broadcommfd/debugger-for-mainframe/1.4.0
     isClosedSource: true
     repository:
-      url: https://github.com/BroadcomMFD/debugger-for-mainframe
+      url: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
     sidecar:
       directory: java
       memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       name: debugger-for-mainframe
       mountSources: true
     extensions:
-      - https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.4.0/file/BroadcomMFD.debugger-for-mainframe-1.4.0.vsix
+      - >-
+        https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.4.0/file/BroadcomMFD.debugger-for-mainframe-1.4.0.vsix
   - repository:
-      url: https://github.com/eclipse/che-che4z-lsp-for-hlasm
+      url: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm'
       directory: clients/vscode-hlasmplugin/
       revision: 0.11.1
     extensions:
-      - https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
+      - >-
+        https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
   - repository:
-      url: https://github.com/eclipse/che-che4z-explorer-for-endevor
+      url: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
       revision: 0.11.1
     extensions:
-      - https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.1/explorer-for-endevor-0.11.1.vsix
+      - >-
+        https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.1/explorer-for-endevor-0.11.1.vsix
   - repository:
-      url: https://github.com/zxh0/vscode-proto3
+      url: 'https://github.com/zxh0/vscode-proto3'
       revision: c4d9eeb54294e3cee86254261edf036901f29dec
     aliases:
       - zxh404/protobuf
     sidecar:
       directory: protobuf
       name: vscode-proto3
-      memoryLimit: '256Mi'
+      memoryLimit: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix
   - repository:
-      url: https://github.com/timonwong/vscode-shellcheck
+      url: 'https://github.com/timonwong/vscode-shellcheck'
       revision: v0.10.1
     sidecar:
       directory: shellcheck
       name: shellcheck
-      memoryLimit: '128Mi'
+      memoryLimit: 128Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://open-vsx.org/api/timonwong/shellcheck/0.10.1/file/timonwong.shellcheck-0.10.1.vsix
+      - >-
+        https://open-vsx.org/api/timonwong/shellcheck/0.10.1/file/timonwong.shellcheck-0.10.1.vsix
   - repository:
-      url: https://github.com/pizzafactory-contorno/vscode-libra-move/
+      url: 'https://github.com/pizzafactory-contorno/vscode-libra-move/'
       revision: v0.0.10-ddc0d3d
     aliases:
       - pizzafactory/vscode-libra-move
     sidecar:
       directory: java8
       name: vscode-libra-move
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/pizzafactory-contorno/vscode-libra-move/releases/download/v0.0.10-ddc0d3d/vscode-libra-move-0.0.10.vsix
+      - >-
+        https://github.com/pizzafactory-contorno/vscode-libra-move/releases/download/v0.0.10-ddc0d3d/vscode-libra-move-0.0.10.vsix
   - repository:
-      url: https://github.com/PizzaFactory/xtend-ide-extensions/
+      url: 'https://github.com/PizzaFactory/xtend-ide-extensions/'
       revision: v0.1.0
       directory: xtend-vscode-extension/
     sidecar:
       directory: java8
       name: vscode-xtend-lang
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/PizzaFactory/xtend-ide-extensions/releases/download/v0.1.0/xtend-lang-0.1.0.vsix
+      - >-
+        https://github.com/PizzaFactory/xtend-ide-extensions/releases/download/v0.1.0/xtend-lang-0.1.0.vsix
   - repository:
-      url: https://github.com/PizzaFactory/xtext-ide-extensions/
+      url: 'https://github.com/PizzaFactory/xtext-ide-extensions/'
       revision: v0.4.0
       directory: xtext-vscode-extension/
     sidecar:
       directory: java8
       name: vscode-xtext-lang
-      memoryLimit: "768Mi"
+      memoryLimit: 768Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix
+      - >-
+        https://github.com/PizzaFactory/xtext-ide-extensions/releases/download/v0.4.0/xtext-lang-0.4.0.vsix
   - repository:
-      url: https://github.com/MicroShed/mp-starter-vscode-ext
+      url: 'https://github.com/MicroShed/mp-starter-vscode-ext'
       revision: 0.2.0
     aliases:
       - microshed/mp-starter-vscode-ext
     extensions:
-      - https://github.com/MicroShed/mp-starter-vscode-ext/releases/download/0.2.0/mp-starter-vscode-ext-0.2.0.vsix
+      - >-
+        https://github.com/MicroShed/mp-starter-vscode-ext/releases/download/0.2.0/mp-starter-vscode-ext-0.2.0.vsix
   - id: dart-code/dart-code
     repository:
-      url: https://github.com/gattytto/Dart-Code
+      url: 'https://github.com/gattytto/Dart-Code'
       revision: v3.15.0-che
     aliases:
       - gattytto/dart-code
     sidecar:
       directory: dart
       name: vscode-dart
-      memoryLimit: '2Gi'
+      memoryLimit: 2Gi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extensions:
-      - https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
+      - >-
+        https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
-      url: https://github.com/SebastianZaha/vscode-emacs-friendly
+      url: 'https://github.com/SebastianZaha/vscode-emacs-friendly'
       revision: 660a6102103745f8e9e5affaa06a29e73ce9065e
     extensions:
-      - https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix
+      - >-
+        https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix
   - repository:
-      url: https://github.com/zowe/vscode-extension-for-zowe
+      url: 'https://github.com/zowe/vscode-extension-for-zowe'
       revision: v1.11.0
     sidecar:
       directory: node
       name: zowe-explorer
-      memoryLimit: "512Mi"
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       env:
-       - name: ZOWE_CLI_HOME
-         value: /projects/.zowe
+        - name: ZOWE_CLI_HOME
+          value: /projects/.zowe
     extensions:
-      - https://github.com/eclipse/che-che4z/releases/download/v2.2.0/vscode-extension-for-zowe-1.11.0-che.vsix
+      - >-
+        https://github.com/eclipse/che-che4z/releases/download/v2.2.0/vscode-extension-for-zowe-1.11.0-che.vsix
   - repository:
-      url: https://github.com/bash-lsp/bash-language-server
+      url: 'https://github.com/bash-lsp/bash-language-server'
       revision: vscode-client-1.10.2
       directory: vscode-client
     aliases:
       - mads-hartmann/bash-ide
     extensions:
-      - https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix
+      - >-
+        https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix
   - repository:
-      url: https://github.com/prettier/prettier-vscode
+      url: 'https://github.com/prettier/prettier-vscode'
       revision: v5.8.0
     extensions:
-      - https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
+      - >-
+        https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix
   - repository:
-      url: https://github.com/microsoft/vscode-eslint
+      url: 'https://github.com/microsoft/vscode-eslint'
       revision: 1e15d3495da89072d48cf583d48d92829f0c4b82
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
+      - >-
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
