@@ -131,20 +131,6 @@ plugins:
     extensions:
       - https://github.com/golang/vscode-go/releases/download/v0.16.1/go-0.16.1.vsix
   - repository:
-      url: https://github.com/haskell/vscode-haskell
-      revision: 1.1.0
-    featured: true
-    aliases:
-      - haskell/vscode-haskell
-    sidecar:
-      directory: haskell
-      name: vscode-haskell
-      memoryLimit: 3072Mi
-    extensions:
-      - https://open-vsx.org/api/haskell/haskell/1.1.0/file/haskell.haskell-1.1.0.vsix
-      - https://open-vsx.org/api/justusadam/language-haskell/3.3.0/file/justusadam.language-haskell-3.3.0.vsix
-      - https://open-vsx.org/api/gattytto/phoityne-vscode/0.0.28/file/gattytto.phoityne-vscode-0.0.28.vsix
-  - repository:
       url: https://github.com/dart-code/flutter
       revision: v3.14.1
     sidecar:
@@ -370,7 +356,7 @@ plugins:
       url: https://github.com/rogalmic/vscode-bash-debug
       revision: v0.3.9
     extensions:
-      - https://open-vsx.org/api/rogalmic/bash-debug/0.3.9/file/rogalmic.bash-debug-0.3.9.vsix
+      - https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix
   - id: redhat-developer/netcoredbg-theia-plugin
     repository:
       url: https://github.com/redhat-developer/netcoredbg-theia-plugin
@@ -549,18 +535,6 @@ plugins:
       revision: 660a6102103745f8e9e5affaa06a29e73ce9065e
     extensions:
       - https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix
-  - repository:
-      url: https://github.com/castwide/vscode-solargraph
-      revision: 212e76d
-    sidecar:
-      directory: ruby
-      name: vscode-ruby
-      memoryLimit: "1500Mi"
-      volumeMounts:
-        - name: solargraph
-          path: "/home/theia/.solargraph"
-    extensions:
-      - https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
   - repository:
       url: https://github.com/zowe/vscode-extension-for-zowe
       revision: v1.11.0
