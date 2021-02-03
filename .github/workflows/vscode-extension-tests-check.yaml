@@ -1,0 +1,27 @@
+#
+# Copyright (c) 2021 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+# che-plugin-registry VSCode extension's tests workflow
+# matrix jobs with alpine and ubi8
+name: VSCode Extension's Tests
+
+on:
+  push:
+    paths:
+      - 'che-theia-plugins.yaml'
+
+jobs:
+  # check EOF newline
+  extension-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
