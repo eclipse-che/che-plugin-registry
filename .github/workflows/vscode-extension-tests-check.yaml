@@ -31,3 +31,5 @@ jobs:
         run: |
           sudo pip install yq
           echo $(git diff -U0 che-theia-plugins.yaml HEAD "$(git merge-base HEAD origin/master)")
+          ls
+          pwd
