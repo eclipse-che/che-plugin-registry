@@ -30,4 +30,4 @@ jobs:
       - name: Catch changes
         run: |
           sudo pip install yq
-          echo $(git --no-pager diff --name-only HEAD "$(git merge-base HEAD origin/master)")
+          echo $(git diff -U0 che-theia-plugins.yaml HEAD "$(git merge-base HEAD origin/master)")
