@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - 'che-theia-plugins.yaml'
+      - '.github/workflows/vscode-extension-tests-check.yaml'
 
 jobs:
   # check EOF newline
