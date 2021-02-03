@@ -392,7 +392,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
   - repository:
       url: 'https://github.com/windup/rhamt-vscode-extension'
-      revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
+      revision: 1fa3f3f9f597aa7d370da61dafbe5dc7899aba52
     aliases:
       - redhat/mta
     sidecar:
