@@ -26,3 +26,7 @@ jobs:
         with:
           fetch-depth: 0
           ref:  ${{ github.event.pull_request.head.sha }}
+      - name: Catch changes
+        run: |
+          sudo pip install yq
+          echo $(git --no-pager diff --name-only HEAD "$(git merge-base HEAD origin/master)")
