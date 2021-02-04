@@ -26,6 +26,11 @@ export class RegistryHelper {
     // grab image name and tag
     const dockerImageName = parse(imageName);
 
+    // do not use digest on nightlies/next
+    if (dockerImageName.tag === 'nightly' || dockerImageName.tag === 'next') {
+      return imageName;
+    }
+
     const uri = `https://${dockerImageName.host}/v2/${dockerImageName.remoteName}/manifests/${dockerImageName.tag}`;
 
     // if registry is [index.]docker.io, need to grab a token first

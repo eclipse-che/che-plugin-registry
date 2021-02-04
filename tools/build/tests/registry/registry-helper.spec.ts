@@ -110,4 +110,14 @@ describe('Test RegistryHelper', () => {
     // image should have library as prefix as well and index.docker.io as host
     expect(digest).toBe(`index.docker.io/library/alpine@sha256:${hash}`);
   });
+
+  test('basics with next', async () => {
+    const axiosGet = jest.spyOn(Axios, 'get') as jest.Mock;
+    const imageName = 'fake-docker-registry.com/dummy-org/dummy-image:next';
+    const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
+    const updatedImageName = await registryHelper.getImageDigest('fake-docker-registry.com/dummy-org/dummy-image:next');
+    expect(updatedImageName).toBe(imageName);
+    expect(axiosGet).toBeCalledTimes(0);
+    expect(axiosHead).toBeCalledTimes(0);
+  });
 });
