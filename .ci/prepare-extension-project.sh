@@ -35,3 +35,5 @@ function buildProject() {
 findRepositoryDetails
 cloneExtension
 buildProject
+
+chectl --version

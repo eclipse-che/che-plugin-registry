@@ -83,4 +83,5 @@ jobs:
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
       - name: Prepare project
         run: |
+          sudo pip install yq
           ./.ci/prepare-extension-project.sh
