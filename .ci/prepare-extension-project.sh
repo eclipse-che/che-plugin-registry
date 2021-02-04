@@ -12,6 +12,10 @@
 set -e
 
 function findRepositoryDetails() {
+    ls
+    pwd
+    git --version
+    yq --version
     export YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
     export YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPOSITORY "$YAML_EXTENSION_REPOSITORY" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPOSITORY) | .repository.revision' che-theia-plugins.yaml)
     echo $YAML_EXTENSION_REPO
