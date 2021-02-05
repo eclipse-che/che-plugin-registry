@@ -87,4 +87,5 @@ jobs:
           ./.ci/prepare-extension-project.sh
       - name: Open workspace
         run: |
+          sudo pip install selenium
           python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
