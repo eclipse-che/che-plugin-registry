@@ -87,8 +87,8 @@ jobs:
           sudo pip install selenium
           ./.ci/prepare-extension-project.sh
       - name: Setup selenium
-        uses: browser-actions/setup-geckodriver@latest
-        run: geckodriver --version  
+        uses: browser-actions/setup-geckodriver@latest  
       - name: Open workspace
         run: |
+          geckodriver --version
           python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
