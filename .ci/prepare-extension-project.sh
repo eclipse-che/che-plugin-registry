@@ -37,3 +37,4 @@ cloneExtension
 buildProject
 
 chectl --version
+env
