@@ -37,4 +37,4 @@ cloneExtension
 buildProject
 
 chectl --version
-env
+chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml
