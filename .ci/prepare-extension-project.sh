@@ -35,7 +35,17 @@ function buildProject() {
 function createWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
-    echo "$WORKSPACE_URL"    
+    echo "$WORKSPACE_URL"
+    pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+    while [ "$pods" == 'No resources found.'  ];
+    do
+        echo "No pod found with che.workspace_id"
+        echo "Current available pods are"
+        kubectl get pod -n eclipse-che
+        kubectl get pod -n eclipse-che -l che.workspace_id
+        sleep 10
+        pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+    done    
 }
 
 findRepositoryDetails
