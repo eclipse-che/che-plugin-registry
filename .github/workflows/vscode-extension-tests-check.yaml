@@ -16,6 +16,7 @@ on:
     paths:
       - 'che-theia-plugins.yaml'
       - '.github/workflows/vscode-extension-tests-check.yaml'
+      - '.ci/prepare-extension-project.sh'
 jobs:
   extension-tests:
     runs-on: ubuntu-20.04

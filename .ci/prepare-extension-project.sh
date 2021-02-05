@@ -32,9 +32,13 @@ function buildProject() {
     yarn build
 }
 
+function createWorkspace() {
+    chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
+    WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
+    echo "$WORKSPACE_URL"    
+}
+
 findRepositoryDetails
 cloneExtension
 buildProject
-
-chectl --version
-chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml
+createWorkspace
