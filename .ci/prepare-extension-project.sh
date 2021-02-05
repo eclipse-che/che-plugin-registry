@@ -41,7 +41,7 @@ function createWorkspace() {
     kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running
     pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     echo "pods = $pods"
-    while [ "$pods" == 'No resources found.'  ];
+    while [ "$pods" == 'No resources found in eclipse-che namespace.'  ];
     do
         echo "No pod found with che.workspace_id"
         echo "Current available pods are"
