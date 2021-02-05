@@ -84,8 +84,10 @@ jobs:
       - name: Prepare project
         run: |
           sudo pip install yq
+          sudo pip install selenium
           ./.ci/prepare-extension-project.sh
+      - name: Setup selenium
+        uses: browser-actions/setup-geckodriver@latest  
       - name: Open workspace
         run: |
-          sudo pip install selenium
           python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
