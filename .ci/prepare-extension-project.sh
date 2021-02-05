@@ -11,6 +11,8 @@
 
 set -e
 
+export CHE_NAMESPACE="eclipse-che"
+
 function findRepositoryDetails() {
     export YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
     export YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
@@ -38,28 +40,33 @@ function createWorkspace() {
     echo "$WORKSPACE_URL"
 
     echo "-------"
-    pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+    pods=$(kubectl get pod -n $CHE_NAMESPACE -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     echo "$pods"
-    while [ "$pods" == 'No resources found in eclipse-che namespace.'  ];
+    while [ "$pods" == 'No resources found in $CHE_NAMESPACE namespace.'  ];
     do
         echo "Workspace is not ready"
         kubectl get pod -n eclipse-che -l che.workspace_id
         sleep 10
-        pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+        pods=$(kubectl get pod -n $CHE_NAMESPACE -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
 
-    kubectl get pods -n eclipse-che -l che.workspace_id 
+    kubectl get pods -n $CHE_NAMESPACE -l che.workspace_id 
 
-    ### Now we need to wait until we see some arguments in the output of the theia pod
-    ### Once we see this correct output then we can proceed by running cat on the created file
-    ### that lives in the workspace
-    workspace_name=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
-    theia_ide_container_name=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.annotations[]' | grep -P "theia-ide" | tr -d \")
+    ### Find workspace name and theia-ide container
+    WORKSPACE_NAME=$(kubectl get pod -n $CHE_NAMESPACE -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
+    THEIA_IDE_CONTAINER_NAME=$(kubectl get pod -n $CHE_NAMESPACE -l che.workspace_id -o json | jq '.items[0].metadata.annotations[]' | grep -P "theia-ide" | tr -d \")
 
     echo "Workspace name is: "
-    echo "$workspace_name"
+    echo "$WORKSPACE_NAME"
     echo "Theia IDE Container Name is: "
-    echo "$theia_ide_container_name"   
+    echo "$THEIA_IDE_CONTAINER_NAME" 
+
+    ### Copy extension's sources into theia container
+    kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME "${CHE_NAMESPACE}"/"${WORKSPACE_NAME}":/pojects -c $THEIA_IDE_CONTAINER_NAME    
+    ### Check if copy
+    kubectl cp "${CHE_NAMESPACE}"/"${WORKSPACE_NAME}":/pojects/vscode-yaml/package.json /tmp/package.json -c $THEIA_IDE_CONTAINER_NAME    
+    echo "----- Check content of package.json --------"
+    cat /tmp/package.json
 }
 
 findRepositoryDetails
