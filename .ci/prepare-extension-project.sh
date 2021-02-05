@@ -36,20 +36,30 @@ function createWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
-    kubectl get pod -n eclipse-che --field-selector=status.phase==Running
+
     echo "-------"
-    kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running
     pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
-    echo "pods = $pods"
+    echo "$pods"
     while [ "$pods" == 'No resources found in eclipse-che namespace.'  ];
     do
-        echo "No pod found with che.workspace_id"
-        echo "Current available pods are"
-        kubectl get pod -n eclipse-che
+        echo "Workspace is not ready"
         kubectl get pod -n eclipse-che -l che.workspace_id
         sleep 10
         pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
-    done    
+    done
+
+    kubectl get pods -n eclipse-che -l che.workspace_id 
+
+    ### Now we need to wait until we see some arguments in the output of the theia pod
+    ### Once we see this correct output then we can proceed by running cat on the created file
+    ### that lives in the workspace
+    workspace_name=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
+    theia_ide_container_name=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.annotations[]' | grep -P "theia-ide" | tr -d \")
+
+    echo "Workspace name is: "
+    echo "$workspace_name"
+    echo "Theia IDE Container Name is: "
+    echo "$theia_ide_container_name"   
 }
 
 findRepositoryDetails
