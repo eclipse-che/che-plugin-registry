@@ -392,7 +392,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
   - repository:
       url: 'https://github.com/windup/rhamt-vscode-extension'
-      revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
+      revision: 1fa3f3f9f597aa7d370da61dafbe5dc7899aba52
     aliases:
       - redhat/mta
     sidecar:
@@ -404,7 +404,7 @@ plugins:
       mountSources: true
       volumeMounts:
         - name: mta-vscode
-          path: /home/theia/home/theia/redhat.rhamt-vscode-extension
+          path: /home/theia/mta/redhat.mta-vscode-extension
       endpoints:
         - name: configuration-endpoint
           public: true
@@ -418,7 +418,7 @@ plugins:
             protocol: http
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
+        https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.61-40.vsix
   - repository:
       url: 'https://github.com/camel-tooling/camel-lsp-client-vscode'
       revision: 0.0.30
