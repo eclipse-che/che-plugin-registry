@@ -83,5 +83,8 @@ jobs:
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
       - name: Prepare project
         run: |
-          sudo pip install yq
           ./.ci/prepare-extension-project.sh
+          sudo pip install yq
+      - name: Open workspace
+        run: |
+          python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"

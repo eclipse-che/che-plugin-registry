@@ -60,16 +60,16 @@ function createWorkspace() {
     echo "$THEIA_IDE_CONTAINER_NAME" 
 
     # Start the python3 selenium script that will connect to the workspace to run tests
-    python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
-    sleep 20
-    cat geckodriver.log
+    # python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
+    # sleep 20
+    # cat geckodriver.log
 
-    ### Copy extension's sources into theia container
-    kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME eclipse-che/"${WORKSPACE_NAME}":/pojects -c $THEIA_IDE_CONTAINER_NAME    
-    ### Check if copy
-    kubectl cp eclipse-che/"${WORKSPACE_NAME}":/pojects/vscode-yaml/package.json /tmp/package.json -c $THEIA_IDE_CONTAINER_NAME    
-    echo "----- Check content of package.json --------"
-    cat /tmp/package.json
+    # ### Copy extension's sources into theia container
+    # kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME eclipse-che/"${WORKSPACE_NAME}":/pojects -c $THEIA_IDE_CONTAINER_NAME    
+    # ### Check if copy
+    # kubectl cp eclipse-che/"${WORKSPACE_NAME}":/pojects/vscode-yaml/package.json /tmp/package.json -c $THEIA_IDE_CONTAINER_NAME    
+    # echo "----- Check content of package.json --------"
+    # cat /tmp/package.json
 }
 
 findRepositoryDetails
