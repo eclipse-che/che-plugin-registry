@@ -87,7 +87,7 @@ editors:
           - exposedPort: 13132
           - exposedPort: 13133
         memoryLimit: "512M"
-        cpuLimit: 1000m
+        cpuLimit: 1500m
         cpuRequest: 100m
     initContainers:
       - name: remote-runtime-injector
