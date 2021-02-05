@@ -36,7 +36,11 @@ function createWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
+    kubectl get pod -n eclipse-che --field-selector=status.phase==Running
+    echo "-------"
+    kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running
     pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+    echo "pods = $pods"
     while [ "$pods" == 'No resources found.'  ];
     do
         echo "No pod found with che.workspace_id"
