@@ -93,4 +93,6 @@ jobs:
       - name: Open workspace
         run: |
           geckodriver --version
-          python3 .ci/language-tests-runner.py
+          pwd
+          ls
+          python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"

@@ -10,7 +10,6 @@
 
 import sys
 import time
-import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -26,10 +25,9 @@ NEW_USER="admin"
 
 browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver")
 wait = WebDriverWait(browser, 30)
-workspaceURL = os.environ.get('WORKSPACE_URL')
 print ("URL is ------------------>")
-print (workspaceURL)
-browser.get(workspaceURL)
+print (sys.argv[1])
+browser.get(sys.argv[1])
 
 wait.until(EC.title_contains('Log in'))
 
