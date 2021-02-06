@@ -25,8 +25,8 @@ NEW_USER="admin"
 
 browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver")
 wait = WebDriverWait(browser, 30)
-print "URL is ------------------> "
-print sys.argv[1]
+print ("URL is ------------------>")
+print (sys.argv[1])
 browser.get(sys.argv[1])
 
 wait.until(EC.title_contains('Log in'))
