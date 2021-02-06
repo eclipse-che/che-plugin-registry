@@ -23,7 +23,7 @@ options.headless = True
 
 NEW_USER="admin"
 
-browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver")
+browser = webdriver.Firefox(options=options, executable_path=sys.argv[2])
 wait = WebDriverWait(browser, 30)
 browser.get(sys.argv[1])
 

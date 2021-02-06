@@ -91,4 +91,5 @@ jobs:
       - name: Open workspace
         run: |
           geckodriver --version
-          python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
+          python3 .ci/language-tests-runner.py "${WORKSPACE_URL}" "$(which geckodriver)"
+          env | grep GECKODRIVER
