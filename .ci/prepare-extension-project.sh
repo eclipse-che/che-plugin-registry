@@ -34,7 +34,7 @@ function buildProject() {
 
 function createWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
-    WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
+    export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
 
     echo "-------"
