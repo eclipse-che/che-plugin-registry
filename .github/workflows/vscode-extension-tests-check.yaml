@@ -89,10 +89,4 @@ jobs:
           tar -xvzf geckodriver*
           chmod +x geckodriver
           sudo mv geckodriver /usr/local/bin/
-          ./.ci/prepare-extension-project.sh  
-      - name: Open workspace
-        run: |
-          geckodriver --version
-          pwd
-          ls
-          python3 .ci/language-tests-runner.py "${WORKSPACE_URL}"
+          ./.ci/prepare-extension-project.sh
