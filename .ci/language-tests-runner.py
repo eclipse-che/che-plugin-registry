@@ -26,7 +26,7 @@ options.add_argument('--ignore-certificate-errors')
 
 NEW_USER="admin"
 
-browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver", log_path='/tmp/selenium.log')
+browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver", service_log_path='/tmp/selenium.log')
 wait = WebDriverWait(browser, 30)
 print ("URL is ------------------>")
 print (sys.argv[1])
@@ -45,6 +45,9 @@ login_btn_elem.click()
 
 browser.implicitly_wait(20)
 browser.get(sys.argv[1])
+
+browser.refresh()
+browser.implicitly_wait(20)
 
 #Waiting for theia itself to be loaded so that tests will be run
 wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-application-iframe')))
