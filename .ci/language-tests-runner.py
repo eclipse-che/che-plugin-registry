@@ -19,7 +19,7 @@ from selenium.webdriver.common.by import By
 
 options = Options()
 options.log.level = "trace"
-options.headless = True
+options.headless = False
 
 NEW_USER="admin"
 
@@ -41,7 +41,6 @@ login_btn_elem = browser.find_element_by_id('kc-login')
 login_btn_elem.click()
 
 browser.implicitly_wait(20)
-print (browser.page_source)
 browser.get(sys.argv[1])
 
 #Waiting for theia itself to be loaded so that tests will be run
