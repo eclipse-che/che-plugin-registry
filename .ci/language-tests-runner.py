@@ -19,7 +19,10 @@ from selenium.webdriver.common.by import By
 
 options = Options()
 options.log.level = "trace"
-options.headless = False
+options.headless = True
+options.add_argument('--disable-web-security')
+options.add_argument('--allow-running-insecure-content')
+options.add_argument('--ignore-certificate-errors')
 
 NEW_USER="admin"
 
