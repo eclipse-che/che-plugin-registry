@@ -42,6 +42,7 @@ password_elem.send_keys(NEW_USER)
 
 login_btn_elem = browser.find_element_by_id('kc-login')
 login_btn_elem.click()
+print ("After login ------------------>")
 
 browser.implicitly_wait(20)
 browser.get(sys.argv[1])
