@@ -90,3 +90,4 @@ jobs:
           chmod +x geckodriver
           sudo mv geckodriver /usr/local/bin/
           ./.ci/prepare-extension-project.sh
+          cat ./.ci/geckodriver.log
