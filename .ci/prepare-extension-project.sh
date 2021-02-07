@@ -61,8 +61,8 @@ function createWorkspace() {
 
     # Start the python3 selenium script that will connect to the workspace to run tests
     python3 $GITHUB_WORKSPACE/.ci/language-tests-runner.py "${WORKSPACE_URL}"
-    sleep 25
-    
+    sleep 20
+
     cat $GITHUB_WORKSPACE/.ci/geckodriver.log
 
     # ### Copy extension's sources into theia container
