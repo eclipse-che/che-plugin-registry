@@ -84,7 +84,6 @@ jobs:
       - name: Prepare project
         run: |
           sudo pip install yq
-          sudo pip install selenium
           sudo apt-get install -y firefox
           wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
           tar -xvzf geckodriver*
