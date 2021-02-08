@@ -44,15 +44,22 @@ login_btn_elem = browser.find_element_by_id('kc-login')
 login_btn_elem.click()
 print ("After login ------------------>")
 
-browser.implicitly_wait(20)
+browser.implicitly_wait(30)
 browser.get(sys.argv[1])
-
-browser.refresh()
-browser.implicitly_wait(20)
 
 try:
     #Waiting for theia itself to be loaded so that tests will be run
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-application-iframe')))
     wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="theia-app-shell"]')))
+    print ("Page source ------------------>")
+    print(browser.page_source)
+    fileToWrite = open("page_source.html", "w")
+    fileToWrite.write(browser.page_source)
+    fileToWrite.close()
 except Exception as e:
+    print ("Page source ------------------>")
+    print(browser.page_source)
+    fileToWrite = open("page_source.html", "w")
+    fileToWrite.write(browser.page_source)
+    fileToWrite.close()
     print("Loading took too much time!", e)
