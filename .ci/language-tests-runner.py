@@ -47,12 +47,15 @@ print ("After login ------------------>")
 browser.implicitly_wait(20)
 browser.get(sys.argv[1])
 time.sleep(20)
+browser.get(sys.argv[1])
 
 try:
     #Waiting for theia itself to be loaded so that tests will be run
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-application-iframe')))
     wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="theia-app-shell"]')))
 except Exception as e:
+    browser.get(sys.argv[1])
+    time.sleep(20)
     print ("Page source ------------------>")
     print(browser.page_source)
     fileToWrite = open("page_source.html", "w")
