@@ -27,7 +27,7 @@ options.add_argument('--ignore-certificate-errors')
 NEW_USER="admin"
 
 browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver", service_log_path='/tmp/selenium.log')
-wait = WebDriverWait(browser, 50)
+wait = WebDriverWait(browser, 80)
 print ("URL is ------------------>")
 print (sys.argv[1])
 browser.get(sys.argv[1])
