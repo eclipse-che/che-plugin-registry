@@ -46,6 +46,7 @@ print ("After login ------------------>")
 
 browser.implicitly_wait(20)
 browser.get(sys.argv[1])
+time.sleep(20)
 
 try:
     #Waiting for theia itself to be loaded so that tests will be run
