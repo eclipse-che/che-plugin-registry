@@ -53,6 +53,7 @@ try:
     #Waiting for theia itself to be loaded so that tests will be run
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-iframe')))
     wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="theia-app-shell"]')))
-    print("----- Completed!")
+    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="/projects:/projects/test.log"]')))
+    print("----- Workspace is started -----")
 except Exception as e:
     print("Loading took too much time!", e)
