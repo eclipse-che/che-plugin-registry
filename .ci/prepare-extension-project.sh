@@ -39,21 +39,21 @@ function createWorkspace() {
     echo "$WORKSPACE_URL"
 
     echo "-------"
-    pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+    pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     echo "$pods"
-    while [ "$pods" == 'No resources found in eclipse-che namespace.'  ];
+    while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         echo "Workspace is not ready"
-        kubectl get pod -n eclipse-che -l che.workspace_id
+        kubectl get pod -n admin-che -l che.workspace_id
         sleep 10
-        pods=$(kubectl get pod -n eclipse-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
+        pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
 
-    kubectl get pods -n eclipse-che -l che.workspace_id 
+    kubectl get pods -n admin-che -l che.workspace_id 
 
     ### Find workspace name and theia-ide container
-    WORKSPACE_NAME=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
-    THEIA_IDE_CONTAINER_NAME=$(kubectl get pod -n eclipse-che -l che.workspace_id -o json | jq '.items[0].metadata.annotations[]' | grep -P "theia-ide" | tr -d \")
+    WORKSPACE_NAME=$(kubectl get pod -n admin-che -l che.workspace_id -o json | jq '.items[0].metadata.name' | tr -d \")
+    THEIA_IDE_CONTAINER_NAME=$(kubectl get pod -n admin-che -l che.workspace_id -o json | jq '.items[0].metadata.annotations[]' | grep -P "theia-ide" | tr -d \")
 
     echo "Workspace name is: "
     echo "$WORKSPACE_NAME"
