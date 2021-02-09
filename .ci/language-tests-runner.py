@@ -27,7 +27,7 @@ options.add_argument('--ignore-certificate-errors')
 NEW_USER="admin"
 
 browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver", service_log_path='/tmp/selenium.log')
-wait = WebDriverWait(browser, 70)
+wait = WebDriverWait(browser, 20)
 print ("URL is ------------------>")
 print (sys.argv[1])
 browser.get(sys.argv[1])
@@ -49,14 +49,8 @@ browser.get(sys.argv[1])
 
 try:
     #Waiting for theia itself to be loaded so that tests will be run
-    wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-application-iframe')))
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'ide-iframe')))
     wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="theia-app-shell"]')))
+    print("----- Completed!")
 except Exception as e:
-    browser.get(sys.argv[1])
-    time.sleep(20)
-    print ("Page source ------------------>")
-    print(browser.page_source)
-    fileToWrite = open("page_source.html", "w")
-    fileToWrite.write(browser.page_source)
-    fileToWrite.close()
     print("Loading took too much time!", e)
