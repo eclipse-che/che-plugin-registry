@@ -17,6 +17,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 
+print ("Start script ------------------>")
+
 options = Options()
 options.log.level = "trace"
 options.headless = True
@@ -26,7 +28,7 @@ options.add_argument('--ignore-certificate-errors')
 
 NEW_USER="admin"
 
-browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver", service_log_path='/tmp/selenium.log')
+browser = webdriver.Firefox(options=options, executable_path="/usr/local/bin/geckodriver")
 wait = WebDriverWait(browser, 30)
 print ("URL is ------------------>")
 print (sys.argv[1])
