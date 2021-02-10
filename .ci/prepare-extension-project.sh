@@ -66,7 +66,7 @@ function prepareWorkspace() {
 
 function copySources() {
     ### Copy extension's sources into theia container
-    kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/pojects -c $THEIA_IDE_CONTAINER_NAME    
+    kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/projects -c $THEIA_IDE_CONTAINER_NAME    
     ### Check if copy
     kubectl cp admin-che/"${WORKSPACE_NAME}":/pojects/vscode-yaml/package.json /tmp/package.json -c $THEIA_IDE_CONTAINER_NAME    
     echo "----- Check content of package.json --------"
