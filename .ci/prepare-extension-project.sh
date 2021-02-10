@@ -11,6 +11,15 @@
 
 set -e
 
+function installDeps() {
+    sudo pip install yq
+    sudo pip install selenium
+    wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
+    tar -xvzf geckodriver*
+    chmod +x geckodriver
+    sudo mv geckodriver /usr/local/bin/
+}
+
 function findRepositoryDetails() {
     export YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
     export YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
@@ -37,7 +46,6 @@ function prepareWorkspace() {
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
 
-    echo "-------"
     pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     echo "$pods"
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
@@ -93,6 +101,7 @@ function checkTestsLogs() {
     fi
 }
 
+installDeps
 findRepositoryDetails
 cloneExtension
 buildProject

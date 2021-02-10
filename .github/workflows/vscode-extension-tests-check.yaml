@@ -29,31 +29,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        name: Cache yarn dependencies
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - uses: actions/cache@v2
-        name: Cache vsix dependencies
-        id: download-unpacked-cache
-        with:
-          path: | 
-            /tmp/che-plugin-registry/download-folder
-            /tmp/che-plugin-registry/unpack-folder
-          key: download-unpacked-cache-${{ hashFiles('**/che-theia-plugins.yaml') }}
-          restore-keys: |
-            download-unpacked-cache-
-
       - name: image-build
         run: |
           export SKIP_FORMAT=true
@@ -81,12 +56,6 @@ jobs:
         with:
           # use custom image built by this PR
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
-      - name: Prepare project
+      - name: Run VSCode extension's tests
         run: |
-          sudo pip install yq
-          sudo pip install selenium
-          wget https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz
-          tar -xvzf geckodriver*
-          chmod +x geckodriver
-          sudo mv geckodriver /usr/local/bin/
           ./.ci/prepare-extension-project.sh
