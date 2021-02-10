@@ -80,18 +80,18 @@ function copySources() {
 }
 
 function checkTestLogs() {
-    kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log ./test.log -c "${THEIA_IDE_CONTAINER_NAME}"
+    kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log /tmp/test.log -c "${THEIA_IDE_CONTAINER_NAME}"
     while ! grep -q "TESTS PASSED" test.log && ! grep -q "TESTS FAILED" test.log;
     do
         echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
         sleep 10
-        kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log ./test.log -c "${THEIA_IDE_CONTAINER_NAME}"
+        kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log /tmp/test.log -c "${THEIA_IDE_CONTAINER_NAME}"
     done
 
-    cat test.log
+    cat /tmp/test.log
 
     # Test to see if the tests failed
-    if grep -q "TESTS FAILED" test.log;
+    if grep -q "TESTS FAILED" /tmp/test.log;
     then
         exit 1
     fi
