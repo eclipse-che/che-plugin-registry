@@ -77,7 +77,7 @@ function copySources() {
 
 function checkTestsLogs() {
     kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log /tmp/test.log -c "${THEIA_IDE_CONTAINER_NAME}"
-    while ! grep -q "TESTS PASSED" test.log && ! grep -q "TESTS FAILED" test.log;
+    while ! grep -q "TESTS PASSED" /tmp/test.log && ! grep -q "TESTS FAILED" /tmp/test.log;
     do
         echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
         sleep 10
