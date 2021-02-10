@@ -59,13 +59,15 @@ function prepareWorkspace() {
     echo "Theia IDE Container Name is: "
     echo "$THEIA_IDE_CONTAINER_NAME" 
 
+    ### Copy extension's sources into theia container
+    copySources
+
     # Start the python3 selenium script that will connect to the workspace to run tests
     python3 $GITHUB_WORKSPACE/.ci/language-tests-runner.py "${WORKSPACE_URL}"
     sleep 20
 }
 
 function copySources() {
-    ### Copy extension's sources into theia container
     echo "----- Copy Sources --------"    
     kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/projects -c $THEIA_IDE_CONTAINER_NAME
     echo "----- Sources were copied --------"    
@@ -99,4 +101,4 @@ findRepositoryDetails
 cloneExtension
 buildProject
 prepareWorkspace
-copySources
+checkTestLogs
