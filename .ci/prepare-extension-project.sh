@@ -32,7 +32,7 @@ function buildProject() {
     yarn build
 }
 
-function createWorkspace() {
+function prepareWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
@@ -62,7 +62,9 @@ function createWorkspace() {
     # Start the python3 selenium script that will connect to the workspace to run tests
     python3 $GITHUB_WORKSPACE/.ci/language-tests-runner.py "${WORKSPACE_URL}"
     sleep 20
+}
 
+function copySources() {
     ### Copy extension's sources into theia container
     kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/pojects -c $THEIA_IDE_CONTAINER_NAME    
     ### Check if copy
@@ -71,7 +73,26 @@ function createWorkspace() {
     cat /tmp/package.json
 }
 
+function checkTestLogs() {
+    kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log ./test.log -c "${THEIA_IDE_CONTAINER_NAME}"
+    while ! grep -q "TESTS PASSED" test.log && ! grep -q "TESTS FAILED" test.log;
+    do
+        echo "Waiting for log file to be created and have TESTS FAILED or TESTS PASSED"
+        sleep 10
+        kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log ./test.log -c "${THEIA_IDE_CONTAINER_NAME}"
+    done
+
+    cat test.log
+
+    # Test to see if the tests failed
+    if grep -q "TESTS FAILED" test.log;
+    then
+        exit 1
+    fi
+}
+
 findRepositoryDetails
 cloneExtension
 buildProject
-createWorkspace
+prepareWorkspace
+copySources
