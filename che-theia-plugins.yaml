@@ -448,7 +448,7 @@ plugins:
       url: https://github.com/redhat-developer/vscode-didact
       revision: 0.3.1
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/releases/vscode-didact/vscode-didact-0.3.1-166.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.1-166.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
       revision: 1.2.1
