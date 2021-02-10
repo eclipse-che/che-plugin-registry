@@ -73,13 +73,9 @@ function copySources() {
     echo "----- Sources were copied --------"    
     ### Check if copy
     kubectl exec ${WORKSPACE_NAME} -n admin-che -c $THEIA_IDE_CONTAINER_NAME -- ls -la /projects
-    echo "----- Copy package.json --------"
-    kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/vscode-yaml/package.json /tmp/package.json -c $THEIA_IDE_CONTAINER_NAME    
-    echo "----- Check content of package.json --------"
-    cat /tmp/package.json
 }
 
-function checkTestLogs() {
+function checkTestsLogs() {
     kubectl cp admin-che/"${WORKSPACE_NAME}":/projects/test.log /tmp/test.log -c "${THEIA_IDE_CONTAINER_NAME}"
     while ! grep -q "TESTS PASSED" test.log && ! grep -q "TESTS FAILED" test.log;
     do
@@ -101,4 +97,4 @@ findRepositoryDetails
 cloneExtension
 buildProject
 prepareWorkspace
-checkTestLogs
+checkTestsLogs
