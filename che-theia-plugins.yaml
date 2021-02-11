@@ -554,7 +554,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-cobol'
-      revision: 0.16.1
+      revision: 0.17.1
       directory: clients/cobol-lsp-vscode-extension/
     sidecar:
       directory: java
@@ -568,7 +568,7 @@ plugins:
           value: /projects/.zowe
     extensions:
       - >-
-        https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.16.1/file/BroadcomMFD.cobol-language-support-0.16.1.vsix
+        https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.17.1/file/BroadcomMFD.cobol-language-support-0.17.1.vsix
   - id: broadcommfd/debugger-for-mainframe/1.4.0
     isClosedSource: true
     repository:
