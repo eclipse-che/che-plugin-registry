@@ -1,0 +1,25 @@
+schemaVersion: "2.0.0"
+metadata:
+  name: "Che Machine Exec"
+components:
+- name: terminal
+  attributes:
+    "app.kubernetes.io/name": che-terminal.eclipse.org
+    "app.kubernetes.io/part-of": che.eclipse.org
+    "app.kubernetes.io/component": terminal
+  container:
+    image: "quay.io/eclipse/che-machine-exec:nightly"
+    command: ['/go/bin/che-machine-exec']
+    args:
+      - '--url'
+      - '0.0.0.0:4444'
+      - '--pod-selector'
+      - controller.devfile.io/workspace_id=$(DEVWORKSPACE_ID)
+    endpoints:
+      - name: "che-mach-exec"
+        exposure: public
+        targetPort: 4444
+        protocol: ws
+        secure: false
+        attributes:
+          type: terminal

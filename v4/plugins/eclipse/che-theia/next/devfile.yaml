@@ -1,0 +1,80 @@
+schemaVersion: "2.0.0"
+metadata:
+  name: "Che Theia"
+components:
+- name: remote-runtime-injector
+  attributes:
+    "app.kubernetes.io/part-of": che-theia.eclipse.org
+    "app.kubernetes.io/component": bootstrapper
+  container:
+    image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.20.0"
+    volumeMounts:
+      - path: "/remote-endpoint"
+        name: remote-endpoint
+    env:
+      - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+        value: /remote-endpoint/plugin-remote-endpoint
+      - name: REMOTE_ENDPOINT_VOLUME_NAME
+        value: remote-endpoint
+- name: theia-ide
+  attributes:
+    "app.kubernetes.io/name": che-theia.eclipse.org
+    "app.kubernetes.io/part-of": che.eclipse.org
+    "app.kubernetes.io/component": editor
+  container:
+    image: "quay.io/eclipse/che-theia:next"
+    env:
+      - name: THEIA_PLUGINS
+        value: local-dir:///plugins
+      - name: HOSTED_PLUGIN_HOSTNAME
+        value: 0.0.0.0
+      - name: HOSTED_PLUGIN_PORT
+        value: "3130"
+      - name: THEIA_HOST
+        value: 0.0.0.0
+    volumeMounts:
+      - path: "/plugins"
+        name: plugins
+    mountSources: true
+    memoryLimit: "512M"
+    endpoints:
+      - name: "theia"
+        exposure: public
+        targetPort: 3100
+        secure: false
+        protocol: http
+        attributes:
+          type: ide
+      - name: "webviews"
+        exposure: public
+        targetPort: 3100
+        protocol: http
+        secure: false
+        attributes:
+          type: webview
+          unique: "true"
+      - name: "theia-dev"
+        exposure: public
+        targetPort: 3130
+        protocol: http
+        attributes:
+          type: ide-dev
+      - name: "theia-redir-1"
+        exposure: public
+        targetPort: 13131
+        protocol: http
+      - name: "theia-redir-2"
+        exposure: public
+        targetPort: 13132
+        protocol: http
+      - name: "theia-redir-3"
+        exposure: public
+        targetPort: 13133
+        protocol: http
+commands:
+- id: inject-theia-in-remote-sidecar
+  apply:
+    component: remote-runtime-injector
+events:
+  preStart:
+    - inject-theia-in-remote-sidecar

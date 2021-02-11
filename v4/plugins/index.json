@@ -1,0 +1,26 @@
+[
+    {
+        "id": "eclipse/che-theia/next",
+        "description": "Eclipse Theia",
+        "displayName": "theia-ide",
+        "links": {
+            "self": "/v4/plugins/eclipse/che-theia/next"
+        },
+        "name": "che-theia",
+        "publisher": "eclipse",
+        "type": "Che Editor",
+        "version": "latest"
+    },
+    {
+        "id": "eclipse/che-machine-exe/nightly",
+        "description": "Che Plug-in with che-machine-exec service to provide creation terminal or tasks for Eclipse Che workspace containers.",
+        "displayName": "Che machine-exec Service",
+        "links": {
+            "self": "/v4/plugins/eclipse/che-machine-exec/nightly"
+        },
+        "name": "che-machine-exec-plugin",
+        "publisher": "eclipse",
+        "type": "Che Plugin",
+        "version": "nightly"
+    }
+]
