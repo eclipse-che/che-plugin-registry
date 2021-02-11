@@ -70,7 +70,7 @@ helm upgrade --install che-plugin-registry \
     ./kubernetes/che-plugin-registry/
 ```
 
-You can use the following command to uninstall it.
+You can use the following command to uninstall it:
 
 ```bash
 helm delete --purge che-plugin-registry
