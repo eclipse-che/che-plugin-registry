@@ -71,6 +71,10 @@ components:
         exposure: public
         targetPort: 13133
         protocol: http
+- name: plugins
+  volume: {}
+- name: remote-endpoint
+  volume: {}
 commands:
 - id: inject-theia-in-remote-sidecar
   apply:
