@@ -586,10 +586,10 @@ plugins:
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm'
       directory: clients/vscode-hlasmplugin/
-      revision: 0.11.1
+      revision: 0.12.0
     extensions:
       - >-
-        https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
+        https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.12.0/hlasm-language-support-0.12.0-alpine.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
       revision: 0.11.1
