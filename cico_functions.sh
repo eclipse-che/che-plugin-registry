@@ -82,10 +82,12 @@ function build_and_push() {
     DOCKERFILE="rhel.Dockerfile"
     ORGANIZATION="openshiftio"
     IMAGE="rhel-che-plugin-registry"
+    UPSTREAM_IMAGE="quay.io/eclipse/che-plugin-registry:7.26.0-rhel"
   else
     DOCKERFILE="Dockerfile"
     ORGANIZATION="eclipse"
     IMAGE="che-plugin-registry"
+    UPSTREAM_IMAGE="quay.io/eclipse/che-plugin-registry:7.26.0"
     # For pushing to quay.io 'eclipse' organization we need to use different credentials
     QUAY_USERNAME=${QUAY_ECLIPSE_CHE_USERNAME}
     QUAY_PASSWORD=${QUAY_ECLIPSE_CHE_PASSWORD}
@@ -99,7 +101,9 @@ function build_and_push() {
 
   # Let's build and push image to 'quay.io' using git commit hash as tag first
   set_git_commit_tag
-  docker build -t ${IMAGE} -f ./build/dockerfiles/${DOCKERFILE} --target registry . | cat
+  docker pull ${UPSTREAM_IMAGE}
+  docker tag ${UPSTREAM_IMAGE} ${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}
+
   tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
   echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
 
