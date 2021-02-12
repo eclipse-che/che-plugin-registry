@@ -27,4 +27,9 @@ if [ "${USER_ID}" -ne 0 ] && command -v sudo >/dev/null 2>&1 && sudo -n true > /
     sudo chown "${USER_ID}:${GROUP_ID}" /projects
 fi
 
+echo 'Setting "java.semanticHighlighting.enabled" to false'
+mkdir -p "${CHE_PROJECTS_ROOT}"/.theia ;
+[ ! -f "${CHE_PROJECTS_ROOT}/.theia/settings.json" ] && echo "{}" > "${CHE_PROJECTS_ROOT}/.theia/settings.json"
+jq '. += {"java.semanticHighlighting.enabled":false}' "${CHE_PROJECTS_ROOT}/.theia/settings.json" > /tmp/temp.json && mv /tmp/temp.json "${CHE_PROJECTS_ROOT}/.theia/settings.json"
+
 exec "$@"
