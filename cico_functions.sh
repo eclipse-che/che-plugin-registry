@@ -103,13 +103,13 @@ function build_and_push() {
   set_git_commit_tag
   docker pull ${UPSTREAM_IMAGE}
   docker tag ${UPSTREAM_IMAGE} ${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}
-
-  tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}"
+  docker push ${REGISTRY}/${ORGANIZATION}/${IMAGE}:${GIT_COMMIT_TAG}
   echo "CICO: '${GIT_COMMIT_TAG}' version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
 
   # If additional tag is set (e.g. "nightly"), let's tag the image accordingly and also push to 'quay.io'
   if [ -n "${TAG}" ]; then
-    tag_push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}"
+    docker tag ${UPSTREAM_IMAGE} ${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}
+    docker push "${REGISTRY}/${ORGANIZATION}/${IMAGE}:${TAG}"
     echo "CICO: '${TAG}'  version of images pushed to '${REGISTRY}/${ORGANIZATION}' organization"
   fi
 }
