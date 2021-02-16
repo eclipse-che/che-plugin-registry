@@ -694,6 +694,18 @@ plugins:
       - >-
         https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix
   - repository:
+      url: https://github.com/castwide/vscode-solargraph
+      revision: 212e76d
+    sidecar:
+      directory: ruby
+      name: vscode-ruby
+      memoryLimit: "1500Mi"
+      volumeMounts:
+        - name: solargraph
+          path: "/home/theia/.solargraph"
+    extensions:
+      - https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
+  - repository:
       url: 'https://github.com/zowe/vscode-extension-for-zowe'
       revision: v1.11.0
     sidecar:
