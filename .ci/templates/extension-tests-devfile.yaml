@@ -1,0 +1,9 @@
+apiVersion: 1.0.0
+metadata:
+  name: test-vscode-extension
+components:
+  - type: chePlugin
+    reference: '@'
+  - id: eclipse/che-theia/next
+    memoryLimit: 1024Mi
+    type: cheEditor

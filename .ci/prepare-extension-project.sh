@@ -36,13 +36,33 @@ function cloneExtension() {
     git status
 }
 
+function prepareDevfile() {
+    # Get Extension's ID
+    EXTENSION_ID=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '[.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO)] | .[1] | .id' che-theia-plugins.yaml)
+    if [ "$EXTENSION_ID" == null ];
+        then
+        # If ID wasn't set in che-theia-plugins.yaml let's parse package.json and build ID as publisher/name 
+        echo ----- In I
+        PACKAGE_JSON=/tmp/projects/$YAML_EXTENSION_PROJECT_NAME/package.json
+        EXTENSION_NAME=$(yq -r '.name' $PACKAGE_JSON)
+        EXTENSION_PUBLISHER=$(yq -r '.publisher' $PACKAGE_JSON)
+        EXTENSION_ID=$EXTENSION_PUBLISHER/$EXTENSION_NAME
+    fi
+    EXTENSION_ID=$EXTENSION_ID/latest
+    echo Extension ID is ---------> $EXTENSION_ID
+
+    # Add Extension's ID into devfile template
+    sed -i -e "s|@|$EXTENSION_ID|g" ./ci/templates/extension-tests-devfile.yaml
+    cat ./ci/templates/extension-tests-devfile.yaml
+}
+
 function buildProject() {
     yarn install
     yarn build
 }
 
 function prepareWorkspace() {
-    chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
+    chectl workspace:create --start --devfile=./ci/templates/extension-tests-devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
 
@@ -105,5 +125,6 @@ installDeps
 findRepositoryDetails
 cloneExtension
 buildProject
+prepareDevfile
 prepareWorkspace
 checkTestsLogs
