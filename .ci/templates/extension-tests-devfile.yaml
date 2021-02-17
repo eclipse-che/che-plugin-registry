@@ -3,7 +3,7 @@ metadata:
   name: test-vscode-extension
 components:
   - type: chePlugin
-    reference: '@'
+    id: '@'
   - id: eclipse/che-theia/next
     memoryLimit: 1024Mi
     type: cheEditor
