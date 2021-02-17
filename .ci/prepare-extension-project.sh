@@ -42,17 +42,16 @@ function prepareDevfile() {
     if [ "$EXTENSION_ID" == null ];
         then
         # If ID wasn't set in che-theia-plugins.yaml let's parse package.json and build ID as publisher/name 
-        echo ----- In I
         PACKAGE_JSON=/tmp/projects/$YAML_EXTENSION_PROJECT_NAME/package.json
         EXTENSION_NAME=$(yq -r '.name' $PACKAGE_JSON)
         EXTENSION_PUBLISHER=$(yq -r '.publisher' $PACKAGE_JSON)
         EXTENSION_ID=$EXTENSION_PUBLISHER/$EXTENSION_NAME
     fi
-    echo ----- Out
     EXTENSION_ID=$EXTENSION_ID/latest
 
     # Add Extension's ID into devfile template
     sed -i -e "s|@|$EXTENSION_ID|g" $GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml
+    echo --- Devfile ---
     cat $GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml
 }
 
@@ -62,7 +61,7 @@ function buildProject() {
 }
 
 function prepareWorkspace() {
-    chectl workspace:create --start --devfile=./ci/templates/extension-tests-devfile.yaml > workspace_url.txt
+    chectl workspace:create --start --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
 
