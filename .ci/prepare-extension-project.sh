@@ -51,7 +51,7 @@ function prepareDevfile() {
 
     # Add Extension's ID into devfile template
     sed -i -e "s|@|$EXTENSION_ID|g" $GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml
-    echo ---- Devfile ----
+    echo ----- Devfile -----
     cat $GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml
 }
 
