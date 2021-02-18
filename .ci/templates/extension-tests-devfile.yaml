@@ -2,7 +2,7 @@ apiVersion: 1.0.0
 metadata:
   name: test-vscode-extension
 projects:
-  - name: helloworld-test-sample
+  - name: che-vscode-extension-tests
     source:
       location: 'https://github.com/svor/che-vscode-extension-tests.git'
       type: git
