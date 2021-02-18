@@ -70,7 +70,7 @@ function prepareWorkspace() {
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         chectl workspace:list
-        WORKSPACE=chectl workspace:list | grep -oh "\w*workspace\w*"
+        WORKSPACE=$(chectl workspace:list | grep -oh "\w*workspace\w*")
         echo WORKSPACE
         chectl workspace:logs --workspace=$WORKSPACE --namespace=admin-che --directory=/tmp
         echo "-------------------------------------------"
