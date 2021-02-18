@@ -70,6 +70,12 @@ function prepareWorkspace() {
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         chectl workspace:list
+        WORKSPACE=chectl workspace:list | grep -oh "\w*workspace\w*"
+        echo WORKSPACE
+        chectl workspace:logs --workspace=$WORKSPACE --namespace=admin-che --directory=/tmp
+        echo "-------------------------------------------"
+        cat /tmp/admin-che/events.txt
+        echo "-------------------------------------------"
         echo "Workspace is not ready"
         kubectl get pod -n admin-che
         kubectl get pod -n eclipse-che
