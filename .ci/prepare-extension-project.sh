@@ -71,8 +71,8 @@ function prepareWorkspace() {
     do
         chectl workspace:list
         WORKSPACE=$(chectl workspace:list | grep -oh "\w*workspace\w*")
-        echo WORKSPACE
-        chectl workspace:logs --workspace=$WORKSPACE --namespace=admin-che --directory=/tmp > /dev/null
+        echo $WORKSPACE
+        chectl workspace:logs --workspace=$WORKSPACE --namespace=admin-che --directory=/tmp > /dev/null & echo "-------------------------------------------"
         echo "-------------------------------------------"
         cat /tmp/admin-che/events.txt
         echo "-------------------------------------------"
