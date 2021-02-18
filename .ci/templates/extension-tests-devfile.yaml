@@ -1,9 +1,9 @@
 apiVersion: 1.0.0
 metadata:
-  name: vscode-test-sample
+  name: test-vscode-extension
 components:
   - type: chePlugin
-    id: @
+    id: 'redhat/vscode-yaml/latest'
   - type: chePlugin
     reference: 'https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/meta.yaml'
   - id: eclipse/che-theia/next

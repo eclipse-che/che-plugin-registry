@@ -71,7 +71,6 @@ function prepareWorkspace() {
     do
         echo "Workspace is not ready"
         kubectl get pod -n admin-che
-        kubectl get pod -n eclipse-che
         sleep 10
         pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
