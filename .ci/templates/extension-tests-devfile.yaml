@@ -1,15 +1,9 @@
 apiVersion: 1.0.0
 metadata:
   name: test-vscode-extension
-projects:
-  - name: che-vscode-extension-tests
-    source:
-      location: 'https://github.com/svor/che-vscode-extension-tests.git'
-      type: git
-      branch: main
 components:
   - type: chePlugin
-    id: '@'
+    id: 'redhat/vscode-yaml/latest'
   - type: chePlugin
     reference: 'https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/meta.yaml'
   - id: eclipse/che-theia/next
