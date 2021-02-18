@@ -1,6 +1,6 @@
 apiVersion: 1.0.0
 metadata:
-  name: che-helloworld-test-sample
+  generateName: che-helloworld-test-sample-
 components:
   - type: chePlugin
     id: @

@@ -63,6 +63,8 @@ function buildProject() {
 function prepareWorkspace() {
     # chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     chectl workspace:create --start --chenamespace=eclipse-che --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
+    sleep 20
+    chectl workspace:create --start --chenamespace=eclipse-che --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
 
@@ -70,12 +72,6 @@ function prepareWorkspace() {
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         chectl workspace:list
-        WORKSPACE=$(chectl workspace:list | grep -oh "\w*workspace\w*")
-        echo $WORKSPACE
-        chectl workspace:logs --workspace=$WORKSPACE --namespace=admin-che --directory=/tmp > /dev/null & echo "-------------------------------------------"
-        echo "-------------------------------------------"
-        cat /tmp/admin-che/events.txt
-        echo "-------------------------------------------"
         echo "Workspace is not ready"
         kubectl get pod -n admin-che
         kubectl get pod -n eclipse-che
