@@ -70,9 +70,9 @@ function prepareWorkspace() {
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         echo "Workspace is not ready"
-        kubectl get pod -n admin-che -l che.workspace_id
         kubectl get pod -n admin-che
-        sleep 5
+        kubectl get pod -n eclipse-che
+        sleep 10
         pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
 
