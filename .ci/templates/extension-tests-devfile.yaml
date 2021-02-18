@@ -1,11 +1,27 @@
 apiVersion: 1.0.0
 metadata:
-  generateName: che-helloworld-test-sample-
+  name: che-helloworld-test-sample
+projects:
+  - name: helloworld-test-sample
+    source:
+      location: 'https://github.com/svor/helloworld-test-sample.git'
+      type: git
+      branch: main
 components:
-  - type: chePlugin
-    id: @
+  - mountSources: true
+    memoryLimit: 3Gi
+    type: dockerimage
+    image: 'quay.io/eclipse/che-theia-dev:next'
+    alias: che-dev
   - type: chePlugin
     reference: 'https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/meta.yaml'
   - id: eclipse/che-theia/next
     memoryLimit: 1024Mi
     type: cheEditor
+commands:
+  - name: 1. Build extension
+    actions:
+    - type: exec
+      component: che-dev
+      command: yarn && yarn compile
+      workdir: ${CHE_PROJECTS_ROOT}/helloworld-test-sample
