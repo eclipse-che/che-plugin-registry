@@ -67,7 +67,6 @@ function prepareWorkspace() {
     echo "$WORKSPACE_URL"
 
     pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
-    echo "$pods"
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
     do
         echo "Workspace is not ready"
