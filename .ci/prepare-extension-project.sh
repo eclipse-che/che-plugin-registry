@@ -62,7 +62,7 @@ function buildProject() {
 
 function prepareWorkspace() {
     # chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
-    chectl workspace:create --start --chenamespace=eclipse-che --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
+    chectl workspace:create --start --chenamespace=eclipse-che --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml
     sleep 20
     chectl workspace:create --start --chenamespace=eclipse-che --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
