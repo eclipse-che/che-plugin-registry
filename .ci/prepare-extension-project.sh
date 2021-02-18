@@ -61,6 +61,7 @@ function buildProject() {
 }
 
 function prepareWorkspace() {
+    # chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     chectl workspace:create --start --devfile=$GITHUB_WORKSPACE/.ci/templates/extension-tests-devfile.yaml > workspace_url.txt
     export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     echo "$WORKSPACE_URL"
@@ -71,6 +72,7 @@ function prepareWorkspace() {
     do
         echo "Workspace is not ready"
         kubectl get pod -n admin-che
+        kubectl get pod -n eclipse-che
         sleep 10
         pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
