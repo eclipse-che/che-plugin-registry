@@ -14,10 +14,3 @@ components:
   - id: eclipse/che-theia/next
     memoryLimit: 1024Mi
     type: cheEditor
-commands:
-  - name: 1. Build extension
-    actions:
-    - type: exec
-      component: che-dev
-      command: yarn && yarn compile
-      workdir: ${CHE_PROJECTS_ROOT}/helloworld-test-sample

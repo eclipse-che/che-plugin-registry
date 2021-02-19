@@ -21,14 +21,20 @@ function installDeps() {
 }
 
 function findRepositoryDetails() {
-    export YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
-    export YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
+    YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
+    export YAML_EXTENSION_REPO
+
+    YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
+    export YAML_EXTENSION_REPO_REVISION
+
     echo $YAML_EXTENSION_REPO
     echo $YAML_EXTENSION_REPO_REVISION
 }
 
 function cloneExtension() {
-    export YAML_EXTENSION_PROJECT_NAME=$(basename "$YAML_EXTENSION_REPO")
+    YAML_EXTENSION_PROJECT_NAME=$(basename "$YAML_EXTENSION_REPO")
+    export YAML_EXTENSION_PROJECT_NAME
+
     mkdir -p /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
     git clone ${YAML_EXTENSION_REPO} /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
     cd /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
@@ -62,7 +68,8 @@ function buildProject() {
 
 function prepareWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
-    export WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
+    WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
+    export WORKSPACE_URL
     echo "$WORKSPACE_URL"
 
     pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
