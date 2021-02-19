@@ -23,7 +23,7 @@ function installDeps() {
 }
 
 function getExtensionRepo() {
-    CHANGED_LINES=$(git diff -U0 "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
+    CHANGED_LINES=$(git diff -U0 HEAD "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
     echo "$CHANGED_LINES"
     for number in $CHANGED_LINES
     do
@@ -45,18 +45,6 @@ function getExtensionRepo() {
     echo --- REVISION ---
     echo Extension revision is $EXTENSION_REVISION
 }
-
-# function findRepositoryDetails() {
-#     # TODO need to detect which extension repo should be used
-#     EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
-#     export EXTENSION_REPO
-
-#     EXTENSION_REVISION=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '.plugins[] | select(.repository.url == $EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
-#     export EXTENSION_REVISION
-
-#     echo Extension repo is $EXTENSION_REPO
-#     echo Extension revision is $EXTENSION_REVISION
-# }
 
 function cloneExtension() {
     EXTENSION_PROJECT_NAME=$(basename "$EXTENSION_REPO")
@@ -153,8 +141,8 @@ function checkTestsLogs() {
     fi
 }
 
-installDeps
 getExtensionRepo
+installDeps
 cloneExtension
 buildProject
 prepareDevfile
