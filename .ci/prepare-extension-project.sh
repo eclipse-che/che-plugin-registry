@@ -23,9 +23,8 @@ function installDeps() {
 }
 
 function getExtensionRepo() {
-    CHANGED_LINES=$(git diff -U0 HEAD "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
+    CHANGED_LINES=$(git diff -U0 "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
     echo "$CHANGED_LINES"
-    cat che-theia-plugins.yaml
     for number in $CHANGED_LINES
     do
         LINE=$(sed "$number!d" che-theia-plugins.yaml | xargs)
@@ -34,6 +33,7 @@ function getExtensionRepo() {
         if [[ $LINE == *"revision:"* ]]; then
             break
         fi
+        exit 0
     done
     EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
     EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
