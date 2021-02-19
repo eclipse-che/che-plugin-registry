@@ -27,8 +27,8 @@ function findRepositoryDetails() {
     EXTENSION_REPO_REVISION=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '.plugins[] | select(.repository.url == $EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
     export EXTENSION_REPO_REVISION
 
-    echo $EXTENSION_REPO
-    echo $EXTENSION_REPO_REVISION
+    echo Extension repo is $EXTENSION_REPO
+    echo Extension revision is $EXTENSION_REPO_REVISION
 }
 
 function cloneExtension() {
@@ -70,7 +70,7 @@ function prepareWorkspace() {
     chectl workspace:create --start --devfile=https://raw.githubusercontent.com/svor/che-vscode-extension-tests/main/devfile.yaml > workspace_url.txt
     WORKSPACE_URL=$(tail -n 1 workspace_url.txt)
     export WORKSPACE_URL
-    echo "$WORKSPACE_URL"
+    echo Workspace URL is $WORKSPACE_URL
 
     pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     while [ "$pods" == 'No resources found in admin-che namespace.'  ];
@@ -78,7 +78,6 @@ function prepareWorkspace() {
         chectl workspace:list
         echo "Workspace is not ready"
         kubectl get pod -n admin-che
-        kubectl get pod -n eclipse-che
         sleep 10
         pods=$(kubectl get pod -n admin-che -l che.workspace_id --field-selector=status.phase==Running 2>&1)
     done
