@@ -22,17 +22,38 @@ function installDeps() {
     sudo mv geckodriver /usr/local/bin/
 }
 
-function findRepositoryDetails() {
-    # TODO need to detect which extension repo should be used
-    EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
+function getExtensionRepo() {
+    CHANGED_LINES=$(git diff -U0 HEAD "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
+    echo "$CHANGED_LINES"
+    for number in $CHANGED_LINES
+    do
+        LINE=$(sed "$number!d" che-theia-plugins.yaml | xargs)
+        if [[ $LINE == *"revision:"* ]]; then
+            break
+        fi
+    done
+    EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
+    EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
     export EXTENSION_REPO
+    export EXTENSION_REVISION
 
-    EXTENSION_REPO_REVISION=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '.plugins[] | select(.repository.url == $EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
-    export EXTENSION_REPO_REVISION
-
+    echo --- REPOSITORY ---
     echo Extension repo is $EXTENSION_REPO
-    echo Extension revision is $EXTENSION_REPO_REVISION
+    echo --- REVISION ---
+    echo Extension revision is $EXTENSION_REVISION
 }
+
+# function findRepositoryDetails() {
+#     # TODO need to detect which extension repo should be used
+#     EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
+#     export EXTENSION_REPO
+
+#     EXTENSION_REVISION=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '.plugins[] | select(.repository.url == $EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
+#     export EXTENSION_REVISION
+
+#     echo Extension repo is $EXTENSION_REPO
+#     echo Extension revision is $EXTENSION_REVISION
+# }
 
 function cloneExtension() {
     EXTENSION_PROJECT_NAME=$(basename "$EXTENSION_REPO")
@@ -41,7 +62,7 @@ function cloneExtension() {
     mkdir -p /tmp/projects/$EXTENSION_PROJECT_NAME
     git clone ${EXTENSION_REPO} /tmp/projects/$EXTENSION_PROJECT_NAME
     cd /tmp/projects/$EXTENSION_PROJECT_NAME
-    git checkout tags/${EXTENSION_REPO_REVISION}
+    git checkout tags/${EXTENSION_REVISION}
     git status
 }
 
@@ -130,7 +151,7 @@ function checkTestsLogs() {
 }
 
 installDeps
-findRepositoryDetails
+getExtensionRepo
 cloneExtension
 buildProject
 prepareDevfile
