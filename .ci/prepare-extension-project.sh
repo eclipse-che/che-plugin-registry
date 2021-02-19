@@ -23,6 +23,7 @@ function installDeps() {
 }
 
 function findRepositoryDetails() {
+    # TODO need to detect which extension repo should be used
     EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
     export EXTENSION_REPO
 
