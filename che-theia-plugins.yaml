@@ -612,7 +612,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix
   - repository:
       url: 'https://github.com/timonwong/vscode-shellcheck'
-      revision: v0.10.1
+      revision: v0.13.2
     sidecar:
       directory: shellcheck
       name: shellcheck
@@ -621,7 +621,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://open-vsx.org/api/timonwong/shellcheck/0.10.1/file/timonwong.shellcheck-0.10.1.vsix
+        https://github.com/timonwong/vscode-shellcheck/releases/download/v0.13.2/shellcheck-0.13.2.vsix
   - repository:
       url: 'https://github.com/pizzafactory-contorno/vscode-libra-move/'
       revision: v0.0.10-ddc0d3d
