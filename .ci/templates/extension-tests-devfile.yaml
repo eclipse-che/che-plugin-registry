@@ -1,6 +1,6 @@
 apiVersion: 1.0.0
 metadata:
-  name: che-helloworld-test-sample
+  name: extension-test-sample
 components:
   - mountSources: true
     memoryLimit: 3Gi

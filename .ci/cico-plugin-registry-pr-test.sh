@@ -94,7 +94,7 @@ echo "Theia IDE Container Name is: "
 echo "$theia_ide_container_name"
 
 # Start the python3 selenium script that will connect to the workspace to run tests
-python3 .ci/language-tests-runner.py "${workspace_url}"
+python3 .ci/tests-runner.py "${workspace_url}"
 sleep 20
 cat geckodriver.log
 

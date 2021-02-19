@@ -21,34 +21,34 @@ function installDeps() {
 }
 
 function findRepositoryDetails() {
-    YAML_EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
-    export YAML_EXTENSION_REPO
+    EXTENSION_REPO="https://github.com/redhat-developer/vscode-yaml"
+    export EXTENSION_REPO
 
-    YAML_EXTENSION_REPO_REVISION=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
-    export YAML_EXTENSION_REPO_REVISION
+    EXTENSION_REPO_REVISION=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '.plugins[] | select(.repository.url == $EXTENSION_REPO) | .repository.revision' che-theia-plugins.yaml)
+    export EXTENSION_REPO_REVISION
 
-    echo $YAML_EXTENSION_REPO
-    echo $YAML_EXTENSION_REPO_REVISION
+    echo $EXTENSION_REPO
+    echo $EXTENSION_REPO_REVISION
 }
 
 function cloneExtension() {
-    YAML_EXTENSION_PROJECT_NAME=$(basename "$YAML_EXTENSION_REPO")
-    export YAML_EXTENSION_PROJECT_NAME
+    EXTENSION_PROJECT_NAME=$(basename "$EXTENSION_REPO")
+    export EXTENSION_PROJECT_NAME
 
-    mkdir -p /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
-    git clone ${YAML_EXTENSION_REPO} /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
-    cd /tmp/projects/$YAML_EXTENSION_PROJECT_NAME
-    git checkout tags/${YAML_EXTENSION_REPO_REVISION}
+    mkdir -p /tmp/projects/$EXTENSION_PROJECT_NAME
+    git clone ${EXTENSION_REPO} /tmp/projects/$EXTENSION_PROJECT_NAME
+    cd /tmp/projects/$EXTENSION_PROJECT_NAME
+    git checkout tags/${EXTENSION_REPO_REVISION}
     git status
 }
 
 function prepareDevfile() {
     # Get Extension's ID
-    EXTENSION_ID=$(yq -r --arg YAML_EXTENSION_REPO "$YAML_EXTENSION_REPO" '[.plugins[] | select(.repository.url == $YAML_EXTENSION_REPO)] | .[1] | .id' $GITHUB_WORKSPACE/che-theia-plugins.yaml)
+    EXTENSION_ID=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '[.plugins[] | select(.repository.url == $EXTENSION_REPO)] | .[1] | .id' $GITHUB_WORKSPACE/che-theia-plugins.yaml)
     if [ "$EXTENSION_ID" == null ];
         then
         # If ID wasn't set in che-theia-plugins.yaml let's parse package.json and build ID as publisher/name 
-        PACKAGE_JSON=/tmp/projects/$YAML_EXTENSION_PROJECT_NAME/package.json
+        PACKAGE_JSON=/tmp/projects/$EXTENSION_PROJECT_NAME/package.json
         EXTENSION_NAME=$(yq -r '.name' $PACKAGE_JSON)
         EXTENSION_PUBLISHER=$(yq -r '.publisher' $PACKAGE_JSON)
         EXTENSION_ID=$EXTENSION_PUBLISHER/$EXTENSION_NAME
@@ -98,13 +98,12 @@ function prepareWorkspace() {
     copySources
 
     # Start the python3 selenium script that will connect to the workspace to run tests
-    python3 $GITHUB_WORKSPACE/.ci/language-tests-runner.py "${WORKSPACE_URL}"
-    sleep 20
+    python3 $GITHUB_WORKSPACE/.ci/tests-runner.py "${WORKSPACE_URL}"
 }
 
 function copySources() {
     echo "----- Copy Sources --------"    
-    kubectl cp /tmp/projects/$YAML_EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/projects -c $THEIA_IDE_CONTAINER_NAME
+    kubectl cp /tmp/projects/$EXTENSION_PROJECT_NAME admin-che/"${WORKSPACE_NAME}":/projects -c $THEIA_IDE_CONTAINER_NAME
     echo "----- Sources were copied --------"    
     ### Check if copy
     kubectl exec ${WORKSPACE_NAME} -n admin-che -c $THEIA_IDE_CONTAINER_NAME -- ls -la /projects
