@@ -312,7 +312,7 @@ plugins:
           path: /home/theia/.kube
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-openshift-tools/vscode-openshift-connector-0.2.0.vsix
+        https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.0/file/redhat.vscode-openshift-connector-0.2.0.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.1.0.vsix
       - >-
@@ -392,7 +392,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
   - repository:
       url: 'https://github.com/windup/rhamt-vscode-extension'
-      revision: ece569b2a6222ee6b2a16ede8241e4817a574ea4
+      revision: a03a76e372f70deaa68743e400a4e7e18e5eb221
     aliases:
       - redhat/mta
     sidecar:
@@ -404,7 +404,7 @@ plugins:
       mountSources: true
       volumeMounts:
         - name: mta-vscode
-          path: /home/theia/home/theia/redhat.rhamt-vscode-extension
+          path: /home/theia/mta/redhat.mta-vscode-extension
       endpoints:
         - name: configuration-endpoint
           public: true
@@ -418,7 +418,7 @@ plugins:
             protocol: http
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/adapters/stable/mta-vscode-extension/mta-vscode-extension-0.0.56-769.vsix
+        https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix
   - repository:
       url: 'https://github.com/camel-tooling/camel-lsp-client-vscode'
       revision: 0.0.30
@@ -445,11 +445,10 @@ plugins:
       - >-
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix
   - repository:
-      url: 'https://github.com/redhat-developer/vscode-didact'
-      revision: 0.1.18
+      url: https://github.com/redhat-developer/vscode-didact
+      revision: 0.3.1
     extensions:
-      - >-
-        https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.1.18-47.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.1-166.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
       revision: 1.2.1
@@ -555,7 +554,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-cobol'
-      revision: 0.16.1
+      revision: 0.17.1
       directory: clients/cobol-lsp-vscode-extension/
     sidecar:
       directory: java
@@ -569,7 +568,7 @@ plugins:
           value: /projects/.zowe
     extensions:
       - >-
-        https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.16.1/file/BroadcomMFD.cobol-language-support-0.16.1.vsix
+        https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.17.1/file/BroadcomMFD.cobol-language-support-0.17.1.vsix
   - id: broadcommfd/debugger-for-mainframe/1.4.0
     isClosedSource: true
     repository:
@@ -587,10 +586,10 @@ plugins:
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm'
       directory: clients/vscode-hlasmplugin/
-      revision: 0.11.1
+      revision: 0.12.0
     extensions:
       - >-
-        https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.11.1/hlasm-language-support-0.11.1-alpine.vsix
+        https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.12.0/hlasm-language-support-0.12.0-alpine.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
       revision: 0.11.1
@@ -613,7 +612,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix
   - repository:
       url: 'https://github.com/timonwong/vscode-shellcheck'
-      revision: v0.10.1
+      revision: v0.13.2
     sidecar:
       directory: shellcheck
       name: shellcheck
@@ -622,7 +621,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://open-vsx.org/api/timonwong/shellcheck/0.10.1/file/timonwong.shellcheck-0.10.1.vsix
+        https://github.com/timonwong/vscode-shellcheck/releases/download/v0.13.2/shellcheck-0.13.2.vsix
   - repository:
       url: 'https://github.com/pizzafactory-contorno/vscode-libra-move/'
       revision: v0.0.10-ddc0d3d
@@ -694,6 +693,18 @@ plugins:
     extensions:
       - >-
         https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix
+  - repository:
+      url: https://github.com/castwide/vscode-solargraph
+      revision: 212e76d
+    sidecar:
+      directory: ruby
+      name: vscode-ruby
+      memoryLimit: "1500Mi"
+      volumeMounts:
+        - name: solargraph
+          path: "/home/theia/.solargraph"
+    extensions:
+      - https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
   - repository:
       url: 'https://github.com/zowe/vscode-extension-for-zowe'
       revision: v1.11.0

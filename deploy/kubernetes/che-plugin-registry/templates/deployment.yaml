@@ -10,15 +10,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: che-plugin-registry
   name: che-plugin-registry
+  labels:
+    app: che
+    component: plugin-registry
+    app.kubernetes.io/name: che
+    app.kubernetes.io/component: plugin-registry
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: che-plugin-registry
+      app: che
+      component: plugin-registry
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -27,7 +34,13 @@ spec:
   template:
     metadata:
       labels:
-        app: che-plugin-registry
+        app: che
+        component: plugin-registry
+        app.kubernetes.io/name: che
+        app.kubernetes.io/component: plugin-registry
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     spec:
       containers:
       - image: {{ .Values.chePluginRegistryImage }}
@@ -51,11 +64,17 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 10
           timeoutSeconds: 3
+        securityContext:
+          capabilities:
+            drop:
+              - ALL
         resources:
           limits:
+            cpu: 500m
             memory: {{ .Values.chePluginRegistryMemoryLimit }}
           requests:
-            memory: 256Mi
+            cpu: 100m
+            memory: 32Mi
         envFrom:
         - configMapRef:
             name: che-plugin-registry

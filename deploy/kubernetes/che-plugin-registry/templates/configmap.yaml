@@ -11,6 +11,12 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: che-plugin-registry
+  labels:
+    app.kubernetes.io/name: che
+    app.kubernetes.io/component: plugin-registry
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 data:
 {{- with .Values.chePluginSidecarOverride -}}
   {{- with .url }}
