@@ -25,9 +25,12 @@ function installDeps() {
 function getExtensionRepo() {
     CHANGED_LINES=$(git diff -U0 HEAD "$(git merge-base HEAD origin/master)" che-theia-plugins.yaml | grep @@ | cut -d ' ' -f 3 | sed 's/+//')
     echo "$CHANGED_LINES"
+    cat che-theia-plugins.yaml
     for number in $CHANGED_LINES
     do
         LINE=$(sed "$number!d" che-theia-plugins.yaml | xargs)
+        echo --- LINE --- 
+        echo "$LINE"
         if [[ $LINE == *"revision:"* ]]; then
             break
         fi
