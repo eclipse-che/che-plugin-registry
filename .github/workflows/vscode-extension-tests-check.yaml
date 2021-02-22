@@ -34,7 +34,7 @@ jobs:
           ./.ci/get-changed-plugin.sh
       - name: Set outputs
         run: |
-          if [[$EXTENSION_REPO == "null"]]; then
+          if ["$EXTENSION_REPO" == null]; then
             echo "::set-output name=run_jobs::false"
           else
             echo "::set-output name=run_jobs::true"
