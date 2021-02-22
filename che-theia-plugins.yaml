@@ -326,7 +326,7 @@ plugins:
     sidecar:
       directory: node
       name: vscode-yaml
-      memoryLimit: 512Mi
+      memoryLimit: 524Mi
       cpuLimit: 500m
       cpuRequest: 30m
     extensions:
