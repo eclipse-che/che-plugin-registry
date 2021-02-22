@@ -37,10 +37,6 @@ function getExtensionRepoAndRevision() {
     echo Extension repo is "$EXTENSION_REPO"
     echo --- REVISION ---
     echo Extension revision is "$EXTENSION_REVISION"
-    if [ "$EXTENSION_REPO" == null ];
-    then
-        exit 0
-    fi
 }
 
 getExtensionRepoAndRevision

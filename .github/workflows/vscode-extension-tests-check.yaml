@@ -18,7 +18,29 @@ on:
       - '.github/workflows/vscode-extension-tests-check.yaml'
       - '.ci/prepare-extension-project.sh'
 jobs:
-  extension-tests:
+  job01:
+    name: Get changes
+    runs-on: ubuntu-latest
+    outputs:
+      run_rest_jobs: ${{ steps.set_output.outputs.run_jobs }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref:  ${{ github.event.pull_request.head.sha }}
+      - name: Get changed plug-in
+        run: |
+          ./.ci/get-changed-plugin.sh
+          if [[$EXTENSION_REPO == "null"]]; then
+            echo "::set-output name=run_jobs::false"
+          else
+            echo "::set-output name=run_jobs::true"
+          fi 
+  job02:
+    name: Run tests
+    needs: [job01]
+    if: needs.job01.outputs.run_rest_jobs == 'true'
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
