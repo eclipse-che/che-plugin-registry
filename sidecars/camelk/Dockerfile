@@ -9,7 +9,7 @@
 #   Red Hat, Inc. - initial API and implementation
 FROM quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.1-6144144
 
-ENV KAMEL_VERSION 1.2.1
+ENV KAMEL_VERSION 1.3.1
 
 RUN curl -L https://github.com/apache/camel-k/releases/download/v${KAMEL_VERSION}/camel-k-client-${KAMEL_VERSION}-linux-64bit.tar.gz | tar -C /usr/local/bin -xz \
     && chmod +x /usr/local/bin/kamel
