@@ -28,7 +28,7 @@ jobs:
           ref:  ${{ github.event.pull_request.head.sha }}
       - name: Get changed plug-in
         run: |
-          ./.ci/prepare-extension-project.sh
+          ./.ci/get-changed-plugin.sh
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
