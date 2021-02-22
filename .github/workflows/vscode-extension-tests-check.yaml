@@ -33,7 +33,6 @@ jobs:
         with:
           node-version: '12'
       - name: image-build
-        if: env.EXTENSION_REPO != 'null'
         run: |
           export SKIP_FORMAT=true
           export SKIP_LINT=true

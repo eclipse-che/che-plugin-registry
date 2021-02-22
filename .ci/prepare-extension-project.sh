@@ -117,7 +117,6 @@ function checkTestsLogs() {
 }
 
 installDeps
-getExtensionRepo
 cloneExtension
 buildProject
 prepareDevfile
