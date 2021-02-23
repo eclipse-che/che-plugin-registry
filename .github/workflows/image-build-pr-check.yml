@@ -9,15 +9,7 @@
 
 name: Image Build PR check
 
-on:
-  pull_request:
-    paths:
-      - '**/*'
-      - '!sidecars/**'
-  push:
-    paths:
-      - '**/*'
-      - '!sidecars/**'
+on: [push, pull_request]
 
 jobs:
   image-build:
