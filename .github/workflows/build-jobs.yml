@@ -26,14 +26,48 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
-
+      
+      - name: Prepare
+        id: prep
+        run: |
+          SHORT_SHA1=$(git rev-parse --short HEAD)
+          echo ::set-output name=short_sha1::${SHORT_SHA1}
+          VERSION=$(head -n 1 VERSION)
+          echo ::set-output name=version::${VERSION}
+          PLATFORMS=$(cat PLATFORMS)
+          echo ::set-output name=platforms::${PLATFORMS}
+          IMAGE=che-plugin-registry
+          echo ::set-output name=image::${IMAGE}
+      
+      - name: "Set up QEMU"
+        uses: docker/setup-qemu-action@v1
+      
+      - name: "Set up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+      
       - name: Login to quay.io
         uses: docker/login-action@v1
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
-
+      
+      - name: Login to docker.io
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          
+      - name: Generating output-folder using yarn
+        run: |
+          echo "Update yarn dependencies..."
+          yarn
+          echo "Build tooling..."
+          yarn --cwd "$(pwd)/tools/build" build
+          echo "Generate artifacts..."
+          eval node "${NODE_BUILD_OPTIONS}" tools/build/lib/entrypoint.js --output-folder:"$(pwd)/output" ${BUILD_FLAGS}
+          
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -46,7 +80,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - uses: actions/cache@v2
         name: Cache vsix dependencies
         id: download-unpacked-cache
@@ -57,15 +90,12 @@ jobs:
           key: download-unpacked-cache-${{ hashFiles('**/che-theia-plugins.yaml') }}
           restore-keys: |
             download-unpacked-cache-
-
-      - name: image-build
-        run: |
-          docker pull quay.io/eclipse/che-plugin-registry:nightly
-          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag nightly
-
-      - name: push plugin registry image
-        run: |
-          SHORT_SHA1=$(git rev-parse --short HEAD)
-          docker tag quay.io/eclipse/che-plugin-registry:nightly quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
-          docker push quay.io/eclipse/che-plugin-registry:nightly
-          docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+      
+      - name: "Build and push"
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./build/dockerfiles/Dockerfile
+          platforms: ${{  steps.prep.outputs.platforms }}
+          tags:  quay.io/eclipse/${{ steps.prep.outputs.image }}:${{ steps.prep.outputs.version }},quay.io/eclipse/${{ steps.prep.outputs.image }}:${{ steps.prep.outputs.short_sha1 }}
+          push: true 
