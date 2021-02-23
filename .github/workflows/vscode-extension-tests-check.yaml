@@ -79,4 +79,6 @@ jobs:
           ./.ci/get-changed-plugin.sh
       - name: Run VSCode extension's tests
         run: |
+          ./.ci/get-changed-plugin.sh &&
+          source ~/.bashrc &
           ./.ci/prepare-extension-project.sh
