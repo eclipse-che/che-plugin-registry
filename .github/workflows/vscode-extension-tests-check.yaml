@@ -34,7 +34,7 @@ jobs:
           ./.ci/get-changed-plugin.sh &&
           env | grep EXTENSION_REPO &&
           source ~/.bashrc &&
-          echo "-----1 $EXTENSION_REPO" &&
+          echo "----- $EXTENSION_REPO" &&
           echo "::set-output name=status::${EXTENSION_REPO}"
   extension-tests:
     runs-on: ubuntu-20.04
