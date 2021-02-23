@@ -38,7 +38,7 @@ function getExtensionRepoAndRevision() {
     echo --- REVISION ---
     echo Extension revision is "$EXTENSION_REVISION"
     echo "export EXTENSION_REPO=${EXTENSION_REPO}" > ~/.bashrc
-    echo "export EXTENSION_REVISION=${EXTENSION_REVISION}" > ~/.bashrc
 }
 
 getExtensionRepoAndRevision
+source ~/.bashrc
