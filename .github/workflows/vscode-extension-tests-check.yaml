@@ -54,7 +54,6 @@ jobs:
           export SKIP_TEST=true
           docker pull quay.io/eclipse/che-plugin-registry:nightly
           BUILDER=docker ./build.sh --tag happy-path 
-
           # save locally built image
           docker save -o docker-image.tar quay.io/eclipse/che-plugin-registry:happy-path
       - name: Start minikube
