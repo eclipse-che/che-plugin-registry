@@ -18,10 +18,10 @@ on:
       - '.github/workflows/vscode-extension-tests-check.yaml'
       - '.ci/prepare-extension-project.sh'
 jobs:
-  get-changes:
+  job1:
     runs-on: ubuntu-20.04
     outputs:
-      changed-repo: ${{ steps.changes.outputs.repo }}
+      job-status: ${{ steps.step2.outputs.status }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,15 +29,16 @@ jobs:
           fetch-depth: 0
           ref:  ${{ github.event.pull_request.head.sha }}
       - name: Get changed plug-in
-        id: changes
+        id: step2
         run: |
           ./.ci/get-changed-plugin.sh &&
           source ~/.bashrc &&
-          echo "::set-output name=repo::${EXTENSION_REPO}"
+          echo "-----1 $EXTENSION_REPO" &&
+          echo "::set-output name=status::${EXTENSION_REPO}"
   extension-tests:
     runs-on: ubuntu-20.04
-    needs: get-changes
-    if: needs.get-changes.outputs.changed-repo != 'null' 
+    needs: job1
+    if: needs.job1.outputs.job-status != 'null' 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
