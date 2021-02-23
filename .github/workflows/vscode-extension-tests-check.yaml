@@ -18,8 +18,10 @@ on:
       - '.github/workflows/vscode-extension-tests-check.yaml'
       - '.ci/prepare-extension-project.sh'
 jobs:
-  extension-tests:
+  get-changes:
     runs-on: ubuntu-20.04
+    outputs:
+      changed-repo: ${{ steps.changes.outputs.repo }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,8 +29,21 @@ jobs:
           fetch-depth: 0
           ref:  ${{ github.event.pull_request.head.sha }}
       - name: Get changed plug-in
+        id: changes
         run: |
-          ./.ci/get-changed-plugin.sh
+          ./.ci/get-changed-plugin.sh &&
+          source ~/.bashrc &&
+          echo "::set-output name=repo::${EXTENSION_REPO}"
+  extension-tests:
+    runs-on: ubuntu-20.04
+    needs: get-changes
+    if: needs.get-changes.outputs.changed-repo != 'null' 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref:  ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -59,6 +74,9 @@ jobs:
         with:
           # use custom image built by this PR
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
+      - name: Get changes
+        run: |
+          ./.ci/get-changed-plugin.sh
       - name: Run VSCode extension's tests
         run: |
           ./.ci/prepare-extension-project.sh
