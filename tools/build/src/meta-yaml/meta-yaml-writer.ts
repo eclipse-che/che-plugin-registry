@@ -16,6 +16,7 @@ import * as path from 'path';
 import { inject, injectable, named } from 'inversify';
 
 import { MetaYamlPluginInfo } from './meta-yaml-plugin-info';
+import { MetaYamlToDevfileYaml } from '../devfile/meta-yaml-to-devfile-yaml';
 
 @injectable()
 export class MetaYamlWriter {
@@ -26,6 +27,9 @@ export class MetaYamlWriter {
   @inject('boolean')
   @named('EMBED_VSIX')
   private embedVsix: boolean;
+
+  @inject(MetaYamlToDevfileYaml)
+  private metaYamlToDevfileYaml: MetaYamlToDevfileYaml;
 
   public static readonly DEFAULT_ICON = '/v3/images/eclipse-che-logo.png';
 
@@ -155,9 +159,14 @@ export class MetaYamlWriter {
             metaYamlPluginGenerated.push(generated);
 
             const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
-
             await fs.ensureDir(path.dirname(pluginPath));
             promises.push(fs.writeFile(pluginPath, yamlString));
+            const devfileYaml = this.metaYamlToDevfileYaml.convert(metaYaml);
+            if (devfileYaml) {
+              const devfilePath = path.resolve(pluginsFolder, computedId, version, 'devfile.yaml');
+              const devfileYamlString = jsyaml.safeDump(devfileYaml, { lineWidth: 120 });
+              promises.push(fs.writeFile(devfilePath, devfileYamlString));
+            }
           })
         );
         return Promise.all(promises);
