@@ -26,7 +26,6 @@ function getExtensionRepoAndRevision() {
         if [[ $LINE == *"revision:"* ]]; then
             break
         fi
-        exit 0
     done
     EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
     EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
