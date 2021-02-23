@@ -32,7 +32,6 @@ jobs:
         id: step2
         run: |
           ./.ci/get-changed-plugin.sh &&
-          env | grep EXTENSION_REPO &&
           source ~/.bashrc &&
           echo "----- $EXTENSION_REPO" &&
           echo "::set-output name=status::${EXTENSION_REPO}"
