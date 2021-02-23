@@ -29,9 +29,6 @@ do
 done
 EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
 EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
-echo --- REPOSITORY ---
-echo Extension repo is "$EXTENSION_REPO"
-echo --- REVISION ---
-echo Extension revision is "$EXTENSION_REVISION"
+
 echo "::set-env name=EXTENSION_REVISION::$EXTENSION_REVISION"
 echo "::set-env name=EXTENSION_REPO::$EXTENSION_REPO"

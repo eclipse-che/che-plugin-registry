@@ -37,7 +37,7 @@ jobs:
         id: save
         run: |
           echo "::set-output name=plugin::${EXTENSION_REPO}"
-  extension-tests:
+  test-extension:
     runs-on: ubuntu-20.04
     needs: check-changes
     if: needs.check-changes.outputs.plugin != '' 
