@@ -29,11 +29,9 @@ do
 done
 EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
 EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
-# export EXTENSION_REPO
-# export EXTENSION_REVISION
 echo --- REPOSITORY ---
 echo Extension repo is "$EXTENSION_REPO"
 echo --- REVISION ---
 echo Extension revision is "$EXTENSION_REVISION"
-echo "export EXTENSION_REPO=${EXTENSION_REPO}" > ~/.bashrc
-echo "export EXTENSION_REVISION=${EXTENSION_REVISION}" > ~/.bashrc
+echo "extension_repo=${EXTENSION_REPO}" >> "$GITHUB_ENV"
+echo "extension_revision=${EXTENSION_REVISION}" >> "$GITHUB_ENV"
