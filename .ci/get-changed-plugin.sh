@@ -33,5 +33,5 @@ echo --- REPOSITORY ---
 echo Extension repo is "$EXTENSION_REPO"
 echo --- REVISION ---
 echo Extension revision is "$EXTENSION_REVISION"
-echo "extension_repo=${EXTENSION_REPO}" >> "$GITHUB_ENV"
-echo "extension_revision=${EXTENSION_REVISION}" >> "$GITHUB_ENV"
+echo "::set-env name=EXTENSION_REVISION::$EXTENSION_REVISION"
+echo "::set-env name=EXTENSION_REPO::$EXTENSION_REPO"

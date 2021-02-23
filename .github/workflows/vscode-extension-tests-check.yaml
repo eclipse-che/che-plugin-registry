@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       plugin: ${{ steps.save.outputs.plugin }}
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,13 +36,13 @@ jobs:
       - name: Save plug-in name
         id: save
         run: |
-          export EXTENSION_REPO=${{ env.extension_repo }} &&
-          echo "AAAA -->> ${EXTENSION_REPO}" &&
           echo "::set-output name=plugin::${EXTENSION_REPO}"
   extension-tests:
     runs-on: ubuntu-20.04
     needs: check-changes
     if: needs.check-changes.outputs.plugin != '' 
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
