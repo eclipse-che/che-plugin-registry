@@ -34,8 +34,9 @@ jobs:
           ./.ci/get-changed-plugin.sh
       - name: Save plug-in name
         run: |
-          echo "::set-output name=plugin::${{ env.extension_repo }}" &&
-          echo "AAAA -->> ${{ env.extension_repo }}"
+          export EXTENSION_REPO=${{ env.extension_repo }} &&
+          echo "AAAA -->> ${EXTENSION_REPO}" &&
+          echo "::set-output name=plugin::${EXTENSION_REPO}"
   extension-tests:
     runs-on: ubuntu-20.04
     needs: check-changes
