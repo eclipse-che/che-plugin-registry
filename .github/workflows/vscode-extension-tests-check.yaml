@@ -18,25 +18,6 @@ on:
       - '.github/workflows/vscode-extension-tests-check.yaml'
       - '.ci/prepare-extension-project.sh'
 jobs:
-  check-changes:
-    runs-on: ubuntu-20.04
-    outputs:
-      plugin: ${{ steps.save.outputs.plugin }}
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref:  ${{ github.event.pull_request.head.sha }}
-      - name: Get changed plug-in
-        run: |
-          ./.ci/get-changed-plugin.sh
-      - name: Save plug-in name
-        id: save
-        run: |
-          echo "::set-output name=plugin::${EXTENSION_REPO}"
   test-extension:
     runs-on: ubuntu-20.04
     needs: check-changes
@@ -49,10 +30,15 @@ jobs:
         with:
           fetch-depth: 0
           ref:  ${{ github.event.pull_request.head.sha }}
+      - name: Get changes
+        run: |
+          ./.ci/get-changed-plugin.sh
       - uses: actions/setup-node@v1
+        if: env.EXTENSION_REPO != ''
         with:
           node-version: '12'
       - name: image-build
+        if: env.EXTENSION_REPO != ''
         run: |
           export SKIP_FORMAT=true
           export SKIP_LINT=true
@@ -62,10 +48,10 @@ jobs:
           # save locally built image
           docker save -o docker-image.tar quay.io/eclipse/che-plugin-registry:happy-path
       - name: Start minikube
-        id: run-minikube
+        if: env.EXTENSION_REPO != ''
         uses: che-incubator/setup-minikube-action@next
       - name: load-image-minikube-registry
-        id: load-image-minikube-registry
+        if: env.EXTENSION_REPO != ''
         run: |
           # load image in the docker registry
           eval $(minikube docker-env)
@@ -73,14 +59,12 @@ jobs:
           # display images
           docker images
       - name: Deploy Eclipse Che
-        id: deploy-che
+        if: env.EXTENSION_REPO != ''
         uses: che-incubator/che-deploy-action@next
         with:
           # use custom image built by this PR
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
-      - name: Get changes
-        run: |
-          ./.ci/get-changed-plugin.sh
       - name: Run VSCode extension's tests
+        if: env.EXTENSION_REPO != ''
         run: |
           ./.ci/prepare-extension-project.sh
