@@ -35,7 +35,7 @@ jobs:
         if: env.EXTENSION_REPO != ''
         with:
           node-version: '12'
-      - name: image-build
+      - name: Build image
         if: env.EXTENSION_REPO != ''
         run: |
           export SKIP_FORMAT=true
@@ -48,7 +48,7 @@ jobs:
       - name: Start minikube
         if: env.EXTENSION_REPO != ''
         uses: che-incubator/setup-minikube-action@next
-      - name: load-image-minikube-registry
+      - name: Load image
         if: env.EXTENSION_REPO != ''
         run: |
           # load image in the docker registry
