@@ -20,8 +20,6 @@ on:
 jobs:
   test-extension:
     runs-on: ubuntu-20.04
-    needs: check-changes
-    if: needs.check-changes.outputs.plugin != '' 
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
