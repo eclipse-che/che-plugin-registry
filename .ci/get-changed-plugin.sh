@@ -32,8 +32,8 @@ if [[ $EXTENSION_REPO == null ]]; then
     EXTENSION_REPO=''
 fi
 
-echo "revision ---> $EXTENSION_REVISION"
-echo "repo ---> $EXTENSION_REPO"
+echo "Extension revision: $EXTENSION_REVISION"
+echo "Extension repository: $EXTENSION_REPO"
 
 echo "::set-env name=EXTENSION_REVISION::$EXTENSION_REVISION"
 echo "::set-env name=EXTENSION_REPO::$EXTENSION_REPO"

@@ -15,8 +15,6 @@ on:
   push:
     paths:
       - 'che-theia-plugins.yaml'
-      - '.github/workflows/vscode-extension-tests-check.yaml'
-      - '.ci/prepare-extension-project.sh'
 jobs:
   test-extension:
     runs-on: ubuntu-20.04
@@ -65,4 +63,4 @@ jobs:
       - name: Run VSCode extension's tests
         if: env.EXTENSION_REPO != ''
         run: |
-          ./.ci/prepare-extension-project.sh
+          ./.ci/run-extension-tests.sh
