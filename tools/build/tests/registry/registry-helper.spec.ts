@@ -17,6 +17,7 @@ import Axios from 'axios';
 import { Container } from 'inversify';
 import { RegistryHelper } from '../../src/registry/registry-helper';
 import { parse } from 'docker-image-name-parser';
+import simpleGit from 'simple-git';
 
 jest.unmock('axios');
 
@@ -116,6 +117,20 @@ describe('Test RegistryHelper', () => {
     const imageName = 'fake-docker-registry.com/dummy-org/dummy-image:next';
     const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
     const updatedImageName = await registryHelper.getImageDigest('fake-docker-registry.com/dummy-org/dummy-image:next');
+    expect(updatedImageName).toBe(imageName);
+    expect(axiosGet).toBeCalledTimes(0);
+    expect(axiosHead).toBeCalledTimes(0);
+  });
+
+  test('basics with current sha1', async () => {
+    const git = simpleGit({ maxConcurrentProcesses: 1 });
+    const sha1 = await git.revparse(['HEAD']);
+    const shortSha1 = sha1.substring(0, 7);
+
+    const axiosGet = jest.spyOn(Axios, 'get') as jest.Mock;
+    const imageName = `fake-docker-registry.com/dummy-org/dummy-image:go-${shortSha1}`;
+    const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
+    const updatedImageName = await registryHelper.getImageDigest(imageName);
     expect(updatedImageName).toBe(imageName);
     expect(axiosGet).toBeCalledTimes(0);
     expect(axiosHead).toBeCalledTimes(0);

@@ -10,8 +10,10 @@
 
 import * as crypto from 'crypto';
 
+import { injectable, postConstruct } from 'inversify';
+import simpleGit, { SimpleGit } from 'simple-git';
+
 import Axios from 'axios';
-import { injectable } from 'inversify';
 import { parse } from 'docker-image-name-parser';
 
 /**
@@ -19,6 +21,20 @@ import { parse } from 'docker-image-name-parser';
  */
 @injectable()
 export class RegistryHelper {
+  private shortSha1: string;
+  private git: SimpleGit;
+
+  constructor() {
+    // reduce concurrent processes
+    this.git = simpleGit({ maxConcurrentProcesses: 1 });
+  }
+
+  @postConstruct()
+  async init(): Promise<void> {
+    const sha1 = await this.git.revparse(['HEAD']);
+    this.shortSha1 = sha1.substring(0, 7);
+  }
+
   async getImageDigest(imageName: string): Promise<string> {
     if (imageName.startsWith('docker.io')) {
       imageName = imageName.replace('docker.io', 'index.docker.io');
@@ -28,6 +44,10 @@ export class RegistryHelper {
 
     // do not use digest on nightlies/next
     if (dockerImageName.tag === 'nightly' || dockerImageName.tag === 'next') {
+      return imageName;
+    }
+    // do not grab digest of an image that is being published (if tag contains the current sha1)
+    if (dockerImageName.tag && dockerImageName.tag.includes(this.shortSha1)) {
       return imageName;
     }
 
