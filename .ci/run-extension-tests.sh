@@ -34,7 +34,7 @@ function cloneExtension() {
 
 function prepareDevfile() {
     # Get Extension's ID
-    EXTENSION_ID=$(yq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '[.plugins[] | select(.repository.url == $EXTENSION_REPO)] | .[1] | .id' "$GITHUB_WORKSPACE"/che-theia-plugins.yaml)
+    EXTENSION_ID=$(jq -r --arg EXTENSION_REPO "$EXTENSION_REPO" '[.plugins[] | select(.repository.url == $EXTENSION_REPO)] | .[1] | .id' "$GITHUB_WORKSPACE"/che-theia-plugins.yaml)
     if [ "$EXTENSION_ID" == null ];
     then
         # If ID wasn't set in che-theia-plugins.yaml let's parse package.json and build ID as publisher/name 
