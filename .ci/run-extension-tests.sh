@@ -53,6 +53,7 @@ function prepareDevfile() {
 
 function buildProject() {
     yarn install
+    yarn compile
     yarn build
 }
 

@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - 'che-theia-plugins.yaml'
+      - 'run-extension-tests.sh'
 jobs:
   test-extension:
     runs-on: ubuntu-20.04
