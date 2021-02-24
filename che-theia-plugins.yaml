@@ -324,7 +324,7 @@ plugins:
       revision: 0.14.0
     featured: true
     sidecar:
-      directory: node1
+      directory: node
       name: vscode-yaml
       memoryLimit: 256Mi
       cpuLimit: 500m
