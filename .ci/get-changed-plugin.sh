@@ -28,6 +28,10 @@ done
 EXTENSION_REVISION=$(echo "$LINE" | cut -d ' ' -f 2)
 EXTENSION_REPO=$(yq -r --arg EXTENSION_REVISION "$EXTENSION_REVISION" '[.plugins[] | select(.repository.revision == $EXTENSION_REVISION )] | .[0] | .repository.url' che-theia-plugins.yaml)
 
+if [[ $EXTENSION_REPO == null ]]; then
+    EXTENSION_REPO=''
+fi
+
 echo "revision ---> $EXTENSION_REVISION"
 echo "repo ---> $EXTENSION_REPO"
 
