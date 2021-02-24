@@ -22,8 +22,6 @@ function installDeps() {
 }
 
 function cloneExtension() {
-    echo "EXTENSION REPO -----> $EXTENSION_REPO"
-    echo "EXTENSION REVISION -----> $EXTENSION_REVISION"
     EXTENSION_PROJECT_NAME=$(basename "$EXTENSION_REPO")
     export EXTENSION_PROJECT_NAME
 

@@ -20,8 +20,6 @@ echo "$CHANGED_LINES"
 for number in $CHANGED_LINES
 do
     LINE=$(sed "$number!d" che-theia-plugins.yaml | xargs)
-    echo --- LINE --- 
-    echo "$LINE"
     if [[ $LINE == *"revision:"* ]]; then
         break
     fi
