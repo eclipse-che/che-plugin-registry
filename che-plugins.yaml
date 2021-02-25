@@ -172,3 +172,14 @@ plugins:
             path: /home/user/.local/share/buildkit
           - name: buildkit-lib
             path: /var/lib/buildkit
+  - repository:
+      url: https://github.com/qjebbs/vscode-plantuml
+      revision: v2.14.0
+    sidecar:
+      directory: plantuml
+      name: vscode-plantuml
+      memoryLimit: '512Mi'
+    aliases:
+      - qjebbs/vscode-plantuml
+    extensions:
+      - https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix
