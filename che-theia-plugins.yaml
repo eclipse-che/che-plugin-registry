@@ -189,7 +189,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
       url: 'https://github.com/camel-tooling/vscode-camelk'
-      revision: 0.0.20
+      revision: 0.0.21
     sidecar:
       directory: camelk
       name: vscode-camelk
@@ -198,7 +198,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.20-83.vsix
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.21-109.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
       - >-
