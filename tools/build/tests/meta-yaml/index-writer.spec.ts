@@ -79,6 +79,7 @@ describe('Test IndexWriter', () => {
     expect(jsonOutput[0].id).toBe('my-publisher/my-che-editor-name/latest');
     expect(jsonOutput[0].description).toBe('my-che-plugin');
     expect(jsonOutput[0].links.self).toBe('/v3/plugins/my-publisher/my-che-editor-name/latest');
+    expect(jsonOutput[0].links.devfile).toBe('/v3/plugins/my-publisher/my-che-editor-name/latest/devfile.yaml');
     expect(jsonOutput[0].name).toBe('my-che-editor-name');
     expect(jsonOutput[0].publisher).toBe('my-publisher');
     expect(jsonOutput[0].type).toBe('Che Editor');
@@ -87,6 +88,7 @@ describe('Test IndexWriter', () => {
     expect(jsonOutput[1].id).toBe('my-publisher/my-che-plugin-name/latest');
     expect(jsonOutput[1].description).toBe('my-che-plugin');
     expect(jsonOutput[1].links.self).toBe('/v3/plugins/my-publisher/my-che-plugin-name/latest');
+    expect(jsonOutput[1].links.devfile).toBe('/v3/plugins/my-publisher/my-che-plugin-name/latest/devfile.yaml');
     expect(jsonOutput[1].name).toBe('my-che-plugin-name');
     expect(jsonOutput[1].publisher).toBe('my-publisher');
     expect(jsonOutput[1].type).toBe('Che Plugin');
@@ -95,6 +97,8 @@ describe('Test IndexWriter', () => {
     expect(jsonOutput[2].id).toBe('my-publisher/my-name/latest');
     expect(jsonOutput[2].description).toBe('my-description');
     expect(jsonOutput[2].links.self).toBe('/v3/plugins/my-publisher/my-name/latest');
+    // no devfile generation for VS Code extensions
+    expect(jsonOutput[2].links.devfile).toBeUndefined();
     expect(jsonOutput[2].name).toBe('my-name');
     expect(jsonOutput[2].publisher).toBe('my-publisher');
     expect(jsonOutput[2].type).toBe('VS Code extension');

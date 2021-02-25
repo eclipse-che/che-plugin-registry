@@ -15,6 +15,7 @@ import * as moment from 'moment';
 
 import { Container } from 'inversify';
 import { MetaYamlPluginInfo } from '../../src/meta-yaml/meta-yaml-plugin-info';
+import { MetaYamlToDevfileYaml } from '../../src/devfile/meta-yaml-to-devfile-yaml';
 import { MetaYamlWriter } from '../../src/meta-yaml/meta-yaml-writer';
 import { VsixInfo } from '../../src/extensions/vsix-info';
 
@@ -27,10 +28,16 @@ describe('Test MetaYamlWriter', () => {
   let embedVsix = false;
   const vsixInfos = new Map<string, VsixInfo>();
 
+  const metaYamlToDevfileYamlConvertMethod = jest.fn();
+  const metaYamlToDevfileYaml = {
+    convert: metaYamlToDevfileYamlConvertMethod,
+  } as any;
+
   function initContainer() {
     container = new Container();
     container.bind('string').toConstantValue('/fake-output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
     container.bind('boolean').toConstantValue(embedVsix).whenTargetNamed('EMBED_VSIX');
+    container.bind(MetaYamlToDevfileYaml).toConstantValue(metaYamlToDevfileYaml);
 
     container.bind(MetaYamlWriter).toSelf().inSingletonScope();
   }
@@ -386,5 +393,61 @@ spec: {}
     );
     // no version written with disable Latest
     expect(fsWriteFileSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('meta yaml --> devfile yaml', async () => {
+    initContainer();
+    metaYamlWriter = container.get(MetaYamlWriter);
+
+    const fsCopyFileSpy = jest.spyOn(fs, 'copyFile');
+    const fsEnsureDirSpy = jest.spyOn(fs, 'ensureDir');
+    const fsWriteFileSpy = jest.spyOn(fs, 'writeFile');
+
+    fsEnsureDirSpy.mockReturnValue();
+    fsCopyFileSpy.mockReturnValue();
+    fsWriteFileSpy.mockReturnValue();
+
+    metaPluginYaml = {
+      apiVersion: 'v2',
+      id: 'foo/bar',
+      publisher: 'foo',
+      name: 'bar',
+      version: '0.0.1',
+      displayName: 'minimal-endpoint',
+      title: 'minimal-endpoint',
+      description: 'minimal-endpoint',
+      icon: '/v3/images/eclipse-che-logo.png',
+      category: 'Other',
+      repository: 'http://fake-repository',
+      firstPublicationDate: '2019-01-01',
+      latestUpdateDate,
+      type: 'Che Plugin',
+      spec: {
+        endpoints: [
+          {
+            name: 'www',
+            targetPort: 3100,
+          },
+        ],
+        containers: [
+          {
+            name: 'minimal-endpoint',
+            image: 'quay.io/minimal-endpoint',
+          },
+        ],
+      },
+    } as any;
+
+    const metaYamlPlugins: MetaYamlPluginInfo[] = [metaPluginYaml];
+    metaYamlToDevfileYamlConvertMethod.mockReturnValue({ devfileFakeResult: 'dummy' });
+    await metaYamlWriter.write(metaYamlPlugins);
+
+    expect(fsWriteFileSpy).toHaveBeenCalledTimes(2);
+
+    expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
+      2,
+      '/fake-output/v3/plugins/foo/bar/latest/devfile.yaml',
+      'devfileFakeResult: dummy\n'
+    );
   });
 });

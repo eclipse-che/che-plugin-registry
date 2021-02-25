@@ -25,6 +25,7 @@ import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
 import { FeaturedWriter } from '../src/featured/featured-writer';
 import { IndexWriter } from '../src/meta-yaml/index-writer';
 import { InversifyBinding } from '../src/inversify-binding';
+import { MetaYamlToDevfileYaml } from '../src/devfile/meta-yaml-to-devfile-yaml';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
@@ -55,6 +56,9 @@ describe('Test InversifyBinding', () => {
     // check che-theia-plugin module
     expect(container.get(CheTheiaPluginsAnalyzer)).toBeDefined();
     expect(container.get(CheTheiaPluginsMetaYamlGenerator)).toBeDefined();
+
+    // check devfile module
+    expect(container.get(MetaYamlToDevfileYaml)).toBeDefined();
 
     // check editor module
     expect(container.get(CheEditorsAnalyzer)).toBeDefined();
