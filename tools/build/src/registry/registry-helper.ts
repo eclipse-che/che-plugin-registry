@@ -31,8 +31,17 @@ export class RegistryHelper {
 
   @postConstruct()
   async init(): Promise<void> {
-    const sha1 = await this.git.revparse(['HEAD']);
-    this.shortSha1 = sha1.substring(0, 7);
+    const gitRootDirectory = await this.git.revparse(['--show-toplevel']);
+    const logOptions = {
+      format: { hash: '%H' },
+      file: gitRootDirectory,
+      // keep only one result
+      n: '1',
+    };
+    const result = await this.git.log(logOptions);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const hash = (result.latest as any).hash;
+    this.shortSha1 = hash.substring(0, 7);
   }
 
   async getImageDigest(imageName: string): Promise<string> {
@@ -48,6 +57,9 @@ export class RegistryHelper {
     }
     // do not grab digest of an image that is being published (if tag contains the current sha1)
     if (dockerImageName.tag && dockerImageName.tag.includes(this.shortSha1)) {
+      console.log(
+        `Do not fetch digest for ${imageName} as the tag ${dockerImageName.tag} includes the current sha1 ${this.shortSha1}`
+      );
       return imageName;
     }
 
