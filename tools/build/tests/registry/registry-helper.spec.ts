@@ -20,19 +20,22 @@ import { parse } from 'docker-image-name-parser';
 import simpleGit from 'simple-git';
 
 jest.unmock('axios');
+const git = simpleGit({ maxConcurrentProcesses: 1 });
 
 describe('Test RegistryHelper', () => {
   let container: Container;
 
   let registryHelper: RegistryHelper;
 
+  beforeAll(() => {
+    container = new Container();
+    container.bind(RegistryHelper).toSelf().inSingletonScope();
+    registryHelper = container.get(RegistryHelper);
+  });
+
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
-    container = new Container();
-
-    container.bind(RegistryHelper).toSelf().inSingletonScope();
-    registryHelper = container.get(RegistryHelper);
   });
 
   test('parser full', async () => {
@@ -123,9 +126,20 @@ describe('Test RegistryHelper', () => {
   });
 
   test('basics with current sha1', async () => {
-    const git = simpleGit({ maxConcurrentProcesses: 1 });
-    const sha1 = await git.revparse(['HEAD']);
-    const shortSha1 = sha1.substring(0, 7);
+    const gitRootDirectory = await git.revparse(['--show-toplevel']);
+    const logOptions = {
+      format: { hash: '%H' },
+      file: gitRootDirectory,
+      // keep only one result
+      n: '1',
+    };
+    const result = await git.log(logOptions);
+    const latest = result.latest;
+    if (!latest) {
+      throw new Error(`Unable to find result when executing ${JSON.stringify(logOptions)}`);
+    }
+    const hash = latest.hash;
+    const shortSha1 = hash.substring(0, 7);
 
     const axiosGet = jest.spyOn(Axios, 'get') as jest.Mock;
     const imageName = `fake-docker-registry.com/dummy-org/dummy-image:go-${shortSha1}`;
