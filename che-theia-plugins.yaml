@@ -749,3 +749,12 @@ plugins:
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-markdown-mermaid-1.9.2.vsix
       - >-
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-mermaid-syntax-highlight-d4247b5feadd92d429d69a6b511f5ed0e1011895.vsix
+  - repository:
+      url: https://github.com/qjebbs/vscode-plantuml
+      revision: v2.14.0
+    sidecar:
+      directory: plantuml
+      name: vscode-plantuml
+      memoryLimit: "512Mi"
+    extensions:
+      - https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix
