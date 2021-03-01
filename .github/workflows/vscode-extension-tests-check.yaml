@@ -42,9 +42,9 @@ jobs:
           export SKIP_LINT=true
           export SKIP_TEST=true
           docker pull quay.io/eclipse/che-plugin-registry:nightly
-          BUILDER=docker ./build.sh --tag happy-path 
+          BUILDER=docker ./build.sh --tag vscode-extension 
           # save locally built image
-          docker save -o docker-image.tar quay.io/eclipse/che-plugin-registry:happy-path
+          docker save -o docker-image.tar quay.io/eclipse/che-plugin-registry:vscode-extension
       - name: Start minikube
         if: env.EXTENSION_REPO != ''
         uses: che-incubator/setup-minikube-action@next
@@ -61,7 +61,7 @@ jobs:
         uses: che-incubator/che-deploy-action@next
         with:
           # use custom image built by this PR
-          plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
+          plugin-registry-image: quay.io/eclipse/che-plugin-registry:vscode-extension
       - name: Run VSCode extension's tests
         if: env.EXTENSION_REPO != ''
         run: |
