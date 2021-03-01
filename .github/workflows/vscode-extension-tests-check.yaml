@@ -7,8 +7,6 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
-# che-plugin-registry VSCode extension's tests workflow
-# matrix jobs with alpine and ubi8
 name: VSCode Extension's Tests
 
 on:
