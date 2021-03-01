@@ -17,21 +17,25 @@ import Axios from 'axios';
 import { Container } from 'inversify';
 import { RegistryHelper } from '../../src/registry/registry-helper';
 import { parse } from 'docker-image-name-parser';
+import simpleGit from 'simple-git';
 
 jest.unmock('axios');
+const git = simpleGit({ maxConcurrentProcesses: 1 });
 
 describe('Test RegistryHelper', () => {
   let container: Container;
 
   let registryHelper: RegistryHelper;
 
+  beforeAll(() => {
+    container = new Container();
+    container.bind(RegistryHelper).toSelf().inSingletonScope();
+    registryHelper = container.get(RegistryHelper);
+  });
+
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
-    container = new Container();
-
-    container.bind(RegistryHelper).toSelf().inSingletonScope();
-    registryHelper = container.get(RegistryHelper);
   });
 
   test('parser full', async () => {
@@ -116,6 +120,31 @@ describe('Test RegistryHelper', () => {
     const imageName = 'fake-docker-registry.com/dummy-org/dummy-image:next';
     const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
     const updatedImageName = await registryHelper.getImageDigest('fake-docker-registry.com/dummy-org/dummy-image:next');
+    expect(updatedImageName).toBe(imageName);
+    expect(axiosGet).toBeCalledTimes(0);
+    expect(axiosHead).toBeCalledTimes(0);
+  });
+
+  test('basics with current sha1', async () => {
+    const gitRootDirectory = await git.revparse(['--show-toplevel']);
+    const logOptions = {
+      format: { hash: '%H' },
+      file: gitRootDirectory,
+      // keep only one result
+      n: '1',
+    };
+    const result = await git.log(logOptions);
+    const latest = result.latest;
+    if (!latest) {
+      throw new Error(`Unable to find result when executing ${JSON.stringify(logOptions)}`);
+    }
+    const hash = latest.hash;
+    const shortSha1 = hash.substring(0, 7);
+
+    const axiosGet = jest.spyOn(Axios, 'get') as jest.Mock;
+    const imageName = `fake-docker-registry.com/dummy-org/dummy-image:go-${shortSha1}`;
+    const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
+    const updatedImageName = await registryHelper.getImageDigest(imageName);
     expect(updatedImageName).toBe(imageName);
     expect(axiosGet).toBeCalledTimes(0);
     expect(axiosHead).toBeCalledTimes(0);

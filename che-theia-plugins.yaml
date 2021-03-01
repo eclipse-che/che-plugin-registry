@@ -189,7 +189,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
       url: 'https://github.com/camel-tooling/vscode-camelk'
-      revision: 0.0.20
+      revision: 0.0.21
     sidecar:
       directory: camelk
       name: vscode-camelk
@@ -198,7 +198,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.20-83.vsix
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.21-109.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
       - >-
@@ -741,3 +741,11 @@ plugins:
     extensions:
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
+  - repository:
+      url: 'https://github.com/mjbvz/vscode-markdown-mermaid'
+      revision: 1.9.2
+    extensions:
+      - >-
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-markdown-mermaid-1.9.2.vsix
+      - >-
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-mermaid-syntax-highlight-d4247b5feadd92d429d69a6b511f5ed0e1011895.vsix

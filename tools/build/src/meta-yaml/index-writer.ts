@@ -24,6 +24,16 @@ export class IndexWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
+  getLinks(plugin: MetaYamlPluginInfo): { self: string; devfile?: string } {
+    const links: { self: string; devfile?: string } = {
+      self: `/v3/plugins/${plugin.id}`,
+    };
+    if (plugin.type === 'Che Editor' || plugin.type === 'Che Plugin') {
+      links.devfile = `/v3/plugins/${plugin.id}/devfile.yaml`;
+    }
+    return links;
+  }
+
   async write(generatedMetaYamlPluginInfos: MetaYamlPluginInfo[]): Promise<void> {
     const v3PluginsFolder = path.resolve(this.outputRootDirectory, 'v3', 'plugins');
     await fs.ensureDir(v3PluginsFolder);
@@ -33,9 +43,7 @@ export class IndexWriter {
       id: plugin.id,
       description: plugin.description,
       displayName: plugin.displayName,
-      links: {
-        self: `/v3/plugins/${plugin.id}`,
-      },
+      links: this.getLinks(plugin),
       name: plugin.name,
       publisher: plugin.publisher,
       type: plugin.type,

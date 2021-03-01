@@ -120,7 +120,7 @@ module.exports = {
             "*********************************************************************",
             {
               "pattern": "^ \\* Copyright \\(c\\) \\d{4}(-\\d{4})* Red Hat, Inc\\.$",
-              "template": " * Copyright (c) 2020 Red Hat, Inc."
+              "template": " * Copyright (c) 2021 Red Hat, Inc."
             },
             " *",
             " * This program and the accompanying materials are made",
