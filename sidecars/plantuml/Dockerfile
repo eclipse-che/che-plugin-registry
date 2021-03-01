@@ -22,7 +22,7 @@ RUN mkdir /projects && mkdir -p /home/theia && \
     done && \
     chgrp -R 0 /run && chmod -R g+rwX /run && \
     chgrp -R 0 /var/lib/jetty && chmod -R g+rwX /var/lib/jetty && \
-    apt update && apt install -y procps htop net-tools wget curl git graphviz
+    apt update && apt install -y graphviz
 
 ADD etc/entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
