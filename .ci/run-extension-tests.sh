@@ -51,10 +51,9 @@ function prepareDevfile() {
     cat "$GITHUB_WORKSPACE"/.ci/templates/extension-tests-devfile.yaml
 }
 
-function buildProject() {
+function compileExtension() {
     yarn install
     yarn compile
-    yarn build
 }
 
 function prepareWorkspace() {
@@ -121,7 +120,7 @@ function checkTestsLogs() {
 
 installDeps
 cloneExtension
-buildProject
+compileExtension
 prepareDevfile
 prepareWorkspace
 checkTestsLogs
