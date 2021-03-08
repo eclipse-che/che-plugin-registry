@@ -25,7 +25,7 @@ RUN apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpi
 ENV JAVA_HOME /usr/lib/jvm/default-jvm/
 ADD etc/before-start.sh /before-start.sh
 
-RUN wget -O ${HOME}/lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
+RUN wget -O /lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
 
 WORKDIR /projects
 
