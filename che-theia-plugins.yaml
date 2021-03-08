@@ -512,7 +512,7 @@ plugins:
         https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix
   - repository:
       url: 'https://github.com/scalameta/metals-vscode'
-      revision: v1.9.13
+      revision: v1.10.0
     sidecar:
       directory: scala
       name: vscode-metals
@@ -528,9 +528,9 @@ plugins:
           path: /home/theia/.cache
     extensions:
       - >-
-        https://github.com/scalameta/metals-vscode/releases/download/v1.9.13/scalameta.metals-1.9.13.vsix
+        https://github.com/scalameta/metals-vscode/releases/download/v1.10.0/scalameta.metals-1.10.0.vsix
       - >-
-        https://github.com/scala/vscode-scala-syntax/releases/download/0.5.0/scala.vsix
+        https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix
   - repository:
       url: 'https://github.com/SonarSource/sonarlint-vscode'
       revision: 1.16.0
