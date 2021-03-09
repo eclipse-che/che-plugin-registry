@@ -89,7 +89,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://github.com/errata-ai/vale-vscode/releases/download/v0.14.2/vale-server-0.14.2.vsix
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v8130b13/vale-vscode-v0.14.2.vsix
   - repository:
       url: 'https://github.com/eclipse-cdt/cdt-vscode'
       revision: 2edfc3a3474bc7a732014e1a4631561b991f845a
@@ -623,7 +623,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://github.com/timonwong/vscode-shellcheck/releases/download/v0.13.2/shellcheck-0.13.2.vsix
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf707df2/shellcheck-v0.13.2.vsix
   - repository:
       url: 'https://github.com/pizzafactory-contorno/vscode-libra-move/'
       revision: v0.0.10-ddc0d3d
