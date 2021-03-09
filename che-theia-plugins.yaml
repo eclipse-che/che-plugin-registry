@@ -135,6 +135,8 @@ plugins:
   - repository:
       url: 'https://github.com/asciidoctor/asciidoctor-vscode'
       revision: v2.8.7
+    aliases:
+      - joaompinto/asciidoctor-vscode
     extensions:
       - >-
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix
