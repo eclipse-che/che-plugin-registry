@@ -158,6 +158,12 @@ export class CheTheiaPluginsMetaYamlGenerator {
           if (chePlugin.sidecar.mountSources) {
             container.mountSources = chePlugin.sidecar.mountSources;
           }
+          if (chePlugin.sidecar.args) {
+            container.args = chePlugin.sidecar.args;
+          }
+          if (chePlugin.sidecar.command) {
+            container.command = chePlugin.sidecar.command;
+          }
           if (chePlugin.sidecar.endpoints) {
             // export ports
             container.ports = chePlugin.sidecar.endpoints.map(endpoint => ({ exposedPort: endpoint.targetPort }));
