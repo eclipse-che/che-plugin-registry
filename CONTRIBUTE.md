@@ -49,8 +49,8 @@ Here are all the supported values, including optional ones:
         - /bin/sh
       # (OPTIONAL) Arguments for root process commands inside container
       args:
-        - -c
-        - ./entrypoint.sh
+        - "-c"
+        - "./entrypoint.sh"
       # (OPTIONAL) Any volume mounting information for the container
       volumeMounts:
           # The name of the mount
