@@ -134,10 +134,10 @@ plugins:
         https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix
   - repository:
       url: 'https://github.com/asciidoctor/asciidoctor-vscode'
-      revision: v2.7.7
+      revision: v2.8.7
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/3rdparty/asciidoctor-vscode/asciidoctor-vscode-2.7.7.vsix
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix
     sidecar:
       directory: asciidoc
       name: asciidoctor-vscode
