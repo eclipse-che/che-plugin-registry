@@ -19,6 +19,8 @@ export interface AbsCheTheiaPluginSidecarYaml {
   memoryLimit?: string;
   cpuRequest?: string;
   cpuLimit?: string;
+  command?: string[];
+  args?: string[];
   volumeMounts?: CommonVolumeMountYaml[];
   endpoints?: CommonEndpointYaml[];
   env?: CommonEnvYaml[];

@@ -55,6 +55,8 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
         memoryLimit: '2m',
         cpuRequest: '3m',
         cpuLimit: '4m',
+        command: ['/bin/sh'],
+        args: ['-c', './entrypoint.sh'],
         env: [
           {
             name: 'my-env-name',
@@ -145,6 +147,8 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(metaYamlInfoSpecContainers).toBeDefined();
     expect(metaYamlInfoSpecContainers.length).toBe(1);
     expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
+    expect(metaYamlInfoSpecContainers[0].command).toStrictEqual(['/bin/sh']);
+    expect(metaYamlInfoSpecContainers[0].args).toStrictEqual(['-c', './entrypoint.sh']);
   });
 
   test('basics without sidecar', async () => {
