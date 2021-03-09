@@ -44,6 +44,13 @@ Here are all the supported values, including optional ones:
       cpuLimit: "500m"
       # (OPTIONAL) The CPU request of the container
       cpuRequest: "125m"
+      # (OPTIONAL) Definitions of root process commands inside container
+      command:
+        - /bin/sh
+      # (OPTIONAL) Arguments for root process commands inside container
+      args:
+        - "-c"
+        - "./entrypoint.sh"
       # (OPTIONAL) Any volume mounting information for the container
       volumeMounts:
           # The name of the mount
