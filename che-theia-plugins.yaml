@@ -535,7 +535,7 @@ plugins:
         https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix
   - repository:
       url: 'https://github.com/SonarSource/sonarlint-vscode'
-      revision: 1.16.0
+      revision: 1.20.1
     sidecar:
       directory: sonarlint
       name: vscode-sonarlint
