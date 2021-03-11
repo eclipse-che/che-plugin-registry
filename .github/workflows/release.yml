@@ -64,11 +64,18 @@ jobs:
 
       - name: Perform release
         run: |
-          git config --global user.name "Mykhailo Kuznietsov"
-          git config --global user.email "mkuznets@redhat.com"
-
-          export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
-
-          ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
-
-
+          SHORT_SHA1=$(git rev-parse --short HEAD)
+          VERSION=$(head -n 1 VERSION)
+          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag ${VERSION}
+          docker tag quay.io/eclipse/che-plugin-registry:${VERSION} quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+          docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
+          docker push quay.io/eclipse/che-plugin-registry:${VERSION}
+      - name: Create MM message
+        run: |
+          echo "{\"text\":\":building_construction: Che Plugin Registry ${{ github.event.inputs.version }} has been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}\"}" > mattermost.json
+      - name: Send MM message
+        uses: mattermost/action-mattermost-notify@master
+        env:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          MATTERMOST_CHANNEL: eclipse-che-releases
+          MATTERMOST_USERNAME: che-bot
