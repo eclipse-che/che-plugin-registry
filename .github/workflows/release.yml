@@ -76,3 +76,12 @@ jobs:
           docker tag quay.io/eclipse/che-plugin-registry:${VERSION} quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
           docker push quay.io/eclipse/che-plugin-registry:${SHORT_SHA1}
           docker push quay.io/eclipse/che-plugin-registry:${VERSION}
+      - name: Create MM message
+        run: |
+          echo "{\"text\":\":building_construction: Che Plugin Registry ${{ github.event.inputs.version }} has been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}\"}" > mattermost.json
+      - name: Send MM message
+        uses: mattermost/action-mattermost-notify@master
+        env:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          MATTERMOST_CHANNEL: eclipse-che-releases
+          MATTERMOST_USERNAME: che-bot
