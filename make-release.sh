@@ -102,11 +102,13 @@ createNewPlugins () {
   thisVERSION="$2" # if false, don't update che-plugins.yaml, che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-plugins.yaml and che-editors.yaml 
   pwd
 
-  # First bump id and image fields for che-machine-exec in che-plugins.yaml
+  # First bump id and image fields for che-machine-exec in che-plugins.yaml and che-editors.yaml
   cheMachineExec="eclipse/che-machine-exec"
   sed -i "che-plugins.yaml" \
       -e "s#id: ${cheMachineExec}-plugin/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheMachineExec}-plugin/${newVERSION}#"
   sed -i "che-plugins.yaml" \
+      -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:${newVERSION}\1#"
+  sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:${newVERSION}\1#"
 
   # Now do che-theia in che-editors.yaml
