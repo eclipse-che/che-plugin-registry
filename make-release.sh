@@ -26,6 +26,7 @@ usage ()
 
 performRelease() 
 {
+  set -e
   SHORT_SHA1=$(git rev-parse --short HEAD)
   VERSION=$(head -n 1 VERSION)
   BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${VERSION}"
