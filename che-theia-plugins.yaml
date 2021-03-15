@@ -535,7 +535,7 @@ plugins:
         https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix
   - repository:
       url: 'https://github.com/SonarSource/sonarlint-vscode'
-      revision: 1.16.0
+      revision: 1.20.1
     sidecar:
       directory: sonarlint
       name: vscode-sonarlint
@@ -547,7 +547,9 @@ plugins:
           path: /home/theia/.m2
     extensions:
       - >-
-        https://github.com/SonarSource/sonarlint-vscode/releases/download/1.16.0/sonarlint-vscode-1.16.0.vsix
+        https://github.com/SonarSource/sonarlint-vscode/releases/download/1.20.1/sonarlint-vscode-1.20.1.vsix
+      - >-
+        https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
   - repository:
       url: 'https://bitbucket.org/atlassianlabs/atlascode'
       revision: 2.6.6
