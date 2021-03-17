@@ -32,7 +32,7 @@ deployChe() {
 }
 
 runTest() {
-#   deployChe
+  deployChe
 #   waitDevWorkspaceControllerStarted
 
 #   # wait for 2 min for devworkspace-controller ready to work.
