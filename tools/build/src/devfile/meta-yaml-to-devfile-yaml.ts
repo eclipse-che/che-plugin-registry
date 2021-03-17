@@ -69,7 +69,7 @@ export class MetaYamlToDevfileYaml {
       component.container.cpuRequest = container.cpuRequest;
     }
 
-    components.push(component);
+    components.unshift(component);
 
     // replace 127.0.0.1 by 0.0.0.0
     return components.map(iteratingComponent =>
@@ -96,47 +96,50 @@ export class MetaYamlToDevfileYaml {
     const metaYamlSpec = metaYaml.spec;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let components: any[] = [];
-    if (metaYamlSpec.containers && metaYamlSpec.containers.length === 1) {
-      // handle only one container from meta.yaml
-      const container = metaYamlSpec.containers[0];
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const endpoints: any[] = [];
+    // add all endpoints
+    if (metaYamlSpec.endpoints && metaYamlSpec.endpoints.length > 0) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const componentsFromContainer: any[] = this.componentsFromContainer(container);
-      // add all endpoints
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const endpoints: any[] = [];
-      if (metaYamlSpec.endpoints && metaYamlSpec.endpoints.length > 0) {
+      metaYamlSpec.endpoints.forEach((endpoint: any) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        metaYamlSpec.endpoints.forEach((endpoint: any) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const devfileEndpoint: any = {
-            name: endpoint.name,
-            attributes: endpoint.attributes,
-          };
-          devfileEndpoint.targetPort = endpoint.targetPort;
-          if (endpoint.public === true) {
-            devfileEndpoint.exposure = 'public';
-          }
+        const devfileEndpoint: any = {
+          name: endpoint.name,
+          attributes: endpoint.attributes,
+        };
+        devfileEndpoint.targetPort = endpoint.targetPort;
+        if (endpoint.public === true) {
+          devfileEndpoint.exposure = 'public';
+        }
 
-          // if it's secured, remove secure option for now
-          if (devfileEndpoint.attributes && devfileEndpoint.attributes.secure === true) {
-            devfileEndpoint.secure = false;
-            delete devfileEndpoint.attributes['secure'];
-          }
+        // if it's secured, remove secure option for now
+        if (devfileEndpoint.attributes && devfileEndpoint.attributes.secure === true) {
+          devfileEndpoint.secure = false;
+          delete devfileEndpoint.attributes['secure'];
+        }
 
-          // move protocol upper than inside attributes
-          if (devfileEndpoint.attributes && devfileEndpoint.attributes.protocol) {
-            devfileEndpoint.protocol = devfileEndpoint.attributes.protocol;
-            delete devfileEndpoint.attributes['protocol'];
-          }
+        // move protocol upper than inside attributes
+        if (devfileEndpoint.attributes && devfileEndpoint.attributes.protocol) {
+          devfileEndpoint.protocol = devfileEndpoint.attributes.protocol;
+          delete devfileEndpoint.attributes['protocol'];
+        }
 
-          endpoints.push(devfileEndpoint);
-        });
-      }
-      // last component is the container component
-      componentsFromContainer[componentsFromContainer.length - 1].container.endpoints = endpoints;
-      components = components.concat(componentsFromContainer);
+        endpoints.push(devfileEndpoint);
+      });
     }
+    if (metaYamlSpec.containers) {
+      // handle only one container from meta.yaml
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      metaYamlSpec.containers.forEach((container: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const componentsFromContainer: any[] = this.componentsFromContainer(container);
+
+        components = components.concat(componentsFromContainer);
+      });
+      // last component is the container component
+      components[0].container.endpoints = endpoints;
+    }
+
     if (metaYamlSpec.initContainers && metaYamlSpec.initContainers.length === 1) {
       // handle only one container from meta.yaml
       const initContainer = metaYamlSpec.initContainers[0];
@@ -148,7 +151,7 @@ export class MetaYamlToDevfileYaml {
       commands.push({
         id: 'init-container-command',
         apply: {
-          component: componentsFromContainer[componentsFromContainer.length - 1].name,
+          component: componentsFromContainer[0].name,
         },
       });
       devfileYaml.commands = commands;

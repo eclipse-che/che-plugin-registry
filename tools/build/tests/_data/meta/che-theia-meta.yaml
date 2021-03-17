@@ -67,6 +67,15 @@ spec:
       attributes:
         protocol: http
         discoverable: false
+    - name: terminal
+      public: true
+      targetPort: 3333
+      attributes:
+        protocol: ws
+        type: collocated-terminal
+        discoverable: false
+        secure: true
+        cookiesAuthEnabled: true
   containers:
     - name: theia-ide
       image: 'quay.io/eclipse/che-theia:next'
@@ -95,6 +104,14 @@ spec:
           mountPath: /plugins
         - name: theia-local
           mountPath: /home/theia/.theia
+    - name: che-machine-exec
+      image: 'quay.io/eclipse/che-machine-exec@next'
+      ports:
+        - exposedPort: 3333
+      command:
+        - /go/bin/che-machine-exec
+        - '--url'
+        - '127.0.0.1:3333'
   initContainers:
     - name: remote-runtime-injector
       image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'

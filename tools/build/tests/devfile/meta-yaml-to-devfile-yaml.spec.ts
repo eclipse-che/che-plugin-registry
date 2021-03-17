@@ -63,14 +63,14 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('theia-ide');
     expect(devfileYaml.components).toBeDefined();
-    expect(devfileYaml.components?.length).toBe(5);
-    const theiaIdeComponent = devfileYaml.components[2];
+    expect(devfileYaml.components?.length).toBe(6);
+    const theiaIdeComponent = devfileYaml.components[0];
     expect(theiaIdeComponent.name).toBe('theia-ide');
     const theiaIdeComponentContainer = theiaIdeComponent.container;
     expect(theiaIdeComponentContainer.image).toBe('quay.io/eclipse/che-theia:next');
 
     expect(theiaIdeComponentContainer.endpoints).toBeDefined();
-    expect(theiaIdeComponentContainer.endpoints?.length).toBe(7);
+    expect(theiaIdeComponentContainer.endpoints?.length).toBe(8);
     const theiaIdeFirstEndpoint = theiaIdeComponentContainer.endpoints[0];
     expect(theiaIdeFirstEndpoint.name).toBe('theia');
     expect(theiaIdeFirstEndpoint.exposure).toBe('public');
@@ -101,15 +101,15 @@ describe('Test MetaYamlToDevfileYaml', () => {
       'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
     );
 
-    const pluginsVolumeComponent = devfileYaml.components[0];
+    const pluginsVolumeComponent = devfileYaml.components[1];
     expect(pluginsVolumeComponent.name).toBe('plugins');
     expect(pluginsVolumeComponent.volume).toStrictEqual({});
 
-    const theiaLocalVolumeComponent = devfileYaml.components[1];
+    const theiaLocalVolumeComponent = devfileYaml.components[2];
     expect(theiaLocalVolumeComponent.name).toBe('theia-local');
     expect(theiaLocalVolumeComponent.volume).toStrictEqual({});
 
-    const remoteEndpointVolumeComponent = devfileYaml.components[3];
+    const remoteEndpointVolumeComponent = devfileYaml.components[5];
     expect(remoteEndpointVolumeComponent.name).toBe('remote-endpoint');
     expect(remoteEndpointVolumeComponent.volume).toBeDefined();
     expect(remoteEndpointVolumeComponent.volume.ephemeral).toBeTruthy();
