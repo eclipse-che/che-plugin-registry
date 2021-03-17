@@ -20,12 +20,13 @@ set -o pipefail
 # error on unset variables
 set -u
 
-# export OPERATOR_REPO=$(dirname $(dirname $(readlink -f "$0")));
-# source "${OPERATOR_REPO}"/.github/bin/common.sh
-# source "${OPERATOR_REPO}"/.github/bin/oauth-provision.sh
+OPERATOR_REPO="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+echo $OPERATOR_REPO
+source "${OPERATOR_REPO}"/common.sh
+source "${OPERATOR_REPO}"/oauth-provision.sh
 
 # Stop execution on any error
-# trap "catchFinish" EXIT SIGINT
+trap "catchFinish" EXIT SIGINT
 
 deployChe() {
   chectl server:deploy  --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
@@ -63,7 +64,8 @@ runTest() {
 
 
 
-
+  oc create namespace devworkspace-project
+  
   oc apply -f happy-path-pod.yaml
   # wait for the pod to start
   while true; do
