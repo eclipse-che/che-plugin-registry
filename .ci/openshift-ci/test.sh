@@ -33,7 +33,12 @@ deployChe() {
 }
 
 runTest() {
+  echo "================================>>>>>>>>>>>>>>>>>>>>>>>>>>"
   env
+  echo "TEST_SUITE $TEST_SUITE"
+  echo "NODE_TLS_REJECT_UNAUTHORIZED $NODE_TLS_REJECT_UNAUTHORIZED"
+  echo "TS_SELENIUM_LOG_LEVEL $TS_SELENIUM_LOG_LEVEL"
+  echo "================================>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
   deployChe
 #   waitDevWorkspaceControllerStarted
