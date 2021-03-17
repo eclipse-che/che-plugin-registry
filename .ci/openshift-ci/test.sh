@@ -25,7 +25,7 @@ set -u
 # source "${OPERATOR_REPO}"/.github/bin/oauth-provision.sh
 
 # Stop execution on any error
-trap "catchFinish" EXIT SIGINT
+# trap "catchFinish" EXIT SIGINT
 
 deployChe() {
   chectl server:deploy  --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
