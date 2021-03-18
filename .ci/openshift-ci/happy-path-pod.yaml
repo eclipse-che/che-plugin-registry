@@ -13,25 +13,33 @@ spec:
       imagePullPolicy: Always
       env:
         - name: TEST_SUITE
-          value: test-devworkspace-happy-path
+          value: test-plugin
+        - name: USERSTORY
+          value: VscodeYamlPlugin
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: '0'
         - name: TS_SELENIUM_BASE_URL
           value: CHE_URL
-        - name: TS_SELENIUM_DEVWORKSPACE_URL
-          value: WORKSPACE_ROUTE
         - name: TS_SELENIUM_LOG_LEVEL
           value: DEBUG
+        - name: USERSTORY
+          value: VscodeYamlPlugin
+        - name: TS_SELENIUM_MULTIUSER
+          value: false
+        - name: TS_SELENIUM_VALUE_TLS_SUPPORT
+          value: true
+        - name: TS_SELENIUM_W3C_CHROME_OPTION
+          value: true          
       volumeMounts:
         - name: test-run-results
           mountPath: /tmp/e2e/report/
       resources:
         requests:
-          memory: "900Mi"
-          cpu: "250m"
+          memory: "20Gi"
+          cpu: "3"
         limits:
-          memory: "900Mi"
-          cpu: "700m"
+          memory: "20Gi"
+          cpu: "4"
 # Download results          
     - name: download-reports
       image: eeacms/rsync
