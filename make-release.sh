@@ -185,9 +185,8 @@ if [[ ${BASEBRANCH} != "master" ]]; then
   commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
 fi
 
-popd > /dev/null || exit
-
 # cleanup tmp dir
 if [[ $TMP ]] && [[ -d $TMP ]]; then
+  popd >/dev/null || true
   rm -fr "$TMP"
 fi
