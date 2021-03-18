@@ -8,6 +8,8 @@ TRIGGER_RELEASE=0
 NOCOMMIT=0
 TMP=""
 REPO=git@github.com:eclipse/che-plugin-registry
+REGISTRY=quay.io
+ORGANIZATION=eclipse
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
@@ -56,14 +58,13 @@ fetchAndCheckout ()
   git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
 }
 
-# work in tmp dir if not already checked out by GH action
-if [[ ! -d ${REPO##*/} ]]; then
-  if [[ ! $TMP ]] || [[ ! -d $TMP ]]; then TMP=$(mktemp -d); fi
+# work in tmp dir if --use-tmp-dir (not required when running as GH action)
+if [[ $TMP ]] && [[ -d $TMP ]]; then 
   pushd "$TMP" > /dev/null || exit 1
   # get sources from ${BASEBRANCH} branch
   echo "Check out ${REPO} to ${TMP}/${REPO##*/}"
   git clone "${REPO}" -q
-  cd "${REPO##*/}" || exit 1
+  cd "${REPO##*/}" || true
 fi
 fetchAndCheckout "${BASEBRANCH}"
 
