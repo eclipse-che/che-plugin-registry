@@ -25,20 +25,20 @@ spec:
         - name: USERSTORY
           value: VscodeYamlPlugin
         - name: TS_SELENIUM_MULTIUSER
-          value: false
+          value: 'false'
         - name: TS_SELENIUM_VALUE_TLS_SUPPORT
-          value: true
+          value: 'true'
         - name: TS_SELENIUM_W3C_CHROME_OPTION
-          value: true          
+          value: 'true'          
       volumeMounts:
         - name: test-run-results
           mountPath: /tmp/e2e/report/
       resources:
         requests:
-          memory: "20Gi"
+          memory: "8Gi"
           cpu: "3"
         limits:
-          memory: "20Gi"
+          memory: "8Gi"
           cpu: "4"
 # Download results          
     - name: download-reports
