@@ -55,7 +55,7 @@ runTest() {
 
 
   # patch pod.yaml 
-  wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/ccadfa0d1c0816fc1212d296b08431590de58220/happy-path-pod.yaml
+  wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/2d13381f141bc20856263c63f4e02b697cfe9aa1/happy-path-pod.yaml
  
  
   ECLIPSE_CHE_URL=http://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')

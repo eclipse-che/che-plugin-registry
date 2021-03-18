@@ -35,11 +35,11 @@ spec:
           mountPath: /tmp/e2e/report/
       resources:
         requests:
-          memory: "8Gi"
-          cpu: "3"
+          memory: "4Gi"
+          cpu: "1000m"
         limits:
-          memory: "8Gi"
-          cpu: "4"
+          memory: "4Gi"
+          cpu: "2000m" 
 # Download results          
     - name: download-reports
       image: eeacms/rsync
