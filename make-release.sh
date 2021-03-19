@@ -8,8 +8,6 @@ TRIGGER_RELEASE=0
 NOCOMMIT=0
 TMP=""
 REPO=git@github.com:eclipse/che-plugin-registry
-REGISTRY=quay.io
-ORGANIZATION=eclipse
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
