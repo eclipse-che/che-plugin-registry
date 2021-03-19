@@ -337,7 +337,7 @@ plugins:
   - id: redhat/java11
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
-      revision: v0.69.0
+      revision: v0.75.0
     featured: true
     aliases:
       - redhat/java
