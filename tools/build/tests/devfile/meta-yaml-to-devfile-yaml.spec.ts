@@ -47,10 +47,12 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(componentContainer.args).toStrictEqual(['/go/bin/che-machine-exec', '--url', '0.0.0.0:4444']);
 
     expect(componentContainer.endpoints).toBeDefined();
-    expect(componentContainer.endpoints?.length).toBe(1);
+    expect(componentContainer.endpoints?.length).toBe(2);
     const endpoint = componentContainer.endpoints[0];
     expect(endpoint.name).toBe('che-machine-exec');
     expect(endpoint.exposure).toBe('public');
+    expect(endpoint.secure).toBe(false);
+    expect(endpoint.protocol).toBe('wss');
     const endpointAttributes = endpoint.attributes;
     expect(endpointAttributes.type).toBe('terminal');
   });
