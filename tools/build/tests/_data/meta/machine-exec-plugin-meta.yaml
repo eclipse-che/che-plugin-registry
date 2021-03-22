@@ -22,6 +22,14 @@ spec:
         discoverable: false
         secure: true
         cookiesAuthEnabled: true
+    - name: dummy
+      public: true
+      targetPort: 4444
+      attributes:
+        type: terminal
+        discoverable: false
+        secure: true
+        cookiesAuthEnabled: true
   containers:
     - name: che-machine-exec
       image: 'quay.io/eclipse/che-machine-exec:nightly'
