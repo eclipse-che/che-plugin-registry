@@ -7,3 +7,8 @@ spec:
   containers:
     - name: minimal-endpoint
       image: 'quay.io/minimal-endpoint'
+      command:
+       - foo
+      args:
+       - bar
+    
