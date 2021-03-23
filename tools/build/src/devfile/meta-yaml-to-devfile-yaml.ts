@@ -27,7 +27,10 @@ export class MetaYamlToDevfileYaml {
       },
     };
     if (container.command) {
-      component.container.args = container.command;
+      component.container.command = container.command;
+    }
+    if (container.args) {
+      component.container.args = container.args;
     }
     if (container.env) {
       component.container.env = container.env;
