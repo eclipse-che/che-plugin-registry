@@ -11,25 +11,27 @@
 #
 
 # Build registry
-FROM ttt-base
-# FROM docker.io/httpd:2.4.46-alpine
+# FROM ttt-base
+FROM docker.io/httpd:2.4.46-alpine
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
 ENV SKIP_TEST=true
 ENV BUILDER=docker
 
-# RUN apk update && apk upgrade && \
-#     apk add --no-cache bash git openssh && \
-#     apk add --update nodejs npm && \
-#     npm install --global yarn
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh && \
+    apk add --update nodejs npm && \
+    npm install --global yarn
 
 
-# RUN git clone https://github.com/eclipse/che-plugin-registry.git
+RUN git clone https://github.com/eclipse/che-plugin-registry.git
 
-# RUN cd che-plugin-registry && yarn && \
-#     yarn --cwd tools/build build && \
-#     eval node tools/build/lib/entrypoint.js --output-folder:"output"
+RUN cd che-plugin-registry && git checkout openshiftCi
+
+RUN cd che-plugin-registry && yarn && \
+    yarn --cwd tools/build build && \
+    eval node tools/build/lib/entrypoint.js --output-folder:"output"
 
 
 RUN apk add --no-cache bash && \
@@ -40,10 +42,15 @@ RUN apk add --no-cache bash && \
     chmod -R g+rwX /usr/local/apache2 && \
     echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf && \
     apk add --no-cache coreutils
-COPY entrypoint.sh /usr/bin/
-COPY README.md .htaccess /usr/local/apache2/htdocs/
-COPY output/v3 /usr/local/apache2/htdocs/v3
-COPY v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
-COPY v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
+
+
+RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/
+RUN cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/
+RUN cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/
+RUN cp -r /usr/local/apache2/che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3
+RUN cp /usr/local/apache2/che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
+RUN cp /usr/local/apache2/che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
+
+
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["httpd-foreground"]
