@@ -164,7 +164,7 @@ export class MetaYamlWriter {
             const devfileYaml = this.metaYamlToDevfileYaml.convert(metaYaml);
             if (devfileYaml) {
               const devfilePath = path.resolve(pluginsFolder, computedId, version, 'devfile.yaml');
-              const devfileYamlString = jsyaml.safeDump(devfileYaml, { lineWidth: 120 });
+              const devfileYamlString = jsyaml.safeDump(devfileYaml, { noRefs: true, lineWidth: 120 });
               promises.push(fs.writeFile(devfilePath, devfileYamlString));
             }
           })

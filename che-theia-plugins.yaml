@@ -222,13 +222,13 @@ plugins:
       - >-
         https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
       - >-
-        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - >-
-        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix
   - id: redhat/quarkus-java8
     repository:
       url: 'https://github.com/redhat-developer/vscode-quarkus'
@@ -337,7 +337,7 @@ plugins:
   - id: redhat/java11
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
-      revision: v0.69.0
+      revision: v0.75.0
     featured: true
     aliases:
       - redhat/java
@@ -352,11 +352,11 @@ plugins:
           path: /home/theia/.m2
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+        https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - >-
-        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix
   - id: redhat/java8
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
@@ -376,7 +376,7 @@ plugins:
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
       - >-
-        https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+        https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix
   - repository:
       url: 'https://github.com/felixfbecker/vscode-php-debug'
       revision: v1.13.0
@@ -448,9 +448,9 @@ plugins:
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-didact
-      revision: 0.3.1
+      revision: 0.3.2
     extensions:
-      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.1-166.vsix
+      - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.2-227.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
       revision: 1.2.1

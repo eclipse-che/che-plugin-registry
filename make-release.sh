@@ -13,6 +13,7 @@ while [[ "$#" -gt 0 ]]; do
   case $1 in
     '-t'|'--trigger-release') TRIGGER_RELEASE=1; NOCOMMIT=0; shift 0;;
     '-v'|'--version') VERSION="$2"; shift 1;;
+    '-tmp'|'--use-tmp-dir') TMP=$(mktemp -d); shift 0;;
     '-n'|'--no-commit') NOCOMMIT=1; TRIGGER_RELEASE=0; shift 0;;
   esac
   shift 1
@@ -55,19 +56,14 @@ fetchAndCheckout ()
   git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
 }
 
-# work in tmp dir
-if [[ $TMP ]] && [[ -d $TMP ]]; then
+# work in tmp dir if --use-tmp-dir (not required when running as GH action)
+if [[ $TMP ]] && [[ -d $TMP ]]; then 
   pushd "$TMP" > /dev/null || exit 1
   # get sources from ${BASEBRANCH} branch
   echo "Check out ${REPO} to ${TMP}/${REPO##*/}"
   git clone "${REPO}" -q
-  cd "${REPO##*/}" || exit 1
+  cd "${REPO##*/}" || true
 fi
-
-# get sources from ${BASEBRANCH} branch
-echo "Check out ${REPO} to ${TMP}/${REPO##*/}"
-git clone "${REPO}" -q
-cd "${REPO##*/}" || exit 1
 fetchAndCheckout "${BASEBRANCH}"
 
 # create new branch off ${BASEBRANCH} (or check out latest commits if branch already exists), then push to origin
@@ -187,9 +183,8 @@ if [[ ${BASEBRANCH} != "master" ]]; then
   commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
 fi
 
-popd > /dev/null || exit
-
 # cleanup tmp dir
 if [[ $TMP ]] && [[ -d $TMP ]]; then
+  popd >/dev/null || true
   rm -fr "$TMP"
 fi
