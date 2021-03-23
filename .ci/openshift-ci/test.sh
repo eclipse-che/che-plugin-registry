@@ -21,6 +21,8 @@ set -o pipefail
 set -u
 
 export TEST_POD_NAMESPACE="devworkspace-project"
+export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
+
 
 # OPERATOR_REPO="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 # echo $OPERATOR_REPO
@@ -30,11 +32,30 @@ export TEST_POD_NAMESPACE="devworkspace-project"
 # Stop execution on any error
 # trap "catchFinish" EXIT SIGINT
 
+createCustomResourcesFile() {
+  cat > custom-resources.yaml <<-END
+spec:
+  auth:
+    updateAdminPassword: false
+  server:
+    pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
+    pluginRegistryPullPolicy: IfNotPresent
+    customCheProperties:
+      CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
+      CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
+      CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
+END
+
+echo "Generated custom resources file"
+cat custom-resources.yaml
+}
+
 deployChe() {
-  chectl server:deploy  --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
+  chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
 }
 
 runTest() {
+  createCustomResourcesFile
   deployChe
 #   waitDevWorkspaceControllerStarted
 

@@ -31,7 +31,7 @@ spec:
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: '0'
         - name: TS_SELENIUM_BASE_URL
-          value: 'https://che-iokhrime-che.apps.ocp47.crw-qe.com'
+          value: 'https://che-iokhrime-che.apps.ocp46.crw-qe.com'
         - name: TS_SELENIUM_LOG_LEVEL
           value: DEBUG
         - name: USERSTORY
