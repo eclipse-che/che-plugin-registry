@@ -25,9 +25,8 @@ RUN apk update && apk upgrade && \
     npm install --global yarn
 
 
-RUN git clone https://github.com/eclipse/che-plugin-registry.git
-
-RUN cd che-plugin-registry && git checkout openshiftCi
+RUN git clone https://github.com/eclipse/che-plugin-registry.git && \
+    cd che-plugin-registry && git checkout openshiftCi
 
 RUN cd che-plugin-registry && yarn && \
     yarn --cwd tools/build build && \
@@ -44,12 +43,20 @@ RUN apk add --no-cache bash && \
     apk add --no-cache coreutils
 
 
-RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/
-RUN cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/
-RUN cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/
-RUN cp -r /usr/local/apache2/che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3
-RUN cp /usr/local/apache2/che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
-RUN cp /usr/local/apache2/che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
+# RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/
+# RUN cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/
+# RUN cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/
+# RUN cp -r /usr/local/apache2/che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3
+# RUN cp /usr/local/apache2/che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
+# RUN cp /usr/local/apache2/che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
+
+RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/ && \
+    cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/ && \
+    cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/ && \
+    cp -r /usr/local/apache2/che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3 && \
+    cp /usr/local/apache2/che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/ && \
+    cp /usr/local/apache2/che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/ && \
+    rm -rf /usr/local/apache2/che-plugin-registry
 
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
