@@ -1,0 +1,3 @@
+version: 1.0.0
+extensions:
+  - https://download.jboss.org/jbosstools/snapshots/vscode-commons//vscode-commons-0.0.4-44.vsix

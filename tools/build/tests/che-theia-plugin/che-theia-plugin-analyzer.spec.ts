@@ -30,10 +30,25 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
 
   test('basics', async () => {
     const testContentPath = path.resolve(__dirname, '..', '..', '..', '..', 'che-theia-plugins.yaml');
-    const result = await cheTheiaPluginsAnalyzer.analyze(testContentPath);
+    const result = await cheTheiaPluginsAnalyzer.analyzePlugins(testContentPath);
     expect(result).toBeDefined();
     expect(result.plugins).toBeDefined();
     expect(result.plugins.length).toBeGreaterThan(10);
+
+    const defaultExtensionsContentPath = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      '..',
+      'che-theia-default-extensions.yaml'
+    );
+    const defaultExtensionsResult = await cheTheiaPluginsAnalyzer.analyzeDefaultExtensions(
+      defaultExtensionsContentPath
+    );
+    expect(defaultExtensionsResult).toBeDefined();
+    expect(defaultExtensionsResult.extensions).toBeDefined();
+    expect(defaultExtensionsResult.extensions.length).toBeGreaterThanOrEqual(1);
 
     // search for plugins with an id provided in yaml
     const java11Plugins = result.plugins.filter(plugin => plugin.id === 'redhat/java11');

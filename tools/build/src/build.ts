@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import * as ora from 'ora';
 import * as path from 'path';
 
+import { CheTheiaDefaultExtensionsYaml, CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
 import { inject, injectable, named } from 'inversify';
 
 import { CheEditorMetaInfo } from './editor/che-editors-meta-info';
@@ -23,7 +24,6 @@ import { ChePluginYaml } from './che-plugin/che-plugins-yaml';
 import { ChePluginsAnalyzer } from './che-plugin/che-plugins-analyzer';
 import { ChePluginsMetaYamlGenerator } from './che-plugin/che-plugins-meta-yaml-generator';
 import { CheTheiaPluginAnalyzerMetaInfo } from './che-theia-plugin/che-theia-plugin-analyzer-meta-info';
-import { CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
 import { CheTheiaPluginsAnalyzer } from './che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Deferred } from './util/deferred';
@@ -134,7 +134,7 @@ export class Build {
     const cheTheiaPluginsPath = path.resolve(this.pluginRegistryRootDirectory, 'che-theia-plugins.yaml');
     const cheTheiaPluginsYaml = await this.wrapIntoTask(
       'Read che-theia-plugins.yaml file',
-      this.cheTheiaPluginsAnalyzer.analyze(cheTheiaPluginsPath)
+      this.cheTheiaPluginsAnalyzer.analyzePlugins(cheTheiaPluginsPath)
     );
 
     // First, parse che-theia-plugins yaml
@@ -210,6 +210,20 @@ export class Build {
   }
 
   /**
+   * Analyze che-theia-default-extensions.yaml
+   */
+  protected async analyzeCheTheiaDefaultExtensionsYaml(): Promise<CheTheiaDefaultExtensionsYaml> {
+    const cheTheiaDefaultExtensionsPath = path.resolve(
+      this.pluginRegistryRootDirectory,
+      'che-theia-default-extensions.yaml'
+    );
+    return this.wrapIntoTask(
+      'Read cche-theia-default-extensions.yaml file',
+      this.cheTheiaPluginsAnalyzer.analyzeDefaultExtensions(cheTheiaDefaultExtensionsPath)
+    );
+  }
+
+  /**
    * Analyze che-editors.yaml
    */
   protected async analyzeCheEditorsYaml(): Promise<CheEditorMetaInfo[]> {
@@ -267,6 +281,9 @@ export class Build {
 
     // analyze the che-theia-plugins.yaml yaml file
     const cheTheiaPlugins = await this.analyzeCheTheiaPluginsYaml();
+    // analyze the che-theia-default-extensions.yaml file
+    const result = await this.analyzeCheTheiaDefaultExtensionsYaml();
+    cheTheiaPlugins.forEach(plugin => plugin.extensions.push(...result.extensions));
 
     const cheTheiaPluginsMetaYaml = await this.wrapIntoTask(
       'Compute meta.yaml for che-theia-plugins',

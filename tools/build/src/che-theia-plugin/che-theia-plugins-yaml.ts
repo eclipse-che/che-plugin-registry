@@ -49,3 +49,7 @@ export interface CheTheiaPluginYaml {
 export interface CheTheiaPluginsYaml {
   plugins: CheTheiaPluginYaml[];
 }
+
+export interface CheTheiaDefaultExtensionsYaml {
+  extensions: string[];
+}

@@ -43,8 +43,10 @@ describe('Test Build', () => {
   let container: Container;
 
   const cheTheiaPluginsAnalyzerAnalyzeMock = jest.fn();
+  const cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock = jest.fn();
   const cheTheiaPluginsAnalyzer: any = {
-    analyze: cheTheiaPluginsAnalyzerAnalyzeMock,
+    analyzePlugins: cheTheiaPluginsAnalyzerAnalyzeMock,
+    analyzeDefaultExtensions: cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock,
   };
 
   const chePluginsAnalyzerAnalyzeMock = jest.fn();
@@ -235,6 +237,7 @@ describe('Test Build', () => {
       plugins: [cheTheiaPluginYaml],
     };
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     const chePluginYaml = await buildChePluginYaml();
     const chePluginsYaml: ChePluginsYaml = {
@@ -278,6 +281,7 @@ describe('Test Build', () => {
     };
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
   });
@@ -299,6 +303,7 @@ describe('Test Build', () => {
     };
     cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
   });
@@ -325,6 +330,7 @@ describe('Test Build', () => {
     cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
   });
@@ -353,6 +359,7 @@ describe('Test Build', () => {
     };
     cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     await expect(build.build()).rejects.toThrow('Unable to find a publisher field in package.json file for extension');
   });
@@ -372,6 +379,7 @@ describe('Test Build', () => {
     };
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     const chePluginsYaml: ChePluginsYaml = {
       plugins: [],
@@ -394,6 +402,7 @@ describe('Test Build', () => {
     };
 
     cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+    cheTheiaPluginsAnalyzerAnalyzeDefaultExtensionsMock.mockResolvedValueOnce({ extensions: ['https://fake.vsix'] });
 
     const chePluginYaml = await buildChePluginYaml();
     const chePluginsYaml: ChePluginsYaml = {

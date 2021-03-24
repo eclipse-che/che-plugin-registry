@@ -10,7 +10,8 @@
 import * as fs from 'fs-extra';
 import * as jsyaml from 'js-yaml';
 
-import { CheTheiaPluginsYaml } from './che-theia-plugins-yaml';
+import { CheTheiaDefaultExtensionsYaml, CheTheiaPluginsYaml } from './che-theia-plugins-yaml';
+
 import { injectable } from 'inversify';
 
 /**
@@ -18,7 +19,7 @@ import { injectable } from 'inversify';
  */
 @injectable()
 export class CheTheiaPluginsAnalyzer {
-  async analyze(cheTheiaPluginsFile: string): Promise<CheTheiaPluginsYaml> {
+  async analyzePlugins(cheTheiaPluginsFile: string): Promise<CheTheiaPluginsYaml> {
     const content = await fs.readFile(cheTheiaPluginsFile, 'utf-8');
 
     const cheTheiaPluginsYaml: CheTheiaPluginsYaml = jsyaml.safeLoad(content, {
@@ -26,5 +27,11 @@ export class CheTheiaPluginsAnalyzer {
     }) as CheTheiaPluginsYaml;
 
     return cheTheiaPluginsYaml;
+  }
+
+  async analyzeDefaultExtensions(cheTheiaDefaultExtensionsFile: string): Promise<CheTheiaDefaultExtensionsYaml> {
+    return jsyaml.safeLoad(await fs.readFile(cheTheiaDefaultExtensionsFile, 'utf-8'), {
+      schema: jsyaml.JSON_SCHEMA,
+    }) as CheTheiaDefaultExtensionsYaml;
   }
 }
