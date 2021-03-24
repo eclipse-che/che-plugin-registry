@@ -11,7 +11,6 @@
 #
 
 # Build registry
-# FROM ttt-base
 FROM docker.io/httpd:2.4.46-alpine
 
 ENV SKIP_FORMAT=true
@@ -19,20 +18,22 @@ ENV SKIP_LINT=true
 ENV SKIP_TEST=true
 ENV BUILDER=docker
 
+# Install build tools
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh && \
     apk add --update nodejs npm && \
     npm install --global yarn
 
-
+# Clone repo
 RUN git clone https://github.com/eclipse/che-plugin-registry.git && \
     cd che-plugin-registry && git checkout openshiftCi
 
+# Build repo
 RUN cd che-plugin-registry && yarn && \
     yarn --cwd tools/build build && \
     eval node tools/build/lib/entrypoint.js --output-folder:"output"
 
-
+# Configure server
 RUN apk add --no-cache bash && \
     # Allow htaccess
     sed -i 's|    AllowOverride None|    AllowOverride All|' /usr/local/apache2/conf/httpd.conf && \
@@ -42,14 +43,7 @@ RUN apk add --no-cache bash && \
     echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf && \
     apk add --no-cache coreutils
 
-
-# RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/
-# RUN cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/
-# RUN cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/
-# RUN cp -r /usr/local/apache2/che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3
-# RUN cp /usr/local/apache2/che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
-# RUN cp /usr/local/apache2/che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
-
+# Copy artifacts
 RUN cp /usr/local/apache2/che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/ && \
     cp /usr/local/apache2/che-plugin-registry/README.md /usr/local/apache2/htdocs/ && \
     cp /usr/local/apache2/che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/ && \
