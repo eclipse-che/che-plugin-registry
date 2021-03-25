@@ -22,6 +22,7 @@ set -u
 
 export TEST_POD_NAMESPACE="devworkspace-project"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
+export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/logs/artifacts"}
 
 
 # OPERATOR_REPO="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -107,9 +108,9 @@ runTest() {
   sleep 3
 
   # download the test results
-  mkdir -p tmp/
-  oc rsync -n ${TEST_POD_NAMESPACE} happy-path-che:/tmp/e2e/report/ tmp/ -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} happy-path-che -c download-reports -- touch /tmp/done
+  # mkdir -p tmp/
+  oc rsync -n ${TEST_POD_NAMESPACE} happy-path-che:/tmp/e2e/report/ ${ARTIFACTS_DIR} -c download-reports
+  oc exec -n ${TEST_POD_NAMESPACE} happy-path-che -c download-reports -- touch ${ARTIFACTS_DIR}/done
 }
 
 # initDefaults
