@@ -552,10 +552,10 @@ plugins:
         https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix
   - repository:
       url: 'https://bitbucket.org/atlassianlabs/atlascode'
-      revision: 2.6.6
+      revision: 2.8.6
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/3rdparty/atlascode/atlascode-2.6.6.vsix
+        https://open-vsx.org/api/atlassian/atlascode/2.8.6/file/atlassian.atlascode-2.8.6.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-cobol'
       revision: 0.17.1
