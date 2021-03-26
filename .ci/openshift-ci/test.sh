@@ -20,9 +20,11 @@ set -o pipefail
 # error on unset variables
 set -u
 
+export RAM_MEMORY=8192
 export TEST_POD_NAMESPACE="devworkspace-project"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
-export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/logs/artifacts"}
+export HAPPY_PATH_POD_NAME="happy-path-che"
+export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 
 
 # OPERATOR_REPO="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -109,8 +111,18 @@ runTest() {
 
   # download the test results
   # mkdir -p tmp/
-  oc rsync -n ${TEST_POD_NAMESPACE} happy-path-che:/tmp/e2e/report/ ${ARTIFACTS_DIR} -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} happy-path-che -c download-reports -- touch ${ARTIFACTS_DIR}/done
+  # oc rsync -n ${TEST_POD_NAMESPACE} happy-path-che:/tmp/e2e/report/ ${ARTIFACTS_DIR} -c download-reports
+  # oc exec -n ${TEST_POD_NAMESPACE} happy-path-che -c download-reports -- touch ${ARTIFACTS_DIR}/done
+
+
+
+  # download the test results
+  mkdir -p /tmp/e2e
+  oc rsync -n ${TEST_POD_NAMESPACE} ${HAPPY_PATH_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
+  oc exec -n ${TEST_POD_NAMESPACE} ${HAPPY_PATH_POD_NAME} -c download-reports -- touch /tmp/done
+
+  mkdir -p ${ARTIFACTS_DIR}
+  cp -r /tmp/e2e ${ARTIFACTS_DIR}
 }
 
 # initDefaults
