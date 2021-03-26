@@ -18,6 +18,8 @@ import { Sidecar } from '../sidecar/sidecar';
 
 @injectable()
 export class CheTheiaPluginsMetaYamlGenerator {
+  static readonly CHE_THEIA_SIDECAR_PREFERENCES = 'CHE_THEIA_SIDECAR_PREFERENCES';
+
   @inject(Sidecar)
   private sidecar: Sidecar;
 
@@ -154,6 +156,18 @@ export class CheTheiaPluginsMetaYamlGenerator {
           }
           if (chePlugin.sidecar.env) {
             container.env = chePlugin.sidecar.env;
+          }
+
+          // add preferences in env
+          if (chePlugin.preferences) {
+            if (!container.env) {
+              container.env = [];
+            }
+            // need to convert json to sringified version
+            container.env.push({
+              name: CheTheiaPluginsMetaYamlGenerator.CHE_THEIA_SIDECAR_PREFERENCES,
+              value: JSON.stringify(chePlugin.preferences),
+            });
           }
           if (chePlugin.sidecar.mountSources) {
             container.mountSources = chePlugin.sidecar.mountSources;
