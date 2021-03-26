@@ -17,6 +17,8 @@ plugins:
   - repository:
       url: 'https://github.com/Microsoft/vscode-node-debug2'
       revision: v1.42.5
+    preferences:
+      debug.node.useV3: false
     sidecar:
       directory: node
       name: vscode-node-debug
@@ -140,6 +142,8 @@ plugins:
     extensions:
       - >-
         https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix
+    preferences:
+      asciidoc.use_asciidoctorpdf: true
     sidecar:
       directory: asciidoc
       name: asciidoctor-vscode
@@ -211,6 +215,8 @@ plugins:
     repository:
       url: 'https://github.com/redhat-developer/vscode-quarkus'
       revision: v1.7.0
+    preferences:
+      java.server.launchMode: Standard
     sidecar:
       directory: java
       name: vscode-quarkus
@@ -235,6 +241,8 @@ plugins:
     repository:
       url: 'https://github.com/redhat-developer/vscode-quarkus'
       revision: v1.5.0
+    preferences:
+      java.server.launchMode: Standard
     sidecar:
       directory: java8
       memoryLimit: 1500Mi
@@ -343,6 +351,8 @@ plugins:
     featured: true
     aliases:
       - redhat/java
+    preferences:
+      java.server.launchMode: Standard
     sidecar:
       directory: java
       name: vscode-java
@@ -363,6 +373,8 @@ plugins:
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
       revision: v0.63.0
+    preferences:
+      java.server.launchMode: Standard
     sidecar:
       directory: java8
       name: vscode-java
@@ -619,6 +631,8 @@ plugins:
   - repository:
       url: 'https://github.com/timonwong/vscode-shellcheck'
       revision: v0.13.2
+    preferences:
+      shellcheck.executablePath: /bin/shellcheck
     sidecar:
       directory: shellcheck
       name: shellcheck
@@ -702,6 +716,9 @@ plugins:
   - repository:
       url: https://github.com/castwide/vscode-solargraph
       revision: 212e76d
+    preferences:
+      solargraph.bundlerPath: /usr/local/bin/bundle
+      solargraph.commandPath: /usr/local/bundle/bin/solargraph
     sidecar:
       directory: ruby
       name: vscode-ruby
