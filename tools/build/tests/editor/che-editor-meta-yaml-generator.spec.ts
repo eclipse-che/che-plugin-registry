@@ -29,7 +29,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
       displayName: 'theia-ide',
       description: 'Eclipse Theia, get the latest release each day.',
       icon: 'https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true',
-      repository: 'https://github.com/eclipse/che-theia',
+      repository: 'https://github.com/eclipse-che/che-theia',
       firstPublicationDate: '2019-03-07',
       endpoints: [
         {
