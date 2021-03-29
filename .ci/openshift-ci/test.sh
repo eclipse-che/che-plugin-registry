@@ -35,31 +35,31 @@ export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 # Stop execution on any error
 # trap "catchFinish" EXIT SIGINT
 
-# createCustomResourcesFile() {
-#   cat > custom-resources.yaml <<-END
-# spec:
-#   auth:
-#     updateAdminPassword: false
-#   server:
-#     pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
-#     pluginRegistryPullPolicy: IfNotPresent
-#     customCheProperties:
-#       CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
-#       CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
-#       CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
-# END
+createCustomResourcesFile() {
+  cat > custom-resources.yaml <<-END
+spec:
+  auth:
+    updateAdminPassword: false
+  server:
+    pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
+    pluginRegistryPullPolicy: IfNotPresent
+    customCheProperties:
+      CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
+      CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
+      CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
+END
 
-# echo "Generated custom resources file"
-# cat custom-resources.yaml
-# }
+  echo "Generated custom resources file"
+  cat custom-resources.yaml
+}
 
-# deployChe() {
-#   chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
-# }
+deployChe() {
+  chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
+}
 
 runTest() {
-  # createCustomResourcesFile
-  # deployChe
+  createCustomResourcesFile
+  deployChe
 #   waitDevWorkspaceControllerStarted
 
 #   # wait for 2 min for devworkspace-controller ready to work.
