@@ -33,13 +33,13 @@ describe('Test ChePluginsAnalyzer', () => {
     const result = await chePluginsAnalyzer.analyze(testContentPath);
     expect(result).toBeDefined();
     expect(result.plugins).toBeDefined();
-    expect(result.plugins.length).toBeGreaterThan(5);
+    expect(result.plugins.length).toBeGreaterThan(4);
 
     // search for plugins with an id provided in yaml
-    const machineExecPlugins = result.plugins.filter(plugin => plugin.id === 'eclipse/che-machine-exec-plugin/nightly');
-    expect(machineExecPlugins).toBeDefined();
-    expect(machineExecPlugins.length).toBe(1);
-    const machineExecPlugin = machineExecPlugins[0];
-    expect(machineExecPlugin.repository).toBe('https://github.com/eclipse/che-machine-exec/');
+    const buildahPlugins = result.plugins.filter(plugin => plugin.id === 'containers/buildah/1.14.0');
+    expect(buildahPlugins).toBeDefined();
+    expect(buildahPlugins.length).toBe(1);
+    const buildahPlugin = buildahPlugins[0];
+    expect(buildahPlugin.repository).toBe('https://github.com/containers/buildah');
   });
 });

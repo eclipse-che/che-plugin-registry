@@ -26,7 +26,7 @@ export interface MetaYamlPluginInfo {
   latestUpdateDate: string;
   aliases?: string[];
   spec: {
-    containers?: [{ image: string; command?: string[]; args?: string[] }];
+    containers?: [{ image: string; command?: string[]; args?: string[]; env?: { name: string; value: string }[] }];
     initContainers?: [{ image: string }];
     extensions: string[];
   };

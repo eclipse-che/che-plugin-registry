@@ -49,6 +49,10 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
       id: cheTheiaPluginId,
       featured: false,
       aliases: [],
+      preferences: {
+        'my.preferences1': true,
+        'debug.node.useV3': false,
+      },
       sidecar: {
         name: 'my-name',
         memoryRequest: '1m',
@@ -147,6 +151,12 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(metaYamlInfoSpecContainers).toBeDefined();
     expect(metaYamlInfoSpecContainers.length).toBe(1);
     expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
+    const theiaPreferencesEnv = metaYamlInfoSpecContainers[0].env?.find(
+      env => env.name === CheTheiaPluginsMetaYamlGenerator.CHE_THEIA_SIDECAR_PREFERENCES
+    );
+    expect(theiaPreferencesEnv).toBeDefined();
+    expect(theiaPreferencesEnv?.value).toEqual('{"my.preferences1":true,"debug.node.useV3":false}');
+    expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
     expect(metaYamlInfoSpecContainers[0].command).toStrictEqual(['/bin/sh']);
     expect(metaYamlInfoSpecContainers[0].args).toStrictEqual(['-c', './entrypoint.sh']);
   });
@@ -186,6 +196,9 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
 
   test('nls property without nls field', async () => {
     const cheTheiaPluginMetaInfo = await generatePluginMetaInfo('my/first/plugin');
+    // remove preferences as well
+    delete cheTheiaPluginMetaInfo.preferences;
+
     delete Array.from(cheTheiaPluginMetaInfo.vsixInfos.values())[0].packageNlsJson;
     const packageJson = Array.from(cheTheiaPluginMetaInfo.vsixInfos.values())[0].packageJson;
     if (packageJson) {

@@ -145,9 +145,10 @@ export class Build {
         const id = cheTheiaPluginYaml.id;
         const featured = cheTheiaPluginYaml.featured || false;
         const aliases = cheTheiaPluginYaml.aliases || [];
+        const preferences = cheTheiaPluginYaml.preferences;
         const sidecar = cheTheiaPluginYaml.sidecar;
         const repository = cheTheiaPluginYaml.repository;
-        return { id, sidecar, aliases, extensions, featured, vsixInfos, repository };
+        return { id, sidecar, preferences, aliases, extensions, featured, vsixInfos, repository };
       })
     );
 

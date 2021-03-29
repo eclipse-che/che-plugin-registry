@@ -30,6 +30,13 @@ Here are all the supported values, including optional ones:
     # (OPTIONAL) An alias for this plugin: this means anything listed here will get its own meta.yaml generated
     aliases:
       - redhat/java
+    # (OPTIONAL) plug-in preferences in freeform format
+    preferences:
+      # name of the preference with it's value, example:
+      asciidoc.use_asciidoctorpdf: true
+      shellcheck.executablePath: /bin/shellcheck
+      solargraph.bundlerPath: /usr/local/bin/bundle
+      solargraph.commandPath: /usr/local/bundle/bin/solargraph
     # (OPTIONAL) If the plugin runs in a sidecar, then the sidecar information is specified here
     sidecar:
       # Directory where the Dockerfile that builds this extension is located

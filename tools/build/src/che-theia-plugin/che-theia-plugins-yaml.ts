@@ -38,6 +38,8 @@ export interface CheTheiaPluginYaml {
   id?: string;
   featured?: boolean;
   aliases?: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  preferences?: { [key: string]: any };
   sidecar?: CheTheiaPluginSidecarDirectoryYaml | CheTheiaPluginSidecarImageYaml;
   repository: {
     url: string;
