@@ -10,4 +10,4 @@
 apiVersion: "v1"
 name: "che-plugin-registry-service"
 version: "0.0.1"
-home: "https://github.com/eclipse/che-plugin-registry/"
+home: "https://github.com/eclipse-che/che-plugin-registry/"

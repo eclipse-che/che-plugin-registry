@@ -7,7 +7,7 @@
 TRIGGER_RELEASE=0 
 NOCOMMIT=0
 TMP=""
-REPO=git@github.com:eclipse/che-plugin-registry
+REPO=git@github.com:eclipse-che/che-plugin-registry
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
