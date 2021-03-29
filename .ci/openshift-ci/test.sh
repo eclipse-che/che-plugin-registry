@@ -35,31 +35,31 @@ export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 # Stop execution on any error
 # trap "catchFinish" EXIT SIGINT
 
-createCustomResourcesFile() {
-  cat > custom-resources.yaml <<-END
-spec:
-  auth:
-    updateAdminPassword: false
-  server:
-    pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
-    pluginRegistryPullPolicy: IfNotPresent
-    customCheProperties:
-      CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
-      CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
-      CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
-END
+# createCustomResourcesFile() {
+#   cat > custom-resources.yaml <<-END
+# spec:
+#   auth:
+#     updateAdminPassword: false
+#   server:
+#     pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
+#     pluginRegistryPullPolicy: IfNotPresent
+#     customCheProperties:
+#       CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
+#       CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
+#       CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
+# END
 
-echo "Generated custom resources file"
-cat custom-resources.yaml
-}
+# echo "Generated custom resources file"
+# cat custom-resources.yaml
+# }
 
-deployChe() {
-  chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
-}
+# deployChe() {
+#   chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --workspace-engine=dev-workspace --platform=openshift --installer=operator --batch
+# }
 
 runTest() {
-  createCustomResourcesFile
-  deployChe
+  # createCustomResourcesFile
+  # deployChe
 #   waitDevWorkspaceControllerStarted
 
 #   # wait for 2 min for devworkspace-controller ready to work.
@@ -79,12 +79,14 @@ runTest() {
 
 
   # patch pod.yaml 
-  wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/6b67bf9d4d90c297907215c6fe45ae42f89ef4e7/happy-path-pod.yaml
+  wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/b445e2dc47ef59a9266d8e2d20508ea52847c849/happy-path-pod.yaml
  
  
   ECLIPSE_CHE_URL=http://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')
 #   TS_SELENIUM_DEVWORKSPACE_URL="https://$(oc get route -n "${NAMESPACE}" | grep theia/ | awk '{print $2}')/theia/"
   sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" happy-path-pod.yaml
+  sed -i "s@userstory-sample@${USERSTORY}@g" happy-path-pod.yaml
+
 #   sed -i "s@WORKSPACE_ROUTE@${TS_SELENIUM_DEVWORKSPACE_URL}@g" happy-path-pod.yaml
   cat happy-path-pod.yaml
 
