@@ -25,4 +25,4 @@ git init .
 git checkout --orphan gh-pages
 git add ./*
 git commit -m "Automated Plugin Report $DATE_TIME" -s
-git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/eclipse/che-plugin-registry.git" gh-pages
+git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/eclipse-che/che-plugin-registry.git" gh-pages
