@@ -78,10 +78,20 @@ runTest() {
 
 
 
-  # patch pod.yaml 
-  wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/a77180ae40e630acc204076689397d5ebbf604ce/happy-path-pod.yaml
- 
- 
+  # patch pod.yaml
+  echo "===>>>  Show where script launched"
+  echo "---------------------------------------"
+  pwd
+
+  echo "---------------------------------------"
+  ls -al
+
+  echo "---------------------------------------"
+  # wget https://gist.githubusercontent.com/Ohrimenko1988/cf2ca8040f2e9fabaa4557c87c89181e/raw/a77180ae40e630acc204076689397d5ebbf604ce/happy-path-pod.yaml
+  
+  cat .ci/openshift-ci/happy-path-pod.yaml > happy-path-pod.yaml
+
+
   ECLIPSE_CHE_URL=http://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')
 #   TS_SELENIUM_DEVWORKSPACE_URL="https://$(oc get route -n "${NAMESPACE}" | grep theia/ | awk '{print $2}')/theia/"
   sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" happy-path-pod.yaml
