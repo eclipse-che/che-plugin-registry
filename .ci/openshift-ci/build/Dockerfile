@@ -24,12 +24,12 @@ WORKDIR /che-plugin-registry
 
 # Install build tools
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh && \
+    apk add --no-cache bash openssh && \
     apk add --update nodejs npm && \
     npm install --global yarn
 
 # Build repo
-RUN git checkout openshiftCi && yarn && \
+RUN yarn && \
     yarn --cwd tools/build build && \
     eval node tools/build/lib/entrypoint.js --output-folder:"output"
 
