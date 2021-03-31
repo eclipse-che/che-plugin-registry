@@ -18,7 +18,6 @@ ENV SKIP_LINT=true
 ENV SKIP_TEST=true
 ENV BUILDER=docker
 
-
 USER root
 ADD . /che-plugin-registry
 WORKDIR /che-plugin-registry
@@ -52,7 +51,6 @@ RUN cp /che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/ && \
     cp /che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/ && \
     cp /che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/ && \
     rm -rf /che-plugin-registry
-
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["httpd-foreground"]
