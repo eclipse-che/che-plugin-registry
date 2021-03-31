@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eclipse/che-plugin-registry.git"
+    "url": "git+https://github.com/eclipse-che/che-plugin-registry.git"
   },
   "author": "",
   "license": "EPL-2.0",
   "bugs": {
     "url": "https://github.com/eclipse/che/issues"
   },
-  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
+  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/master/tools/automation/README.md",
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [

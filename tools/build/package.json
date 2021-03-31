@@ -15,7 +15,7 @@
     "build": "concurrently ${CONCURRENTLY_OPTS} -n \"format,lint,compile,test\" -c \"red,green,blue,magenta\" \"yarn format\" \"yarn lint\" \"yarn compile\" \"yarn test\"",
     "test": "if-env SKIP_TEST=true && echo 'skip test' || jest --forceExit"
   },
-  "homepage": "https://github.com/eclipse/che-plugin-registry/blob/master/tools/automation/README.md",
+  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/master/tools/automation/README.md",
   "dependencies": {
     "@types/decompress": "^4.2.3",
     "decompress": "^4.2.1",
