@@ -40,6 +40,6 @@ describe('Test CheEditorsAnalyzer', () => {
     expect(theiaEditors).toBeDefined();
     expect(theiaEditors.length).toBe(1);
     const theiaEditor = theiaEditors[0];
-    expect(theiaEditor.repository).toBe('https://github.com/eclipse/che-theia');
+    expect(theiaEditor.repository).toBe('https://github.com/eclipse-che/che-theia');
   });
 });
