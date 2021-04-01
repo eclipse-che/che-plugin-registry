@@ -8,7 +8,7 @@ title: Eclipse Theia development version.
 description: 'Eclipse Theia, get the latest release each day.'
 icon: /v3/images/eclipse-che-logo.png
 category: Editor
-repository: 'https://github.com/eclipse/che-theia'
+repository: 'https://github.com/eclipse-che/che-theia'
 firstPublicationDate: '2019-03-07'
 latestUpdateDate: '2021-02-19'
 spec:
