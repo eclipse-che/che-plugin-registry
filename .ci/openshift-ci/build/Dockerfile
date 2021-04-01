@@ -24,7 +24,7 @@ WORKDIR /che-plugin-registry
 
 # Install build tools
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash openssh && \
+    apk add --no-cache bash git openssh && \
     apk add --update nodejs npm && \
     npm install --global yarn
 
