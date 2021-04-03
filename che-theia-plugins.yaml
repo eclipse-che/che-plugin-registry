@@ -476,7 +476,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.3.0.vsix
+        https://github.com/Azure/vscode-kubernetes-tools/releases/download/1.3.0/vscode-kubernetes-tools-1.3.0.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
