@@ -467,7 +467,7 @@ plugins:
       - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.2-227.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
-      revision: 1.2.1
+      revision: 1.3.0
     sidecar:
       directory: kubernetes-tooling
       name: vscode-kubernetes-tools
@@ -476,7 +476,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+        https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.3.0.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
