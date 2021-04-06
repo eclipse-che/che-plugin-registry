@@ -8,7 +8,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM jdkato/vale:v2.8.0 as vale
+FROM jdkato/vale:latest as vale
 
 FROM alpine:3.12.1
 
@@ -28,8 +28,8 @@ RUN mkdir /projects ${HOME} && \
 
 ADD etc/entrypoint.sh entrypoint.sh
 
-# Default vale.ini is needed
-ADD etc/vale.ini ${HOME}
+# Default _vale.ini is needed
+ADD etc/_vale.ini ${HOME}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
