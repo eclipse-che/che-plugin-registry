@@ -24,3 +24,5 @@ node_modules/
 .eslintcache
 coverage
 output
+tools/automation/report/.vuepress/dist
+tools/automation/report/che-plugin-registry
