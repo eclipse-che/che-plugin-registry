@@ -23,8 +23,8 @@ git config --global user.name "CHE Bot"
 rm -rf che-plugin-registry
 git clone -b gh-pages "https://github.com/$GITHUB_REPOSITORY.git"
 cd che-plugin-registry
-git rm -r assets *.html
+git rm -r assets ./*.html
 cp -rf ../.vuepress/dist/* .
-git add assets *.html
+git add assets ./*.html
 git commit -m "Automated Plugin Report - $(date)" -s
 git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
