@@ -11,13 +11,17 @@
 import { inject, injectable } from 'inversify';
 
 import { CheEditorMetaInfo } from './che-editors-meta-info';
+import { ContainerHelper } from '../common/container-helper';
+import { EndpointsHelper } from '../common/endpoints-helper';
 import { MetaYamlPluginInfo } from '../meta-yaml/meta-yaml-plugin-info';
-import { VolumeMountHelper } from '../common/volume-mount-helper';
 
 @injectable()
 export class CheEditorsMetaYamlGenerator {
-  @inject(VolumeMountHelper)
-  private volumeMountHelper: VolumeMountHelper;
+  @inject(EndpointsHelper)
+  private endpointsHelper: EndpointsHelper;
+
+  @inject(ContainerHelper)
+  private containerHelper: ContainerHelper;
 
   async compute(cheEditors: CheEditorMetaInfo[]): Promise<MetaYamlPluginInfo[]> {
     // for each plugin, compute info
@@ -26,7 +30,8 @@ export class CheEditorsMetaYamlGenerator {
         const type = 'Che Editor';
         const cheEditorOutput = JSON.stringify(cheEditor);
 
-        const id = cheEditor.id;
+        const metadata = cheEditor.metadata;
+        const id = metadata.name;
         const splitIds = id.split('/');
         if (splitIds.length !== 3) {
           throw new Error(`The id for ${cheEditorOutput} is not composed of 3 parts separated by / like <1>/<2>/<3>`);
@@ -43,25 +48,29 @@ export class CheEditorsMetaYamlGenerator {
           disableLatest = false;
         }
 
-        const displayName = cheEditor.displayName;
-        const title = cheEditor.title;
-        const description = cheEditor.description;
+        const displayName = metadata.displayName;
+        const title = metadata.attributes.title;
+        const description = metadata.description;
         const category = 'Editor';
         const iconFile = cheEditor.iconFile;
-        const repository = cheEditor.repository;
-        const firstPublicationDate = cheEditor.firstPublicationDate;
+        const repository = metadata.attributes.repository;
+        const firstPublicationDate = metadata.attributes.firstPublicationDate;
 
         const latestUpdateDate = new Date().toISOString().slice(0, 10);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const spec: any = {};
-        if (cheEditor.endpoints) {
-          spec.endpoints = cheEditor.endpoints;
-        }
-        if (cheEditor.containers) {
-          spec.containers = cheEditor.containers.map(container => this.volumeMountHelper.resolve(container));
-        }
-        if (cheEditor.initContainers) {
-          spec.initContainers = cheEditor.initContainers.map(container => this.volumeMountHelper.resolve(container));
+        if (cheEditor.components) {
+          spec.endpoints = [];
+          spec.containers = [];
+          spec.initContainers = [];
+          cheEditor.components.forEach(c => {
+            if (c.container && c.container.endpoints) {
+              c.container.endpoints.forEach(e => spec.endpoints.push(this.endpointsHelper.resolve(e)));
+            }
+          });
+          const containers = this.containerHelper.resolve(cheEditor);
+          spec.containers.push(...containers.containers);
+          spec.initContainers.push(...containers.initContainers);
         }
 
         return {

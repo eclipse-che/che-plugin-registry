@@ -10,6 +10,10 @@
 export interface CommonEndpointYaml {
   name: string;
   public?: boolean;
+  exposure?: 'public' | 'internal' | 'none';
+  path?: string;
+  protocol?: 'http' | 'https' | 'ws' | 'wss' | 'tcp' | 'udp';
+  secure?: boolean;
   targetPort?: number;
-  attributes: { [key: string]: string };
+  attributes?: { [key: string]: string | boolean };
 }
