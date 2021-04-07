@@ -8,7 +8,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM jdkato/vale:latest as vale
+FROM jdkato/vale:v2.10.2 as vale
 
 FROM alpine:3.12.1
 
