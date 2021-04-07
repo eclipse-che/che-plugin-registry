@@ -13,12 +13,12 @@ editors:
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
     commands:
-      - id: init-container-command
+      - id: init-remote-runtime-injector
         apply:
           component: remote-runtime-injector
     events:
       preStart:
-        - init-container-command
+        - init-remote-runtime-injector
     components:
       - name: theia-ide
         container:
@@ -96,15 +96,6 @@ editors:
               protocol: http
               attributes:
                 discoverable: false
-            - name: terminal
-              targetPort: 3333
-              exposure: public
-              secure: true
-              protocol: ws
-              attributes:
-                type: collocated-terminal
-                discoverable: false
-                cookiesAuthEnabled: true
         attributes:
           ports:
             - exposedPort: 3100
@@ -123,6 +114,16 @@ editors:
             - /go/bin/che-machine-exec
             - '--url'
             - '127.0.0.1:3333'
+          endpoints:
+            - name: terminal
+              targetPort: 3333
+              exposure: public
+              secure: true
+              protocol: ws
+              attributes:
+                type: collocated-terminal
+                discoverable: false
+                cookiesAuthEnabled: true
         attributes:
           ports:
             - exposedPort: 3333
@@ -153,12 +154,12 @@ editors:
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
     commands:
-      - id: init-container-command
+      - id: init-remote-runtime-injector
         apply:
           component: remote-runtime-injector
     events:
       preStart:
-        - init-container-command
+        - init-remote-runtime-injector
     components:
       - name: theia-ide
         container:
@@ -234,15 +235,6 @@ editors:
               protocol: http
               attributes:
                 discoverable: false
-            - name: terminal
-              targetPort: 3333
-              exposure: public
-              secure: true
-              protocol: ws
-              attributes:
-                type: collocated-terminal
-                discoverable: false
-                cookiesAuthEnabled: true
         attributes:
           ports:
             - exposedPort: 3100
@@ -261,6 +253,16 @@ editors:
             - /go/bin/che-machine-exec
             - '--url'
             - '127.0.0.1:3333'
+          endpoints:
+            - name: terminal
+              targetPort: 3333
+              exposure: public
+              secure: true
+              protocol: ws
+              attributes:
+                type: collocated-terminal
+                discoverable: false
+                cookiesAuthEnabled: true
         attributes:
           ports:
             - exposedPort: 3333

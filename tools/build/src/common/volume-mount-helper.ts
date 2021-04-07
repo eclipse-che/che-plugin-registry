@@ -10,9 +10,10 @@
 
 import { CheEditorContainerYaml, CheEditorVolume } from '../editor/che-editors-yaml';
 
+import { Container } from './container-helper';
 import { injectable } from 'inversify';
 
-export interface ContainerVolumes {
+export interface ContainerVolumes extends Container {
   volumes?: { mountPath: string; name: string; ephemeral?: boolean }[];
 }
 

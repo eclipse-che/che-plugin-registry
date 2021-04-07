@@ -10,7 +10,7 @@
 
 import 'reflect-metadata';
 
-import { Conatainers, ContainerHelper } from '../../src/common/container-helper';
+import { ContainerHelper, Containers } from '../../src/common/container-helper';
 
 import { CheEditorMetaInfo } from '../../src/editor/che-editors-meta-info';
 import { Container } from 'inversify';
@@ -185,7 +185,7 @@ describe('Test ContainerHelper', () => {
   });
 
   test('basics', async () => {
-    const containers: Conatainers = await containerHelper.resolve(cheEditor);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(1);
     expect(containers.initContainers.length).toBe(1);
@@ -194,7 +194,7 @@ describe('Test ContainerHelper', () => {
 
   test('empty components', async () => {
     delete cheEditor.components;
-    const containers: Conatainers = await containerHelper.resolve(cheEditor);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(0);
     expect(containers.initContainers.length).toBe(0);
@@ -202,7 +202,7 @@ describe('Test ContainerHelper', () => {
 
   test('empty events', async () => {
     delete cheEditor.events;
-    const containers: Conatainers = await containerHelper.resolve(cheEditor);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(2);
     expect(containers.initContainers.length).toBe(0);
@@ -210,7 +210,7 @@ describe('Test ContainerHelper', () => {
 
   test('empty prestart events', async () => {
     delete cheEditor.events?.preStart;
-    const containers: Conatainers = await containerHelper.resolve(cheEditor);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(2);
     expect(containers.initContainers.length).toBe(0);
@@ -218,7 +218,7 @@ describe('Test ContainerHelper', () => {
 
   test('empty commands', async () => {
     delete cheEditor.commands;
-    const containers: Conatainers = await containerHelper.resolve(cheEditor);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(2);
     expect(containers.initContainers.length).toBe(0);

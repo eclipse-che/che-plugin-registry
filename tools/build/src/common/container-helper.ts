@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2021 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -14,15 +14,15 @@ import { inject, injectable } from 'inversify';
 import { CheEditorMetaInfo } from '../editor/che-editors-meta-info';
 import { VolumeMountHelper } from './volume-mount-helper';
 
-export interface Conatainer {
+export interface Container {
   name?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ports?: any[];
 }
 
-export interface Conatainers {
-  containers: Conatainer[];
-  initContainers: Conatainer[];
+export interface Containers {
+  containers: Container[];
+  initContainers: Container[];
 }
 
 @injectable()
@@ -30,23 +30,18 @@ export class ContainerHelper {
   @inject(VolumeMountHelper)
   private volumeMountHelper: VolumeMountHelper;
 
-  resolve(editor: CheEditorMetaInfo): Conatainers {
-    const containers: Conatainer[] = [];
-    const initContainers: Conatainer[] = [];
+  resolve(editor: CheEditorMetaInfo): Containers {
+    const containers: Container[] = [];
+    const initContainers: Container[] = [];
     if (editor.components) {
       const volumes = new Map<string, CheEditorVolume>();
-      editor.components.forEach(c => {
-        if (c.name && c.volume && Object.keys(c.volume).length > 0) {
-          volumes.set(c.name, c.volume);
-        }
-      });
+      editor.components
+        .filter(c => c.name && c.volume && Object.keys(c.volume).length > 0)
+        .forEach(c => volumes.set(c.name!, c.volume!));
       editor.components
         .filter(c => c.container)
         .forEach(component => {
-          const container = this.volumeMountHelper.resolve(
-            component.container as CheEditorContainerYaml,
-            volumes
-          ) as Conatainer;
+          const container = this.volumeMountHelper.resolve(component.container as CheEditorContainerYaml, volumes);
           container.name = component.name;
           if (component.attributes && component.attributes.ports) {
             container.ports = component.attributes.ports;
