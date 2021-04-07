@@ -127,14 +127,14 @@ interface CheEditorGitCheckoutFromYaml {
   revision?: string;
 }
 
-interface CheEditorVCSYaml {
+interface CheEditorGitYaml {
   checkoutFrom?: CheEditorGitCheckoutFromYaml;
   remotes?: { [key: string]: string };
 }
 
 interface CheEditorProjectYaml {
-  git?: CheEditorVCSYaml;
-  gitHub?: CheEditorVCSYaml;
+  git?: CheEditorGitYaml;
+  gitHub?: CheEditorGitYaml;
   zip?: { location: string };
   attributes?: { [key: string]: string };
   clonePath?: string;
