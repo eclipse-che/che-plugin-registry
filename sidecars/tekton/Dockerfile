@@ -16,8 +16,8 @@ RUN cd src && git clone https://github.com/tektoncd/experimental && cd experimen
 
 FROM quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.1-6144144
 
-ENV OCTANT_VERSION 0.16.0
-ENV TEKTONCD_VERSION 0.13.0
+ENV OCTANT_VERSION 0.18.0
+ENV TEKTONCD_VERSION 0.17.0
 
 RUN dnf install -y wget && \
     mkdir -p /home/theia/.octant/plugins && \
