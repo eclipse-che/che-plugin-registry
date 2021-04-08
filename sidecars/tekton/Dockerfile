@@ -14,7 +14,7 @@ WORKDIR $GOPATH
 RUN cd src && git clone https://github.com/tektoncd/experimental && cd experimental/octant-plugin && \
     CGO_ENABLED=0 GOOS=linux go build -o $GOPATH/src/tekton-plugin -a -ldflags '-extldflags "-static"' .
 
-FROM quay.io/eclipse/che-sidecar-kubernetes-tooling:1.2.1-6144144
+FROM quay.io/eclipse/che-plugin-sidecar:kubernetes-tooling-d7b84fc
 
 ENV OCTANT_VERSION 0.18.0
 ENV TEKTONCD_VERSION 0.17.0
