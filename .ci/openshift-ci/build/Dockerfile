@@ -11,7 +11,13 @@
 #
 
 # Build registry
-FROM docker.io/httpd:2.4.46-alpine
+# UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
+# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
+
+# FROM test-base:latest as builder
+# FROM test-base:latest
+
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
@@ -19,38 +25,59 @@ ENV SKIP_TEST=true
 ENV BUILDER=docker
 
 USER root
+
 ADD . /che-plugin-registry
 WORKDIR /che-plugin-registry
 
 # Install build tools
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh && \
-    apk add --update nodejs npm && \
-    npm install --global yarn
+RUN yum update -y && yum upgrade -y
+RUN yum install git -y 
+RUN yum install openssh -y
+RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+RUN yum install nodejs -y
+RUN npm install --global yarn
 
 # Build repo
 RUN yarn && \
     yarn --cwd tools/build build && \
     eval node tools/build/lib/entrypoint.js --output-folder:"output"
 
-# Configure server
-RUN apk add --no-cache bash && \
-    # Allow htaccess
-    sed -i 's|    AllowOverride None|    AllowOverride All|' /usr/local/apache2/conf/httpd.conf && \
-    sed -i 's|Listen 80|Listen 8080|' /usr/local/apache2/conf/httpd.conf && \
-    mkdir -p /var/www && ln -s /usr/local/apache2/htdocs /var/www/html && \
-    chmod -R g+rwX /usr/local/apache2 && \
-    echo "ServerName localhost" >> /usr/local/apache2/conf/httpd.conf && \
-    apk add --no-cache coreutils
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
-# Copy artifacts
-RUN cp /che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/ && \
-    cp /che-plugin-registry/README.md /usr/local/apache2/htdocs/ && \
-    cp /che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/ && \
-    cp -r /che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3 && \
-    cp /che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/ && \
-    cp /che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/ && \
-    rm -rf /che-plugin-registry
+USER root
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["httpd-foreground"]
+# latest httpd container doesn't include ssl cert, so generate one
+RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
+    /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh
+RUN yum update -y systemd && yum clean all && rm -rf /var/cache/yum && \
+    echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages"
+
+# BEGIN these steps might not be required
+RUN sed -i /etc/httpd/conf/httpd.conf \
+    -e "s,Listen 80,Listen 8080," \
+    -e "s,logs/error_log,/dev/stderr," \
+    -e "s,logs/access_log,/dev/stdout," \
+    -e "s,AllowOverride None,AllowOverride All," && \
+    chmod a+rwX /etc/httpd/conf /run/httpd /etc/httpd/logs/
+STOPSIGNAL SIGWINCH
+# END these steps might not be required
+
+WORKDIR /var/www/html
+
+RUN mkdir -m 777 /var/www/html/v3 && \
+    mkdir -m 777 /var/www/html/v3/plugins && \
+    mkdir -m 777 /var/www/html/v3/images
+
+COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
+
+RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
+
+COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
+COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
+COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
+COPY --from=builder /che-plugin-registry/v3/images/eclipse-che-logo.png /var/www/html/v3/images/
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/usr/local/bin/rhel.entrypoint.sh"]
+
+# append Brew metadata here
