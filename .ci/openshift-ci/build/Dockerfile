@@ -10,13 +10,7 @@
 #   Red Hat, Inc. - initial API and implementation
 #
 
-# Build registry
-# UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
-# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-
-# FROM test-base:latest as builder
-# FROM test-base:latest
-
+# Initial settings
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
 
 ENV SKIP_FORMAT=true
