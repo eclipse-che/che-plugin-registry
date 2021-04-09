@@ -10,7 +10,7 @@
 
 FROM quay.io/eclipse/che-container-tools:1.0.0-8caea0f
 
-ENV MINIKUBE_VERSION=v1.12.1
+ENV MINIKUBE_VERSION=v1.18.1
 
 ADD etc/storage.conf ${HOME}/.config/containers/storage.conf
 ADD etc/containers.conf ${HOME}/.config/containers/containers.conf
