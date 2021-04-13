@@ -13,6 +13,10 @@
 ##########  More info about how it is configured can be found here: https://docs.ci.openshift.org/docs/how-tos/testing-operator-sdk-operators #############
 #######################################################################################################################################################
 
+
+# Test pr-check trigger
+
+
 # exit immediately when a command fails
 set -e
 # only exit with zero if all commands of the pipeline exit successfully
