@@ -12,6 +12,21 @@ spec:
       image: quay.io/eclipse/che-e2e:nightly
       imagePullPolicy: Always
       env:
+        - name: TS_SELENIUM_OCP_USERNAME
+          value: 'user'
+        - name: TS_SELENIUM_OCP_PASSWORD
+          value: "user"
+        - name: TS_SELENIUM_VALUE_OPENSHIFT_OAUTH
+          value: 'true'
+        - name: TS_SELENIUM_USERNAME
+          value: "admin"
+        - name: TS_SELENIUM_PASSWORD
+          value: 'admin'
+        - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
+          value: "htpasswd"
+
+
+
         - name: TEST_SUITE
           value: test-all-plugins
         - name: NODE_TLS_REJECT_UNAUTHORIZED
@@ -21,7 +36,7 @@ spec:
         - name: TS_SELENIUM_LOG_LEVEL
           value: DEBUG
         - name: TS_SELENIUM_MULTIUSER
-          value: 'false'
+          value: 'true'
         - name: TS_SELENIUM_VALUE_TLS_SUPPORT
           value: 'true'
         - name: TS_SELENIUM_W3C_CHROME_OPTION
