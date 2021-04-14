@@ -24,9 +24,6 @@ spec:
           value: 'admin'
         - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
           value: "htpasswd"
-
-
-
         - name: TEST_SUITE
           value: test-all-plugins
         - name: NODE_TLS_REJECT_UNAUTHORIZED
