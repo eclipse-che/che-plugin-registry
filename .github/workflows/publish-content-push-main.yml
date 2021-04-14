@@ -53,7 +53,7 @@ jobs:
       - name: Publish to gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
-          VERSION_DIR: nightly
+          VERSION_DIR: main
         run: |
           export BUILD_DIR="$PWD/content"
           export GH_PAGES_DIR="$PWD/gh-pages"
