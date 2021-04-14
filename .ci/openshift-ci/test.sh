@@ -29,7 +29,7 @@ export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 
 provisionOpenShiftOAuthUser() {
   oc create secret generic htpass-secret --from-file=htpasswd=".ci/openshift-ci/users.htpasswd" -n openshift-config
-  oc apply -f "$SCRIPT_DIR/resources/htpasswdProvider.yaml"
+  oc apply -f ".ci/openshift-ci/htpasswdProvider.yaml"
   oc adm policy add-cluster-role-to-user cluster-admin user
 
   echo -e "[INFO] Waiting for htpasswd auth to be working up to 5 minutes"
