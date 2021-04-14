@@ -20,6 +20,10 @@ jobs:
     name: publish
     runs-on: ubuntu-20.04
     steps:
+      - name: Clone source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
