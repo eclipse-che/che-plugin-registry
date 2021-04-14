@@ -1,0 +1,20 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "eclipse-cdt/cdt-vscode"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "eclipse-cdt/cdt-vscode"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "eclipse-cdt/cdt-vscode"
+    ]
+  }
+]

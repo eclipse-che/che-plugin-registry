@@ -1,0 +1,15 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "vscode/typescript-language-features",
+      "sonarsource/sonarlint-vscode"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "sonarsource/sonarlint-vscode"
+    ]
+  }
+]

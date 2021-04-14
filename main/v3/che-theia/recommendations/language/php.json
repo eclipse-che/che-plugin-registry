@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "bmewburn/vscode-intelephense-client",
+      "sonarsource/sonarlint-vscode"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "bmewburn/vscode-intelephense-client",
+      "sonarsource/sonarlint-vscode"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "bmewburn/vscode-intelephense-client"
+    ]
+  }
+]
