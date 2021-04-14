@@ -333,7 +333,7 @@ plugins:
         https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix
   - repository:
       url: 'https://github.com/redhat-developer/vscode-yaml'
-      revision: 0.14.0
+      revision: 0.18.0
     featured: true
     sidecar:
       directory: node
@@ -343,7 +343,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix
+        https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vd095126/vscode-yaml-0.18.0.vsix
   - id: redhat/java11
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
