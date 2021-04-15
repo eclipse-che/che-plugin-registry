@@ -87,7 +87,7 @@ runTest() {
   # wait for the pod to start
   while true; do
     sleep 3
-    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} \
+    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} \
         --template='{{ .status.phase }}')
     if [[ ${PHASE} == "Running" ]]; then
         break
@@ -95,15 +95,15 @@ runTest() {
   done
 
   # wait for the test to finish
-  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} -c plugins-test -f
+  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c plugins-test -f
 
   # just to sleep
   sleep 3
 
   # download the test results
   mkdir -p /tmp/e2e
-  oc rsync -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} -c download-reports -- touch /tmp/done
+  oc rsync -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
+  oc exec -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c download-reports -- touch /tmp/done
 
   mkdir -p "${ARTIFACTS_DIR}"
   cp -r /tmp/e2e "${ARTIFACTS_DIR}"
