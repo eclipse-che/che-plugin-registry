@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: happy-path-che
-  namespace: devworkspace-project
+  name: test-plugins
+  namespace: plugin-registry-test
 spec:
   volumes:
     - name: test-run-results
   containers:
     # container containing the tests
-    - name: happy-path-test
+    - name: plugins-test
       image: quay.io/eclipse/che-e2e:nightly
       imagePullPolicy: Always
       env:

@@ -21,14 +21,15 @@ set -o pipefail
 set -u
 
 export RAM_MEMORY=8192
-export TEST_POD_NAMESPACE="devworkspace-project"
+export TEST_POD_NAMESPACE="plugin-registry-test"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
-export HAPPY_PATH_POD_NAME="happy-path-che"
+export TEST_POD_NAME="test-plugins"
 export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 
 
 provisionOpenShiftOAuthUser() {
-  oc create secret generic htpass-secret --from-file=htpasswd=".ci/openshift-ci/users.htpasswd" -n openshift-config
+  htpasswd -c -B -b users.htpasswd user user
+  oc create secret generic htpass-secret --from-file=htpasswd="users.htpasswd" -n openshift-config
   oc apply -f ".ci/openshift-ci/htpasswdProvider.yaml"
   oc adm policy add-cluster-role-to-user cluster-admin user
 
@@ -65,28 +66,28 @@ END
 }
 
 deployChe() {
-  chectl server:deploy  --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --platform=openshift --installer=operator --batch
+  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --platform=openshift --installer=operator --batch
 }
 
 patchTestPodConfig(){
-  # obtain the basic "happy-path" pod config
-  cat .ci/openshift-ci/happy-path-pod.yaml > happy-path-pod.yaml
+  # obtain the basic test pod config
+  cat .ci/openshift-ci/plugins-test-pod.yaml > plugins-test-pod.yaml
 
-  # Patch the basic "happy-path" pod config
+  # Patch the basic test pod config
   ECLIPSE_CHE_URL=http://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')
-  sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" happy-path-pod.yaml
-  cat happy-path-pod.yaml
+  sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" plugins-test-pod.yaml
+  cat plugins-test-pod.yaml
 }
 
 runTest() {
   # Create the test pod
   oc create namespace $TEST_POD_NAMESPACE
-  oc apply -f happy-path-pod.yaml
+  oc apply -f plugins-test-pod.yaml
 
   # wait for the pod to start
   while true; do
     sleep 3
-    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} happy-path-che \
+    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} \
         --template='{{ .status.phase }}')
     if [[ ${PHASE} == "Running" ]]; then
         break
@@ -94,15 +95,15 @@ runTest() {
   done
 
   # wait for the test to finish
-  oc logs -n ${TEST_POD_NAMESPACE} happy-path-che -c happy-path-test -f
+  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} -c plugins-test -f
 
   # just to sleep
   sleep 3
 
   # download the test results
   mkdir -p /tmp/e2e
-  oc rsync -n ${TEST_POD_NAMESPACE} ${HAPPY_PATH_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} ${HAPPY_PATH_POD_NAME} -c download-reports -- touch /tmp/done
+  oc rsync -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
+  oc exec -n ${TEST_POD_NAMESPACE} ${TEST_PATH_POD_NAME} -c download-reports -- touch /tmp/done
 
   mkdir -p "${ARTIFACTS_DIR}"
   cp -r /tmp/e2e "${ARTIFACTS_DIR}"
