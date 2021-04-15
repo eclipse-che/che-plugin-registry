@@ -25,7 +25,7 @@ spec:
         - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
           value: 'htpasswd'
         - name: TEST_SUITE
-          value: test-all-plugins
+          value: test-plugin
         - name: USERSTORY
           value: JavaPlugin
         - name: NODE_TLS_REJECT_UNAUTHORIZED
