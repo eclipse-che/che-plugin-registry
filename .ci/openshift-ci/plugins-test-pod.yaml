@@ -48,7 +48,7 @@ spec:
           memory: "8Gi"
           cpu: "2000m"
         limits:
-          memory: "8Gi"
+          memory: "12Gi"
           cpu: "4000m" 
 # Download results          
     - name: download-reports
