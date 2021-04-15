@@ -20,6 +20,9 @@ set -o pipefail
 # error on unset variables
 set -u
 
+#Stop execution on any error
+trap "catchFinish" EXIT SIGINT
+
 export RAM_MEMORY=8192
 export TEST_POD_NAMESPACE="plugin-registry-test"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
@@ -111,6 +114,8 @@ runTest() {
 
   EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
 
+  echo "EXIT_CODE: ${EXIT_CODE}"
+  
   if [[ ${EXIT_CODE} == "+ EXIT_CODE=1" ]]; then
     echo "[ERROR] Plugin tests failed."
     exit 1
