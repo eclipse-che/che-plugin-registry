@@ -24,6 +24,7 @@ export RAM_MEMORY=8192
 export TEST_POD_NAMESPACE="plugin-registry-test"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
 export TEST_POD_NAME="test-plugins"
+export TEST_CONTAINER_NAME="plugins-test"
 export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 
 
@@ -95,7 +96,7 @@ runTest() {
   done
 
   # wait for the test to finish
-  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c plugins-test -f
+  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} -f
 
   # just to sleep
   sleep 3
@@ -107,6 +108,13 @@ runTest() {
 
   mkdir -p "${ARTIFACTS_DIR}"
   cp -r /tmp/e2e "${ARTIFACTS_DIR}"
+
+  EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
+
+  if [[ ${EXIT_CODE} == "+ EXIT_CODE=1" ]]; then
+    echo "[ERROR] Plugin tests failed."
+    exit 1
+  fi
 }
 
 provisionOpenShiftOAuthUser

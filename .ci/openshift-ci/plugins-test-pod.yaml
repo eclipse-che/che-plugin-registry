@@ -26,6 +26,8 @@ spec:
           value: 'htpasswd'
         - name: TEST_SUITE
           value: test-all-plugins
+        - name: USERSTORY
+          value: JavaPlugin
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: '0'
         - name: TS_SELENIUM_BASE_URL
