@@ -10,7 +10,7 @@ icon: /v3/images/rogalmic-bash-debug-icon.png
 category: Debuggers
 repository: 'https://github.com/rogalmic/vscode-bash-debug.git'
 firstPublicationDate: '2020-06-15'
-latestUpdateDate: '2021-04-14'
+latestUpdateDate: '2021-04-15'
 spec:
   extensions:
     - >-
