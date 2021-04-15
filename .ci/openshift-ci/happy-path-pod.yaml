@@ -15,19 +15,17 @@ spec:
         - name: TS_SELENIUM_OCP_USERNAME
           value: 'user'
         - name: TS_SELENIUM_OCP_PASSWORD
-          value: "user"
+          value: 'user'
         - name: TS_SELENIUM_VALUE_OPENSHIFT_OAUTH
           value: 'true'
         - name: TS_SELENIUM_USERNAME
-          value: "admin"
+          value: 'admin'
         - name: TS_SELENIUM_PASSWORD
           value: 'admin'
         - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
-          value: "htpasswd"
+          value: 'htpasswd'
         - name: TEST_SUITE
-          value: test-plugin
-        - name: USERSTORY
-          value: VscodeXmlPlugin
+          value: test-all-plugins
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: '0'
         - name: TS_SELENIUM_BASE_URL
