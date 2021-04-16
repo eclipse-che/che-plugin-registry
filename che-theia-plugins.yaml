@@ -195,7 +195,7 @@ plugins:
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix
   - repository:
       url: 'https://github.com/camel-tooling/vscode-camelk'
-      revision: 0.0.22
+      revision: 0.0.23
     sidecar:
       directory: camelk
       name: vscode-camelk
@@ -204,7 +204,7 @@ plugins:
       cpuRequest: 30m
     extensions:
       - >-
-        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.22-135.vsix
+        https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.23-159.vsix
       - >-
         https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
       - >-
@@ -587,7 +587,7 @@ plugins:
     extensions:
       - >-
         https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.17.1/file/BroadcomMFD.cobol-language-support-0.17.1.vsix
-  - id: broadcommfd/debugger-for-mainframe/1.4.0
+  - id: broadcommfd/debugger-for-mainframe/1.5.0
     isClosedSource: true
     repository:
       url: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
@@ -600,7 +600,7 @@ plugins:
       mountSources: true
     extensions:
       - >-
-        https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.4.0/file/BroadcomMFD.debugger-for-mainframe-1.4.0.vsix
+        https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.5.0/file/BroadcomMFD.debugger-for-mainframe-1.5.0.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm'
       directory: clients/vscode-hlasmplugin/

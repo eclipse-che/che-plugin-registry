@@ -20,6 +20,10 @@ jobs:
     name: publish
     runs-on: ubuntu-20.04
     steps:
+      - name: Clone source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
@@ -30,7 +34,7 @@ jobs:
           docker cp pluginRegistry:/var/www/html/v3 content/v3
           docker rm -f pluginRegistry
           cp content/v3/plugins/index.json content/index.json
-      - name: publish
+      - name: Publish to surge
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
@@ -50,3 +54,11 @@ jobs:
            export DEPLOY_DOMAIN=https://che-plugin-registry-main.surge.sh
            echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
            surge ./content --domain $DEPLOY_DOMAIN
+      - name: Publish to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
+          VERSION_DIR: main
+        run: |
+          export BUILD_DIR="$PWD/content"
+          export GH_PAGES_DIR="$PWD/gh-pages"
+          ./build/dev/publish-plugin-registry-to-gh-pages.sh

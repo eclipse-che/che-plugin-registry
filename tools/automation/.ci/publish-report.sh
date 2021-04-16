@@ -18,11 +18,13 @@ yarn run compile
 node ./lib/check-plugin-updates.js
 cd ./report
 ../../../node_modules/.bin/vuepress build
-cd ./.vuepress/dist
 git config --global user.email "che-bot@eclipse.org"
 git config --global user.name "CHE Bot"
-git init .
-git checkout --orphan gh-pages
-git add ./*
-git commit -m "Automated Plugin Report $DATE_TIME" -s
-git push -f "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/eclipse-che/che-plugin-registry.git" gh-pages
+rm -rf che-plugin-registry
+git clone -b gh-pages "https://github.com/$GITHUB_REPOSITORY.git"
+cd che-plugin-registry
+git rm -r assets ./*.html
+cp -rf ../.vuepress/dist/* .
+git add assets ./*.html
+git commit -m "Automated Plugin Report - $(date)" -s
+git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages

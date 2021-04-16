@@ -324,4 +324,9 @@ The job names are `surge(alpine)` and `surge(rhel)`. Clicking on `Details` in th
 For example, alpine build of PR 805 would be hosted at: https://pr-check-805-alpine-che-plugin-registry.surge.sh/
 
 ### Nightly
-A nightly build of the plugin registry is also hosted on [surge.sh](https://surge.sh/), and is updated at every commit to the master branch. You can find a link to this hosted registry [here](https://che-plugin-registry-main.surge.sh/).
+A nightly build of the plugin registry is published on both [surge.sh](https://che-plugin-registry-main.surge.sh/), and [GitHub Pages](https://eclipse-che.github.io/che-plugin-registry/main/). Both are updated upon every commit merged to the main branch.
+
+### Versioned Releases
+Versioned releases of the che-plugin-registry are also published to GitHub Pages. The version of the release is name of the last folder in the URL.
+
+For example, the `7.29.0` version of the plugin registry would be published at https://eclipse-che.github.io/che-plugin-registry/7.29.0/

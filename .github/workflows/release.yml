@@ -90,6 +90,21 @@ jobs:
           export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
 
           ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
+      - name: Extract content for publishing
+        run: |
+          docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} sh
+          mkdir content
+          docker cp pluginRegistry:/var/www/html/v3 content/v3
+          docker rm -f pluginRegistry
+          cp content/v3/plugins/index.json content/index.json
+      - name: Publish to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
+          VERSION_DIR: ${{ github.event.inputs.version}}
+        run: |
+          export BUILD_DIR="$PWD/content"
+          export GH_PAGES_DIR="$PWD/gh-pages"
+          ./build/dev/publish-plugin-registry-to-gh-pages.sh
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
