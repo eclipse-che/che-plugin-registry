@@ -108,6 +108,8 @@ runTest() {
 
   mkdir -p "${ARTIFACTS_DIR}"
   cp -r /tmp/e2e "${ARTIFACTS_DIR}"
+  chectl server:logs --chenamespace="eclipse-che" --directory=${ARTIFACTS_DIR} --telemetry=off
+  oc get checluster -o yaml -n "eclipse-che" > ${ARTIFACTS_DIR}/che-cluster.yaml
 
   EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
 
