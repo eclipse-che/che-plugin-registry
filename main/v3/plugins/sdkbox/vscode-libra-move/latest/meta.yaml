@@ -10,7 +10,7 @@ icon: /v3/images/sdkbox-vscode-libra-move-icon.png
 category: Snippets
 repository: 'https://github.com/sdkbox/vscode-libra-move'
 firstPublicationDate: '2019-09-24'
-latestUpdateDate: '2021-04-15'
+latestUpdateDate: '2021-04-19'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:d4b2d36637af64e2c33933f36fe6aeb1a3a879ff7045596210e847eb7382b2ef'

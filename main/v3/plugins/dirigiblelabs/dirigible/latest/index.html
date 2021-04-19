@@ -10,18 +10,17 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/dirigiblelabs/dirigible-che-editor-plugin/'
 firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2021-04-15'
+latestUpdateDate: '2021-04-19'
 spec:
   endpoints:
     - name: dirigible
-      public: true
-      targetPort: 8080
       attributes:
-        protocol: http
         type: ide
+        protocol: http
+      targetPort: 8080
+      public: true
   containers:
-    - name: eclipse-dirigible
-      image: >-
+    - image: >-
         index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113
       env:
         - name: DIRIGIBLE_DATABASE_PROVIDER
@@ -44,7 +43,9 @@ spec:
           value: 'jdbc:h2:/projects/dirigible/h2'
         - name: DIRIGIBLE_OPERATIONS_LOGS_ROOT_FOLDER_DEFAULT
           value: /usr/local/tomcat/logs
-      ports:
-        - exposedPort: 8080
       mountSources: true
       memoryLimit: 1024M
+      name: eclipse-dirigible
+      ports:
+        - exposedPort: 8080
+  initContainers: []

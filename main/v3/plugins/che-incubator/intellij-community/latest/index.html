@@ -10,25 +10,26 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/che-incubator/che-editor-intellij-community'
 firstPublicationDate: '2020-09-29'
-latestUpdateDate: '2021-04-15'
+latestUpdateDate: '2021-04-19'
 spec:
   endpoints:
     - name: intellij
-      public: true
       targetPort: 8080
       attributes:
-        protocol: http
         type: ide
         discoverable: false
         path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
+        protocol: http
+      public: true
   containers:
-    - name: intellij-novnc
-      image: >-
+    - image: >-
         quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863
       mountSources: true
-      ports:
-        - exposedPort: 8080
       memoryLimit: 2048M
       volumes:
         - name: idea-configuration
           mountPath: /JetBrains/IdeaIC
+      name: intellij-novnc
+      ports:
+        - exposedPort: 8080
+  initContainers: []

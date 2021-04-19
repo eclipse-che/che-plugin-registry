@@ -10,7 +10,7 @@ icon: /v3/images/redhat-vscode-didact-icon.png
 category: Other
 repository: 'https://github.com/redhat-developer/vscode-didact'
 firstPublicationDate: '2021-03-19'
-latestUpdateDate: '2021-04-15'
+latestUpdateDate: '2021-04-19'
 spec:
   extensions:
     - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.2-227.vsix'
