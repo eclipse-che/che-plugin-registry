@@ -8,14 +8,13 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
+import { CheEditorContainerYaml, CheEditorVolume } from '../editor/che-editors-yaml';
+
+import { Container } from './container-helper';
 import { injectable } from 'inversify';
 
-export interface ContainerVolumes {
+export interface ContainerVolumes extends Container {
   volumes?: { mountPath: string; name: string; ephemeral?: boolean }[];
-}
-
-export interface ContainerVolumeMounts {
-  volumeMounts?: { path: string; name: string; ephemeral?: boolean }[];
 }
 
 /**
@@ -23,15 +22,21 @@ export interface ContainerVolumeMounts {
  */
 @injectable()
 export class VolumeMountHelper {
-  resolve(container: ContainerVolumeMounts): ContainerVolumes {
+  resolve(container: CheEditorContainerYaml, volumes?: Map<string, CheEditorVolume>): ContainerVolumes {
+    if (container.endpoints) {
+      delete container.endpoints;
+    }
     if (container.volumeMounts) {
       (container as ContainerVolumes).volumes = container.volumeMounts.map(volumeMount => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const volume: any = { name: volumeMount.name, mountPath: volumeMount.path };
-        if (volumeMount.ephemeral) {
-          volume.ephemeral = volumeMount.ephemeral;
+        const result: any = { name: volumeMount.name, mountPath: volumeMount.path };
+        if (volumes) {
+          const volume = volumes.get(volumeMount.name);
+          if (volume) {
+            result.ephemeral = volume.ephemeral;
+          }
         }
-        return volume;
+        return result;
       });
       delete container.volumeMounts;
     }

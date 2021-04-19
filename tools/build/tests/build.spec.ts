@@ -162,30 +162,37 @@ describe('Test Build', () => {
 
   async function buildCheEditorYaml(): Promise<CheEditorYaml> {
     return {
-      id: 'ws-skeleton/eclipseide/4.9.0',
-      displayName: 'Eclipse IDE',
-      description: 'Eclipse running on the Web with Broadway',
-      title: 'Eclipse IDE (in browser using Broadway) as editor for Eclipse Che',
-      icon: 'https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg',
-      repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/',
-      firstPublicationDate: '2019-02-05',
-      endpoints: [
-        {
-          name: 'eclipse-ide',
-          public: true,
-          targetPort: 5000,
-          attributes: {
-            protocol: 'http',
-            type: 'ide',
-          },
+      schemaVersion: '2.1.0',
+      metadata: {
+        name: 'ws-skeleton/eclipseide/4.9.0',
+        displayName: 'Eclipse IDE',
+        description: 'Eclipse running on the Web with Broadway',
+        icon: 'https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg',
+        attributes: {
+          title: 'Eclipse IDE (in browser using Broadway) as editor for Eclipse Che',
+          repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/',
+          firstPublicationDate: '2019-02-05',
         },
-      ],
-      containers: [
+      },
+      components: [
         {
           name: 'eclipse-ide',
-          image: 'docker.io/wsskeleton/eclipse-broadway',
-          mountSources: true,
-          memoryLimit: '2048M',
+          container: {
+            image: 'docker.io/wsskeleton/eclipse-broadway',
+            mountSources: true,
+            memoryLimit: '2048M',
+            endpoints: [
+              {
+                name: 'eclipse-ide',
+                public: true,
+                targetPort: 5000,
+                attributes: {
+                  protocol: 'http',
+                  type: 'ide',
+                },
+              },
+            ],
+          },
         },
       ],
     };

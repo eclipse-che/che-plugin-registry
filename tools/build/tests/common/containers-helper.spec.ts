@@ -7,32 +7,29 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import 'reflect-metadata';
 
+import { ContainerHelper, Containers } from '../../src/common/container-helper';
+
 import { CheEditorMetaInfo } from '../../src/editor/che-editors-meta-info';
-import { CheEditorsMetaYamlGenerator } from '../../src/editor/che-editors-meta-yaml-generator';
 import { Container } from 'inversify';
-import { ContainerHelper } from '../../src/common/container-helper';
-import { EndpointsHelper } from '../../src/common/endpoints-helper';
 import { VolumeMountHelper } from '../../src/common/volume-mount-helper';
 
-describe('Test ChePluginsMetaYamlGenerator', () => {
+describe('Test ContainerHelper', () => {
+  let containerHelper: ContainerHelper;
   let container: Container;
+  let cheEditor: CheEditorMetaInfo;
 
-  let cheEditorsMetaYamlGenerator: CheEditorsMetaYamlGenerator;
-  const originalConsoleWarn: any = console.warn;
-  const originalConsoleError: any = console.error;
-
-  async function generateEditorMetaInfo(id: string): Promise<CheEditorMetaInfo> {
-    const cheEditor: CheEditorMetaInfo = {
+  beforeEach(() => {
+    cheEditor = {
       schemaVersion: '2.1.0',
       metadata: {
         displayName: 'theia-ide',
         description: 'Eclipse Theia, get the latest release each day.',
         icon:
           'https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true',
-        name: id,
+        name: 'che-editor',
         attributes: {
           version: '5.7.0',
           title: 'Eclipse Theia development version.',
@@ -138,6 +135,15 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
               },
             ],
           },
+          attributes: {
+            ports: [
+              { exposedPort: 3100 },
+              { exposedPort: 3130 },
+              { exposedPort: 13131 },
+              { exposedPort: 13132 },
+              { exposedPort: 13133 },
+            ],
+          },
         },
         {
           name: 'remote-runtime-injector',
@@ -167,79 +173,54 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
         },
       ],
     };
-    return cheEditor;
-  }
 
-  beforeEach(() => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
-    console.error = jest.fn();
-    console.warn = jest.fn();
     container = new Container();
-    container.bind(CheEditorsMetaYamlGenerator).toSelf().inSingletonScope();
-    container.bind(VolumeMountHelper).toSelf().inSingletonScope();
+    container.bind('string').toConstantValue('/fake-output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
+
     container.bind(ContainerHelper).toSelf().inSingletonScope();
-    container.bind(EndpointsHelper).toSelf().inSingletonScope();
-    cheEditorsMetaYamlGenerator = container.get(CheEditorsMetaYamlGenerator);
-  });
-  afterEach(() => {
-    console.error = originalConsoleError;
-    console.warn = originalConsoleWarn;
+    container.bind(VolumeMountHelper).toSelf().inSingletonScope();
+    containerHelper = container.get(ContainerHelper);
   });
 
   test('basics', async () => {
-    const cheEditorMetaInfo = await generateEditorMetaInfo('my/firstplugin/1.0.0');
-    const cheEditorMetaInfos: CheEditorMetaInfo[] = [cheEditorMetaInfo];
-    const result = await cheEditorsMetaYamlGenerator.compute(cheEditorMetaInfos);
-    expect(result).toBeDefined();
-    expect(result.length).toBe(1);
-    const metaYamlInfo = result[0];
-
-    const metaYamlInfoSpec: any = metaYamlInfo.spec;
-    expect(metaYamlInfoSpec).toBeDefined();
-    const metaYamlInfoSpecContainers = metaYamlInfoSpec.containers;
-    if (!metaYamlInfoSpecContainers) {
-      throw new Error('No spec containers');
-    }
-    expect(metaYamlInfoSpecContainers).toBeDefined();
-    expect(metaYamlInfoSpecContainers.length).toBe(1);
-    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-theia:next');
-
-    expect(metaYamlInfoSpec.endpoints).toBeDefined();
-    expect(metaYamlInfoSpec.endpoints.length).toBe(7);
+    const containers: Containers = await containerHelper.resolve(cheEditor);
+    expect(containers).toBeDefined();
+    expect(containers.containers.length).toBe(1);
+    expect(containers.initContainers.length).toBe(1);
+    expect(containers.containers[0].ports?.length).toBe(5);
   });
 
-  test('empty', async () => {
-    const cheEditorMetaInfo = await generateEditorMetaInfo('my/firstplugin/1.0.0');
-    cheEditorMetaInfo.components?.forEach(c => delete c.container);
-    const result = await cheEditorsMetaYamlGenerator.compute([cheEditorMetaInfo]);
-    const metaYamlInfo = result[0];
-    expect(metaYamlInfo.spec.containers?.length).toBe(0);
+  test('empty components', async () => {
+    delete cheEditor.components;
+    const containers: Containers = await containerHelper.resolve(cheEditor);
+    expect(containers).toBeDefined();
+    expect(containers.containers.length).toBe(0);
+    expect(containers.initContainers.length).toBe(0);
   });
 
-  test('invalid id', async () => {
-    const cheEditorMetaInfo = await generateEditorMetaInfo('my/incomplete');
-    const cheEditorMetaInfos: CheEditorMetaInfo[] = [cheEditorMetaInfo];
-    await expect(cheEditorsMetaYamlGenerator.compute(cheEditorMetaInfos)).rejects.toThrow(
-      'is not composed of 3 parts separated by /'
-    );
+  test('empty events', async () => {
+    delete cheEditor.events;
+    const containers: Containers = await containerHelper.resolve(cheEditor);
+    expect(containers).toBeDefined();
+    expect(containers.containers.length).toBe(2);
+    expect(containers.initContainers.length).toBe(0);
   });
 
-  test('non-numeric version', async () => {
-    const cheEditorMetaInfo = await generateEditorMetaInfo('my/firstplugin/nightly');
+  test('empty prestart events', async () => {
+    delete cheEditor.events?.preStart;
+    const containers: Containers = await containerHelper.resolve(cheEditor);
+    expect(containers).toBeDefined();
+    expect(containers.containers.length).toBe(2);
+    expect(containers.initContainers.length).toBe(0);
+  });
 
-    // no endpoint, container and init Containers
-    delete cheEditorMetaInfo.components;
-
-    const cheEditorMetaInfos: CheEditorMetaInfo[] = [cheEditorMetaInfo];
-    const result = await cheEditorsMetaYamlGenerator.compute(cheEditorMetaInfos);
-    expect(result).toBeDefined();
-    expect(result.length).toBe(1);
-    const metaYamlInfo = result[0];
-
-    const metaYamlInfoSpec = metaYamlInfo.spec;
-    expect(metaYamlInfoSpec).toBeDefined();
-    const metaYamlInfoSpecContainers = metaYamlInfoSpec.containers;
-    expect(metaYamlInfoSpecContainers).toBeUndefined();
+  test('empty commands', async () => {
+    delete cheEditor.commands;
+    const containers: Containers = await containerHelper.resolve(cheEditor);
+    expect(containers).toBeDefined();
+    expect(containers.containers.length).toBe(2);
+    expect(containers.initContainers.length).toBe(0);
   });
 });

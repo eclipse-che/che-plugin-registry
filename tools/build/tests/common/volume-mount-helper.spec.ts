@@ -11,13 +11,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import 'reflect-metadata';
 
-import { ContainerVolumeMounts, VolumeMountHelper } from '../../src/common/volume-mount-helper';
-
+import { CheEditorContainerYaml } from '../../src/editor/che-editors-yaml';
 import { Container } from 'inversify';
+import { VolumeMountHelper } from '../../src/common/volume-mount-helper';
 
 describe('Test VolumeMountHelper', () => {
   let volumeMountHelper: VolumeMountHelper;
   let container: Container;
+
+  let containerVolumeMounts: CheEditorContainerYaml;
 
   beforeEach(() => {
     jest.restoreAllMocks();
@@ -25,15 +27,10 @@ describe('Test VolumeMountHelper', () => {
     container = new Container();
     container.bind('string').toConstantValue('/fake-output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
 
-    container.bind(VolumeMountHelper).toSelf().inSingletonScope();
-    volumeMountHelper = container.get(VolumeMountHelper);
-  });
-
-  test('basics', async () => {
-    const containerVolumes: ContainerVolumeMounts = {
+    containerVolumeMounts = {
+      image: 'image',
       volumeMounts: [
         {
-          ephemeral: true,
           name: 'example',
           path: '/foo',
         },
@@ -43,22 +40,38 @@ describe('Test VolumeMountHelper', () => {
         },
       ],
     };
-    const containerVolume = await volumeMountHelper.resolve(containerVolumes);
+
+    container.bind(VolumeMountHelper).toSelf().inSingletonScope();
+    volumeMountHelper = container.get(VolumeMountHelper);
+  });
+
+  test('basics', async () => {
+    const volumes = new Map();
+    volumes.set('example', { ephemeral: true });
+    const containerVolume = await volumeMountHelper.resolve(containerVolumeMounts, volumes);
     expect(containerVolume).toBeDefined();
     expect(containerVolume.volumes).toBeDefined();
-    const volumes = containerVolume.volumes!;
-    expect(volumes[0].ephemeral).toBe(true);
-    expect(volumes[0].mountPath).toBe('/foo');
-    expect(volumes[0].name).toBe('example');
-    expect(volumes[1].ephemeral).toBeUndefined();
-    expect(volumes[1].mountPath).toBe('/bar');
-    expect(volumes[1].name).toBe('example2');
+    const volumeMount = containerVolume.volumes!;
+    expect(volumeMount[0].ephemeral).toBe(true);
+    expect(volumeMount[0].mountPath).toBe('/foo');
+    expect(volumeMount[0].name).toBe('example');
+    expect(volumeMount[1].ephemeral).toBeUndefined();
+    expect(volumeMount[1].mountPath).toBe('/bar');
+    expect(volumeMount[1].name).toBe('example2');
   });
 
   test('empty', async () => {
-    const containerVolumes: ContainerVolumeMounts = {};
-    const containerVolume = await volumeMountHelper.resolve(containerVolumes);
+    const containerVolume = await volumeMountHelper.resolve({ image: 'image' });
     expect(containerVolume).toBeDefined();
     expect(containerVolume.volumes).toBeUndefined();
+  });
+
+  test('empty volumes', async () => {
+    const containerVolume = await volumeMountHelper.resolve(containerVolumeMounts);
+    expect(containerVolume).toBeDefined();
+    expect(containerVolume.volumes).toBeDefined();
+    const volumeMount = containerVolume.volumes!;
+    expect(volumeMount[0].ephemeral).toBeUndefined();
+    expect(volumeMount[1].ephemeral).toBeUndefined();
   });
 });

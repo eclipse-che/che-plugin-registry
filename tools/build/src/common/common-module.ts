@@ -9,10 +9,14 @@
  ***********************************************************************/
 import { ContainerModule, interfaces } from 'inversify';
 
+import { ContainerHelper } from './container-helper';
+import { EndpointsHelper } from './endpoints-helper';
 import { VolumeMountHelper } from './volume-mount-helper';
 
 const commonModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(VolumeMountHelper).toSelf().inSingletonScope();
+  bind(EndpointsHelper).toSelf().inSingletonScope();
+  bind(ContainerHelper).toSelf().inSingletonScope();
 });
 
 export { commonModule };
