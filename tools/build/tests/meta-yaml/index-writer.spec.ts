@@ -52,6 +52,15 @@ describe('Test IndexWriter', () => {
         type: 'Che Editor',
         version: 'my-version',
       } as any,
+      {
+        description: 'my-unknown-desc',
+        displayName: 'unknown-display-name',
+        id: 'my-publisher/my-unknown-name/latest',
+        name: 'my-unknown-name',
+        publisher: 'my-unknown-publisher',
+        type: 'unknown',
+        version: 'my-version',
+      } as any,
     ];
     jest.restoreAllMocks();
     jest.resetAllMocks();
@@ -97,6 +106,7 @@ describe('Test IndexWriter', () => {
     expect(jsonOutput[2].id).toBe('my-publisher/my-name/latest');
     expect(jsonOutput[2].description).toBe('my-description');
     expect(jsonOutput[2].links.self).toBe('/v3/plugins/my-publisher/my-name/latest');
+    expect(jsonOutput[2].links.plugin).toBe('/v3/plugins/my-publisher/my-name/latest/che-theia-plugin.yaml');
     // no devfile generation for VS Code extensions
     expect(jsonOutput[2].links.devfile).toBeUndefined();
     expect(jsonOutput[2].name).toBe('my-name');
