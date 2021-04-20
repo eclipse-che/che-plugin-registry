@@ -37,7 +37,8 @@ export class ContainerHelper {
       const volumes = new Map<string, CheEditorVolume>();
       editor.components
         .filter(c => c.name && c.volume && Object.keys(c.volume).length > 0)
-        .forEach(c => volumes.set(c.name!, c.volume!));
+        .map(c => c as { name: string; volume: CheEditorVolume })
+        .forEach(c => volumes.set(c.name, c.volume));
       editor.components
         .filter(c => c.container)
         .forEach(component => {
