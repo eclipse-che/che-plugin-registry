@@ -7,7 +7,7 @@
 #
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
-FROM koalaman/shellcheck-alpine:v0.7.1
+FROM koalaman/shellcheck-alpine:v0.7.2
 
 ENV HOME=/home/theia
 
