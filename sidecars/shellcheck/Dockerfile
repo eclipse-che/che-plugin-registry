@@ -9,9 +9,11 @@
 #   Red Hat, Inc. - initial API and implementation
 FROM koalaman/shellcheck-alpine:v0.7.1
 
-RUN mkdir /projects && \
+ENV HOME=/home/theia
+
+RUN mkdir /projects ${HOME} && \
     # Change permissions to let any arbitrary user
-    for f in "/etc/passwd" "/projects"; do \
+    for f in "${HOME}" "/etc/passwd" "/projects"; do \
       echo "Changing permissions on ${f}" && chgrp -R 0 ${f} && \
       chmod -R g+rwX ${f}; \
     done
