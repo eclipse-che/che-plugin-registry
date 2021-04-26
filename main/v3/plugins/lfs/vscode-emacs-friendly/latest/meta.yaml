@@ -10,7 +10,7 @@ icon: /v3/images/lfs-vscode-emacs-friendly-icon.png
 category: Other
 repository: 'https://github.com/SebastianZaha/vscode-emacs-friendly'
 firstPublicationDate: '2019-06-06'
-latestUpdateDate: '2021-04-23'
+latestUpdateDate: '2021-04-26'
 spec:
   extensions:
     - >-
