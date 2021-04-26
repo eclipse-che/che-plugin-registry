@@ -1,0 +1,30 @@
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/java11
+  publisher: redhat
+  name: java11
+  version: latest
+  displayName: Language Support for Java(TM) by Red Hat
+  description: 'Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...'
+  repository: 'https://github.com/redhat-developer/vscode-java'
+  categories:
+    - Programming Languages
+    - Linters
+    - Formatters
+    - Snippets
+  icon: /v3/images/redhat-java-icon.png
+sidecar:
+  name: vscode-java
+  memoryLimit: 1500Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: m2
+      path: /home/theia/.m2
+  image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+preferences:
+  java.server.launchMode: Standard
+extensions:
+  - 'https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix'
+  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix'
+  - 'https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix'

@@ -1,0 +1,20 @@
+schemaVersion: 1.0.0
+metadata:
+  id: octref/vetur
+  publisher: octref
+  name: vetur
+  version: latest
+  displayName: Vetur
+  description: Vue tooling for VS Code
+  repository: 'https://github.com/vuejs/vetur.git'
+  categories:
+    - Programming Languages
+  icon: /v3/images/octref-vetur-icon.png
+sidecar:
+  name: vetur
+  memoryLimit: 512Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
+extensions:
+  - 'https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix'

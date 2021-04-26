@@ -1,0 +1,14 @@
+schemaVersion: 1.0.0
+metadata:
+  id: broadcommfd/explorer-for-endevor
+  publisher: broadcommfd
+  name: explorer-for-endevor
+  version: latest
+  displayName: Explorer for Endevor
+  description: Explorer for Endevor
+  repository: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
+  categories:
+    - SCM Providers
+  icon: /v3/images/broadcommfd-explorer-for-endevor-icon.png
+extensions:
+  - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.1/explorer-for-endevor-0.11.1.vsix'
