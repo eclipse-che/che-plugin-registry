@@ -28,10 +28,9 @@ tools/automation/report/.vuepress/dist
 tools/automation/report/che-plugin-registry
 
 .yarn/*
-!.yarn/cache
 !.yarn/patches
-!.yarn/plugins
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
