@@ -10,7 +10,7 @@
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-METAS_DIR=`mktemp -d`
+METAS_DIR=$(mktemp -d)
 
 function cleanup() {
     rm -rf  "${METAS_DIR}";
@@ -18,7 +18,7 @@ function cleanup() {
 trap cleanup EXIT
 
 function beforeTest() {
-    rm -rf "${METAS_DIR}"/*
+    rm -rf "${METAS_DIR:?}"/*
     unset CHE_SIDECAR_CONTAINERS_REGISTRY_URL \
           CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION \
           CHE_SIDECAR_CONTAINERS_REGISTRY_TAG
@@ -60,7 +60,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -85,7 +86,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -112,7 +114,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -137,7 +140,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION='fakeorg'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION='fakeorg'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -164,7 +168,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION='fakeorg'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION='fakeorg'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -189,7 +194,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_TAG='faketag'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_TAG='faketag'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
@@ -216,7 +222,8 @@ spec:
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_TAG='faketag'
+export CHE_SIDECAR_CONTAINERS_REGISTRY_TAG='faketag'
+# shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references

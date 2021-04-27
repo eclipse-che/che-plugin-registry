@@ -49,15 +49,15 @@ function update_container_image_references() {
     # Defaults don't work because registry and tags may be different.
     if [ -n "$REGISTRY" ]; then
         echo "    Updating image registry to $REGISTRY"
-        cat "$meta" | tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1${REGISTRY}/\3/\4\5:\6\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1${REGISTRY}/\3/\4\5:\6\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
     fi
     if [ -n "$ORGANIZATION" ]; then
         echo "    Updating image organization to $ORGANIZATION"
-        cat "$meta" | tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/${ORGANIZATION}/\4\5:\6\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/${ORGANIZATION}/\4\5:\6\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
     fi
     if [ -n "$TAG" ]; then
         echo "    Updating image tag to $TAG"
-        cat "$meta" | tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/\3/\4:${TAG}\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/\3/\4:${TAG}\7|" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
     fi
     done
 
@@ -139,5 +139,5 @@ function run_main() {
 # do not execute the main function in unit tests
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]
 then
-    run_main
+    run_main "${@}"
 fi
