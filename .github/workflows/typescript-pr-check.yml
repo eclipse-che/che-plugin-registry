@@ -44,7 +44,7 @@ jobs:
     - name: typescript
       run: |
         yarn
-        yarn workspaces run build
+        yarn workspaces foreach run build
     - name: report-coverage
       uses: codecov/codecov-action@v1
       with:
