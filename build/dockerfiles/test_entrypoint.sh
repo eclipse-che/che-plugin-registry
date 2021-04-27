@@ -55,18 +55,17 @@ END
 expected_metayaml=$(cat <<-END
 spec:
   containers:
-    - image: 'https://fakeregistry.io:9000/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d'
+    - image: 'https://fakeregistry.io:5000/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d'
       name: asciidoctor-vscode
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:9000'
+CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
 assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
-
 
 #################################################################
 echo -e "\n## Should update image registry URL. Double quote."
@@ -81,19 +80,44 @@ END
 expected_metayaml=$(cat <<-END
 spec:
   containers:
-    - image: "https://fakeregistry.io:9000/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d"
+    - image: "https://fakeregistry.io:5000/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d"
       name: asciidoctor-vscode
 END
 )
 echo "$metayaml" > "${METAS_DIR}/meta.yaml"
-CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:9000'
+CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
 source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
 assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+#################################################################
+echo -e "\n## Should update image registry URL. Multiline."
+beforeTest
+metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        quay.io/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
+      name: asciidoctor-vscode
+END
+)
+expected_metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        https://fakeregistry.io:5000/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
+      name: asciidoctor-vscode
+END
+)
+echo "$metayaml" > "${METAS_DIR}/meta.yaml"
+CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+source "${script_dir}/entrypoint.sh"
 
+update_container_image_references
+
+assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image organization."
@@ -120,6 +144,32 @@ update_container_image_references
 
 assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+#################################################################
+echo -e "\n## Should update image organization. Multiline."
+beforeTest
+metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        quay.io/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
+      name: asciidoctor-vscode
+END
+)
+expected_metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        quay.io/fakeorg/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
+      name: asciidoctor-vscode
+END
+)
+echo "$metayaml" > "${METAS_DIR}/meta.yaml"
+CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION='fakeorg'
+source "${script_dir}/entrypoint.sh"
+
+update_container_image_references
+
+assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image tag."
@@ -135,6 +185,33 @@ expected_metayaml=$(cat <<-END
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar:faketag'
+      name: asciidoctor-vscode
+END
+)
+echo "$metayaml" > "${METAS_DIR}/meta.yaml"
+CHE_SIDECAR_CONTAINERS_REGISTRY_TAG='faketag'
+source "${script_dir}/entrypoint.sh"
+
+update_container_image_references
+
+assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+
+#################################################################
+echo -e "\n## Should update image tag. Multiline."
+beforeTest
+metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        quay.io/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
+      name: asciidoctor-vscode
+END
+)
+expected_metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: >-
+        quay.io/eclipse/che-plugin-sidecar:faketag
       name: asciidoctor-vscode
 END
 )
