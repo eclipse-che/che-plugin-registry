@@ -15,9 +15,10 @@ set -o pipefail
 yarn
 cd ./tools/automation
 yarn run compile
-node ./lib/check-plugin-updates.js
+yarn node ./lib/check-plugin-updates.js
 cd ./report
-../../../node_modules/.bin/vuepress build
+npm install -g vuepress@1.8.2
+vuepress build
 git config --global user.email "che-bot@eclipse.org"
 git config --global user.name "CHE Bot"
 rm -rf che-plugin-registry
