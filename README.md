@@ -1,4 +1,4 @@
-[![codecov](https://img.shields.io/codecov/c/github/eclipse/che-plugin-registry)](https://codecov.io/gh/eclipse/che-plugin-registry)
+[![codecov](https://img.shields.io/codecov/c/github/eclipse-che/che-plugin-registry)](https://codecov.io/gh/eclipse-che/che-plugin-registry)
 
 # Eclipse Che Plugin Registry
 
