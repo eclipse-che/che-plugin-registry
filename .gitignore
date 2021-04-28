@@ -26,3 +26,13 @@ coverage
 output
 tools/automation/report/.vuepress/dist
 tools/automation/report/che-plugin-registry
+
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+# not zero-install mode
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

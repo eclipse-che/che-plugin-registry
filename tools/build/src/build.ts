@@ -26,6 +26,8 @@ import { CheTheiaPluginAnalyzerMetaInfo } from './che-theia-plugin/che-theia-plu
 import { CheTheiaPluginYaml } from './che-theia-plugin/che-theia-plugins-yaml';
 import { CheTheiaPluginsAnalyzer } from './che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugin/che-theia-plugins-meta-yaml-generator';
+import { CheTheiaPluginsYamlGenerator } from './che-theia-plugin/che-theia-plugins-yaml-generator';
+import { CheTheiaPluginsYamlWriter } from './che-theia-plugin/che-theia-plugins-yaml-writer';
 import { Deferred } from './util/deferred';
 import { DigestImagesHelper } from './meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from './meta-yaml/external-images-writer';
@@ -72,6 +74,9 @@ export class Build {
   @inject(CheTheiaPluginsMetaYamlGenerator)
   private cheTheiaPluginsMetaYamlGenerator: CheTheiaPluginsMetaYamlGenerator;
 
+  @inject(CheTheiaPluginsYamlGenerator)
+  private cheTheiaPluginsYamlGenerator: CheTheiaPluginsYamlGenerator;
+
   @inject(CheEditorsMetaYamlGenerator)
   private cheEditorsMetaYamlGenerator: CheEditorsMetaYamlGenerator;
 
@@ -80,6 +85,9 @@ export class Build {
 
   @inject(MetaYamlWriter)
   private metaYamlWriter: MetaYamlWriter;
+
+  @inject(CheTheiaPluginsYamlWriter)
+  private cheTheiaPluginsYamlWriter: CheTheiaPluginsYamlWriter;
 
   @inject(ExternalImagesWriter)
   private externalImagesWriter: ExternalImagesWriter;
@@ -273,6 +281,10 @@ export class Build {
       'Compute meta.yaml for che-theia-plugins',
       this.cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPlugins)
     );
+    const cheTheiaPluginsYaml = await this.wrapIntoTask(
+      'Compute che-theia-plugin.yaml fragments for che-theia-plugins',
+      this.cheTheiaPluginsYamlGenerator.compute(cheTheiaPlugins)
+    );
 
     const cheEditors = await this.wrapIntoTask('Analyze che-editors.yaml file', this.analyzeCheEditorsYaml());
     const cheEditorsMetaYaml = await this.wrapIntoTask(
@@ -302,6 +314,12 @@ export class Build {
     const generatedYamls = await this.wrapIntoTask(
       'Write meta.yamls in v3/plugins folder',
       this.metaYamlWriter.write(allMetaYamls)
+    );
+
+    // write che-theia-plugins fragment
+    await this.wrapIntoTask(
+      'Write che-theia-plugin.yaml fragment in v3/plugins folder',
+      this.cheTheiaPluginsYamlWriter.write(cheTheiaPluginsYaml)
     );
 
     // generate index.json

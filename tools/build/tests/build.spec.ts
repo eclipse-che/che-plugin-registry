@@ -23,6 +23,8 @@ import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-
 import { CheTheiaPluginAnalyzerMetaInfo } from '../src/che-theia-plugin/che-theia-plugin-analyzer-meta-info';
 import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
+import { CheTheiaPluginsYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-yaml-generator';
+import { CheTheiaPluginsYamlWriter } from '../src/che-theia-plugin/che-theia-plugins-yaml-writer';
 import { Container } from 'inversify';
 import { Deferred } from '../src/util/deferred';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
@@ -115,6 +117,16 @@ describe('Test Build', () => {
   const metaYamlEditorGeneratorComputeMock = jest.fn();
   const cheEditorMetaYamlGenerator: any = {
     compute: metaYamlEditorGeneratorComputeMock,
+  };
+
+  const cheTheiaPluginsYamlWriterWriteMock = jest.fn();
+  const cheTheiaPluginsYamlWriter: any = {
+    write: cheTheiaPluginsYamlWriterWriteMock,
+  };
+
+  const cheTheiaPluginsYamlGeneratorComputeMock = jest.fn();
+  const cheTheiaPluginsYamlGenerator: any = {
+    compute: cheTheiaPluginsYamlGeneratorComputeMock,
   };
 
   let build: Build;
@@ -213,6 +225,8 @@ describe('Test Build', () => {
 
     container.bind(CheTheiaPluginsAnalyzer).toConstantValue(cheTheiaPluginsAnalyzer);
     container.bind(CheTheiaPluginsMetaYamlGenerator).toConstantValue(cheTheiaPluginsMetaYamlGenerator);
+    container.bind(CheTheiaPluginsYamlWriter).toConstantValue(cheTheiaPluginsYamlWriter);
+    container.bind(CheTheiaPluginsYamlGenerator).toConstantValue(cheTheiaPluginsYamlGenerator);
     container.bind(ChePluginsAnalyzer).toConstantValue(chePluginsAnalyzer);
     container.bind(ChePluginsMetaYamlGenerator).toConstantValue(chePluginsMetaYamlGenerator);
     container.bind(CheEditorsAnalyzer).toConstantValue(cheEditorsAnalyzer);
@@ -276,6 +290,8 @@ describe('Test Build', () => {
     expect(externalImagesWriter.write).toBeCalled();
     expect(metaYamlWriter.write).toBeCalled();
     expect(indexWriter.write).toBeCalled();
+    expect(cheTheiaPluginsYamlWriter.write).toBeCalled();
+    expect(cheTheiaPluginsYamlGenerator.compute).toBeCalled();
   });
 
   test('basics without package.json', async () => {

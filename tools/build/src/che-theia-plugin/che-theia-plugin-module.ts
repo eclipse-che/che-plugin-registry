@@ -11,10 +11,14 @@ import { ContainerModule, interfaces } from 'inversify';
 
 import { CheTheiaPluginsAnalyzer } from './che-theia-plugins-analyzer';
 import { CheTheiaPluginsMetaYamlGenerator } from './che-theia-plugins-meta-yaml-generator';
+import { CheTheiaPluginsYamlGenerator } from './che-theia-plugins-yaml-generator';
+import { CheTheiaPluginsYamlWriter } from './che-theia-plugins-yaml-writer';
 
 const cheTheiaPluginModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(CheTheiaPluginsAnalyzer).toSelf().inSingletonScope();
   bind(CheTheiaPluginsMetaYamlGenerator).toSelf().inSingletonScope();
+  bind(CheTheiaPluginsYamlGenerator).toSelf().inSingletonScope();
+  bind(CheTheiaPluginsYamlWriter).toSelf().inSingletonScope();
 });
 
 export { cheTheiaPluginModule };
