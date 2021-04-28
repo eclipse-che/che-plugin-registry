@@ -1,0 +1,65 @@
+[
+  {
+    "category": "Other",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Snippets",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Azure",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "redhat/vscode-camelk",
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  }
+]
