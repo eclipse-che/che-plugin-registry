@@ -16,12 +16,12 @@ import { VsixInfo } from '../../src/extensions/vsix-info';
 
 export class CheTheiaPluginGenerator {
   private generatePluginMetaInfo(id: string, featured: boolean): CheTheiaPluginMetaInfo {
-    const extensions: string[] = [];
+    const extension = '';
     const sidecar = { image: 'foo:1234' };
     const aliases: string[] = [];
     const repository = { url: 'https://my-fake-repository', revision: 'main' };
     const vsixInfos = new Map<string, VsixInfo>();
-    return { id, extensions, sidecar, aliases, repository, featured, vsixInfos };
+    return { id, extension, sidecar, aliases, repository, featured, vsixInfos };
   }
 
   async generate(): Promise<CheTheiaPluginMetaInfo[]> {

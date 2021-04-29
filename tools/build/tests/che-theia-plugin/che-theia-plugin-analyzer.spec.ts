@@ -36,7 +36,7 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(result.plugins.length).toBeGreaterThan(10);
 
     // search for plugins with an id provided in yaml
-    const java11Plugins = result.plugins.filter(plugin => plugin.id === 'redhat/java11');
+    const java11Plugins = result.plugins.filter(plugin => plugin.id === 'redhat/java');
     expect(java11Plugins).toBeDefined();
     expect(java11Plugins.length).toBe(1);
     const java11Plugin = java11Plugins[0];

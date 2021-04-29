@@ -189,7 +189,59 @@ export class CheTheiaPluginsMetaYamlGenerator {
             spec.endpoints = endpoints;
           }
         }
-        spec.extensions = chePlugin.extensions;
+
+        // add the plugin extension
+        const resolvedExtensions = [chePlugin.extension];
+
+        // now, do we have dependencies ?
+        let dependenciesToInline = [];
+
+        const packageJsonDependencies = packageJson.extensionDependencies;
+        if (packageJsonDependencies && packageJsonDependencies.length > 0) {
+          dependenciesToInline.push(
+            ...packageJsonDependencies.map(dependency => dependency.replace('.', '/').toLocaleLowerCase())
+          );
+        }
+
+        const skipDependencies = chePlugin.skipDependencies || [];
+        const extraDependencies = chePlugin.extraDependencies || [];
+        let skipIndex = false;
+
+        if (chePlugin.metaYaml) {
+          // extra dependencies ?
+          const metaYamlExtraDependencies = chePlugin.metaYaml.extraDependencies || [];
+          extraDependencies.push(...metaYamlExtraDependencies);
+          dependenciesToInline.push(...extraDependencies);
+
+          // remove dependencies to ignore
+          const metaYamlSkipDependencies = chePlugin.metaYaml.skipDependencies || [];
+          skipDependencies.push(...metaYamlSkipDependencies);
+          dependenciesToInline = dependenciesToInline.filter(dependency => !skipDependencies.includes(dependency));
+
+          skipIndex = chePlugin.metaYaml.skipIndex || false;
+        }
+
+        // now that we have list of all dependencies, grab extensions from these one and inline them
+        if (dependenciesToInline.length > 0) {
+          // remove all 'builtin' except typescript
+          dependenciesToInline = dependenciesToInline.filter(
+            dependency => dependency === 'vscode/typescript-language-features' || !dependency.startsWith('vscode/')
+          );
+
+          // get unique elements
+          dependenciesToInline = [...new Set(dependenciesToInline)];
+
+          dependenciesToInline.map(dependency => {
+            const dependencyMeta = cheTheiaPlugins.find(plugin => plugin.id === dependency);
+            if (!dependencyMeta) {
+              throw new Error(`Unable to find the dependency id ${dependency} required by plug-in ${id}`);
+            }
+            // add the extension there
+            resolvedExtensions.push(dependencyMeta.extension);
+          });
+        }
+
+        spec.extensions = resolvedExtensions;
 
         // grab vsix infos
         const vsixInfos = chePlugin.vsixInfos;
@@ -199,6 +251,7 @@ export class CheTheiaPluginsMetaYamlGenerator {
         return {
           id,
           vsixInfos,
+          skipIndex,
           publisher,
           name,
           version,

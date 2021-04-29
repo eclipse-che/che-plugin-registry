@@ -92,7 +92,7 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
         ],
         image: 'fake-image',
       },
-      extensions: [extensionLink],
+      extension: extensionLink,
       repository: {
         url: 'http://fake-repo',
         revision: 'main',
@@ -135,11 +135,19 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
   });
 
   test('basics', async () => {
+    const anotherPluginMetaInfo = await generatePluginMetaInfo('foo/bar');
     const cheTheiaPluginMetaInfo = await generatePluginMetaInfo('my/first/plugin');
-    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo];
+    cheTheiaPluginMetaInfo.metaYaml = {
+      extraDependencies: ['foo/bar'],
+      skipDependencies: ['hello/world'],
+    };
+    const vsixInfo = cheTheiaPluginMetaInfo.vsixInfos.values().next().value;
+    (vsixInfo as any).packageJson.extensionDependencies = ['foo.bar'];
+
+    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo, anotherPluginMetaInfo];
     const result = await cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPluginMetaInfos);
     expect(result).toBeDefined();
-    expect(result.length).toBe(1);
+    expect(result.length).toBe(2);
     const metaYamlInfo = result[0];
 
     const metaYamlInfoSpec = metaYamlInfo.spec;
@@ -159,6 +167,50 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
     expect(metaYamlInfoSpecContainers[0].command).toStrictEqual(['/bin/sh']);
     expect(metaYamlInfoSpecContainers[0].args).toStrictEqual(['-c', './entrypoint.sh']);
+  });
+
+  test('basics without metaYaml information', async () => {
+    const anotherPluginMetaInfo = await generatePluginMetaInfo('foo/bar');
+    const cheTheiaPluginMetaInfo = await generatePluginMetaInfo('my/first/plugin');
+    cheTheiaPluginMetaInfo.metaYaml = {};
+    const vsixInfo = cheTheiaPluginMetaInfo.vsixInfos.values().next().value;
+    (vsixInfo as any).packageJson.extensionDependencies = ['foo.bar'];
+
+    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo, anotherPluginMetaInfo];
+    const result = await cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPluginMetaInfos);
+    expect(result).toBeDefined();
+    expect(result.length).toBe(2);
+    const metaYamlInfo = result[0];
+
+    const metaYamlInfoSpec = metaYamlInfo.spec;
+    expect(metaYamlInfoSpec).toBeDefined();
+    const metaYamlInfoSpecContainers = metaYamlInfoSpec.containers;
+    if (!metaYamlInfoSpecContainers) {
+      throw new Error('No spec containers');
+    }
+    expect(metaYamlInfoSpecContainers).toBeDefined();
+    expect(metaYamlInfoSpecContainers.length).toBe(1);
+    expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
+    const theiaPreferencesEnv = metaYamlInfoSpecContainers[0].env?.find(
+      env => env.name === CheTheiaPluginsMetaYamlGenerator.CHE_THEIA_SIDECAR_PREFERENCES
+    );
+    expect(theiaPreferencesEnv).toBeDefined();
+    expect(theiaPreferencesEnv?.value).toEqual('{"my.preferences1":true,"debug.node.useV3":false}');
+    expect(metaYamlInfoSpecContainers[0].image).toBe(fakeImage);
+    expect(metaYamlInfoSpecContainers[0].command).toStrictEqual(['/bin/sh']);
+    expect(metaYamlInfoSpecContainers[0].args).toStrictEqual(['-c', './entrypoint.sh']);
+  });
+
+  test('basics without dependency', async () => {
+    const cheTheiaPluginMetaInfo = await generatePluginMetaInfo('my/first/plugin');
+    cheTheiaPluginMetaInfo.metaYaml = {};
+    const vsixInfo = cheTheiaPluginMetaInfo.vsixInfos.values().next().value;
+    (vsixInfo as any).packageJson.extensionDependencies = ['foo.bar'];
+
+    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo];
+    await expect(cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPluginMetaInfos)).rejects.toThrow(
+      'Unable to find the dependency id foo/bar required by plug-in my/first/plugin'
+    );
   });
 
   test('basics without sidecar', async () => {

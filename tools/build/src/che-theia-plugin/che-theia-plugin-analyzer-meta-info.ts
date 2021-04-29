@@ -11,13 +11,32 @@ import { CheTheiaPluginSidecarDirectoryYaml, CheTheiaPluginSidecarImageYaml } fr
 
 import { VsixInfo } from '../extensions/vsix-info';
 
+export interface CheTheiaPluginAnalyzerMetaDependenciesInfo {
+  extraDependencies?: string[];
+  skipDependencies?: string[];
+  skipIndex?: boolean;
+}
+
 export interface CheTheiaPluginAnalyzerMetaInfo {
   id?: string;
   featured: boolean;
-  extensions: string[];
+  extension: string;
   aliases: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   preferences?: { [key: string]: any };
+
+  // dependencies coming from package.json
+  dependencies?: string[];
+
+  // specific to metaYaml generation
+  metaYaml?: CheTheiaPluginAnalyzerMetaDependenciesInfo;
+
+  // other dependencies to add
+  extraDependencies?: string[];
+
+  // dependencies to remove
+  skipDependencies?: string[];
+
   sidecar?: CheTheiaPluginSidecarDirectoryYaml | CheTheiaPluginSidecarImageYaml;
   repository: {
     url: string;

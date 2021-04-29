@@ -46,6 +46,7 @@ describe('Test MetaYamlWriter', () => {
     vsixInfos.clear();
     metaPluginYaml = {
       id: 'custom-publisher/custom-name',
+      skipIndex: false,
       aliases: ['first/alias', 'second/alias'],
       publisher: 'my-publisher',
       name: 'my-name',

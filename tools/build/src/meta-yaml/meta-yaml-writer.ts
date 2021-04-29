@@ -153,9 +153,10 @@ export class MetaYamlWriter {
 
             // add spec object
             metaYaml.spec = spec;
-            const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: 120 });
+            const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: -1 });
             const generated = { ...metaYaml };
             generated.id = `${computedId}/${version}`;
+            generated.skipIndex = plugin.skipIndex;
             metaYamlPluginGenerated.push(generated);
 
             const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
@@ -164,7 +165,7 @@ export class MetaYamlWriter {
             const devfileYaml = this.metaYamlToDevfileYaml.convert(metaYaml);
             if (devfileYaml) {
               const devfilePath = path.resolve(pluginsFolder, computedId, version, 'devfile.yaml');
-              const devfileYamlString = jsyaml.safeDump(devfileYaml, { noRefs: true, lineWidth: 120 });
+              const devfileYamlString = jsyaml.safeDump(devfileYaml, { noRefs: true, lineWidth: -1 });
               promises.push(fs.writeFile(devfilePath, devfileYamlString));
             }
           })

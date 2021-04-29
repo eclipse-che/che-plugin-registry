@@ -34,6 +34,12 @@ export interface CheTheiaPluginSidecarImageYaml extends AbsCheTheiaPluginSidecar
   image: string;
 }
 
+export interface CheTheiaPluginMetaYaml {
+  skipIndex?: boolean;
+  extraDependencies?: string[];
+  skipDependencies?: string[];
+}
+
 export interface CheTheiaPluginYaml {
   id?: string;
   featured?: boolean;
@@ -45,7 +51,10 @@ export interface CheTheiaPluginYaml {
     url: string;
     revision: string;
   };
-  extensions: string[];
+  extension: string;
+  metaYaml?: CheTheiaPluginMetaYaml;
+  extraDependencies?: string[];
+  skipDependencies?: string[];
 }
 
 export interface CheTheiaPluginsYaml {

@@ -59,6 +59,7 @@ export interface VsixPackageJson {
   icon?: string;
   displayName?: string;
   description?: string;
+  extensionDependencies?: string[];
   repository?: {
     url?: string;
   };
