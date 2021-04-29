@@ -227,6 +227,7 @@ provisionOpenShiftOAuthUser
 createCustomResourcesFile
 deployChe
 # patchTestPodConfig
+# 
 runTests
 # downloadTestResults
 finishReport
