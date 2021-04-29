@@ -13,7 +13,7 @@ icon: /v3/images/eamodio-gitlens-icon.png
 category: Other
 repository: 'https://github.com/eamodio/vscode-gitlens.git'
 firstPublicationDate: '2020-05-26'
-latestUpdateDate: '2021-04-28'
+latestUpdateDate: '2021-04-29'
 deprecate:
   automigrate: true
   migrateTo: eamodio/gitlens/latest

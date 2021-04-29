@@ -845,6 +845,19 @@
     "version": "latest"
   },
   {
+    "id": "redhat/vscode-commons/latest",
+    "description": "Base utilities for Red Hat extensions. Notably controls telemetry settings.",
+    "displayName": "Red Hat Commons",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-commons/latest",
+      "plugin": "/v3/plugins/redhat/vscode-commons/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-commons",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "redhat/vscode-didact/latest",
     "description": "Didact Tutorial Tools for Visual Studio Code",
     "displayName": "Didact",
