@@ -32,5 +32,6 @@ export interface CheTheiaPluginYamlInfo {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     preferences?: { [key: string]: any };
     extensions: string[];
+    dependencies?: string[];
   };
 }

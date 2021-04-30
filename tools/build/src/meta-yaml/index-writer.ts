@@ -37,11 +37,13 @@ export class IndexWriter {
   }
 
   async write(generatedMetaYamlPluginInfos: MetaYamlPluginInfo[]): Promise<void> {
+    const metaYamlPluginInfos = generatedMetaYamlPluginInfos.filter(metaPluginInfo => !metaPluginInfo.skipIndex);
+
     const v3PluginsFolder = path.resolve(this.outputRootDirectory, 'v3', 'plugins');
     await fs.ensureDir(v3PluginsFolder);
     const externalImagesFile = path.join(v3PluginsFolder, 'index.json');
 
-    const indexValues = generatedMetaYamlPluginInfos.map(plugin => ({
+    const indexValues = metaYamlPluginInfos.map(plugin => ({
       id: plugin.id,
       description: plugin.description,
       displayName: plugin.displayName,

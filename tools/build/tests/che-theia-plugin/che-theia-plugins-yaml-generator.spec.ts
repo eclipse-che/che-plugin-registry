@@ -92,7 +92,7 @@ describe('Test CheTheiaPluginsYamlGenerator', () => {
         ],
         image: 'fake-image',
       },
-      extensions: [extensionLink],
+      extension: extensionLink,
       repository: {
         url: 'http://fake-repo',
         revision: 'main',
@@ -135,11 +135,16 @@ describe('Test CheTheiaPluginsYamlGenerator', () => {
   });
 
   test('basics', async () => {
+    const anotherPluginMetaInfo = await generatePluginMetaInfo('foo/bar');
     const cheTheiaPluginMetaInfo = await generatePluginMetaInfo('my/first/plugin');
-    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo];
+    cheTheiaPluginMetaInfo.metaYaml = {};
+    const vsixInfo = cheTheiaPluginMetaInfo.vsixInfos.values().next().value;
+    (vsixInfo as any).packageJson.extensionDependencies = ['foo.bar'];
+
+    const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo, anotherPluginMetaInfo];
     const result = await cheTheiaPluginsYamlGenerator.compute(cheTheiaPluginMetaInfos);
     expect(result).toBeDefined();
-    expect(result.length).toBe(1);
+    expect(result.length).toBe(2);
     const metaYamlInfo = result[0];
 
     const data = metaYamlInfo.data;
@@ -154,6 +159,7 @@ describe('Test CheTheiaPluginsYamlGenerator', () => {
     expect(sidecarContainer.args).toStrictEqual(['-c', './entrypoint.sh']);
     expect(data.preferences).toBeDefined();
     expect(data.preferences).toEqual({ 'debug.node.useV3': false, 'my.preferences1': true });
+    expect(data.dependencies).toEqual(['foo/bar']);
   });
 
   test('basics without sidecar', async () => {
