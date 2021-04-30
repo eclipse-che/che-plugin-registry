@@ -781,3 +781,8 @@ plugins:
       memoryLimit: "512Mi"
     extensions:
       - https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix
+  - repository:
+      url: https://github.com/redhat-developer/vscode-commons
+      revision: 021b0165bb5ba05e107ee7e31d1e59a7a73f473c
+    extensions:
+      - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v608e3a2/redhat.vscode-commons-021b0165bb5ba05e107ee7e31d1e59a7a73f473c.vsix
