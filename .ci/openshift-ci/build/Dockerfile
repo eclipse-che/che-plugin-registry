@@ -32,9 +32,9 @@ RUN yum install nodejs -y
 RUN npm install --global yarn
 
 # Build repo
-RUN yarn && \
-    yarn --cwd tools/build build && \
-    eval node tools/build/lib/entrypoint.js --output-folder:"output"
+RUN yarn
+RUN yarn --cwd tools/build build
+RUN eval node tools/build/lib/entrypoint.js --output-folder:"output"
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
