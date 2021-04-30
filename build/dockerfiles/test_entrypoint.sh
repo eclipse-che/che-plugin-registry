@@ -25,17 +25,15 @@ function beforeTest() {
 
 }
 
-function assertFileContains() {
+function assertFileContentEquals() {
     file=$1
     expected_metayaml=$2
-    if [[ $(cat "${file}") == "${expected_metayaml}" ]]; then
+    if [[ $(< "${file}" yq r --prettyPrint -) == $(echo "${expected_metayaml}" | yq r --prettyPrint -) ]]; then
         echo "Test passed!"
     else
         echo "Test failed!"
-        echo "Result:"
-        cat "${file}"
-        echo "Expected:"
-        echo "${expected_metayaml}"
+        echo "Diff result and expected:"
+        echo "${expected_metayaml}" | yq compare --prettyPrint "${file}" -
         exit 1
     fi
 }
@@ -66,7 +64,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image registry URL. Double quote."
@@ -92,7 +90,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image registry URL. Multiline."
@@ -120,7 +118,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 
 #################################################################
@@ -201,7 +199,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image organization."
@@ -227,7 +225,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image organization. Multiline."
@@ -255,7 +253,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image tag."
@@ -281,7 +279,7 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
 echo -e "\n## Should update image tag. Multiline."
@@ -309,4 +307,30 @@ source "${script_dir}/entrypoint.sh"
 
 update_container_image_references
 
-assertFileContains "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
+
+#################################################################
+echo -e "\n## Should do nothing."
+beforeTest
+metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: 'name'
+      name: asciidoctor-vscode
+END
+)
+expected_metayaml=$(cat <<-END
+spec:
+  containers:
+    - image: 'name'
+      name: asciidoctor-vscode
+END
+)
+echo "$metayaml" > "${METAS_DIR}/meta.yaml"
+export CHE_SIDECAR_CONTAINERS_REGISTRY_URL='https://fakeregistry.io:5000'
+# shellcheck disable=SC1090
+source "${script_dir}/entrypoint.sh"
+
+update_container_image_references
+
+assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"

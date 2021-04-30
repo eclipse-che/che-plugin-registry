@@ -28,14 +28,12 @@ DEFAULT_METAS_DIR="/var/www/html/v3"
 METAS_DIR="${METAS_DIR:-${DEFAULT_METAS_DIR}}"
 
 # Regex used to break an image reference into groups:
-#   \1 - Whitespace and (optional) quotation preceding image reference
-#   \2 - Registry portion of image, e.g. (quay.io)/eclipse/che-theia:tag
-#   \3 - Organization portion of image, e.g. quay.io/(eclipse)/che-theia:tag
-#   \4 - Image name portion of image, e.g. quay.io/eclipse/(che-theia):tag
-#   \5 - Optional image digest identifier (empty for tags), e.g. quay.io/eclipse/che-theia(@sha256):digest
-#   \6 - Tag of image or digest, e.g. quay.io/eclipse/che-theia:(tag)
-#   \7 - Optional quotation following image reference
-IMAGE_REGEX="([[:space:]>-]*[\r]?[[:space:]]*[\"']?)([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)(@sha256)?:([._a-zA-Z0-9-]*)([\"']?)"
+#   \1 - Registry portion of image, e.g. (quay.io)/eclipse/che-theia:tag
+#   \2 - Organization portion of image, e.g. quay.io/(eclipse)/che-theia:tag
+#   \3 - Image name portion of image, e.g. quay.io/eclipse/(che-theia):tag
+#   \4 - Optional image digest identifier (empty for tags), e.g. quay.io/eclipse/che-theia(@sha256):digest
+#   \5 - Tag of image or digest, e.g. quay.io/eclipse/che-theia:(tag)
+IMAGE_REGEX="([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)(@sha256)?:([._a-zA-Z0-9-]*)"
 
 
 function run_main() {
@@ -123,15 +121,24 @@ function update_container_image_references() {
     # Defaults don't work because registry and tags may be different.
     if [ -n "$REGISTRY" ]; then
         echo "    Updating image registry to $REGISTRY"
-        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1${REGISTRY}/\3/\4\5:\6\7|g" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        for ypath in $(yq r --printMode p "${meta}" '**.image'); do
+            newvalue=$(yq r "${meta}" "$ypath" | sed -E "s|$IMAGE_REGEX|${REGISTRY}/\2/\3\4:\5|")
+            yq w -i "$meta" "$ypath" "$newvalue"
+        done
     fi
     if [ -n "$ORGANIZATION" ]; then
         echo "    Updating image organization to $ORGANIZATION"
-        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/${ORGANIZATION}/\4\5:\6\7|g" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        for ypath in $(yq r --printMode p "${meta}" '**.image'); do
+            newvalue=$(yq r "${meta}" "$ypath" | sed -E "s|$IMAGE_REGEX|\1/${ORGANIZATION}/\3\4:\5|")
+            yq w -i "$meta" "$ypath" "$newvalue"
+        done
     fi
     if [ -n "$TAG" ]; then
         echo "    Updating image tag to $TAG"
-        < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/\3/\4:${TAG}\7|g" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
+        for ypath in $(yq r --printMode p "${meta}" '**.image'); do
+            newvalue=$(yq r "${meta}" "$ypath" | sed -E "s|$IMAGE_REGEX|\1/\2/\3:${TAG}|")
+            yq w -i "$meta" "$ypath" "$newvalue"
+        done
     fi
     done
 
