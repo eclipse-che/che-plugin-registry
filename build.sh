@@ -82,7 +82,7 @@ function parse_arguments() {
 parse_arguments "$@"
 
 echo "Update yarn dependencies..."
-yarn
+yarn 
 echo "Build tooling..."
 pushd "${base_dir}"/tools/build > /dev/null
 yarn build

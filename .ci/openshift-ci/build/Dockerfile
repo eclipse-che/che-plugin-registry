@@ -33,8 +33,9 @@ RUN npm install --global yarn
 
 # Build repo
 RUN yarn
-RUN yarn --cwd tools/build build
-RUN eval node tools/build/lib/entrypoint.js --output-folder:"output"
+RUN yarn install
+RUN cd tools/build && yarn build
+RUN pwd && eval yarn node tools/build/lib/entrypoint.js --output-folder:"output"
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
