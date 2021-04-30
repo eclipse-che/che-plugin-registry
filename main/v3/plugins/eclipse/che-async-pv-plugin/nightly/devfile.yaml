@@ -4,8 +4,7 @@ metadata:
 components:
   - name: che-rsync
     container:
-      image: >-
-        quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10
+      image: 'quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10'
       env:
         - name: RSYNC_PORT
           value: '2222'

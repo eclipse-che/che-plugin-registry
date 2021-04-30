@@ -5,9 +5,7 @@ metadata:
   name: dependency-analytics
   version: latest
   displayName: Dependency Analytics
-  description: >-
-    Insights about your application dependencies: Security, License compatibility and AI based guidance to choose
-    appropriate dependencies for your application.
+  description: 'Insights about your application dependencies: Security, License compatibility and AI based guidance to choose appropriate dependencies for your application.'
   repository: 'https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension'
   categories:
     - Other
@@ -18,6 +16,6 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:dependency-analytics-c939ba4'
+dependencies: []
 extensions:
-  - >-
-    https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.2.1/fabric8-analytics-0.2.1.vsix
+  - 'https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.2.1/fabric8-analytics-0.2.1.vsix'

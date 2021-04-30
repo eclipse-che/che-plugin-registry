@@ -2,8 +2,7 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "bmewburn/vscode-intelephense-client",
-      "sonarsource/sonarlint-vscode"
+      "bmewburn/vscode-intelephense-client"
     ]
   },
   {

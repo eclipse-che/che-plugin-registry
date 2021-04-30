@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/che-incubator/che-editor-intellij-community'
 firstPublicationDate: '2020-09-29'
-latestUpdateDate: '2021-04-29'
+latestUpdateDate: '2021-04-30'
 spec:
   endpoints:
     - name: intellij
@@ -22,8 +22,7 @@ spec:
         protocol: http
       public: true
   containers:
-    - image: >-
-        quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863
+    - image: 'quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863'
       mountSources: true
       memoryLimit: 2048M
       volumes:

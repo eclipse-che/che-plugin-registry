@@ -22,9 +22,10 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
 preferences:
   java.server.launchMode: Standard
+dependencies:
+  - redhat/java
+  - redhat/vscode-microprofile
+  - vscjava/vscode-java-debug
+  - vscjava/vscode-java-test
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix'
-  - 'https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix'
-  - 'https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix'

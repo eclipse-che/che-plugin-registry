@@ -18,6 +18,7 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
 preferences:
   debug.node.useV3: false
+dependencies:
+  - ms-vscode/node-debug
 extensions:
   - 'https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix'
-  - 'https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix'

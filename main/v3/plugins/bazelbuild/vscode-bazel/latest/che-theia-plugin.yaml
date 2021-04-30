@@ -19,5 +19,6 @@ sidecar:
     - name: bazelcache
       path: /home/theia/.cache/bazel
   image: 'quay.io/eclipse/che-plugin-sidecar:bazel-f15c5d6'
+dependencies: []
 extensions:
   - 'https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix'

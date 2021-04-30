@@ -17,30 +17,7 @@
   {
     "category": "Linters",
     "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8",
       "redhat/vscode-apache-camel"
-    ]
-  },
-  {
-    "category": "Formatters",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
-    ]
-  },
-  {
-    "category": "Snippets",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
-    ]
-  },
-  {
-    "category": "Debuggers",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
     ]
   }
 ]

@@ -20,6 +20,7 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:kubernetes-tooling-d7b84fc'
+dependencies:
+  - redhat/vscode-yaml
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix'

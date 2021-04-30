@@ -19,5 +19,6 @@ sidecar:
     - name: nuget
       path: /home/theia/.nuget
   image: 'quay.io/eclipse/che-plugin-sidecar:dotnet-c939ba4'
+dependencies: []
 extensions:
   - 'https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia'

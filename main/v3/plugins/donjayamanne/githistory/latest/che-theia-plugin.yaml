@@ -10,5 +10,6 @@ metadata:
   categories:
     - Other
   icon: /v3/images/donjayamanne-githistory-icon.png
+dependencies: []
 extensions:
   - 'https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix'

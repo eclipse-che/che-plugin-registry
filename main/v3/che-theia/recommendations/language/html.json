@@ -4,11 +4,5 @@
     "ids": [
       "sonarsource/sonarlint-vscode"
     ]
-  },
-  {
-    "category": "Programming Languages",
-    "ids": [
-      "sonarsource/sonarlint-vscode"
-    ]
   }
 ]

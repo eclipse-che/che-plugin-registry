@@ -10,5 +10,6 @@ metadata:
   categories:
     - Debuggers
   icon: /v3/images/rogalmic-bash-debug-icon.png
+dependencies: []
 extensions:
   - 'https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix'

@@ -20,7 +20,8 @@ sidecar:
     - name: kube
       path: /home/theia/.kube
   image: 'quay.io/eclipse/che-plugin-sidecar:tekton-f58f5aa'
+dependencies:
+  - ms-kubernetes-tools/vscode-kubernetes-tools
+  - redhat/vscode-yaml
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.0.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix'

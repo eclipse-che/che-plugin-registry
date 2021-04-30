@@ -31,5 +31,6 @@ sidecar:
       targetPort: 61435
       attributes:
         protocol: http
+dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix'

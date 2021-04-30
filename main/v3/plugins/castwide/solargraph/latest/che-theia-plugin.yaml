@@ -22,5 +22,6 @@ sidecar:
 preferences:
   solargraph.bundlerPath: /usr/local/bin/bundle
   solargraph.commandPath: /usr/local/bundle/bin/solargraph
+dependencies: []
 extensions:
   - 'https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix'

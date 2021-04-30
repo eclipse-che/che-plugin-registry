@@ -10,7 +10,7 @@ icon: /v3/images/redhat-vscode-camelk-icon.png
 category: Other
 repository: 'https://github.com/camel-tooling/vscode-camelk'
 firstPublicationDate: '2021-04-08'
-latestUpdateDate: '2021-04-29'
+latestUpdateDate: '2021-04-30'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:5c88f3c28e699705aa6071a1fe7b61faece9b12b86af68203ac85a320d997cf3'
@@ -21,5 +21,4 @@ spec:
   extensions:
     - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.23-159.vsix'
     - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'
-    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.11.1.vsix'
-    - 'https://download.jboss.org/jbosstools/stable/vscode-commons/vscode-commons-0.0.4-38.vsix'
+    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'

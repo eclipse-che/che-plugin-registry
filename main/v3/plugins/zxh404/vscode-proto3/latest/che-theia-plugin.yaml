@@ -17,5 +17,6 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:protobuf-2fcf341'
+dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix'

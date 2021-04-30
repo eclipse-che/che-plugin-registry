@@ -2,27 +2,7 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
-    ]
-  },
-  {
-    "category": "Other",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
-    ]
-  },
-  {
-    "category": "Linters",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
-    ]
-  },
-  {
-    "category": "Formatters",
-    "ids": [
+      "redhat/vscode-microprofile",
       "redhat/quarkus-java11",
       "redhat/quarkus-java8"
     ]
@@ -30,13 +10,13 @@
   {
     "category": "Snippets",
     "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8"
+      "redhat/vscode-microprofile"
     ]
   },
   {
-    "category": "Debuggers",
+    "category": "Other",
     "ids": [
+      "redhat/vscode-microprofile",
       "redhat/quarkus-java11",
       "redhat/quarkus-java8"
     ]

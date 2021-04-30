@@ -1,80 +1,49 @@
 [
   {
-    "category": "Programming Languages",
-    "ids": [
-      "dart-code/flutter",
-      "redhat/vscode-camelk",
-      "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
-      "redhat/vscode-yaml",
-      "redhat/vscode-apache-camel",
-      "ms-kubernetes-tools/vscode-kubernetes-tools",
-      "dart-code/dart-code"
-    ]
-  },
-  {
     "category": "Snippets",
     "ids": [
-      "dart-code/flutter",
-      "redhat/vscode-camelk",
       "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
       "redhat/vscode-yaml",
-      "ms-kubernetes-tools/vscode-kubernetes-tools",
-      "dart-code/dart-code"
-    ]
-  },
-  {
-    "category": "Linters",
-    "ids": [
-      "dart-code/flutter",
-      "redhat/vscode-camelk",
-      "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
-      "redhat/vscode-yaml",
-      "redhat/vscode-apache-camel",
-      "ms-kubernetes-tools/vscode-kubernetes-tools",
-      "dart-code/dart-code"
-    ]
-  },
-  {
-    "category": "Formatters",
-    "ids": [
-      "dart-code/flutter",
-      "redhat/vscode-camelk",
-      "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
-      "redhat/vscode-yaml",
-      "ms-kubernetes-tools/vscode-kubernetes-tools",
-      "dart-code/dart-code"
-    ]
-  },
-  {
-    "category": "Debuggers",
-    "ids": [
-      "dart-code/flutter",
-      "redhat/vscode-camelk",
-      "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
-      "ms-kubernetes-tools/vscode-kubernetes-tools",
-      "dart-code/dart-code"
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
     ]
   },
   {
     "category": "Other",
     "ids": [
-      "redhat/vscode-camelk",
       "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "redhat/vscode-yaml",
+      "redhat/vscode-apache-camel"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "redhat/vscode-yaml",
+      "redhat/vscode-apache-camel",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "redhat/vscode-yaml"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
       "ms-kubernetes-tools/vscode-kubernetes-tools"
     ]
   },
   {
     "category": "Azure",
     "ids": [
-      "redhat/vscode-camelk",
-      "redhat/vscode-tekton-pipelines",
-      "redhat/vscode-openshift-connector",
       "ms-kubernetes-tools/vscode-kubernetes-tools"
     ]
   }

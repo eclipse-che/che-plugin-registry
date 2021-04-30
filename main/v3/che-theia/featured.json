@@ -22,27 +22,11 @@
         "cpp",
         "c",
         "objective-c",
-        "objective-cpp",
-        "c",
-        "cpp",
-        "cuda",
-        "objective-c",
         "objective-cpp"
       ],
       "workspaceContains": [],
       "contributes": {
-        "languages": [
-          {
-            "id": "cpp",
-            "filenamePatterns": [
-              "**/include/c++/**",
-              "**/MSVC/*/include/**"
-            ]
-          },
-          {
-            "id": "cuda"
-          }
-        ]
+        "languages": []
       }
     },
     {
@@ -186,16 +170,11 @@
       }
     },
     {
-      "id": "redhat/java11",
+      "id": "redhat/java",
       "onLanguages": [
-        "java",
-        "java",
         "java"
       ],
       "workspaceContains": [
-        "pom.xml",
-        "build.gradle",
-        ".classpath",
         "pom.xml",
         "build.gradle",
         ".classpath"

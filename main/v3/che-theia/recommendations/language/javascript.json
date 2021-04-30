@@ -3,8 +3,7 @@
     "category": "Programming Languages",
     "ids": [
       "vscode/typescript-language-features",
-      "redhat/vscode-apache-camel",
-      "sonarsource/sonarlint-vscode"
+      "redhat/vscode-apache-camel"
     ]
   },
   {

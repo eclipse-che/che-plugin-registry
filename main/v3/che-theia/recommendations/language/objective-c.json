@@ -2,19 +2,19 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "eclipse-cdt/cdt-vscode"
+      "llvm-vs-code-extensions/vscode-clangd"
     ]
   },
   {
     "category": "Linters",
     "ids": [
-      "eclipse-cdt/cdt-vscode"
+      "llvm-vs-code-extensions/vscode-clangd"
     ]
   },
   {
     "category": "Formatters",
     "ids": [
-      "eclipse-cdt/cdt-vscode"
+      "llvm-vs-code-extensions/vscode-clangd"
     ]
   }
 ]

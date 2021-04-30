@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/eclipse-che/che-theia'
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2021-04-29'
+latestUpdateDate: '2021-04-30'
 spec:
   endpoints:
     - name: theia
@@ -110,8 +110,7 @@ spec:
       ports:
         - exposedPort: 3333
   initContainers:
-    - image: >-
-        quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:1f52b556f5f00824e54ffc90433d6ee37279c7f432ed9b47c6b578f391ac8453
+    - image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:1f52b556f5f00824e54ffc90433d6ee37279c7f432ed9b47c6b578f391ac8453'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint

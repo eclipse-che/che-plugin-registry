@@ -572,6 +572,19 @@
     "version": "latest"
   },
   {
+    "id": "ms-vscode/node-debug/latest",
+    "description": "Node.js debugging support (versions < 8.0)",
+    "displayName": "Node Debug (legacy)",
+    "links": {
+      "self": "/v3/plugins/ms-vscode/node-debug/latest",
+      "plugin": "/v3/plugins/ms-vscode/node-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "node-debug",
+    "publisher": "ms-vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "ms-vscode/node-debug2/latest",
     "description": "Node.js debugging support",
     "displayName": "Node Debug",
@@ -866,6 +879,19 @@
       "plugin": "/v3/plugins/redhat/vscode-didact/latest/che-theia-plugin.yaml"
     },
     "name": "vscode-didact",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-microprofile/latest",
+    "description": "Language Support for Eclipse MicroProfile",
+    "displayName": "Tools for MicroProfile",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-microprofile/latest",
+      "plugin": "/v3/plugins/redhat/vscode-microprofile/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-microprofile",
     "publisher": "redhat",
     "type": "VS Code extension",
     "version": "latest"

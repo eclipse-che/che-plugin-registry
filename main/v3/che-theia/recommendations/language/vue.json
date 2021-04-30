@@ -2,8 +2,7 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "octref/vetur",
-      "sonarsource/sonarlint-vscode"
+      "octref/vetur"
     ]
   },
   {

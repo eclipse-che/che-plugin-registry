@@ -2,29 +2,43 @@
   {
     "category": "Programming Languages",
     "ids": [
+      "redhat/vscode-microprofile",
       "redhat/quarkus-java11",
       "redhat/quarkus-java8",
-      "redhat/java11",
+      "vscjava/vscode-java-debug",
+      "redhat/java",
       "redhat/java8",
-      "redhat/vscode-apache-camel",
-      "sonarsource/sonarlint-vscode"
+      "redhat/vscode-apache-camel"
+    ]
+  },
+  {
+    "category": "Snippets",
+    "ids": [
+      "redhat/vscode-microprofile",
+      "redhat/java",
+      "redhat/java8"
     ]
   },
   {
     "category": "Other",
     "ids": [
+      "redhat/vscode-microprofile",
       "redhat/quarkus-java11",
       "redhat/quarkus-java8",
-      "redhat/java11",
-      "redhat/java8"
+      "vscjava/vscode-java-test",
+      "vscjava/vscode-java-debug"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "vscjava/vscode-java-debug"
     ]
   },
   {
     "category": "Linters",
     "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8",
-      "redhat/java11",
+      "redhat/java",
       "redhat/java8",
       "redhat/vscode-apache-camel",
       "sonarsource/sonarlint-vscode"
@@ -33,27 +47,7 @@
   {
     "category": "Formatters",
     "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8",
-      "redhat/java11",
-      "redhat/java8"
-    ]
-  },
-  {
-    "category": "Snippets",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8",
-      "redhat/java11",
-      "redhat/java8"
-    ]
-  },
-  {
-    "category": "Debuggers",
-    "ids": [
-      "redhat/quarkus-java11",
-      "redhat/quarkus-java8",
-      "redhat/java11",
+      "redhat/java",
       "redhat/java8"
     ]
   }

@@ -16,6 +16,6 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:vale-a31d37a'
+dependencies: []
 extensions:
-  - >-
-    https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v8130b13/vale-vscode-v0.14.2.vsix
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v8130b13/vale-vscode-v0.14.2.vsix'

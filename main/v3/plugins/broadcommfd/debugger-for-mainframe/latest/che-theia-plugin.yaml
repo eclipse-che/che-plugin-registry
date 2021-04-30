@@ -17,5 +17,6 @@ sidecar:
   name: debugger-for-mainframe
   mountSources: true
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+dependencies: []
 extensions:
   - 'https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.5.0/file/BroadcomMFD.debugger-for-mainframe-1.5.0.vsix'

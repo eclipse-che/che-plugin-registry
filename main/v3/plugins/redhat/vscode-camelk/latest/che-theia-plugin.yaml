@@ -16,8 +16,8 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:camelk-90cdf08'
+dependencies:
+  - ms-kubernetes-tools/vscode-kubernetes-tools
+  - redhat/vscode-yaml
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.23-159.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.11.1.vsix'
-  - 'https://download.jboss.org/jbosstools/stable/vscode-commons/vscode-commons-0.0.4-38.vsix'

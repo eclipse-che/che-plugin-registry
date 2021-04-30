@@ -11,5 +11,6 @@ metadata:
     - Other
     - Keymaps
   icon: /v3/images/vscodevim-vim-icon.png
+dependencies: []
 extensions:
   - 'https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix'

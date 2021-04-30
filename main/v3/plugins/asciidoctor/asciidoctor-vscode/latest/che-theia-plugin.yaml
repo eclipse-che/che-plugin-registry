@@ -21,6 +21,6 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:asciidoc-c4f2aa1'
 preferences:
   asciidoc.use_asciidoctorpdf: true
+dependencies: []
 extensions:
-  - >-
-    https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix'

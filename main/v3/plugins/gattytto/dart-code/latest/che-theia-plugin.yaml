@@ -20,6 +20,7 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:dart-b64039f'
+dependencies:
+  - redhat/vscode-yaml
 extensions:
   - 'https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix'
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-yaml/vscode-yaml-0.8.0.vsix'

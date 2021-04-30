@@ -10,5 +10,6 @@ metadata:
   categories:
     - SCM Providers
   icon: /v3/images/broadcommfd-explorer-for-endevor-icon.png
+dependencies: []
 extensions:
   - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.11.1/explorer-for-endevor-0.11.1.vsix'

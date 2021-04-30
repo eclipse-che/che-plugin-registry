@@ -2,8 +2,7 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "ms-python/python",
-      "sonarsource/sonarlint-vscode"
+      "ms-python/python"
     ]
   },
   {

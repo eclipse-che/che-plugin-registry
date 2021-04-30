@@ -23,6 +23,7 @@ sidecar:
     - name: cache
       path: /home/theia/.cache
   image: 'quay.io/eclipse/che-plugin-sidecar:scala-1be6877'
+dependencies:
+  - scala-lang/scala
 extensions:
   - 'https://github.com/scalameta/metals-vscode/releases/download/v1.10.0/scalameta.metals-1.10.0.vsix'
-  - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'
