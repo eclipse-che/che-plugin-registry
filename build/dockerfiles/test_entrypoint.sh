@@ -28,12 +28,14 @@ function beforeTest() {
 function assertFileContentEquals() {
     file=$1
     expected_metayaml=$2
-    if [[ $(< "${file}" yq r --prettyPrint -) == $(echo "${expected_metayaml}" | yq r --prettyPrint -) ]]; then
+    if [[ $(cat "${file}") == "${expected_metayaml}" ]]; then
         echo "Test passed!"
     else
         echo "Test failed!"
-        echo "Diff result and expected:"
-        echo "${expected_metayaml}" | yq compare --prettyPrint "${file}" -
+        echo "Result:"
+        cat "${file}"
+        echo "Expected:"
+        echo "${expected_metayaml}"
         exit 1
     fi
 }
