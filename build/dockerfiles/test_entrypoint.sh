@@ -21,9 +21,15 @@ RED="\e[31m"
 GREEN="\e[32m"
 RESETSTYLE="\e[0m"
 BOLD="\e[1m"
+DEFAULT_EMOJI_HEADER="🏃" # could be overiden with EMOJI_HEADER="-"
+EMOJI_HEADER=${EMOJI_HEADER:-$DEFAULT_EMOJI_HEADER}
+DEFAULT_EMOJI_PASS="✔" # could be overriden with EMOJI_PASS="[PASS]"
+EMOJI_PASS=${EMOJI_PASS:-$DEFAULT_EMOJI_PASS}
+DEFAULT_EMOJI_FAIL="✘" # could be overriden with EMOJI_FAIL="[FAIL]"
+EMOJI_FAIL=${EMOJI_FAIL:-$DEFAULT_EMOJI_FAIL}
 
 function initTest() {
-    echo -e "${BOLD}\n🏃 ${1}${RESETSTYLE}"
+    echo -e "${BOLD}\n${EMOJI_HEADER} ${1}${RESETSTYLE}"
     rm -rf "${METAS_DIR:?}"/*
     unset CHE_SIDECAR_CONTAINERS_REGISTRY_URL \
           CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION \
@@ -36,9 +42,9 @@ function assertFileContentEquals() {
     expected_metayaml=$2
 
     if [[ $(cat "${file}") == "${expected_metayaml}" ]]; then
-        echo -e "${GREEN}✔${RESETSTYLE} Test passed!"
+        echo -e "${GREEN}${EMOJI_PASS}${RESETSTYLE} Test passed!"
     else
-        echo -e "${RED}✘${RESETSTYLE} Test failed!"
+        echo -e "${RED}${EMOJI_FAIL}${RESETSTYLE} Test failed!"
         echo "Result:"
         cat "${file}"
         echo "Expected:"
@@ -46,7 +52,7 @@ function assertFileContentEquals() {
         exit 1
     fi
 }
-echo -e "${BOLD}\n🏃🏃🏃 Running tests for entrypoint.sh: ${BASH_SOURCE[0]}${RESETSTYLE}"
+echo -e "${BOLD}\n${EMOJI_HEADER}${EMOJI_HEADER}${EMOJI_HEADER} Running tests for entrypoint.sh: ${BASH_SOURCE[0]}${RESETSTYLE}"
 
 
 #################################################################
