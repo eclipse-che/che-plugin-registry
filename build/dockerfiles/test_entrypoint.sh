@@ -17,18 +17,19 @@ function cleanup() {
 }
 trap cleanup EXIT
 
-function beforeTest() {
+RED="\e[31m"
+GREEN="\e[32m"
+RESETSTYLE="\e[0m"
+BOLD="\e[1m"
+
+function initTest() {
+    echo -e "${BOLD}\n🏃 ${1}${RESETSTYLE}"
     rm -rf "${METAS_DIR:?}"/*
     unset CHE_SIDECAR_CONTAINERS_REGISTRY_URL \
           CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION \
           CHE_SIDECAR_CONTAINERS_REGISTRY_TAG
 
 }
-
-RED="\e[31m"
-GREEN="\e[32m"
-RESETSTYLE="\e[0m"
-BOLD="\e[1m"
 
 function assertFileContentEquals() {
     file=$1
@@ -47,9 +48,10 @@ function assertFileContentEquals() {
 }
 echo -e "${BOLD}\n🏃🏃🏃 Running tests for entrypoint.sh: ${BASH_SOURCE[0]}${RESETSTYLE}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL. Simple quote.${RESETSTYLE}"
-beforeTest
+initTest "Should update image registry URL. Simple quote."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -73,9 +75,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Double quote.${RESETSTYLE}"
-beforeTest
+initTest "Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Double quote."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -99,9 +102,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiline.${RESETSTYLE}"
-beforeTest
+initTest "Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiline."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -129,8 +133,8 @@ assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiple occurences.${RESETSTYLE}"
-beforeTest
+initTest "Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiple occurences."
+
 metayaml=$(cat <<-END
 spec:
  containers:
@@ -209,8 +213,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION.${RESETSTYLE}"
-beforeTest
+initTest "Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION."
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -234,9 +237,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION. Multiline.${RESETSTYLE}"
-beforeTest
+initTest "Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION. Multiline."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -262,9 +266,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG.${RESETSTYLE}"
-beforeTest
+initTest "Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -288,9 +293,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG. Multiline.${RESETSTYLE}"
-beforeTest
+initTest "Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG. Multiline."
+
 metayaml=$(cat <<-END
 spec:
   containers:
@@ -316,9 +322,10 @@ update_container_image_references
 
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
+
 #################################################################
-echo -e "${BOLD}\n🏃 Should do nothing.${RESETSTYLE}"
-beforeTest
+initTest "Should do nothing."
+
 metayaml=$(cat <<-END
 spec:
   containers:
