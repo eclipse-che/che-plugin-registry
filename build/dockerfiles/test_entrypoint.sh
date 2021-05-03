@@ -74,7 +74,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL. Double quote.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Double quote.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -100,7 +100,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL. Multiline.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -129,7 +129,7 @@ assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image registry URL. Multiple occurences.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_URL. Multiple occurences.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -209,7 +209,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image organization.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -235,7 +235,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image organization. Multiline.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image organization with CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -263,7 +263,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image tag.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -289,7 +289,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "${BOLD}\n🏃 Should update image tag. Multiline.${RESETSTYLE}"
+echo -e "${BOLD}\n🏃 Should update image tag with CHE_SIDECAR_CONTAINERS_REGISTRY_TAG. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
