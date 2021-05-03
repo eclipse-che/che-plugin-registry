@@ -12,4 +12,4 @@ metadata:
   icon: /v3/images/redhat-vscode-didact-icon.png
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.3.2-227.vsix'
+  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix'
