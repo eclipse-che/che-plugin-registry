@@ -19,4 +19,4 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.31-143.vsix'
+  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.0.32-205.vsix'
