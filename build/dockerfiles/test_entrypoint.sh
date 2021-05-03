@@ -25,13 +25,19 @@ function beforeTest() {
 
 }
 
+RED="\e[31m"
+GREEN="\e[32m"
+RESETSTYLE="\e[0m"
+BOLD="\e[1m"
+
 function assertFileContentEquals() {
     file=$1
     expected_metayaml=$2
+
     if [[ $(cat "${file}") == "${expected_metayaml}" ]]; then
-        echo "Test passed!"
+        echo -e "${GREEN}✔${RESETSTYLE} Test passed!"
     else
-        echo "Test failed!"
+        echo -e "${RED}✘${RESETSTYLE} Test failed!"
         echo "Result:"
         cat "${file}"
         echo "Expected:"
@@ -39,11 +45,10 @@ function assertFileContentEquals() {
         exit 1
     fi
 }
-
-echo "# ${BASH_SOURCE[0]} Running tests for entrypoint.sh"
+echo -e "${BOLD}\n🏃🏃🏃 Running tests for entrypoint.sh: ${BASH_SOURCE[0]}${RESETSTYLE}"
 
 #################################################################
-echo -e "\n## Should update image registry URL. Simple quote."
+echo -e "${BOLD}\n🏃 Should update image registry URL. Simple quote.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -69,7 +74,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image registry URL. Double quote."
+echo -e "${BOLD}\n🏃 Should update image registry URL. Double quote.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -95,7 +100,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image registry URL. Multiline."
+echo -e "${BOLD}\n🏃 Should update image registry URL. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -124,7 +129,7 @@ assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 
 #################################################################
-echo -e "\n## Should update image registry URL. Multiple occurences."
+echo -e "${BOLD}\n🏃 Should update image registry URL. Multiple occurences.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -204,7 +209,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image organization."
+echo -e "${BOLD}\n🏃 Should update image organization.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -230,7 +235,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image organization. Multiline."
+echo -e "${BOLD}\n🏃 Should update image organization. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -258,7 +263,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image tag."
+echo -e "${BOLD}\n🏃 Should update image tag.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -284,7 +289,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should update image tag. Multiline."
+echo -e "${BOLD}\n🏃 Should update image tag. Multiline.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:
@@ -312,7 +317,7 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-echo -e "\n## Should do nothing."
+echo -e "${BOLD}\n🏃 Should do nothing.${RESETSTYLE}"
 beforeTest
 metayaml=$(cat <<-END
 spec:

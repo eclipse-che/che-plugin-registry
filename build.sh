@@ -90,7 +90,7 @@ echo "Generate artifacts..."
 eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" ${BUILD_FLAGS}
 popd > /dev/null
 
-echo "Test entrypoint.sh"
+echo -e "\nTest entrypoint.sh"
 "${base_dir}"/build/dockerfiles/test_entrypoint.sh
 
 if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
