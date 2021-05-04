@@ -15,7 +15,7 @@ sidecar:
   memoryLimit: 1Gi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:camelk-90cdf08'
+  image: 'quay.io/eclipse/che-plugin-sidecar:camelk-2eb28e4'
 dependencies:
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
