@@ -10,7 +10,7 @@
 import { VsixInfo } from '../../src/extensions/vsix-info';
 
 export function createVsixInfo(): VsixInfo {
-  const extensions: string[] = [];
+  const extension = '';
   const vsixInfos = new Map<string, VsixInfo>();
   const id = 'my-id';
   const featured = true;
@@ -23,7 +23,7 @@ export function createVsixInfo(): VsixInfo {
   };
   const aliases: string[] = [];
 
-  const cheTheiaPlugin = { id, extensions, aliases, repository, sidecar, featured, vsixInfos };
+  const cheTheiaPlugin = { id, extension, aliases, repository, sidecar, featured, vsixInfos };
   const vsixInfoToAnalyze: VsixInfo = {
     uri: 'my-fake.vsix',
     cheTheiaPlugin,

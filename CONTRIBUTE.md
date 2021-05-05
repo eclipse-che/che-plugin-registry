@@ -75,11 +75,30 @@ Here are all the supported values, including optional ones:
           # Attributes relating to the endpoint
           attributes:
             protocol: http
-    # Direct link(s) to the vsix files included with this plugin. The vsix build by the repository specified must be listed first
-    extensions:
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
+    # Direct link(s) to the vsix files included with this plugin
+    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
+    # Do not look at specified dependencies from extensionDependencies field of package.json
+    skipDependencies:
+      - id-of/extension1
+      - id-of/extension2
+    # Add extra dependencies in addition to the one listed in extensionDependencies field of package.json
+    extraDependencies:
+      - id-of/extension1
+      - id-of/extension2
+    # Optional information for meta.yaml generation only
+    metaYaml:
+      # Do not include this plug-in in index.json if true.
+      # useful in case of dependencies that you do not want to expose as standalone plug-ins
+      skipIndex: <true|false>
+      # Do not look at specified dependencies from extensionDependencies field of package.json (only for meta.yaml generation)
+      skipDependencies:
+        - id-of/extension1
+        - id-of/extension2
+      # Add extra dependencies in addition to the one listed in extensionDependencies field of package.json (only for meta.yaml generation)
+      extraDependencies:
+        - id-of/extension1
+        - id-of/extension2
+      
 ```
 
 # Adding a Che Editor to Che

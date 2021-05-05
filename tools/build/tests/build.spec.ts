@@ -139,7 +139,7 @@ describe('Test Build', () => {
         url: 'http://fake-repository',
         revision: 'main',
       },
-      extensions: ['https://my-fake.vsix'],
+      extension: 'https://my-fake.vsix',
     };
   }
 
@@ -406,6 +406,28 @@ describe('Test Build', () => {
     };
     cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
     await expect(build.build()).rejects.toThrow('Unable to find a name field in package.json file for extension');
+  });
+
+  test('basics without extension', async () => {
+    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
+    delete (cheTheiaPluginYaml as any).extension;
+
+    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
+      plugins: [cheTheiaPluginYaml],
+    };
+
+    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
+
+    const chePluginsYaml: ChePluginsYaml = {
+      plugins: [],
+    };
+    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
+
+    const cheEditorsYaml: CheEditorsYaml = {
+      editors: [],
+    };
+    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
+    await expect(build.build()).rejects.toThrow('does not have mandatory extension field');
   });
 
   test('basics with id', async () => {

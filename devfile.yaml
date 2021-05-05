@@ -80,3 +80,10 @@ commands:
           done
           surge ./ ${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh && echo Checkout the published plugin registry at https://${CHE_WORKSPACE_NAMESPACE}-${CHE_WORKSPACE_NAME}.surge.sh/v3/plugins/
         component: builder
+
+  - name: test entrypoint.sh
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/che-plugin-registry/build/dockerfiles'
+        type: exec
+        command: ./test_entrypoint.sh
+        component: eclipse-che-plugin-registry

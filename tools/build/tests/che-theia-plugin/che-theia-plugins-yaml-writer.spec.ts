@@ -54,6 +54,7 @@ describe('Test CheTheiaPluginsYamlWriter', () => {
         sidecar: {
           image: 'foo',
         },
+        dependencies: ['my-dependency'],
         preferences: {
           'foo.bar': 'foo',
         },
@@ -100,6 +101,8 @@ metadata:
   icon: /v3/images/my-publisher-my-name-icon.png
 sidecar:
   image: foo
+dependencies:
+  - my-dependency
 preferences:
   foo.bar: foo
 extensions:
@@ -154,6 +157,8 @@ metadata:
   icon: /v3/images/eclipse-che-logo.png
 sidecar:
   image: foo
+dependencies:
+  - my-dependency
 preferences:
   foo.bar: foo
 extensions:
@@ -183,6 +188,7 @@ extensions:
     fsWriteFileSpy.mockReturnValue();
     delete cheTheiaPluginYaml.data.metadata.iconFile;
     delete cheTheiaPluginYaml.aliases;
+    delete cheTheiaPluginYaml.data.dependencies;
 
     cheTheiaPluginYaml.data.extensions = [
       'http://fake-domain.com/folder/my.vsix',

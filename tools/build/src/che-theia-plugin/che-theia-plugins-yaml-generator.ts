@@ -110,8 +110,44 @@ export class CheTheiaPluginsYamlGenerator {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let sidecarContainer: any;
 
-        // list of vsix
-        const extensions = chePlugin.extensions;
+        // add the plugin extension
+        const extensions = [chePlugin.extension];
+
+        // now, do we have dependencies ?
+        let dependencies = [];
+
+        const packageJsonDependencies = packageJson.extensionDependencies;
+        if (packageJsonDependencies && packageJsonDependencies.length > 0) {
+          dependencies.push(
+            ...packageJsonDependencies.map(dependency => dependency.replace('.', '/').toLocaleLowerCase())
+          );
+        }
+
+        const skipDependencies = chePlugin.skipDependencies || [];
+        const extraDependencies = chePlugin.extraDependencies || [];
+
+        if (chePlugin.metaYaml) {
+          // extra dependencies ?
+          const metaYamlExtraDependencies = chePlugin.metaYaml.extraDependencies || [];
+          extraDependencies.push(...metaYamlExtraDependencies);
+          dependencies.push(...extraDependencies);
+
+          // remove dependencies to ignore
+          const metaYamlSkipDependencies = chePlugin.metaYaml.skipDependencies || [];
+          skipDependencies.push(...metaYamlSkipDependencies);
+          dependencies = dependencies.filter(dependency => !skipDependencies.includes(dependency));
+        }
+
+        // now that we have list of all dependencies, grab extensions from these one and inline them
+        if (dependencies.length > 0) {
+          // remove all 'builtin' except typescript
+          dependencies = dependencies.filter(
+            dependency => dependency === 'vscode/typescript-language-features' || !dependency.startsWith('vscode/')
+          );
+
+          // get unique elements
+          dependencies = [...new Set(dependencies)].sort();
+        }
 
         // list of vsix
         const vsixInfos = chePlugin.vsixInfos;
@@ -141,6 +177,7 @@ export class CheTheiaPluginsYamlGenerator {
             },
             sidecar: sidecarContainer,
             preferences,
+            dependencies,
             extensions,
           },
         };
