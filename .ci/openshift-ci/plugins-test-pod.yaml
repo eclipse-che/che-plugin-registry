@@ -45,10 +45,10 @@ spec:
           mountPath: /tmp/e2e/report/
       resources:
         requests:
-          memory: "8Gi"
+          memory: "4Gi"
           cpu: "2000m"
         limits:
-          memory: "12Gi"
+          memory: "8Gi"
           cpu: "4000m"
 # Download results          
     - name: download-reports
