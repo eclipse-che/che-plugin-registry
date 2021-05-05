@@ -71,8 +71,7 @@ export class RegistryHelper {
       const tokenUri = `https://auth.docker.io/token?service=registry.docker.io&scope=repository:${dockerImageName.remoteName}:pull`;
       const tokenResponse = await Axios.get(tokenUri, {
         headers: {
-          Accept:
-            'application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.distribution.manifest.list.v2+json',
+          Accept: 'application/json',
         },
         responseType: 'json',
       });
