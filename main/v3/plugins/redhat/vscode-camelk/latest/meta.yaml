@@ -10,10 +10,10 @@ icon: /v3/images/redhat-vscode-camelk-icon.png
 category: Other
 repository: 'https://github.com/camel-tooling/vscode-camelk'
 firstPublicationDate: '2021-04-08'
-latestUpdateDate: '2021-05-04'
+latestUpdateDate: '2021-05-05'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-plugin-sidecar:camelk-2eb28e4'
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:699a8fda67babcc1faedcf2e4ab22f6cf0cf6ad08c41c293983b81691c59ae4d'
       name: vscode-camelk
       memoryLimit: 1Gi
       cpuRequest: 30m

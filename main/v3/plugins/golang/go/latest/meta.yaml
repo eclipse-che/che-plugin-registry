@@ -10,7 +10,7 @@ icon: /v3/images/golang-go-icon.png
 category: Programming Languages
 repository: 'https://github.com/golang/vscode-go'
 firstPublicationDate: '2020-08-06'
-latestUpdateDate: '2021-05-04'
+latestUpdateDate: '2021-05-05'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:8615a29435b0256bffaf85ab2cf9327b059f14eaa6614346dfd51e3a6dd9f041'
