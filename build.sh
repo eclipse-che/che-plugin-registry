@@ -38,6 +38,8 @@ Options:
         Build using the rhel.Dockerfile (UBI images) instead of default
     --skip-oci-image
         Build artifacts but do not create the image
+    --skip-digest-generation
+        Write image entries as is instead of re-writing with digests
 "
 
 function print_usage() {
@@ -61,11 +63,23 @@ function parse_arguments() {
             shift; shift;
             ;;
             --offline)
-            BUILD_FLAGS="--embed-vsix:true"
+            if [ "$BUILD_FLAGS" == "" ]; then
+                BUILD_FLAGS+="--embed-vsix:true"
+            else
+                BUILD_FLAGS+=" --embed-vsix:true"
+            fi
             shift;
             ;;
             --skip-oci-image)
             SKIP_OCI_IMAGE="true"
+            shift;
+            ;;
+            --skip-digest-generation)
+            if [ "$BUILD_FLAGS" == "" ]; then
+                BUILD_FLAGS+="--skip-digest-generation:true"
+            else
+                BUILD_FLAGS+=" --skip-digest-generation:true"
+            fi
             shift;
             ;;
             --rhel)
@@ -87,7 +101,7 @@ echo "Build tooling..."
 pushd "${base_dir}"/tools/build > /dev/null
 yarn build
 echo "Generate artifacts..."
-eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" ${BUILD_FLAGS}
+eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS}"
 popd > /dev/null
 
 echo -e "\nTest entrypoint.sh"

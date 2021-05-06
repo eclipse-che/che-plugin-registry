@@ -216,6 +216,7 @@ describe('Test Build', () => {
     container = new Container();
     container.bind('string').toConstantValue('/fake-root-directory').whenTargetNamed('PLUGIN_REGISTRY_ROOT_DIRECTORY');
     container.bind('string').toConstantValue('/fake-root-directory/output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
+    container.bind('boolean').toConstantValue(false).whenTargetNamed('SKIP_DIGEST_GENERATION');
     container.bind('string[]').toConstantValue([]).whenTargetNamed('ARGUMENTS');
     container.bind(FeaturedAnalyzer).toConstantValue(featuredAnalyzer);
     container.bind(FeaturedWriter).toConstantValue(featuredWriter);
