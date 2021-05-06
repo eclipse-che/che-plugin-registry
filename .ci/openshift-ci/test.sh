@@ -105,8 +105,8 @@ downloadTestResults() {
   TEST_USERSTORY="$1"
   TEST_POD_NAME="$2"
   mkdir -p /tmp/e2e
-  oc rsync -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME}:/tmp/e2e/report/ /tmp/e2e -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c download-reports -- touch /tmp/e2e/done
+  oc rsync -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}":/tmp/e2e/report/ /tmp/e2e -c download-reports
+  oc exec -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c download-reports -- touch /tmp/e2e/done
 
   mkdir -p "${ARTIFACTS_DIR}"
   cp -r /tmp/e2e "${ARTIFACTS_DIR}/${TEST_USERSTORY}"
@@ -115,7 +115,7 @@ downloadTestResults() {
   chectl server:logs --chenamespace="eclipse-che" --directory="${ARTIFACTS_DIR}/${TEST_USERSTORY}" --telemetry=off
   oc get checluster -o yaml -n "eclipse-che" > "${ARTIFACTS_DIR}/${TEST_USERSTORY}/che-cluster.yaml"
 
-  TEST_POD_EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
+  TEST_POD_EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
 
   echo "The ${TEST_USERSTORY} pod exit code: ${TEST_POD_EXIT_CODE}"
 
@@ -140,7 +140,7 @@ finishReport() {
   echo "==================== FINISH REPORT ========================"
   echo ""
 
-  for RESULT in ${TESTS_STATUS[@]}; do
+  for RESULT in "${TESTS_STATUS[@]}"; do
     echo "    ${RESULT}"
   done
 
@@ -176,14 +176,14 @@ cleanUpAfterTest(){
   chectl auth:login -n eclipse-che
 
   # get workspace ID
-  WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep ${TEST_POD_NAME} | awk '{print $1}')
+  WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep "${TEST_POD_NAME}" | awk '{print $1}')
   echo "Workspace ID: ${WORKSPACE_ID}"
 
   # stop workspace
-  chectl workspace:stop -n eclipse-che ${WORKSPACE_ID}
+  chectl workspace:stop -n eclipse-che "${WORKSPACE_ID}"
 
   # delete workspace
-  chectl workspace:delete -n eclipse-che ${WORKSPACE_ID}
+  chectl workspace:delete -n eclipse-che "${WORKSPACE_ID}"
 }
 
 runTest() {
@@ -198,7 +198,7 @@ runTest() {
   # wait for the pod to start
   while true; do
     sleep 3
-    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} \
+    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" \
         --template='{{ .status.phase }}')
     if [[ ${PHASE} == "Running" ]]; then
         break
@@ -206,7 +206,7 @@ runTest() {
   done
 
   # wait for the test to finish
-  oc logs -n ${TEST_POD_NAMESPACE} ${TEST_POD_NAME} -c ${TEST_CONTAINER_NAME} -f
+  oc logs -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c ${TEST_CONTAINER_NAME} -f
 
   # just to sleep
   sleep 3
