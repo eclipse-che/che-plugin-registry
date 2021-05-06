@@ -24,7 +24,7 @@ do
         if ! [[ " ${SIDECARS_TO_TEST[@]} " =~ ${SIDECAR_NAME} ]]; then
             SIDECARS_TO_TEST+=("$SIDECAR_NAME")
             PLATFORMS=$(cat sidecars/"$SIDECAR_NAME"/PLATFORMS)
-            SHORT_SHA1=$(git rev-parse --short HEAD)
+            SHORT_SHA1=$(git rev-parse --short=7 HEAD)
             if [[ $BUILD_PUBLISH == 'build-publish' ]]; then
                 IMAGE_NAME=quay.io/eclipse/che-plugin-sidecar:"$SIDECAR_NAME"-"$SHORT_SHA1"
                 echo "Building $IMAGE_NAME"
