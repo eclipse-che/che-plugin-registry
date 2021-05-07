@@ -16,9 +16,9 @@ REGISTRY="quay.io"
 ORGANIZATION="eclipse"
 TAG="nightly"
 DOCKERFILE="./build/dockerfiles/Dockerfile"
-BUILD_FLAGS=""
 SKIP_OCI_IMAGE="false"
 NODE_BUILD_OPTIONS="${NODE_BUILD_OPTIONS:-}"
+BUILD_FLAGS_ARRAY=()
 
 USAGE="
 Usage: ./build.sh [OPTIONS]
@@ -63,11 +63,7 @@ function parse_arguments() {
             shift; shift;
             ;;
             --offline)
-            if [ "$BUILD_FLAGS" == "" ]; then
-                BUILD_FLAGS+="--embed-vsix:true"
-            else
-                BUILD_FLAGS+=" --embed-vsix:true"
-            fi
+            BUILD_FLAGS_ARRAY+=("--embed-vsix:true")
             shift;
             ;;
             --skip-oci-image)
@@ -75,11 +71,7 @@ function parse_arguments() {
             shift;
             ;;
             --skip-digest-generation)
-            if [ "$BUILD_FLAGS" == "" ]; then
-                BUILD_FLAGS+="--skip-digest-generation:true"
-            else
-                BUILD_FLAGS+=" --skip-digest-generation:true"
-            fi
+            BUILD_FLAGS_ARRAY+=("--skip-digest-generation:true")
             shift;
             ;;
             --rhel)
@@ -101,7 +93,7 @@ echo "Build tooling..."
 pushd "${base_dir}"/tools/build > /dev/null
 yarn build
 echo "Generate artifacts..."
-eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS}"
+eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS_ARRAY[@]}"
 popd > /dev/null
 
 echo -e "\nTest entrypoint.sh"
