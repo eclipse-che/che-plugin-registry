@@ -218,7 +218,7 @@ runTest() {
 runTests() {
   oc create namespace $TEST_POD_NAMESPACE
 
-  # runTest "JavaPlugin" "java11-plugin-test"
+  runTest "JavaPlugin" "java11-plugin-test"
   runTest "PythonPlugin" "python-plugin-test"
 
 }
