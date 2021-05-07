@@ -10,7 +10,7 @@ icon: /v3/images/ms-python-python-icon.png
 category: Programming Languages
 repository: 'https://github.com/Microsoft/vscode-python'
 firstPublicationDate: '2020-07-16'
-latestUpdateDate: '2021-05-06'
+latestUpdateDate: '2021-05-07'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:64311210e710ca1614839f897285fc1d39b2ca17215d56c165d091aafd19a14b'
