@@ -10,7 +10,7 @@ icon: /v3/images/redhat-java-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-java'
 firstPublicationDate: '2021-02-11'
-latestUpdateDate: '2021-05-07'
+latestUpdateDate: '2021-05-10'
 deprecate:
   automigrate: true
   migrateTo: redhat/java/latest

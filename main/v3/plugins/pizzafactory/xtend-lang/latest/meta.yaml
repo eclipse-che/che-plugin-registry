@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Programming Languages
 repository: 'https://github.com/PizzaFactory/xtend-ide-extensions.git'
 firstPublicationDate: '2019-08-12'
-latestUpdateDate: '2021-05-07'
+latestUpdateDate: '2021-05-10'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:d4b2d36637af64e2c33933f36fe6aeb1a3a879ff7045596210e847eb7382b2ef'
