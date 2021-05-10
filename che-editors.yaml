@@ -143,7 +143,7 @@ editors:
           ephemeral: true
   - schemaVersion: 2.1.0
     metadata:
-      name: eclipse/che-theia/7.29.0
+      name: eclipse/che-theia/7.30.0
       displayName: theia-ide
       description: Eclipse Theia
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
