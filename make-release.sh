@@ -124,6 +124,8 @@ createNewPlugins () {
   sed -i "che-editors.yaml" \
       -e "s#id: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheTheia}/${newVERSION}#"
   sed -i "che-editors.yaml" \
+      -e "s#name: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheTheia}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheTheia}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheia}:${newVERSION}\1#"
   sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
