@@ -30,8 +30,8 @@ export TESTS_STATUS=()
 export TEST_RESULT="PASSED"
 
 # turn off telemetry
-mkdir -p ${HOME}/.config/chectl
-echo "{\"segment.telemetry\":\"off\"}" > ${HOME}/.config/chectl/config.json
+mkdir -p "${HOME}"/.config/chectl
+echo "{\"segment.telemetry\":\"off\"}" > "${HOME}"/.config/chectl/config.json
 
 provisionOpenShiftOAuthUser() {
   htpasswd -c -B -b users.htpasswd user user
