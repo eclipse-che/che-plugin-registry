@@ -29,6 +29,9 @@ export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 export TESTS_STATUS=()
 export TEST_RESULT="PASSED"
 
+# turn off telemetry
+mkdir -p ${HOME}/.config/chectl
+echo "{\"segment.telemetry\":\"off\"}" > ${HOME}/.config/chectl/config.json
 
 provisionOpenShiftOAuthUser() {
   htpasswd -c -B -b users.htpasswd user user
@@ -83,7 +86,7 @@ END
 }
 
 deployChe() {
-  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --telemetry=off --platform=openshift --installer=operator --batch
+  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --platform=openshift --installer=operator --batch
 }
 
 patchTestPodConfig(){
@@ -112,7 +115,7 @@ downloadTestResults() {
   cp -r /tmp/e2e "${ARTIFACTS_DIR}/${TEST_USERSTORY}"
   rm -rf /tmp/e2e
 
-  chectl server:logs --chenamespace="eclipse-che" --directory="${ARTIFACTS_DIR}/${TEST_USERSTORY}" --telemetry=off
+  chectl server:logs --chenamespace="eclipse-che" --directory="${ARTIFACTS_DIR}/${TEST_USERSTORY}"
   oc get checluster -o yaml -n "eclipse-che" > "${ARTIFACTS_DIR}/${TEST_USERSTORY}/che-cluster.yaml"
 
   TEST_POD_EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
@@ -173,17 +176,17 @@ cleanUpAfterTest(){
   oc delete pod -n "${TEST_POD_NAMESPACE}" "${TEST_POD_NAME}"
 
   # get token
-  # chectl auth:login -n eclipse-che
+  chectl auth:login -n eclipse-che
 
-  # # get workspace ID
-  # WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep "${TEST_POD_NAME}" | awk '{print $1}')
-  # echo "Workspace ID: ${WORKSPACE_ID}"
+  # get workspace ID
+  WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep "${TEST_POD_NAME}" | awk '{print $1}')
+  echo "Workspace ID: ${WORKSPACE_ID}"
 
-  # # stop workspace
-  # chectl workspace:stop -n eclipse-che "${WORKSPACE_ID}"
+  # stop workspace
+  chectl workspace:stop -n eclipse-che "${WORKSPACE_ID}"
 
-  # # delete workspace
-  # chectl workspace:delete -n eclipse-che "${WORKSPACE_ID}"
+  # delete workspace
+  chectl workspace:delete -n eclipse-che "${WORKSPACE_ID}"
 }
 
 runTest() {
@@ -216,8 +219,10 @@ runTest() {
 }
 
 runTests() {
+  # create namespace for test pods
   oc create namespace $TEST_POD_NAMESPACE
 
+  # run tests
   runTest "JavaPlugin" "java11-plugin-test"
   runTest "PythonPlugin" "python-plugin-test"
 

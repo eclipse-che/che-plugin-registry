@@ -57,7 +57,7 @@ spec:
           cpu: "4000m"
 # Download results          
     - name: download-reports
-      image: eeacms/rsync
+      image: quay.io/ohrimenko1988/rsync:latest
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - name: test-run-results
