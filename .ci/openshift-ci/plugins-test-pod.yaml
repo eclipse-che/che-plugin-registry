@@ -12,7 +12,7 @@ spec:
   containers:
     # container containing the tests
     - name: plugins-test
-      image: quay.io/ohrimenko1988/che-e2e:latest
+      image: quay.io/eclipse/che-e2e:nightly
       imagePullPolicy: Always
       env:
         - name: TS_SELENIUM_OCP_USERNAME
@@ -28,7 +28,7 @@ spec:
         - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
           value: 'htpasswd'
         - name: TEST_SUITE
-          value: test-plugin
+          value: test-plugin-ci
         - name: USERSTORY
           value: TEST_USERSTORY
         - name: NODE_TLS_REJECT_UNAUTHORIZED
