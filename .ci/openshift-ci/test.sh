@@ -17,13 +17,10 @@
 set -e
 # only exit with zero if all commands of the pipeline exit successfully
 set -o pipefail
-# error on unset variables
-# set -u
 
 export RAM_MEMORY=8192
 export TEST_POD_NAMESPACE="plugin-registry-test"
 export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
-# export TEST_POD_NAME="test-plugins"
 export TEST_CONTAINER_NAME="plugins-test"
 export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 export TESTS_STATUS=()
@@ -51,20 +48,6 @@ provisionOpenShiftOAuthUser() {
 }
 
 createCustomResourcesFile() {
-#   cat > custom-resources.yaml <<-END
-# spec:
-#   auth:
-#     updateAdminPassword: false
-#   server:
-#     customCheProperties:
-#       CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '-1'
-#       CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '900000'
-#       CHE_INFRA_KUBERNETES_WORKSPACE__UNRECOVERABLE__EVENTS: 'Failed Scheduling,Failed to pull image'
-#       CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
-#       CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
-#       CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
-# END
-
   cat > custom-resources.yaml <<-END
 spec:
   auth:
@@ -131,7 +114,6 @@ downloadTestResults() {
     STATUS_MESSAGE="${TEST_USERSTORY}-------PASSED"
     TESTS_STATUS+=("${STATUS_MESSAGE}")
   fi
-
 
 }
 
@@ -224,15 +206,12 @@ runTests() {
 
   # run tests
   runTest "JavaPlugin" "java11-plugin-test"
-  runTest "PythonPlugin" "python-plugin-test"
+  runTest "TypescriptPlugin" "typescript-debug-plugins"
 
 }
 
 provisionOpenShiftOAuthUser
 createCustomResourcesFile
 deployChe
-# patchTestPodConfig
-# 
 runTests
-# downloadTestResults
 finishReport
