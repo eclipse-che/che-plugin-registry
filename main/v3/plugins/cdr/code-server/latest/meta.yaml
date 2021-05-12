@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/cdr/code-server'
 firstPublicationDate: '2020-11-03'
-latestUpdateDate: '2021-05-11'
+latestUpdateDate: '2021-05-12'
 spec:
   endpoints:
     - name: code-server

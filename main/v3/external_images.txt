@@ -26,7 +26,7 @@ quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e
 quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
 quay.io/eclipse/che-plugin-sidecar@sha256:d4b2d36637af64e2c33933f36fe6aeb1a3a879ff7045596210e847eb7382b2ef
 quay.io/eclipse/che-plugin-sidecar@sha256:2e49fafb9aa6519fc63019a72a4526222b6905ed01dc484c3e9f5131ae00b546
-quay.io/windupeng/mta-vscode-extension@sha256:2d89f122f29c3aa24663cafc2e847bc5a65f495b5f44772fb4b59e75fded0706
+quay.io/windupeng/mta-vscode-extension@sha256:4513d38220c65bd5494486a9d017928e8f1f5e1a25e76c41d3b12973ef088bb8
 quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
 quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
 quay.io/eclipse/che-plugin-sidecar@sha256:502abcf6599fdadabef289dcadc5c32ca622fa02b73a72b113ca1e5e5b179375
@@ -49,9 +49,9 @@ quay.io/eclipse/che-plugin-sidecar@sha256:bb404ffaa12565beb12b4cd8160cfa3ff3ef3b
 quay.io/eclipse/che-theia:next
 quay.io/eclipse/che-machine-exec:nightly
 quay.io/eclipse/che-theia-endpoint-runtime-binary:next
-quay.io/eclipse/che-theia@sha256:9f0091db07ce4c26c8107541e4abf88834c5e61e2da7efe0828929cf68641a48
-quay.io/eclipse/che-machine-exec@sha256:da49975306c473f088037ce08edfe401445eedcb229d2e79a76a1534619e0fc5
-quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:be46fb4248d3fd818017555857ff436d02bb29161e273bc7a9a9da15b7965453
+quay.io/eclipse/che-theia@sha256:8023a1567cd61b6da5389bce5a00ad2cabeeb05bb506ece05abf12f2bb5b32fb
+quay.io/eclipse/che-machine-exec@sha256:1a076e93e6ce44e2929c74ae5c11df47cba4ca760bc611254e8da623566e22f6
+quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:2c9e0162233cba294aa9c85b15fe525397b1550da69ac90836df63566a6bc8e8
 index.docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47
 index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113
 quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863
