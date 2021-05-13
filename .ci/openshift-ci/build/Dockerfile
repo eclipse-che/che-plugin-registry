@@ -32,9 +32,8 @@ RUN yum update -y && yum upgrade -y &&\
     npm install --global yarn
 
 # Build repo
-RUN yarn && yarn install
-RUN cd tools/build && yarn build
-RUN eval yarn node tools/build/lib/entrypoint.js --output-folder:"output"
+
+RUN ./build.sh --skip-oci-image
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
