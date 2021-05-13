@@ -114,7 +114,6 @@ downloadTestResults() {
     STATUS_MESSAGE="${TEST_USERSTORY}-------PASSED"
     TESTS_STATUS+=("${STATUS_MESSAGE}")
   fi
-
 }
 
 finishReport() {
