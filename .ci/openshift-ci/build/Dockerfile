@@ -32,8 +32,7 @@ RUN yum update -y && yum upgrade -y &&\
     npm install --global yarn
 
 # Build repo
-
-RUN ./build.sh --skip-oci-image
+RUN ./build.sh --skip-oci-image --skip-digest-generation
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
