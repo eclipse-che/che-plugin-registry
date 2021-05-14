@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/eclipse-che/che-theia'
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2021-05-12'
+latestUpdateDate: '2021-05-14'
 spec:
   endpoints:
     - name: theia
@@ -104,6 +104,10 @@ spec:
         - exposedPort: 13132
         - exposedPort: 13133
     - image: 'quay.io/eclipse/che-machine-exec:nightly'
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       command:
         - /go/bin/che-machine-exec
         - '--url'
@@ -113,6 +117,10 @@ spec:
         - exposedPort: 3333
   initContainers:
     - image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint

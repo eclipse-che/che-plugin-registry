@@ -105,6 +105,10 @@ components:
         - /go/bin/che-machine-exec
         - '--url'
         - '0.0.0.0:3333'
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
   - name: remote-runtime-injector
     container:
       image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
@@ -116,6 +120,10 @@ components:
       volumeMounts:
         - name: remote-endpoint
           path: /remote-endpoint
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
   - name: remote-endpoint
     volume:
       ephemeral: true
