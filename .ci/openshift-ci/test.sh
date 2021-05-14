@@ -18,7 +18,9 @@ set -e
 # only exit with zero if all commands of the pipeline exit successfully
 set -o pipefail
 
-source ./common-functions.sh
+# import common test functions
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+source "${SCRIPT_DIR}"/common-functions.sh
 
 runTests() {
   runTest "JavaPlugin" "java11-plugin-test"
