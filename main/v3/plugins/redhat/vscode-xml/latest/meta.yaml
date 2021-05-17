@@ -18,5 +18,8 @@ spec:
       memoryLimit: 768Mi
       cpuRequest: 30m
       cpuLimit: 500m
+      env:
+        - name: CHE_THEIA_SIDECAR_PREFERENCES
+          value: '{"xml.server.binary.trustedHashes":["b9f80206fbb847c4574c6dd06c637db9062124e4"]}'
   extensions:
     - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix'
