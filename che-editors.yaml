@@ -110,6 +110,10 @@ editors:
       - name: che-machine-exec
         container:
           image: 'quay.io/eclipse/che-machine-exec:nightly'
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
           command:
             - /go/bin/che-machine-exec
             - '--url'
@@ -130,6 +134,10 @@ editors:
       - name: remote-runtime-injector
         container:
           image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
