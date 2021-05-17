@@ -11,8 +11,7 @@
 #
 
 # Build registry
-# FROM docker.io/httpd:2.4.46-alpine
-FROM registry.access.redhat.com/ubi8-minimal:8.3-298
+FROM docker.io/httpd:2.4.46-alpine
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true

@@ -24,17 +24,15 @@ ADD . /che-plugin-registry
 WORKDIR /che-plugin-registry
 
 # Install build tools
-RUN yum update -y && yum upgrade -y
-RUN yum install git -y 
-RUN yum install openssh -y
-RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
-RUN yum install nodejs -y
-RUN npm install --global yarn
+RUN yum update -y && yum upgrade -y &&\
+    yum install git -y &&\
+    yum install openssh -y &&\
+    curl -sL https://rpm.nodesource.com/setup_14.x | bash - &&\
+    yum install nodejs -y &&\
+    npm install --global yarn
 
 # Build repo
-RUN yarn && \
-    yarn --cwd tools/build build && \
-    eval node tools/build/lib/entrypoint.js --output-folder:"output"
+RUN ./build.sh --skip-oci-image --skip-digest-generation
 
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 

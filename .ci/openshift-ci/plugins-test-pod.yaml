@@ -1,19 +1,36 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: happy-path-che
-  namespace: devworkspace-project
+  name: POD_NAME
+  namespace: plugin-registry-test
 spec:
   volumes:
     - name: test-run-results
+    - name: dshm
+      emptyDir:
+        medium: Memory
   containers:
     # container containing the tests
-    - name: happy-path-test
+    - name: plugins-test
       image: quay.io/eclipse/che-e2e:nightly
       imagePullPolicy: Always
       env:
+        - name: TS_SELENIUM_OCP_USERNAME
+          value: 'user'
+        - name: TS_SELENIUM_OCP_PASSWORD
+          value: 'user'
+        - name: TS_SELENIUM_VALUE_OPENSHIFT_OAUTH
+          value: 'true'
+        - name: TS_SELENIUM_USERNAME
+          value: 'admin'
+        - name: TS_SELENIUM_PASSWORD
+          value: 'admin'
+        - name: TS_OCP_LOGIN_PAGE_PROVIDER_TITLE
+          value: 'htpasswd'
         - name: TEST_SUITE
-          value: test-all-plugins
+          value: test-plugin-ci
+        - name: USERSTORY
+          value: TEST_USERSTORY
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: '0'
         - name: TS_SELENIUM_BASE_URL
@@ -21,7 +38,7 @@ spec:
         - name: TS_SELENIUM_LOG_LEVEL
           value: DEBUG
         - name: TS_SELENIUM_MULTIUSER
-          value: 'false'
+          value: 'true'
         - name: TS_SELENIUM_VALUE_TLS_SUPPORT
           value: 'true'
         - name: TS_SELENIUM_W3C_CHROME_OPTION
@@ -29,16 +46,18 @@ spec:
       volumeMounts:
         - name: test-run-results
           mountPath: /tmp/e2e/report/
+        - name: dshm
+          mountPath: /dev/shm
       resources:
         requests:
-          memory: "8Gi"
+          memory: "4Gi"
           cpu: "2000m"
         limits:
           memory: "8Gi"
-          cpu: "4000m" 
+          cpu: "4000m"
 # Download results          
     - name: download-reports
-      image: eeacms/rsync
+      image: quay.io/ohrimenko1988/rsync:latest
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - name: test-run-results
