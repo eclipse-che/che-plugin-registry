@@ -1,0 +1,10 @@
+schemaVersion: 2.1.0
+metadata:
+  name: Buildah Base Dev Plugin
+components:
+  - name: buildah-dev
+    container:
+      image: 'quay.io/eclipse/che-buildah-base@sha256:417203d8629edd92f187afd3ebb3d8dc28338d34809eb75ffc2e08a400f8d56b'
+      mountSources: true
+      memoryLimit: 1Gi
+      endpoints: []
