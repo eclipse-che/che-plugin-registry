@@ -10,7 +10,7 @@ icon: /v3/images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/ws-skeleton/che-editor-jupyter/'
 firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2021-05-17'
+latestUpdateDate: '2021-05-19'
 spec:
   endpoints:
     - name: jupyter
