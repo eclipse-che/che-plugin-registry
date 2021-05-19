@@ -11,13 +11,8 @@
 #
 
 # Build registry
-# UPSTREAM: use RHEL7/RHSCL/httpd image so we're not required to authenticate with registry.redhat.io
-# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhscl/httpd-24-rhel7
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
-
-# DOWNSTREAM: use RHEL8/httpd
-# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/rhel8/httpd-24
-# FROM registry.redhat.io/rhel8/httpd-24:1-120
+# https://access.redhat.com/containers/?tab=tags#/registry.access.redhat.com/ubi8/httpd-24
+FROM registry.access.redhat.com/ubi8/httpd-24:1-140
 USER 0
 # latest httpd container doesn't include ssl cert, so generate one
 RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
