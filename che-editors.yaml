@@ -171,7 +171,7 @@ editors:
     components:
       - name: theia-ide
         container:
-          image: "quay.io/eclipse/che-theia:7.30.1"
+          image: "quay.io/eclipse/che-theia:7.30.2"
           env:
             - name: THEIA_PLUGINS
               value: 'local-dir:///plugins'
@@ -256,7 +256,7 @@ editors:
         volume: {}
       - name: che-machine-exec
         container:
-          image: 'quay.io/eclipse/che-machine-exec:7.30.1'
+          image: 'quay.io/eclipse/che-machine-exec:7.30.2'
           command:
             - /go/bin/che-machine-exec
             - '--url'
@@ -276,7 +276,7 @@ editors:
             - exposedPort: 3333
       - name: remote-runtime-injector
         container:
-          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.30.1"
+          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.30.2"
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
