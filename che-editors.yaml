@@ -47,7 +47,7 @@ editors:
               secure: true
               targetPort: 3100
               attributes:
-                type: ide
+                type: main
                 cookiesAuthEnabled: true
                 discoverable: false
               protocol: http
@@ -195,7 +195,7 @@ editors:
               secure: true
               protocol: http
               attributes:
-                type: ide
+                type: main
                 cookiesAuthEnabled: true
                 discoverable: false
             - name: webviews
@@ -315,7 +315,7 @@ editors:
               exposure: public
               protocol: http
               attributes:
-                type: ide
+                type: main
         attributes:
           ports:
             - exposedPort: 8888
@@ -361,7 +361,7 @@ editors:
           endpoints:
             - name: dirigible
               attributes:
-                type: ide
+                type: main
               targetPort: 8080
               exposure: public
               protocol: http
@@ -395,7 +395,7 @@ editors:
               exposure: public
               protocol: http
               attributes:
-                type: ide
+                type: main
                 discoverable: false
                 path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
         attributes:
@@ -427,7 +427,7 @@ editors:
               exposure: public
               protocol: http
               attributes:
-                type: ide
+                type: main
         attributes:
           ports:
             - exposedPort: 5000
@@ -458,7 +458,7 @@ editors:
               exposure: public
               protocol: http
               attributes:
-                type: ide
+                type: main
         attributes:
           ports:
             - exposedPort: 8080

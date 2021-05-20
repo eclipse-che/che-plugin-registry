@@ -120,7 +120,7 @@ Here is the expected format of a [`che-editors.yaml`](./che-editors.yaml) editor
         targetPort: 8080
         attributes:
           protocol: http
-          type: ide
+          type: main
     containers:
       - name: my-editor-container
         image: "quay.io/image:foo"
@@ -154,7 +154,7 @@ Here are all the supported values, including optional ones:
         # the type should be ide to be an editor
         attributes:
           protocol: http
-          type: ide
+          type: main
     # Specify at least one container
     containers:
       - # Name of the container
