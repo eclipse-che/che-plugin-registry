@@ -27,6 +27,9 @@ export class EndpointsHelper {
       endpoint.attributes = {};
     }
     const attributes = endpoint.attributes;
+    if (attributes.type === 'main') {
+      attributes.type = 'ide';
+    }
     if (endpoint.protocol) {
       attributes.protocol = endpoint.protocol;
       delete endpoint.protocol;
@@ -35,6 +38,7 @@ export class EndpointsHelper {
       attributes.secure = endpoint.secure;
       delete endpoint.secure;
     }
+
     return result;
   }
 }
