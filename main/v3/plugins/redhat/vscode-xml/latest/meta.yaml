@@ -9,7 +9,7 @@ description: XML Language Support by Red Hat
 icon: /v3/images/redhat-vscode-xml-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-xml'
-firstPublicationDate: '2020-11-19'
+firstPublicationDate: '2021-05-20'
 latestUpdateDate: '2021-05-20'
 spec:
   containers:
@@ -20,6 +20,6 @@ spec:
       cpuLimit: 500m
       env:
         - name: CHE_THEIA_SIDECAR_PREFERENCES
-          value: '{"xml.server.binary.trustedHashes":["b9f80206fbb847c4574c6dd06c637db9062124e4"]}'
+          value: '{"xml.server.binary.trustedHashes":["b8e08163ffff7561060e10f142a52655ea1a5d9a"]}'
   extensions:
-    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v356aec7/vscode-xml-0.14.0.vsix'
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v6619960/vscode-xml-0.16.1.vsix'
