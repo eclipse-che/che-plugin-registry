@@ -13,7 +13,7 @@ components:
       endpoints:
         - name: jupyter
           attributes:
-            type: ide
+            type: main
           targetPort: 8888
           exposure: public
           protocol: http

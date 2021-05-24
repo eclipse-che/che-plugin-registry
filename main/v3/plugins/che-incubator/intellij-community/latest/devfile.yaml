@@ -13,7 +13,7 @@ components:
       endpoints:
         - name: intellij
           attributes:
-            type: ide
+            type: main
             discoverable: false
             path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
           targetPort: 8080

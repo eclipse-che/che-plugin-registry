@@ -31,7 +31,7 @@ components:
       endpoints:
         - name: theia
           attributes:
-            type: ide
+            type: main
             cookiesAuthEnabled: true
             discoverable: false
           targetPort: 3100

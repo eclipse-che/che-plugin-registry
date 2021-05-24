@@ -10,7 +10,7 @@ components:
       endpoints:
         - name: eclipse-ide
           attributes:
-            type: ide
+            type: main
           targetPort: 5000
           exposure: public
           protocol: http

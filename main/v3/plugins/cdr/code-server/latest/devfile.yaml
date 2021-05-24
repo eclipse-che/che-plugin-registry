@@ -13,7 +13,7 @@ components:
       endpoints:
         - name: code-server
           attributes:
-            type: ide
+            type: main
           targetPort: 8080
           exposure: public
           protocol: http

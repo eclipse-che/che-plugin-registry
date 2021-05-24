@@ -31,7 +31,7 @@ components:
       endpoints:
         - name: dirigible
           attributes:
-            type: ide
+            type: main
           targetPort: 8080
           exposure: public
           protocol: http
