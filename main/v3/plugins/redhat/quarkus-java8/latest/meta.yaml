@@ -10,7 +10,7 @@ icon: /v3/images/redhat-vscode-quarkus-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-quarkus'
 firstPublicationDate: '2020-04-30'
-latestUpdateDate: '2021-05-24'
+latestUpdateDate: '2021-05-25'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:d4b2d36637af64e2c33933f36fe6aeb1a3a879ff7045596210e847eb7382b2ef'
