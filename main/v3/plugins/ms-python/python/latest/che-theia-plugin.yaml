@@ -24,6 +24,9 @@ sidecar:
   memoryLimit: 512Mi
   cpuLimit: 500m
   cpuRequest: 30m
+  volumeMounts:
+    - name: venv
+      path: /home/theia/.venv
   image: 'quay.io/eclipse/che-plugin-sidecar:python-78cd6a9'
 dependencies: []
 extensions:
