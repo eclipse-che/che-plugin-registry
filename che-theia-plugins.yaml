@@ -142,6 +142,9 @@ plugins:
       memoryLimit: 512Mi
       cpuLimit: 500m
       cpuRequest: 30m
+      volumeMounts:
+        - name: venv
+          path: /home/theia/.venv
     extension: https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix
   - repository:
       url: 'https://github.com/asciidoctor/asciidoctor-vscode'
