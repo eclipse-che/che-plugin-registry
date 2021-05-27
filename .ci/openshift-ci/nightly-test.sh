@@ -23,6 +23,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # shellcheck source=./.ci/openshift-ci/common-functions.sh
 source "${SCRIPT_DIR}"/common-functions.sh
 
+
 runTests() {
   runTest "InstallPluginUsingUI" "install-plugin-test"
   runTest "JavaPlugin" "java11-plugin-test"
