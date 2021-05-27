@@ -103,7 +103,7 @@ type: VS Code extension
 displayName: display-name
 title: my-title
 description: my-description
-icon: /v3/images/my-publisher-my-name-icon.png
+icon: /images/my-publisher-my-name-icon.png
 category: Programming Languages
 repository: 'http://fake-repository'
 firstPublicationDate: '2019-01-01'
@@ -161,7 +161,7 @@ type: VS Code extension
 displayName: display-name
 title: my-title
 description: my-description
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Programming Languages
 repository: 'http://fake-repository'
 firstPublicationDate: '2019-01-01'
@@ -239,7 +239,7 @@ type: VS Code extension
 displayName: display-name
 title: my-title
 description: my-description
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Programming Languages
 repository: 'http://fake-repository'
 firstPublicationDate: '2019-01-01'
@@ -319,7 +319,7 @@ type: VS Code extension
 displayName: display-name
 title: my-title
 description: my-description
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Programming Languages
 repository: 'http://fake-repository'
 firstPublicationDate: '2019-01-01'
@@ -379,7 +379,7 @@ type: VS Code extension
 displayName: display-name
 title: my-title
 description: my-description
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Programming Languages
 repository: 'http://fake-repository'
 firstPublicationDate: '2019-01-01'
