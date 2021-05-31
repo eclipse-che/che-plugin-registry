@@ -1,0 +1,54 @@
+#
+# Copyright (c) 2021 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+name: typescript-publish-next
+
+on:
+  push:
+    branches: 
+      - master
+    paths:
+    - 'package.json'
+    - 'tools/build/**'
+    - '.github/workflows/typescript-publish.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Clone source code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+    - uses: actions/cache@v2
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: yarn-
+    - name: typescript dependencies
+      run: |
+        yarn
+    - name: publish
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      run: |
+        cd tools/build
+        yarn compile
+        SHORT_SHA1=$(git rev-parse --short=7 HEAD)
+        CURRENT_VERSION=$(sed -r 's/(.*)-SNAPSHOT/\1/' ../../VERSION)
+        NEW_VERSION="${CURRENT_VERSION}-dev-${SHORT_SHA1}"
+        sed -i -r -e "s/(\"version\": )(\".*\")/\1\"$NEW_VERSION\"/" package.json
+        npm publish --tag next

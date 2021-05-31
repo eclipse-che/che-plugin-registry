@@ -1,5 +1,5 @@
 {
-  "name": "plugin-build-update-automation",
+  "name": "@eclipse-che/plugin-registry-build-update-automation",
   "version": "0.0.0",
   "private": true,
   "description": "Scripts for updating, adding, removing, and building plugins in the Che Plugin Registry",
