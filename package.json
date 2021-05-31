@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@che-plugin-registry/monorepo",
+  "name": "@eclipse-che/plugin-registry-monorepo",
   "version": "0.0.0",
   "prettier": {
     "printWidth": 120,
