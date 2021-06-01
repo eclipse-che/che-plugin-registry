@@ -37,6 +37,9 @@ components:
     image: 'quay.io/eclipse/che-plugin-registry:nightly'
     alias: eclipse-che-plugin-registry
 
+  - id: timonwong/shellcheck/latest
+    type: chePlugin
+
 commands:
 
   - name: 1. build

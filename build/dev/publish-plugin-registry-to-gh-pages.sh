@@ -34,6 +34,12 @@ git clone -b gh-pages "https://github.com/$GITHUB_REPOSITORY.git" "$GITHUB_REPO_
 cd "$GITHUB_REPO_NAME"
 [ -d "$VERSION_DIR" ] && git rm -r "$VERSION_DIR"
 cp -rf "$BUILD_DIR" "$VERSION_DIR"
+# Make meta.yaml as index
+while IFS= read -r -d '' file
+do
+  PARENT_DIR=$(dirname "$file");
+  cp "${PARENT_DIR}"/meta.yaml "${PARENT_DIR}"/index.json;
+done <   <(find . -name 'meta.yaml' -type f -print0)
 git add "$VERSION_DIR"
 git config user.email "che-bot@eclipse.org"
 git config user.name "CHE Bot"
