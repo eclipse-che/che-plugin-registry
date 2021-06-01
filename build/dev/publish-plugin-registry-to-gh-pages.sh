@@ -37,8 +37,8 @@ cp -rf "$BUILD_DIR" "$VERSION_DIR"
 # Make meta.yaml as index
 for file in $(find . -name 'meta.yaml' -type f)
 do
-  PARENT_DIR=$(dirname $file);
-  cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.json;
+  PARENT_DIR=$(dirname "$file");
+  cp "${PARENT_DIR}"/meta.yaml "${PARENT_DIR}"/index.json;
 done
 git add "$VERSION_DIR"
 git config user.email "che-bot@eclipse.org"
