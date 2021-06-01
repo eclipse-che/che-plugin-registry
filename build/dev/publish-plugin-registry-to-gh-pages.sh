@@ -35,11 +35,11 @@ cd "$GITHUB_REPO_NAME"
 [ -d "$VERSION_DIR" ] && git rm -r "$VERSION_DIR"
 cp -rf "$BUILD_DIR" "$VERSION_DIR"
 # Make meta.yaml as index
-for file in $(find . -name 'meta.yaml' -type f)
+while IFS= read -r -d '' file
 do
   PARENT_DIR=$(dirname "$file");
   cp "${PARENT_DIR}"/meta.yaml "${PARENT_DIR}"/index.json;
-done
+done <   <(find . -name 'meta.yaml' -type f -print0)
 git add "$VERSION_DIR"
 git config user.email "che-bot@eclipse.org"
 git config user.name "CHE Bot"
