@@ -1,0 +1,14 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: github-oauth-config
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+    app.kubernetes.io/component: oauth-scm-configuration
+  annotations:
+    che.eclipse.org/oauth-scm-server: github
+type: Opaque
+data:
+  id: M2I4NTM4Y2FhNjEwOTBiYjY2NTU=
+  secret: ZGVkOTA5NmVhZDBkNDkyOTNlZDJhNTVmMzZkMzgwMmIxNzM4MDUyNg==

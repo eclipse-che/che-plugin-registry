@@ -34,6 +34,7 @@ runTests() {
   runTest "VscodeValePlugin" "che-docs-test"
   runTest "VscodeXmlPlugin" "xml-plugin-test"
   runTest "VscodeYamlPlugin" "nodejs-zmecm"
+  runTest "GitHubPullRequestPlugin" "github-pr-plugin"
 }
 
 setupTestEnvironment
