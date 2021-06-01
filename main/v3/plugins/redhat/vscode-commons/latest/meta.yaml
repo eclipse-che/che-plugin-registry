@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Red Hat Commons
 title: Red Hat Commons
 description: Base utilities for Red Hat extensions. Notably controls telemetry settings.
-icon: /v3/images/redhat-vscode-commons-icon.png
+icon: /images/redhat-vscode-commons-icon.png
 category: Other
 repository: 'https://github.com/redhat-developer/vscode-commons/'
 firstPublicationDate: '2021-04-28'

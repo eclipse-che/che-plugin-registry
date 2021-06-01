@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Markdown Preview Mermaid Support
 title: Markdown Preview Mermaid Support
 description: Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview
-icon: /v3/images/bierner-markdown-mermaid-icon.png
+icon: /images/bierner-markdown-mermaid-icon.png
 category: Other
 repository: 'https://github.com/mjbvz/vscode-markdown-mermaid.git'
 firstPublicationDate: '2021-02-23'

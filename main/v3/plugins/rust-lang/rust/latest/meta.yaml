@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Rust
 title: Rust
 description: 'Rust for Visual Studio Code (powered by Rust Language Server/Rust Analyzer). Provides lints, code completion and navigation, formatting and more.'
-icon: /v3/images/rust-lang-rust-icon.png
+icon: /images/rust-lang-rust-icon.png
 category: Programming Languages
 repository: 'https://github.com/rust-lang/rls-vscode'
 firstPublicationDate: '2020-05-13'

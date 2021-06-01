@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: TypeScript and JavaScript Language Features (built-in)
 title: TypeScript and JavaScript Language Features (built-in)
 description: Provides rich language support for JavaScript and TypeScript.
-icon: /v3/images/vscode-typescript-language-features-icon.png
+icon: /images/vscode-typescript-language-features-icon.png
 category: Programming Languages
 repository: 'https://github.com/theia-ide/vscode-builtin-extensions'
 firstPublicationDate: '2020-10-03'

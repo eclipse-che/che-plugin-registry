@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Mermaid Markdown Syntax Highlighting
 title: Mermaid Markdown Syntax Highlighting
 description: Markdown syntax support for the Mermaid charting language
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Other
 repository: 'https://github.com/bpruitt-goddard/vscode-mermaid-syntax-highlight.git'
 firstPublicationDate: '2021-02-23'

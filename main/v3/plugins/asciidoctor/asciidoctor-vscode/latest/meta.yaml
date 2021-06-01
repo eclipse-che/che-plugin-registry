@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: AsciiDoc
 title: AsciiDoc
 description: Provides rich language support for AsciiDoc.
-icon: /v3/images/asciidoctor-asciidoctor-vscode-icon.png
+icon: /images/asciidoctor-asciidoctor-vscode-icon.png
 category: Programming Languages
 repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
 firstPublicationDate: '2021-03-09'

@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Go
 title: Go
 description: Rich Go language support for Visual Studio Code
-icon: /v3/images/golang-go-icon.png
+icon: /images/golang-go-icon.png
 category: Programming Languages
 repository: 'https://github.com/golang/vscode-go'
 firstPublicationDate: '2020-08-06'

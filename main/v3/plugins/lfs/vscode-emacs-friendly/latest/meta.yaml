@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Emacs Friendly Keymap
 title: Emacs Friendly Keymap
 description: 'Emacs keybindings and selection, friendly interaction with the system clipboard.'
-icon: /v3/images/lfs-vscode-emacs-friendly-icon.png
+icon: /images/lfs-vscode-emacs-friendly-icon.png
 category: Other
 repository: 'https://github.com/SebastianZaha/vscode-emacs-friendly'
 firstPublicationDate: '2019-06-06'

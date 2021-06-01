@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Vale
 title: Vale
 description: The official Visual Studio Code extension for Vale and Vale Server.
-icon: /v3/images/errata-ai-vale-server-icon.png
+icon: /images/errata-ai-vale-server-icon.png
 category: Linters
 repository: 'https://github.com/errata-ai/vale-vscode.git'
 firstPublicationDate: '2021-03-08'

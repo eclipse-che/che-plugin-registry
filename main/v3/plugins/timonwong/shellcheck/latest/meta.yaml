@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: ShellCheck
 title: ShellCheck
 description: 'Integrates ShellCheck into VS Code, a linter for Shell scripts.'
-icon: /v3/images/timonwong-shellcheck-icon.png
+icon: /images/timonwong-shellcheck-icon.png
 category: Linters
 repository: 'https://github.com/timonwong/vscode-shellcheck.git'
 firstPublicationDate: '2021-03-08'

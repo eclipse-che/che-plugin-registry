@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: COBOL Language Support
 title: COBOL Language Support
 description: 'Autocomplete, highlighting and diagnostics for COBOL code and copybooks.'
-icon: /v3/images/broadcommfd-cobol-language-support-icon.png
+icon: /images/broadcommfd-cobol-language-support-icon.png
 category: Programming Languages
 repository: 'https://github.com/eclipse/che-che4z-lsp-for-cobol.git'
 firstPublicationDate: '2021-02-10'

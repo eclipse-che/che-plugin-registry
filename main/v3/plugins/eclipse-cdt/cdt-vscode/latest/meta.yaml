@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: CDT VS Code Extension for C/C++ Developers
 title: CDT VS Code Extension for C/C++ Developers
 description: CDT VS Code Extension for C/C++ Developers
-icon: /v3/images/eclipse-cdt-cdt-vscode-icon.png
+icon: /images/eclipse-cdt-cdt-vscode-icon.png
 category: Other
 repository: 'https://github.com/eclipse-cdt/cdt-vscode.git'
 firstPublicationDate: '2019-12-18'

@@ -6,7 +6,7 @@ type: Che Plugin
 displayName: Buildah Base Dev Plugin
 title: Buildah Base Dev Plugin
 description: Container to build docker images with buildah
-icon: /v3/images/eclipse-che-logo.png
+icon: /images/eclipse-che-logo.png
 category: Other
 repository: 'https://github.com/containers/buildah'
 firstPublicationDate: '2020-04-15'

@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: vscode-bazel
 title: vscode-bazel
 description: Bazel BUILD integration
-icon: /v3/images/bazelbuild-vscode-bazel-icon.png
+icon: /images/bazelbuild-vscode-bazel-icon.png
 category: Programming Languages
 repository: 'https://github.com/bazelbuild/vscode-bazel.git'
 firstPublicationDate: '2019-09-19'

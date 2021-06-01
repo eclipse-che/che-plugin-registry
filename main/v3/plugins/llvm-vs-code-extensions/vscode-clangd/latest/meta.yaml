@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: clangd
 title: clangd
 description: 'C and C++ completion, navigation, and insights'
-icon: /v3/images/llvm-vs-code-extensions-vscode-clangd-icon.png
+icon: /images/llvm-vs-code-extensions-vscode-clangd-icon.png
 category: Programming Languages
 repository: 'https://github.com/clangd/vscode-clangd.git'
 firstPublicationDate: '2020-06-03'

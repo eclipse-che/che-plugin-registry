@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Debugger for Mainframe
 title: Debugger for Mainframe
 description: Provides a modern debugging experience for CICS and Batch applications written in COBOL.
-icon: /v3/images/broadcommfd-debugger-for-mainframe-icon.png
+icon: /images/broadcommfd-debugger-for-mainframe-icon.png
 category: Debuggers
 repository: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
 firstPublicationDate: '2021-04-08'

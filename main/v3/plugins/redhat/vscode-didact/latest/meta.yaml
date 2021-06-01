@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Didact
 title: Didact
 description: Didact Tutorial Tools for Visual Studio Code
-icon: /v3/images/redhat-vscode-didact-icon.png
+icon: /images/redhat-vscode-didact-icon.png
 category: Other
 repository: 'https://github.com/redhat-developer/vscode-didact'
 firstPublicationDate: '2021-04-30'

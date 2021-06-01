@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Bash Debug
 title: Bash Debug
 description: A debugger extension for bash scripts (using bashdb).
-icon: /v3/images/rogalmic-bash-debug-icon.png
+icon: /images/rogalmic-bash-debug-icon.png
 category: Debuggers
 repository: 'https://github.com/rogalmic/vscode-bash-debug.git'
 firstPublicationDate: '2020-06-15'

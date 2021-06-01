@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Quarkus
 title: Quarkus
 description: Quarkus Tools for Visual Studio Code
-icon: /v3/images/redhat-vscode-quarkus-icon.png
+icon: /images/redhat-vscode-quarkus-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-quarkus'
 firstPublicationDate: '2020-09-21'

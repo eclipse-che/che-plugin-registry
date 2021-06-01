@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: ESLint
 title: ESLint
 description: Integrates ESLint JavaScript into VS Code.
-icon: /v3/images/dbaeumer-vscode-eslint-icon.png
+icon: /images/dbaeumer-vscode-eslint-icon.png
 category: Programming Languages
 repository: 'https://github.com/Microsoft/vscode-eslint.git'
 firstPublicationDate: '2020-11-18'

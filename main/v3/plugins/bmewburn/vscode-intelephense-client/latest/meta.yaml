@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: PHP Intelephense
 title: PHP Intelephense
 description: PHP code intelligence for Visual Studio Code
-icon: /v3/images/bmewburn-vscode-intelephense-client-icon.png
+icon: /images/bmewburn-vscode-intelephense-client-icon.png
 category: Programming Languages
 repository: 'https://github.com/bmewburn/vscode-intelephense.git'
 firstPublicationDate: '2020-09-23'

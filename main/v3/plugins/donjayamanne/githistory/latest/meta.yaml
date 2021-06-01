@@ -6,7 +6,7 @@ type: VS Code extension
 displayName: Git History
 title: Git History
 description: 'View git log, file history, compare branches or commits'
-icon: /v3/images/donjayamanne-githistory-icon.png
+icon: /images/donjayamanne-githistory-icon.png
 category: Other
 repository: 'https://github.com/DonJayamanne/gitHistoryVSCode'
 firstPublicationDate: '2020-11-14'
