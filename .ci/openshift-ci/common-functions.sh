@@ -48,6 +48,11 @@ provisionOpenShiftOAuthUser() {
   done
 }
 
+createGithubSecret() {
+  oc create namespace "eclipse-che"
+  oc apply -f .ci/openshift-ci/github-conf.yaml
+}
+
 createCustomResourcesFile() {
   cat > custom-resources.yaml <<-END
 spec:
@@ -207,6 +212,7 @@ createTestPodNamespace(){
 
 setupTestEnvironment(){
   provisionOpenShiftOAuthUser
+  createGithubSecret
   createCustomResourcesFile
   deployChe
   createTestPodNamespace
