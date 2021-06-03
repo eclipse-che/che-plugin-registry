@@ -45,13 +45,13 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
       containers: [
         {
           name: 'che-machine-exec',
-          image: 'quay.io/eclipse/che-machine-exec:nightly',
+          image: 'quay.io/eclipse/che-machine-exec:next',
         },
       ],
       initContainers: [
         {
           name: 'che-machine-exec',
-          image: 'quay.io/eclipse/che-machine-exec:nightly',
+          image: 'quay.io/eclipse/che-machine-exec:next',
         },
       ],
     };
@@ -89,7 +89,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
     }
     expect(metaYamlInfoSpecContainers).toBeDefined();
     expect(metaYamlInfoSpecContainers.length).toBe(1);
-    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-machine-exec:nightly');
+    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-machine-exec:next');
   });
 
   test('invalid id', async () => {
@@ -101,7 +101,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
   });
 
   test('non-numeric version', async () => {
-    const chePluginMetaInfo = await generatePluginMetaInfo('my/firstplugin/nightly');
+    const chePluginMetaInfo = await generatePluginMetaInfo('my/firstplugin/next');
 
     // no endpoint, container and init Containers
     delete chePluginMetaInfo.endpoints;
