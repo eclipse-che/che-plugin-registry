@@ -12,7 +12,7 @@ spec:
   containers:
     # container containing the tests
     - name: plugins-test
-      image: quay.io/eclipse/che-e2e:latest
+      image: quay.io/eclipse/che-e2e:next
       imagePullPolicy: Always
       env:
         - name: TS_SELENIUM_OCP_USERNAME
