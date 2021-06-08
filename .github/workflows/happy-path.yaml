@@ -70,7 +70,7 @@ jobs:
           export SKIP_LINT=true
           export SKIP_TEST=true
           if [[ "${{matrix.dist}}" == "alpine" ]]; then
-            docker pull quay.io/eclipse/che-plugin-registry:nightly
+            docker pull quay.io/eclipse/che-plugin-registry:next
             BUILDER=docker ./build.sh --tag happy-path
           elif [[ "${{matrix.dist}}" == "rhel" ]]; then
             BUILDER=docker ./build.sh --rhel --tag happy-path

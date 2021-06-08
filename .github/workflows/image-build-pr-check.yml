@@ -55,7 +55,7 @@ jobs:
         export SKIP_LINT=true
         export SKIP_TEST=true
         if [[ "${{matrix.dist}}" == "alpine" ]]; then
-          docker pull quay.io/eclipse/che-plugin-registry:nightly
+          docker pull quay.io/eclipse/che-plugin-registry:next
           BUILDER=docker ./build.sh --tag pr-check
           EXPORTED_FOLDER=/usr/local/apache2/htdocs/v3
         elif [[ "${{matrix.dist}}" == "rhel" ]]; then

@@ -109,7 +109,7 @@ editors:
         volume: {}
       - name: che-machine-exec
         container:
-          image: 'quay.io/eclipse/che-machine-exec:nightly'
+          image: 'quay.io/eclipse/che-machine-exec:next'
           memoryLimit: 128Mi
           memoryRequest: 32Mi
           cpuLimit: 500m

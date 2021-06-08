@@ -36,7 +36,7 @@ export class ChePluginsMetaYamlGenerator {
         const metaId = `${publisher}/${name}`;
         const version = splitIds[2];
         let disableLatest: boolean;
-        // disable latest alias if version is not a number (probably like next/nightly/etc.)
+        // disable latest alias if version is not a number (probably like next/etc.)
         if (!Number.isInteger(parseInt(version[0]))) {
           disableLatest = true;
         } else {

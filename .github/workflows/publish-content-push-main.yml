@@ -29,7 +29,7 @@ jobs:
           node-version: '12'
       - name: extract content
         run: |
-          docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:nightly sh
+          docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:next sh
           mkdir content
           docker cp pluginRegistry:/var/www/html/v3 content/v3
           docker rm -f pluginRegistry

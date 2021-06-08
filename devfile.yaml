@@ -34,7 +34,7 @@ components:
     volumes:
       - name: registryv3
         containerPath: /usr/local/apache2/htdocs/v3
-    image: 'quay.io/eclipse/che-plugin-registry:nightly'
+    image: 'quay.io/eclipse/che-plugin-registry:next'
     alias: eclipse-che-plugin-registry
 
   - id: timonwong/shellcheck/latest

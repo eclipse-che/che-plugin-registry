@@ -226,7 +226,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
   });
 
   test('non-numeric version', async () => {
-    const cheEditorMetaInfo = await generateEditorMetaInfo('my/firstplugin/nightly');
+    const cheEditorMetaInfo = await generateEditorMetaInfo('my/firstplugin/next');
 
     // no endpoint, container and init Containers
     delete cheEditorMetaInfo.components;

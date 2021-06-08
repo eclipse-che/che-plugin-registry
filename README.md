@@ -2,7 +2,7 @@
 
 # Eclipse Che Plugin Registry
 
-This repository holds ready-to-use plugins for different languages and technologies. A [nightly build](https://che-plugin-registry-main.surge.sh/) of this registry is published on surge.sh.
+This repository holds ready-to-use plugins for different languages and technologies. A [next build](https://che-plugin-registry-main.surge.sh/) of this registry is published on surge.sh.
 
 ## Building and publishing third party VSIX extensions for plugin registry
 See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc/building/build-vsix-extension.adoc
@@ -20,7 +20,7 @@ Options:
     --help
         Print this message.
     --tag, -t [TAG]
-        Docker image tag to be used for image; default: 'nightly'
+        Docker image tag to be used for image; default: 'next'
     --registry, -r [REGISTRY]
         Docker registry to be used for image; default 'quay.io'
     --organization, -o [ORGANIZATION]
@@ -52,7 +52,7 @@ You can deploy the registry to Openshift as follows:
 ```bash
   oc new-app -f deploy/openshift/che-plugin-registry.yml \
              -p IMAGE="quay.io/eclipse/che-plugin-registry" \
-             -p IMAGE_TAG="nightly" \
+             -p IMAGE_TAG="next" \
              -p PULL_POLICY="Always"
 ```
 
@@ -79,7 +79,7 @@ helm delete --purge che-plugin-registry
 ## Run the registry
 
 ```bash
-docker run -it  --rm  -p 8080:8080 quay.io/eclipse/che-plugin-registry:nightly
+docker run -it  --rm  -p 8080:8080 quay.io/eclipse/che-plugin-registry:next
 ```
 
 ## Plugin meta YAML structure
@@ -370,12 +370,7 @@ latestUpdateDate: "2019-07-05"
 ```
 
 ## CI
-The following [CentOS CI jobs](https://ci.centos.org/) are associated with the repository:
-
-- [`master`](https://ci.centos.org/job/devtools-che-plugin-registry-build-master/) - builds CentOS images on each commit to the [`master`](https://github.com/eclipse-che/che-plugin-registry/tree/master) branch and pushes them to [quay.io](https://quay.io/organization/eclipse).
-- [`nightly`](https://ci.centos.org/job/devtools-che-plugin-registry-nightly/) - builds CentOS images and pushes them to [quay.io](https://quay.io/organization/eclipse) on a daily basis from the [`master`](https://github.com/eclipse-che/che-plugin-registry/tree/master) branch. The `nightly` version of the plugin registry is used by default by the `nightly` version of the [Eclipse Che](https://github.com/eclipse/che), which is also built on a daily basis by the [`all-che-docker-images-nightly`](all-che-docker-images-nightly/) CI job.
-- [`release`](https://ci.centos.org/job/devtools-che-plugin-registry-release/) - builds CentOS and corresponding RHEL images from the [`release`](https://github.com/eclipse-che/che-plugin-registry/tree/release) branch. CentOS images are public and pushed to [quay.io](https://quay.io/organization/eclipse). RHEL images are also pushed to quay.io, but to the private repositories and then used by the ["Hosted Che"](https://www.eclipse.org/che/docs/che-7/hosted-che/) plugin registry - https://che-plugin-registry.openshift.io/.
-- [`release-preview`](https://ci.centos.org/job/devtools-che-plugin-registry-release-preview/) - builds CentOS and corresponding RHEL images from the [`release-preview`](https://github.com/eclipse-che/che-plugin-registry/tree/release-preview) branch and automatically updates ["Hosted Che"](https://www.eclipse.org/che/docs/che-7/hosted-che/) staging plugin registry deployment based on the new version of images - https://che-plugin-registry.prod-preview.openshift.io/. CentOS images are public and pushed to [quay.io](https://quay.io/organization/eclipse). RHEL images are also pushed to quay.io, but to the private repositories.
+Visit [GitHub Actions Workflows](https://github.com/eclipse-che/che-plugin-registry/actions/) to see all associated CI workflows.
 
 ### License
 
