@@ -203,7 +203,7 @@ runTest() {
   sleep 3
 
   downloadTestResults "${TEST_USERSTORY}" "${TEST_POD_NAME}"
-  cleanUpAfterTest "${TEST_POD_NAME}"
+  cleanUpAfterTest "${TEST_POD_NAME}" || echo "Cleanup after test is failed"
 }
 
 createTestPodNamespace(){
