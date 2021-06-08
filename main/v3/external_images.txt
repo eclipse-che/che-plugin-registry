@@ -47,7 +47,7 @@ quay.io/eclipse/che-plugin-sidecar@sha256:9c57d6fc81a997b0d6e9acc32eb52c9d20d265
 quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3
 quay.io/eclipse/che-plugin-sidecar@sha256:bb404ffaa12565beb12b4cd8160cfa3ff3ef3be420430a6562f1fe48639cbf1f
 quay.io/eclipse/che-theia:next
-quay.io/eclipse/che-machine-exec:nightly
+quay.io/eclipse/che-machine-exec:next
 quay.io/eclipse/che-theia-endpoint-runtime-binary:next
 quay.io/eclipse/che-theia@sha256:f0cddad2f98416594b7ee35f59c7043863300bc9986ac6b95ef2d54fd6d4f417
 quay.io/eclipse/che-machine-exec@sha256:7f0d0f1190d5f749b1c86b5e8f093030338ffdb612468163e9f38957c6197ff3

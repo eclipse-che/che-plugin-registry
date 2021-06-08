@@ -10,7 +10,7 @@ icon: /images/eclipse-che-logo.png
 category: Editor
 repository: 'https://github.com/eclipse-che/che-theia'
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2021-06-07'
+latestUpdateDate: '2021-06-08'
 spec:
   endpoints:
     - name: theia
@@ -103,7 +103,7 @@ spec:
         - exposedPort: 13131
         - exposedPort: 13132
         - exposedPort: 13133
-    - image: 'quay.io/eclipse/che-machine-exec:nightly'
+    - image: 'quay.io/eclipse/che-machine-exec:next'
       memoryLimit: 128Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
