@@ -35,6 +35,10 @@ export class MetaYamlToDevfileYaml {
     if (container.env) {
       component.container.env = container.env;
     }
+    if (container.attributes) {
+      component.attributes = container.attributes;
+    }
+
     if (container.volumes) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       component.container.volumeMounts = container.volumes.map((volume: any) => ({
@@ -81,7 +85,9 @@ export class MetaYamlToDevfileYaml {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
-  convert(metaYaml: any): any | undefined {
+  convert(inputMetaYaml: any): any | undefined {
+    // clone object to not modify the original source
+    const metaYaml = JSON.parse(JSON.stringify(inputMetaYaml));
     // do not handle VS Code extensions as they can't be converted into devfile 2.0
     if (!metaYaml || metaYaml.type === 'VS Code extension') {
       return;
