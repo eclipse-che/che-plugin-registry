@@ -18,6 +18,9 @@ export interface Container {
   name?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ports?: any[];
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  attributes?: { [key: string]: any };
 }
 
 export interface Containers {
@@ -46,7 +49,9 @@ export class ContainerHelper {
           container.name = component.name;
           if (component.attributes && component.attributes.ports) {
             container.ports = component.attributes.ports;
+            delete component.attributes.ports;
           }
+          container.attributes = component.attributes;
           if (editor.events && editor.events.preStart) {
             const event = editor.events.preStart.find(e => {
               if (editor.commands) {

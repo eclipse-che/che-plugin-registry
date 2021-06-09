@@ -97,6 +97,8 @@ editors:
               attributes:
                 discoverable: false
         attributes:
+          app.kubernetes.io/component: che-theia
+          app.kubernetes.io/part-of: che-theia.eclipse.org
           ports:
             - exposedPort: 3100
             - exposedPort: 3130
@@ -129,9 +131,14 @@ editors:
                 discoverable: false
                 cookiesAuthEnabled: true
         attributes:
+          app.kubernetes.io/component: machine-exec
+          app.kubernetes.io/part-of: che-theia.eclipse.org
           ports:
             - exposedPort: 3333
       - name: remote-runtime-injector
+        attributes:
+          app.kubernetes.io/component: remote-runtime-injector
+          app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
           image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
           memoryLimit: 128Mi
@@ -244,6 +251,8 @@ editors:
               attributes:
                 discoverable: false
         attributes:
+          app.kubernetes.io/component: che-theia
+          app.kubernetes.io/part-of: che-theia.eclipse.org
           ports:
             - exposedPort: 3100
             - exposedPort: 3130
@@ -272,9 +281,14 @@ editors:
                 discoverable: false
                 cookiesAuthEnabled: true
         attributes:
+          app.kubernetes.io/component: machine-exec
+          app.kubernetes.io/part-of: che-theia.eclipse.org
           ports:
             - exposedPort: 3333
       - name: remote-runtime-injector
+        attributes:
+          app.kubernetes.io/component: remote-runtime-injector
+          app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
           image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.31.1"
           env:

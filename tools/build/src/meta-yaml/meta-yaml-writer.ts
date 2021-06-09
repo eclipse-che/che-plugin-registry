@@ -158,16 +158,23 @@ export class MetaYamlWriter {
 
             // add spec object
             metaYaml.spec = spec;
-            const yamlString = jsyaml.safeDump(metaYaml, { lineWidth: -1 });
+            const devfileYaml = this.metaYamlToDevfileYaml.convert(metaYaml);
+            // cleanup attributes
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            metaYaml.spec?.containers?.forEach((container: any) => delete container.attributes);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            metaYaml.spec?.initContainers?.forEach((initContainer: any) => delete initContainer.attributes);
+            if (!metaYaml.spec) {
+              delete metaYaml.spec;
+            }
+            const yamlString = jsyaml.safeDump(metaYaml, { noRefs: true, lineWidth: -1 });
             const generated = { ...metaYaml };
             generated.id = `${computedId}/${version}`;
             generated.skipIndex = plugin.skipIndex;
             metaYamlPluginGenerated.push(generated);
-
             const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
             await fs.ensureDir(path.dirname(pluginPath));
             promises.push(fs.writeFile(pluginPath, yamlString));
-            const devfileYaml = this.metaYamlToDevfileYaml.convert(metaYaml);
             if (devfileYaml) {
               const devfilePath = path.resolve(pluginsFolder, computedId, version, 'devfile.yaml');
               const devfileYamlString = jsyaml.safeDump(devfileYaml, { noRefs: true, lineWidth: -1 });
