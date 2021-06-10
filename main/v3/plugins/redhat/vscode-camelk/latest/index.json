@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-camelk-icon.png
 category: Other
 repository: 'https://github.com/camel-tooling/vscode-camelk'
 firstPublicationDate: '2021-05-17'
-latestUpdateDate: '2021-06-08'
+latestUpdateDate: '2021-06-10'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:699a8fda67babcc1faedcf2e4ab22f6cf0cf6ad08c41c293983b81691c59ae4d'

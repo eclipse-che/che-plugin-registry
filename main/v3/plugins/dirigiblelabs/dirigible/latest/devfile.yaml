@@ -35,3 +35,4 @@ components:
           targetPort: 8080
           exposure: public
           protocol: http
+    attributes: {}

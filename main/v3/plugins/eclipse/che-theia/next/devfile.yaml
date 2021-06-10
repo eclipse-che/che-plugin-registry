@@ -94,6 +94,9 @@ components:
           exposure: public
           secure: false
           protocol: wss
+    attributes:
+      app.kubernetes.io/component: che-theia
+      app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: plugins
     volume: {}
   - name: theia-local
@@ -109,6 +112,9 @@ components:
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
+    attributes:
+      app.kubernetes.io/component: machine-exec
+      app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: remote-runtime-injector
     container:
       image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
@@ -124,6 +130,9 @@ components:
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
+    attributes:
+      app.kubernetes.io/component: remote-runtime-injector
+      app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: remote-endpoint
     volume:
       ephemeral: true

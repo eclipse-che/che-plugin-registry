@@ -17,5 +17,6 @@ components:
           targetPort: 8080
           exposure: public
           protocol: http
+    attributes: {}
   - name: user-data
     volume: {}
