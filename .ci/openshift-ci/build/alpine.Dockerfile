@@ -49,7 +49,7 @@ RUN cp /che-plugin-registry/.ci/openshift-ci/build/entrypoint.sh /usr/bin/ && \
     cp /che-plugin-registry/.htaccess  /usr/local/apache2/htdocs/ && \
     cp -r /che-plugin-registry/output/v3 /usr/local/apache2/htdocs/v3 && \
     cp /che-plugin-registry/v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/ && \
-    cp /che-plugin-registry/v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/ && \
+    cp /che-plugin-registry/v3/images/default.png /usr/local/apache2/htdocs/v3/images/ && \
     rm -rf /che-plugin-registry
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
