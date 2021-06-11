@@ -35,7 +35,7 @@ export class InversifyBinding {
     const downloadDirectory = '/tmp/che-plugin-registry/download-folder';
     const unpackedDirectory = '/tmp/che-plugin-registry/unpack-folder';
 
-    const pluginRegistryRootDirectory = path.resolve(__dirname, '..', '..', '..');
+    let pluginRegistryRootDirectory = path.resolve(__dirname, '..', '..', '..');
 
     let embedVsix = false;
     let skipDigestGeneration = false;
@@ -44,6 +44,9 @@ export class InversifyBinding {
     args.forEach(arg => {
       if (arg.startsWith('--output-folder:')) {
         outputDirectory = arg.substring('--output-folder:'.length);
+      }
+      if (arg.startsWith('--root-folder:')) {
+        pluginRegistryRootDirectory = arg.substring('--root-folder:'.length);
       }
       if (arg.startsWith('--embed-vsix:')) {
         embedVsix = 'true' === arg.substring('--embed-vsix:'.length);

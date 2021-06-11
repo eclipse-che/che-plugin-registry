@@ -93,7 +93,9 @@ describe('Test InversifyBinding', () => {
   });
 
   test('custom', async () => {
+    const myCustomRootDir = '/tmp/root';
     const myCustomOutputDir = '/tmp/foo';
+    mockedArgv.push(`--root-folder:${myCustomRootDir}`);
     mockedArgv.push(`--output-folder:${myCustomOutputDir}`);
     mockedArgv.push('--foo-arg:bar');
     mockedArgv.push('--embed-vsix:true');
@@ -101,10 +103,12 @@ describe('Test InversifyBinding', () => {
     const inversifyBinding = new InversifyBinding();
     const container: Container = await inversifyBinding.initBindings();
 
+    const rootDir = container.getNamed('string', 'PLUGIN_REGISTRY_ROOT_DIRECTORY');
     const outputDir = container.getNamed('string', 'OUTPUT_ROOT_DIRECTORY');
     const embedded = container.getNamed('boolean', 'EMBED_VSIX');
     const skipDigests = container.getNamed('boolean', 'SKIP_DIGEST_GENERATION');
 
+    expect(rootDir).toEqual(myCustomRootDir);
     expect(outputDir).toEqual(myCustomOutputDir);
     expect(embedded).toBeTruthy();
     expect(skipDigests).toBeTruthy();
