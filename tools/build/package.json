@@ -1,7 +1,6 @@
 {
   "name": "@eclipse-che/plugin-registry-generator",
   "version": "0.0.0",
-  "private": false,
   "description": "Generator of yaml files exposed by the plug-in registry.",
   "main": "lib/entrypoint.js",
   "publishConfig": {
@@ -33,9 +32,11 @@
     "inversify": "^5.1.1",
     "js-yaml": "^3.14.1",
     "moment": "^2.29.1",
+    "ora": "^5.4.0",
     "reflect-metadata": "^0.1.13",
     "semver": "^7.3.5",
-    "simple-git": "^2.38.0"
+    "simple-git": "^2.38.0",
+    "tslib": "^2.2.0"
   },
   "devDependencies": {
     "@types/decompress": "^4.2.3",
@@ -58,7 +59,6 @@
     "if-env": "^1.0.4",
     "import-sort-style-eslint": "^6.0.0",
     "jest": "^26.6.3",
-    "ora": "^5.4.0",
     "prettier": "^2.2.1",
     "prettier-plugin-import-sort": "^0.0.6",
     "rimraf": "^3.0.2",
