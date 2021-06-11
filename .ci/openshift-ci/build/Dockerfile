@@ -67,7 +67,7 @@ RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
 COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
 COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
-COPY --from=builder /che-plugin-registry/v3/images/eclipse-che-logo.png /var/www/html/v3/images/
+COPY --from=builder /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]

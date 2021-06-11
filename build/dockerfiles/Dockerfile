@@ -23,7 +23,7 @@ COPY ./build/dockerfiles/entrypoint.sh /usr/bin/
 COPY README.md .htaccess /usr/local/apache2/htdocs/
 COPY output/v3 /usr/local/apache2/htdocs/v3
 COPY v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
-COPY v3/images/eclipse-che-logo.png /usr/local/apache2/htdocs/v3/images/
+COPY v3/images/default.png /usr/local/apache2/htdocs/v3/images/
 RUN chmod -R g+rwX /usr/local/apache2
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["httpd-foreground"]

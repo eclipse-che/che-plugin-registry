@@ -36,7 +36,7 @@ export class MetaYamlWriter {
   //
   // It must work also for single root deployments
   //    https://che-eclipse-che.apps-crc.testing/plugin-registry/v3
-  public static readonly DEFAULT_ICON = '/images/eclipse-che-logo.png';
+  public static readonly DEFAULT_ICON = '/images/default.png';
 
   convertIdToPublisherAndName(id: string): [string, string] {
     const values = id.split('/');
