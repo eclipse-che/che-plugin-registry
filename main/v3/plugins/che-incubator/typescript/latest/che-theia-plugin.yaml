@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/theia-ide/vscode-builtin-extensions'
   categories:
     - Programming Languages
-  icon: /v3/images/vscode-typescript-language-features-icon.png
+  icon: /images/vscode-typescript-language-features-icon.png
 sidecar:
   memoryLimit: 512Mi
   cpuLimit: 500m

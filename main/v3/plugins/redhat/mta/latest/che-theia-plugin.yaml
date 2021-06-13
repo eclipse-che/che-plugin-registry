@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/windup/rhamt-vscode-extension'
   categories:
     - Other
-  icon: /v3/images/redhat-mta-vscode-extension-icon.png
+  icon: /images/redhat-mta-vscode-extension-icon.png
 sidecar:
   image: 'quay.io/windupeng/mta-vscode-extension:latest'
   name: mta-extension

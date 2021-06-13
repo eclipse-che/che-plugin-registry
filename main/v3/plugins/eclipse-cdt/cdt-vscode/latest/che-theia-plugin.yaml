@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/eclipse-cdt/cdt-vscode.git'
   categories:
     - Other
-  icon: /v3/images/eclipse-cdt-cdt-vscode-icon.png
+  icon: /images/eclipse-cdt-cdt-vscode-icon.png
 sidecar:
   name: cpp-plugins
   memoryLimit: 512Mi

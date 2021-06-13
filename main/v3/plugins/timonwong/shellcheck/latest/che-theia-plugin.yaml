@@ -10,7 +10,7 @@ metadata:
   categories:
     - Linters
     - Programming Languages
-  icon: /v3/images/timonwong-shellcheck-icon.png
+  icon: /images/timonwong-shellcheck-icon.png
 sidecar:
   name: shellcheck
   memoryLimit: 256Mi

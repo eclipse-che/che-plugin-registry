@@ -11,7 +11,7 @@ metadata:
     - Programming Languages
     - Linters
     - Formatters
-  icon: /v3/images/llvm-vs-code-extensions-vscode-clangd-icon.png
+  icon: /images/llvm-vs-code-extensions-vscode-clangd-icon.png
 sidecar:
   name: cpp-plugins
   memoryLimit: 512Mi

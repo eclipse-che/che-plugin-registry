@@ -10,7 +10,7 @@ metadata:
   categories:
     - Programming Languages
     - Linters
-  icon: /v3/images/redhat-vscode-apache-camel-icon.png
+  icon: /images/redhat-vscode-apache-camel-icon.png
 sidecar:
   name: vscode-apache-camel
   memoryLimit: 768Mi

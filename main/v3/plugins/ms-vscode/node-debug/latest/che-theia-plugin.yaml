@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/Microsoft/vscode-node-debug.git'
   categories:
     - Debuggers
-  icon: /v3/images/ms-vscode-node-debug-icon.png
+  icon: /images/ms-vscode-node-debug-icon.png
 sidecar:
   name: vscode-node-debug
   memoryLimit: 512Mi

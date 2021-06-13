@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/mjbvz/vscode-markdown-mermaid.git'
   categories:
     - Other
-  icon: /v3/images/bierner-markdown-mermaid-icon.png
+  icon: /images/bierner-markdown-mermaid-icon.png
 dependencies:
   - bpruitt-goddard/mermaid-markdown-syntax-highlighting
 extensions:

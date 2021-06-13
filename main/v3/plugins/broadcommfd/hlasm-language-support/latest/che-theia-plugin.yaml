@@ -11,7 +11,7 @@ metadata:
     - Programming Languages
     - Linters
     - Snippets
-  icon: /v3/images/broadcommfd-hlasm-language-support-icon.png
+  icon: /images/broadcommfd-hlasm-language-support-icon.png
 dependencies: []
 extensions:
   - 'https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.12.0/hlasm-language-support-0.12.0-alpine.vsix'

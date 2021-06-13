@@ -11,7 +11,7 @@ metadata:
     - Programming Languages
     - Linters
     - Formatters
-  icon: /v3/images/castwide-solargraph-icon.png
+  icon: /images/castwide-solargraph-icon.png
 sidecar:
   name: vscode-ruby
   memoryLimit: 1500Mi

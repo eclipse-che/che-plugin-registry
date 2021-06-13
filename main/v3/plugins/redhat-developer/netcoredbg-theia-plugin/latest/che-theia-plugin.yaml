@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/redhat-developer/netcoredbg-theia-plugin'
   categories:
     - Other
-  icon: /v3/images/eclipse-che-logo.png
+  icon: /images/default.png
 sidecar:
   name: theia-netcoredbg
   memoryLimit: 512Mi

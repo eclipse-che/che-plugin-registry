@@ -12,7 +12,7 @@ metadata:
     - Formatters
     - Snippets
     - Other
-  icon: /v3/images/jebbs-plantuml-icon.png
+  icon: /images/jebbs-plantuml-icon.png
 sidecar:
   name: vscode-plantuml
   memoryLimit: 512Mi

@@ -11,7 +11,7 @@ metadata:
     - Programming Languages
     - Snippets
     - Other
-  icon: /v3/images/redhat-vscode-microprofile-icon.png
+  icon: /images/redhat-vscode-microprofile-icon.png
 sidecar:
   name: vscode-microp
   memoryLimit: 1500Mi

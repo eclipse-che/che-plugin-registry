@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/prettier/prettier-vscode.git'
   categories:
     - Formatters
-  icon: /v3/images/esbenp-prettier-vscode-icon.png
+  icon: /images/esbenp-prettier-vscode-icon.png
 dependencies: []
 extensions:
   - 'https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix'

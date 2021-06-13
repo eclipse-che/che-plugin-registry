@@ -6,11 +6,11 @@ type: Che Plugin
 displayName: Che Async Storage Service
 title: Che Async Storage Service
 description: Che Plug-in with service to provide abilty for backup/restore project source from async storage
-icon: /images/eclipse-che-logo.png
+icon: /images/default.png
 category: Other
 repository: 'https://github.com/che-incubator/workspace-data-sync'
 firstPublicationDate: '2020-07-10'
-latestUpdateDate: '2021-06-10'
+latestUpdateDate: '2021-06-13'
 spec:
   endpoints:
     - name: che-rsync-events

@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/camel-tooling/vscode-camelk'
   categories:
     - Other
-  icon: /v3/images/redhat-vscode-camelk-icon.png
+  icon: /images/redhat-vscode-camelk-icon.png
 sidecar:
   name: vscode-camelk
   memoryLimit: 1Gi

@@ -13,7 +13,7 @@ metadata:
     - Linters
     - Formatters
     - Debuggers
-  icon: /v3/images/dart-code-dart-code-icon.png
+  icon: /images/dart-code-dart-code-icon.png
 sidecar:
   name: vscode-dart
   memoryLimit: 2Gi

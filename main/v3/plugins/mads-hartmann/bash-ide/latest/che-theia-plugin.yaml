@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/bash-lsp/bash-language-server'
   categories:
     - Other
-  icon: /v3/images/mads-hartmann-bash-ide-vscode-icon.png
+  icon: /images/mads-hartmann-bash-ide-vscode-icon.png
 dependencies: []
 extensions:
   - 'https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix'

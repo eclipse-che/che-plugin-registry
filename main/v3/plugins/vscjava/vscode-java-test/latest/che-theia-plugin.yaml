@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/Microsoft/vscode-java-test'
   categories:
     - Other
-  icon: /v3/images/vscjava-vscode-java-test-icon.png
+  icon: /images/vscjava-vscode-java-test-icon.png
 sidecar:
   name: vscode-java
   memoryLimit: 1500Mi

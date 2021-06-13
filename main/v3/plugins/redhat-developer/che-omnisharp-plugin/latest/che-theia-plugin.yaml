@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/redhat-developer/omnisharp-theia-plugin'
   categories:
     - Other
-  icon: /v3/images/eclipse-che-logo.png
+  icon: /images/default.png
 sidecar:
   name: theia-omnisharp
   memoryLimit: 1Gi

@@ -12,7 +12,7 @@ metadata:
     - Linters
     - Formatters
     - Snippets
-  icon: /v3/images/redhat-java-icon.png
+  icon: /images/redhat-java-icon.png
 sidecar:
   name: vscode-java
   memoryLimit: 1500Mi

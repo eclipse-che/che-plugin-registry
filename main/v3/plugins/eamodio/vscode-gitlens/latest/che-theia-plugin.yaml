@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/eamodio/vscode-gitlens.git'
   categories:
     - Other
-  icon: /v3/images/eamodio-gitlens-icon.png
+  icon: /images/eamodio-gitlens-icon.png
 dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix'

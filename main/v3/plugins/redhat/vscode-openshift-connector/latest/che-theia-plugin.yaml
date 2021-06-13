@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/redhat-developer/vscode-openshift-tools.git'
   categories:
     - Other
-  icon: /v3/images/redhat-vscode-openshift-connector-icon.png
+  icon: /images/redhat-vscode-openshift-connector-icon.png
 sidecar:
   name: vscode-openshift-connector
   memoryLimit: 1500Mi

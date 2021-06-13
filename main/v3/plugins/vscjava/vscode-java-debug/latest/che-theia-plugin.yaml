@@ -11,7 +11,7 @@ metadata:
     - Debuggers
     - Programming Languages
     - Other
-  icon: /v3/images/vscjava-vscode-java-debug-icon.png
+  icon: /images/vscjava-vscode-java-debug-icon.png
 sidecar:
   name: vscode-java
   memoryLimit: 1500Mi

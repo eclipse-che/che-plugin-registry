@@ -10,7 +10,7 @@ metadata:
   categories:
     - Programming Languages
     - Other
-  icon: /v3/images/redhat-vscode-quarkus-icon.png
+  icon: /images/redhat-vscode-quarkus-icon.png
 sidecar:
   memoryLimit: 1500Mi
   cpuLimit: 500m

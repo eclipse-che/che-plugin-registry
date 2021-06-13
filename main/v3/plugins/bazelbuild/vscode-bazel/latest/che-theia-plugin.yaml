@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/bazelbuild/vscode-bazel.git'
   categories:
     - Programming Languages
-  icon: /v3/images/bazelbuild-vscode-bazel-icon.png
+  icon: /images/bazelbuild-vscode-bazel-icon.png
 sidecar:
   name: vscode-bazel
   memoryLimit: 2Gi

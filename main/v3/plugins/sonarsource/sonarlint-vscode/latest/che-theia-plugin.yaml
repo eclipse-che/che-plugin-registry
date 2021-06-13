@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/SonarSource/sonarlint-vscode.git'
   categories:
     - Linters
-  icon: /v3/images/sonarsource-sonarlint-vscode-icon.png
+  icon: /images/sonarsource-sonarlint-vscode-icon.png
 sidecar:
   name: vscode-sonarlint
   memoryLimit: 512Mi

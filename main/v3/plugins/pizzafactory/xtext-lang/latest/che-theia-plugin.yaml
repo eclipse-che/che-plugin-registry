@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/PizzaFactory/xtext-ide-extensions.git'
   categories:
     - Programming Languages
-  icon: /v3/images/eclipse-che-logo.png
+  icon: /images/default.png
 sidecar:
   name: vscode-xtext-lang
   memoryLimit: 768Mi

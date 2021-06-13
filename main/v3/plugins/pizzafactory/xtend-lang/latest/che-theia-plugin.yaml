@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/PizzaFactory/xtend-ide-extensions.git'
   categories:
     - Programming Languages
-  icon: /v3/images/eclipse-che-logo.png
+  icon: /images/default.png
 sidecar:
   name: vscode-xtend-lang
   memoryLimit: 768Mi

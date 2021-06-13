@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/errata-ai/vale-vscode.git'
   categories:
     - Linters
-  icon: /v3/images/errata-ai-vale-server-icon.png
+  icon: /images/errata-ai-vale-server-icon.png
 sidecar:
   name: vscode-vale
   memoryLimit: 512Mi

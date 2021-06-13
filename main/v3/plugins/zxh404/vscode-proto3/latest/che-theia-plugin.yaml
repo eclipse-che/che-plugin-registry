@@ -10,7 +10,7 @@ metadata:
   categories:
     - Programming Languages
     - Snippets
-  icon: /v3/images/zxh404-vscode-proto3-icon.png
+  icon: /images/zxh404-vscode-proto3-icon.png
 sidecar:
   name: vscode-proto3
   memoryLimit: 256Mi

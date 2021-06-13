@@ -12,7 +12,7 @@ metadata:
     - Linters
     - Formatters
     - Snippets
-  icon: /v3/images/redhat-vscode-xml-icon.png
+  icon: /images/redhat-vscode-xml-icon.png
 sidecar:
   name: vscode-xml
   memoryLimit: 768Mi

@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/redhat-developer/vscode-didact'
   categories:
     - Other
-  icon: /v3/images/redhat-vscode-didact-icon.png
+  icon: /images/redhat-vscode-didact-icon.png
 dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix'

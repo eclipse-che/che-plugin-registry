@@ -12,7 +12,7 @@ metadata:
     - Linters
     - Snippets
     - Formatters
-  icon: /v3/images/redhat-vscode-yaml-icon.png
+  icon: /images/redhat-vscode-yaml-icon.png
 sidecar:
   name: vscode-yaml
   memoryLimit: 256Mi

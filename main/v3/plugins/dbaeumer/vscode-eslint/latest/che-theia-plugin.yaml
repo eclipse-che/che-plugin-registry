@@ -10,7 +10,7 @@ metadata:
   categories:
     - Programming Languages
     - Linters
-  icon: /v3/images/dbaeumer-vscode-eslint-icon.png
+  icon: /images/dbaeumer-vscode-eslint-icon.png
 dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix'

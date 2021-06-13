@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/scala/vscode-scala-syntax.git'
   categories:
     - Programming Languages
-  icon: /v3/images/scala-lang-scala-icon.png
+  icon: /images/scala-lang-scala-icon.png
 dependencies: []
 extensions:
   - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'

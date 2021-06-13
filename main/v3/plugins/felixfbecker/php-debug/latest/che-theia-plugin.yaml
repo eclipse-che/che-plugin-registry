@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/felixfbecker/vscode-php-debug.git'
   categories:
     - Debuggers
-  icon: /v3/images/felixfbecker-php-debug-icon.png
+  icon: /images/felixfbecker-php-debug-icon.png
 sidecar:
   name: php-debugger
   memoryLimit: 256Mi

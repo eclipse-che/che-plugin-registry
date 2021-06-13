@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
   categories:
     - Debuggers
-  icon: /v3/images/broadcommfd-debugger-for-mainframe-icon.png
+  icon: /images/broadcommfd-debugger-for-mainframe-icon.png
 sidecar:
   memoryLimit: 512Mi
   cpuLimit: 500m

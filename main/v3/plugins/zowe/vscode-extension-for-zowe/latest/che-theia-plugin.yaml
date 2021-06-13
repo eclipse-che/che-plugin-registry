@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/zowe/vscode-extension-for-zowe'
   categories:
     - Other
-  icon: /v3/images/zowe-vscode-extension-for-zowe-icon.png
+  icon: /images/zowe-vscode-extension-for-zowe-icon.png
 sidecar:
   name: zowe-explorer
   memoryLimit: 512Mi

@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/camel-tooling/vscode-wsdl2rest'
   categories:
     - Other
-  icon: /v3/images/redhat-vscode-wsdl2rest-icon.png
+  icon: /images/redhat-vscode-wsdl2rest-icon.png
 sidecar:
   memoryLimit: 256Mi
   cpuLimit: 500m

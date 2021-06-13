@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/scalameta/metals-vscode.git'
   categories:
     - Programming Languages
-  icon: /v3/images/scalameta-metals-icon.png
+  icon: /images/scalameta-metals-icon.png
 sidecar:
   name: vscode-metals
   memoryLimit: 1500Mi

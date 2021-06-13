@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
   categories:
     - Programming Languages
-  icon: /v3/images/asciidoctor-asciidoctor-vscode-icon.png
+  icon: /images/asciidoctor-asciidoctor-vscode-icon.png
 sidecar:
   name: asciidoctor-vscode
   memoryLimit: 128Mi

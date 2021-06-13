@@ -10,7 +10,7 @@ metadata:
   categories:
     - Snippets
     - Programming Languages
-  icon: /v3/images/sdkbox-vscode-libra-move-icon.png
+  icon: /images/sdkbox-vscode-libra-move-icon.png
 sidecar:
   name: vscode-libra-move
   memoryLimit: 512Mi

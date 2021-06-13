@@ -13,7 +13,7 @@ metadata:
     - Debuggers
     - Azure
     - Other
-  icon: /v3/images/ms-kubernetes-tools-vscode-kubernetes-tools-icon.png
+  icon: /images/ms-kubernetes-tools-vscode-kubernetes-tools-icon.png
 sidecar:
   name: vscode-kubernetes-tools
   memoryLimit: 1Gi

@@ -13,7 +13,7 @@ metadata:
     - Snippets
     - Formatters
     - Other
-  icon: /v3/images/rust-lang-rust-icon.png
+  icon: /images/rust-lang-rust-icon.png
 sidecar:
   name: vscode-rust
   memoryLimit: 1Gi

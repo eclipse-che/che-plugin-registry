@@ -13,7 +13,7 @@ metadata:
     - Linters
     - Debuggers
     - Formatters
-  icon: /v3/images/golang-go-icon.png
+  icon: /images/golang-go-icon.png
 sidecar:
   name: vscode-go
   memoryLimit: 512Mi

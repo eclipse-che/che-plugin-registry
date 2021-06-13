@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/che-incubator/che-theia-openshift-auth.git'
   categories:
     - Other
-  icon: /v3/images/eclipse-che-logo.png
+  icon: /images/default.png
 dependencies: []
 extensions:
   - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix'

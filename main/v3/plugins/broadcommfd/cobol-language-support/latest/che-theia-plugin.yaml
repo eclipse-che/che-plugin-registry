@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/eclipse/che-che4z-lsp-for-cobol.git'
   categories:
     - Programming Languages
-  icon: /v3/images/broadcommfd-cobol-language-support-icon.png
+  icon: /images/broadcommfd-cobol-language-support-icon.png
 sidecar:
   name: cobol-language-support
   memoryLimit: 1Gi

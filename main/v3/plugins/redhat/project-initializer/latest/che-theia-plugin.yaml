@@ -9,7 +9,7 @@ metadata:
   repository: 'https://github.com/fabric8-launcher/launcher-vscode-extension'
   categories:
     - Other
-  icon: /v3/images/redhat-project-initializer-icon.png
+  icon: /images/redhat-project-initializer-icon.png
 dependencies: []
 extensions:
   - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix'

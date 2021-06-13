@@ -10,7 +10,7 @@ metadata:
   categories:
     - Snippets
     - Other
-  icon: /v3/images/redhat-vscode-tekton-pipelines-icon.png
+  icon: /images/redhat-vscode-tekton-pipelines-icon.png
 sidecar:
   name: vscode-tekton
   memoryLimit: 384Mi
