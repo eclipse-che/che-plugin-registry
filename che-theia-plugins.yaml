@@ -710,7 +710,7 @@ plugins:
     extension: https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
   - repository:
       url: 'https://github.com/zowe/vscode-extension-for-zowe'
-      revision: v1.11.0
+      revision: v1.15.1
     sidecar:
       directory: node
       name: zowe-explorer
