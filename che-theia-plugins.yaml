@@ -710,7 +710,7 @@ plugins:
     extension: https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
   - repository:
       url: 'https://github.com/zowe/vscode-extension-for-zowe'
-      revision: v1.15.1
+      revision: v1.16.0
     sidecar:
       directory: node
       name: zowe-explorer
@@ -720,7 +720,7 @@ plugins:
       env:
         - name: ZOWE_CLI_HOME
           value: /projects/.zowe
-    extension: https://github.com/eclipse/che-che4z/releases/download/v2.3.0/vscode-extension-for-zowe-1.15.1-che.vsix
+    extension: https://github.com/eclipse/che-che4z/releases/download/v2.4.0/vscode-extension-for-zowe-1.16.0-che.vsix
   - repository:
       url: 'https://github.com/bash-lsp/bash-language-server'
       revision: vscode-client-1.10.2
