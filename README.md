@@ -2,7 +2,9 @@
 
 # Eclipse Che Plugin Registry
 
-This repository holds ready-to-use plugins for different languages and technologies. A [next build](https://che-plugin-registry-main.surge.sh/) of this registry is published on surge.sh.
+This repository holds ready-to-use plugins for different languages and technologies.
+
+Current build from the main branch is available at [https://eclipse-che.github.io/che-plugin-registry/main/](https://eclipse-che.github.io/che-plugin-registry/main/).
 
 ## Building and publishing third party VSIX extensions for plugin registry
 See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc/building/build-vsix-extension.adoc
