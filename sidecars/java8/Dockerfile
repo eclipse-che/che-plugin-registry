@@ -26,7 +26,7 @@ ADD etc/before-start.sh /before-start.sh
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
-RUN wget -O ${HOME}/lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
+RUN wget -O /lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
 
 WORKDIR /projects
 
