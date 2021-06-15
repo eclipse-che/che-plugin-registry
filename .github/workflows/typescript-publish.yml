@@ -12,7 +12,7 @@ name: typescript-publish-next
 on:
   push:
     branches: 
-      - master
+      - main
     paths:
     - 'package.json'
     - 'tools/build/**'

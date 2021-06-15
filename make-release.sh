@@ -43,9 +43,9 @@ fi
 # derive branch from version
 BRANCH=${VERSION%.*}.x
 
-# if doing a .0 release, use master; if doing a .z release, use $BRANCH
+# if doing a .0 release, use main; if doing a .z release, use $BRANCH
 if [[ ${VERSION} == *".0" ]]; then
-  BASEBRANCH="master"
+  BASEBRANCH="main"
 else 
   BASEBRANCH="${BRANCH}"
 fi
@@ -96,7 +96,7 @@ commitChangeOrCreatePR()
     PUSH_TRY="$(git push origin "${aBRANCH}")"
     # shellcheck disable=SC2181
     if [[ $? -gt 0 ]] || [[ $PUSH_TRY == *"protected branch hook declined"* ]]; then
-      # create pull request for master branch, as branch is restricted
+      # create pull request for main branch, as branch is restricted
       git branch "${PR_BRANCH}"
       git checkout "${PR_BRANCH}"
       git pull origin "${PR_BRANCH}"
@@ -130,7 +130,7 @@ createNewPlugins () {
   sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
 
-  # for .z releases, VERSION files should not be updated in master branch (only in .z branch)
+  # for .z releases, VERSION files should not be updated in main branch (only in .z branch)
   if [[ ${thisVERSION} != "false" ]]; then
     # update VERSION file with VERSION or NEWVERSION
     echo "${thisVERSION}" > VERSION
@@ -172,13 +172,13 @@ fi
 createNewPlugins "${VERSION}" "${NEXTVERSION}"
 commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${NEXTVERSION}"
 
-# now, if we're doing a 7.y.z release, push new plugins into master branch too (#16476)
-if [[ ${BASEBRANCH} != "master" ]]; then
-  fetchAndCheckout "master"
+# now, if we're doing a 7.y.z release, push new plugins into main branch too (#16476)
+if [[ ${BASEBRANCH} != "main" ]]; then
+  fetchAndCheckout "main"
 
-  # add new plugins + update che-editors.yaml, che-plugins.yaml files; do not update VERSION file in master
+  # add new plugins + update che-editors.yaml, che-plugins.yaml files; do not update VERSION file in main
   createNewPlugins "${VERSION}" false
-  commitChangeOrCreatePR "${VERSION}" "master" "pr-add-${VERSION}-plugins-to-master"
+  commitChangeOrCreatePR "${VERSION}" "main" "pr-add-${VERSION}-plugins-to-main"
 fi
 
 # cleanup tmp dir
