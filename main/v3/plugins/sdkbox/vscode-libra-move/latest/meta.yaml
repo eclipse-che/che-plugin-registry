@@ -13,7 +13,7 @@ firstPublicationDate: '2019-09-24'
 latestUpdateDate: '2021-06-15'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-plugin-sidecar:java8-1273116'
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:8297fb1732d87d56a0aa4c69105e7bcf4b500e40bb16446d6286c07b884eb73d'
       name: vscode-libra-move
       memoryLimit: 512Mi
       cpuRequest: 30m

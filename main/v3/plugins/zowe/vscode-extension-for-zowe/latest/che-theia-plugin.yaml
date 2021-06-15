@@ -21,4 +21,4 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
 dependencies: []
 extensions:
-  - 'https://github.com/eclipse/che-che4z/releases/download/v2.3.0/vscode-extension-for-zowe-1.15.1-che.vsix'
+  - 'https://github.com/eclipse/che-che4z/releases/download/v2.4.0/vscode-extension-for-zowe-1.16.0-che.vsix'
