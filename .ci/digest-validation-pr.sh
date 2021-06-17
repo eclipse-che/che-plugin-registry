@@ -12,7 +12,7 @@
 set -e
 
 # PR_FILES_CHANGED store all Modified/Created files in Pull Request.
-PR_FILES_CHANGED=$(git --no-pager diff --name-only HEAD "$(git merge-base HEAD origin/master)")
+PR_FILES_CHANGED=$(git --no-pager diff --name-only HEAD "$(git merge-base HEAD origin/main)")
 export PR_FILES_CHANGED
 
 # filterPluginsYamls function filter yamls from PR into a new array => FILES_CHANGED_ARRAY.

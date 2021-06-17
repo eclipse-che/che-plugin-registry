@@ -21,7 +21,7 @@
     "build": "concurrently -n \"format,lint,compile,test\" -c \"red,green,blue,magenta\" \"yarn format\" \"yarn lint\" \"yarn compile\" \"yarn test\"",
     "test": "if-env SKIP_TEST=true && echo 'skip test' || jest --forceExit"
   },
-  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/master/tools/build/README.md",
+  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/main/tools/build/README.md",
   "dependencies": {
     "axios": "^0.21.1",
     "decompress": "^4.2.1",
