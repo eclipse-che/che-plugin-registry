@@ -65,6 +65,19 @@
     "version": "latest"
   },
   {
+    "id": "broadcommfd/ccf/latest",
+    "description": "Extension for cobol control flow",
+    "displayName": "COBOL Control Flow",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/ccf/latest",
+      "plugin": "/v3/plugins/broadcommfd/ccf/latest/che-theia-plugin.yaml"
+    },
+    "name": "ccf",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "broadcommfd/cobol-language-support/latest",
     "description": "Autocomplete, highlighting and diagnostics for COBOL code and copybooks.",
     "displayName": "COBOL Language Support",

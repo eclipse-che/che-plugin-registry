@@ -22,4 +22,4 @@ sidecar:
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
 dependencies: []
 extensions:
-  - 'https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.17.1/file/BroadcomMFD.cobol-language-support-0.17.1.vsix'
+  - 'https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.19.0/file/BroadcomMFD.cobol-language-support-0.19.0.vsix'
