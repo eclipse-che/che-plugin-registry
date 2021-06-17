@@ -12,7 +12,7 @@ name: Build/Publish
 on:
   push:
     branches: 
-      - master
+      - main
 
 jobs:
   nightly-build-publish:

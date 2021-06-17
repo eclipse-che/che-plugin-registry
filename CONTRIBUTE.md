@@ -316,7 +316,7 @@ All sidecar definitions are located in the `sidecars/` directory of this reposit
 There are three things needed when contributing a sidecar:
 * The `Dockerfile` that builds the container image
 * A `PLATFORMS` file which lists all the architectures your container will be built for
-* An entrypoint script, which allows your sidecar image to be used in Che. Here is an [example](https://github.com/eclipse-che/che-plugin-registry/blob/master/sidecars/node/etc/entrypoint.sh) of such a script. The script needs to be included in the sidecar directory, and also be added to the `Dockerfile` via the `ADD` instruction. Additional scripts may also be contributed and added.
+* An entrypoint script, which allows your sidecar image to be used in Che. Here is an [example](https://github.com/eclipse-che/che-plugin-registry/blob/main/sidecars/node/etc/entrypoint.sh) of such a script. The script needs to be included in the sidecar directory, and also be added to the `Dockerfile` via the `ADD` instruction. Additional scripts may also be contributed and added.
 
 ### Contribution Flow
 At this time, updating/adding a new plugin and sidecar requires two PRs.

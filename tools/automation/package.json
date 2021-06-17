@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/eclipse/che/issues"
   },
-  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/master/tools/automation/README.md",
+  "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/main/tools/automation/README.md",
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
