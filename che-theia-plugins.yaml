@@ -576,7 +576,7 @@ plugins:
     extension: https://open-vsx.org/api/atlassian/atlascode/2.8.6/file/atlassian.atlascode-2.8.6.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-lsp-for-cobol'
-      revision: 0.17.1
+      revision: 0.19.0
       directory: clients/cobol-lsp-vscode-extension/
     sidecar:
       directory: java
@@ -588,7 +588,7 @@ plugins:
       env:
         - name: ZOWE_CLI_HOME
           value: /projects/.zowe
-    extension: https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.17.1/file/BroadcomMFD.cobol-language-support-0.17.1.vsix
+    extension: https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.19.0/file/BroadcomMFD.cobol-language-support-0.19.0.vsix
   - id: broadcommfd/debugger-for-mainframe/1.5.0
     isClosedSource: true
     repository:
