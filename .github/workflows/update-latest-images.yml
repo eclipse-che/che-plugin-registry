@@ -1,0 +1,61 @@
+name: Update base images
+on:
+  workflow_dispatch:
+    inputs:
+      params:
+        description: 'Additional parameters to updateBaseImages.sh'
+        default: ''
+        required: false
+      branch:
+        description: 'Project branch'
+        default: 'main'
+        required: true
+  schedule:
+  - cron: "0 0 * * 6"
+
+jobs:
+  build:
+    name: Check if base images in Dockerfiles can be updated to newer tags
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Checkout source code"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Login to registry.redhat.io 
+        uses: docker/login-action@v1
+        with:
+          registry: registry.redhat.io
+          username: ${{ secrets.CRW_BUILD_USER }}
+          password: ${{ secrets.CRW_BUILD_TOKEN }}
+      - name: Install skopeo + yq
+        run: |
+          checkVersion() {
+            if [[  "$1" = "$(echo -e "$1\n$2" | sort -V | head -n1)" ]]; then
+              # echo "[INFO] $3 version $2 >= $1, can proceed."
+              true
+            else
+              echo "[INFO] Installing $3 version >= $1 ..."
+              if [[ "$3" == "yq" ]]; then
+                pip install "$3"
+              else
+                sudo apt-get -y install "$3"
+              fi
+            fi
+          }
+          checkVersion 1.1 "$(skopeo --version | sed -e "s/skopeo version //")" skopeo
+          checkVersion 2.0 "$(yq --version | sed -e "s/yq //")" yq
+      - name: Get + run base image check
+        run: |
+          pushd /tmp >/dev/null || exit 1
+          export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
+          curl -sSLO https://raw.githubusercontent.com/redhat-developer/codeready-workspaces/crw-2-rhel-8/product/updateBaseImages.sh
+          chmod +x updateBaseImages.sh
+          popd >/dev/null || exit 1
+          git config --global user.name "Mykhailo Kuznietsov"
+          git config --global user.email "mkuznets@redhat.com"
+          BRANCH=${{ github.event.inputs.branch }}
+          if [ ! BRANCH]; then
+            BRANCH="main"
+          fi
+          /tmp/updateBaseImages.sh -b ${{ github.event.inputs.branch }} -maxdepth 3 -f *Dockerfile ${{ github.event.inputs.params }}
