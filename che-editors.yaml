@@ -158,7 +158,7 @@ editors:
           ephemeral: true
   - schemaVersion: 2.1.0
     metadata:
-      name: eclipse/che-theia/7.32.1
+      name: eclipse/che-theia/7.32.2
       displayName: theia-ide
       description: Eclipse Theia
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
@@ -178,7 +178,7 @@ editors:
     components:
       - name: theia-ide
         container:
-          image: "quay.io/eclipse/che-theia:7.32.1"
+          image: "quay.io/eclipse/che-theia:7.32.2"
           env:
             - name: THEIA_PLUGINS
               value: 'local-dir:///plugins'
@@ -265,7 +265,7 @@ editors:
         volume: {}
       - name: che-machine-exec
         container:
-          image: 'quay.io/eclipse/che-machine-exec:7.32.1'
+          image: 'quay.io/eclipse/che-machine-exec:7.32.2'
           command:
             - /go/bin/che-machine-exec
             - '--url'
@@ -290,7 +290,7 @@ editors:
           app.kubernetes.io/component: remote-runtime-injector
           app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
-          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.32.1"
+          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.32.2"
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
