@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Other
 repository: 'https://github.com/che-incubator/che-theia-openshift-auth.git'
 firstPublicationDate: '2020-07-24'
-latestUpdateDate: '2021-06-29'
+latestUpdateDate: '2021-07-06'
 spec:
   extensions:
     - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.1/che-openshift-authentication-plugin-0.0.1.vsix'
