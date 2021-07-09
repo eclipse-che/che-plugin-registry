@@ -31,3 +31,4 @@ runTests() {
 setupTestEnvironment
 runTests
 finishReport
+
