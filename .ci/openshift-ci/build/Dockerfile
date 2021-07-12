@@ -11,7 +11,10 @@
 #
 
 # Initial settings
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
+
+# FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
+
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
@@ -42,14 +45,9 @@ RUN ls -al /che-plugin-registry/output/v3
 
 
 
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
+# FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
 USER root
-
-RUN ls -al /che-plugin-registry
-RUN ls -al /che-plugin-registry/output
-RUN ls -al /che-plugin-registry/output/v3
-
 
 # latest httpd container doesn't include ssl cert, so generate one
 RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
@@ -64,12 +62,6 @@ RUN sed -i /etc/httpd/conf/httpd.conf \
     -e "s,logs/access_log,/dev/stdout," \
     -e "s,AllowOverride None,AllowOverride All," && \
     chmod a+rwX /etc/httpd/conf /run/httpd /etc/httpd/logs/
-
-
-RUN ls -al /che-plugin-registry
-RUN ls -al /che-plugin-registry/output
-RUN ls -al /che-plugin-registry/output/v3
-
 STOPSIGNAL SIGWINCH
 # END these steps might not be required
 
@@ -83,10 +75,26 @@ COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /c
 
 RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 
-COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
-COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
-COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
-COPY --from=builder /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
+# COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
+# COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
+# COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
+# COPY --from=builder /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
+
+
+
+
+RUN ls -al /che-plugin-registry
+RUN ls -al /che-plugin-registry/output
+RUN ls -al /che-plugin-registry/output/v3
+
+
+
+COPY /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
+COPY /che-plugin-registry/output/v3 /var/www/html/v3
+COPY /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
+COPY /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
+
+
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]
