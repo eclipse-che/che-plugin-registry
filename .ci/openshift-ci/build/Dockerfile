@@ -51,6 +51,12 @@ RUN sed -i /etc/httpd/conf/httpd.conf \
     -e "s,logs/access_log,/dev/stdout," \
     -e "s,AllowOverride None,AllowOverride All," && \
     chmod a+rwX /etc/httpd/conf /run/httpd /etc/httpd/logs/
+
+
+RUN ls -al /che-plugin-registry
+RUN ls -al /che-plugin-registry/output
+RUN ls -al /che-plugin-registry/output/v3
+
 STOPSIGNAL SIGWINCH
 # END these steps might not be required
 
