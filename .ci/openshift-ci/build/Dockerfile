@@ -34,9 +34,22 @@ RUN yum update -y && yum upgrade -y &&\
 # Build repo
 RUN ./build.sh --skip-oci-image --skip-digest-generation
 
+RUN ls -al /che-plugin-registry
+RUN ls -al /che-plugin-registry/output
+RUN ls -al /che-plugin-registry/output/v3
+
+
+
+
+
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
 USER root
+
+RUN ls -al /che-plugin-registry
+RUN ls -al /che-plugin-registry/output
+RUN ls -al /che-plugin-registry/output/v3
+
 
 # latest httpd container doesn't include ssl cert, so generate one
 RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
