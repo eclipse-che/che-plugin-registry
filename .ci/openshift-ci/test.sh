@@ -26,6 +26,7 @@ source "${SCRIPT_DIR}"/common-functions.sh
 runTests() {
   runTest "JavaPlugin" "java11-plugin-test"
   runTest "TypescriptPlugin" "typescript-debug-plugins"
+  runTest "VscodeKubernetesPlugin" "nodejs-24lop"
 }
 
 setupTestEnvironment
