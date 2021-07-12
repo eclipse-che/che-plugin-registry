@@ -71,7 +71,9 @@ RUN mkdir -m 777 /var/www/html/v3 && \
     mkdir -m 777 /var/www/html/v3/plugins && \
     mkdir -m 777 /var/www/html/v3/images
 
-COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
+# COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
+COPY /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
+
 
 RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 
