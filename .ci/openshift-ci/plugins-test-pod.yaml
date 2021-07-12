@@ -16,7 +16,7 @@ spec:
       imagePullPolicy: Always
       env:
         - name: E2E_OPENSHIFT_TOKEN
-          value: OPENSHIFT_TOKEN
+          value: OCP_TOKEN
         - name: TS_SELENIUM_OCP_USERNAME
           value: 'user'
         - name: TS_SELENIUM_OCP_PASSWORD
