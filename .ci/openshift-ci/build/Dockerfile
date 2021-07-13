@@ -11,10 +11,7 @@
 #
 
 # Initial settings
-
-# FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
-
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
@@ -37,15 +34,7 @@ RUN yum update -y && yum upgrade -y &&\
 # Build repo
 RUN ./build.sh --skip-oci-image --skip-digest-generation
 
-RUN ls -al /che-plugin-registry
-RUN ls -al /che-plugin-registry/output
-RUN ls -al /che-plugin-registry/output/v3
-
-
-
-
-
-# FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
+FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526
 
 USER root
 
@@ -71,32 +60,14 @@ RUN mkdir -m 777 /var/www/html/v3 && \
     mkdir -m 777 /var/www/html/v3/plugins && \
     mkdir -m 777 /var/www/html/v3/images
 
-# COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
-COPY /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
-
+COPY --from=builder /che-plugin-registry/build/dockerfiles/rhel.entrypoint.sh /che-plugin-registry/build/dockerfiles/entrypoint.sh /usr/local/bin/
 
 RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 
-# COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
-# COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
-# COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
-# COPY --from=builder /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
-
-
-
-
-RUN ls -al /che-plugin-registry
-RUN ls -al /che-plugin-registry/output
-RUN ls -al /che-plugin-registry/output/v3
-
-
-
-COPY /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
-COPY /che-plugin-registry/output/v3 /var/www/html/v3
-COPY /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
-COPY /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
-
-
+COPY --from=builder /che-plugin-registry/README.md /che-plugin-registry/.htaccess /var/www/html/
+COPY --from=builder /che-plugin-registry/output/v3 /var/www/html/v3
+COPY --from=builder /che-plugin-registry/v3/plugins/.htaccess /var/www/html/v3/plugins/
+COPY --from=builder /che-plugin-registry/v3/images/default.png /var/www/html/v3/images/
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]
