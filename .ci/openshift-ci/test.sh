@@ -24,8 +24,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source "${SCRIPT_DIR}"/common-functions.sh
 
 runTests() {
-  runTest "JavaPlugin" "java11-plugin-test"
-  runTest "TypescriptPlugin" "typescript-debug-plugins"
+  # runTest "JavaPlugin" "java11-plugin-test"
+  # runTest "TypescriptPlugin" "typescript-debug-plugins"
   runTest "VscodeKubernetesPlugin" "nodejs-24lop"
 }
 
