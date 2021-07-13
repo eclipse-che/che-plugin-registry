@@ -780,3 +780,7 @@ plugins:
       url: 'https://github.com/fbaligand/vscode-logstash-editor'
       revision: 'v1.1.3'
     extension: 'https://open-vsx.org/api/fbaligand/vscode-logstash-editor/1.1.3/file/fbaligand.vscode-logstash-editor-1.1.3.vsix'
+  - repository:    
+      url: 'https://github.com/sgwozdz/jenkinsfile-support'
+      revision: '1.2.0'
+    extension: 'https://disaster37.github.io/vscode-plugins/recode4dev.jenkinsfile-1.2.0.vsix'
