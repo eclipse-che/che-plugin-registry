@@ -38,7 +38,7 @@ spec:
         - name: TS_SELENIUM_BASE_URL
           value: CHE_URL
         - name: TS_SELENIUM_LOG_LEVEL
-          value: DEBUG
+          value: TRACE
         - name: TS_SELENIUM_MULTIUSER
           value: 'true'
         - name: TS_SELENIUM_VALUE_TLS_SUPPORT
