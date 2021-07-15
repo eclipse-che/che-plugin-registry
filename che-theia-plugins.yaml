@@ -768,3 +768,7 @@ plugins:
     repository:
       url: 'https://github.com/BroadcomMFD/cobol-control-flow'
     extension: https://open-vsx.org/api/BroadcomMFD/ccf/0.4.0/file/BroadcomMFD.ccf-0.4.0.vsix
+  - repository:
+      url: 'https://github.com/4ops/vscode-language-terraform'
+      revision: v0.2.2
+    extension: 'https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix'
