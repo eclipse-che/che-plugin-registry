@@ -772,6 +772,7 @@ plugins:
       url: 'https://github.com/4ops/vscode-language-terraform'
       revision: v0.2.2
     extension: 'https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix'
+  - repository:
       url: 'https://github.com/randomchance/vscode-logstash-configuration-syntax'
       revision: '6e0573803a714e51c45ae44433471fcc759454d1'
     extension: 'https://open-vsx.org/api/RandomChance/logstash/0.0.4/file/RandomChance.logstash-0.0.4.vsix'
