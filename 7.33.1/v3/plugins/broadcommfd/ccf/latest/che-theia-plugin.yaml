@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: broadcommfd/ccf
+  publisher: broadcommfd
+  name: ccf
+  version: latest
+  displayName: COBOL Control Flow
+  description: Extension for cobol control flow
+  repository: 'https://github.com/BroadcomMFD/cobol-control-flow'
+  categories:
+    - Other
+  icon: /images/broadcommfd-ccf-icon.png
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/BroadcomMFD/ccf/0.4.0/file/BroadcomMFD.ccf-0.4.0.vsix'
