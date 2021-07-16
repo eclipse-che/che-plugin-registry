@@ -772,6 +772,8 @@ plugins:
       url: 'https://github.com/4ops/vscode-language-terraform'
       revision: v0.2.2
     extension: 'https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix'
+  - repository:
       url: 'https://github.com/wholroyd/vscode-hcl'
-      revision: '0.0.5'
+      revision: 'abe9c4122bd662ec30b8b5a9c73a00f6dc51e77d'
     extension: 'https://disaster37.github.io/vscode-plugins/wholroyd.HCL-0.0.5.vsix'
+
