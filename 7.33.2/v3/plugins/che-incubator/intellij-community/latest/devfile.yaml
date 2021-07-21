@@ -1,0 +1,24 @@
+schemaVersion: 2.1.0
+metadata:
+  name: IntelliJ IDEA Community Edition
+components:
+  - name: intellij-novnc
+    container:
+      image: 'quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863'
+      volumeMounts:
+        - name: idea-configuration
+          path: /JetBrains/IdeaIC
+      mountSources: true
+      memoryLimit: 2048M
+      endpoints:
+        - name: intellij
+          attributes:
+            type: main
+            discoverable: false
+            path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
+          targetPort: 8080
+          exposure: public
+          protocol: http
+    attributes: {}
+  - name: idea-configuration
+    volume: {}
