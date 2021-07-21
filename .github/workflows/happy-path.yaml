@@ -82,7 +82,7 @@ jobs:
         id: run-minikube
         uses: che-incubator/setup-minikube-action@next
         with:
-          minikube-version: v1.18.1
+          minikube-version: v1.21.0
       - name: load-image-minikube-registry
         id: load-image-minikube-registry
         run: |
