@@ -105,6 +105,12 @@ jobs:
           export BUILD_DIR="$PWD/content"
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
+      - name: publish to npmjs
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          cd tools/build
+          npm publish --tag latest
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
