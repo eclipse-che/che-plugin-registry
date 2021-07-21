@@ -198,17 +198,14 @@ plugins:
         - redhat/vscode-yaml
   - repository:
       url: 'https://github.com/camel-tooling/vscode-camelk'
-      revision: 0.0.25
+      revision: 0.0.26
     sidecar:
       directory: camelk
       name: vscode-camelk
       memoryLimit: 1Gi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.25-226.vsix
-    metaYaml:
-      skipDependencies:
-        - redhat/vscode-commons
+    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.26-336.vsix
   - repository:
       url: 'https://github.com/redhat-developer/vscode-microprofile'
       revision: 174c77f51a57bf1cfadba8f78ad7072ce63baa1d
