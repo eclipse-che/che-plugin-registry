@@ -137,6 +137,7 @@ editors:
                 type: collocated-terminal
                 discoverable: false
                 cookiesAuthEnabled: true
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: machine-exec
           app.kubernetes.io/part-of: che-theia.eclipse.org
