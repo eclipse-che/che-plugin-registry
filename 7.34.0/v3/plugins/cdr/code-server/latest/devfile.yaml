@@ -1,0 +1,22 @@
+schemaVersion: 2.1.0
+metadata:
+  name: code-server
+components:
+  - name: code-server
+    container:
+      image: 'index.docker.io/codercom/code-server@sha256:ef07281004909bb2c228422df2e99a5ba5e450fce7546b8fa186852f23bf6751'
+      volumeMounts:
+        - name: user-data
+          path: /home/coder/.local/share/code-server
+      mountSources: true
+      memoryLimit: 1024M
+      endpoints:
+        - name: code-server
+          attributes:
+            type: main
+          targetPort: 8080
+          exposure: public
+          protocol: http
+    attributes: {}
+  - name: user-data
+    volume: {}

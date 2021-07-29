@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/vscode-commons
+  publisher: redhat
+  name: vscode-commons
+  version: latest
+  displayName: Red Hat Commons
+  description: Base utilities for Red Hat extensions. Notably controls telemetry settings.
+  repository: 'https://github.com/redhat-developer/vscode-commons/'
+  categories:
+    - Other
+  icon: /images/redhat-vscode-commons-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v608e3a2/redhat.vscode-commons-021b0165bb5ba05e107ee7e31d1e59a7a73f473c.vsix'
