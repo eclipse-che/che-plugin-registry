@@ -21,10 +21,6 @@ RUN chmod +x /usr/share/container-scripts/httpd/pre-init/40-ssl-certs.sh && \
 RUN yum update -y systemd && yum clean all && rm -rf /var/cache/yum && \
     echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages"
 
-RUN echo "<FilesMatch "\""^\\.ht"\"">" >> /etc/httpd/conf/httpd.conf && \
-    echo "Require all denied" >> /etc/httpd/conf/httpd.conf && \
-    echo "</FilesMatch>" >> /etc/httpd/conf/httpd.conf
-
 RUN sed -i /etc/httpd/conf.d/ssl.conf \
     -e "s,SSLProtocol all -SSLv2,SSLProtocol all -SSLv3," \
     -e "s,SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5,SSLCipherSuite HIGH:!aNULL:!MD5,"
