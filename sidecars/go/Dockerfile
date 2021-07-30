@@ -39,7 +39,6 @@ RUN set -e -x && \
     go get -u -v github.com/uudashr/gopkgs/v2/cmd/gopkgs && \
     go get -u -v golang.org/x/tools/cmd/gotype && \
     go get -u -v github.com/mdempsky/gocode && \
-    #go get -u -v github.com/stamblerre/gocoder && \
     go get -v golang.org/x/tools/gopls@master golang.org/x/tools@master && \
     go get -v honnef.co/go/tools/cmd/staticcheck@master && \
     chmod -R 777 /go && \
