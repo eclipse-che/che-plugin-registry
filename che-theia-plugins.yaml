@@ -171,7 +171,7 @@ plugins:
     extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
   - repository:
       url: 'https://github.com/golang/vscode-go'
-      revision: v0.16.1
+      revision: v0.26.0
     featured: true
     sidecar:
       directory: go
@@ -182,7 +182,7 @@ plugins:
       env:
         - name: GOPATH
           value: '/go:$(CHE_PROJECTS_ROOT)'
-    extension: https://github.com/golang/vscode-go/releases/download/v0.16.1/go-0.16.1.vsix
+    extension: https://github.com/golang/vscode-go/releases/download/v0.26.0/go-0.26.0.vsix
   - repository:
       url: 'https://github.com/dart-code/flutter'
       revision: v3.14.1
