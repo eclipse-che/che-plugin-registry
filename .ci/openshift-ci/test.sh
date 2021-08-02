@@ -25,7 +25,9 @@ source "${SCRIPT_DIR}"/common-functions.sh
 
 runTests() {
   runTest "JavaPlugin" "java11-plugin-test"
-  runTest "TypescriptPlugin" "typescript-debug-plugins"
+  
+  # Disabled because of known bug https://github.com/eclipse/che/issues/20075
+  # runTest "TypescriptPlugin" "typescript-debug-plugins"
 }
 
 setupTestEnvironment
