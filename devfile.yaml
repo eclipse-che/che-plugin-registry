@@ -37,6 +37,10 @@ components:
     image: 'quay.io/eclipse/che-plugin-registry:next'
     alias: eclipse-che-plugin-registry
 
+  - id: timonwong/shellcheck/latest
+    type: chePlugin
+    registryUrl: 'https://che-plugin-registry-main.surge.sh/v3'
+
 commands:
 
   - name: 1. build
