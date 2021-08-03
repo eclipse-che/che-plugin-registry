@@ -44,7 +44,7 @@ RUN set -e -x && \
     chmod -R 777 /go && \
     mkdir -p /.cache && chmod -R 777 /.cache && \
     mkdir -p /usr/local/go && chmod -R 777 /usr/local/go && \
-    cd /usr/local/go && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
+    cd /usr/local/go && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.41.1
 
 ENV GOPATH /go
 ENV GOCACHE /.cache
