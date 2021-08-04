@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: donjayamanne/githistory
+  publisher: donjayamanne
+  name: githistory
+  version: latest
+  displayName: Git History
+  description: 'View git log, file history, compare branches or commits'
+  repository: 'https://github.com/DonJayamanne/gitHistoryVSCode'
+  categories:
+    - Other
+  icon: /images/donjayamanne-githistory-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix'
