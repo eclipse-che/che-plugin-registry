@@ -24,6 +24,12 @@ jobs:
   release-build-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: 'setup nodejs'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@eclipse-che'
       - name: Clone source code
         uses: actions/checkout@v2
         with:
