@@ -27,10 +27,6 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: ResourceLimitsCheck
-      run: |
-        ls -la .
-
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -46,15 +42,11 @@ jobs:
 
     - name: Compile
       run: |
-        echo 'PWD >>>>>>>>>>>>>>>>>>>>>>>>>>>'
-        pwd
         cd tools/automation
         yarn
         yarn run build
 
     - name: Check for resources
       run: |
-        echo 'PWD >>>>>>>>>>>>>>>>>>>>>>>>>>>'
-        pwd
         cd tools/automation
         yarn node ./lib/check-resource-limits.js
