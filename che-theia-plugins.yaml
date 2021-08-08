@@ -18,6 +18,8 @@ plugins:
       name: vscode-node-debug
       memoryLimit: 512Mi
       memoryRequest: 10Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extension: https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
       url: 'https://github.com/Microsoft/vscode-node-debug2'
