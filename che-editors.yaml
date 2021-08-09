@@ -203,6 +203,8 @@ editors:
               path: /home/theia/.theia
           mountSources: true
           memoryLimit: 512M
+          cpuLimit: 1500m
+          cpuRequest: 100m
           endpoints:
             - name: theia
               targetPort: 3100
