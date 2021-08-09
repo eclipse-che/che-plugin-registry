@@ -24,6 +24,12 @@ jobs:
   release-build-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: 'setup nodejs'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@eclipse-che'
       - name: Clone source code
         uses: actions/checkout@v2
         with:
@@ -105,6 +111,12 @@ jobs:
           export BUILD_DIR="$PWD/content"
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
+      - name: publish to npmjs
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          cd tools/build
+          npm publish --tag latest
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
@@ -114,7 +126,7 @@ jobs:
           echo "{\"text\":\":white_check_mark: Che Plugin Registry ${{ github.event.inputs.version }} has been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}\"}" > mattermost.json
       - name: Send MM message
         if: ${{ success() }} || ${{ failure() }}
-        uses: mattermost/action-mattermost-notify@1.0.2
+        uses: mattermost/action-mattermost-notify@1.1.0
         env:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
           MATTERMOST_CHANNEL: eclipse-che-releases

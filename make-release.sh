@@ -130,6 +130,9 @@ createNewPlugins () {
   sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
 
+  # update package.json with the new version
+  sed -i -r -e "s/(\"version\": )(\".*\")/\1\"${newVERSION}\"/" tools/build/package.json
+
   # for .z releases, VERSION files should not be updated in main branch (only in .z branch)
   if [[ ${thisVERSION} != "false" ]]; then
     # update VERSION file with VERSION or NEWVERSION
