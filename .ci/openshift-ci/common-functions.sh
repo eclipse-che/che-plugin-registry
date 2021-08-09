@@ -58,7 +58,6 @@ createCustomResourcesFile() {
 spec:
   auth:
     updateAdminPassword: false
-    openShiftoAuth: false
   server:
     pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
     pluginRegistryPullPolicy: IfNotPresent
@@ -92,7 +91,7 @@ patchTestPodConfig(){
   sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" plugins-test-pod.yaml
   sed -i "s@TEST_USERSTORY@${TEST_USERSTORY}@g" plugins-test-pod.yaml
   sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
-  # sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
+  sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
 
   cat plugins-test-pod.yaml
 }

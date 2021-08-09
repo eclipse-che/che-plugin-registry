@@ -15,14 +15,14 @@ spec:
       image: quay.io/eclipse/che-e2e:next
       imagePullPolicy: Always
       env:
-        # - name: E2E_OPENSHIFT_TOKEN
-        #   value: OCP_TOKEN
+        - name: E2E_OPENSHIFT_TOKEN
+          value: OCP_TOKEN
         - name: TS_SELENIUM_OCP_USERNAME
           value: 'user'
         - name: TS_SELENIUM_OCP_PASSWORD
           value: 'user'
         - name: TS_SELENIUM_VALUE_OPENSHIFT_OAUTH
-          value: 'false'
+          value: 'true'
         - name: TS_SELENIUM_USERNAME
           value: 'admin'
         - name: TS_SELENIUM_PASSWORD
