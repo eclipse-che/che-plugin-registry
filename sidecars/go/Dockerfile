@@ -8,7 +8,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM golang:1.14.9-stretch
+FROM golang:1.16.6-stretch
 
 ENV HOME=/home/theia
 
@@ -39,18 +39,16 @@ RUN set -e -x && \
     go get -u -v github.com/uudashr/gopkgs/v2/cmd/gopkgs && \
     go get -u -v golang.org/x/tools/cmd/gotype && \
     go get -u -v github.com/mdempsky/gocode && \
-    go get -u -v github.com/stamblerre/gocode && \
-    GO111MODULE=on go get -v golang.org/x/tools/gopls@master golang.org/x/tools@master && \
-    go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
+    go get -v golang.org/x/tools/gopls@master golang.org/x/tools@master && \
+    go get -v honnef.co/go/tools/cmd/staticcheck@master && \
     chmod -R 777 /go && \
     mkdir -p /.cache && chmod -R 777 /.cache && \
     mkdir -p /usr/local/go && chmod -R 777 /usr/local/go && \
-    cd /usr/local/go && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.22.2
+    cd /usr/local/go && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.41.1
 
 ENV GOPATH /go
 ENV GOCACHE /.cache
 ENV GOROOT /usr/local/go
-ENV GO111MODULE on
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
