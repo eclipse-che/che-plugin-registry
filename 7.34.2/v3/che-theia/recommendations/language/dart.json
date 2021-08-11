@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "dart-code/dart-code"
+    ]
+  },
+  {
+    "category": "Snippets",
+    "ids": [
+      "dart-code/dart-code"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "dart-code/dart-code"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "dart-code/dart-code"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "dart-code/dart-code"
+    ]
+  }
+]
