@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: mads-hartmann/bash-ide
+  publisher: mads-hartmann
+  name: bash-ide
+  version: latest
+  displayName: Bash IDE
+  description: A language server for Bash
+  repository: 'https://github.com/bash-lsp/bash-language-server'
+  categories:
+    - Other
+  icon: /images/mads-hartmann-bash-ide-vscode-icon.png
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix'

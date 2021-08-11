@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: bpruitt-goddard/mermaid-markdown-syntax-highlighting
+  publisher: bpruitt-goddard
+  name: mermaid-markdown-syntax-highlighting
+  version: latest
+  displayName: Mermaid Markdown Syntax Highlighting
+  description: Markdown syntax support for the Mermaid charting language
+  repository: 'https://github.com/bpruitt-goddard/vscode-mermaid-syntax-highlight.git'
+  categories:
+    - Other
+  icon: /images/default.png
+dependencies: []
+extensions:
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-mermaid-syntax-highlight-d4247b5feadd92d429d69a6b511f5ed0e1011895.vsix'

@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: eamodio/vscode-gitlens
+  publisher: eamodio
+  name: vscode-gitlens
+  version: latest
+  displayName: GitLens — Git supercharged
+  description: 'Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more'
+  repository: 'https://github.com/eamodio/vscode-gitlens.git'
+  categories:
+    - Other
+  icon: /images/eamodio-gitlens-icon.png
+dependencies: []
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix'

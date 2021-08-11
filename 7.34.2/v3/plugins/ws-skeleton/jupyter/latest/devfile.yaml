@@ -1,0 +1,20 @@
+schemaVersion: 2.1.0
+metadata:
+  name: Jupyter Notebook
+components:
+  - name: jupyter-notebook
+    container:
+      image: 'index.docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47'
+      env:
+        - name: JUPYTER_NOTEBOOK_DIR
+          value: /projects
+      mountSources: true
+      memoryLimit: 512M
+      endpoints:
+        - name: jupyter
+          attributes:
+            type: main
+          targetPort: 8888
+          exposure: public
+          protocol: http
+    attributes: {}

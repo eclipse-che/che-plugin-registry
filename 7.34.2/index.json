@@ -1,0 +1,1224 @@
+[
+  {
+    "id": "4ops/terraform/latest",
+    "description": "Terraform configuration language support (includes Terragrunt)",
+    "displayName": "Terraform",
+    "links": {
+      "self": "/v3/plugins/4ops/terraform/latest",
+      "plugin": "/v3/plugins/4ops/terraform/latest/che-theia-plugin.yaml"
+    },
+    "name": "terraform",
+    "publisher": "4ops",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "asciidoctor/asciidoctor-vscode/latest",
+    "description": "Provides rich language support for AsciiDoc.",
+    "displayName": "AsciiDoc",
+    "links": {
+      "self": "/v3/plugins/asciidoctor/asciidoctor-vscode/latest",
+      "plugin": "/v3/plugins/asciidoctor/asciidoctor-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "asciidoctor-vscode",
+    "publisher": "asciidoctor",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "atlassian/atlascode/latest",
+    "description": "Bringing the power of Jira and Bitbucket to VS Code - With Atlassian for VS Code you can create and view issues, start work on issues, create pull requests, do code reviews, start builds, get build statuses and more!",
+    "displayName": "Jira and Bitbucket (Official)",
+    "links": {
+      "self": "/v3/plugins/atlassian/atlascode/latest",
+      "plugin": "/v3/plugins/atlassian/atlascode/latest/che-theia-plugin.yaml"
+    },
+    "name": "atlascode",
+    "publisher": "atlassian",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "bazelbuild/vscode-bazel/latest",
+    "description": "Bazel BUILD integration",
+    "displayName": "vscode-bazel",
+    "links": {
+      "self": "/v3/plugins/bazelbuild/vscode-bazel/latest",
+      "plugin": "/v3/plugins/bazelbuild/vscode-bazel/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-bazel",
+    "publisher": "bazelbuild",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "bierner/markdown-mermaid/latest",
+    "description": "Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview",
+    "displayName": "Markdown Preview Mermaid Support",
+    "links": {
+      "self": "/v3/plugins/bierner/markdown-mermaid/latest",
+      "plugin": "/v3/plugins/bierner/markdown-mermaid/latest/che-theia-plugin.yaml"
+    },
+    "name": "markdown-mermaid",
+    "publisher": "bierner",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "bmewburn/vscode-intelephense-client/latest",
+    "description": "PHP code intelligence for Visual Studio Code",
+    "displayName": "PHP Intelephense",
+    "links": {
+      "self": "/v3/plugins/bmewburn/vscode-intelephense-client/latest",
+      "plugin": "/v3/plugins/bmewburn/vscode-intelephense-client/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-intelephense-client",
+    "publisher": "bmewburn",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "broadcommfd/ccf/latest",
+    "description": "Extension for cobol control flow",
+    "displayName": "COBOL Control Flow",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/ccf/latest",
+      "plugin": "/v3/plugins/broadcommfd/ccf/latest/che-theia-plugin.yaml"
+    },
+    "name": "ccf",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "broadcommfd/cobol-language-support/latest",
+    "description": "Autocomplete, highlighting and diagnostics for COBOL code and copybooks.",
+    "displayName": "COBOL Language Support",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/cobol-language-support/latest",
+      "plugin": "/v3/plugins/broadcommfd/cobol-language-support/latest/che-theia-plugin.yaml"
+    },
+    "name": "cobol-language-support",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "broadcommfd/debugger-for-mainframe/latest",
+    "description": "Provides a modern debugging experience for CICS and Batch applications written in COBOL.",
+    "displayName": "Debugger for Mainframe",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/debugger-for-mainframe/latest",
+      "plugin": "/v3/plugins/broadcommfd/debugger-for-mainframe/latest/che-theia-plugin.yaml"
+    },
+    "name": "debugger-for-mainframe",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "broadcommfd/explorer-for-endevor/latest",
+    "description": "Explorer for Endevor",
+    "displayName": "Explorer for Endevor",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/explorer-for-endevor/latest",
+      "plugin": "/v3/plugins/broadcommfd/explorer-for-endevor/latest/che-theia-plugin.yaml"
+    },
+    "name": "explorer-for-endevor",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "broadcommfd/hlasm-language-support/latest",
+    "description": "Code completion, highlighting, browsing and validation for High Level Assembler.",
+    "displayName": "HLASM Language Support",
+    "links": {
+      "self": "/v3/plugins/broadcommfd/hlasm-language-support/latest",
+      "plugin": "/v3/plugins/broadcommfd/hlasm-language-support/latest/che-theia-plugin.yaml"
+    },
+    "name": "hlasm-language-support",
+    "publisher": "broadcommfd",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "castwide/solargraph/latest",
+    "description": "A Ruby language server featuring code completion, intellisense, and inline documentation",
+    "displayName": "Ruby Solargraph",
+    "links": {
+      "self": "/v3/plugins/castwide/solargraph/latest",
+      "plugin": "/v3/plugins/castwide/solargraph/latest/che-theia-plugin.yaml"
+    },
+    "name": "solargraph",
+    "publisher": "castwide",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "cdr/code-server/latest",
+    "description": "An open source distribution of Visual Studio Code as a cloud IDE",
+    "displayName": "code-server",
+    "links": {
+      "self": "/v3/plugins/cdr/code-server/latest",
+      "devfile": "/v3/plugins/cdr/code-server/latest/devfile.yaml"
+    },
+    "name": "code-server",
+    "publisher": "cdr",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/intellij-community/latest",
+    "description": "IntelliJ IDEA Community Edition running on the Web with noVNC",
+    "displayName": "IntelliJ IDEA Community Edition",
+    "links": {
+      "self": "/v3/plugins/che-incubator/intellij-community/latest",
+      "devfile": "/v3/plugins/che-incubator/intellij-community/latest/devfile.yaml"
+    },
+    "name": "intellij-community",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/theia-dev/latest",
+    "description": "Che Theia Dev Plugin",
+    "displayName": "Che Theia Dev Plugin",
+    "links": {
+      "self": "/v3/plugins/che-incubator/theia-dev/latest",
+      "devfile": "/v3/plugins/che-incubator/theia-dev/latest/devfile.yaml"
+    },
+    "name": "theia-dev",
+    "publisher": "che-incubator",
+    "type": "Che Plugin",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/typescript/latest",
+    "description": "Provides rich language support for JavaScript and TypeScript.",
+    "displayName": "TypeScript and JavaScript Language Features (built-in)",
+    "links": {
+      "self": "/v3/plugins/che-incubator/typescript/latest",
+      "plugin": "/v3/plugins/che-incubator/typescript/latest/che-theia-plugin.yaml"
+    },
+    "name": "typescript",
+    "publisher": "che-incubator",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "containers/buildah/latest",
+    "description": "Container to build docker images with buildah",
+    "displayName": "Buildah Base Dev Plugin",
+    "links": {
+      "self": "/v3/plugins/containers/buildah/latest",
+      "devfile": "/v3/plugins/containers/buildah/latest/devfile.yaml"
+    },
+    "name": "buildah",
+    "publisher": "containers",
+    "type": "Che Plugin",
+    "version": "latest"
+  },
+  {
+    "id": "dart-code/dart-code/latest",
+    "description": "Dart language support and debugger for Visual Studio Code.",
+    "displayName": "Dart",
+    "links": {
+      "self": "/v3/plugins/dart-code/dart-code/latest",
+      "plugin": "/v3/plugins/dart-code/dart-code/latest/che-theia-plugin.yaml"
+    },
+    "name": "dart-code",
+    "publisher": "dart-code",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "dart-code/flutter/latest",
+    "description": "Flutter support and debugger for Visual Studio Code.",
+    "displayName": "Flutter",
+    "links": {
+      "self": "/v3/plugins/dart-code/flutter/latest",
+      "plugin": "/v3/plugins/dart-code/flutter/latest/che-theia-plugin.yaml"
+    },
+    "name": "flutter",
+    "publisher": "dart-code",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "dbaeumer/vscode-eslint/latest",
+    "description": "Integrates ESLint JavaScript into VS Code.",
+    "displayName": "ESLint",
+    "links": {
+      "self": "/v3/plugins/dbaeumer/vscode-eslint/latest",
+      "plugin": "/v3/plugins/dbaeumer/vscode-eslint/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-eslint",
+    "publisher": "dbaeumer",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "dirigiblelabs/dirigible/latest",
+    "description": "Eclipse Dirigible as App Development Platform for Eclipse Che",
+    "displayName": "Eclipse Dirigible",
+    "links": {
+      "self": "/v3/plugins/dirigiblelabs/dirigible/latest",
+      "devfile": "/v3/plugins/dirigiblelabs/dirigible/latest/devfile.yaml"
+    },
+    "name": "dirigible",
+    "publisher": "dirigiblelabs",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "donjayamanne/githistory/latest",
+    "description": "View git log, file history, compare branches or commits",
+    "displayName": "Git History",
+    "links": {
+      "self": "/v3/plugins/donjayamanne/githistory/latest",
+      "plugin": "/v3/plugins/donjayamanne/githistory/latest/che-theia-plugin.yaml"
+    },
+    "name": "githistory",
+    "publisher": "donjayamanne",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "eamodio/gitlens/latest",
+    "description": "Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more",
+    "displayName": "GitLens — Git supercharged",
+    "links": {
+      "self": "/v3/plugins/eamodio/gitlens/latest",
+      "plugin": "/v3/plugins/eamodio/gitlens/latest/che-theia-plugin.yaml"
+    },
+    "name": "gitlens",
+    "publisher": "eamodio",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "eamodio/vscode-gitlens/latest",
+    "description": "Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more",
+    "displayName": "GitLens — Git supercharged",
+    "links": {
+      "self": "/v3/plugins/eamodio/vscode-gitlens/latest",
+      "plugin": "/v3/plugins/eamodio/vscode-gitlens/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-gitlens",
+    "publisher": "eamodio",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "eclipse-cdt/cdt-vscode/latest",
+    "description": "CDT VS Code Extension for C/C++ Developers",
+    "displayName": "CDT VS Code Extension for C/C++ Developers",
+    "links": {
+      "self": "/v3/plugins/eclipse-cdt/cdt-vscode/latest",
+      "plugin": "/v3/plugins/eclipse-cdt/cdt-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "cdt-vscode",
+    "publisher": "eclipse-cdt",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "eclipse/che-async-pv-plugin/latest",
+    "description": "Che Plug-in with service to provide abilty for backup/restore project source from async storage",
+    "displayName": "Che Async Storage Service",
+    "links": {
+      "self": "/v3/plugins/eclipse/che-async-pv-plugin/latest",
+      "devfile": "/v3/plugins/eclipse/che-async-pv-plugin/latest/devfile.yaml"
+    },
+    "name": "che-async-pv-plugin",
+    "publisher": "eclipse",
+    "type": "Che Plugin",
+    "version": "latest"
+  },
+  {
+    "id": "eclipse/che-async-pv-plugin/nightly",
+    "description": "Che Plug-in with service to provide abilty for backup/restore project source from async storage",
+    "displayName": "Che Async Storage Service",
+    "links": {
+      "self": "/v3/plugins/eclipse/che-async-pv-plugin/nightly",
+      "devfile": "/v3/plugins/eclipse/che-async-pv-plugin/nightly/devfile.yaml"
+    },
+    "name": "che-async-pv-plugin",
+    "publisher": "eclipse",
+    "type": "Che Plugin",
+    "version": "nightly"
+  },
+  {
+    "id": "eclipse/che-theia/latest",
+    "description": "Eclipse Theia",
+    "displayName": "theia-ide",
+    "links": {
+      "self": "/v3/plugins/eclipse/che-theia/latest",
+      "devfile": "/v3/plugins/eclipse/che-theia/latest/devfile.yaml"
+    },
+    "name": "che-theia",
+    "publisher": "eclipse",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "eclipse/che-theia/next",
+    "description": "Eclipse Theia, get the latest release each day.",
+    "displayName": "theia-ide",
+    "links": {
+      "self": "/v3/plugins/eclipse/che-theia/next",
+      "devfile": "/v3/plugins/eclipse/che-theia/next/devfile.yaml"
+    },
+    "name": "che-theia",
+    "publisher": "eclipse",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
+    "id": "errata-ai/vale-server/latest",
+    "description": "The official Visual Studio Code extension for Vale and Vale Server.",
+    "displayName": "Vale",
+    "links": {
+      "self": "/v3/plugins/errata-ai/vale-server/latest",
+      "plugin": "/v3/plugins/errata-ai/vale-server/latest/che-theia-plugin.yaml"
+    },
+    "name": "vale-server",
+    "publisher": "errata-ai",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "esbenp/prettier-vscode/latest",
+    "description": "Code formatter using prettier",
+    "displayName": "Prettier - Code formatter",
+    "links": {
+      "self": "/v3/plugins/esbenp/prettier-vscode/latest",
+      "plugin": "/v3/plugins/esbenp/prettier-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "prettier-vscode",
+    "publisher": "esbenp",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "fbaligand/vscode-logstash-editor/latest",
+    "description": "Provide completion, documentation and auto-formatting for Logstash pipeline configuration files and Elasticsearch index template json files",
+    "displayName": "Logstash Editor",
+    "links": {
+      "self": "/v3/plugins/fbaligand/vscode-logstash-editor/latest",
+      "plugin": "/v3/plugins/fbaligand/vscode-logstash-editor/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-logstash-editor",
+    "publisher": "fbaligand",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "felixfbecker/php-debug/latest",
+    "description": "Debug support for PHP with XDebug",
+    "displayName": "PHP Debug",
+    "links": {
+      "self": "/v3/plugins/felixfbecker/php-debug/latest",
+      "plugin": "/v3/plugins/felixfbecker/php-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "php-debug",
+    "publisher": "felixfbecker",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "felixfbecker/vscode-php-debug/latest",
+    "description": "Debug support for PHP with XDebug",
+    "displayName": "PHP Debug",
+    "links": {
+      "self": "/v3/plugins/felixfbecker/vscode-php-debug/latest",
+      "plugin": "/v3/plugins/felixfbecker/vscode-php-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-php-debug",
+    "publisher": "felixfbecker",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "gattytto/dart-code/latest",
+    "description": "Dart language support and debugger for Visual Studio Code.",
+    "displayName": "Dart",
+    "links": {
+      "self": "/v3/plugins/gattytto/dart-code/latest",
+      "plugin": "/v3/plugins/gattytto/dart-code/latest/che-theia-plugin.yaml"
+    },
+    "name": "dart-code",
+    "publisher": "gattytto",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "github/vscode-pull-request-github/latest",
+    "description": "Pull Request and Issue Provider for GitHub",
+    "displayName": "GitHub Pull Requests and Issues",
+    "links": {
+      "self": "/v3/plugins/github/vscode-pull-request-github/latest",
+      "plugin": "/v3/plugins/github/vscode-pull-request-github/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-pull-request-github",
+    "publisher": "github",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "golang/go/latest",
+    "description": "Rich Go language support for Visual Studio Code",
+    "displayName": "Go",
+    "links": {
+      "self": "/v3/plugins/golang/go/latest",
+      "plugin": "/v3/plugins/golang/go/latest/che-theia-plugin.yaml"
+    },
+    "name": "go",
+    "publisher": "golang",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "jebbs/plantuml/latest",
+    "description": "Rich PlantUML support for Visual Studio Code.",
+    "displayName": "PlantUML",
+    "links": {
+      "self": "/v3/plugins/jebbs/plantuml/latest",
+      "plugin": "/v3/plugins/jebbs/plantuml/latest/che-theia-plugin.yaml"
+    },
+    "name": "plantuml",
+    "publisher": "jebbs",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "joaompinto/asciidoctor-vscode/latest",
+    "description": "Provides rich language support for AsciiDoc.",
+    "displayName": "AsciiDoc",
+    "links": {
+      "self": "/v3/plugins/joaompinto/asciidoctor-vscode/latest",
+      "plugin": "/v3/plugins/joaompinto/asciidoctor-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "asciidoctor-vscode",
+    "publisher": "joaompinto",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "lfs/vscode-emacs-friendly/latest",
+    "description": "Emacs keybindings and selection, friendly interaction with the system clipboard.",
+    "displayName": "Emacs Friendly Keymap",
+    "links": {
+      "self": "/v3/plugins/lfs/vscode-emacs-friendly/latest",
+      "plugin": "/v3/plugins/lfs/vscode-emacs-friendly/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-emacs-friendly",
+    "publisher": "lfs",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "mads-hartmann/bash-ide-vscode/latest",
+    "description": "A language server for Bash",
+    "displayName": "Bash IDE",
+    "links": {
+      "self": "/v3/plugins/mads-hartmann/bash-ide-vscode/latest",
+      "plugin": "/v3/plugins/mads-hartmann/bash-ide-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "bash-ide-vscode",
+    "publisher": "mads-hartmann",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "mads-hartmann/bash-ide/latest",
+    "description": "A language server for Bash",
+    "displayName": "Bash IDE",
+    "links": {
+      "self": "/v3/plugins/mads-hartmann/bash-ide/latest",
+      "plugin": "/v3/plugins/mads-hartmann/bash-ide/latest/che-theia-plugin.yaml"
+    },
+    "name": "bash-ide",
+    "publisher": "mads-hartmann",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "microprofile-community/mp-starter-vscode-ext/latest",
+    "description": "VS Code extension starter for Eclipse MicroProfile",
+    "displayName": "MicroProfile Starter",
+    "links": {
+      "self": "/v3/plugins/microprofile-community/mp-starter-vscode-ext/latest",
+      "plugin": "/v3/plugins/microprofile-community/mp-starter-vscode-ext/latest/che-theia-plugin.yaml"
+    },
+    "name": "mp-starter-vscode-ext",
+    "publisher": "microprofile-community",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "microshed/mp-starter-vscode-ext/latest",
+    "description": "VS Code extension starter for Eclipse MicroProfile",
+    "displayName": "MicroProfile Starter",
+    "links": {
+      "self": "/v3/plugins/microshed/mp-starter-vscode-ext/latest",
+      "plugin": "/v3/plugins/microshed/mp-starter-vscode-ext/latest/che-theia-plugin.yaml"
+    },
+    "name": "mp-starter-vscode-ext",
+    "publisher": "microshed",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "moby/buildkit/latest",
+    "description": "Container to build docker images with buildkit",
+    "displayName": "Buildkit Base Dev Plugin",
+    "links": {
+      "self": "/v3/plugins/moby/buildkit/latest",
+      "devfile": "/v3/plugins/moby/buildkit/latest/devfile.yaml"
+    },
+    "name": "buildkit",
+    "publisher": "moby",
+    "type": "Che Plugin",
+    "version": "latest"
+  },
+  {
+    "id": "ms-kubernetes-tools/vscode-kubernetes-tools/latest",
+    "description": "Develop, deploy and debug Kubernetes applications",
+    "displayName": "Kubernetes",
+    "links": {
+      "self": "/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/latest",
+      "plugin": "/v3/plugins/ms-kubernetes-tools/vscode-kubernetes-tools/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-kubernetes-tools",
+    "publisher": "ms-kubernetes-tools",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ms-python/python/latest",
+    "description": "Linting, Debugging (multi-threaded, remote), Intellisense, Jupyter Notebooks, code formatting, refactoring, unit tests, snippets, and more.",
+    "displayName": "Python",
+    "links": {
+      "self": "/v3/plugins/ms-python/python/latest",
+      "plugin": "/v3/plugins/ms-python/python/latest/che-theia-plugin.yaml"
+    },
+    "name": "python",
+    "publisher": "ms-python",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ms-vscode/node-debug/latest",
+    "description": "Node.js debugging support (versions < 8.0)",
+    "displayName": "Node Debug (legacy)",
+    "links": {
+      "self": "/v3/plugins/ms-vscode/node-debug/latest",
+      "plugin": "/v3/plugins/ms-vscode/node-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "node-debug",
+    "publisher": "ms-vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ms-vscode/node-debug2/latest",
+    "description": "Node.js debugging support",
+    "displayName": "Node Debug",
+    "links": {
+      "self": "/v3/plugins/ms-vscode/node-debug2/latest",
+      "plugin": "/v3/plugins/ms-vscode/node-debug2/latest/che-theia-plugin.yaml"
+    },
+    "name": "node-debug2",
+    "publisher": "ms-vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ms-vscode/vscode-github-pullrequest/latest",
+    "description": "Pull Request and Issue Provider for GitHub",
+    "displayName": "GitHub Pull Requests and Issues",
+    "links": {
+      "self": "/v3/plugins/ms-vscode/vscode-github-pullrequest/latest",
+      "plugin": "/v3/plugins/ms-vscode/vscode-github-pullrequest/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-github-pullrequest",
+    "publisher": "ms-vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "octref/vetur/latest",
+    "description": "Vue tooling for VS Code",
+    "displayName": "Vetur",
+    "links": {
+      "self": "/v3/plugins/octref/vetur/latest",
+      "plugin": "/v3/plugins/octref/vetur/latest/che-theia-plugin.yaml"
+    },
+    "name": "vetur",
+    "publisher": "octref",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "pizzafactory/vscode-libra-move/latest",
+    "description": "Libra Move language (syntax highlighting, snippets) for Visual Studio Code",
+    "displayName": "Libra Move Language VSCode",
+    "links": {
+      "self": "/v3/plugins/pizzafactory/vscode-libra-move/latest",
+      "plugin": "/v3/plugins/pizzafactory/vscode-libra-move/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-libra-move",
+    "publisher": "pizzafactory",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "pizzafactory/xtend-lang/latest",
+    "description": "Xtend Programming Language",
+    "displayName": "Xtend",
+    "links": {
+      "self": "/v3/plugins/pizzafactory/xtend-lang/latest",
+      "plugin": "/v3/plugins/pizzafactory/xtend-lang/latest/che-theia-plugin.yaml"
+    },
+    "name": "xtend-lang",
+    "publisher": "pizzafactory",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "pizzafactory/xtext-lang/latest",
+    "description": "Xtext Grammar Specification Language",
+    "displayName": "Xtext Language",
+    "links": {
+      "self": "/v3/plugins/pizzafactory/xtext-lang/latest",
+      "plugin": "/v3/plugins/pizzafactory/xtext-lang/latest/che-theia-plugin.yaml"
+    },
+    "name": "xtext-lang",
+    "publisher": "pizzafactory",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "randomchance/logstash/latest",
+    "description": "Adds syntax highlighting for logstash configuration files.",
+    "displayName": "Logstash Configuration Syntax / Language Support",
+    "links": {
+      "self": "/v3/plugins/randomchance/logstash/latest",
+      "plugin": "/v3/plugins/randomchance/logstash/latest/che-theia-plugin.yaml"
+    },
+    "name": "logstash",
+    "publisher": "randomchance",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat-developer/che-omnisharp-plugin/latest",
+    "description": "omnisharp-theia-plugin",
+    "displayName": "omnisharp-theia-plugin",
+    "links": {
+      "self": "/v3/plugins/redhat-developer/che-omnisharp-plugin/latest",
+      "plugin": "/v3/plugins/redhat-developer/che-omnisharp-plugin/latest/che-theia-plugin.yaml"
+    },
+    "name": "che-omnisharp-plugin",
+    "publisher": "redhat-developer",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat-developer/netcoredbg-theia-plugin/latest",
+    "description": "netcoredbg-theia-plugin",
+    "displayName": "netcoredbg-theia-plugin",
+    "links": {
+      "self": "/v3/plugins/redhat-developer/netcoredbg-theia-plugin/latest",
+      "plugin": "/v3/plugins/redhat-developer/netcoredbg-theia-plugin/latest/che-theia-plugin.yaml"
+    },
+    "name": "netcoredbg-theia-plugin",
+    "publisher": "redhat-developer",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/dependency-analytics/latest",
+    "description": "Insights about your application dependencies: Security, License compatibility and AI based guidance to choose appropriate dependencies for your application.",
+    "displayName": "Dependency Analytics",
+    "links": {
+      "self": "/v3/plugins/redhat/dependency-analytics/latest",
+      "plugin": "/v3/plugins/redhat/dependency-analytics/latest/che-theia-plugin.yaml"
+    },
+    "name": "dependency-analytics",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/fabric8-analytics/latest",
+    "description": "Insights about your application dependencies: Security, License compatibility and AI based guidance to choose appropriate dependencies for your application.",
+    "displayName": "Dependency Analytics",
+    "links": {
+      "self": "/v3/plugins/redhat/fabric8-analytics/latest",
+      "plugin": "/v3/plugins/redhat/fabric8-analytics/latest/che-theia-plugin.yaml"
+    },
+    "name": "fabric8-analytics",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/java/latest",
+    "description": "Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...",
+    "displayName": "Language Support for Java(TM) by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/java/latest",
+      "plugin": "/v3/plugins/redhat/java/latest/che-theia-plugin.yaml"
+    },
+    "name": "java",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/java11/latest",
+    "description": "Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...",
+    "displayName": "Language Support for Java(TM) by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/java11/latest",
+      "plugin": "/v3/plugins/redhat/java11/latest/che-theia-plugin.yaml"
+    },
+    "name": "java11",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/java8/latest",
+    "description": "Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...",
+    "displayName": "Language Support for Java(TM) by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/java8/latest",
+      "plugin": "/v3/plugins/redhat/java8/latest/che-theia-plugin.yaml"
+    },
+    "name": "java8",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/mta-vscode-extension/latest",
+    "description": "Migration Toolkit for Applications (MTA)",
+    "displayName": "Migration Toolkit for Applications",
+    "links": {
+      "self": "/v3/plugins/redhat/mta-vscode-extension/latest",
+      "plugin": "/v3/plugins/redhat/mta-vscode-extension/latest/che-theia-plugin.yaml"
+    },
+    "name": "mta-vscode-extension",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/mta/latest",
+    "description": "Migration Toolkit for Applications (MTA)",
+    "displayName": "Migration Toolkit for Applications",
+    "links": {
+      "self": "/v3/plugins/redhat/mta/latest",
+      "plugin": "/v3/plugins/redhat/mta/latest/che-theia-plugin.yaml"
+    },
+    "name": "mta",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/php-debugger/latest",
+    "description": "Debug support for PHP with XDebug",
+    "displayName": "PHP Debug",
+    "links": {
+      "self": "/v3/plugins/redhat/php-debugger/latest",
+      "plugin": "/v3/plugins/redhat/php-debugger/latest/che-theia-plugin.yaml"
+    },
+    "name": "php-debugger",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/project-initializer/latest",
+    "description": "A lightweight extension based on Red Hat launcher to generate quickstart projects using VSCode",
+    "displayName": "Project Initializer by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/project-initializer/latest",
+      "plugin": "/v3/plugins/redhat/project-initializer/latest/che-theia-plugin.yaml"
+    },
+    "name": "project-initializer",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/quarkus-java11/latest",
+    "description": "Quarkus Tools for Visual Studio Code",
+    "displayName": "Quarkus",
+    "links": {
+      "self": "/v3/plugins/redhat/quarkus-java11/latest",
+      "plugin": "/v3/plugins/redhat/quarkus-java11/latest/che-theia-plugin.yaml"
+    },
+    "name": "quarkus-java11",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/quarkus-java8/latest",
+    "description": "Quarkus Tools for Visual Studio Code",
+    "displayName": "Quarkus",
+    "links": {
+      "self": "/v3/plugins/redhat/quarkus-java8/latest",
+      "plugin": "/v3/plugins/redhat/quarkus-java8/latest/che-theia-plugin.yaml"
+    },
+    "name": "quarkus-java8",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-apache-camel/latest",
+    "description": "Provides completion and documentation features for Apache Camel URI elements in XML DSL.",
+    "displayName": "Language Support for Apache Camel by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-apache-camel/latest",
+      "plugin": "/v3/plugins/redhat/vscode-apache-camel/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-apache-camel",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-camelk/latest",
+    "description": "VS Code support for Apache Camel K functionality",
+    "displayName": "Tooling for Apache Camel K by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-camelk/latest",
+      "plugin": "/v3/plugins/redhat/vscode-camelk/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-camelk",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-commons/latest",
+    "description": "Base utilities for Red Hat extensions. Notably controls telemetry settings.",
+    "displayName": "Red Hat Commons",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-commons/latest",
+      "plugin": "/v3/plugins/redhat/vscode-commons/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-commons",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-didact/latest",
+    "description": "Didact Tutorial Tools for Visual Studio Code",
+    "displayName": "Didact",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-didact/latest",
+      "plugin": "/v3/plugins/redhat/vscode-didact/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-didact",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-microprofile/latest",
+    "description": "Language Support for Eclipse MicroProfile",
+    "displayName": "Tools for MicroProfile",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-microprofile/latest",
+      "plugin": "/v3/plugins/redhat/vscode-microprofile/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-microprofile",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-openshift-connector/latest",
+    "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Visual Studio Code",
+    "displayName": "OpenShift Connector",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-openshift-connector/latest",
+      "plugin": "/v3/plugins/redhat/vscode-openshift-connector/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-openshift-connector",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-quarkus/latest",
+    "description": "Quarkus Tools for Visual Studio Code",
+    "displayName": "Quarkus",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-quarkus/latest",
+      "plugin": "/v3/plugins/redhat/vscode-quarkus/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-quarkus",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-tekton-pipelines/latest",
+    "description": "Tekton Pipelines extension by Red Hat",
+    "displayName": "Tekton Pipelines",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-tekton-pipelines/latest",
+      "plugin": "/v3/plugins/redhat/vscode-tekton-pipelines/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-tekton-pipelines",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-tekton/latest",
+    "description": "Tekton Pipelines extension by Red Hat",
+    "displayName": "Tekton Pipelines",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-tekton/latest",
+      "plugin": "/v3/plugins/redhat/vscode-tekton/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-tekton",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-wsdl2rest/latest",
+    "description": "A VS Code extension supporting wsdl2rest via Camel Rest DSL",
+    "displayName": "wsdl2rest by Red Hat",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-wsdl2rest/latest",
+      "plugin": "/v3/plugins/redhat/vscode-wsdl2rest/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-wsdl2rest",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-xml/latest",
+    "description": "XML Language Support by Red Hat",
+    "displayName": "XML",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-xml/latest",
+      "plugin": "/v3/plugins/redhat/vscode-xml/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-xml",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "redhat/vscode-yaml/latest",
+    "description": "YAML Language Support by Red Hat, with built-in Kubernetes syntax support",
+    "displayName": "YAML",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-yaml/latest",
+      "plugin": "/v3/plugins/redhat/vscode-yaml/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-yaml",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "rogalmic/bash-debug/latest",
+    "description": "A debugger extension for bash scripts (using bashdb).",
+    "displayName": "Bash Debug",
+    "links": {
+      "self": "/v3/plugins/rogalmic/bash-debug/latest",
+      "plugin": "/v3/plugins/rogalmic/bash-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "bash-debug",
+    "publisher": "rogalmic",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "rust-lang/rust/latest",
+    "description": "Rust for Visual Studio Code (powered by Rust Language Server/Rust Analyzer). Provides lints, code completion and navigation, formatting and more.",
+    "displayName": "Rust",
+    "links": {
+      "self": "/v3/plugins/rust-lang/rust/latest",
+      "plugin": "/v3/plugins/rust-lang/rust/latest/che-theia-plugin.yaml"
+    },
+    "name": "rust",
+    "publisher": "rust-lang",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "scalameta/metals/latest",
+    "description": "Scala language server with rich IDE features",
+    "displayName": "Scala (Metals)",
+    "links": {
+      "self": "/v3/plugins/scalameta/metals/latest",
+      "plugin": "/v3/plugins/scalameta/metals/latest/che-theia-plugin.yaml"
+    },
+    "name": "metals",
+    "publisher": "scalameta",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "sdkbox/vscode-libra-move/latest",
+    "description": "Libra Move language (syntax highlighting, snippets) for Visual Studio Code",
+    "displayName": "Libra Move Language VSCode",
+    "links": {
+      "self": "/v3/plugins/sdkbox/vscode-libra-move/latest",
+      "plugin": "/v3/plugins/sdkbox/vscode-libra-move/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-libra-move",
+    "publisher": "sdkbox",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "sonarsource/sonarlint-vscode/latest",
+    "description": "SonarLint is an IDE extension that helps you detect and fix quality issues as you write code in JavaScript, TypeScript, Python, Java, HTML and PHP.",
+    "displayName": "SonarLint",
+    "links": {
+      "self": "/v3/plugins/sonarsource/sonarlint-vscode/latest",
+      "plugin": "/v3/plugins/sonarsource/sonarlint-vscode/latest/che-theia-plugin.yaml"
+    },
+    "name": "sonarlint-vscode",
+    "publisher": "sonarsource",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "timonwong/shellcheck/latest",
+    "description": "Integrates ShellCheck into VS Code, a linter for Shell scripts.",
+    "displayName": "ShellCheck",
+    "links": {
+      "self": "/v3/plugins/timonwong/shellcheck/latest",
+      "plugin": "/v3/plugins/timonwong/shellcheck/latest/che-theia-plugin.yaml"
+    },
+    "name": "shellcheck",
+    "publisher": "timonwong",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "vscode/typescript-language-features/latest",
+    "description": "Provides rich language support for JavaScript and TypeScript.",
+    "displayName": "TypeScript and JavaScript Language Features (built-in)",
+    "links": {
+      "self": "/v3/plugins/vscode/typescript-language-features/latest",
+      "plugin": "/v3/plugins/vscode/typescript-language-features/latest/che-theia-plugin.yaml"
+    },
+    "name": "typescript-language-features",
+    "publisher": "vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "vscodevim/vim/latest",
+    "description": "Vim emulation for Visual Studio Code",
+    "displayName": "Vim",
+    "links": {
+      "self": "/v3/plugins/vscodevim/vim/latest",
+      "plugin": "/v3/plugins/vscodevim/vim/latest/che-theia-plugin.yaml"
+    },
+    "name": "vim",
+    "publisher": "vscodevim",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "vuejs/vetur/latest",
+    "description": "Vue tooling for VS Code",
+    "displayName": "Vetur",
+    "links": {
+      "self": "/v3/plugins/vuejs/vetur/latest",
+      "plugin": "/v3/plugins/vuejs/vetur/latest/che-theia-plugin.yaml"
+    },
+    "name": "vetur",
+    "publisher": "vuejs",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ws-skeleton/eclipseide/latest",
+    "description": "Eclipse running on the Web with Broadway",
+    "displayName": "Eclipse IDE",
+    "links": {
+      "self": "/v3/plugins/ws-skeleton/eclipseide/latest",
+      "devfile": "/v3/plugins/ws-skeleton/eclipseide/latest/devfile.yaml"
+    },
+    "name": "eclipseide",
+    "publisher": "ws-skeleton",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "ws-skeleton/jupyter/latest",
+    "description": "Jupyter Notebook as Editor for Eclipse Che",
+    "displayName": "Jupyter Notebook",
+    "links": {
+      "self": "/v3/plugins/ws-skeleton/jupyter/latest",
+      "devfile": "/v3/plugins/ws-skeleton/jupyter/latest/devfile.yaml"
+    },
+    "name": "jupyter",
+    "publisher": "ws-skeleton",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "zowe/vscode-extension-for-zowe/latest",
+    "description": "VS Code extension, powered by Zowe CLI, that streamlines interaction with mainframe data sets, USS files, and jobs",
+    "displayName": "Zowe Explorer",
+    "links": {
+      "self": "/v3/plugins/zowe/vscode-extension-for-zowe/latest",
+      "plugin": "/v3/plugins/zowe/vscode-extension-for-zowe/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-extension-for-zowe",
+    "publisher": "zowe",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "zxh404/protobuf/latest",
+    "description": "Protobuf 3 support for Visual Studio Code",
+    "displayName": "vscode-proto3",
+    "links": {
+      "self": "/v3/plugins/zxh404/protobuf/latest",
+      "plugin": "/v3/plugins/zxh404/protobuf/latest/che-theia-plugin.yaml"
+    },
+    "name": "protobuf",
+    "publisher": "zxh404",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "zxh404/vscode-proto3/latest",
+    "description": "Protobuf 3 support for Visual Studio Code",
+    "displayName": "vscode-proto3",
+    "links": {
+      "self": "/v3/plugins/zxh404/vscode-proto3/latest",
+      "plugin": "/v3/plugins/zxh404/vscode-proto3/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-proto3",
+    "publisher": "zxh404",
+    "type": "VS Code extension",
+    "version": "latest"
+  }
+]
