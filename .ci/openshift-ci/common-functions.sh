@@ -26,8 +26,6 @@ export TEST_CONTAINER_NAME="plugins-test"
 export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 export TESTS_STATUS=()
 export TEST_RESULT="PASSED"
-export GIT_USERNAME="Y2hlcHVsbHJlcTQK"
-export GIT_PASSWORD="Q2hlTWFpbjIwMTcK"
 
 # turn off telemetry
 mkdir -p "${HOME}"/.config/chectl
@@ -97,8 +95,6 @@ patchTestPodConfig(){
   sed -i "s@TEST_USERSTORY@${TEST_USERSTORY}@g" plugins-test-pod.yaml
   sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
   sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
-  sed -i "s@GIT_USERNAME@${GIT_USERNAME}@g" plugins-test-pod.yaml
-  sed -i "s@GIT_PASSWORD@${GIT_PASSWORD}@g" plugins-test-pod.yaml
 }
 
 downloadTestResults() {
