@@ -96,6 +96,7 @@ patchTestPodConfig(){
   sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" plugins-test-pod.yaml
   sed -i "s@TEST_USERSTORY@${TEST_USERSTORY}@g" plugins-test-pod.yaml
   sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
+  sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
   sed -i "s@GIT_USERNAME@${GIT_USERNAME}@g" plugins-test-pod.yaml
   sed -i "s@GIT_PASSWORD@${GIT_PASSWORD}@g" plugins-test-pod.yaml
 }
