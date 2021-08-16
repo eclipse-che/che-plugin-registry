@@ -24,6 +24,12 @@ jobs:
   release-build-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: 'setup nodejs'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@eclipse-che'
       - name: Clone source code
         uses: actions/checkout@v2
         with:
@@ -114,10 +120,10 @@ jobs:
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
-          echo "{\"text\":\":no_entry_sign: Che Plugin Registry ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml\"}" > mattermost.json
+          echo "{\"text\":\":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml\"}" > mattermost.json
       - name: Create success MM message
         run: |
-          echo "{\"text\":\":white_check_mark: Che Plugin Registry ${{ github.event.inputs.version }} has been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}\"}" > mattermost.json
+          echo "{\"text\":\":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}\"}" > mattermost.json
       - name: Send MM message
         if: ${{ success() }} || ${{ failure() }}
         uses: mattermost/action-mattermost-notify@1.1.0
