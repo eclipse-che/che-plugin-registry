@@ -44,7 +44,11 @@ spec:
         - name: TS_SELENIUM_VALUE_TLS_SUPPORT
           value: 'true'
         - name: TS_SELENIUM_W3C_CHROME_OPTION
-          value: 'true'          
+          value: 'true'
+        - name: TS_GITHUB_USERNAME
+          value: GIT_USERNAME
+        - name: TS_GITHUB_PASSWORD
+          value: GIT_PASSWORD
       volumeMounts:
         - name: test-run-results
           mountPath: /tmp/e2e/report/

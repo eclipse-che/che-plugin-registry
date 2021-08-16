@@ -24,7 +24,19 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source "${SCRIPT_DIR}"/common-functions.sh
 
 runTests() {
+  runTest "InstallPluginUsingUI" "install-plugin-test"
   runTest "JavaPlugin" "java11-plugin-test"
+  runTest "PhpPlugin" "php-plugin-test"
+  runTest "PythonPlugin" "python-plugin-test"
+  runTest "TypescriptPlugin" "typescript-debug-plugins"
+  runTest "VscodeKubernetesPlugin" "nodejs-24lop"
+  runTest "VscodeShellcheckPlugin" "nodejs-zmecm"
+  runTest "VscodeValePlugin" "che-docs-test"
+  runTest "VscodeXmlPlugin" "xml-plugin-test"
+  runTest "VscodeYamlPlugin" "nodejs-zmecm"
+  runTest "GitHubPullRequestPlugin" "github-pr-plugin"
+
+  # runTest "JavaPlugin" "java11-plugin-test"
   
   # Disabled because of known bug https://github.com/eclipse/che/issues/20075
   # runTest "TypescriptPlugin" "typescript-debug-plugins"

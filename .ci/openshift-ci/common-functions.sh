@@ -26,6 +26,8 @@ export TEST_CONTAINER_NAME="plugins-test"
 export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
 export TESTS_STATUS=()
 export TEST_RESULT="PASSED"
+export GIT_USERNAME="Y2hlcHVsbHJlcTQK"
+export GIT_PASSWORD="Q2hlTWFpbjIwMTcK"
 
 # turn off telemetry
 mkdir -p "${HOME}"/.config/chectl
@@ -82,18 +84,20 @@ patchTestPodConfig(){
   TEST_USERSTORY="$1"
   TEST_POD_NAME="$2"
   E2E_OPENSHIFT_TOKEN="$(oc whoami -t)"
-
+  GIT_USERNAME=$(echo ${GIT_USERNAME} | base64 --decode)
+  GIT_PASSWORD=$(echo ${GIT_PASSWORD} | base64 --decode)
+  
   # obtain the basic test pod config
   cat .ci/openshift-ci/plugins-test-pod.yaml > plugins-test-pod.yaml
 
   # Patch the basic test pod config
+  
   ECLIPSE_CHE_URL=https://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')
   sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" plugins-test-pod.yaml
   sed -i "s@TEST_USERSTORY@${TEST_USERSTORY}@g" plugins-test-pod.yaml
   sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
-  sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
-
-  cat plugins-test-pod.yaml
+  sed -i "s@GIT_USERNAME@${GIT_USERNAME}@g" plugins-test-pod.yaml
+  sed -i "s@GIT_PASSWORD@${GIT_PASSWORD}@g" plugins-test-pod.yaml
 }
 
 downloadTestResults() {
