@@ -10,7 +10,6 @@
 
 import * as fs from 'fs-extra';
 import * as handlerbars from 'handlebars';
-import * as jsyaml from 'js-yaml';
 import * as moment from 'moment';
 import * as path from 'path';
 import * as semver from 'semver';

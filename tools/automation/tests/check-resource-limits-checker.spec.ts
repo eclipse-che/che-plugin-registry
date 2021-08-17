@@ -1,0 +1,151 @@
+/**********************************************************************
+ * Copyright (c) 2020-2021 Red Hat, Inc.
+ *
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ ***********************************************************************/
+
+import * as path from 'path';
+import * as fs from 'fs-extra';
+
+jest.mock('fs-extra');
+
+import { CheTheiaPlugin } from '../src/che-theia-plugins';
+import { cpuRegex, memoryRegex, ResourceLimitsChecker } from '../src/resource-limits-checker';
+
+describe('Resource Limits Checker Test', () => {
+  test('CPU regex :: test [100]', async () => {
+    const result = '100'.match(cpuRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('CPU regex :: test [1.5]', async () => {
+    const result = '1.5'.match(cpuRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('CPU regex :: test [100.]', async () => {
+    const result = '100.'.match(cpuRegex);
+    expect(result).toBe(null);
+  });
+
+  test('CPU regex :: test [100m]', async () => {
+    const result = '100m'.match(cpuRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('CPU regex :: test [10.0m]', async () => {
+    const result = '10.0m'.match(cpuRegex);
+    expect(result).toBe(null);
+  });
+
+  test('CPU regex :: test [m]', async () => {
+    const result = 'm'.match(cpuRegex);
+    expect(result).toBe(null);
+  });
+
+  test('Memory regex :: test [100]', async () => {
+    const result = '100'.match(memoryRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('Memory regex :: test [1.5]', async () => {
+    const result = '1.5'.match(memoryRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('Memory regex :: test [1.]', async () => {
+    const result = '1.'.match(memoryRegex);
+    expect(result).toBe(null);
+  });
+
+  test('Memory regex :: test [100M]', async () => {
+    const result = '100M'.match(memoryRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('Memory regex :: test [100m]', async () => {
+    const result = '100m'.match(memoryRegex);
+    expect(result).toBe(null);
+  });
+
+  test('Memory regex :: test [M]', async () => {
+    const result = 'M'.match(memoryRegex);
+    expect(result).toBe(null);
+  });
+
+  test('Memory regex :: test [1.5M]', async () => {
+    const result = '1.5M'.match(memoryRegex);
+    expect(result).toBeDefined();
+  });
+
+  test('Memory regex :: test [15.M]', async () => {
+    const result = '15.M'.match(memoryRegex);
+    expect(result).toBe(null);
+  });
+
+  test('Resource Limits Checker :: valid plugin', async () => {
+    const checker = new ResourceLimitsChecker();
+
+    const plugin: CheTheiaPlugin = {
+      repository: {
+        url: 'https://github.com/...',
+        revision: 'main',
+      },
+      sidecar: {
+        memoryLimit: '100M',
+        memoryRequest: '10M',
+        cpuLimit: '0.5',
+        cpuRequest: '100m',
+      },
+    };
+
+    const result = checker.validate(plugin);
+    expect(result).toStrictEqual({
+      invalid: undefined,
+      missing: undefined,
+    });
+  });
+
+  test('Resource Limits Checker :: missing memoryRequest and cpuRequest, invalid memoryLimit', async () => {
+    const checker = new ResourceLimitsChecker();
+
+    const plugin: CheTheiaPlugin = {
+      repository: {
+        url: 'https://github.com/...',
+        revision: 'main',
+      },
+      sidecar: {
+        memoryLimit: '100 Megabytes',
+        cpuLimit: '0.5',
+      },
+    };
+
+    const result = checker.validate(plugin);
+    expect(result).toStrictEqual({
+      invalid: ['memoryLimit'],
+      missing: ['cpuRequest', 'memoryRequest'],
+    });
+  });
+
+  test('Resource Limits Checker :: all memory and CPU limits/requests are missing', async () => {
+    const checker = new ResourceLimitsChecker();
+
+    const plugin: CheTheiaPlugin = {
+      repository: {
+        url: 'https://github.com/...',
+        revision: 'main',
+      },
+      sidecar: {},
+    };
+
+    const result = checker.validate(plugin);
+    expect(result).toStrictEqual({
+      invalid: undefined,
+      missing: ['cpuLimit', 'cpuRequest', 'memoryLimit', 'memoryRequest'],
+    });
+  });
+});
