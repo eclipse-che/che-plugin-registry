@@ -8,15 +8,17 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
-import * as path from 'path';
 import * as fs from 'fs-extra';
-
-jest.mock('fs-extra');
 
 import { CheTheiaPlugin } from '../src/che-theia-plugins';
 import { cpuRegex, memoryRegex, ResourceLimitsChecker } from '../src/resource-limits-checker';
 
 describe('Resource Limits Checker Test', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+    jest.resetAllMocks();
+  });
+
   test('CPU regex :: test [100]', async () => {
     const result = '100'.match(cpuRegex);
     expect(result).toBeDefined();
@@ -147,5 +149,105 @@ describe('Resource Limits Checker Test', () => {
       invalid: undefined,
       missing: ['cpuLimit', 'cpuRequest', 'memoryLimit', 'memoryRequest'],
     });
+  });
+
+  test('Resource Limits Checker :: test one valid plugin', async () => {
+    const yamlContent = `
+version: 1.0.0
+plugins:
+  - repository:
+      url: 'url1'
+      revision: v1.44.8
+    sidecar:
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+    extension: extension1
+    `;
+
+    const readFile = jest.spyOn(fs, 'readFile') as jest.Mock;
+    readFile.mockReturnValue(yamlContent);
+
+    const checker = new ResourceLimitsChecker();
+
+    const originalFunction = checker['validate'];
+
+    const mockValidate = jest.spyOn(checker, 'validate') as jest.Mock;
+    mockValidate.mockImplementation(plugin => originalFunction(plugin));
+
+    const result = await checker.check();
+
+    expect(mockValidate).toHaveBeenCalledTimes(1);
+    expect(result).toBe(true);
+  });
+
+  test('Resource Limits Checker :: test two plugins with missing cpuRequest and memoryRequest', async () => {
+    const yamlContent = `
+version: 1.0.0
+plugins:
+  - repository:
+      url: 'url1'
+      revision: v1.44.8
+    sidecar:
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+    extension: extension1
+  - repository:
+      url: 'url2'
+      revision: v1.44.8
+    sidecar:
+      memoryLimit: 512Mi
+      cpuLimit: 500m
+    extension: extension2
+    `;
+
+    const readFile = jest.spyOn(fs, 'readFile') as jest.Mock;
+    readFile.mockReturnValue(yamlContent);
+
+    const consoleLog = jest.spyOn(console, 'log') as jest.Mock;
+
+    const checker = new ResourceLimitsChecker();
+
+    const originalFunction = checker['validate'];
+
+    const mockValidate = jest.spyOn(checker, 'validate') as jest.Mock;
+    mockValidate.mockImplementation(plugin => originalFunction(plugin));
+
+    const result = await checker.check();
+
+    expect(mockValidate).toHaveBeenCalledTimes(2);
+    expect(result).toBe(false);
+
+    expect(consoleLog).toHaveBeenCalledTimes(4);
+  });
+
+  test('Resource Limits Checker :: test plugin without extension', async () => {
+    const yamlContent = `
+version: 1.0.0
+plugins:
+  - repository:
+      url: 'url1'
+      revision: v1.44.8
+    `;
+
+    const readFile = jest.spyOn(fs, 'readFile') as jest.Mock;
+    readFile.mockReturnValue(yamlContent);
+
+    const consoleLog = jest.spyOn(console, 'log') as jest.Mock;
+
+    const checker = new ResourceLimitsChecker();
+
+    const originalFunction = checker['validate'];
+
+    const mockValidate = jest.spyOn(checker, 'validate') as jest.Mock;
+    mockValidate.mockImplementation(plugin => originalFunction(plugin));
+
+    const result = await checker.check();
+
+    expect(mockValidate).toHaveBeenCalledTimes(0);
+    expect(result).toBe(false);
+
+    expect(consoleLog).toHaveBeenCalledTimes(1);
   });
 });
