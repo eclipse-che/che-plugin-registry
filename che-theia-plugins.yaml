@@ -752,7 +752,7 @@ plugins:
       volumeMounts:
         - name: solargraph
           path: "/home/theia/.solargraph"
-    extension: https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix
+    extension: https://open-vsx.org/api/castwide/solargraph/0.23.0/file/castwide.solargraph-0.23.0.vsix
   - repository:
       url: 'https://github.com/zowe/vscode-extension-for-zowe'
       revision: v1.16.0
