@@ -1,0 +1,23 @@
+apiVersion: v2
+publisher: rust-lang
+name: rust
+version: latest
+type: VS Code extension
+displayName: Rust
+title: Rust
+description: 'Rust for Visual Studio Code (powered by Rust Language Server/Rust Analyzer). Provides lints, code completion and navigation, formatting and more.'
+icon: /images/rust-lang-rust-icon.png
+category: Programming Languages
+repository: 'https://github.com/rust-lang/rls-vscode'
+firstPublicationDate: '2020-05-13'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:e374ec367447afea9b12f5a8f6690a6f993526408a3731f522a53e5d0bfc287f'
+      name: vscode-rust
+      memoryLimit: 1Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix'

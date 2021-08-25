@@ -1,0 +1,24 @@
+apiVersion: v2
+publisher: ms-vscode
+name: node-debug
+version: latest
+type: VS Code extension
+displayName: Node Debug (legacy)
+title: Node Debug (legacy)
+description: Node.js debugging support (versions < 8.0)
+icon: /images/ms-vscode-node-debug-icon.png
+category: Debuggers
+repository: 'https://github.com/Microsoft/vscode-node-debug.git'
+firstPublicationDate: '2020-08-07'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
+      name: vscode-node-debug
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix'
+    - 'https://open-vsx.org/api/ms-vscode/node-debug2/1.42.5/file/ms-vscode.node-debug2-1.42.5.vsix'

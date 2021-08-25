@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: esbenp
+name: prettier-vscode
+version: latest
+type: VS Code extension
+displayName: Prettier - Code formatter
+title: Prettier - Code formatter
+description: Code formatter using prettier
+icon: /images/esbenp-prettier-vscode-icon.png
+category: Formatters
+repository: 'https://github.com/prettier/prettier-vscode.git'
+firstPublicationDate: '2020-11-20'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix'

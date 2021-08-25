@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: vscodevim
+name: vim
+version: latest
+type: VS Code extension
+displayName: Vim
+title: Vim
+description: Vim emulation for Visual Studio Code
+icon: /images/vscodevim-vim-icon.png
+category: Other
+repository: 'https://github.com/VSCodeVim/Vim.git'
+firstPublicationDate: '2020-07-20'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix'

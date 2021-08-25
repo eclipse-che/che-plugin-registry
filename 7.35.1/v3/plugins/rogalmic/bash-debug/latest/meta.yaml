@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: rogalmic
+name: bash-debug
+version: latest
+type: VS Code extension
+displayName: Bash Debug
+title: Bash Debug
+description: A debugger extension for bash scripts (using bashdb).
+icon: /images/rogalmic-bash-debug-icon.png
+category: Debuggers
+repository: 'https://github.com/rogalmic/vscode-bash-debug.git'
+firstPublicationDate: '2020-06-15'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix'

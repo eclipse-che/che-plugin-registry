@@ -1,0 +1,32 @@
+apiVersion: v2
+publisher: joaompinto
+name: asciidoctor-vscode
+version: latest
+type: VS Code extension
+displayName: AsciiDoc
+title: AsciiDoc
+description: Provides rich language support for AsciiDoc.
+icon: /images/asciidoctor-asciidoctor-vscode-icon.png
+category: Programming Languages
+repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
+firstPublicationDate: '2021-03-09'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: asciidoctor/asciidoctor-vscode/latest
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d'
+      name: asciidoctor-vscode
+      volumes:
+        - name: documents
+          mountPath: /documents
+      memoryLimit: 128Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: CHE_THEIA_SIDECAR_PREFERENCES
+          value: '{"asciidoc.use_asciidoctorpdf":true}'
+  extensions:
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix'

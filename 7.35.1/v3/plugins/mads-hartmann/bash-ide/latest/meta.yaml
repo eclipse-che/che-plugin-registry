@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: mads-hartmann
+name: bash-ide
+version: latest
+type: VS Code extension
+displayName: Bash IDE
+title: Bash IDE
+description: A language server for Bash
+icon: /images/mads-hartmann-bash-ide-vscode-icon.png
+category: Other
+repository: 'https://github.com/bash-lsp/bash-language-server'
+firstPublicationDate: '2020-06-14'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: mads-hartmann/bash-ide-vscode/latest
+spec:
+  extensions:
+    - 'https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix'

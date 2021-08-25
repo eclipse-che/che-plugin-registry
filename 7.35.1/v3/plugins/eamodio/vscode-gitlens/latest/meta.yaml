@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: eamodio
+name: vscode-gitlens
+version: latest
+type: VS Code extension
+displayName: GitLens — Git supercharged
+title: GitLens — Git supercharged
+description: 'Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more'
+icon: /images/eamodio-gitlens-icon.png
+category: Other
+repository: 'https://github.com/eamodio/vscode-gitlens.git'
+firstPublicationDate: '2020-05-26'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: eamodio/gitlens/latest
+spec:
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix'

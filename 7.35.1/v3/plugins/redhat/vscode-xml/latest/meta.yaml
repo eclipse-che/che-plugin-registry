@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-xml
+version: latest
+type: VS Code extension
+displayName: XML
+title: XML
+description: XML Language Support by Red Hat
+icon: /images/redhat-vscode-xml-icon.png
+category: Programming Languages
+repository: 'https://github.com/redhat-developer/vscode-xml'
+firstPublicationDate: '2021-05-20'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
+      name: vscode-xml
+      memoryLimit: 768Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: CHE_THEIA_SIDECAR_PREFERENCES
+          value: '{"xml.server.binary.trustedHashes":["b8e08163ffff7561060e10f142a52655ea1a5d9a"]}'
+  extensions:
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v6619960/vscode-xml-0.16.1.vsix'

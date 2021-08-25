@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: castwide
+name: solargraph
+version: latest
+type: VS Code extension
+displayName: Ruby Solargraph
+title: Ruby Solargraph
+description: 'A Ruby language server featuring code completion, intellisense, and inline documentation'
+icon: /images/castwide-solargraph-icon.png
+category: Programming Languages
+repository: 'https://github.com/castwide/vscode-solargraph'
+firstPublicationDate: '2020-08-15'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:9c57d6fc81a997b0d6e9acc32eb52c9d20d2653048dbae0ee9a9a6e8dceec9d2'
+      name: vscode-ruby
+      volumes:
+        - name: solargraph
+          mountPath: /home/theia/.solargraph
+      memoryLimit: 1500Mi
+      memoryRequest: 20Mi
+      env:
+        - name: CHE_THEIA_SIDECAR_PREFERENCES
+          value: '{"solargraph.bundlerPath":"/usr/local/bin/bundle","solargraph.commandPath":"/usr/local/bundle/bin/solargraph"}'
+  extensions:
+    - 'https://open-vsx.org/api/castwide/solargraph/0.22.0/file/castwide.solargraph-0.22.0.vsix'

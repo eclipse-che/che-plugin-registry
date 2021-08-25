@@ -1,0 +1,23 @@
+apiVersion: v2
+publisher: errata-ai
+name: vale-server
+version: latest
+type: VS Code extension
+displayName: Vale
+title: Vale
+description: The official Visual Studio Code extension for Vale and Vale Server.
+icon: /images/errata-ai-vale-server-icon.png
+category: Linters
+repository: 'https://github.com/errata-ai/vale-vscode.git'
+firstPublicationDate: '2021-03-08'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:2e2b35fb33c78738368427b0b14a4659b6b03113d887472c445ae615d9761d39'
+      name: vscode-vale
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v8130b13/vale-vscode-v0.14.2.vsix'

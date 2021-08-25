@@ -1,0 +1,44 @@
+apiVersion: v2
+publisher: redhat
+name: mta
+version: latest
+type: VS Code extension
+displayName: Migration Toolkit for Applications
+title: Migration Toolkit for Applications
+description: Migration Toolkit for Applications (MTA)
+icon: /images/redhat-mta-vscode-extension-icon.png
+category: Other
+repository: 'https://github.com/windup/rhamt-vscode-extension'
+firstPublicationDate: '2021-02-16'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/mta-vscode-extension/latest
+spec:
+  containers:
+    - image: 'quay.io/windupeng/mta-vscode-extension@sha256:94ba032f375194a5c96d8caff1d9d4d0ee2d3199aa11843cac4ac3546a2711b5'
+      name: mta-extension
+      volumes:
+        - name: mta-vscode
+          mountPath: /home/theia/mta/redhat.mta-vscode-extension
+      memoryLimit: 1500Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      mountSources: true
+      ports:
+        - exposedPort: 61436
+        - exposedPort: 61435
+  endpoints:
+    - name: configuration-endpoint
+      public: true
+      targetPort: 61436
+      attributes:
+        protocol: http
+    - name: report-endpoint
+      public: true
+      targetPort: 61435
+      attributes:
+        protocol: http
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix'

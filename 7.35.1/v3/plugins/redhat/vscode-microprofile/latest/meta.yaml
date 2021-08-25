@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-microprofile
+version: latest
+type: VS Code extension
+displayName: Tools for MicroProfile
+title: Tools for MicroProfile
+description: Language Support for Eclipse MicroProfile
+icon: /images/redhat-vscode-microprofile-icon.png
+category: Programming Languages
+repository: 'https://github.com/redhat-developer/vscode-microprofile'
+firstPublicationDate: '2020-09-24'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
+      name: vscode-microp
+      volumes:
+        - name: m2
+          mountPath: /home/theia/.m2
+      memoryLimit: 1500Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix'
+    - 'https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix'

@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: 4ops
+name: terraform
+version: latest
+type: VS Code extension
+displayName: Terraform
+title: Terraform
+description: Terraform configuration language support (includes Terragrunt)
+icon: /images/4ops-terraform-icon.png
+category: Programming Languages
+repository: 'https://github.com/4ops/vscode-language-terraform.git'
+firstPublicationDate: '2021-04-21'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix'

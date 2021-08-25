@@ -1,0 +1,29 @@
+apiVersion: v2
+publisher: ws-skeleton
+name: eclipseide
+version: latest
+type: Che Editor
+displayName: Eclipse IDE
+title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
+description: Eclipse running on the Web with Broadway
+icon: /images/default.png
+category: Editor
+repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/'
+firstPublicationDate: '2019-02-05'
+latestUpdateDate: '2021-08-25'
+spec:
+  endpoints:
+    - name: eclipse-ide
+      targetPort: 5000
+      attributes:
+        type: ide
+        protocol: http
+      public: true
+  containers:
+    - image: 'index.docker.io/wsskeleton/eclipse-broadway@sha256:57c82cd806a56f69aa8663f68405d0778b628a29a64fb16881b11ce9f484dda7'
+      mountSources: true
+      memoryLimit: 2048M
+      name: eclipse-ide
+      ports:
+        - exposedPort: 5000
+  initContainers: []

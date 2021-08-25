@@ -1,0 +1,24 @@
+apiVersion: v2
+publisher: moby
+name: buildkit
+version: latest
+type: Che Plugin
+displayName: Buildkit Base Dev Plugin
+title: Buildkit Base Dev Plugin
+description: Container to build docker images with buildkit
+icon: /images/default.png
+category: Other
+repository: 'https://github.com/moby/buildkit'
+firstPublicationDate: '2020-05-11'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - name: buildkit-dev
+      image: 'quay.io/eclipse/che-buildkit-base@sha256:effa98dd2ced30b520b25afff1a880d121cf6b3f8ab42a5149eada46ba793ce9'
+      mountSources: true
+      memoryLimit: 1Gi
+      volumes:
+        - name: buildkit-share
+          mountPath: /home/user/.local/share/buildkit
+        - name: buildkit-lib
+          mountPath: /var/lib/buildkit

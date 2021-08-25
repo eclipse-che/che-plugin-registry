@@ -1,0 +1,25 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-camelk
+version: latest
+type: VS Code extension
+displayName: Tooling for Apache Camel K by Red Hat
+title: Tooling for Apache Camel K by Red Hat
+description: VS Code support for Apache Camel K functionality
+icon: /images/redhat-vscode-camelk-icon.png
+category: Other
+repository: 'https://github.com/camel-tooling/vscode-camelk'
+firstPublicationDate: '2021-07-21'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:dfc39aad96f458c796e72a2d0b628fdfd8176e569d491ac33702299ed8e8c71c'
+      name: vscode-camelk
+      memoryLimit: 1Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.26-336.vsix'
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'
+    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'

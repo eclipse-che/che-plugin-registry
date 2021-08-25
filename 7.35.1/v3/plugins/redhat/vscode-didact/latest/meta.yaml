@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-didact
+version: latest
+type: VS Code extension
+displayName: Didact
+title: Didact
+description: Didact Tutorial Tools for Visual Studio Code
+icon: /images/redhat-vscode-didact-icon.png
+category: Other
+repository: 'https://github.com/redhat-developer/vscode-didact'
+firstPublicationDate: '2021-04-30'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix'

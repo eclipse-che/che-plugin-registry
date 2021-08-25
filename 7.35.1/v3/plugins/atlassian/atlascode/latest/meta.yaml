@@ -1,0 +1,17 @@
+apiVersion: v2
+publisher: atlassian
+name: atlascode
+version: latest
+type: VS Code extension
+displayName: Jira and Bitbucket (Official)
+title: Jira and Bitbucket (Official)
+description: 'Bringing the power of Jira and Bitbucket to VS Code - With Atlassian for VS Code you can create and view issues, start work on issues, create pull requests, do code reviews, start builds, get build statuses and more!'
+icon: /images/atlassian-atlascode-icon.png
+category: Other
+repository: 'https://bitbucket.org/atlassianlabs/atlascode.git'
+firstPublicationDate: '2021-03-24'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://open-vsx.org/api/atlassian/atlascode/2.8.6/file/atlassian.atlascode-2.8.6.vsix'
+    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'

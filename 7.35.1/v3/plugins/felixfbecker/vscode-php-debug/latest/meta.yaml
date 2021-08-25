@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: felixfbecker
+name: vscode-php-debug
+version: latest
+type: VS Code extension
+displayName: PHP Debug
+title: PHP Debug
+description: Debug support for PHP with XDebug
+icon: /images/felixfbecker-php-debug-icon.png
+category: Debuggers
+repository: 'https://github.com/felixfbecker/vscode-php-debug.git'
+firstPublicationDate: '2019-12-12'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: felixfbecker/php-debug/latest
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:2e49fafb9aa6519fc63019a72a4526222b6905ed01dc484c3e9f5131ae00b546'
+      name: php-debugger
+      memoryLimit: 256Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix'

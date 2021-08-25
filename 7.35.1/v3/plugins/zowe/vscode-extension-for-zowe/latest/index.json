@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: zowe
+name: vscode-extension-for-zowe
+version: latest
+type: VS Code extension
+displayName: Zowe Explorer
+title: Zowe Explorer
+description: 'VS Code extension, powered by Zowe CLI, that streamlines interaction with mainframe data sets, USS files, and jobs'
+icon: /images/zowe-vscode-extension-for-zowe-icon.png
+category: Other
+repository: 'https://github.com/zowe/vscode-extension-for-zowe'
+firstPublicationDate: '2021-06-15'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
+      name: zowe-explorer
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: ZOWE_CLI_HOME
+          value: /projects/.zowe
+  extensions:
+    - 'https://github.com/eclipse/che-che4z/releases/download/v2.4.0/vscode-extension-for-zowe-1.16.0-che.vsix'

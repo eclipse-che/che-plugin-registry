@@ -1,0 +1,19 @@
+apiVersion: v2
+publisher: containers
+name: buildah
+version: latest
+type: Che Plugin
+displayName: Buildah Base Dev Plugin
+title: Buildah Base Dev Plugin
+description: Container to build docker images with buildah
+icon: /images/default.png
+category: Other
+repository: 'https://github.com/containers/buildah'
+firstPublicationDate: '2020-04-15'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - name: buildah-dev
+      image: 'quay.io/eclipse/che-buildah-base@sha256:417203d8629edd92f187afd3ebb3d8dc28338d34809eb75ffc2e08a400f8d56b'
+      mountSources: true
+      memoryLimit: 1Gi

@@ -1,0 +1,25 @@
+apiVersion: v2
+publisher: dart-code
+name: flutter
+version: latest
+type: VS Code extension
+displayName: Flutter
+title: Flutter
+description: Flutter support and debugger for Visual Studio Code.
+icon: /images/dart-code-flutter-icon.png
+category: Programming Languages
+repository: 'https://github.com/Dart-Code/Flutter.git'
+firstPublicationDate: '2020-09-07'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:55703ae5faebedee56fdce3879fa2281cc260488d8a488ff77ed3d40f778ddf7'
+      name: vscode-flutter
+      memoryLimit: 2Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/dart-code/flutter/releases/download/v3.14.1/flutter-3.14.1.vsix'
+    - 'https://github.com/gattytto/Dart-Code/releases/download/v3.15.0-che/dart-code-3.15.0-dev-realpathSync.vsix'
+    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'

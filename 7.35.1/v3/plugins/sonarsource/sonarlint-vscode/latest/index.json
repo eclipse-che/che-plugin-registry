@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: sonarsource
+name: sonarlint-vscode
+version: latest
+type: VS Code extension
+displayName: SonarLint
+title: SonarLint
+description: 'SonarLint is an IDE extension that helps you detect and fix quality issues as you write code in JavaScript, TypeScript, Python, Java, HTML and PHP.'
+icon: /images/sonarsource-sonarlint-vscode-icon.png
+category: Linters
+repository: 'https://github.com/SonarSource/sonarlint-vscode.git'
+firstPublicationDate: '2021-02-05'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4fdb04026cbeddbfe53184afcd6fc5cb6132a22be5810b13d38a125afd083221'
+      name: vscode-sonarlint
+      volumes:
+        - name: m2
+          mountPath: /home/theia/.m2
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/SonarSource/sonarlint-vscode/releases/download/1.20.1/sonarlint-vscode-1.20.1.vsix'
+    - 'https://open-vsx.org/api/vscode/typescript-language-features/1.49.3/file/vscode.typescript-language-features-1.49.3.vsix'

@@ -1,0 +1,17 @@
+apiVersion: v2
+publisher: bierner
+name: markdown-mermaid
+version: latest
+type: VS Code extension
+displayName: Markdown Preview Mermaid Support
+title: Markdown Preview Mermaid Support
+description: Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview
+icon: /images/bierner-markdown-mermaid-icon.png
+category: Other
+repository: 'https://github.com/mjbvz/vscode-markdown-mermaid.git'
+firstPublicationDate: '2021-02-23'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-markdown-mermaid-1.9.2.vsix'
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf278912/vscode-mermaid-syntax-highlight-d4247b5feadd92d429d69a6b511f5ed0e1011895.vsix'

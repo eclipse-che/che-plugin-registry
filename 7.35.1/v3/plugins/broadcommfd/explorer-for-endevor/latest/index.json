@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: broadcommfd
+name: explorer-for-endevor
+version: latest
+type: VS Code extension
+displayName: Explorer for Endevor
+title: Explorer for Endevor
+description: Explorer for Endevor
+icon: /images/broadcommfd-explorer-for-endevor-icon.png
+category: SCM Providers
+repository: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
+firstPublicationDate: '2021-07-08'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.13.0/explorer-for-endevor-0.13.0.vsix'

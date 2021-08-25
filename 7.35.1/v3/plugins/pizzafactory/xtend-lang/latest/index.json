@@ -1,0 +1,23 @@
+apiVersion: v2
+publisher: pizzafactory
+name: xtend-lang
+version: latest
+type: VS Code extension
+displayName: Xtend
+title: Xtend
+description: Xtend Programming Language
+icon: /images/default.png
+category: Programming Languages
+repository: 'https://github.com/PizzaFactory/xtend-ide-extensions.git'
+firstPublicationDate: '2019-08-12'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:8297fb1732d87d56a0aa4c69105e7bcf4b500e40bb16446d6286c07b884eb73d'
+      name: vscode-xtend-lang
+      memoryLimit: 768Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/PizzaFactory/xtend-ide-extensions/releases/download/v0.1.0/xtend-lang-0.1.0.vsix'

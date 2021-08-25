@@ -1,0 +1,23 @@
+apiVersion: v2
+publisher: llvm-vs-code-extensions
+name: vscode-clangd
+version: latest
+type: VS Code extension
+displayName: clangd
+title: clangd
+description: 'C and C++ completion, navigation, and insights'
+icon: /images/llvm-vs-code-extensions-vscode-clangd-icon.png
+category: Programming Languages
+repository: 'https://github.com/clangd/vscode-clangd.git'
+firstPublicationDate: '2020-06-03'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:ae5124e3198ac6977ca973aaf4885a14e800d647c96a23d15a2b6babbe8fef2a'
+      name: cpp-plugins
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix'

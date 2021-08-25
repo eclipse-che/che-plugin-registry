@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: randomchance
+name: logstash
+version: latest
+type: VS Code extension
+displayName: Logstash Configuration Syntax / Language Support
+title: Logstash Configuration Syntax / Language Support
+description: Adds syntax highlighting for logstash configuration files.
+icon: /images/randomchance-logstash-icon.png
+category: Programming Languages
+repository: 'https://github.com/randomchance/vscode-logstash-configuration-syntax.git'
+firstPublicationDate: '2021-03-11'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://open-vsx.org/api/RandomChance/logstash/0.0.4/file/RandomChance.logstash-0.0.4.vsix'

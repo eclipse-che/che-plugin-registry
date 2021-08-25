@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: vuejs
+name: vetur
+version: latest
+type: VS Code extension
+displayName: Vetur
+title: Vetur
+description: Vue tooling for VS Code
+icon: /images/octref-vetur-icon.png
+category: Programming Languages
+repository: 'https://github.com/vuejs/vetur.git'
+firstPublicationDate: '2020-08-07'
+latestUpdateDate: '2021-08-25'
+deprecate:
+  automigrate: true
+  migrateTo: octref/vetur/latest
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
+      name: vetur
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix'

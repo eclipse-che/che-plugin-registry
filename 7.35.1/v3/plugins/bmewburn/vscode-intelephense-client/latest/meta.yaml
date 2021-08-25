@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: bmewburn
+name: vscode-intelephense-client
+version: latest
+type: VS Code extension
+displayName: PHP Intelephense
+title: PHP Intelephense
+description: PHP code intelligence for Visual Studio Code
+icon: /images/bmewburn-vscode-intelephense-client-icon.png
+category: Programming Languages
+repository: 'https://github.com/bmewburn/vscode-intelephense.git'
+firstPublicationDate: '2020-09-23'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:2e49fafb9aa6519fc63019a72a4526222b6905ed01dc484c3e9f5131ae00b546'
+      memoryLimit: 1Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.5.4.vsix'

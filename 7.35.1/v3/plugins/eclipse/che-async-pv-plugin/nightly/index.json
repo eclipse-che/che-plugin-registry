@@ -1,0 +1,41 @@
+apiVersion: v2
+publisher: eclipse
+name: che-async-pv-plugin
+version: nightly
+type: Che Plugin
+displayName: Che Async Storage Service
+title: Che Async Storage Service
+description: Che Plug-in with service to provide abilty for backup/restore project source from async storage
+icon: /images/default.png
+category: Other
+repository: 'https://github.com/che-incubator/workspace-data-sync'
+firstPublicationDate: '2020-07-10'
+latestUpdateDate: '2021-08-25'
+spec:
+  endpoints:
+    - name: che-rsync-events
+      public: true
+      targetPort: 4445
+      attributes:
+        protocol: ws
+        type: rsync
+        discoverable: false
+        secure: false
+        cookiesAuthEnabled: true
+  containers:
+    - name: che-rsync
+      image: 'quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10'
+      memoryLimit: 512M
+      lifecycle:
+        preStop:
+          exec: null
+          command:
+            - /bin/sh
+            - '-c'
+            - /scripts/backup.sh
+      mountSources: true
+      ports:
+        - exposedPort: 4445
+      env:
+        - name: RSYNC_PORT
+          value: '2222'

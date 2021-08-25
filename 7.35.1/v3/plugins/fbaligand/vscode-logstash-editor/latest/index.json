@@ -1,0 +1,17 @@
+apiVersion: v2
+publisher: fbaligand
+name: vscode-logstash-editor
+version: latest
+type: VS Code extension
+displayName: Logstash Editor
+title: Logstash Editor
+description: 'Provide completion, documentation and auto-formatting for Logstash pipeline configuration files and Elasticsearch index template json files'
+icon: /images/fbaligand-vscode-logstash-editor-icon.png
+category: Programming Languages
+repository: 'https://github.com/fbaligand/vscode-logstash-editor.git'
+firstPublicationDate: '2021-06-22'
+latestUpdateDate: '2021-08-25'
+spec:
+  extensions:
+    - 'https://open-vsx.org/api/fbaligand/vscode-logstash-editor/1.1.3/file/fbaligand.vscode-logstash-editor-1.1.3.vsix'
+    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'

@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: bazelbuild
+name: vscode-bazel
+version: latest
+type: VS Code extension
+displayName: vscode-bazel
+title: vscode-bazel
+description: Bazel BUILD integration
+icon: /images/bazelbuild-vscode-bazel-icon.png
+category: Programming Languages
+repository: 'https://github.com/bazelbuild/vscode-bazel.git'
+firstPublicationDate: '2019-09-19'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:7cf6f00d3f2daf04675618c408e08f019f25b91ec08d279094fddb01f559502b'
+      name: vscode-bazel
+      volumes:
+        - name: bazelcache
+          mountPath: /home/theia/.cache/bazel
+      memoryLimit: 2Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix'

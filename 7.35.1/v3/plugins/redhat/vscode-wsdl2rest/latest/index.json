@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: redhat
+name: vscode-wsdl2rest
+version: latest
+type: VS Code extension
+displayName: wsdl2rest by Red Hat
+title: wsdl2rest by Red Hat
+description: A VS Code extension supporting wsdl2rest via Camel Rest DSL
+icon: /images/redhat-vscode-wsdl2rest-icon.png
+category: Other
+repository: 'https://github.com/camel-tooling/vscode-wsdl2rest'
+firstPublicationDate: '2020-01-13'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:8297fb1732d87d56a0aa4c69105e7bcf4b500e40bb16446d6286c07b884eb73d'
+      memoryLimit: 256Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix'

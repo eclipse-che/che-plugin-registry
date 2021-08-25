@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: timonwong
+name: shellcheck
+version: latest
+type: VS Code extension
+displayName: ShellCheck
+title: ShellCheck
+description: 'Integrates ShellCheck into VS Code, a linter for Shell scripts.'
+icon: /images/timonwong-shellcheck-icon.png
+category: Linters
+repository: 'https://github.com/timonwong/vscode-shellcheck.git'
+firstPublicationDate: '2021-03-08'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:597a30c9c3fc7dbbfb9e08b1bb2179d8eb062ad148480ff32489b4f01ec675f4'
+      name: shellcheck
+      memoryLimit: 256Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: CHE_THEIA_SIDECAR_PREFERENCES
+          value: '{"shellcheck.executablePath":"/bin/shellcheck"}'
+  extensions:
+    - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf707df2/shellcheck-v0.13.2.vsix'

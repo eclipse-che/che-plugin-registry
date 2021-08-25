@@ -1,0 +1,27 @@
+apiVersion: v2
+publisher: broadcommfd
+name: cobol-language-support
+version: latest
+type: VS Code extension
+displayName: COBOL Language Support
+title: COBOL Language Support
+description: 'Autocomplete, highlighting and diagnostics for COBOL code and copybooks.'
+icon: /images/broadcommfd-cobol-language-support-icon.png
+category: Programming Languages
+repository: 'https://github.com/eclipse/che-che4z-lsp-for-cobol.git'
+firstPublicationDate: '2021-06-10'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
+      name: cobol-language-support
+      memoryLimit: 1Gi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: ZOWE_CLI_HOME
+          value: /projects/.zowe
+      mountSources: true
+  extensions:
+    - 'https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.19.0/file/BroadcomMFD.cobol-language-support-0.19.0.vsix'

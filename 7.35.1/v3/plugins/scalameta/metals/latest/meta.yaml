@@ -1,0 +1,31 @@
+apiVersion: v2
+publisher: scalameta
+name: metals
+version: latest
+type: VS Code extension
+displayName: Scala (Metals)
+title: Scala (Metals)
+description: Scala language server with rich IDE features
+icon: /images/scalameta-metals-icon.png
+category: Programming Languages
+repository: 'https://github.com/scalameta/metals-vscode.git'
+firstPublicationDate: '2021-02-24'
+latestUpdateDate: '2021-08-25'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:2cb4f70edbcdab3b279dae53b6a753d63fee03bcae3d2a385e24f25e695c03df'
+      name: vscode-metals
+      volumes:
+        - name: sbt
+          mountPath: /home/theia/.sbt
+        - name: ivy2
+          mountPath: /home/theia/.ivy2
+        - name: cache
+          mountPath: /home/theia/.cache
+      memoryLimit: 1500Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://github.com/scalameta/metals-vscode/releases/download/v1.10.0/scalameta.metals-1.10.0.vsix'
+    - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'

@@ -1,0 +1,28 @@
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/vscode-openshift-connector
+  publisher: redhat
+  name: vscode-openshift-connector
+  version: latest
+  displayName: OpenShift Connector
+  description: Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Visual Studio Code
+  repository: 'https://github.com/redhat-developer/vscode-openshift-tools.git'
+  categories:
+    - Other
+  icon: /images/redhat-vscode-openshift-connector-icon.png
+sidecar:
+  name: vscode-openshift-connector
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: kube
+      path: /home/theia/.kube
+  image: 'quay.io/eclipse/che-plugin-sidecar:openshift-tooling-2fcf341'
+dependencies:
+  - che-theia/che-openshift-authentication-plugin
+  - ms-kubernetes-tools/vscode-kubernetes-tools
+  - redhat/vscode-yaml
+extensions:
+  - 'https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.0/file/redhat.vscode-openshift-connector-0.2.0.vsix'

@@ -1,0 +1,25 @@
+schemaVersion: 1.0.0
+metadata:
+  id: bazelbuild/vscode-bazel
+  publisher: bazelbuild
+  name: vscode-bazel
+  version: latest
+  displayName: vscode-bazel
+  description: Bazel BUILD integration
+  repository: 'https://github.com/bazelbuild/vscode-bazel.git'
+  categories:
+    - Programming Languages
+  icon: /images/bazelbuild-vscode-bazel-icon.png
+sidecar:
+  name: vscode-bazel
+  memoryLimit: 2Gi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: bazelcache
+      path: /home/theia/.cache/bazel
+  image: 'quay.io/eclipse/che-plugin-sidecar:bazel-f15c5d6'
+dependencies: []
+extensions:
+  - 'https://github.com/bazelbuild/vscode-bazel/releases/download/0.3.0/vscode-bazel-0.3.0.vsix'

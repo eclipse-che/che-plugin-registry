@@ -1,0 +1,32 @@
+apiVersion: v2
+publisher: ws-skeleton
+name: jupyter
+version: latest
+type: Che Editor
+displayName: Jupyter Notebook
+title: Jupyter Notebook as Editor for Eclipse Che
+description: Jupyter Notebook as Editor for Eclipse Che
+icon: /images/default.png
+category: Editor
+repository: 'https://github.com/ws-skeleton/che-editor-jupyter/'
+firstPublicationDate: '2019-02-05'
+latestUpdateDate: '2021-08-25'
+spec:
+  endpoints:
+    - name: jupyter
+      targetPort: 8888
+      attributes:
+        type: ide
+        protocol: http
+      public: true
+  containers:
+    - image: 'index.docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47'
+      env:
+        - name: JUPYTER_NOTEBOOK_DIR
+          value: /projects
+      mountSources: true
+      memoryLimit: 512M
+      name: jupyter-notebook
+      ports:
+        - exposedPort: 8888
+  initContainers: []
