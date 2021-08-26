@@ -784,4 +784,3 @@ plugins:
       url: 'https://github.com/sgwozdz/jenkinsfile-support'
       revision: '1.1.1'
     extension: 'https://disaster37.github.io/vscode-plugins/ivory-lab.jenkinsfile-support-1.1.0.vsix'
-
