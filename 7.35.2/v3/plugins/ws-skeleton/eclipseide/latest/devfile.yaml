@@ -1,0 +1,17 @@
+schemaVersion: 2.1.0
+metadata:
+  name: Eclipse IDE
+components:
+  - name: eclipse-ide
+    container:
+      image: 'index.docker.io/wsskeleton/eclipse-broadway@sha256:57c82cd806a56f69aa8663f68405d0778b628a29a64fb16881b11ce9f484dda7'
+      mountSources: true
+      memoryLimit: 2048M
+      endpoints:
+        - name: eclipse-ide
+          attributes:
+            type: main
+          targetPort: 5000
+          exposure: public
+          protocol: http
+    attributes: {}
