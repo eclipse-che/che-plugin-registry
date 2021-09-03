@@ -39,6 +39,16 @@ IMAGE_REGEX="([[:space:]>-]*[\r]?[[:space:]]*[\"']?)([._:a-zA-Z0-9-]*)/([._a-zA-
 
 
 function run_main() {
+
+    extract_and_use_related_images_env_variables_with_image_digest_info
+
+    update_container_image_references
+
+    exec "${@}"
+
+}
+
+function extract_and_use_related_images_env_variables_with_image_digest_info() {
     # Extract and use env variables with image digest information.
     # Env variable name format: 
     # RELATED_IMAGES_(Image_name)_(Image_label)_(Encoded_base32_image_tag)
@@ -76,7 +86,7 @@ function run_main() {
     done
     echo "--------------------------------------------------------------"
 
-    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
+    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml')
     for meta in "${metas[@]}"; do
         readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([._:a-zA-Z0-9-]*/?[._a-zA-Z0-9-]*/[._a-zA-Z0-9-]*(@sha256)?:?[._a-zA-Z0-9-]*)'?\"?[[:space:]]*;\1;")
         for image in "${images[@]}"; do
@@ -104,11 +114,6 @@ function run_main() {
         done
     done
     fi
-
-    update_container_image_references
-
-    exec "${@}"
-
 }
 
 function update_container_image_references() {
@@ -116,7 +121,7 @@ function update_container_image_references() {
     # We can't use the `-d` option for readarray because
     # registry.centos.org/centos/httpd-24-centos7 ships with Bash 4.2
     # The below command will fail if any path contains whitespace
-    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml')
+    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml')
     for meta in "${metas[@]}"; do
     echo "Checking meta $meta"
     # Need to update each field separately in case they are not defined.
