@@ -27,6 +27,7 @@ WORKDIR /che-plugin-registry
 RUN yum update -y && yum upgrade -y &&\
     yum install git -y &&\
     yum install openssh -y &&\
+    yum install coreutils -y &&\
     curl -sL https://rpm.nodesource.com/setup_14.x | bash - &&\
     yum install nodejs -y &&\
     npm install --global yarn
