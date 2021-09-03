@@ -25,10 +25,7 @@ WORKDIR /che-plugin-registry
 
 # Install build tools
 RUN apk update && apk upgrade &&\
-    apk add bash &&\
-    apk add git &&\
-    apk add coreutils &&\
-    apk add nodejs
+    apk add bash git coreutils
 
 # Build repo
 RUN ./build.sh --skip-oci-image --skip-digest-generation
