@@ -30,6 +30,7 @@ RUN mkdir -p "${HOME}" && \
     python -m venv .venv && \
     source .venv/bin/activate && \
     pip install --upgrade pip && \
+    pip install wheel && \
     pip install p5py && \
     pip install PEP517 && \
     pip install -U argon2-cffi && \
