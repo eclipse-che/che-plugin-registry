@@ -749,6 +749,8 @@ plugins:
       name: vscode-ruby
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       volumeMounts:
         - name: solargraph
           path: "/home/theia/.solargraph"
@@ -803,6 +805,8 @@ plugins:
       name: vscode-plantuml
       memoryLimit: 512Mi
       memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     extension: https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix
   - repository:
       url: https://github.com/redhat-developer/vscode-commons

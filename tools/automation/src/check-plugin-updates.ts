@@ -10,30 +10,15 @@
 
 import * as fs from 'fs-extra';
 import * as handlerbars from 'handlebars';
-import * as jsyaml from 'js-yaml';
 import * as moment from 'moment';
 import * as path from 'path';
 import * as semver from 'semver';
 
 import simpleGit, { SimpleGit } from 'simple-git';
 
+import { CheTheiaPlugin, readCheTheiaPlugins } from './che-theia-plugins';
+
 const EXTENSION_ROOT_DIR = '/tmp/extension_repository';
-
-// struct for an entry in the che-theia-plugins.yaml file
-export interface CheTheiaPlugin {
-  id?: string;
-  isClosedSource?: boolean;
-  repository: {
-    url: string;
-    revision: string;
-    directory?: string;
-  };
-}
-
-export interface CheTheiaPluginsFile {
-  version: string;
-  plugins: Array<CheTheiaPlugin>;
-}
 
 // Entry generated when inspecting an extension
 export interface Entry {
@@ -62,18 +47,11 @@ export class Report {
 
   async generate(): Promise<void> {
     const start = moment();
-    const cheTheiaPluginsFile = await fs.readFile('./../../che-theia-plugins.yaml', 'utf-8');
-    let plugins;
-    try {
-      const cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.safeLoad(cheTheiaPluginsFile);
-      plugins = cheTheiaPlugins.plugins;
-    } catch (e) {
-      console.error(`Error reading che-theia-plugins YAML file: ${e}`);
-      return;
-    }
 
     // cleanup folders
     await fs.remove(EXTENSION_ROOT_DIR);
+
+    const plugins = await readCheTheiaPlugins();
 
     // grab results in parallel
     const entries: Entry[] = await Promise.all(
