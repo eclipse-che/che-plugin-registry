@@ -25,12 +25,12 @@ RUN apt-get update && \
 SHELL ["/bin/bash", "-c"]
 RUN command -v source || (echo "ERROR: Could not find 'source' command. SHELL may not supported. If you are using podman, try again with the '--format docker' flag." && exit 126)
 
-RUN mkdir -p "${HOME}"; \
-    cd "${HOME}"; \
-    python -m venv .venv ; \
-    source .venv/bin/activate; \
-    pip install -U ipykernel jupyter pylint python-language-server[all] ptvsd jedi; \
-    python -m ipykernel install --name=.venv --user; \
+RUN mkdir -p "${HOME}" && \
+    cd "${HOME}" && \
+    python -m venv .venv && \
+    source .venv/bin/activate && \
+    pip install -U ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
+    python -m ipykernel install --name=.venv --user && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
 
 RUN mkdir /projects && \
