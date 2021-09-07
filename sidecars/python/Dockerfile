@@ -29,7 +29,7 @@ RUN mkdir -p "${HOME}" && \
     cd "${HOME}" && \
     python -m venv .venv && \
     source .venv/bin/activate && \
-    pip install -U ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
+    pip install -U argon2-cffi ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
     python -m ipykernel install --name=.venv --user && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
 
