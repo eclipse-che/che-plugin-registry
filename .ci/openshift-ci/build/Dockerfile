@@ -11,7 +11,7 @@
 #
 
 # Initial settings
-FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-133.1608869526 as builder
+FROM docker.io/node:14.17.6-alpine3.12 as builder
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
@@ -24,12 +24,8 @@ ADD . /che-plugin-registry
 WORKDIR /che-plugin-registry
 
 # Install build tools
-RUN yum update -y && yum upgrade -y &&\
-    yum install git -y &&\
-    yum install openssh -y &&\
-    curl -sL https://rpm.nodesource.com/setup_14.x | bash - &&\
-    yum install nodejs -y &&\
-    npm install --global yarn
+RUN apk update && apk upgrade &&\
+    apk add bash git coreutils
 
 # Build repo
 RUN ./build.sh --skip-oci-image --skip-digest-generation
