@@ -28,12 +28,8 @@ RUN command -v source || (echo "ERROR: Could not find 'source' command. SHELL ma
 RUN mkdir -p "${HOME}" && \
     cd "${HOME}" && \
     python -m venv .venv && \
-    source .venv/bin/activate && \
+    source .venv/bin/activate; \
     pip install --upgrade pip && \
-    pip install wheel && \
-    pip install p5py && \
-    pip install PEP517 && \
-    pip install -U argon2-cffi && \
     pip install -U ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
     python -m ipykernel install --name=.venv --user && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
