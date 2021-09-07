@@ -19,8 +19,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
     apt-get purge -y --auto-remove gcc build-essential && \
-    apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
-    pip install --upgrade pip --user
+    apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
 
 SHELL ["/bin/bash", "-c"]
@@ -30,6 +29,7 @@ RUN mkdir -p "${HOME}" && \
     cd "${HOME}" && \
     python -m venv .venv && \
     source .venv/bin/activate && \
+    pip install --upgrade pip && \
     pip install -U argon2-cffi ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
     python -m ipykernel install --name=.venv --user && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
