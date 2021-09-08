@@ -1,0 +1,26 @@
+schemaVersion: 1.0.0
+metadata:
+  id: rust-lang/rust
+  publisher: rust-lang
+  name: rust
+  version: latest
+  displayName: Rust
+  description: 'Rust for Visual Studio Code (powered by Rust Language Server/Rust Analyzer). Provides lints, code completion and navigation, formatting and more.'
+  repository: 'https://github.com/rust-lang/rls-vscode'
+  categories:
+    - Programming Languages
+    - Linters
+    - Snippets
+    - Formatters
+    - Other
+  icon: /images/rust-lang-rust-icon.png
+sidecar:
+  name: vscode-rust
+  memoryLimit: 1Gi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:rust-52f9e9a'
+dependencies: []
+extensions:
+  - 'https://github.com/rust-lang/vscode-rust/releases/download/v0.7.8/rust.vsix'
