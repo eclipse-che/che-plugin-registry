@@ -22,6 +22,17 @@ plugins:
       cpuRequest: 30m
     extension: https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
+      url: 'https://github.com/Microsoft/vscode-node-debug'
+      revision: v1.52.2
+    sidecar:
+      directory: node
+      name: jsdebug
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+    extension: https://open-vsx.org/api/ms-vscode/js-debug/1.52.2/file/ms-vscode.js-debug-1.52.2.vsix
+  - repository:
       url: 'https://github.com/Microsoft/vscode-node-debug2'
       revision: v1.42.5
     metaYaml:
