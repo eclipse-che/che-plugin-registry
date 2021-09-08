@@ -27,17 +27,25 @@ RUN command -v source || (echo "ERROR: Could not find 'source' command. SHELL ma
 
 RUN mkdir -p "${HOME}" && \
     cd "${HOME}" && \
-    python -m venv .venv && \
-    source .venv/bin/activate; \
-    pip install --upgrade pip && \
-    pip install -U ipykernel && \
-    pip install -U jupyter && \
-    pip install -U pylint && \
-    pip install -U python-language-server[all] && \
-    pip install -U ptvsd && \
-    pip install -U jedi && \
-    python -m ipykernel install --name=.venv --user && \
-    mv "${HOME}"/.venv "${HOME}"/.venv-tmp
+    python -m venv .venv;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install --upgrade pip && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U ipykernel && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U jupyter && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U pylint && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U python-language-server[all] && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U ptvsd && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U jedi && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    cd ${HOME} && \
+    python -m ipykernel install --name=.venv --user && deactivate;
+RUN mv "${HOME}"/.venv "${HOME}"/.venv-tmp;
 
 RUN mkdir /projects && \
     # Change permissions to let any arbitrary user
