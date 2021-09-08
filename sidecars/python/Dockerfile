@@ -31,17 +31,17 @@ RUN mkdir -p "${HOME}" && \
 RUN source ${HOME}/.venv/bin/activate; \
     pip install --upgrade pip && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U pylint && deactivate;
+    pip install -U --user pylint && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U python-language-server[all] && deactivate;
+    pip install -U --user python-language-server[all] && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U ptvsd && deactivate;
+    pip install -U --user ptvsd && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U jedi && deactivate;
+    pip install -U --user jedi && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U jupyter && deactivate;
+    pip install -U --user jupyter && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U ipykernel && deactivate;
+    pip install -U --user ipykernel && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     cd ${HOME} && \
     python -m ipykernel install --name=.venv --user && deactivate;
