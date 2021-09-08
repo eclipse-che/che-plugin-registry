@@ -30,7 +30,12 @@ RUN mkdir -p "${HOME}" && \
     python -m venv .venv && \
     source .venv/bin/activate; \
     pip install --upgrade pip && \
-    pip install -U ipykernel jupyter pylint python-language-server[all] ptvsd jedi && \
+    pip install -U ipykernel && \
+    pip install -U jupyter && \
+    pip install -U pylint && \
+    pip install -U python-language-server[all] && \
+    pip install -U ptvsd && \
+    pip install -U jedi && \
     python -m ipykernel install --name=.venv --user && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
 
