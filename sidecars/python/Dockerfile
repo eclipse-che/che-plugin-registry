@@ -31,8 +31,6 @@ RUN mkdir -p "${HOME}" && \
 RUN source ${HOME}/.venv/bin/activate; \
     pip install --upgrade pip && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U ipykernel && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
     pip install -U jupyter && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     pip install -U pylint && deactivate;
@@ -42,6 +40,8 @@ RUN source ${HOME}/.venv/bin/activate; \
     pip install -U ptvsd && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     pip install -U jedi && deactivate;
+RUN source ${HOME}/.venv/bin/activate; \
+    pip install -U ipykernel && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     cd ${HOME} && \
     python -m ipykernel install --name=.venv --user && deactivate;
