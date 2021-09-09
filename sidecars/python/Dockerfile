@@ -18,6 +18,7 @@ RUN apt-get update && \
     wget -O - https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
+    pip install --upgrade pip && \
     pip install pylint python-language-server[all] ptvsd jedi && \
     apt-get purge -y --auto-remove gcc build-essential && \
     apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
@@ -28,21 +29,9 @@ RUN command -v source || (echo "ERROR: Could not find 'source' command. SHELL ma
 
 RUN mkdir -p "${HOME}" && \
     cd "${HOME}" && \
-    python -m venv .venv;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install --upgrade pip && deactivate;
+    python -m venv --system-site-packages --copies .venv;
 RUN source ${HOME}/.venv/bin/activate; \
     pip install -U pylint && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U python-language-server[all] && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U ptvsd && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U jedi && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U jupyter && deactivate;
-RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U ipykernel && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     cd ${HOME} && \
     python -m ipykernel install --name=.venv --user && deactivate;
