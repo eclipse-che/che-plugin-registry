@@ -19,7 +19,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
     pip install --upgrade pip && \
-    pip install pylint python-language-server[all] ptvsd jedi && \
+    pip install pylint python-language-server[all] ptvsd jedi ipykernel jupyter && \
     apt-get purge -y --auto-remove gcc build-essential && \
     apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
