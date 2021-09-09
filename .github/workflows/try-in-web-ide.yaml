@@ -19,6 +19,6 @@ jobs:
     steps:
       - name: Web IDE Pull Request Check
         id: try-in-web-ide
-        uses: redhat-actions/try-in-web-ide@v1
+        uses: redhat-actions/try-in-web-ide@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
