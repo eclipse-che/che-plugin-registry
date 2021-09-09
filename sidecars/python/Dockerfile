@@ -18,6 +18,7 @@ RUN apt-get update && \
     wget -O - https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
+    pip install pylint python-language-server[all] ptvsd jedi && \
     apt-get purge -y --auto-remove gcc build-essential && \
     apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
@@ -31,17 +32,17 @@ RUN mkdir -p "${HOME}" && \
 RUN source ${HOME}/.venv/bin/activate; \
     pip install --upgrade pip && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user pylint && deactivate;
+    pip install -U pylint && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user python-language-server[all] && deactivate;
+    pip install -U python-language-server[all] && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user ptvsd && deactivate;
+    pip install -U ptvsd && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user jedi && deactivate;
+    pip install -U jedi && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user jupyter && deactivate;
+    pip install -U jupyter && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
-    pip install -U --user ipykernel && deactivate;
+    pip install -U ipykernel && deactivate;
 RUN source ${HOME}/.venv/bin/activate; \
     cd ${HOME} && \
     python -m ipykernel install --name=.venv --user && deactivate;
