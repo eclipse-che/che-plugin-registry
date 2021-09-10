@@ -215,6 +215,7 @@ editors:
                 type: main
                 cookiesAuthEnabled: true
                 discoverable: false
+                urlRewriteSupported: true
             - name: webviews
               targetPort: 3100
               exposure: public
@@ -225,6 +226,7 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 unique: true
+                urlRewriteSupported: true
             - name: mini-browser
               targetPort: 3100
               exposure: public
@@ -235,6 +237,7 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 unique: true
+                urlRewriteSupported: true
             - name: theia-dev
               targetPort: 3130
               exposure: public
@@ -242,24 +245,28 @@ editors:
               attributes:
                 type: ide-dev
                 discoverable: false
+                urlRewriteSupported: true
             - name: theia-redirect-1
               targetPort: 13131
               exposure: public
               protocol: http
               attributes:
                 discoverable: false
+                urlRewriteSupported: true
             - name: theia-redirect-2
               targetPort: 13132
               exposure: public
               protocol: http
               attributes:
                 discoverable: false
+                urlRewriteSupported: true
             - name: theia-redirect-3
               targetPort: 13133
               exposure: public
               protocol: http
               attributes:
                 discoverable: false
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: che-theia
           app.kubernetes.io/part-of: che-theia.eclipse.org
@@ -290,6 +297,7 @@ editors:
                 type: collocated-terminal
                 discoverable: false
                 cookiesAuthEnabled: true
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: machine-exec
           app.kubernetes.io/part-of: che-theia.eclipse.org
