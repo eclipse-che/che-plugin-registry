@@ -9,7 +9,7 @@
 #   Red Hat, Inc. - initial API and implementation
 #   Lining Pan
 
-FROM ruby:2.7.2-buster
+FROM ruby:3.0.2-buster
 
 ENV HOME=/home/theia
 
