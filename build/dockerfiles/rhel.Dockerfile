@@ -22,8 +22,8 @@ RUN yum update -y systemd && yum clean all && rm -rf /var/cache/yum && \
     echo "Installed Packages" && rpm -qa | sort -V && echo "End Of Installed Packages"
 
 RUN sed -i /etc/httpd/conf.d/ssl.conf \
-    -e "s,SSLProtocol all -SSLv2,SSLProtocol all -SSLv3," \
-    -e "s,SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5,SSLCipherSuite HIGH:!aNULL:!MD5,"
+    -e "s,.*SSLProtocol.*,SSLProtocol all -SSLv3," \
+    -e "s,.*SSLCipherSuite.*,SSLCipherSuite HIGH:!aNULL:!MD5,"
 
 RUN sed -i /etc/httpd/conf/httpd.conf \
     -e "s,Listen 80,Listen 8080," \
