@@ -18,7 +18,7 @@ RUN apt-get update && \
     wget -O - https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
-    pip install python-language-server[all] ptvsd jedi ipykernel jupyter && \
+    pip install python-language-server[all] ptvsd jedi && \
     apt-get purge -y --auto-remove gcc build-essential && \
     apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
