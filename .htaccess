@@ -1,6 +1,4 @@
-SetEnvIf Origin "^http(s)?://.+$" AccessControlAllowOrigin=$0
-Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
-Header set Access-Control-Allow-Credentials true env=AccessControlAllowOrigin
+Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Headers "Authorization"
 DirectoryIndex README.md
 Redirect temp /plugins /v3/plugins
