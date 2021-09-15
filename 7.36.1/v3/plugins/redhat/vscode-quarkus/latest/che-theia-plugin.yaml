@@ -1,0 +1,32 @@
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/vscode-quarkus
+  publisher: redhat
+  name: vscode-quarkus
+  version: latest
+  displayName: Quarkus
+  description: Quarkus Tools for Visual Studio Code
+  repository: 'https://github.com/redhat-developer/vscode-quarkus'
+  categories:
+    - Programming Languages
+    - Other
+  icon: /images/redhat-vscode-quarkus-icon.png
+sidecar:
+  name: vscode-quarkus
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: m2
+      path: /home/theia/.m2
+  image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+preferences:
+  java.server.launchMode: Standard
+dependencies:
+  - redhat/java
+  - redhat/vscode-microprofile
+  - vscjava/vscode-java-debug
+  - vscjava/vscode-java-test
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix'

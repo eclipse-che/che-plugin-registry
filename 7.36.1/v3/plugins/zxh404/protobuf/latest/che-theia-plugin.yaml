@@ -1,0 +1,23 @@
+schemaVersion: 1.0.0
+metadata:
+  id: zxh404/protobuf
+  publisher: zxh404
+  name: protobuf
+  version: latest
+  displayName: vscode-proto3
+  description: Protobuf 3 support for Visual Studio Code
+  repository: 'https://github.com/zxh0/vscode-proto3'
+  categories:
+    - Programming Languages
+    - Snippets
+  icon: /images/zxh404-vscode-proto3-icon.png
+sidecar:
+  name: vscode-proto3
+  memoryLimit: 256Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:protobuf-2fcf341'
+dependencies: []
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix'

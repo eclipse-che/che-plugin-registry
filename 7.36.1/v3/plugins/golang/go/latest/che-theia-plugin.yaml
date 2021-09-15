@@ -1,0 +1,29 @@
+schemaVersion: 1.0.0
+metadata:
+  id: golang/go
+  publisher: golang
+  name: go
+  version: latest
+  displayName: Go
+  description: Rich Go language support for Visual Studio Code
+  repository: 'https://github.com/golang/vscode-go'
+  categories:
+    - Programming Languages
+    - Snippets
+    - Linters
+    - Debuggers
+    - Formatters
+  icon: /images/golang-go-icon.png
+sidecar:
+  name: vscode-go
+  memoryLimit: 512Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  env:
+    - name: GOPATH
+      value: '/go:$(CHE_PROJECTS_ROOT)'
+  image: 'quay.io/eclipse/che-plugin-sidecar:go-ae6cfa4'
+dependencies: []
+extensions:
+  - 'https://github.com/golang/vscode-go/releases/download/v0.23.0/go-0.23.0.vsix'
