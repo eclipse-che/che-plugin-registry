@@ -18,7 +18,7 @@ RUN apt-get update && \
     wget -O - https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && \
     apt-get install nodejs gcc build-essential -y && \
-    pip install pylint python-language-server[all] ptvsd jedi && \
+    pip install python-language-server[all] ptvsd jedi ipykernel jupyter && \
     apt-get purge -y --auto-remove gcc build-essential && \
     apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
@@ -26,11 +26,11 @@ RUN apt-get update && \
 SHELL ["/bin/bash", "-c"]
 RUN command -v source || (echo "ERROR: Could not find 'source' command. SHELL may not supported. If you are using podman, try again with the '--format docker' flag." && exit 126)
 
-RUN cd "${HOME}"; \
-    python -m venv .venv ; \
-    source .venv/bin/activate; \
-    pip install -U ipykernel jupyter; \
-    python -m ipykernel install --name=.venv --user; \
+RUN mkdir -p "${HOME}" && cd "${HOME}" && \
+    python -m venv .venv && \
+    source .venv/bin/activate && \
+    pip install -U pylint ipykernel jupyter && \
+    python -m ipykernel install --name=.venv && \
     mv "${HOME}"/.venv "${HOME}"/.venv-tmp
 
 RUN mkdir /projects && \
