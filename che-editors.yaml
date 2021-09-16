@@ -22,7 +22,7 @@ editors:
     components:
       - name: theia-ide
         container:
-          image: 'quay.io/eclipse/che-theia:next'
+          image: 'quay.io/crw_pr/che-theia:1095'
           env:
             - name: THEIA_PLUGINS
               value: 'local-dir:///plugins'
@@ -148,7 +148,7 @@ editors:
           app.kubernetes.io/component: remote-runtime-injector
           app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
-          image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+          image: 'quay.io/crw_pr/che-theia-endpoint-runtime-binary:1095'
           memoryLimit: 128Mi
           memoryRequest: 32Mi
           cpuLimit: 500m
