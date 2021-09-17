@@ -10,8 +10,9 @@
 
 import * as fs from 'fs-extra';
 
+import { ResourceLimitsChecker, cpuRegex, memoryRegex } from '../src/resource-limits-checker';
+
 import { CheTheiaPlugin } from '../src/che-theia-plugins';
-import { cpuRegex, memoryRegex, ResourceLimitsChecker } from '../src/resource-limits-checker';
 
 describe('Resource Limits Checker Test', () => {
   beforeEach(() => {

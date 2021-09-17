@@ -54,4 +54,16 @@ describe('Test Main with stubs', () => {
     expect(returnCode).toBeFalsy();
     expect(buildMethod).toBeCalled();
   });
+
+  test('error without stack', async () => {
+    jest.spyOn(InversifyBinding.prototype, 'initBindings').mockImplementation(() => {
+      // eslint-disable-next-line no-throw-literal
+      throw { message: 'Dummy error' };
+    });
+    const main = new Main();
+    const returnCode = await main.start();
+    expect(mockedConsoleError).toBeCalled();
+    expect(returnCode).toBeFalsy();
+    expect(buildMethod).toBeCalled();
+  });
 });

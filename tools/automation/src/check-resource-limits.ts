@@ -8,9 +8,8 @@
  * SPDX-License-Identifier: EPL-2.0
  ********************************************************************************/
 
-import { exit } from 'process';
-
 import { ResourceLimitsChecker } from './resource-limits-checker';
+import { exit } from 'process';
 
 (async (): Promise<void> => {
   console.log('\n🔥 Checking plugins..\n');

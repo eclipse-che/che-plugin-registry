@@ -39,7 +39,7 @@ export interface CheTheiaPlugin {
 export async function readCheTheiaPlugins(): Promise<CheTheiaPlugin[]> {
   const cheTheiaPluginsFile = await fs.readFile('./../../che-theia-plugins.yaml', 'utf-8');
   try {
-    const cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.safeLoad(cheTheiaPluginsFile);
+    const cheTheiaPlugins = <CheTheiaPluginsFile>jsyaml.load(cheTheiaPluginsFile);
     return cheTheiaPlugins.plugins;
   } catch (e) {
     throw new Error(`Error reading che-theia-plugins YAML file: ${e}`);
