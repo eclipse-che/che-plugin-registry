@@ -24,7 +24,9 @@ export class Main {
       await this.doStart();
       return true;
     } catch (error) {
-      console.error('stack=' + error.stack);
+      if (error instanceof Error) {
+        console.error('stack=' + error.stack);
+      }
       console.error('Unable to start', error);
       return false;
     }

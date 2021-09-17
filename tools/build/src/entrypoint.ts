@@ -8,6 +8,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
+// prettier-ignore
+
 import 'reflect-metadata';
 
 import { Main } from './main';
