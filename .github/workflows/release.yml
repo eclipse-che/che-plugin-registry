@@ -19,7 +19,18 @@ on:
         description: If true, tags will be recreated. Use with caution
         required: false
         default: 'false'
-
+      performRelease:
+        description: If true, release will be performed. If false, it will pull the release image from quay
+        required: true
+        default: 'true'
+      publishGhPages:
+        description: If true, image will be published to npmjs. . Use this, in case of publishing fail
+        required: true
+        default: 'true'
+      publishNpmJs:
+        description: If true, image will be pulled from Quay and published to npmjs. . Use this, in case of publishing fail
+        required: false
+        default: 'true'
 jobs:
   release-build-publish:
     runs-on: ubuntu-latest
@@ -88,14 +99,19 @@ jobs:
           restore-keys: |
             download-unpacked-cache-
 
-      - name: Perform release
+      - name: Perform docker pull
+        if: ${{ github.event.inputs.performRelease == 'false' }}
         run: |
-          git config --global user.name "Mykhailo Kuznietsov"
-          git config --global user.email "mkuznets@redhat.com"
+          docker pull quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} 
+      - name: Perform release
+        if: ${{ github.event.inputs.performRelease == 'true' }}
+        run: |
+          # git config --global user.name "Mykhailo Kuznietsov"
+          # git config --global user.email "mkuznets@redhat.com"
 
-          export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
+          # export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
 
-          ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
+          # ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
       - name: Extract content for publishing
         run: |
           docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} sh
@@ -104,6 +120,7 @@ jobs:
           docker rm -f pluginRegistry
           cp content/v3/plugins/index.json content/index.json
       - name: Publish to gh-pages
+        if: ${{ github.event.inputs.publishToGhPages == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
           VERSION_DIR: ${{ github.event.inputs.version}}
@@ -112,9 +129,11 @@ jobs:
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
       - name: publish to npmjs
+        if: ${{ github.event.inputs.republishRelease == 'true' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
+          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${{ github.event.inputs.version}}"
           cd tools/build
           npm publish --tag latest
       - name: Create failure MM message
