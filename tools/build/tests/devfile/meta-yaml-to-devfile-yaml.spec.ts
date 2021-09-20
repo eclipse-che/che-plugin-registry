@@ -44,7 +44,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(component.name).toBe('che-machine-exec');
     const componentContainer = component.container;
     expect(componentContainer.image).toBe('quay.io/eclipse/che-machine-exec:next');
-    expect(componentContainer.command).toStrictEqual(['/go/bin/che-machine-exec', '--url', '0.0.0.0:4444']);
+    expect(componentContainer.command).toStrictEqual(['/go/bin/che-machine-exec', '--url', '127.0.0.1:4444']);
 
     expect(componentContainer.endpoints).toBeDefined();
     expect(componentContainer.endpoints?.length).toBe(2);
@@ -87,8 +87,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
 
     const theiaHostEnv = theiaIdeComponentContainer.env.find((env: any) => env.name === 'THEIA_HOST');
     expect(theiaHostEnv.name).toBe('THEIA_HOST');
-    // 127.0.0.1 should have been replaced by 0.0.0.0
-    expect(theiaHostEnv.value).toBe('0.0.0.0');
+    expect(theiaHostEnv.value).toBe('127.0.0.1');
 
     expect(theiaIdeComponentContainer.volumeMounts).toBeDefined();
     expect(theiaIdeComponentContainer.volumeMounts?.length).toBe(2);

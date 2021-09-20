@@ -78,10 +78,7 @@ export class MetaYamlToDevfileYaml {
 
     components.unshift(component);
 
-    // replace 127.0.0.1 by 0.0.0.0
-    return components.map(iteratingComponent =>
-      JSON.parse(JSON.stringify(iteratingComponent).replace(/127\.0\.0\.1/g, '0.0.0.0'))
-    );
+    return components;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
