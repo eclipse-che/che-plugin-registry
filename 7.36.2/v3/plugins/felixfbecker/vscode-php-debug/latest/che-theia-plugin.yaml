@@ -1,0 +1,22 @@
+schemaVersion: 1.0.0
+metadata:
+  id: felixfbecker/vscode-php-debug
+  publisher: felixfbecker
+  name: vscode-php-debug
+  version: latest
+  displayName: PHP Debug
+  description: Debug support for PHP with XDebug
+  repository: 'https://github.com/felixfbecker/vscode-php-debug.git'
+  categories:
+    - Debuggers
+  icon: /images/felixfbecker-php-debug-icon.png
+sidecar:
+  name: php-debugger
+  memoryLimit: 256Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:php-c939ba4'
+dependencies: []
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix'

@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: randomchance/logstash
+  publisher: randomchance
+  name: logstash
+  version: latest
+  displayName: Logstash Configuration Syntax / Language Support
+  description: Adds syntax highlighting for logstash configuration files.
+  repository: 'https://github.com/randomchance/vscode-logstash-configuration-syntax.git'
+  categories:
+    - Programming Languages
+  icon: /images/randomchance-logstash-icon.png
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/RandomChance/logstash/0.0.4/file/RandomChance.logstash-0.0.4.vsix'

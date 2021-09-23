@@ -1,0 +1,26 @@
+schemaVersion: 1.0.0
+metadata:
+  id: broadcommfd/cobol-language-support
+  publisher: broadcommfd
+  name: cobol-language-support
+  version: latest
+  displayName: COBOL Language Support
+  description: 'Autocomplete, highlighting and diagnostics for COBOL code and copybooks.'
+  repository: 'https://github.com/eclipse/che-che4z-lsp-for-cobol.git'
+  categories:
+    - Programming Languages
+  icon: /images/broadcommfd-cobol-language-support-icon.png
+sidecar:
+  name: cobol-language-support
+  memoryLimit: 1Gi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  mountSources: true
+  env:
+    - name: ZOWE_CLI_HOME
+      value: /projects/.zowe
+  image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/BroadcomMFD/cobol-language-support/0.19.0/file/BroadcomMFD.cobol-language-support-0.19.0.vsix'

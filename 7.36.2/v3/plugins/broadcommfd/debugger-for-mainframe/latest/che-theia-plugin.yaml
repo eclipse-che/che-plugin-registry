@@ -1,0 +1,23 @@
+schemaVersion: 1.0.0
+metadata:
+  id: broadcommfd/debugger-for-mainframe
+  publisher: broadcommfd
+  name: debugger-for-mainframe
+  version: latest
+  displayName: Debugger for Mainframe
+  description: Provides a modern debugging experience for CICS and Batch applications written in COBOL.
+  repository: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
+  categories:
+    - Debuggers
+  icon: /images/broadcommfd-debugger-for-mainframe-icon.png
+sidecar:
+  memoryLimit: 512Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  name: debugger-for-mainframe
+  mountSources: true
+  image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/BroadcomMFD/debugger-for-mainframe/1.5.0/file/BroadcomMFD.debugger-for-mainframe-1.5.0.vsix'
