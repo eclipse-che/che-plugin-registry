@@ -179,6 +179,14 @@ export class MetaYamlToDevfileYaml {
       devfileYaml.events = events;
       components = components.concat(componentsFromContainer);
     }
+
+    // remove duplicated components, e.g. plugins
+    // container and init container may provide two volumes with the same name
+    // and it is enough to have in components list only one volume definition
+    components = components.filter(function (item, pos, self) {
+      return self.findIndex(value => value.name === item.name) === pos;
+    });
+
     devfileYaml.components = components;
     return devfileYaml;
   }

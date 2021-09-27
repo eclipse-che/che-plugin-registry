@@ -128,6 +128,21 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(preStartFirstEvent).toBe('init-container-command');
   });
 
+  test('che-theia with multiple volumes which have identical name', async () => {
+    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-theia-meta-with-multiple-volumes.yaml');
+    const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
+    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
+    expect(devfileYaml.components?.length).toBe(6);
+    expect(devfileYaml.components?.find((value: any) => value.name === 'theia-ide')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'plugins')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'theia-local')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'che-machine-exec')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'remote-runtime-injector')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'remote-endpoint')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'non-existent')).toBeUndefined();
+  });
+
   test('no container', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'no-container.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
