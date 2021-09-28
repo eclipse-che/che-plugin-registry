@@ -11,7 +11,7 @@ name: Publish Registry Content
 
 on:
   workflow_run:
-    workflows: ["Build/Publish"]
+    workflows: ["Next Build/Publish"]
     types:
       - completed
 
