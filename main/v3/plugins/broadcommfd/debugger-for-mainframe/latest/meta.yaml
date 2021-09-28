@@ -10,7 +10,7 @@ icon: /images/broadcommfd-debugger-for-mainframe-icon.png
 category: Debuggers
 repository: 'https://github.com/BroadcomMFD/debugger-for-mainframe'
 firstPublicationDate: '2021-04-08'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 deprecate:
   automigrate: true
   migrateTo: broadcommfd/debugger-for-mainframe/1.5.0/latest
@@ -19,6 +19,7 @@ spec:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
       name: debugger-for-mainframe
       memoryLimit: 512Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       mountSources: true

@@ -16,6 +16,7 @@ metadata:
 sidecar:
   name: vscode-xml
   memoryLimit: 768Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'

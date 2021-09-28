@@ -13,6 +13,7 @@ metadata:
 sidecar:
   name: vetur
   memoryLimit: 512Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'

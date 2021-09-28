@@ -10,15 +10,16 @@ icon: /images/redhat-mta-vscode-extension-icon.png
 category: Other
 repository: 'https://github.com/windup/rhamt-vscode-extension'
 firstPublicationDate: '2021-02-16'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   containers:
-    - image: 'quay.io/windupeng/mta-vscode-extension@sha256:4513d38220c65bd5494486a9d017928e8f1f5e1a25e76c41d3b12973ef088bb8'
+    - image: 'quay.io/windupeng/mta-vscode-extension@sha256:94ba032f375194a5c96d8caff1d9d4d0ee2d3199aa11843cac4ac3546a2711b5'
       name: mta-extension
       volumes:
         - name: mta-vscode
           mountPath: /home/theia/mta/redhat.mta-vscode-extension
       memoryLimit: 1500Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       mountSources: true

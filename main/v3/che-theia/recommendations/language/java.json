@@ -3,7 +3,7 @@
     "category": "Programming Languages",
     "ids": [
       "redhat/vscode-microprofile",
-      "redhat/quarkus-java11",
+      "redhat/vscode-quarkus",
       "redhat/quarkus-java8",
       "vscjava/vscode-java-debug",
       "redhat/java",
@@ -23,7 +23,7 @@
     "category": "Other",
     "ids": [
       "redhat/vscode-microprofile",
-      "redhat/quarkus-java11",
+      "redhat/vscode-quarkus",
       "redhat/quarkus-java8",
       "vscjava/vscode-java-test",
       "vscjava/vscode-java-debug"

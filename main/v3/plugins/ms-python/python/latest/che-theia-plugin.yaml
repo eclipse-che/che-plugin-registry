@@ -22,12 +22,13 @@ metadata:
 sidecar:
   name: vscode-python
   memoryLimit: 512Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   volumeMounts:
     - name: venv
       path: /home/theia/.venv
-  image: 'quay.io/eclipse/che-plugin-sidecar:python-78cd6a9'
+  image: 'quay.io/eclipse/che-plugin-sidecar:python-2fca849'
 dependencies: []
 extensions:
   - 'https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix'

@@ -10,7 +10,7 @@ icon: /images/scalameta-metals-icon.png
 category: Programming Languages
 repository: 'https://github.com/scalameta/metals-vscode.git'
 firstPublicationDate: '2021-02-24'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:2cb4f70edbcdab3b279dae53b6a753d63fee03bcae3d2a385e24f25e695c03df'
@@ -23,6 +23,7 @@ spec:
         - name: cache
           mountPath: /home/theia/.cache
       memoryLimit: 1500Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:

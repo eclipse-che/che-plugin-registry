@@ -10,12 +10,13 @@ icon: /images/dart-code-flutter-icon.png
 category: Programming Languages
 repository: 'https://github.com/Dart-Code/Flutter.git'
 firstPublicationDate: '2020-09-07'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:55703ae5faebedee56fdce3879fa2281cc260488d8a488ff77ed3d40f778ddf7'
       name: vscode-flutter
       memoryLimit: 2Gi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:

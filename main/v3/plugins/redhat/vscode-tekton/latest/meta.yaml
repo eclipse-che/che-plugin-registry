@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-tekton-pipelines-icon.png
 category: Snippets
 repository: 'https://github.com/redhat-developer/vscode-tekton.git'
 firstPublicationDate: '2020-06-24'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 deprecate:
   automigrate: true
   migrateTo: redhat/vscode-tekton-pipelines/latest
@@ -22,6 +22,7 @@ spec:
         - name: kube
           mountPath: /home/theia/.kube
       memoryLimit: 384Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:

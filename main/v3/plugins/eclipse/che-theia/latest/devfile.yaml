@@ -11,7 +11,7 @@ events:
 components:
   - name: theia-ide
     container:
-      image: 'quay.io/eclipse/che-theia@sha256:150a93c1362cbc6837e6aeeb644a91a70a5fb63031e23552f01d936a2b312ed7'
+      image: 'quay.io/eclipse/che-theia@sha256:aa4efb996340cf7ac1d8ce37b1d3da3fcd2d596270fa013cc3558a3d5f2b41f0'
       env:
         - name: THEIA_PLUGINS
           value: 'local-dir:///plugins'
@@ -20,7 +20,7 @@ components:
         - name: HOSTED_PLUGIN_PORT
           value: '3130'
         - name: THEIA_HOST
-          value: 0.0.0.0
+          value: 127.0.0.1
       volumeMounts:
         - name: plugins
           path: /plugins
@@ -28,12 +28,15 @@ components:
           path: /home/theia/.theia
       mountSources: true
       memoryLimit: 512M
+      cpuLimit: 1500m
+      cpuRequest: 100m
       endpoints:
         - name: theia
           attributes:
             type: main
             cookiesAuthEnabled: true
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -44,6 +47,7 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             unique: true
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -54,6 +58,7 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             unique: true
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -62,24 +67,28 @@ components:
           attributes:
             type: ide-dev
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3130
           exposure: public
           protocol: http
         - name: theia-redirect-1
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13131
           exposure: public
           protocol: http
         - name: theia-redirect-2
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13132
           exposure: public
           protocol: http
         - name: theia-redirect-3
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13133
           exposure: public
           protocol: http
@@ -88,6 +97,7 @@ components:
             type: collocated-terminal
             discoverable: false
             cookiesAuthEnabled: true
+            urlRewriteSupported: true
           targetPort: 3333
           exposure: public
           secure: false
@@ -101,23 +111,25 @@ components:
     volume: {}
   - name: che-machine-exec
     container:
-      image: 'quay.io/eclipse/che-machine-exec@sha256:a5451369cd67c14dcde41abe2a7ad8499c10d1f5343a579d76018cf6cbed7cf9'
+      image: 'quay.io/eclipse/che-machine-exec@sha256:dacbcc5e0e5afeb6b35badd6c41ffb410b3bfb83172af201faaf58ed5fc87413'
       command:
         - /go/bin/che-machine-exec
         - '--url'
-        - '0.0.0.0:3333'
+        - '127.0.0.1:3333'
     attributes:
       app.kubernetes.io/component: machine-exec
       app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: remote-runtime-injector
     container:
-      image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:ed0bc2a3b1a9cef67d84b052ed248fd48fdc93b384f80af80446d526be4e4751'
+      image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:dc699c3253af7d1ad1fa3561d92b3859ae5fc830479c4ac7c5b99079bf059757'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
         - name: REMOTE_ENDPOINT_VOLUME_NAME
           value: remote-endpoint
       volumeMounts:
+        - name: plugins
+          path: /plugins
         - name: remote-endpoint
           path: /remote-endpoint
     attributes:

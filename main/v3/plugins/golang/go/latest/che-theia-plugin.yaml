@@ -17,12 +17,13 @@ metadata:
 sidecar:
   name: vscode-go
   memoryLimit: 512Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   env:
     - name: GOPATH
       value: '/go:$(CHE_PROJECTS_ROOT)'
-  image: 'quay.io/eclipse/che-plugin-sidecar:go-c939ba4'
+  image: 'quay.io/eclipse/che-plugin-sidecar:go-ae6cfa4'
 dependencies: []
 extensions:
-  - 'https://github.com/golang/vscode-go/releases/download/v0.16.1/go-0.16.1.vsix'
+  - 'https://github.com/golang/vscode-go/releases/download/v0.23.0/go-0.23.0.vsix'

@@ -10,7 +10,10 @@ icon: /images/redhat-vscode-quarkus-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-quarkus'
 firstPublicationDate: '2020-09-21'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
+deprecate:
+  automigrate: true
+  migrateTo: redhat/vscode-quarkus/latest
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
@@ -19,6 +22,7 @@ spec:
         - name: m2
           mountPath: /home/theia/.m2
       memoryLimit: 1500Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       env:

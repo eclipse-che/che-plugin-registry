@@ -10,7 +10,7 @@ icon: /images/asciidoctor-asciidoctor-vscode-icon.png
 category: Programming Languages
 repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
 firstPublicationDate: '2021-03-09'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 deprecate:
   automigrate: true
   migrateTo: asciidoctor/asciidoctor-vscode/latest
@@ -22,6 +22,7 @@ spec:
         - name: documents
           mountPath: /documents
       memoryLimit: 128Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       env:

@@ -10,12 +10,13 @@ icon: /images/redhat-vscode-yaml-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-yaml'
 firstPublicationDate: '2021-01-12'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
       name: vscode-yaml
       memoryLimit: 256Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:

@@ -10,7 +10,7 @@ icon: /images/zxh404-vscode-proto3-icon.png
 category: Programming Languages
 repository: 'https://github.com/zxh0/vscode-proto3'
 firstPublicationDate: '2020-08-28'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 deprecate:
   automigrate: true
   migrateTo: zxh404/vscode-proto3/latest
@@ -19,6 +19,7 @@ spec:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:491c62a3ac775d5426d72a59ac18bdd50f5f5d61d07fbfb34e0cd7fed3d4da21'
       name: vscode-proto3
       memoryLimit: 256Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:

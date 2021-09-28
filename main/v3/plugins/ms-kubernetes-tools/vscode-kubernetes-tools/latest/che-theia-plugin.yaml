@@ -17,6 +17,7 @@ metadata:
 sidecar:
   name: vscode-kubernetes-tools
   memoryLimit: 1Gi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:kubernetes-tooling-d7b84fc'

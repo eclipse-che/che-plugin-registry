@@ -13,6 +13,7 @@ metadata:
   icon: /images/redhat-vscode-quarkus-icon.png
 sidecar:
   memoryLimit: 1500Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   volumeMounts:

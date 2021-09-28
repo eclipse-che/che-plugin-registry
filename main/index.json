@@ -1,5 +1,18 @@
 [
   {
+    "id": "4ops/terraform/latest",
+    "description": "Terraform configuration language support (includes Terragrunt)",
+    "displayName": "Terraform",
+    "links": {
+      "self": "/v3/plugins/4ops/terraform/latest",
+      "plugin": "/v3/plugins/4ops/terraform/latest/che-theia-plugin.yaml"
+    },
+    "name": "terraform",
+    "publisher": "4ops",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "asciidoctor/asciidoctor-vscode/latest",
     "description": "Provides rich language support for AsciiDoc.",
     "displayName": "AsciiDoc",
@@ -390,6 +403,19 @@
     "version": "latest"
   },
   {
+    "id": "fbaligand/vscode-logstash-editor/latest",
+    "description": "Provide completion, documentation and auto-formatting for Logstash pipeline configuration files and Elasticsearch index template json files",
+    "displayName": "Logstash Editor",
+    "links": {
+      "self": "/v3/plugins/fbaligand/vscode-logstash-editor/latest",
+      "plugin": "/v3/plugins/fbaligand/vscode-logstash-editor/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-logstash-editor",
+    "publisher": "fbaligand",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "felixfbecker/php-debug/latest",
     "description": "Debug support for PHP with XDebug",
     "displayName": "PHP Debug",
@@ -451,6 +477,19 @@
     },
     "name": "go",
     "publisher": "golang",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "ivory-lab/jenkinsfile-support/latest",
+    "description": "Extension provides basic jenkinsfile support (highlighting, snippets and completion)",
+    "displayName": "JenkinsFile Support",
+    "links": {
+      "self": "/v3/plugins/ivory-lab/jenkinsfile-support/latest",
+      "plugin": "/v3/plugins/ivory-lab/jenkinsfile-support/latest/che-theia-plugin.yaml"
+    },
+    "name": "jenkinsfile-support",
+    "publisher": "ivory-lab",
     "type": "VS Code extension",
     "version": "latest"
   },
@@ -585,6 +624,19 @@
     "version": "latest"
   },
   {
+    "id": "ms-vscode/js-debug/latest",
+    "description": "An extension for debugging Node.js programs and Chrome.",
+    "displayName": "JavaScript Debugger",
+    "links": {
+      "self": "/v3/plugins/ms-vscode/js-debug/latest",
+      "plugin": "/v3/plugins/ms-vscode/js-debug/latest/che-theia-plugin.yaml"
+    },
+    "name": "js-debug",
+    "publisher": "ms-vscode",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "ms-vscode/node-debug/latest",
     "description": "Node.js debugging support (versions < 8.0)",
     "displayName": "Node Debug (legacy)",
@@ -672,6 +724,19 @@
     },
     "name": "xtext-lang",
     "publisher": "pizzafactory",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "randomchance/logstash/latest",
+    "description": "Adds syntax highlighting for logstash configuration files.",
+    "displayName": "Logstash Configuration Syntax / Language Support",
+    "links": {
+      "self": "/v3/plugins/randomchance/logstash/latest",
+      "plugin": "/v3/plugins/randomchance/logstash/latest/che-theia-plugin.yaml"
+    },
+    "name": "logstash",
+    "publisher": "randomchance",
     "type": "VS Code extension",
     "version": "latest"
   },
@@ -923,6 +988,19 @@
     "version": "latest"
   },
   {
+    "id": "redhat/vscode-quarkus/latest",
+    "description": "Quarkus Tools for Visual Studio Code",
+    "displayName": "Quarkus",
+    "links": {
+      "self": "/v3/plugins/redhat/vscode-quarkus/latest",
+      "plugin": "/v3/plugins/redhat/vscode-quarkus/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-quarkus",
+    "publisher": "redhat",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "redhat/vscode-tekton-pipelines/latest",
     "description": "Tekton Pipelines extension by Red Hat",
     "displayName": "Tekton Pipelines",
@@ -1049,6 +1127,19 @@
     },
     "name": "sonarlint-vscode",
     "publisher": "sonarsource",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
+    "id": "stylelint/vscode-stylelint/latest",
+    "description": "Modern CSS/SCSS/Less linter",
+    "displayName": "stylelint",
+    "links": {
+      "self": "/v3/plugins/stylelint/vscode-stylelint/latest",
+      "plugin": "/v3/plugins/stylelint/vscode-stylelint/latest/che-theia-plugin.yaml"
+    },
+    "name": "vscode-stylelint",
+    "publisher": "stylelint",
     "type": "VS Code extension",
     "version": "latest"
   },

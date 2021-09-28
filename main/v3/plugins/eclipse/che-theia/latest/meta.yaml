@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: 'https://github.com/eclipse-che/che-theia'
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   endpoints:
     - name: theia
@@ -19,6 +19,7 @@ spec:
         type: ide
         cookiesAuthEnabled: true
         discoverable: false
+        urlRewriteSupported: true
         protocol: http
         secure: true
       public: true
@@ -29,6 +30,7 @@ spec:
         cookiesAuthEnabled: true
         discoverable: false
         unique: true
+        urlRewriteSupported: true
         protocol: http
         secure: true
       public: true
@@ -39,6 +41,7 @@ spec:
         cookiesAuthEnabled: true
         discoverable: false
         unique: true
+        urlRewriteSupported: true
         protocol: http
         secure: true
       public: true
@@ -47,24 +50,28 @@ spec:
       attributes:
         type: ide-dev
         discoverable: false
+        urlRewriteSupported: true
         protocol: http
       public: true
     - name: theia-redirect-1
       targetPort: 13131
       attributes:
         discoverable: false
+        urlRewriteSupported: true
         protocol: http
       public: true
     - name: theia-redirect-2
       targetPort: 13132
       attributes:
         discoverable: false
+        urlRewriteSupported: true
         protocol: http
       public: true
     - name: theia-redirect-3
       targetPort: 13133
       attributes:
         discoverable: false
+        urlRewriteSupported: true
         protocol: http
       public: true
     - name: terminal
@@ -73,11 +80,12 @@ spec:
         type: collocated-terminal
         discoverable: false
         cookiesAuthEnabled: true
+        urlRewriteSupported: true
         protocol: ws
         secure: true
       public: true
   containers:
-    - image: 'quay.io/eclipse/che-theia@sha256:150a93c1362cbc6837e6aeeb644a91a70a5fb63031e23552f01d936a2b312ed7'
+    - image: 'quay.io/eclipse/che-theia@sha256:aa4efb996340cf7ac1d8ce37b1d3da3fcd2d596270fa013cc3558a3d5f2b41f0'
       env:
         - name: THEIA_PLUGINS
           value: 'local-dir:///plugins'
@@ -89,6 +97,8 @@ spec:
           value: 127.0.0.1
       mountSources: true
       memoryLimit: 512M
+      cpuLimit: 1500m
+      cpuRequest: 100m
       volumes:
         - name: plugins
           mountPath: /plugins
@@ -101,7 +111,7 @@ spec:
         - exposedPort: 13131
         - exposedPort: 13132
         - exposedPort: 13133
-    - image: 'quay.io/eclipse/che-machine-exec@sha256:a5451369cd67c14dcde41abe2a7ad8499c10d1f5343a579d76018cf6cbed7cf9'
+    - image: 'quay.io/eclipse/che-machine-exec@sha256:dacbcc5e0e5afeb6b35badd6c41ffb410b3bfb83172af201faaf58ed5fc87413'
       command:
         - /go/bin/che-machine-exec
         - '--url'
@@ -110,13 +120,15 @@ spec:
       ports:
         - exposedPort: 3333
   initContainers:
-    - image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:ed0bc2a3b1a9cef67d84b052ed248fd48fdc93b384f80af80446d526be4e4751'
+    - image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:dc699c3253af7d1ad1fa3561d92b3859ae5fc830479c4ac7c5b99079bf059757'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
         - name: REMOTE_ENDPOINT_VOLUME_NAME
           value: remote-endpoint
       volumes:
+        - name: plugins
+          mountPath: /plugins
         - name: remote-endpoint
           mountPath: /remote-endpoint
           ephemeral: true

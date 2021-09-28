@@ -12,6 +12,7 @@ metadata:
   icon: /images/broadcommfd-debugger-for-mainframe-icon.png
 sidecar:
   memoryLimit: 512Mi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   name: debugger-for-mainframe

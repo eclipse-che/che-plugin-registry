@@ -2,14 +2,14 @@
   {
     "category": "Programming Languages",
     "ids": [
-      "redhat/quarkus-java11",
+      "redhat/vscode-quarkus",
       "redhat/quarkus-java8"
     ]
   },
   {
     "category": "Other",
     "ids": [
-      "redhat/quarkus-java11",
+      "redhat/vscode-quarkus",
       "redhat/quarkus-java8"
     ]
   }

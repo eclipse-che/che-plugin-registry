@@ -14,6 +14,7 @@ metadata:
   icon: /images/bmewburn-vscode-intelephense-client-icon.png
 sidecar:
   memoryLimit: 1Gi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:php-c939ba4'

@@ -10,12 +10,13 @@ icon: /images/zowe-vscode-extension-for-zowe-icon.png
 category: Other
 repository: 'https://github.com/zowe/vscode-extension-for-zowe'
 firstPublicationDate: '2021-06-15'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
       name: zowe-explorer
       memoryLimit: 512Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       env:

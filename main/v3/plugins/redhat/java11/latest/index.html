@@ -10,7 +10,7 @@ icon: /images/redhat-java-icon.png
 category: Programming Languages
 repository: 'https://github.com/redhat-developer/vscode-java'
 firstPublicationDate: '2021-02-11'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 deprecate:
   automigrate: true
   migrateTo: redhat/java/latest
@@ -22,6 +22,7 @@ spec:
         - name: m2
           mountPath: /home/theia/.m2
       memoryLimit: 1500Mi
+      memoryRequest: 20Mi
       cpuRequest: 30m
       cpuLimit: 500m
       env:

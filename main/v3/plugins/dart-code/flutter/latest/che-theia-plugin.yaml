@@ -17,6 +17,7 @@ metadata:
 sidecar:
   name: vscode-flutter
   memoryLimit: 2Gi
+  memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:flutter-b64039f'

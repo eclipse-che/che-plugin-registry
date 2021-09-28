@@ -20,7 +20,7 @@ components:
         - name: HOSTED_PLUGIN_PORT
           value: '3130'
         - name: THEIA_HOST
-          value: 0.0.0.0
+          value: 127.0.0.1
       volumeMounts:
         - name: plugins
           path: /plugins
@@ -36,6 +36,7 @@ components:
             type: main
             cookiesAuthEnabled: true
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -46,6 +47,7 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             unique: true
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -56,6 +58,7 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             unique: true
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
@@ -64,24 +67,28 @@ components:
           attributes:
             type: ide-dev
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3130
           exposure: public
           protocol: http
         - name: theia-redirect-1
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13131
           exposure: public
           protocol: http
         - name: theia-redirect-2
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13132
           exposure: public
           protocol: http
         - name: theia-redirect-3
           attributes:
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 13133
           exposure: public
           protocol: http
@@ -90,6 +97,7 @@ components:
             type: collocated-terminal
             discoverable: false
             cookiesAuthEnabled: true
+            urlRewriteSupported: true
           targetPort: 3333
           exposure: public
           secure: false
@@ -107,7 +115,7 @@ components:
       command:
         - /go/bin/che-machine-exec
         - '--url'
-        - '0.0.0.0:3333'
+        - '127.0.0.1:3333'
       memoryLimit: 128Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
@@ -124,6 +132,8 @@ components:
         - name: REMOTE_ENDPOINT_VOLUME_NAME
           value: remote-endpoint
       volumeMounts:
+        - name: plugins
+          path: /plugins
         - name: remote-endpoint
           path: /remote-endpoint
       memoryLimit: 128Mi

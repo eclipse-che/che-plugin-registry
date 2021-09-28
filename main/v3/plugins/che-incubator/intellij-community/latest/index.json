@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: 'https://github.com/che-incubator/che-editor-intellij-community'
 firstPublicationDate: '2020-09-29'
-latestUpdateDate: '2021-07-06'
+latestUpdateDate: '2021-09-28'
 spec:
   endpoints:
     - name: intellij
