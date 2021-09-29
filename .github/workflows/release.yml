@@ -132,7 +132,7 @@ jobs:
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
 
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd $GITHUB_WORKSPACE
           message=$(jq -r '.text' mattermost.json)
           echo "$( jq '.text = "'$message'. publish to GH succesfull."' mattermost.json )" > mattermost.json   
       - name: publish to npmjs
@@ -140,23 +140,23 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd $GITHUB_WORKSPACE
           BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${{ github.event.inputs.version}}"
           cd tools/build
           npm publish --tag latest
 
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd $GITHUB_WORKSPACE
           message=$(jq -r '.text' mattermost.json)
           echo "$( jq '.text = "'$message'. publish to npm.js succesfull."' mattermost.json )" > mattermost.json   
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd $GITHUB_WORKSPACE
           message=$(jq -r '.text' mattermost.json)
           echo "$( jq '.text = ":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. '$message'"' mattermost.json )"  
       - name: Create success MM message
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd $GITHUB_WORKSPACE
           message=$(jq -r '.text' mattermost.json)
           echo "$( jq '.text = ":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}. '$message'"' mattermost.json )"  
       - name: Send MM message
