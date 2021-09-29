@@ -134,7 +134,7 @@ jobs:
 
           cd ${{ env.GITHUB_WORKSPACE }}
           message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = "'$message'. publish to GH succesfull."' mattermost.json )" > mattermost.json   
+          echo "$( jq '.text = "'$message'. publish to GH succeeded."' mattermost.json )" > mattermost.json   
       - name: publish to npmjs
         if: ${{ github.event.inputs.publishToNpmJs == 'true' }}
         env:
@@ -147,18 +147,18 @@ jobs:
 
           cd ${{ env.GITHUB_WORKSPACE }}
           message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = "'$message'. publish to npm.js succesfull."' mattermost.json )" > mattermost.json   
+          echo "$( jq '.text = "'$message'. publish to npm.js succeeded."' mattermost.json )" > mattermost.json   
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
           cd ${{ env.GITHUB_WORKSPACE }}
           message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = ":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. '$message'"' mattermost.json )"  
+          echo "$( jq '.text = ":no_entry_sign: Che Plugin Registry release ${{ github.event.inputs.version }} has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. '$message'"' mattermost.json )"  
       - name: Create success MM message
         run: |
           cd ${{ env.GITHUB_WORKSPACE }}
           message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = ":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}. '$message'"' mattermost.json )"  
+          echo "$( jq '.text = ":white_check_mark: Che Plugin Registry image, GH page update and npmjs generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}. '$message'"' mattermost.json )"  
       - name: Send MM message
         if: ${{ success() }} || ${{ failure() }}
         uses: mattermost/action-mattermost-notify@1.1.0
