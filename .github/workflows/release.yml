@@ -112,6 +112,9 @@ jobs:
           export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
 
           ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
+      - name: Prepare mattermost message
+        run:
+          echo "{\"text\":\"Release has been performed\"}" > mattermost.json
       - name: Extract content for publishing
         run: |
           docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} sh
@@ -128,6 +131,10 @@ jobs:
           export BUILD_DIR="$PWD/content"
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
+
+          cd ${{ env.GITHUB_WORKSPACE }}
+          message=$(jq -r '.text' mattermost.json)
+          echo "$( jq '.text = "'$message'. publish to GH succesfull."' mattermost.json )" > mattermost.json   
       - name: publish to npmjs
         if: ${{ github.event.inputs.publishToNpmJs == 'true' }}
         env:
@@ -137,13 +144,21 @@ jobs:
           BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${{ github.event.inputs.version}}"
           cd tools/build
           npm publish --tag latest
+
+          cd ${{ env.GITHUB_WORKSPACE }}
+          message=$(jq -r '.text' mattermost.json)
+          echo "$( jq '.text = "'$message'. publish to npm.js succesfull."' mattermost.json )" > mattermost.json   
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
-          echo "{\"text\":\":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. Parameters: "}" > mattermost.json
+          cd ${{ env.GITHUB_WORKSPACE }}
+          message=$(jq -r '.text' mattermost.json)
+          echo "$( jq '.text = ":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. '$message'"' mattermost.json )"  
       - name: Create success MM message
         run: |
-          echo "{\"text\":\":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}\"}" > mattermost.json
+          cd ${{ env.GITHUB_WORKSPACE }}
+          message=$(jq -r '.text' mattermost.json)
+          echo "$( jq '.text = ":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}. '$message'"' mattermost.json )"  
       - name: Send MM message
         if: ${{ success() }} || ${{ failure() }}
         uses: mattermost/action-mattermost-notify@1.1.0
