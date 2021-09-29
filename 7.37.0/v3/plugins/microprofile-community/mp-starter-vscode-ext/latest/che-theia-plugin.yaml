@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: microprofile-community/mp-starter-vscode-ext
+  publisher: microprofile-community
+  name: mp-starter-vscode-ext
+  version: latest
+  displayName: MicroProfile Starter
+  description: VS Code extension starter for Eclipse MicroProfile
+  repository: 'https://github.com/MicroShed/mp-starter-vscode-ext'
+  categories:
+    - Programming Languages
+  icon: /images/microprofile-community-mp-starter-vscode-ext-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/MicroShed/mp-starter-vscode-ext/releases/download/0.2.0/mp-starter-vscode-ext-0.2.0.vsix'
