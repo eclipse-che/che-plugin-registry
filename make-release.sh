@@ -83,9 +83,9 @@ commitChangeOrCreatePR()
     PR_BRANCH="$3"
 
     if [[ ${PR_BRANCH} == *"add"* ]]; then
-      COMMIT_MSG="[release] Add ${aVERSION} plugins in ${aBRANCH}"
+      COMMIT_MSG="chore: Add ${aVERSION} plugins in ${aBRANCH}"
     else 
-      COMMIT_MSG="[release] Bump to ${aVERSION} in ${aBRANCH}"
+      COMMIT_MSG="chore: Bump to ${aVERSION} in ${aBRANCH}"
     fi
 
     # commit change into branch
