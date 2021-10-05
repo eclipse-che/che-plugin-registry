@@ -99,10 +99,12 @@ jobs:
           restore-keys: |
             download-unpacked-cache-
 
-      - name: Perform docker pull
+      - name: Perform checkout & docker pull
         if: ${{ github.event.inputs.performRelease == 'false' }}
         run: |
+          git checkout ${{ github.event.inputs.version}}
           docker pull quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} 
+          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} Pulled existing image from https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: Perform release
         if: ${{ github.event.inputs.performRelease == 'true' }}
         run: |
@@ -112,6 +114,7 @@ jobs:
           export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
 
           ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
+          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} Performed tagging and container build of new image https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: Prepare mattermost message
         run:
           echo "{\"text\":\"Release has been performed\"}" > mattermost.json
@@ -132,33 +135,25 @@ jobs:
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
 
-          cd ${{ env.GITHUB_WORKSPACE }}
-          message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = "'$message'. publish to GH succeeded."' mattermost.json )" > mattermost.json   
+          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} Published package to npmjs https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: publish to npmjs
         if: ${{ github.event.inputs.publishToNpmJs == 'true' }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
+          cd ${GITHUB_WORKSPACE}
           BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${{ github.event.inputs.version}}"
           cd tools/build
           npm publish --tag latest
 
-          cd ${{ env.GITHUB_WORKSPACE }}
-          message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = "'$message'. publish to npm.js succeeded."' mattermost.json )" > mattermost.json   
+          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} Published package to npmjs https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: Create failure MM message
         if: ${{ failure() }}
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
-          message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = ":no_entry_sign: Che Plugin Registry release ${{ github.event.inputs.version }} has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. '$message'"' mattermost.json )"  
+          echo "{\"text\":\":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. ${MM_MESSAGE_APPEND}\"}" > mattermost.json
       - name: Create success MM message
         run: |
-          cd ${{ env.GITHUB_WORKSPACE }}
-          message=$(jq -r '.text' mattermost.json)
-          echo "$( jq '.text = ":white_check_mark: Che Plugin Registry image, GH page update and npmjs generator ${{ github.event.inputs.version }} have been released: https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }} + https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}. '$message'"' mattermost.json )"  
+          echo "{\"text\":\":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release job is complete: ${MM_MESSAGE_APPEND}\"}" > mattermost.json
       - name: Send MM message
         if: ${{ success() }} || ${{ failure() }}
         uses: mattermost/action-mattermost-notify@1.1.0
