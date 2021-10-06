@@ -1,0 +1,25 @@
+schemaVersion: 1.0.0
+metadata:
+  id: zowe/vscode-extension-for-zowe
+  publisher: zowe
+  name: vscode-extension-for-zowe
+  version: latest
+  displayName: Zowe Explorer
+  description: 'VS Code extension, powered by Zowe CLI, that streamlines interaction with mainframe data sets, USS files, and jobs'
+  repository: 'https://github.com/zowe/vscode-extension-for-zowe'
+  categories:
+    - Other
+  icon: /images/zowe-vscode-extension-for-zowe-icon.png
+sidecar:
+  name: zowe-explorer
+  memoryLimit: 512Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  env:
+    - name: ZOWE_CLI_HOME
+      value: /projects/.zowe
+  image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
+dependencies: []
+extensions:
+  - 'https://github.com/eclipse/che-che4z/releases/download/v2.4.0/vscode-extension-for-zowe-1.16.0-che.vsix'

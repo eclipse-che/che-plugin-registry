@@ -1,0 +1,37 @@
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/mta
+  publisher: redhat
+  name: mta
+  version: latest
+  displayName: Migration Toolkit for Applications
+  description: Migration Toolkit for Applications (MTA)
+  repository: 'https://github.com/windup/rhamt-vscode-extension'
+  categories:
+    - Other
+  icon: /images/redhat-mta-vscode-extension-icon.png
+sidecar:
+  image: 'quay.io/windupeng/mta-vscode-extension:latest'
+  name: mta-extension
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  mountSources: true
+  volumeMounts:
+    - name: mta-vscode
+      path: /home/theia/mta/redhat.mta-vscode-extension
+  endpoints:
+    - name: configuration-endpoint
+      public: true
+      targetPort: 61436
+      attributes:
+        protocol: http
+    - name: report-endpoint
+      public: true
+      targetPort: 61435
+      attributes:
+        protocol: http
+dependencies: []
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix'

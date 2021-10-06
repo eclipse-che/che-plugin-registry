@@ -1,0 +1,20 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "broadcommfd/cobol-language-support"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "broadcommfd/debugger-for-mainframe/1.5.0"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "broadcommfd/ccf/0.4.0"
+    ]
+  }
+]

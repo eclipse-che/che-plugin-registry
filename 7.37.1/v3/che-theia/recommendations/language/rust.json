@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "rust-lang/rust"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "rust-lang/rust"
+    ]
+  },
+  {
+    "category": "Snippets",
+    "ids": [
+      "rust-lang/rust"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "rust-lang/rust"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "rust-lang/rust"
+    ]
+  }
+]

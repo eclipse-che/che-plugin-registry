@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: scala-lang/scala
+  publisher: scala-lang
+  name: scala
+  version: latest
+  displayName: Scala Syntax (official)
+  description: Official Scala Syntax
+  repository: 'https://github.com/scala/vscode-scala-syntax.git'
+  categories:
+    - Programming Languages
+  icon: /images/scala-lang-scala-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'
