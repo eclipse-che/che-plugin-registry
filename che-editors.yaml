@@ -406,38 +406,85 @@ editors:
             - exposedPort: 8080
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/intellij-community/2020.2.2
+      name: che-incubator/intellij-community/2020.3.3
       displayName: IntelliJ IDEA Community Edition
-      description: IntelliJ IDEA Community Edition running on the Web with noVNC
+      description: IntelliJ IDEA Community running using Projector
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
         publisher: che-incubator
-        version: 2020.2.2
-        title: IntelliJ IDEA Community Edition (in browser using noVNC) as editor for Eclipse Che
-        repository: 'https://github.com/che-incubator/che-editor-intellij-community'
+        version: 2020.3.3
+        title: IntelliJ IDEA Community as Editor for Eclipse Che
+        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2020-09-29'
     components:
-      - name: intellij-novnc
+      - name: intellij
         container:
-          image: "quay.io/che-incubator/che-editor-intellij-community:2020.2-cdc002c"
+          image: "quay.io/che-incubator/che-idea:2020.3.3"
           volumeMounts:
-            - name: idea-configuration
-              path: /JetBrains/IdeaIC
+            - name: projector-user
+              path: /home/projector-user
           mountSources: true
+          memoryRequest: 32Mi
           memoryLimit: 2048M
+          cpuLimit: 1500m
+          cpuRequest: 100m
           endpoints:
             - name: intellij
-              targetPort: 8080
+              targetPort: 8887
               exposure: public
               protocol: http
+              secure: true
               attributes:
                 type: main
+                cookiesAuthEnabled: true
+                urlRewriteSupported: true
                 discoverable: false
-                path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
+                path: /?backgroundColor=434343&wss
         attributes:
           ports:
-            - exposedPort: 8080
-      - name: idea-configuration
+            - exposedPort: 8887
+      - name: projector-user
+        volume: {}
+  - schemaVersion: 2.1.0
+    metadata:
+      name: che-incubator/pycharm/2020.3.3
+      displayName: PyCharm Community
+      description: PyCharm Community running using Projector
+      icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
+      attributes:
+        publisher: che-incubator
+        version: 2020.3.5
+        title: PyCharm Community as Editor for Eclipse Che
+        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
+        firstPublicationDate: '2021-10-06'
+    components:
+      - name: intellij
+        container:
+          image: "quay.io/che-incubator/che-pycharm:2020.3.3"
+          volumeMounts:
+            - name: projector-user
+              path: /home/projector-user
+          mountSources: true
+          memoryRequest: 32Mi
+          memoryLimit: 2048M
+          cpuLimit: 1500m
+          cpuRequest: 100m
+          endpoints:
+            - name: intellij
+              targetPort: 8887
+              exposure: public
+              protocol: http
+              secure: true
+              attributes:
+                type: main
+                cookiesAuthEnabled: true
+                urlRewriteSupported: true
+                discoverable: false
+                path: /?backgroundColor=434343&wss
+        attributes:
+          ports:
+            - exposedPort: 8887
+      - name: projector-user
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
