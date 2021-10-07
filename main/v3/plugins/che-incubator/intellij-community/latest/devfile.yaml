@@ -2,23 +2,29 @@ schemaVersion: 2.1.0
 metadata:
   name: IntelliJ IDEA Community Edition
 components:
-  - name: intellij-novnc
+  - name: intellij
     container:
-      image: 'quay.io/che-incubator/che-editor-intellij-community@sha256:29025db859268f5dcf21ba6eb4e284744b53c92d6d23514e565a0211606f6863'
+      image: 'quay.io/che-incubator/che-idea@sha256:b02663b2aea521bcbcafdbec7eba27b6d804e3885dc54bb7d5c771ed77d4a97f'
       volumeMounts:
-        - name: idea-configuration
-          path: /JetBrains/IdeaIC
+        - name: projector-user
+          path: /home/projector-user
       mountSources: true
       memoryLimit: 2048M
+      memoryRequest: 32Mi
+      cpuLimit: 1500m
+      cpuRequest: 100m
       endpoints:
         - name: intellij
           attributes:
             type: main
+            cookiesAuthEnabled: true
+            urlRewriteSupported: true
             discoverable: false
-            path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
-          targetPort: 8080
+            path: /?backgroundColor=434343&wss
+          targetPort: 8887
           exposure: public
-          protocol: http
+          secure: false
+          protocol: https
     attributes: {}
-  - name: idea-configuration
+  - name: projector-user
     volume: {}

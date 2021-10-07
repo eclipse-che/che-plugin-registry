@@ -170,13 +170,26 @@
   },
   {
     "id": "che-incubator/intellij-community/latest",
-    "description": "IntelliJ IDEA Community Edition running on the Web with noVNC",
+    "description": "IntelliJ IDEA Community running using Projector",
     "displayName": "IntelliJ IDEA Community Edition",
     "links": {
       "self": "/v3/plugins/che-incubator/intellij-community/latest",
       "devfile": "/v3/plugins/che-incubator/intellij-community/latest/devfile.yaml"
     },
     "name": "intellij-community",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/pycharm/latest",
+    "description": "PyCharm Community running using Projector",
+    "displayName": "PyCharm Community",
+    "links": {
+      "self": "/v3/plugins/che-incubator/pycharm/latest",
+      "devfile": "/v3/plugins/che-incubator/pycharm/latest/devfile.yaml"
+    },
+    "name": "pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest"
