@@ -11,7 +11,7 @@ quay.io/eclipse/che-plugin-sidecar@sha256:ae5124e3198ac6977ca973aaf4885a14e800d6
 quay.io/eclipse/che-plugin-sidecar@sha256:2e49fafb9aa6519fc63019a72a4526222b6905ed01dc484c3e9f5131ae00b546
 quay.io/eclipse/che-plugin-sidecar@sha256:276765cf3e6f54ae3bd70325132ef0b79019798afc081c5ff6750767995df0c3
 quay.io/eclipse/che-plugin-sidecar@sha256:d565b98f110efe4246fe1f25ee62d74d70f4f999e4679e8f7085f18b1711f76d
-quay.io/eclipse/che-plugin-sidecar@sha256:72ad4cef9ce659e92e1220c31da7e20895af5a107ccc40760072bb0b5f142ca2
+quay.io/eclipse/che-plugin-sidecar:go-3e17ce4
 quay.io/eclipse/che-plugin-sidecar@sha256:55703ae5faebedee56fdce3879fa2281cc260488d8a488ff77ed3d40f778ddf7
 quay.io/eclipse/che-plugin-sidecar@sha256:dfc39aad96f458c796e72a2d0b628fdfd8176e569d491ac33702299ed8e8c71c
 quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
