@@ -5,7 +5,7 @@ metadata:
   name: vscode-openshift-connector
   version: latest
   displayName: OpenShift Connector
-  description: Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Visual Studio Code
+  description: Simplified app dev for Kubernetes or Red Hat OpenShift
   repository: 'https://github.com/redhat-developer/vscode-openshift-tools.git'
   categories:
     - Other
@@ -25,4 +25,4 @@ dependencies:
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
-  - 'https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.0/file/redhat.vscode-openshift-connector-0.2.0.vsix'
+  - 'https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix'

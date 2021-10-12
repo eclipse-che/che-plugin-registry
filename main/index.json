@@ -989,7 +989,7 @@
   },
   {
     "id": "redhat/vscode-openshift-connector/latest",
-    "description": "Interacting with Red Hat OpenShift clusters and providing a streamlined developer experience using Visual Studio Code",
+    "description": "Simplified app dev for Kubernetes or Red Hat OpenShift",
     "displayName": "OpenShift Connector",
     "links": {
       "self": "/v3/plugins/redhat/vscode-openshift-connector/latest",
