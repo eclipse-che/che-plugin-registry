@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: che-theia/che-openshift-authentication-plugin
+  publisher: che-theia
+  name: che-openshift-authentication-plugin
+  version: latest
+  displayName: ''
+  description: ''
+  repository: 'https://github.com/che-incubator/che-theia-openshift-auth.git'
+  categories:
+    - Other
+  icon: /images/default.png
+dependencies: []
+extensions:
+  - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.2/che-openshift-authentication-plugin-0.0.2.vsix'

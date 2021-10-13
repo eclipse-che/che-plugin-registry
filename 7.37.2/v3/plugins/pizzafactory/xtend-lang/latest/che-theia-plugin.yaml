@@ -1,0 +1,22 @@
+schemaVersion: 1.0.0
+metadata:
+  id: pizzafactory/xtend-lang
+  publisher: pizzafactory
+  name: xtend-lang
+  version: latest
+  displayName: Xtend
+  description: Xtend Programming Language
+  repository: 'https://github.com/PizzaFactory/xtend-ide-extensions.git'
+  categories:
+    - Programming Languages
+  icon: /images/default.png
+sidecar:
+  name: vscode-xtend-lang
+  memoryLimit: 768Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:java8-1273116'
+dependencies: []
+extensions:
+  - 'https://github.com/PizzaFactory/xtend-ide-extensions/releases/download/v0.1.0/xtend-lang-0.1.0.vsix'
