@@ -1,0 +1,16 @@
+schemaVersion: 1.0.0
+metadata:
+  id: ivory-lab/jenkinsfile-support
+  publisher: ivory-lab
+  name: jenkinsfile-support
+  version: latest
+  displayName: JenkinsFile Support
+  description: 'Extension provides basic jenkinsfile support (highlighting, snippets and completion)'
+  repository: 'https://github.com/sgwozdz/jenkinsfile-support.git'
+  categories:
+    - Programming Languages
+    - Snippets
+  icon: /images/ivory-lab-jenkinsfile-support-icon.png
+dependencies: []
+extensions:
+  - 'https://disaster37.github.io/vscode-plugins/ivory-lab.jenkinsfile-support-1.1.0.vsix'
