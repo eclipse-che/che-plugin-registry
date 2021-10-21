@@ -13,4 +13,4 @@ firstPublicationDate: '2021-02-24'
 latestUpdateDate: '2021-10-21'
 spec:
   extensions:
-    - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'
+    - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.3/scala.vsix'

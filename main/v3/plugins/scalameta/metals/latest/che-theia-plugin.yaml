@@ -27,4 +27,4 @@ sidecar:
 dependencies:
   - scala-lang/scala
 extensions:
-  - 'https://github.com/scalameta/metals-vscode/releases/download/v1.10.0/scalameta.metals-1.10.0.vsix'
+  - 'https://github.com/scalameta/metals-vscode/releases/download/v1.10.11/scalameta.metals-1.10.11.vsix'

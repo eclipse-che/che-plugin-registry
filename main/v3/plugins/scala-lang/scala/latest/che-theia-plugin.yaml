@@ -12,4 +12,4 @@ metadata:
   icon: /images/scala-lang-scala-icon.png
 dependencies: []
 extensions:
-  - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.2/scala.vsix'
+  - 'https://github.com/scala/vscode-scala-syntax/releases/download/0.5.3/scala.vsix'
