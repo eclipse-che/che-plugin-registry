@@ -93,6 +93,10 @@ patchTestPodConfig(){
   sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
   sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
 
+  sed -i "s@GH_USERNAME@${GH_USERNAME}@g" plugins-test-pod.yaml
+  sed -i "s@GH_PASSWORD@${GH_PASSWORD}@g" plugins-test-pod.yaml
+  
+
   cat plugins-test-pod.yaml
 }
 
