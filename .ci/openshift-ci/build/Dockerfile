@@ -11,7 +11,7 @@
 #
 
 # Initial settings
-FROM docker.io/node:14.17.6-alpine3.12 as builder
+FROM quay.io/crw_pr/node:14.17.6-alpine3.12 as builder
 
 ENV SKIP_FORMAT=true
 ENV SKIP_LINT=true
