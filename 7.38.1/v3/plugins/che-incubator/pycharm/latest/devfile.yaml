@@ -1,0 +1,30 @@
+schemaVersion: 2.1.0
+metadata:
+  name: PyCharm Community
+components:
+  - name: intellij
+    container:
+      image: 'quay.io/che-incubator/che-pycharm@sha256:9428304bade75e6b690b4f4805e15778d5ef7c2cec31910e3bd74c273c12b62f'
+      volumeMounts:
+        - name: projector-user
+          path: /home/projector-user
+      mountSources: true
+      memoryLimit: 2048M
+      memoryRequest: 32Mi
+      cpuLimit: 1500m
+      cpuRequest: 100m
+      endpoints:
+        - name: intellij
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            urlRewriteSupported: true
+            discoverable: false
+            path: /?backgroundColor=434343&wss
+          targetPort: 8887
+          exposure: public
+          secure: false
+          protocol: https
+    attributes: {}
+  - name: projector-user
+    volume: {}

@@ -1,0 +1,16 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "redhat/vscode-quarkus",
+      "redhat/quarkus-java8"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "redhat/vscode-quarkus",
+      "redhat/quarkus-java8"
+    ]
+  }
+]
