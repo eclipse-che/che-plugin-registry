@@ -1,0 +1,23 @@
+schemaVersion: 1.0.0
+metadata:
+  id: pizzafactory/vscode-libra-move
+  publisher: pizzafactory
+  name: vscode-libra-move
+  version: latest
+  displayName: Libra Move Language VSCode
+  description: 'Libra Move language (syntax highlighting, snippets) for Visual Studio Code'
+  repository: 'https://github.com/sdkbox/vscode-libra-move'
+  categories:
+    - Snippets
+    - Programming Languages
+  icon: /images/sdkbox-vscode-libra-move-icon.png
+sidecar:
+  name: vscode-libra-move
+  memoryLimit: 512Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:java8-1273116'
+dependencies: []
+extensions:
+  - 'https://github.com/pizzafactory-contorno/vscode-libra-move/releases/download/v0.0.10-ddc0d3d/vscode-libra-move-0.0.10.vsix'
