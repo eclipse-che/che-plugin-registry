@@ -20,9 +20,6 @@ sidecar:
   cpuLimit: 500m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
-preferences:
-  xml.server.binary.trustedHashes:
-    - b8e08163ffff7561060e10f142a52655ea1a5d9a
 dependencies: []
 extensions:
-  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v6619960/vscode-xml-0.16.1.vsix'
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v069c634/vscode-xml-0.17.0.vsix'

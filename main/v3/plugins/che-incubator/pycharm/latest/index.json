@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: 'https://github.com/che-incubator/jetbrains-editor-images'
 firstPublicationDate: '2021-10-06'
-latestUpdateDate: '2021-11-04'
+latestUpdateDate: '2021-11-10'
 spec:
   endpoints:
     - name: intellij
