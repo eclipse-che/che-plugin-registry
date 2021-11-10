@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: rogalmic/bash-debug
+  publisher: rogalmic
+  name: bash-debug
+  version: latest
+  displayName: Bash Debug
+  description: A debugger extension for bash scripts (using bashdb).
+  repository: 'https://github.com/rogalmic/vscode-bash-debug.git'
+  categories:
+    - Debuggers
+  icon: /images/rogalmic-bash-debug-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/rogalmic/vscode-bash-debug/releases/download/untagged-78eaa7784342409ec2a3/bash-debug-0.3.9.vsix'
