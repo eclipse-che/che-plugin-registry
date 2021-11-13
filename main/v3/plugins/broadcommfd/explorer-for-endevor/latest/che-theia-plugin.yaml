@@ -12,4 +12,4 @@ metadata:
   icon: /images/broadcommfd-explorer-for-endevor-icon.png
 dependencies: []
 extensions:
-  - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.13.1/explorer-for-endevor-0.13.1.vsix'
+  - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.13.2/explorer-for-endevor-0.13.2.vsix'
