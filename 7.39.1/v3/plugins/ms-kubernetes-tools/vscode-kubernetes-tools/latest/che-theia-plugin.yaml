@@ -1,0 +1,27 @@
+schemaVersion: 1.0.0
+metadata:
+  id: ms-kubernetes-tools/vscode-kubernetes-tools
+  publisher: ms-kubernetes-tools
+  name: vscode-kubernetes-tools
+  version: latest
+  displayName: Kubernetes
+  description: 'Develop, deploy and debug Kubernetes applications'
+  repository: 'https://github.com/Azure/vscode-kubernetes-tools'
+  categories:
+    - Snippets
+    - Linters
+    - Debuggers
+    - Azure
+    - Other
+  icon: /images/ms-kubernetes-tools-vscode-kubernetes-tools-icon.png
+sidecar:
+  name: vscode-kubernetes-tools
+  memoryLimit: 1Gi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:kubernetes-tooling-d7b84fc'
+dependencies:
+  - redhat/vscode-yaml
+extensions:
+  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'

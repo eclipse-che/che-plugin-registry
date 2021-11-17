@@ -1,0 +1,16 @@
+schemaVersion: 1.0.0
+metadata:
+  id: lfs/vscode-emacs-friendly
+  publisher: lfs
+  name: vscode-emacs-friendly
+  version: latest
+  displayName: Emacs Friendly Keymap
+  description: 'Emacs keybindings and selection, friendly interaction with the system clipboard.'
+  repository: 'https://github.com/SebastianZaha/vscode-emacs-friendly'
+  categories:
+    - Other
+    - Keymaps
+  icon: /images/lfs-vscode-emacs-friendly-icon.png
+dependencies: []
+extensions:
+  - 'https://github.com/che-incubator/vscode-emacs-friendly/releases/download/0.9.0/lfs.vscode-emacs-friendly-0.9.0.vsix'
