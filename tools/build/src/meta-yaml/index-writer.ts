@@ -24,10 +24,11 @@ export class IndexWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
-  getLinks(plugin: MetaYamlPluginInfo): { self: string; devfile?: string } {
-    const links: { self: string; devfile?: string; plugin?: string } = {
-      self: `/v3/plugins/${plugin.id}`,
-    };
+  getLinks(plugin: MetaYamlPluginInfo): { self?: string; devfile?: string } {
+    const links: { self?: string; devfile?: string; plugin?: string } = {};
+    if (!plugin.skipMetaYaml) {
+      links.self = `/v3/plugins/${plugin.id}`;
+    }
     if (plugin.type === 'Che Editor' || plugin.type === 'Che Plugin') {
       links.devfile = `/v3/plugins/${plugin.id}/devfile.yaml`;
     } else if (plugin.type === 'VS Code extension') {

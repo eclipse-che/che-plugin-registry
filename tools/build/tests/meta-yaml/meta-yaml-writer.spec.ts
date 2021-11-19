@@ -47,6 +47,7 @@ describe('Test MetaYamlWriter', () => {
     metaPluginYaml = {
       id: 'custom-publisher/custom-name',
       skipIndex: false,
+      skipMetaYaml: false,
       aliases: ['first/alias', 'second/alias'],
       publisher: 'my-publisher',
       name: 'my-name',
@@ -412,6 +413,7 @@ spec: {}
       apiVersion: 'v2',
       id: 'foo/bar',
       publisher: 'foo',
+      skipMetaYaml: true,
       name: 'bar',
       version: '0.0.1',
       displayName: 'minimal-endpoint',
@@ -443,10 +445,11 @@ spec: {}
     metaYamlToDevfileYamlConvertMethod.mockReturnValue({ devfileFakeResult: 'dummy' });
     await metaYamlWriter.write(metaYamlPlugins);
 
-    expect(fsWriteFileSpy).toHaveBeenCalledTimes(2);
+    // we skipped meta.yaml generation
+    expect(fsWriteFileSpy).toHaveBeenCalledTimes(1);
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
-      2,
+      1,
       '/fake-output/v3/plugins/foo/bar/latest/devfile.yaml',
       'devfileFakeResult: dummy\n'
     );
