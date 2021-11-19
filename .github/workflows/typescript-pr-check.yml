@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: '16'
     - name: Clone source code
       uses: actions/checkout@v2
       with:

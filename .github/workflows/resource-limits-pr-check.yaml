@@ -17,10 +17,10 @@ jobs:
 
     steps:
 
-    - name: Setup node 12
+    - name: Setup node 16
       uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: '16'
 
     - name: Clone source code
       uses: actions/checkout@v2

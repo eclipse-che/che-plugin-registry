@@ -502,9 +502,9 @@ describe('Test Build', () => {
     const deferred = new Deferred();
     const task = ora('my-task').start();
     const spyFailTask = jest.spyOn(task, 'fail');
-    build.wrapIntoTask('This is my task', deferred.promise, task);
+    const wrapTask = build.wrapIntoTask('This is my task', deferred.promise, task);
     deferred.reject('rejecting');
-    await expect(deferred.promise).rejects.toMatch('rejecting');
+    await expect(wrapTask).rejects.toMatch('rejecting');
     expect(spyFailTask).toBeCalled();
     expect(spyFailTask.mock.calls[0][0]).toBeUndefined();
   });
