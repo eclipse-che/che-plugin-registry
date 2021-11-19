@@ -51,6 +51,7 @@ describe('Test IndexWriter', () => {
         publisher: 'my-publisher',
         type: 'Che Editor',
         version: 'my-version',
+        skipMetaYaml: true,
       } as any,
       {
         description: 'my-unknown-desc',
@@ -87,7 +88,8 @@ describe('Test IndexWriter', () => {
     // result has been sorted
     expect(jsonOutput[0].id).toBe('my-publisher/my-che-editor-name/latest');
     expect(jsonOutput[0].description).toBe('my-che-plugin');
-    expect(jsonOutput[0].links.self).toBe('/v3/plugins/my-publisher/my-che-editor-name/latest');
+    // no metaYaml generation option enabled for this editor
+    expect(jsonOutput[0].links.self).toBeUndefined();
     expect(jsonOutput[0].links.devfile).toBe('/v3/plugins/my-publisher/my-che-editor-name/latest/devfile.yaml');
     expect(jsonOutput[0].name).toBe('my-che-editor-name');
     expect(jsonOutput[0].publisher).toBe('my-publisher');

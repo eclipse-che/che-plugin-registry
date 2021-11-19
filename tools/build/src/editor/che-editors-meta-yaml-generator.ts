@@ -55,6 +55,7 @@ export class CheEditorsMetaYamlGenerator {
         const iconFile = cheEditor.iconFile;
         const repository = metadata.attributes.repository;
         const firstPublicationDate = metadata.attributes.firstPublicationDate;
+        const skipMetaYaml = metadata.attributes.skipMetaYaml || false;
 
         const latestUpdateDate = new Date().toISOString().slice(0, 10);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,6 +90,7 @@ export class CheEditorsMetaYamlGenerator {
           firstPublicationDate,
           latestUpdateDate,
           spec,
+          skipMetaYaml,
         } as MetaYamlPluginInfo;
       })
     );

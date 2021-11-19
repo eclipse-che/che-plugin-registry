@@ -25,6 +25,7 @@ export interface MetaYamlPluginInfo {
   firstPublicationDate: string;
   latestUpdateDate: string;
   aliases?: string[];
+  skipMetaYaml: boolean;
   skipIndex: boolean;
   spec: {
     containers?: [{ image: string; command?: string[]; args?: string[]; env?: { name: string; value: string }[] }];

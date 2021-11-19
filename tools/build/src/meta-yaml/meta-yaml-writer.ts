@@ -171,10 +171,13 @@ export class MetaYamlWriter {
             const generated = { ...metaYaml };
             generated.id = `${computedId}/${version}`;
             generated.skipIndex = plugin.skipIndex;
+            generated.skipMetaYaml = plugin.skipMetaYaml;
             metaYamlPluginGenerated.push(generated);
             const pluginPath = path.resolve(pluginsFolder, computedId, version, 'meta.yaml');
             await fs.ensureDir(path.dirname(pluginPath));
-            promises.push(fs.writeFile(pluginPath, yamlString));
+            if (!plugin.skipMetaYaml) {
+              promises.push(fs.writeFile(pluginPath, yamlString));
+            }
             if (devfileYaml) {
               const devfilePath = path.resolve(pluginsFolder, computedId, version, 'devfile.yaml');
               const devfileYamlString = jsyaml.safeDump(devfileYaml, { noRefs: true, lineWidth: -1 });
