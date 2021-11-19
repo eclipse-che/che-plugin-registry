@@ -6,7 +6,7 @@ plugins:
     extension: https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix
   - repository:
       url: 'https://github.com/microsoft/vscode-pull-request-github'
-      revision: 0.20.0
+      revision: 0.21.1
     aliases:
       - ms-vscode/vscode-github-pullrequest
     extension: https://github.com/microsoft/vscode-pull-request-github/releases/download/0.21.1/vscode-pull-request-github-0.21.1.vsix
