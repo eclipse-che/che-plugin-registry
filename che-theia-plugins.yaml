@@ -651,8 +651,8 @@ plugins:
     extension: https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.13.0/hlasm-language-support-0.13.0-alpine.vsix
   - repository:
       url: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
-      revision: 0.13.2
-    extension: https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.13.2/explorer-for-endevor-0.13.2.vsix
+      revision: 0.14.0
+    extension: https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.14.0/explorer-for-endevor-0.14.0.vsix
   - repository:
       url: 'https://github.com/zxh0/vscode-proto3'
       revision: c4d9eeb54294e3cee86254261edf036901f29dec
