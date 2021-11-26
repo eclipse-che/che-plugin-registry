@@ -563,6 +563,17 @@ plugins:
           path: /home/theia/.nuget
     extension: https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.6/omnisharp_theia_plugin.theia
   - repository:
+      url: 'https://github.com/muhammadsammy/free-omnisharp-vscode'
+      revision: 1.23.16
+    sidecar:
+      directory: dotnet
+      name: free-omnisharp
+      memoryLimit: 1G
+      memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+    extension: https://open-vsx.org/api/muhammad-sammy/csharp/1.23.16/file/muhammad-sammy.csharp-1.23.16.vsix
+  - repository:
       url: 'https://github.com/rust-lang/vscode-rust'
       revision: v0.7.8
     sidecar:
