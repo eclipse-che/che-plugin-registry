@@ -689,6 +689,19 @@
     "version": "latest"
   },
   {
+    "id": "muhammad-sammy/csharp/latest",
+    "description": "C# support for vscode-compatible editors (powered by OmniSharp and NetCoreDbg).",
+    "displayName": "C#",
+    "links": {
+      "self": "/v3/plugins/muhammad-sammy/csharp/latest",
+      "plugin": "/v3/plugins/muhammad-sammy/csharp/latest/che-theia-plugin.yaml"
+    },
+    "name": "csharp",
+    "publisher": "muhammad-sammy",
+    "type": "VS Code extension",
+    "version": "latest"
+  },
+  {
     "id": "octref/vetur/latest",
     "description": "Vue tooling for VS Code",
     "displayName": "Vetur",
