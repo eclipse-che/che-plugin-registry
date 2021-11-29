@@ -592,7 +592,7 @@ plugins:
     extension: https://github.com/scala/vscode-scala-syntax/releases/download/0.5.3/scala.vsix
   - repository:
       url: 'https://github.com/scalameta/metals-vscode'
-      revision: v1.10.11
+      revision: v1.10.15
     sidecar:
       directory: scala
       name: vscode-metals
@@ -607,7 +607,7 @@ plugins:
           path: /home/theia/.ivy2
         - name: cache
           path: /home/theia/.cache
-    extension: https://github.com/scalameta/metals-vscode/releases/download/v1.10.11/scalameta.metals-1.10.11.vsix
+    extension: https://github.com/scalameta/metals-vscode/releases/download/v1.10.15/scalameta.metals-1.10.15.vsix
   - repository:
       url: 'https://github.com/SonarSource/sonarlint-vscode'
       revision: 1.20.1
