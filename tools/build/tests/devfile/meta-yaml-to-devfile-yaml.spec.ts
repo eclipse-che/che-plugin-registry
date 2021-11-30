@@ -201,6 +201,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(componentContainer.endpoints?.length).toBe(1);
     const wwwEndpoint = componentContainer.endpoints[0];
     expect(wwwEndpoint.name).toBe('www');
+    expect(wwwEndpoint.path).toBe('/hello');
     expect(wwwEndpoint.exposure).toBeUndefined();
     expect(wwwEndpoint.attributes).toBeUndefined();
   });

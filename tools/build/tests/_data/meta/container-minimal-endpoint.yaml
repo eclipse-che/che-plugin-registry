@@ -4,6 +4,7 @@ spec:
   endpoints:
     - name: www
       targetPort: 3100
+      path: /hello
   containers:
     - name: minimal-endpoint
       image: 'quay.io/minimal-endpoint'
