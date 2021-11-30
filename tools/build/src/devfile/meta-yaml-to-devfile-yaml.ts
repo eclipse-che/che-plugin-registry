@@ -118,6 +118,10 @@ export class MetaYamlToDevfileYaml {
           devfileEndpoint.exposure = 'public';
         }
 
+        if (endpoint.path) {
+          devfileEndpoint.path = endpoint.path;
+        }
+
         // ide type is moved to more generic main endpoint
         if (endpoint.attributes && endpoint.attributes['type'] === 'ide') {
           devfileEndpoint.attributes['type'] = 'main';
