@@ -28,9 +28,9 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             urlRewriteSupported: true
-            path: '?tkn=eclipse-che'
           targetPort: 3100
           exposure: public
+          path: '?tkn=eclipse-che'
           secure: false
           protocol: https
     attributes:
