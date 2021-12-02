@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: che-theia
+name: che-openshift-authentication-plugin
+version: latest
+type: VS Code extension
+displayName: Openshift authentication tool
+title: Openshift authentication tool
+description: Authenticates to Openshift using oAuth
+icon: /images/default.png
+category: Other
+repository: 'https://github.com/che-incubator/che-theia-openshift-auth'
+firstPublicationDate: '2021-11-11'
+latestUpdateDate: '2021-12-02'
+spec:
+  extensions:
+    - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.3/che-openshift-authentication-plugin-0.0.3.vsix'

@@ -1,0 +1,52 @@
+schemaVersion: 2.1.0
+metadata:
+  name: che-code
+commands:
+  - id: init-container-command
+    apply:
+      component: che-code-injector
+events:
+  preStart:
+    - init-container-command
+components:
+  - name: che-code-runtime-description
+    container:
+      image: 'quay.io/devfile/universal-developer-image@sha256:53cec58dd190dd1e06100478ae879d7c28abd8fc883d5fdf5be3eb6e943fe5e7'
+      command:
+        - /checode/entrypoint-volume.sh
+      volumeMounts:
+        - name: checode
+          path: /checode
+      memoryLimit: 1024Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+      endpoints:
+        - name: che-code
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          path: '?tkn=eclipse-che'
+          secure: false
+          protocol: https
+    attributes:
+      app.kubernetes.io/component: che-code-runtime
+      app.kubernetes.io/part-of: che-code.eclipse.org
+  - name: checode
+    volume: {}
+  - name: che-code-injector
+    container:
+      image: 'quay.io/che-incubator/che-code:insiders'
+      command:
+        - /entrypoint-init-container.sh
+      volumeMounts:
+        - name: checode
+          path: /checode
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
