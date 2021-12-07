@@ -8,7 +8,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-FROM docker.io/golang:1.17.2-stretch
+FROM docker.io/golang:1.17.4-stretch
 
 ENV HOME=/home/theia
 
