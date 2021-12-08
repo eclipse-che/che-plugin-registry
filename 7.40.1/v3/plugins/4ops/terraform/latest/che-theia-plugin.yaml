@@ -1,0 +1,16 @@
+schemaVersion: 1.0.0
+metadata:
+  id: 4ops/terraform
+  publisher: 4ops
+  name: terraform
+  version: latest
+  displayName: Terraform
+  description: Terraform configuration language support (includes Terragrunt)
+  repository: 'https://github.com/4ops/vscode-language-terraform.git'
+  categories:
+    - Programming Languages
+    - Snippets
+  icon: /images/4ops-terraform-icon.png
+dependencies: []
+extensions:
+  - 'https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix'
