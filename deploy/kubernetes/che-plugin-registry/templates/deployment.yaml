@@ -42,6 +42,10 @@ spec:
         app.kubernetes.io/managed-by: {{ .Release.Service }}
         helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     spec:
+{{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+{{- end }}
       containers:
       - image: {{ .Values.chePluginRegistryImage }}
         imagePullPolicy: {{ .Values.chePluginRegistryImagePullPolicy }}
