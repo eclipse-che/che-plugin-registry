@@ -10,6 +10,13 @@ metadata:
   categories:
     - Other
   icon: /images/default.png
+sidecar:
+  name: vscode-openshift-connector
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 800m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:openshift-tooling-2fcf341'
 dependencies: []
 extensions:
   - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.3/che-openshift-authentication-plugin-0.0.3.vsix'
