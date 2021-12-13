@@ -259,7 +259,7 @@ plugins:
       name: vscode-quarkus
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m
       volumeMounts:
         - name: m2
@@ -281,7 +281,7 @@ plugins:
       directory: java8
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m
       volumeMounts:
         - name: m2
@@ -304,7 +304,7 @@ plugins:
       directory: java8
       memoryLimit: 256Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m
     extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix
     deprecate:
@@ -399,7 +399,7 @@ plugins:
       name: vscode-java
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m      
     extension: https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix
   - repository:
@@ -412,7 +412,7 @@ plugins:
       name: vscode-java
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m      
     extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
   - id: redhat/java
@@ -429,7 +429,7 @@ plugins:
       name: vscode-java
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m
       volumeMounts:
         - name: m2
@@ -450,7 +450,7 @@ plugins:
       name: vscode-java
       memoryLimit: 1500Mi
       memoryRequest: 20Mi
-      cpuLimit: 500m
+      cpuLimit: 800m
       cpuRequest: 30m
       volumeMounts:
         - name: m2
