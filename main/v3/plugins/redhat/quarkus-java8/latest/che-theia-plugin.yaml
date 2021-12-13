@@ -14,7 +14,7 @@ metadata:
 sidecar:
   memoryLimit: 1500Mi
   memoryRequest: 20Mi
-  cpuLimit: 500m
+  cpuLimit: 800m
   cpuRequest: 30m
   volumeMounts:
     - name: m2

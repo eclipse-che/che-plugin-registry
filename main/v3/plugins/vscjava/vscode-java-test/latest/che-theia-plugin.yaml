@@ -14,7 +14,7 @@ sidecar:
   name: vscode-java
   memoryLimit: 1500Mi
   memoryRequest: 20Mi
-  cpuLimit: 500m
+  cpuLimit: 800m
   cpuRequest: 30m
   image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
 dependencies:
