@@ -135,7 +135,7 @@ jobs:
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
 
-          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Published package to npmjs https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
+          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Published plugin registry to GitHub Pages https://github.com/eclipse-che/che-plugin-registry/tree/gh-pages/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: publish to npmjs
         if: ${{ github.event.inputs.publishToNpmJs == 'true' }}
         env:
