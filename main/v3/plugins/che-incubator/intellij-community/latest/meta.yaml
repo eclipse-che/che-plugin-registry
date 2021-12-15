@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: 'https://github.com/che-incubator/jetbrains-editor-images'
 firstPublicationDate: '2020-09-29'
-latestUpdateDate: '2021-12-13'
+latestUpdateDate: '2021-12-15'
 spec:
   endpoints:
     - name: intellij
@@ -25,7 +25,7 @@ spec:
         secure: true
       public: true
   containers:
-    - image: 'quay.io/che-incubator/che-idea@sha256:b02663b2aea521bcbcafdbec7eba27b6d804e3885dc54bb7d5c771ed77d4a97f'
+    - image: 'quay.io/che-incubator/che-idea@sha256:85f6a8b7cce21370efc02f27c83258bd51a710731d1facda6b80357361a84bf5'
       mountSources: true
       memoryRequest: 32Mi
       memoryLimit: 2048M

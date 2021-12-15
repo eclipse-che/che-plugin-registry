@@ -4,7 +4,7 @@ metadata:
 components:
   - name: intellij
     container:
-      image: 'quay.io/che-incubator/che-pycharm@sha256:9428304bade75e6b690b4f4805e15778d5ef7c2cec31910e3bd74c273c12b62f'
+      image: 'quay.io/che-incubator/che-pycharm@sha256:7f743f4ff1cc3b9a561c438442b2a5288800e397d662240b6abf2613901e0fd2'
       volumeMounts:
         - name: projector-user
           path: /home/projector-user
