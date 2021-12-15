@@ -1,0 +1,22 @@
+apiVersion: v2
+publisher: stylelint
+name: vscode-stylelint
+version: latest
+type: VS Code extension
+displayName: stylelint
+title: stylelint
+description: Modern CSS/SCSS/Less linter
+icon: /images/stylelint-vscode-stylelint-icon.png
+category: Linters
+repository: 'https://github.com/stylelint/vscode-stylelint'
+firstPublicationDate: '2021-02-09'
+latestUpdateDate: '2021-12-15'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3'
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+  extensions:
+    - 'https://open-vsx.org/api/stylelint/vscode-stylelint/0.86.0/file/stylelint.vscode-stylelint-0.86.0.vsix'

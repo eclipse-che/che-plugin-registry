@@ -1,0 +1,26 @@
+apiVersion: v2
+publisher: golang
+name: go
+version: latest
+type: VS Code extension
+displayName: Go
+title: Go
+description: Rich Go language support for Visual Studio Code
+icon: /images/golang-go-icon.png
+category: Programming Languages
+repository: 'https://github.com/golang/vscode-go'
+firstPublicationDate: '2021-03-05'
+latestUpdateDate: '2021-12-15'
+spec:
+  containers:
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:849c58e8a371a2bf9ed7600cbf8c8463bbf5ffb4427cb1f2cd4f3d32747660e6'
+      name: vscode-go
+      memoryLimit: 512Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 500m
+      env:
+        - name: GOPATH
+          value: '/go:$(CHE_PROJECTS_ROOT)'
+  extensions:
+    - 'https://github.com/golang/vscode-go/releases/download/v0.23.0/go-0.23.0.vsix'

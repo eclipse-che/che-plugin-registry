@@ -1,0 +1,16 @@
+apiVersion: v2
+publisher: ivory-lab
+name: jenkinsfile-support
+version: latest
+type: VS Code extension
+displayName: JenkinsFile Support
+title: JenkinsFile Support
+description: 'Extension provides basic jenkinsfile support (highlighting, snippets and completion)'
+icon: /images/ivory-lab-jenkinsfile-support-icon.png
+category: Programming Languages
+repository: 'https://github.com/sgwozdz/jenkinsfile-support.git'
+firstPublicationDate: '2020-06-03'
+latestUpdateDate: '2021-12-15'
+spec:
+  extensions:
+    - 'https://disaster37.github.io/vscode-plugins/ivory-lab.jenkinsfile-support-1.1.0.vsix'
