@@ -10,7 +10,7 @@ icon: /images/broadcommfd-explorer-for-endevor-icon.png
 category: SCM Providers
 repository: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
 firstPublicationDate: '2021-11-25'
-latestUpdateDate: '2021-12-15'
+latestUpdateDate: '2021-12-17'
 spec:
   extensions:
     - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.14.0/explorer-for-endevor-0.14.0.vsix'
