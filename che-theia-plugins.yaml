@@ -418,7 +418,7 @@ plugins:
   - id: redhat/java
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
-      revision: v0.75.0
+      revision: v0.82.0
     featured: true
     aliases:
       - redhat/java11
@@ -434,7 +434,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.75.0-60.vsix
+    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.82.0-369.vsix
     metaYaml:
       extraDependencies:
         - vscjava/vscode-java-debug
