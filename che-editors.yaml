@@ -408,20 +408,20 @@ editors:
             - exposedPort: 8080
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/intellij-community/2020.3.3
+      name: che-incubator/intellij-community/2020.3.4
       displayName: IntelliJ IDEA Community Edition
       description: IntelliJ IDEA Community running using Projector
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
         publisher: che-incubator
-        version: 2020.3.3
+        version: 2020.3.4
         title: IntelliJ IDEA Community as Editor for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
-        firstPublicationDate: '2020-09-29'
+        firstPublicationDate: '2020-12-17'
     components:
       - name: intellij
         container:
-          image: "quay.io/che-incubator/che-idea:2020.3.3"
+          image: "quay.io/che-incubator/che-idea:2020.3.4"
           volumeMounts:
             - name: projector-user
               path: /home/projector-user
@@ -449,7 +449,7 @@ editors:
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/pycharm/2020.3.3
+      name: che-incubator/pycharm/2020.3.5
       displayName: PyCharm Community
       description: PyCharm Community running using Projector
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
@@ -462,7 +462,7 @@ editors:
     components:
       - name: intellij
         container:
-          image: "quay.io/che-incubator/che-pycharm:2020.3.3"
+          image: "quay.io/che-incubator/che-pycharm:2020.3.5"
           volumeMounts:
             - name: projector-user
               path: /home/projector-user
