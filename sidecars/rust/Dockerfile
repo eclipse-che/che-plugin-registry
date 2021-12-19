@@ -1,4 +1,4 @@
-FROM rust:1.48.0-slim-buster
+FROM docker.io/rust:1.57.0-slim-bullseye
 
 ENV HOME=/home/theia
 
