@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 10
       - name: Linelint
-        uses: fernandrone/linelint@0.0.5
+        uses: fernandrone/linelint@0.0.6
         id: linelint
   digest-validation:
     runs-on: ubuntu-latest
