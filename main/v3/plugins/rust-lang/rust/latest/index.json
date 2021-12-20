@@ -13,7 +13,7 @@ firstPublicationDate: '2020-05-13'
 latestUpdateDate: '2021-12-20'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-plugin-sidecar:rust-5d47fab'
+    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:ade1c7107cd675704b507a3414019c9052c69552729ed3c012508e499a24890e'
       name: vscode-rust
       memoryLimit: 1Gi
       memoryRequest: 20Mi
