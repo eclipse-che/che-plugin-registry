@@ -15,7 +15,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
     "eslint-plugin-header": "^3.1.1",
-    "eslint-plugin-jest": "^24.4.2",
+    "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-no-null": "^1.0.2",
     "eslint-plugin-no-unsanitized": "^3.1.5",
     "import-sort-style-eslint": "^6.0.0",
