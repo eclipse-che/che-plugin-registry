@@ -1,0 +1,16 @@
+schemaVersion: 1.0.0
+metadata:
+  id: atlassian/atlascode
+  publisher: atlassian
+  name: atlascode
+  version: latest
+  displayName: Jira and Bitbucket (Official)
+  description: 'Bringing the power of Jira and Bitbucket to VS Code - With Atlassian for VS Code you can create and view issues, start work on issues, create pull requests, do code reviews, start builds, get build statuses and more!'
+  repository: 'https://bitbucket.org/atlassianlabs/atlascode.git'
+  categories:
+    - Other
+  icon: /images/atlassian-atlascode-icon.png
+dependencies:
+  - redhat/vscode-yaml
+extensions:
+  - 'https://open-vsx.org/api/atlassian/atlascode/2.8.6/file/atlassian.atlascode-2.8.6.vsix'
