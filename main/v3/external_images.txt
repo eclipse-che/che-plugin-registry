@@ -53,9 +53,9 @@ quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce24626745
 quay.io/eclipse/che-theia:next
 quay.io/eclipse/che-machine-exec:next
 quay.io/eclipse/che-theia-endpoint-runtime-binary:next
-quay.io/eclipse/che-theia@sha256:ebcc893364c233f4ebbaef61c6b2027c2aabecf05844f6151837dbb13193480d
-quay.io/eclipse/che-machine-exec@sha256:2ecefe3a93c1ce35b0d56beb150a8d4c18330a967fedfe00fd073a5f0ac95b8b
-quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:79df39dcc1bc37503a94303a25e1eabc985ce820d552d16a4b85ec444a7b2b1f
+quay.io/eclipse/che-theia@sha256:a8b3af2ce03ea25a61625fac57392ca92a25b96671fab0d34e11f1c4467059e2
+quay.io/eclipse/che-machine-exec@sha256:0cdd91231b651ddd3a790fad3a34e32c5ea573707d73d5813e0778b0a2dd79b6
+quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:550063b43ccae2e99d7d1886506b74e636a924bf74f54cecdb123f399c23a66b
 index.docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47
 index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113
 quay.io/che-incubator/che-idea@sha256:85f6a8b7cce21370efc02f27c83258bd51a710731d1facda6b80357361a84bf5
