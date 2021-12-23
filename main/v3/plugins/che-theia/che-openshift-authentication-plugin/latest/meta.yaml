@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Other
 repository: 'https://github.com/che-incubator/che-theia-openshift-auth'
 firstPublicationDate: '2021-11-11'
-latestUpdateDate: '2021-12-22'
+latestUpdateDate: '2021-12-23'
 spec:
   containers:
     - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:db86c92418b9f40b2654b8fc473073569e0dc8a01d7adc31c9925e5469d2b114'
