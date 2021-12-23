@@ -43,7 +43,7 @@
     "@types/decompress": "^4.2.4",
     "@types/fs-extra": "^9.0.12",
     "@types/glob": "^7.1.4",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.3",
     "@types/js-yaml": "^3.12.6",
     "@types/semver": "^7.3.8",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
