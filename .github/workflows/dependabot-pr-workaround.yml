@@ -45,7 +45,7 @@ jobs:
         node-version: '16'
     
     - name: Restore cache
-      uses: actions/cache@v2.1.4
+      uses: actions/cache@v2.1.7
       with:
           path: |
             .yarn/cache
