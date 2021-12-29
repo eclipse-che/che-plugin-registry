@@ -1,0 +1,15 @@
+schemaVersion: 1.0.0
+metadata:
+  id: esbenp/prettier-vscode
+  publisher: esbenp
+  name: prettier-vscode
+  version: latest
+  displayName: Prettier - Code formatter
+  description: Code formatter using prettier
+  repository: 'https://github.com/prettier/prettier-vscode.git'
+  categories:
+    - Formatters
+  icon: /images/esbenp-prettier-vscode-icon.png
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/esbenp/prettier-vscode/5.8.0/file/esbenp.prettier-vscode-5.8.0.vsix'

@@ -1,0 +1,28 @@
+schemaVersion: 1.0.0
+metadata:
+  id: dart-code/flutter
+  publisher: dart-code
+  name: flutter
+  version: latest
+  displayName: Flutter
+  description: Flutter support and debugger for Visual Studio Code.
+  repository: 'https://github.com/Dart-Code/Flutter.git'
+  categories:
+    - Programming Languages
+    - Snippets
+    - Linters
+    - Formatters
+    - Debuggers
+  icon: /images/dart-code-flutter-icon.png
+sidecar:
+  name: vscode-flutter
+  memoryLimit: 2Gi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:flutter-b64039f'
+dependencies:
+  - dart-code/dart-code
+  - redhat/vscode-yaml
+extensions:
+  - 'https://github.com/dart-code/flutter/releases/download/v3.14.1/flutter-3.14.1.vsix'

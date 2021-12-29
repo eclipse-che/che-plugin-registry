@@ -1,0 +1,19 @@
+schemaVersion: 2.1.0
+metadata:
+  name: Buildkit Base Dev Plugin
+components:
+  - name: buildkit-dev
+    container:
+      image: 'quay.io/eclipse/che-buildkit-base@sha256:effa98dd2ced30b520b25afff1a880d121cf6b3f8ab42a5149eada46ba793ce9'
+      volumeMounts:
+        - name: buildkit-share
+          path: /home/user/.local/share/buildkit
+        - name: buildkit-lib
+          path: /var/lib/buildkit
+      mountSources: true
+      memoryLimit: 1Gi
+      endpoints: []
+  - name: buildkit-share
+    volume: {}
+  - name: buildkit-lib
+    volume: {}

@@ -1,0 +1,25 @@
+schemaVersion: 1.0.0
+metadata:
+  id: muhammad-sammy/csharp
+  publisher: muhammad-sammy
+  name: csharp
+  version: latest
+  displayName: C#
+  description: C# support for vscode-compatible editors (powered by OmniSharp and NetCoreDbg).
+  repository: 'https://github.com/muhammadsammy/free-omnisharp-vscode.git'
+  categories:
+    - Debuggers
+    - Programming Languages
+    - Linters
+    - Snippets
+  icon: /images/muhammad-sammy-csharp-icon.png
+sidecar:
+  name: free-omnisharp
+  memoryLimit: 1G
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  image: 'quay.io/eclipse/che-plugin-sidecar:dotnet-c939ba4'
+dependencies: []
+extensions:
+  - 'https://open-vsx.org/api/muhammad-sammy/csharp/1.23.16/file/muhammad-sammy.csharp-1.23.16.vsix'
