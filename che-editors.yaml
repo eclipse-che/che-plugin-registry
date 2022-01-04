@@ -610,3 +610,72 @@ editors:
           app.kubernetes.io/part-of: che-code.eclipse.org
       - name: checode
         volume: {}
+  - schemaVersion: 2.1.0
+    metadata:
+      name: che-incubator/che-idea/injector
+      displayName: IntelliJ IDEA Community Edition
+      description: IntelliJ IDEA Community running using Projector
+      icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
+      attributes:
+        publisher: che-incubator
+        version: injector
+        title: IntelliJ IDEA Community as Editor for Eclipse Che
+        repository: https://github.com/che-incubator/jetbrains-editor-images
+        firstPublicationDate: '2021-10-31'
+        skipMetaYaml: true
+    commands:
+      - id: init-container-command
+        apply:
+          component: che-code-injector
+    events:
+      preStart:
+        - init-container-command
+    components:
+      - name: che-code-injector
+        container:
+          image: 'quay.io/vzhukovs/che-idea:injector'
+          command: /projector/entrypoint-init-container.sh
+          volumeMounts:
+            - name: projector-volume
+              path: /projector-volume
+          env:
+            - name: PROJECTOR_VOLUME_MOUNT
+              value: /projector-volume
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
+      - name: che-code-runtime-description
+        container:
+          image: 'quay.io/devfile/universal-developer-image:ubi8-eda6672'
+          memoryLimit: 1024Mi
+          memoryRequest: 256Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
+          command:
+            - /projector-volume/entrypoint-volume.sh
+          volumeMounts:
+            - name: projector-volume
+              path: /projector-volume
+          env:
+            - name: PROJECTOR_ASSEMBLY_DIR
+              value: /projector-volume
+            - name: PROJECTOR_CONFIG_DIR
+              value: /home/user/.config
+          endpoints:
+            - name: intellij
+              attributes:
+                type: main
+                cookiesAuthEnabled: true
+                discoverable: false
+                urlRewriteSupported: true
+              path: '/?backgroundColor=434343&wss'
+              targetPort: 8887
+              exposure: public
+              secure: true
+              protocol: http
+        attributes:
+          app.kubernetes.io/component: che-code-runtime
+          app.kubernetes.io/part-of: che-code.eclipse.org
+      - name: projector-volume
+        volume: {}
