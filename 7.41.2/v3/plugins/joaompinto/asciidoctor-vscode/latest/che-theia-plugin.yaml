@@ -1,0 +1,27 @@
+schemaVersion: 1.0.0
+metadata:
+  id: joaompinto/asciidoctor-vscode
+  publisher: joaompinto
+  name: asciidoctor-vscode
+  version: latest
+  displayName: AsciiDoc
+  description: Provides rich language support for AsciiDoc.
+  repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
+  categories:
+    - Programming Languages
+  icon: /images/asciidoctor-asciidoctor-vscode-icon.png
+sidecar:
+  name: asciidoctor-vscode
+  memoryLimit: 128Mi
+  memoryRequest: 20Mi
+  cpuLimit: 500m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: documents
+      path: /documents
+  image: 'quay.io/eclipse/che-plugin-sidecar:asciidoc-c4f2aa1'
+preferences:
+  asciidoc.use_asciidoctorpdf: true
+dependencies: []
+extensions:
+  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix'

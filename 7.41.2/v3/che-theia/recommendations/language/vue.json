@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "octref/vetur"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "sonarsource/sonarlint-vscode"
+    ]
+  }
+]
