@@ -167,19 +167,6 @@ cleanUpAfterTest(){
   
   # delete test pod
   oc delete pod -n "${TEST_POD_NAMESPACE}" "${TEST_POD_NAME}"
-
-  # get token
-  chectl auth:login -n eclipse-che
-
-  # get workspace ID
-  WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep "${TEST_POD_NAME}" | awk '{print $1}')
-  echo "Workspace ID: ${WORKSPACE_ID}"
-
-  # stop workspace
-  chectl workspace:stop -n eclipse-che "${WORKSPACE_ID}"
-
-  # delete workspace
-  chectl workspace:delete -n eclipse-che "${WORKSPACE_ID}"
 }
 
 runTest() {
@@ -208,6 +195,7 @@ runTest() {
   sleep 3
 
   downloadTestResults "${TEST_USERSTORY}" "${TEST_POD_NAME}"
+  cleanUpAfterTest "${TEST_POD_NAME}" || echo "Cleanup after test has failed"
 }
 
 createTestPodNamespace(){
