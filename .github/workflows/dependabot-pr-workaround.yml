@@ -8,59 +8,42 @@
 #
 
 name: Dependabot-post-check
-# dependabot is not handling Yarn v2/3, workarounding the PR 
+# dependabot is not handling Yarn v2/3, workarounding the PR
 # https://github.com/dependabot/dependabot-core/issues/1297
 
-# Note: We use the `pull_request_target` event due to GitHub security measures.
-#       It is important to ensure we don't execute any untrusted PR code in this context.
-# See: https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
-#      https://securitylab.github.com/research/github-actions-preventing-pwn-requests
+permissions:
+  contents: write
+
 on:
-  - pull_request_target
+  push:
+    branches: [dependabot/npm_and_yarn/**]
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    if: |
-      github.actor == 'dependabot[bot]' &&
-      contains(github.event.pull_request.head.ref, 'dependabot/npm_and_yarn/')
-
-    # IMPORTANT: setting YARN_ENABLE_SCRIPTS=false is critical to ensure that untrusted
-    # PRs can't add an npm package and then use that to execute untrusted code in
-    # a trusted context. See links at the top of this workflow for further details.
-    # See also: https://github.com/yarnpkg/berry/issues/1679#issuecomment-669937860
-    env:
-      YARN_ENABLE_SCRIPTS: false
-
+    if: github.actor == 'dependabot[bot]'
     steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
-        ref: ${{ github.event.pull_request.head.ref }}
-
-    - run: git lfs pull --include .yarn/
-
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-    
-    - name: Restore cache
-      uses: actions/cache@v2.1.7
-      with:
-          path: |
-            .yarn/cache
-            **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
-
-    - run: yarn install
-
-    - name: Config Git
-      run: |
-        git config --global user.name "CHE Bot"
-        git config --global user.email "che-bot@eclipse.org"
-    - name: Commit changes
-      run: |
-        git add yarn.lock # only adding yarn.lock as not using zero-installs
-        git commit -m "fix: dependabot autofix"
-        git push
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Autofix lockfile
+        run: |
+          # restore yarn.lock from the previous commit
+          git checkout HEAD^ -- yarn.lock
+          # redo the yarn install step
+          yarn install
+        env:
+          YARN_ENABLE_SCRIPTS: 0 # disable postinstall scripts
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false # allow to override yarn.lock files
+      - name: Config Git
+        run: |
+          git config --global user.email "che-bot@eclipse.org"
+          git config --global user.name "CHE Bot"
+      - name: Commit changes
+        run: |
+          git add yarn.lock # only adding yarn.lock as not using zero-installs
+          git commit --amend --no-edit
+          git push -f
