@@ -28,6 +28,6 @@ runTests() {
   runTest "TypescriptPlugin" "typescript-debug-plugins"
 }
 
-setupTestEnvironment
-runTests
-finishReport
+# setupTestEnvironment
+# runTests
+# finishReport
