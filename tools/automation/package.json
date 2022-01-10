@@ -70,7 +70,7 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jest": "^24.4.2",
     "eslint-plugin-no-null": "^1.0.2",
-    "eslint-plugin-no-unsanitized": "^3.1.5",
+    "eslint-plugin-no-unsanitized": "^4.0.1",
     "import-sort-style-eslint": "^6.0.0",
     "jest": "^27.2.0",
     "prettier": "^2.5.1",

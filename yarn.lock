@@ -695,7 +695,7 @@ __metadata:
     eslint-plugin-import: ^2.24.2
     eslint-plugin-jest: ^24.4.2
     eslint-plugin-no-null: ^1.0.2
-    eslint-plugin-no-unsanitized: ^3.1.5
+    eslint-plugin-no-unsanitized: ^4.0.1
     fs-extra: ^10.0.0
     handlebars: ^4.7.7
     import-sort-style-eslint: ^6.0.0
@@ -735,7 +735,7 @@ __metadata:
     eslint-plugin-header: ^3.1.1
     eslint-plugin-jest: ^24.4.2
     eslint-plugin-no-null: ^1.0.2
-    eslint-plugin-no-unsanitized: ^3.1.5
+    eslint-plugin-no-unsanitized: ^4.0.1
     fs-extra: ^10.0.0
     glob: ^7.1.7
     handlebars: ^4.7.7
@@ -775,7 +775,7 @@ __metadata:
     eslint-plugin-header: ^3.1.1
     eslint-plugin-jest: ^24.4.2
     eslint-plugin-no-null: ^1.0.2
-    eslint-plugin-no-unsanitized: ^3.1.5
+    eslint-plugin-no-unsanitized: ^4.0.1
     import-sort-style-eslint: ^6.0.0
     jest: ^27.2.0
     prettier: ^2.5.1
@@ -3393,12 +3393,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-no-unsanitized@npm:^3.1.5":
-  version: 3.1.5
-  resolution: "eslint-plugin-no-unsanitized@npm:3.1.5"
+"eslint-plugin-no-unsanitized@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "eslint-plugin-no-unsanitized@npm:4.0.1"
   peerDependencies:
-    eslint: ^5 || ^6 || ^7
-  checksum: 69eec332065612aa23602a22fd25fff158c9d02792ea191cafaba36edb8be08ba8a1ec12489c3abbe1cce82bb8e2022c671a4f142f83682a9d6df3f79bd36bb7
+    eslint: ^6 || ^7 || ^8
+  checksum: 36ce4884c3578d0229e4f45a70422d4cc0b687ef8f2cac4a9d8065eefb1c5cf74cbbc028046fc18c72ba9e89ff0910ac794aea0c32a81d96ff240fef76b7d631
   languageName: node
   linkType: hard
 
