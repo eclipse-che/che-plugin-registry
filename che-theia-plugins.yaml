@@ -346,19 +346,6 @@ plugins:
       revision: v0.0.10
     extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix
   - repository:
-      url: 'https://github.com/che-incubator/che-theia-openshift-auth'
-      revision: 0.0.3
-    sidecar:
-      directory: openshift-tooling
-      name: vscode-openshift-connector
-      memoryLimit: 1500Mi
-      memoryRequest: 20Mi
-      cpuLimit: 800m
-      cpuRequest: 30m
-    metaYaml:
-      skipIndex: true
-    extension: https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.3/che-openshift-authentication-plugin-0.0.3.vsix
-  - repository:
       url: 'https://github.com/redhat-developer/vscode-openshift-tools'
       revision: v0.2.9
     sidecar:
@@ -376,7 +363,6 @@ plugins:
       extraDependencies:
         - ms-kubernetes-tools/vscode-kubernetes-tools
         - redhat/vscode-yaml
-        - che-theia/che-openshift-authentication-plugin
   - repository:
       url: 'https://github.com/redhat-developer/vscode-yaml'
       revision: 0.14.0
