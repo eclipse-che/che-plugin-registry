@@ -408,88 +408,6 @@ editors:
             - exposedPort: 8080
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/intellij-community/2020.3.3
-      displayName: IntelliJ IDEA Community Edition
-      description: IntelliJ IDEA Community running using Projector
-      icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
-      attributes:
-        publisher: che-incubator
-        version: 2020.3.3
-        title: IntelliJ IDEA Community as Editor for Eclipse Che
-        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
-        firstPublicationDate: '2020-09-29'
-    components:
-      - name: intellij
-        container:
-          image: "quay.io/che-incubator/che-idea:2020.3.3"
-          volumeMounts:
-            - name: projector-user
-              path: /home/projector-user
-          mountSources: true
-          memoryRequest: 32Mi
-          memoryLimit: 2048M
-          cpuLimit: 1500m
-          cpuRequest: 100m
-          endpoints:
-            - name: intellij
-              targetPort: 8887
-              exposure: public
-              protocol: http
-              secure: true
-              attributes:
-                type: main
-                cookiesAuthEnabled: true
-                urlRewriteSupported: true
-                discoverable: false
-                path: /?backgroundColor=434343&wss
-        attributes:
-          ports:
-            - exposedPort: 8887
-      - name: projector-user
-        volume: {}
-  - schemaVersion: 2.1.0
-    metadata:
-      name: che-incubator/pycharm/2020.3.3
-      displayName: PyCharm Community
-      description: PyCharm Community running using Projector
-      icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
-      attributes:
-        publisher: che-incubator
-        version: 2020.3.5
-        title: PyCharm Community as Editor for Eclipse Che
-        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
-        firstPublicationDate: '2021-10-06'
-    components:
-      - name: intellij
-        container:
-          image: "quay.io/che-incubator/che-pycharm:2020.3.3"
-          volumeMounts:
-            - name: projector-user
-              path: /home/projector-user
-          mountSources: true
-          memoryRequest: 32Mi
-          memoryLimit: 2048M
-          cpuLimit: 1500m
-          cpuRequest: 100m
-          endpoints:
-            - name: intellij
-              targetPort: 8887
-              exposure: public
-              protocol: http
-              secure: true
-              attributes:
-                type: main
-                cookiesAuthEnabled: true
-                urlRewriteSupported: true
-                discoverable: false
-                path: /?backgroundColor=434343&wss
-        attributes:
-          ports:
-            - exposedPort: 8887
-      - name: projector-user
-        volume: {}
-  - schemaVersion: 2.1.0
-    metadata:
       name: ws-skeleton/eclipseide/4.9.0
       displayName: Eclipse IDE
       description: Eclipse running on the Web with Broadway
@@ -610,3 +528,145 @@ editors:
           app.kubernetes.io/part-of: che-code.eclipse.org
       - name: checode
         volume: {}
+  - schemaVersion: 2.1.0
+    metadata:
+      name: che-incubator/che-idea/2020.3.4-next
+      displayName: IntelliJ IDEA Community Edition
+      description: IntelliJ IDEA Community running using Projector
+      icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
+      attributes:
+        publisher: che-incubator
+        version: 2020.3.4
+        title: IntelliJ IDEA Community as Editor for Eclipse Che
+        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
+        firstPublicationDate: '2022-01-11'
+        skipMetaYaml: true
+    commands:
+      - id: init-container-command
+        apply:
+          component: che-idea-injector
+    events:
+      preStart:
+        - init-container-command
+    components:
+      - name: che-idea-runtime-description
+        container:
+          image: 'quay.io/devfile/universal-developer-image:ubi8-eda6672'
+          command:
+            - /projector/entrypoint-volume.sh
+          env:
+            - name: PROJECTOR_ASSEMBLY_DIR
+              value: /projector
+            - name: PROJECTOR_CONFIG_DIR
+              value: /home/user/.jetbrains
+          volumeMounts:
+            - name: projector-volume
+              path: /projector
+          memoryLimit: 2048Mi
+          memoryRequest: 256Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
+          endpoints:
+            - name: intellij
+              attributes:
+                type: main
+                cookiesAuthEnabled: true
+                discoverable: false
+                urlRewriteSupported: true
+              targetPort: 8887
+              exposure: public
+              path: '/?backgroundColor=434343&wss'
+              secure: false
+              protocol: http
+        attributes:
+          app.kubernetes.io/component: che-idea-injector
+          app.kubernetes.io/part-of: che-idea.eclipse.org
+      - name: projector-volume
+        volume: { }
+      - name: che-idea-injector
+        container:
+          image: 'quay.io/che-incubator/che-idea:2020.3.4-next'
+          command: [ "/projector/entrypoint-init-container.sh" ]
+          env:
+            - name: PROJECTOR_VOLUME_MOUNT
+              value: /projector-volume
+            - name: PROJECTOR_ASSEMBLY_DIR
+              value: /projector
+          volumeMounts:
+            - name: projector-volume
+              path: /projector-volume
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
+  - schemaVersion: 2.1.0
+    metadata:
+      name: che-incubator/che-pycharm/2020.3.5-next
+      displayName: PyCharm Community
+      description: PyCharm Community running using Projector
+      icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
+      attributes:
+        publisher: che-incubator
+        version: 2020.3.5
+        title: PyCharm Community as Editor for Eclipse Che
+        repository: 'https://github.com/che-incubator/jetbrains-editor-images'
+        firstPublicationDate: '2021-10-06'
+        skipMetaYaml: true
+    commands:
+      - id: init-container-command
+        apply:
+          component: che-pycharm-injector
+    events:
+      preStart:
+        - init-container-command
+    components:
+      - name: che-pycharm-runtime-description
+        container:
+          image: 'quay.io/devfile/universal-developer-image:ubi8-eda6672'
+          command:
+            - /projector/entrypoint-volume.sh
+          env:
+            - name: PROJECTOR_ASSEMBLY_DIR
+              value: /projector
+            - name: PROJECTOR_CONFIG_DIR
+              value: /home/user/.jetbrains
+          volumeMounts:
+            - name: projector-volume
+              path: /projector
+          memoryLimit: 2048Mi
+          memoryRequest: 256Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
+          endpoints:
+            - name: intellij
+              attributes:
+                type: main
+                cookiesAuthEnabled: true
+                discoverable: false
+                urlRewriteSupported: true
+              targetPort: 8887
+              exposure: public
+              path: '/?backgroundColor=434343&wss'
+              secure: false
+              protocol: http
+        attributes:
+          app.kubernetes.io/component: che-pycharm-injector
+          app.kubernetes.io/part-of: che-pycharm.eclipse.org
+      - name: projector-volume
+        volume: { }
+      - name: che-pycharm-injector
+        container:
+          image: 'quay.io/che-incubator/che-pycharm:2020.3.5-next'
+          command: [ "/projector/entrypoint-init-container.sh" ]
+          env:
+            - name: PROJECTOR_VOLUME_MOUNT
+              value: /projector-volume
+            - name: PROJECTOR_ASSEMBLY_DIR
+              value: /projector
+          volumeMounts:
+            - name: projector-volume
+              path: /projector-volume
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
