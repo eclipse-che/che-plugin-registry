@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2021 Red Hat, Inc.
+# Copyright (c) 2021-2022 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -10,9 +10,6 @@
 name: Dependabot-post-check
 # dependabot is not handling Yarn v2/3, workarounding the PR
 # https://github.com/dependabot/dependabot-core/issues/1297
-
-permissions:
-  contents: write
 
 on:
   push:
@@ -26,6 +23,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+          token: ${{secrets.CHE_BOT_GITHUB_TOKEN}}
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
@@ -41,9 +39,9 @@ jobs:
       - name: Config Git
         run: |
           git config --global user.email "che-bot@eclipse.org"
-          git config --global user.name "CHE Bot"
+          git config --global user.name "Che bot"
       - name: Commit changes
         run: |
           git add yarn.lock # only adding yarn.lock as not using zero-installs
-          git commit --amend --no-edit
+          git commit --amend --no-edit --signoff
           git push -f
