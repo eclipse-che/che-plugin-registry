@@ -970,7 +970,7 @@ __metadata:
     handlebars: ^4.7.7
     if-env: ^1.0.4
     import-sort-style-eslint: ^6.0.0
-    inversify: ^5.1.1
+    inversify: ^6.0.1
     jest: ^27.4.7
     js-yaml: ^3.14.1
     moment: ^2.29.1
@@ -5148,10 +5148,10 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"inversify@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "inversify@npm:5.1.1"
-  checksum: 22d201647b572024333c58bed8ac929da4724a4c0c8a261ecc261a180afcb899359013fafb8d87ce4d606000149fb4590dc5c8278b9feb544a5f69a6159e4ffb
+"inversify@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "inversify@npm:6.0.1"
+  checksum: b6c9b56ef7817a71534b06101c2b0a0130b67c47a769f58794d9c0643591a83ac02be30a48c00cb729c0c83ece96dde369c419d48c32d0201c6cc7407629fbc5
   languageName: node
   linkType: hard
 
