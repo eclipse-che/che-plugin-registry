@@ -949,7 +949,7 @@ __metadata:
     "@types/fs-extra": ^9.0.13
     "@types/glob": ^7.2.0
     "@types/jest": ^27.4.0
-    "@types/js-yaml": ^3.12.6
+    "@types/js-yaml": ^4.0.5
     "@types/semver": ^7.3.9
     "@typescript-eslint/eslint-plugin": ^4.31.1
     "@typescript-eslint/parser": ^4.33.0
@@ -1532,17 +1532,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/js-yaml@npm:^3.12.6":
-  version: 3.12.7
-  resolution: "@types/js-yaml@npm:3.12.7"
-  checksum: be810772745eec4eb2e79c51d054ccd68f014d0d3158ee3eaeebafd6f6d9cc0e60551cf8cd7e192f8a183ab2f2ac5966210baa9c85581a34cb58af89f4529f97
-  languageName: node
-  linkType: hard
-
 "@types/js-yaml@npm:^4.0.3":
   version: 4.0.3
   resolution: "@types/js-yaml@npm:4.0.3"
   checksum: 4be74c029f3fe4ab01f382481521c15bc79c96589747f588f8d3b92e97b8e04ffbe208451d24c99fd289593ff5325710eb83d267c8f2449d3248299f909003d7
+  languageName: node
+  linkType: hard
+
+"@types/js-yaml@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
   languageName: node
   linkType: hard
 
