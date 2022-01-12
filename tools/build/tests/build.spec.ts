@@ -9,8 +9,6 @@
  ***********************************************************************/
 import 'reflect-metadata';
 
-import * as ora from 'ora';
-
 import { CheEditorYaml, CheEditorsYaml } from '../src/editor/che-editors-yaml';
 import { ChePluginYaml, ChePluginsYaml } from '../src/che-plugin/che-plugins-yaml';
 import { CheTheiaPluginYaml, CheTheiaPluginsYaml } from '../src/che-theia-plugin/che-theia-plugins-yaml';
@@ -36,6 +34,7 @@ import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
 import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
 import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
 import { VsixUrlAnalyzer } from '../src/extensions/vsix-url-analyzer';
+import { createSpinner } from 'nanospinner';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -476,7 +475,7 @@ describe('Test Build', () => {
   test('succed task', async () => {
     const deferred = new Deferred();
     let currentValue = false;
-    const task = ora('my-task').start();
+    const task = createSpinner('my-task').start();
     build.updateTask(deferred.promise, task, () => (currentValue = true), 'error');
     expect(currentValue).toBeFalsy();
     deferred.resolve();
@@ -487,21 +486,21 @@ describe('Test Build', () => {
   test('with a fail task', async () => {
     const deferred = new Deferred();
     let currentValue = false;
-    const task = ora('my-task').start();
-    const spyTask = jest.spyOn(task, 'fail');
+    const task = createSpinner('my-task').start();
+    const spyTask = jest.spyOn(task, 'error');
     build.updateTask(deferred.promise, task, () => (currentValue = true), 'error');
     expect(currentValue).toBeFalsy();
     deferred.reject('rejecting');
     await expect(deferred.promise).rejects.toMatch('rejecting');
     expect(currentValue).toBeFalsy();
     expect(spyTask).toBeCalled();
-    expect(spyTask.mock.calls[0][0]).toBe('error');
+    expect(spyTask.mock.calls[0][0]).toStrictEqual({ text: 'error' });
   });
 
   test('with a fail wrapIntoTask', async () => {
     const deferred = new Deferred();
-    const task = ora('my-task').start();
-    const spyFailTask = jest.spyOn(task, 'fail');
+    const task = createSpinner('my-task').start();
+    const spyFailTask = jest.spyOn(task, 'error');
     const wrapTask = build.wrapIntoTask('This is my task', deferred.promise, task);
     deferred.reject('rejecting');
     await expect(wrapTask).rejects.toMatch('rejecting');

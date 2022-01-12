@@ -9,9 +9,9 @@
  ***********************************************************************/
 
 import * as moment from 'moment';
-import * as ora from 'ora';
 import * as path from 'path';
 
+import { Spinner, createSpinner } from 'nanospinner';
 import { inject, injectable, named } from 'inversify';
 
 import { CheEditorMetaInfo } from './editor/che-editors-meta-info';
@@ -135,8 +135,8 @@ export class Build {
     await this.vsixUrlAnalyzer.analyze(vsixInfo);
   }
 
-  updateTask<T>(promise: Promise<T>, task: ora.Ora, success: { (): void }, failureMessage: string): void {
-    promise.then(success, () => task.fail(failureMessage));
+  updateTask<T>(promise: Promise<T>, task: Spinner, success: { (): void }, failureMessage: string): void {
+    promise.then(success, () => task.error({ text: failureMessage }));
   }
 
   /**
@@ -182,7 +182,7 @@ export class Build {
     let current = 0;
     // analyze vsix of each che-theia plug-in
     const title = 'Download/Unpack/Analyze CheTheiaPlugins in parallel (may take a while)';
-    const downloadAndAnalyzeTask = ora(title).start();
+    const downloadAndAnalyzeTask = createSpinner(title).start();
     const deferred = new Deferred();
     this.wrapIntoTask(title, deferred.promise, downloadAndAnalyzeTask);
     await Promise.all(
@@ -197,7 +197,7 @@ export class Build {
           downloadAndAnalyzeTask,
           () => {
             current++;
-            downloadAndAnalyzeTask.text = `${title} [${current}/${analyzingCheTheiaPlugins.length}] ...`;
+            downloadAndAnalyzeTask.update({ text: `${title} [${current}/${analyzingCheTheiaPlugins.length}] ...` });
           },
           `Error analyzing extension ${cheTheiaPlugin.extension} from ${cheTheiaPlugin.repository.url}`
         );
@@ -273,17 +273,17 @@ export class Build {
     return chePlugins;
   }
 
-  async wrapIntoTask<T>(title: string, promise: Promise<T>, customTask?: ora.Ora): Promise<T> {
-    let task: ora.Ora;
+  async wrapIntoTask<T>(title: string, promise: Promise<T>, customTask?: Spinner): Promise<T> {
+    let task: Spinner;
     if (customTask) {
       task = customTask;
     } else {
-      task = ora(title).start();
+      task = createSpinner(title).start();
     }
     if (promise) {
       promise.then(
-        () => task.succeed(),
-        () => task.fail()
+        () => task.success(),
+        () => task.error()
       );
     }
     return promise;
