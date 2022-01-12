@@ -15,7 +15,7 @@ export class Main {
   protected async doStart(): Promise<void> {
     const inversifyBinbding = new InversifyBinding();
     const container = await inversifyBinbding.initBindings();
-    const build = container.get(Build);
+    const build = await container.getAsync(Build);
     return build.build();
   }
 

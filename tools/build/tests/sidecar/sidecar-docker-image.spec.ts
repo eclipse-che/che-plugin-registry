@@ -19,12 +19,12 @@ describe('Test Sidecar', () => {
 
   let sidecarDockerImage: SidecarDockerImage;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
     container = new Container();
     container.bind(SidecarDockerImage).toSelf().inSingletonScope();
-    sidecarDockerImage = container.get(SidecarDockerImage);
+    sidecarDockerImage = await container.getAsync(SidecarDockerImage);
   });
 
   test('basics', async () => {

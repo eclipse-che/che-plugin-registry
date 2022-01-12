@@ -55,7 +55,7 @@ describe('Test InversifyBinding', () => {
 
     // check che-theia-plugin module
     expect(container.get(CheTheiaPluginsAnalyzer)).toBeDefined();
-    expect(container.get(CheTheiaPluginsMetaYamlGenerator)).toBeDefined();
+    expect(await container.getAsync(CheTheiaPluginsMetaYamlGenerator)).toBeDefined();
 
     // check devfile module
     expect(container.get(MetaYamlToDevfileYaml)).toBeDefined();
@@ -75,7 +75,7 @@ describe('Test InversifyBinding', () => {
     expect(container.get(FeaturedWriter)).toBeDefined();
 
     // check meta module
-    expect(container.get(DigestImagesHelper)).toBeDefined();
+    expect(await container.getAsync(DigestImagesHelper)).toBeDefined();
     expect(container.get(IndexWriter)).toBeDefined();
     expect(container.get(MetaYamlWriter)).toBeDefined();
     expect(container.get(ExternalImagesWriter)).toBeDefined();
@@ -89,7 +89,7 @@ describe('Test InversifyBinding', () => {
     expect(container.get(RecommendationsWriter)).toBeDefined();
 
     // check registry module
-    expect(container.get(RegistryHelper)).toBeDefined();
+    expect(await container.getAsync(RegistryHelper)).toBeDefined();
   });
 
   test('custom', async () => {
