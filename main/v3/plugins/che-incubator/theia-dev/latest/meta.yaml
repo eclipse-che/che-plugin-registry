@@ -8,7 +8,7 @@ title: Che Theia Dev Plugin
 description: Che Theia Dev Plugin
 icon: /images/default.png
 category: Other
-repository: 'https://github.com/che-incubator/che-theia-dev-plugin/'
+repository: https://github.com/che-incubator/che-theia-dev-plugin/
 firstPublicationDate: '2019-02-05'
 latestUpdateDate: '2022-01-12'
 spec:
@@ -20,7 +20,7 @@ spec:
         protocol: http
   containers:
     - name: theia-dev
-      image: 'quay.io/eclipse/che-theia-dev:next'
+      image: quay.io/eclipse/che-theia-dev:next
       commands:
         - name: uname
           workingDir: $(project)

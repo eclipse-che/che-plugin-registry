@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: stylelint
   description: Modern CSS/SCSS/Less linter
-  repository: 'https://github.com/stylelint/vscode-stylelint'
+  repository: https://github.com/stylelint/vscode-stylelint
   categories:
     - Linters
     - Snippets
@@ -16,7 +16,7 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
+  image: quay.io/eclipse/che-plugin-sidecar:node-c939ba4
 dependencies: []
 extensions:
-  - 'https://open-vsx.org/api/stylelint/vscode-stylelint/0.86.0/file/stylelint.vscode-stylelint-0.86.0.vsix'
+  - https://open-vsx.org/api/stylelint/vscode-stylelint/0.86.0/file/stylelint.vscode-stylelint-0.86.0.vsix

@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: Quarkus
   description: Quarkus Tools for Visual Studio Code
-  repository: 'https://github.com/redhat-developer/vscode-quarkus'
+  repository: https://github.com/redhat-developer/vscode-quarkus
   categories:
     - Programming Languages
     - Other
@@ -20,7 +20,7 @@ sidecar:
   volumeMounts:
     - name: m2
       path: /home/theia/.m2
-  image: 'quay.io/eclipse/che-plugin-sidecar:java-23e57d6'
+  image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
 preferences:
   java.server.launchMode: Standard
 dependencies:
@@ -29,4 +29,4 @@ dependencies:
   - vscjava/vscode-java-debug
   - vscjava/vscode-java-test
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix'
+  - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix

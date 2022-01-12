@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: Vetur
   description: Vue tooling for VS Code
-  repository: 'https://github.com/vuejs/vetur.git'
+  repository: https://github.com/vuejs/vetur.git
   categories:
     - Programming Languages
   icon: /images/octref-vetur-icon.png
@@ -16,7 +16,7 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:node-c939ba4'
+  image: quay.io/eclipse/che-plugin-sidecar:node-c939ba4
 dependencies: []
 extensions:
-  - 'https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix'
+  - https://github.com/vuejs/vetur/releases/download/v0.26.1/vetur-0.26.1.vsix

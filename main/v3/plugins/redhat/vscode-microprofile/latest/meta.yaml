@@ -8,12 +8,12 @@ title: Tools for MicroProfile
 description: Language Support for Eclipse MicroProfile
 icon: /images/redhat-vscode-microprofile-icon.png
 category: Programming Languages
-repository: 'https://github.com/redhat-developer/vscode-microprofile'
+repository: https://github.com/redhat-developer/vscode-microprofile
 firstPublicationDate: '2020-09-24'
 latestUpdateDate: '2022-01-12'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a'
+    - image: quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
       name: vscode-microp
       volumes:
         - name: m2
@@ -23,5 +23,5 @@ spec:
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:
-    - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix'
-    - 'https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.82.0-369.vsix'
+    - https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
+    - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.82.0-369.vsix

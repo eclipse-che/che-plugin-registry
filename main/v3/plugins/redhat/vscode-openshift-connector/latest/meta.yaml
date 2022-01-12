@@ -8,12 +8,12 @@ title: OpenShift Connector
 description: Simplified app dev for Kubernetes or Red Hat OpenShift
 icon: /images/redhat-vscode-openshift-connector-icon.png
 category: Other
-repository: 'https://github.com/redhat-developer/vscode-openshift-tools.git'
+repository: https://github.com/redhat-developer/vscode-openshift-tools.git
 firstPublicationDate: '2021-07-29'
 latestUpdateDate: '2022-01-12'
 spec:
   containers:
-    - image: 'quay.io/eclipse/che-plugin-sidecar@sha256:db86c92418b9f40b2654b8fc473073569e0dc8a01d7adc31c9925e5469d2b114'
+    - image: quay.io/eclipse/che-plugin-sidecar@sha256:db86c92418b9f40b2654b8fc473073569e0dc8a01d7adc31c9925e5469d2b114
       name: vscode-openshift-connector
       volumes:
         - name: kube
@@ -23,7 +23,7 @@ spec:
       cpuRequest: 30m
       cpuLimit: 800m
   extensions:
-    - 'https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix'
-    - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix'
-    - 'https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix'
-    - 'https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.3/che-openshift-authentication-plugin-0.0.3.vsix'
+    - https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix
+    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+    - https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix
+    - https://github.com/che-incubator/che-theia-openshift-auth/releases/download/0.0.3/che-openshift-authentication-plugin-0.0.3.vsix

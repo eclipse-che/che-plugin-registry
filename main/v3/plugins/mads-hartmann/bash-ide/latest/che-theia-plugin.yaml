@@ -6,10 +6,10 @@ metadata:
   version: latest
   displayName: Bash IDE
   description: A language server for Bash
-  repository: 'https://github.com/bash-lsp/bash-language-server'
+  repository: https://github.com/bash-lsp/bash-language-server
   categories:
     - Other
   icon: /images/mads-hartmann-bash-ide-vscode-icon.png
 dependencies: []
 extensions:
-  - 'https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix'
+  - https://open-vsx.org/api/mads-hartmann/bash-ide-vscode/1.10.2/file/mads-hartmann.bash-ide-vscode-1.10.2.vsix

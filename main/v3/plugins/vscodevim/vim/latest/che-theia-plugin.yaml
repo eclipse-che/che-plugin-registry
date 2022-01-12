@@ -6,11 +6,11 @@ metadata:
   version: latest
   displayName: Vim
   description: Vim emulation for Visual Studio Code
-  repository: 'https://github.com/VSCodeVim/Vim.git'
+  repository: https://github.com/VSCodeVim/Vim.git
   categories:
     - Other
     - Keymaps
   icon: /images/vscodevim-vim-icon.png
 dependencies: []
 extensions:
-  - 'https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix'
+  - https://github.com/VSCodeVim/Vim/releases/download/v1.16.0/vim-1.16.0.vsix

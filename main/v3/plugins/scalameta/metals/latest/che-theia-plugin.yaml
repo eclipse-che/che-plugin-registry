@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: Scala (Metals)
   description: Scala language server with rich IDE features
-  repository: 'https://github.com/scalameta/metals-vscode.git'
+  repository: https://github.com/scalameta/metals-vscode.git
   categories:
     - Programming Languages
   icon: /images/scalameta-metals-icon.png
@@ -23,8 +23,8 @@ sidecar:
       path: /home/theia/.ivy2
     - name: cache
       path: /home/theia/.cache
-  image: 'quay.io/eclipse/che-plugin-sidecar:scala-1be6877'
+  image: quay.io/eclipse/che-plugin-sidecar:scala-1be6877
 dependencies:
   - scala-lang/scala
 extensions:
-  - 'https://github.com/scalameta/metals-vscode/releases/download/v1.10.15/scalameta.metals-1.10.15.vsix'
+  - https://github.com/scalameta/metals-vscode/releases/download/v1.10.15/scalameta.metals-1.10.15.vsix

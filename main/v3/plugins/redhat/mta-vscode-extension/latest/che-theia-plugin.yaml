@@ -6,12 +6,12 @@ metadata:
   version: latest
   displayName: Migration Toolkit for Applications
   description: Migration Toolkit for Applications (MTA)
-  repository: 'https://github.com/windup/rhamt-vscode-extension'
+  repository: https://github.com/windup/rhamt-vscode-extension
   categories:
     - Other
   icon: /images/redhat-mta-vscode-extension-icon.png
 sidecar:
-  image: 'quay.io/windupeng/mta-vscode-extension:latest'
+  image: quay.io/windupeng/mta-vscode-extension:latest
   name: mta-extension
   memoryLimit: 1500Mi
   memoryRequest: 20Mi
@@ -34,4 +34,4 @@ sidecar:
         protocol: http
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix'
+  - https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix

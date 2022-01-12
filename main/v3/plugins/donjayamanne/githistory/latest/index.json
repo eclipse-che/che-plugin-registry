@@ -5,12 +5,12 @@ version: latest
 type: VS Code extension
 displayName: Git History
 title: Git History
-description: 'View git log, file history, compare branches or commits'
+description: View git log, file history, compare branches or commits
 icon: /images/donjayamanne-githistory-icon.png
 category: Other
-repository: 'https://github.com/DonJayamanne/gitHistoryVSCode'
+repository: https://github.com/DonJayamanne/gitHistoryVSCode
 firstPublicationDate: '2020-11-14'
 latestUpdateDate: '2022-01-12'
 spec:
   extensions:
-    - 'https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix'
+    - https://github.com/DonJayamanne/gitHistoryVSCode/releases/download/v0.6.14/githistory-0.6.14.vsix

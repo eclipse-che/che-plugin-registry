@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: C#
   description: C# support for vscode-compatible editors (powered by OmniSharp and NetCoreDbg).
-  repository: 'https://github.com/muhammadsammy/free-omnisharp-vscode.git'
+  repository: https://github.com/muhammadsammy/free-omnisharp-vscode.git
   categories:
     - Debuggers
     - Programming Languages
@@ -19,7 +19,7 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:dotnet-c939ba4'
+  image: quay.io/eclipse/che-plugin-sidecar:dotnet-c939ba4
 dependencies: []
 extensions:
-  - 'https://open-vsx.org/api/muhammad-sammy/csharp/1.23.16/file/muhammad-sammy.csharp-1.23.16.vsix'
+  - https://open-vsx.org/api/muhammad-sammy/csharp/1.23.16/file/muhammad-sammy.csharp-1.23.16.vsix

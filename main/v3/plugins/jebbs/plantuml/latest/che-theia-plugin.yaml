@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: PlantUML
   description: Rich PlantUML support for Visual Studio Code.
-  repository: 'https://github.com/qjebbs/vscode-plantuml.git'
+  repository: https://github.com/qjebbs/vscode-plantuml.git
   categories:
     - Programming Languages
     - Formatters
@@ -19,7 +19,7 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:plantuml-013807b'
+  image: quay.io/eclipse/che-plugin-sidecar:plantuml-013807b
 dependencies: []
 extensions:
-  - 'https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix'
+  - https://open-vsx.org/api/jebbs/plantuml/2.14.0/file/jebbs.plantuml-2.14.0.vsix

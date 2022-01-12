@@ -4,7 +4,7 @@ metadata:
 components:
   - name: buildkit-dev
     container:
-      image: 'quay.io/eclipse/che-buildkit-base@sha256:effa98dd2ced30b520b25afff1a880d121cf6b3f8ab42a5149eada46ba793ce9'
+      image: quay.io/eclipse/che-buildkit-base@sha256:effa98dd2ced30b520b25afff1a880d121cf6b3f8ab42a5149eada46ba793ce9
       volumeMounts:
         - name: buildkit-share
           path: /home/user/.local/share/buildkit

@@ -8,7 +8,7 @@ title: COBOL Control Flow
 description: Extension for cobol control flow
 icon: /images/broadcommfd-ccf-icon.png
 category: Other
-repository: 'https://github.com/BroadcomMFD/cobol-control-flow'
+repository: https://github.com/BroadcomMFD/cobol-control-flow
 firstPublicationDate: '2021-06-10'
 latestUpdateDate: '2022-01-12'
 deprecate:
@@ -16,4 +16,4 @@ deprecate:
   migrateTo: broadcommfd/ccf/0.4.0/latest
 spec:
   extensions:
-    - 'https://open-vsx.org/api/BroadcomMFD/ccf/0.4.0/file/BroadcomMFD.ccf-0.4.0.vsix'
+    - https://open-vsx.org/api/BroadcomMFD/ccf/0.4.0/file/BroadcomMFD.ccf-0.4.0.vsix

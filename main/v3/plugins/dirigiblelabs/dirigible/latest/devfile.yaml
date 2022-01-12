@@ -4,7 +4,7 @@ metadata:
 components:
   - name: eclipse-dirigible
     container:
-      image: 'index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113'
+      image: index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113
       env:
         - name: DIRIGIBLE_DATABASE_PROVIDER
           value: local
@@ -23,7 +23,7 @@ components:
         - name: DIRIGIBLE_DATABASE_H2_ROOT_FOLDER_DEFAULT
           value: /projects/dirigible/h2
         - name: DIRIGIBLE_DATABASE_H2_URL
-          value: 'jdbc:h2:/projects/dirigible/h2'
+          value: jdbc:h2:/projects/dirigible/h2
         - name: DIRIGIBLE_OPERATIONS_LOGS_ROOT_FOLDER_DEFAULT
           value: /usr/local/tomcat/logs
       mountSources: true

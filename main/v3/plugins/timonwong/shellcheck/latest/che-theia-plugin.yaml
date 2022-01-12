@@ -5,8 +5,8 @@ metadata:
   name: shellcheck
   version: latest
   displayName: ShellCheck
-  description: 'Integrates ShellCheck into VS Code, a linter for Shell scripts.'
-  repository: 'https://github.com/timonwong/vscode-shellcheck.git'
+  description: Integrates ShellCheck into VS Code, a linter for Shell scripts.
+  repository: https://github.com/timonwong/vscode-shellcheck.git
   categories:
     - Linters
     - Programming Languages
@@ -17,9 +17,9 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:shellcheck-dcf09b9'
+  image: quay.io/eclipse/che-plugin-sidecar:shellcheck-dcf09b9
 preferences:
   shellcheck.executablePath: /bin/shellcheck
 dependencies: []
 extensions:
-  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf707df2/shellcheck-v0.13.2.vsix'
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/vf707df2/shellcheck-v0.13.2.vsix

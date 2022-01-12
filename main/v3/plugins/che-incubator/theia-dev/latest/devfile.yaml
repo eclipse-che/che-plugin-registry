@@ -4,7 +4,7 @@ metadata:
 components:
   - name: theia-dev
     container:
-      image: 'quay.io/eclipse/che-theia-dev:next'
+      image: quay.io/eclipse/che-theia-dev:next
       mountSources: true
       memoryLimit: 2Gi
       endpoints:

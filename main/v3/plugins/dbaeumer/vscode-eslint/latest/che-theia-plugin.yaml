@@ -6,11 +6,11 @@ metadata:
   version: latest
   displayName: ESLint
   description: Integrates ESLint JavaScript into VS Code.
-  repository: 'https://github.com/Microsoft/vscode-eslint.git'
+  repository: https://github.com/Microsoft/vscode-eslint.git
   categories:
     - Programming Languages
     - Linters
   icon: /images/dbaeumer-vscode-eslint-icon.png
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix'
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix

@@ -6,10 +6,10 @@ metadata:
   version: latest
   displayName: Didact
   description: Didact Tutorial Tools for Visual Studio Code
-  repository: 'https://github.com/redhat-developer/vscode-didact'
+  repository: https://github.com/redhat-developer/vscode-didact
   categories:
     - Other
   icon: /images/redhat-vscode-didact-icon.png
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix'
+  - https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix

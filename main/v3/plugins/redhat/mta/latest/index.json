@@ -8,7 +8,7 @@ title: Migration Toolkit for Applications
 description: Migration Toolkit for Applications (MTA)
 icon: /images/redhat-mta-vscode-extension-icon.png
 category: Other
-repository: 'https://github.com/windup/rhamt-vscode-extension'
+repository: https://github.com/windup/rhamt-vscode-extension
 firstPublicationDate: '2021-02-16'
 latestUpdateDate: '2022-01-12'
 deprecate:
@@ -16,7 +16,7 @@ deprecate:
   migrateTo: redhat/mta-vscode-extension/latest
 spec:
   containers:
-    - image: 'quay.io/windupeng/mta-vscode-extension@sha256:61a897972980458954d5ae5a50053aa8d050b065efff6cbe748dac2ab22f46bf'
+    - image: quay.io/windupeng/mta-vscode-extension@sha256:61a897972980458954d5ae5a50053aa8d050b065efff6cbe748dac2ab22f46bf
       name: mta-extension
       volumes:
         - name: mta-vscode
@@ -41,4 +41,4 @@ spec:
       attributes:
         protocol: http
   extensions:
-    - 'https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix'
+    - https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix

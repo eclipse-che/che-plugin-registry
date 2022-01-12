@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: ''
   description: VS Code extension for CDT GDB debug adapter
-  repository: 'https://github.com/eclipse-cdt/cdt-gdb-vscode.git'
+  repository: https://github.com/eclipse-cdt/cdt-gdb-vscode.git
   categories:
     - Other
   icon: /images/eclipse-cdt-cdt-gdb-vscode-icon.png
@@ -16,7 +16,7 @@ sidecar:
   memoryRequest: 20Mi
   cpuLimit: 500m
   cpuRequest: 30m
-  image: 'quay.io/eclipse/che-plugin-sidecar:clang-6bcfd7b'
+  image: quay.io/eclipse/che-plugin-sidecar:clang-6bcfd7b
 dependencies: []
 extensions:
-  - 'https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix'
+  - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix

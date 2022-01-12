@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: AsciiDoc
   description: Provides rich language support for AsciiDoc.
-  repository: 'https://github.com/asciidoctor/asciidoctor-vscode'
+  repository: https://github.com/asciidoctor/asciidoctor-vscode
   categories:
     - Programming Languages
   icon: /images/asciidoctor-asciidoctor-vscode-icon.png
@@ -19,9 +19,9 @@ sidecar:
   volumeMounts:
     - name: documents
       path: /documents
-  image: 'quay.io/eclipse/che-plugin-sidecar:asciidoc-c4f2aa1'
+  image: quay.io/eclipse/che-plugin-sidecar:asciidoc-c4f2aa1
 preferences:
   asciidoc.use_asciidoctorpdf: true
 dependencies: []
 extensions:
-  - 'https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix'
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/v2249123/asciidoctor-vscode-v2.8.7.vsix

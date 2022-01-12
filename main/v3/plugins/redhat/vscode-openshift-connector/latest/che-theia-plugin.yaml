@@ -6,7 +6,7 @@ metadata:
   version: latest
   displayName: OpenShift Connector
   description: Simplified app dev for Kubernetes or Red Hat OpenShift
-  repository: 'https://github.com/redhat-developer/vscode-openshift-tools.git'
+  repository: https://github.com/redhat-developer/vscode-openshift-tools.git
   categories:
     - Other
   icon: /images/redhat-vscode-openshift-connector-icon.png
@@ -19,10 +19,10 @@ sidecar:
   volumeMounts:
     - name: kube
       path: /home/theia/.kube
-  image: 'quay.io/eclipse/che-plugin-sidecar:openshift-tooling-2fcf341'
+  image: quay.io/eclipse/che-plugin-sidecar:openshift-tooling-2fcf341
 dependencies:
   - che-theia/che-openshift-authentication-plugin
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
-  - 'https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix'
+  - https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix

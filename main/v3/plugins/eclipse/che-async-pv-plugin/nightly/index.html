@@ -8,7 +8,7 @@ title: Che Async Storage Service
 description: Che Plug-in with service to provide abilty for backup/restore project source from async storage
 icon: /images/default.png
 category: Other
-repository: 'https://github.com/che-incubator/workspace-data-sync'
+repository: https://github.com/che-incubator/workspace-data-sync
 firstPublicationDate: '2020-07-10'
 latestUpdateDate: '2022-01-12'
 spec:
@@ -24,7 +24,7 @@ spec:
         cookiesAuthEnabled: true
   containers:
     - name: che-rsync
-      image: 'quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10'
+      image: quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10
       memoryLimit: 512M
       lifecycle:
         preStop:

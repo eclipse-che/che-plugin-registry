@@ -11,10 +11,10 @@ events:
 components:
   - name: theia-ide
     container:
-      image: 'quay.io/eclipse/che-theia:next'
+      image: quay.io/eclipse/che-theia:next
       env:
         - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
+          value: local-dir:///plugins
         - name: HOSTED_PLUGIN_HOSTNAME
           value: 0.0.0.0
         - name: HOSTED_PLUGIN_PORT
@@ -111,11 +111,11 @@ components:
     volume: {}
   - name: che-machine-exec
     container:
-      image: 'quay.io/eclipse/che-machine-exec:next'
+      image: quay.io/eclipse/che-machine-exec:next
       command:
         - /go/bin/che-machine-exec
         - '--url'
-        - '127.0.0.1:3333'
+        - 127.0.0.1:3333
         - '--idle-timeout'
         - 15m
       memoryLimit: 128Mi
@@ -127,7 +127,7 @@ components:
       app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: remote-runtime-injector
     container:
-      image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+      image: quay.io/eclipse/che-theia-endpoint-runtime-binary:next
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint

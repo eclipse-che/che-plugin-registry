@@ -6,10 +6,10 @@ metadata:
   version: latest
   displayName: Explorer for Endevor
   description: Explorer for Endevor
-  repository: 'https://github.com/eclipse/che-che4z-explorer-for-endevor'
+  repository: https://github.com/eclipse/che-che4z-explorer-for-endevor
   categories:
     - SCM Providers
   icon: /images/broadcommfd-explorer-for-endevor-icon.png
 dependencies: []
 extensions:
-  - 'https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.14.1/explorer-for-endevor-0.14.1.vsix'
+  - https://github.com/eclipse/che-che4z-explorer-for-endevor/releases/download/0.14.1/explorer-for-endevor-0.14.1.vsix

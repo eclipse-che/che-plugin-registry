@@ -5,8 +5,8 @@ metadata:
   name: hlasm-language-support
   version: latest
   displayName: HLASM Language Support
-  description: 'Code completion, highlighting, browsing and validation for High Level Assembler.'
-  repository: 'https://github.com/eclipse/che-che4z-lsp-for-hlasm.git'
+  description: Code completion, highlighting, browsing and validation for High Level Assembler.
+  repository: https://github.com/eclipse/che-che4z-lsp-for-hlasm.git
   categories:
     - Programming Languages
     - Linters
@@ -14,4 +14,4 @@ metadata:
   icon: /images/broadcommfd-hlasm-language-support-icon.png
 dependencies: []
 extensions:
-  - 'https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.13.0/hlasm-language-support-0.13.0-alpine.vsix'
+  - https://github.com/eclipse/che-che4z-lsp-for-hlasm/releases/download/0.13.0/hlasm-language-support-0.13.0-alpine.vsix

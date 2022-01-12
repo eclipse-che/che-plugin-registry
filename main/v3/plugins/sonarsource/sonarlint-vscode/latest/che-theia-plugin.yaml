@@ -5,8 +5,8 @@ metadata:
   name: sonarlint-vscode
   version: latest
   displayName: SonarLint
-  description: 'SonarLint is an IDE extension that helps you detect and fix quality issues as you write code in JavaScript, TypeScript, Python, Java, HTML and PHP.'
-  repository: 'https://github.com/SonarSource/sonarlint-vscode.git'
+  description: SonarLint is an IDE extension that helps you detect and fix quality issues as you write code in JavaScript, TypeScript, Python, Java, HTML and PHP.
+  repository: https://github.com/SonarSource/sonarlint-vscode.git
   categories:
     - Linters
   icon: /images/sonarsource-sonarlint-vscode-icon.png
@@ -19,8 +19,8 @@ sidecar:
   volumeMounts:
     - name: m2
       path: /home/theia/.m2
-  image: 'quay.io/eclipse/che-plugin-sidecar:sonarlint-2fcf341'
+  image: quay.io/eclipse/che-plugin-sidecar:sonarlint-2fcf341
 dependencies:
   - vscode/typescript-language-features
 extensions:
-  - 'https://github.com/SonarSource/sonarlint-vscode/releases/download/1.20.1/sonarlint-vscode-1.20.1.vsix'
+  - https://github.com/SonarSource/sonarlint-vscode/releases/download/1.20.1/sonarlint-vscode-1.20.1.vsix
