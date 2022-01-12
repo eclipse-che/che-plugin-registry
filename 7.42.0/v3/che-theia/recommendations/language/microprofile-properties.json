@@ -1,0 +1,24 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "redhat/vscode-microprofile",
+      "redhat/vscode-quarkus",
+      "redhat/quarkus-java8"
+    ]
+  },
+  {
+    "category": "Snippets",
+    "ids": [
+      "redhat/vscode-microprofile"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "redhat/vscode-microprofile",
+      "redhat/vscode-quarkus",
+      "redhat/quarkus-java8"
+    ]
+  }
+]
