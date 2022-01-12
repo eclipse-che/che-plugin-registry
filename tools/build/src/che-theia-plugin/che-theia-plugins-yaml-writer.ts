@@ -113,7 +113,7 @@ export class CheTheiaPluginsYamlWriter {
           cleanupWritingData.metadata.publisher = writingPublisher;
           cleanupWritingData.metadata.name = writingName;
           cleanupWritingData.metadata.version = 'latest';
-          const yamlString = jsyaml.safeDump(cleanupWritingData, { lineWidth: -1 });
+          const yamlString = jsyaml.dump(cleanupWritingData, { lineWidth: -1 });
           const pluginPath = path.resolve(pluginsFolder, alias, 'latest', 'che-theia-plugin.yaml');
           await fs.ensureDir(path.dirname(pluginPath));
           promises.push(fs.writeFile(pluginPath, yamlString));

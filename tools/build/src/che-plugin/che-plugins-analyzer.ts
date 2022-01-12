@@ -21,7 +21,7 @@ export class ChePluginsAnalyzer {
   async analyze(cheEditorFile: string): Promise<ChePluginsYaml> {
     const content = await fs.readFile(cheEditorFile, 'utf-8');
 
-    const chePluginsYaml: ChePluginsYaml = jsyaml.safeLoad(content, {
+    const chePluginsYaml: ChePluginsYaml = jsyaml.load(content, {
       schema: jsyaml.JSON_SCHEMA,
     }) as ChePluginsYaml;
 

@@ -97,7 +97,7 @@ metadata:
   description: my-description
   categories:
     - Programming Languages
-  repository: 'http://fake-repository'
+  repository: http://fake-repository
   icon: /images/my-publisher-my-name-icon.png
 sidecar:
   image: foo
@@ -106,7 +106,7 @@ dependencies:
 preferences:
   foo.bar: foo
 extensions:
-  - 'http://my-first.vsix'
+  - http://my-first.vsix
 `;
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       1,
@@ -153,7 +153,7 @@ metadata:
   description: my-description
   categories:
     - Programming Languages
-  repository: 'http://fake-repository'
+  repository: http://fake-repository
   icon: /images/default.png
 sidecar:
   image: foo
@@ -162,7 +162,7 @@ dependencies:
 preferences:
   foo.bar: foo
 extensions:
-  - 'http://my-first.vsix'
+  - http://my-first.vsix
 `;
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
@@ -230,16 +230,16 @@ metadata:
   description: my-description
   categories:
     - Programming Languages
-  repository: 'http://fake-repository'
+  repository: http://fake-repository
   icon: /images/default.png
 sidecar:
   image: foo
 preferences:
   foo.bar: foo
 extensions:
-  - 'relative:extension/resources/fake-domain_com/folder/my.vsix'
-  - 'relative:extension/resources/other-fake-domain_com/subfolder/two.vsix'
-  - 'https://another-entry.com/folder3/three.vsix'
+  - relative:extension/resources/fake-domain_com/folder/my.vsix
+  - relative:extension/resources/other-fake-domain_com/subfolder/two.vsix
+  - https://another-entry.com/folder3/three.vsix
 `;
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
