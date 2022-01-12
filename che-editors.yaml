@@ -562,6 +562,8 @@ editors:
           volumeMounts:
             - name: projector-volume
               path: /projector
+            - name: projector-configuration
+              path: /home/user/.jetbrains
           memoryLimit: 2048Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -582,6 +584,8 @@ editors:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
       - name: projector-volume
+        volume: { }
+      - name: projector-configuration
         volume: { }
       - name: che-idea-injector
         container:
@@ -633,6 +637,8 @@ editors:
           volumeMounts:
             - name: projector-volume
               path: /projector
+            - name: projector-configuration
+              path: /home/user/.jetbrains
           memoryLimit: 2048Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -653,6 +659,8 @@ editors:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
       - name: projector-volume
+        volume: { }
+      - name: projector-configuration
         volume: { }
       - name: che-pycharm-injector
         container:
