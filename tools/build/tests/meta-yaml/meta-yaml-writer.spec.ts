@@ -106,12 +106,12 @@ title: my-title
 description: my-description
 icon: /images/my-publisher-my-name-icon.png
 category: Programming Languages
-repository: 'http://fake-repository'
+repository: http://fake-repository
 firstPublicationDate: '2019-01-01'
 latestUpdateDate: '${latestUpdateDate}'
 spec:
   extensions:
-    - 'http://my-first.vsix'
+    - http://my-first.vsix
 `;
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       1,
@@ -164,12 +164,12 @@ title: my-title
 description: my-description
 icon: /images/default.png
 category: Programming Languages
-repository: 'http://fake-repository'
+repository: http://fake-repository
 firstPublicationDate: '2019-01-01'
 latestUpdateDate: '${latestUpdateDate}'
 spec:
   extensions:
-    - 'http://my-first.vsix'
+    - http://my-first.vsix
 `;
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
@@ -242,14 +242,14 @@ title: my-title
 description: my-description
 icon: /images/default.png
 category: Programming Languages
-repository: 'http://fake-repository'
+repository: http://fake-repository
 firstPublicationDate: '2019-01-01'
 latestUpdateDate: '${latestUpdateDate}'
 spec:
   extensions:
-    - 'relative:extension/resources/fake-domain_com/folder/my.vsix'
-    - 'relative:extension/resources/other-fake-domain_com/subfolder/two.vsix'
-    - 'https://another-entry.com/folder3/three.vsix'
+    - relative:extension/resources/fake-domain_com/folder/my.vsix
+    - relative:extension/resources/other-fake-domain_com/subfolder/two.vsix
+    - https://another-entry.com/folder3/three.vsix
 `;
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
@@ -322,14 +322,14 @@ title: my-title
 description: my-description
 icon: /images/default.png
 category: Programming Languages
-repository: 'http://fake-repository'
+repository: http://fake-repository
 firstPublicationDate: '2019-01-01'
 latestUpdateDate: '${latestUpdateDate}'
 spec:
   extensions:
-    - 'relative:extension/resources/fake-domain_com/folder/my.vsix'
-    - 'relative:extension/resources/other-fake-domain_com/subfolder/two.vsix'
-    - 'https://another-entry.com/folder3/three.vsix'
+    - relative:extension/resources/fake-domain_com/folder/my.vsix
+    - relative:extension/resources/other-fake-domain_com/subfolder/two.vsix
+    - https://another-entry.com/folder3/three.vsix
 `;
 
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
@@ -382,7 +382,7 @@ title: my-title
 description: my-description
 icon: /images/default.png
 category: Programming Languages
-repository: 'http://fake-repository'
+repository: http://fake-repository
 firstPublicationDate: '2019-01-01'
 latestUpdateDate: '${latestUpdateDate}'
 spec: {}

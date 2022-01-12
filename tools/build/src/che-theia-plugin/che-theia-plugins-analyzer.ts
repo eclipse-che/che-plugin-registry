@@ -21,7 +21,7 @@ export class CheTheiaPluginsAnalyzer {
   async analyze(cheTheiaPluginsFile: string): Promise<CheTheiaPluginsYaml> {
     const content = await fs.readFile(cheTheiaPluginsFile, 'utf-8');
 
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = jsyaml.safeLoad(content, {
+    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = jsyaml.load(content, {
       schema: jsyaml.JSON_SCHEMA,
     }) as CheTheiaPluginsYaml;
 

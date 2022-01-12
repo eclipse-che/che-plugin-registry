@@ -34,7 +34,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('machine-exec', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'machine-exec-plugin-meta.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('Che machine-exec Service');
@@ -60,7 +60,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('che-theia', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-theia-meta.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('theia-ide');
@@ -131,7 +131,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('che-theia with multiple volumes which have identical name', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-theia-meta-with-multiple-volumes.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.components?.length).toBe(6);
     expect(devfileYaml.components?.find((value: any) => value.name === 'theia-ide')).toBeDefined();
@@ -146,7 +146,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('no container', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'no-container.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('no-container');
@@ -161,7 +161,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('vscode extension', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'vscode-extension.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml).toBeUndefined();
   });
@@ -169,7 +169,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('container without endpoints', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'container-no-endpoints.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('no-endpoint');
@@ -184,7 +184,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
   test('container with minimal endpoint', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'container-minimal-endpoint.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.safeLoad(metaYamlContent);
+    const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
     expect(devfileYaml.metadata?.name).toBe('minimal-endpoint');
