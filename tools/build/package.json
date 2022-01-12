@@ -33,7 +33,7 @@
     "inversify": "^5.1.1",
     "js-yaml": "^4.1.0",
     "moment": "^2.29.1",
-    "ora": "^5.4.0",
+    "nanospinner": "^0.6.0",
     "reflect-metadata": "^0.1.13",
     "semver": "^7.3.5",
     "simple-git": "^2.48.0",
