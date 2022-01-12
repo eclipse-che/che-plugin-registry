@@ -181,27 +181,25 @@
     "version": "insiders"
   },
   {
-    "id": "che-incubator/intellij-community/latest",
+    "id": "che-incubator/che-idea/latest",
     "description": "IntelliJ IDEA Community running using Projector",
     "displayName": "IntelliJ IDEA Community Edition",
     "links": {
-      "self": "/v3/plugins/che-incubator/intellij-community/latest",
-      "devfile": "/v3/plugins/che-incubator/intellij-community/latest/devfile.yaml"
+      "devfile": "/v3/plugins/che-incubator/che-idea/latest/devfile.yaml"
     },
-    "name": "intellij-community",
+    "name": "che-idea",
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest"
   },
   {
-    "id": "che-incubator/pycharm/latest",
+    "id": "che-incubator/che-pycharm/latest",
     "description": "PyCharm Community running using Projector",
     "displayName": "PyCharm Community",
     "links": {
-      "self": "/v3/plugins/che-incubator/pycharm/latest",
-      "devfile": "/v3/plugins/che-incubator/pycharm/latest/devfile.yaml"
+      "devfile": "/v3/plugins/che-incubator/che-pycharm/latest/devfile.yaml"
     },
-    "name": "pycharm",
+    "name": "che-pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest"
