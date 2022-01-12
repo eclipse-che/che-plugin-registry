@@ -27,10 +27,10 @@ describe('Test RegistryHelper', () => {
 
   let registryHelper: RegistryHelper;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     container = new Container();
     container.bind(RegistryHelper).toSelf().inSingletonScope();
-    registryHelper = container.get(RegistryHelper);
+    registryHelper = await container.getAsync(RegistryHelper);
   });
 
   beforeEach(() => {
@@ -141,9 +141,17 @@ describe('Test RegistryHelper', () => {
     const hash = latest.hash;
     const shortSha1 = hash.substring(0, 7);
 
+    const content = 'foobar-content';
+    const response = {
+      data: content,
+    };
+
     const axiosGet = jest.spyOn(Axios, 'get') as jest.Mock;
     const imageName = `fake-docker-registry.com/dummy-org/dummy-image:go-${shortSha1}`;
     const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
+    // do nothing
+    axiosGet.mockResolvedValue(response);
+    axiosHead.mockResolvedValue('');
     const updatedImageName = await registryHelper.getImageDigest(imageName);
     expect(updatedImageName).toBe(imageName);
     expect(axiosGet).toBeCalledTimes(0);

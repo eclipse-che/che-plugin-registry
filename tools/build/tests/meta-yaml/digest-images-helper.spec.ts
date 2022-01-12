@@ -26,7 +26,7 @@ describe('Test DigestImagesHelper', () => {
     getImageDigest: registryHelperGetImageDigestMock,
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     metaYamlPlugins = [
       // first plug-in has both containers and init containers
       {
@@ -48,7 +48,7 @@ describe('Test DigestImagesHelper', () => {
 
     container.bind(DigestImagesHelper).toSelf().inSingletonScope();
     container.bind(RegistryHelper).toConstantValue(registryHelper);
-    digestImagesHelper = container.get(DigestImagesHelper);
+    digestImagesHelper = await container.getAsync(DigestImagesHelper);
   });
 
   test('basics', async () => {

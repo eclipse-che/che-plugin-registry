@@ -21,7 +21,7 @@ describe('Test Main with stubs', () => {
     build: buildMethod as any,
   };
   const container = {
-    get: jest.fn().mockReturnValue(buildMock),
+    getAsync: jest.fn().mockResolvedValue(buildMock),
   } as any;
   const spyInitBindings = jest.spyOn(InversifyBinding.prototype, 'initBindings');
 
