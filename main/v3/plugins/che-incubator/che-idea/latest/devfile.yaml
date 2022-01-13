@@ -22,6 +22,8 @@ components:
       volumeMounts:
         - name: projector-volume
           path: /projector
+        - name: projector-configuration
+          path: /home/user/.jetbrains
       memoryLimit: 2048Mi
       memoryRequest: 256Mi
       cpuLimit: 500m
@@ -43,9 +45,11 @@ components:
       app.kubernetes.io/part-of: che-idea.eclipse.org
   - name: projector-volume
     volume: {}
+  - name: projector-configuration
+    volume: {}
   - name: che-idea-injector
     container:
-      image: quay.io/che-incubator/che-idea@sha256:c12251fe34e812b4952514697c410654bc7451918f560e20123ca49b2af70235
+      image: quay.io/che-incubator/che-idea@sha256:63f51c3aa847cd7e1fa9b52decae5f6406034200e30eeea13ba494958bd52934
       command:
         - /projector/entrypoint-init-container.sh
       env:
