@@ -9,6 +9,7 @@ metadata:
   repository: https://github.com/scalameta/metals-vscode.git
   categories:
     - Programming Languages
+    - Debuggers
   icon: /images/scalameta-metals-icon.png
 sidecar:
   name: vscode-metals
@@ -27,4 +28,4 @@ sidecar:
 dependencies:
   - scala-lang/scala
 extensions:
-  - https://github.com/scalameta/metals-vscode/releases/download/v1.10.15/scalameta.metals-1.10.15.vsix
+  - https://github.com/scalameta/metals-vscode/releases/download/v1.11.1/scalameta.metals-1.11.1.vsix

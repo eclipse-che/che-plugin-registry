@@ -4,5 +4,11 @@
     "ids": [
       "scalameta/metals"
     ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "scalameta/metals"
+    ]
   }
 ]

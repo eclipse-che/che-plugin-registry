@@ -9,7 +9,7 @@ description: Scala language server with rich IDE features
 icon: /images/scalameta-metals-icon.png
 category: Programming Languages
 repository: https://github.com/scalameta/metals-vscode.git
-firstPublicationDate: '2021-11-12'
+firstPublicationDate: '2022-01-13'
 latestUpdateDate: '2022-01-14'
 spec:
   containers:
@@ -27,5 +27,5 @@ spec:
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:
-    - https://github.com/scalameta/metals-vscode/releases/download/v1.10.15/scalameta.metals-1.10.15.vsix
+    - https://github.com/scalameta/metals-vscode/releases/download/v1.11.1/scalameta.metals-1.11.1.vsix
     - https://github.com/scala/vscode-scala-syntax/releases/download/0.5.3/scala.vsix
