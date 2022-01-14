@@ -21,7 +21,6 @@ sidecar:
       path: /home/theia/.kube
   image: quay.io/eclipse/che-plugin-sidecar:openshift-tooling-2fcf341
 dependencies:
-  - che-theia/che-openshift-authentication-plugin
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
