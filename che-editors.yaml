@@ -551,7 +551,7 @@ editors:
     components:
       - name: che-idea-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-eda6672'
+          image: 'quay.io/devfile/universal-developer-image:ubi8-0e189d9'
           command:
             - /projector/entrypoint-volume.sh
           env:
@@ -626,7 +626,7 @@ editors:
     components:
       - name: che-pycharm-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-eda6672'
+          image: 'quay.io/devfile/universal-developer-image:ubi8-0e189d9'
           command:
             - /projector/entrypoint-volume.sh
           env:
