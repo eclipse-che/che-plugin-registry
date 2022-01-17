@@ -182,7 +182,7 @@
   },
   {
     "id": "che-incubator/che-idea/latest",
-    "description": "IntelliJ IDEA Community running using Projector",
+    "description": "IntelliJ IDEA Community running using Projector (latest released version)",
     "displayName": "IntelliJ IDEA Community Edition",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea/latest/devfile.yaml"
@@ -193,8 +193,20 @@
     "version": "latest"
   },
   {
+    "id": "che-incubator/che-idea/next",
+    "description": "IntelliJ IDEA Community running using Projector (next development version)",
+    "displayName": "IntelliJ IDEA Community Edition",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea/next/devfile.yaml"
+    },
+    "name": "che-idea",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
     "id": "che-incubator/che-pycharm/latest",
-    "description": "PyCharm Community running using Projector",
+    "description": "PyCharm Community running using Projector (latest released version)",
     "displayName": "PyCharm Community",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-pycharm/latest/devfile.yaml"
@@ -203,6 +215,18 @@
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-pycharm/next",
+    "description": "PyCharm Community running using Projector (next development version)",
+    "displayName": "PyCharm Community",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-pycharm/next/devfile.yaml"
+    },
+    "name": "che-pycharm",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
   },
   {
     "id": "che-incubator/theia-dev/latest",

@@ -1,0 +1,66 @@
+schemaVersion: 2.1.0
+metadata:
+  name: IntelliJ IDEA Community Edition
+commands:
+  - id: init-container-command
+    apply:
+      component: che-idea-injector
+events:
+  preStart:
+    - init-container-command
+components:
+  - name: che-idea-runtime-description
+    container:
+      image: quay.io/devfile/universal-developer-image@sha256:66369ff476b6bd035f5a992d505b0e2a624f46a7d180acb61c41086a37739eea
+      command:
+        - /projector/entrypoint-volume.sh
+      env:
+        - name: PROJECTOR_ASSEMBLY_DIR
+          value: /projector
+        - name: PROJECTOR_CONFIG_DIR
+          value: /home/user/.jetbrains
+      volumeMounts:
+        - name: projector-volume
+          path: /projector
+        - name: projector-configuration
+          path: /home/user/.jetbrains
+      memoryLimit: 2048Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+      endpoints:
+        - name: intellij
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+            secure: false
+          targetPort: 8887
+          exposure: public
+          path: /?backgroundColor=434343&wss
+          protocol: http
+    attributes:
+      app.kubernetes.io/component: che-idea-injector
+      app.kubernetes.io/part-of: che-idea.eclipse.org
+  - name: projector-volume
+    volume: {}
+  - name: projector-configuration
+    volume: {}
+  - name: che-idea-injector
+    container:
+      image: quay.io/che-incubator/che-idea@sha256:20671357e44ca68df258495ac538a7d109620899d457a8345d79e2f0ffe13551
+      command:
+        - /projector/entrypoint-init-container.sh
+      env:
+        - name: PROJECTOR_VOLUME_MOUNT
+          value: /projector-volume
+        - name: PROJECTOR_ASSEMBLY_DIR
+          value: /projector
+      volumeMounts:
+        - name: projector-volume
+          path: /projector-volume
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
