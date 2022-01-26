@@ -19,12 +19,12 @@ describe('Test Sidecar', () => {
 
   let sidecarDockerImage: SidecarDockerImage;
 
-  const mockedConsoleError = jest.fn();
+  const mockedConsoleWarn = jest.fn();
 
   beforeEach(async () => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
-    console.error = mockedConsoleError;
+    console.warn = mockedConsoleWarn;
     container = new Container();
     container.bind(SidecarDockerImage).toSelf().inSingletonScope();
     sidecarDockerImage = await container.getAsync(SidecarDockerImage);
@@ -47,7 +47,7 @@ describe('Test Sidecar', () => {
     expect(spyRevparse).toBeCalled();
     sidecarDockerImage['gitRootDirectory'] = undefined;
     await expect(sidecarDockerImage.getDockerImageFor('mycustom')).rejects.toThrow(
-      'To use directory attribute in the sidecar description, working directory should be a git repository.'
+      'To use sidecar.directory attribute in the sidecar description, working directory should be a git repository.'
     );
   });
 
