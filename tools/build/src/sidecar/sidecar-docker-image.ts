@@ -20,7 +20,7 @@ export class SidecarDockerImage {
 
   private git: SimpleGit;
 
-  private gitRootDirectory: string;
+  private gitRootDirectory: string | undefined;
 
   constructor() {
     // reduce concurrent processes
@@ -29,10 +29,19 @@ export class SidecarDockerImage {
 
   @postConstruct()
   async init(): Promise<void> {
-    this.gitRootDirectory = await this.git.revparse(['--show-toplevel']);
+    try {
+      this.gitRootDirectory = await this.git.revparse(['--show-toplevel']);
+    } catch (error) {
+      console.warn('sidecar.directory support is disabled as working directory is not part of a git layout.');
+    }
   }
 
   async getDockerImageFor(sidecarShortDirectory: string): Promise<string> {
+    if (!this.gitRootDirectory) {
+      throw new Error(
+        'To use sidecar.directory attribute in the sidecar description, working directory should be a git repository.'
+      );
+    }
     // Use long hash (and not short hash) as the value may vary across different git implementations and simple-git does not support abbrev parameter
     const format = {
       hash: '%H',
