@@ -19,9 +19,12 @@ describe('Test Sidecar', () => {
 
   let sidecarDockerImage: SidecarDockerImage;
 
+  const mockedConsoleError = jest.fn();
+
   beforeEach(async () => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
+    console.error = mockedConsoleError;
     container = new Container();
     container.bind(SidecarDockerImage).toSelf().inSingletonScope();
     sidecarDockerImage = await container.getAsync(SidecarDockerImage);
@@ -31,6 +34,21 @@ describe('Test Sidecar', () => {
     await sidecarDockerImage.init();
     const result = await sidecarDockerImage.getDockerImageFor('go');
     expect(result).toContain('quay.io/eclipse/che-plugin-sidecar:go-');
+    expect(sidecarDockerImage['gitRootDirectory']).toContain('che-plugin-registry');
+  });
+
+  test('no git repo', async () => {
+    const git = sidecarDockerImage['git'];
+    const spyRevparse = jest.spyOn(git, 'revparse');
+    spyRevparse.mockImplementation(() => {
+      throw new Error();
+    });
+    await sidecarDockerImage.init();
+    expect(spyRevparse).toBeCalled();
+    sidecarDockerImage['gitRootDirectory'] = undefined;
+    await expect(sidecarDockerImage.getDockerImageFor('mycustom')).rejects.toThrow(
+      'To use directory attribute in the sidecar description, working directory should be a git repository.'
+    );
   });
 
   test('exception if no-log', async () => {

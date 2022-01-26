@@ -10,7 +10,7 @@
 
 import * as crypto from 'crypto';
 
-import { injectable, postConstruct } from 'inversify';
+import { inject, injectable, named, postConstruct } from 'inversify';
 import simpleGit, { SimpleGit } from 'simple-git';
 
 import Axios from 'axios';
@@ -21,8 +21,13 @@ import { parse } from 'docker-image-name-parser';
  */
 @injectable()
 export class RegistryHelper {
+  @inject('boolean')
+  @named('SKIP_DIGEST_GENERATION')
+  private skipDigests: boolean;
+
   private shortSha1: string;
   private git: SimpleGit;
+  private gitRootDirectory: string | undefined;
 
   constructor() {
     // reduce concurrent processes
@@ -31,10 +36,13 @@ export class RegistryHelper {
 
   @postConstruct()
   async init(): Promise<void> {
-    const gitRootDirectory = await this.git.revparse(['--show-toplevel']);
+    if (this.skipDigests) {
+      return;
+    }
+    this.gitRootDirectory = await this.git.revparse(['--show-toplevel']);
     const logOptions = {
       format: { hash: '%H' },
-      file: gitRootDirectory,
+      file: this.gitRootDirectory,
       // keep only one result
       n: '1',
     };

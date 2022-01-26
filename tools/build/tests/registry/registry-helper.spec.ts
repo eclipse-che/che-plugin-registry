@@ -30,6 +30,7 @@ describe('Test RegistryHelper', () => {
   beforeAll(async () => {
     container = new Container();
     container.bind(RegistryHelper).toSelf().inSingletonScope();
+    container.bind('boolean').toConstantValue(false).whenTargetNamed('SKIP_DIGEST_GENERATION');
     registryHelper = await container.getAsync(RegistryHelper);
   });
 
@@ -156,5 +157,13 @@ describe('Test RegistryHelper', () => {
     expect(updatedImageName).toBe(imageName);
     expect(axiosGet).toBeCalledTimes(0);
     expect(axiosHead).toBeCalledTimes(0);
+  });
+
+  test('no git root directory if SKIP_DIGEST_GENERATION=true', async () => {
+    container.rebind('boolean').toConstantValue(true).whenTargetNamed('SKIP_DIGEST_GENERATION');
+    // force to refresh the singleton
+    container.rebind(RegistryHelper).toSelf().inSingletonScope();
+    registryHelper = await container.getAsync(RegistryHelper);
+    expect(registryHelper['gitRootDirectory']).toBeUndefined();
   });
 });
