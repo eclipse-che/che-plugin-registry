@@ -45,4 +45,4 @@ git config user.email "che-bot@eclipse.org"
 git config user.name "CHE Bot"
 git diff-index --quiet HEAD || git commit -m "publish registry $VERSION_DIR - $(date)" -s
 git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" gh-pages
-echo "Checkout the published plugin registry at https://$GITHUB_ACTOR.github.io/$GITHUB_REPO_NAME/$VERSION_DIR/v3/plugins/"
+echo "Plugin registry (single-arch) published to https://eclipse-che.github.io/$GITHUB_REPO_NAME/$VERSION_DIR/v3/plugins/"
