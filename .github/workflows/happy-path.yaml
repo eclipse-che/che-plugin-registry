@@ -99,6 +99,6 @@ jobs:
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
       - name: Run Happy Path tests
         id: run-happy-path-tests
-        uses: che-incubator/happy-path-tests-action@next
+        uses: dmytro-ndp/happy-path-tests-action@che-20986
         with:
           che-url: ${{ steps.deploy-che.outputs.che-url }}
