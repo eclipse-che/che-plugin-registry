@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2021 Red Hat, Inc.
+# Copyright (c) 2018-2022 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -40,8 +40,8 @@ COPY ./build/dockerfiles/rhel.entrypoint.sh ./build/dockerfiles/entrypoint.sh /u
 RUN chmod g+rwX /usr/local/bin/entrypoint.sh /usr/local/bin/rhel.entrypoint.sh
 COPY README.md .htaccess /var/www/html/
 COPY output/v3 /var/www/html/v3
-COPY v3/plugins/.htaccess /var/www/html/v3/plugins/
-COPY v3/images/default.png /var/www/html/v3/images/
+COPY v3/plugins/ /var/www/html/v3/plugins/
+COPY v3/images/*.png /var/www/html/v3/images/
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/rhel.entrypoint.sh"]
