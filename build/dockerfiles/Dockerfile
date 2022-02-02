@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2021 Red Hat, Inc.
+# Copyright (c) 2018-2022 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -8,6 +8,7 @@
 #
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
+#   IBM Corporation - implementation
 #
 
 # Build registry
@@ -22,8 +23,8 @@ RUN apk add --no-cache bash && \
 COPY ./build/dockerfiles/entrypoint.sh /usr/bin/
 COPY README.md .htaccess /usr/local/apache2/htdocs/
 COPY output/v3 /usr/local/apache2/htdocs/v3
-COPY v3/plugins/.htaccess /usr/local/apache2/htdocs/v3/plugins/
-COPY v3/images/default.png /usr/local/apache2/htdocs/v3/images/
+COPY v3/plugins/ /usr/local/apache2/htdocs/v3/plugins/
+COPY v3/images/*.png /usr/local/apache2/htdocs/v3/images/
 RUN chmod -R g+rwX /usr/local/apache2
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["httpd-foreground"]
