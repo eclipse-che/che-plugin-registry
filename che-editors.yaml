@@ -585,10 +585,10 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
-          memoryLimit: 2048Mi
-          memoryRequest: 256Mi
-          cpuLimit: 500m
-          cpuRequest: 30m
+          memoryLimit: 6144Mi
+          memoryRequest: 2048Mi
+          cpuLimit: 2000m
+          cpuRequest: 1500m
           endpoints:
             - name: intellij
               attributes:
@@ -660,10 +660,10 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
-          memoryLimit: 2048Mi
-          memoryRequest: 256Mi
-          cpuLimit: 500m
-          cpuRequest: 30m
+          memoryLimit: 6144Mi
+          memoryRequest: 2048Mi
+          cpuLimit: 2000m
+          cpuRequest: 1500m
           endpoints:
             - name: intellij
               attributes:
@@ -735,10 +735,10 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
-          memoryLimit: 2048Mi
-          memoryRequest: 256Mi
-          cpuLimit: 500m
-          cpuRequest: 30m
+          memoryLimit: 6144Mi
+          memoryRequest: 2048Mi
+          cpuLimit: 2000m
+          cpuRequest: 1500m
           endpoints:
             - name: intellij
               attributes:
@@ -810,10 +810,10 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
-          memoryLimit: 2048Mi
-          memoryRequest: 256Mi
-          cpuLimit: 500m
-          cpuRequest: 30m
+          memoryLimit: 6144Mi
+          memoryRequest: 2048Mi
+          cpuLimit: 2000m
+          cpuRequest: 1500m
           endpoints:
             - name: intellij
               attributes:
