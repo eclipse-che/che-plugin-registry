@@ -585,6 +585,8 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
+            - name: projector-java-configuration
+              path: /home/user/.java
           memoryLimit: 6144Mi
           memoryRequest: 2048Mi
           cpuLimit: 2000m
@@ -607,6 +609,8 @@ editors:
       - name: projector-volume
         volume: { }
       - name: projector-configuration
+        volume: { }
+      - name: projector-java-configuration
         volume: { }
       - name: che-idea-injector
         container:
@@ -660,6 +664,8 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
+            - name: projector-java-configuration
+              path: /home/user/.java
           memoryLimit: 6144Mi
           memoryRequest: 2048Mi
           cpuLimit: 2000m
@@ -682,6 +688,8 @@ editors:
       - name: projector-volume
         volume: { }
       - name: projector-configuration
+        volume: { }
+      - name: projector-java-configuration
         volume: { }
       - name: che-idea-injector
         container:
@@ -735,6 +743,8 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
+            - name: projector-java-configuration
+              path: /home/user/.java
           memoryLimit: 6144Mi
           memoryRequest: 2048Mi
           cpuLimit: 2000m
@@ -757,6 +767,8 @@ editors:
       - name: projector-volume
         volume: { }
       - name: projector-configuration
+        volume: { }
+      - name: projector-java-configuration
         volume: { }
       - name: che-pycharm-injector
         container:
@@ -810,6 +822,8 @@ editors:
               path: /projector
             - name: projector-configuration
               path: /home/user/.jetbrains
+            - name: projector-java-configuration
+              path: /home/user/.java
           memoryLimit: 6144Mi
           memoryRequest: 2048Mi
           cpuLimit: 2000m
@@ -832,6 +846,8 @@ editors:
       - name: projector-volume
         volume: { }
       - name: projector-configuration
+        volume: { }
+      - name: projector-java-configuration
         volume: { }
       - name: che-pycharm-injector
         container:
