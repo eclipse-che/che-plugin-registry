@@ -24,6 +24,8 @@ components:
           path: /projector
         - name: projector-configuration
           path: /home/user/.jetbrains
+        - name: projector-java-configuration
+          path: /home/user/.java
       memoryLimit: 6144Mi
       memoryRequest: 2048Mi
       cpuLimit: 2000m
@@ -47,9 +49,11 @@ components:
     volume: {}
   - name: projector-configuration
     volume: {}
+  - name: projector-java-configuration
+    volume: {}
   - name: che-idea-injector
     container:
-      image: quay.io/che-incubator/che-idea@sha256:9033b386c835cb243ceac6e133822014ce5dca93866e4ccb7fbc7251a32206f9
+      image: quay.io/che-incubator/che-idea@sha256:2de975913f4d2bc4c8d41207fb2dd91a88382743de1d6aeb40ffb7fc00d929af
       command:
         - /projector/entrypoint-init-container.sh
       env:
