@@ -116,7 +116,7 @@ jobs:
           always() &&
           (steps.run-happy-path-tests.outcome == 'failure')
         with:
-          name: Happy path test report for ${{ matrix.dist }}
+          name: Happy path test report (${{ matrix.dist }})
           path: che/tests/e2e/report
 
       - name: Collect Eclipse Che logs
@@ -149,5 +149,5 @@ jobs:
           always() &&
           (steps.collect-che-logs.outcome == 'success')
         with:
-          name: Eclipse Che logs for ${{ matrix.dist }}
+          name: Eclipse Che logs (${{ matrix.dist }})
           path: che-logs
