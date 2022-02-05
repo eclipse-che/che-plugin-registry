@@ -110,11 +110,44 @@ jobs:
         with:
           che-url: ${{ steps.deploy-che.outputs.che-url }}
 
-      - name: Upload test report
+      - name: Upload Happy Path test report
         uses: actions/upload-artifact@v2
         if:  |
           always() &&
           (steps.run-happy-path-tests.outcome == 'failure')
         with:
-          name: test-report
+          name: Happy path test report for ${{ matrix.dist }}
           path: che/tests/e2e/report
+
+      - name: Collect Eclipse Che logs
+        id: collect-che-logs
+        if:  |
+          always() &&
+          (steps.deploy-che.outcome == 'success' || steps.deploy-che.outcome == 'failure')
+        run: |
+          set -x
+          pwd
+          mkdir che-logs
+          export PODS=$(kubectl get pod --namespace=eclipse-che | awk 'NR>1 {print $1}')
+          for pod in $PODS ; do
+              kubectl logs --namespace=eclipse-che "${pod}" --namespace=eclipse-che > che-logs/"${pod}".pod.log || true;
+          done
+
+          mkdir -p che-logs/workspace-logs
+          WORKSPACE_NAMESPACE_NAME=admin-che
+          export WS_POD=$(kubectl get pod --namespace=$WORKSPACE_NAMESPACE_NAME | grep ".workspace-" | awk '{print $1}')
+          for c in $(kubectl get pod --namespace=$WORKSPACE_NAMESPACE_NAME $WS_POD -o jsonpath="{.spec.containers[*].name}") ; do
+              CONTAINER_LOGS_DIR=che-logs/workspace-logs/"${c}"
+              mkdir $CONTAINER_LOGS_DIR
+              kubectl logs $WS_POD "${c}" --namespace=$WORKSPACE_NAMESPACE_NAME > ${CONTAINER_LOGS_DIR}.container.log || true;
+              kubectl cp $WORKSPACE_NAMESPACE_NAME/$WS_POD:che-logs/workspace-logs $CONTAINER_LOGS_DIR -c "${c}" || true;
+          done
+
+      - name: Upload Eclipse Che logs
+        uses: actions/upload-artifact@v2
+        if:  |
+          always() &&
+          (steps.collect-che-logs.outcome == 'success')
+        with:
+          name: Eclipse Che logs for ${{ matrix.dist }}
+          path: che-logs
