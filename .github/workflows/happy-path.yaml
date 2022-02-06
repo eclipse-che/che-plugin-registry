@@ -26,7 +26,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dist: ['alpine', 'rhel']
+        # dist: ['alpine', 'rhel']
+        dist: ['rhel']
+        # chectlchannel: [ 'stable' ]
     runs-on: ubuntu-20.04
     steps:
       - name: Clone source code
@@ -86,7 +88,7 @@ jobs:
         id: run-minikube
         uses: che-incubator/setup-minikube-action@next
         with:
-          minikube-version: v1.21.0
+          minikube-version: v1.25.1
 
       - name: load-image-minikube-registry
         id: load-image-minikube-registry
@@ -103,6 +105,7 @@ jobs:
         with:
           # use custom image built by this PR
           plugin-registry-image: quay.io/eclipse/che-plugin-registry:happy-path
+          # chectl-channel: ${{matrix.chectlchannel}}
 
       - name: Run Happy Path tests
         id: run-happy-path-tests
@@ -118,6 +121,7 @@ jobs:
         with:
           name: Happy path test report (${{ matrix.dist }})
           path: che/tests/e2e/report
+          retention-days: 5
 
       - name: Collect Eclipse Che logs
         id: collect-che-logs
@@ -151,3 +155,4 @@ jobs:
         with:
           name: Eclipse Che logs (${{ matrix.dist }})
           path: che-logs
+          retention-days: 5
