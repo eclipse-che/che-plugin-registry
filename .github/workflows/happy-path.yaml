@@ -89,8 +89,7 @@ jobs:
         id: run-minikube
         uses: che-incubator/setup-minikube-action@next
         with:
-          # minikube-version: v1.25.1
-          minikube-version: v1.21.0
+          minikube-version: v1.25.1
 
       - name: load-image-minikube-registry
         id: load-image-minikube-registry
@@ -100,6 +99,10 @@ jobs:
           docker load --input=docker-image.tar
           # display images
           docker images
+
+      # workaround https://github.com/eclipse/che/issues/21128
+      - name: Create 'eclipse-che' namespace
+        run: "kubectl create namespace eclipse-che"
 
       - name: Deploy Eclipse Che
         id: deploy-che
