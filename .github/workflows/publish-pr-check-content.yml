@@ -79,7 +79,7 @@ jobs:
            echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
            surge ./unpacked --domain $DEPLOY_DOMAIN
       - name: 'Comment PR'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
          script: |
            const { repo: { owner, repo } } = context;
