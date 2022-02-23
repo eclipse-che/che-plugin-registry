@@ -37,6 +37,6 @@ runTests() {
   runTest "GitHubPullRequestPlugin" "github-pr-plugin"
 }
 
-setupTestEnvironment
-runTests
-finishReport
+# setupTestEnvironment
+# runTests
+# finishReport
