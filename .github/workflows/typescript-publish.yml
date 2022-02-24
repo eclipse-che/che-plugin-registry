@@ -22,7 +22,7 @@ jobs:
   publish:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3.0.0
       with:
         node-version: '16'
         registry-url: 'https://registry.npmjs.org'

@@ -53,7 +53,7 @@ jobs:
         run: |
           pr_sha=$(cat "PR_SHA")
           echo "PR_SHA=$pr_sha" >> $GITHUB_ENV
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v3.0.0
         with:
           node-version: '16'
       - name: publish
