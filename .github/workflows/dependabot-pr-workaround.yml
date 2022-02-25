@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 2
           token: ${{secrets.CHE_BOT_GITHUB_TOKEN}}
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
       - name: Autofix lockfile
