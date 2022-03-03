@@ -19,7 +19,7 @@ jobs:
     name: eof-newline
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 10
       - name: Linelint
@@ -28,7 +28,7 @@ jobs:
   digest-validation:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: Run script which checks container image digest
