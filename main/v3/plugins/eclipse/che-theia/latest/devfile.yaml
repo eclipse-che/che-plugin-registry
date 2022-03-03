@@ -11,7 +11,7 @@ events:
 components:
   - name: theia-ide
     container:
-      image: quay.io/eclipse/che-theia@sha256:472def7fa0764848b2c8bf817d695ce354804b7cdc06fb446b896157609eabf3
+      image: quay.io/eclipse/che-theia@sha256:7a19ed76a22d48e1135f04b96c89d105ee1687db1be9d705de65c8743d46925c
       env:
         - name: THEIA_PLUGINS
           value: local-dir:///plugins
@@ -111,7 +111,7 @@ components:
     volume: {}
   - name: che-machine-exec
     container:
-      image: quay.io/eclipse/che-machine-exec@sha256:0033274945beaa29e990510f801a664ed582af75c7d52a958abf0094f143cc7a
+      image: quay.io/eclipse/che-machine-exec@sha256:d18044d8a796416501f6509ce5e4800ae8812394505295f47a6d337fdbf85e71
       command:
         - /go/bin/che-machine-exec
         - '--url'
@@ -121,7 +121,7 @@ components:
       app.kubernetes.io/part-of: che-theia.eclipse.org
   - name: remote-runtime-injector
     container:
-      image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:d850c9f64e6107aefaa50beeb078740e123916de58faa0870eb55e2e36055971
+      image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:eba4119705c1351fe6048629f1f1da27c7c2b7dab3b57d68e99b71f2352093bb
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
