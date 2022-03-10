@@ -19,4 +19,4 @@ sidecar:
   image: quay.io/eclipse/che-plugin-sidecar:clang-6bcfd7b
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/cdt-gdb-vscode-0.0.91-2cbbb8.vsix

@@ -29,4 +29,4 @@ dependencies:
   - vscjava/vscode-java-debug
   - vscjava/vscode-java-test
 extensions:
-  - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.82.0-369.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/java-0.82.0-369.vsix

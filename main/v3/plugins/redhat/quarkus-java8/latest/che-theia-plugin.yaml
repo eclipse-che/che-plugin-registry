@@ -27,4 +27,4 @@ dependencies:
   - vscjava/vscode-java-debug
   - vscjava/vscode-java-test
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.5.0-324.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-quarkus-1.5.0-324.vsix

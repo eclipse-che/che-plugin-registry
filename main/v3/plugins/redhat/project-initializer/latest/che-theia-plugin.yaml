@@ -12,4 +12,4 @@ metadata:
   icon: /images/redhat-project-initializer-icon.png
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/project-initializer-0.0.10-582.vsix

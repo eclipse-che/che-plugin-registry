@@ -21,4 +21,4 @@ sidecar:
   image: quay.io/eclipse/che-plugin-sidecar:clang-6bcfd7b
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-clangd-0.1.5-562d00.vsix

@@ -19,4 +19,4 @@ sidecar:
   image: quay.io/eclipse/che-plugin-sidecar:php-c939ba4
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/php-debug-1.13.0.vsix

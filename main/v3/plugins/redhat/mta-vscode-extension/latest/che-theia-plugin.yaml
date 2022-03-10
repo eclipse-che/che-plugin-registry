@@ -34,4 +34,4 @@ sidecar:
         protocol: http
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/mta-vscode-extension-0.0.63-49.vsix

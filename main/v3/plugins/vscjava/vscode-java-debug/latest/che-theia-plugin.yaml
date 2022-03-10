@@ -21,4 +21,4 @@ sidecar:
   image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-java-debug-0.26.0.vsix

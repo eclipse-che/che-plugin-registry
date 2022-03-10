@@ -25,4 +25,4 @@ dependencies:
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-tekton-pipelines-0.2.0.vsix

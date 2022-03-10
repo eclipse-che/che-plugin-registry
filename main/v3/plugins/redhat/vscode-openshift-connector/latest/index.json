@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-openshift-connector-icon.png
 category: Other
 repository: https://github.com/redhat-developer/vscode-openshift-tools.git
 firstPublicationDate: '2021-07-29'
-latestUpdateDate: '2022-03-06'
+latestUpdateDate: '2022-03-10'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:db86c92418b9f40b2654b8fc473073569e0dc8a01d7adc31c9925e5469d2b114
@@ -24,5 +24,5 @@ spec:
       cpuLimit: 800m
   extensions:
     - https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix
-    - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+    - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-kubernetes-tools-1.2.1.vsix
     - https://open-vsx.org/api/redhat/vscode-yaml/0.14.0/file/redhat.vscode-yaml-0.14.0.vsix

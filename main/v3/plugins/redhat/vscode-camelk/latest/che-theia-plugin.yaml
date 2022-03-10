@@ -21,4 +21,4 @@ dependencies:
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.26-336.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-camelk-0.0.26-336.vsix

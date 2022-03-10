@@ -12,4 +12,4 @@ metadata:
   icon: /images/eamodio-gitlens-icon.png
 dependencies: []
 extensions:
-  - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/gitlens-10.2.1.vsix
