@@ -116,7 +116,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-clangd/vscode-clangd-0.1.5-562d00.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-clangd-0.1.5-562d00.vsix
   - repository:
       url: https://github.com/eclipse-cdt/cdt-gdb-vscode
       revision: 2cbbb857a2acf0b2e46bab30e0cbbfb547514856
@@ -129,7 +129,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-gdb-vscode/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/cdt-gdb-vscode-0.0.91-2cbbb8.vsix
   - repository:
       url: 'https://github.com/eclipse-cdt/cdt-vscode'
       revision: 2edfc3a3474bc7a732014e1a4631561b991f845a
@@ -141,7 +141,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/cdt-vscode/cdt-vscode-0.0.7-75cf95.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/cdt-vscode-0.0.7-75cf95.vsix
   - repository:
       url: 'https://github.com/bmewburn/vscode-intelephense'
       revision: v1.5.4
@@ -152,7 +152,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-intelephense/vscode-intelephense-client-1.5.4.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-intelephense-client-1.5.4.vsix
   - repository:
       url: 'https://github.com/Microsoft/vscode-python'
       revision: 2020.7.94776
@@ -191,7 +191,7 @@ plugins:
       revision: v10.2.1
     aliases:
       - eamodio/vscode-gitlens
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-gitlens/gitlens-10.2.1.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/gitlens-10.2.1.vsix
   - repository:
       url: 'https://github.com/golang/vscode-go'
       revision: v0.23.0
@@ -231,7 +231,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-camelk/vscode-camelk-0.0.26-336.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-camelk-0.0.26-336.vsix
   - repository:
       url: 'https://github.com/redhat-developer/vscode-microprofile'
       revision: 174c77f51a57bf1cfadba8f78ad7072ce63baa1d
@@ -245,7 +245,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-microprofile/vscode-microprofile-0.1.1-48.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-microprofile-0.1.1-48.vsix
   - id: redhat/vscode-quarkus
     repository:
       url: 'https://github.com/redhat-developer/vscode-quarkus'
@@ -264,7 +264,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.7.0-437.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-quarkus-1.7.0-437.vsix
     metaYaml:
       skipDependencies:
         - redhat/vscode-commons
@@ -286,7 +286,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-quarkus/vscode-quarkus-1.5.0-324.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-quarkus-1.5.0-324.vsix
     skipDependencies:
         - redhat/java
     extraDependencies:
@@ -306,7 +306,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 800m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-wsdl2rest/vscode-wsdl2rest-0.0.11-106.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-wsdl2rest-0.0.11-106.vsix
     deprecate:
       automigrate: false
   - repository:
@@ -337,14 +337,14 @@ plugins:
       volumeMounts:
         - name: kube
           path: /home/theia/.kube
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-tekton/vscode-tekton-pipelines-0.2.0.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-tekton-pipelines-0.2.0.vsix
     metaYaml:
       extraDependencies:
         - ms-kubernetes-tools/vscode-kubernetes-tools
   - repository:
       url: 'https://github.com/redhat-developer/vscode-project-initializer'
       revision: v0.0.10
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-project-initializer/project-initializer-0.0.10-582.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/project-initializer-0.0.10-582.vsix
   - repository:
       url: 'https://github.com/redhat-developer/vscode-openshift-tools'
       revision: v0.2.9
@@ -400,7 +400,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 800m
       cpuRequest: 30m      
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-java-debug-0.26.0.vsix
   - id: redhat/java
     repository:
       url: 'https://github.com/redhat-developer/vscode-java'
@@ -420,7 +420,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.82.0-369.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/java-0.82.0-369.vsix
     metaYaml:
       extraDependencies:
         - vscjava/vscode-java-debug
@@ -441,7 +441,7 @@ plugins:
       volumeMounts:
         - name: m2
           path: /home/theia/.m2
-    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.63.0-2222.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/java-0.63.0-2222.vsix
     metaYaml:
       extraDependencies:
         - vscjava/vscode-java-debug
@@ -459,7 +459,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-php-debug/php-debug-1.13.0.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/php-debug-1.13.0.vsix
   - repository:
       url: 'https://github.com/windup/rhamt-vscode-extension'
       revision: a03a76e372f70deaa68743e400a4e7e18e5eb221
@@ -487,7 +487,7 @@ plugins:
           targetPort: 61435
           attributes:
             protocol: http
-    extension: https://download.jboss.org/jbosstools/vscode/stable/mta-vscode-extension/mta-vscode-extension-0.0.63-49.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/mta-vscode-extension-0.0.63-49.vsix
   - repository:
       url: 'https://github.com/camel-tooling/camel-lsp-client-vscode'
       revision: 0.1.5
@@ -498,7 +498,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-apache-camel/vscode-apache-camel-0.1.5-1377.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-apache-camel-0.1.5-1377.vsix
   - repository:
       url: 'https://github.com/redhat-developer/vscode-xml'
       revision: 0.17.0
@@ -514,7 +514,7 @@ plugins:
   - repository:
       url: https://github.com/redhat-developer/vscode-didact
       revision: 0.4.0
-    extension: https://download.jboss.org/jbosstools/vscode/stable/vscode-didact/vscode-didact-0.4.0-309.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-didact-0.4.0-309.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
       revision: 1.2.1
@@ -525,7 +525,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-kubernetes-tools/vscode-kubernetes-tools-1.2.1.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-kubernetes-tools-1.2.1.vsix
   - repository:
       url: 'https://github.com/rogalmic/vscode-bash-debug'
       revision: v0.3.9
@@ -671,7 +671,7 @@ plugins:
       memoryRequest: 20Mi
       cpuLimit: 500m
       cpuRequest: 30m
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-proto3/vscode-proto3-0.4.2-c4d9ee.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-proto3-0.4.2-c4d9ee.vsix
   - repository:
       url: 'https://github.com/timonwong/vscode-shellcheck'
       revision: v0.13.2
@@ -794,7 +794,7 @@ plugins:
   - repository:
       url: 'https://github.com/microsoft/vscode-eslint'
       revision: 1e15d3495da89072d48cf583d48d92829f0c4b82
-    extension: https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-eslint/vscode-eslint-2.1.1-1e15d3.vsix
+    extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-eslint-2.1.1-1e15d3.vsix
   - repository:
       url: 'https://github.com/bpruitt-goddard/vscode-mermaid-syntax-highlight'
       revision: 'd4247b5feadd92d429d69a6b511f5ed0e1011895'
