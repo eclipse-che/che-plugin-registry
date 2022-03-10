@@ -9,6 +9,7 @@ metadata:
   repository: https://github.com/redhat-developer/vscode-openshift-tools.git
   categories:
     - Other
+    - Debuggers
   icon: /images/redhat-vscode-openshift-connector-icon.png
 sidecar:
   name: vscode-openshift-connector
@@ -24,4 +25,4 @@ dependencies:
   - ms-kubernetes-tools/vscode-kubernetes-tools
   - redhat/vscode-yaml
 extensions:
-  - https://open-vsx.org/api/redhat/vscode-openshift-connector/0.2.9/file/redhat.vscode-openshift-connector-0.2.9.vsix
+  - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/va21efef/vscode-openshift-connector-v0.2.11.vsix
