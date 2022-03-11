@@ -22,7 +22,7 @@ plugins:
       cpuRequest: 30m
     extension: https://open-vsx.org/api/ms-vscode/node-debug/1.44.8/file/ms-vscode.node-debug-1.44.8.vsix
   - repository:
-      url: 'https://github.com/Microsoft/vscode-node-debug'
+      url: 'https://github.com/Microsoft/vscode-js-debug'
       revision: v1.52.2
     sidecar:
       directory: node
