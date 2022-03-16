@@ -25,9 +25,9 @@ source "${SCRIPT_DIR}"/common-functions.sh
 
 runTests() {
 # runTest "InstallPluginUsingUI" "install-plugin-test"
-# runTest "JavaPlugin" "java11-plugin-test"
+  runTest "JavaPlugin" "java11-plugin-test"
 # runTest "PhpPlugin" "php-plugin-test"
-# runTest "PythonPlugin" "python-plugin-test"
+  runTest "PythonPlugin" "python-plugin-test"
   runTest "TypescriptPlugin" "typescript-debug-plugins"
 # runTest "VscodeKubernetesPlugin" "nodejs-24lop"
 # runTest "VscodeShellcheckPlugin" "nodejs-zmecm"
