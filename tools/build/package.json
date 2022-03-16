@@ -36,7 +36,7 @@
     "nanospinner": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "semver": "^7.3.5",
-    "simple-git": "^3.2.6",
+    "simple-git": "^3.3.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
