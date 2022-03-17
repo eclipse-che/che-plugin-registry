@@ -462,6 +462,17 @@ plugins:
             protocol: http
     extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/mta-vscode-extension-0.0.63-49.vsix
   - repository:
+      url: 'https://github.com/camel-tooling/camel-dap-client-vscode'
+      revision: 0.0.3
+    sidecar:
+      directory: java
+      name: vscode-debug-adapter-apache-camel
+      memoryLimit: 768Mi
+      memoryRequest: 20Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+    extension: https://open-vsx.org/api/redhat/vscode-debug-adapter-apache-camel/0.3.0/file/redhat.vscode-debug-adapter-apache-camel-0.3.0.vsix
+  - repository:
       url: 'https://github.com/camel-tooling/camel-lsp-client-vscode'
       revision: 0.1.5
     sidecar:
