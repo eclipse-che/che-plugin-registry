@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/eclipse-che/che-plugin-registry/blob/main/tools/build/README.md",
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "decompress": "^4.2.1",
     "docker-image-name-parser": "^0.1.0",
     "fs-extra": "^10.0.1",
