@@ -29,5 +29,5 @@ runTests() {
 }
 
 setupTestEnvironment
-runTests
+# runTests
 finishReport
