@@ -974,7 +974,7 @@ __metadata:
     jest: ^27.5.1
     js-yaml: ^4.1.0
     moment: ^2.29.2
-    nanospinner: ^1.0.0
+    nanospinner: ^1.1.0
     prettier: ^2.6.2
     prettier-plugin-import-sort: ^0.0.7
     reflect-metadata: ^0.1.13
@@ -6794,12 +6794,12 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"nanospinner@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "nanospinner@npm:1.0.0"
+"nanospinner@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "nanospinner@npm:1.1.0"
   dependencies:
     picocolors: ^1.0.0
-  checksum: 25ea14db154f1284d76b59f74822b46a28b0358d2d59f0b61c6b39e7c890b0870a543826d3166fd4f22023e300dff043c389621a0ad0514808e73c86e71a5881
+  checksum: 797f0a7c8b053d6fb5188d73e63bab44dec97ff0e7b67ac3d55e9356c6fe002f5af691a9d1232ca086e1fb19301d11c979dc5b0c56e6700004a96c19dfded8f0
   languageName: node
   linkType: hard
 
