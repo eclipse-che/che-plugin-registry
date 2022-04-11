@@ -23,7 +23,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # shellcheck source=./.ci/openshift-ci/common-functions.sh
 source "${SCRIPT_DIR}"/common-functions.sh
 
-runTests() {
+# runTests() {
 # runTest "InstallPluginUsingUI" "install-plugin-test"
 # runTest "JavaPlugin" "java11-plugin-test"
 # runTest "PhpPlugin" "php-plugin-test"
@@ -35,8 +35,8 @@ runTests() {
 # runTest "VscodeXmlPlugin" "xml-plugin-test"
 # runTest "VscodeYamlPlugin" "nodejs-zmecm"
 # runTest "GitHubPullRequestPlugin" "github-pr-plugin"
-}
+# }
 
 setupTestEnvironment
-runTests
+# runTests
 finishReport
