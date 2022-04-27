@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-wsdl2rest-icon.png
 category: Other
 repository: https://github.com/camel-tooling/vscode-wsdl2rest
 firstPublicationDate: '2020-01-13'
-latestUpdateDate: '2022-04-26'
+latestUpdateDate: '2022-04-27'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:8297fb1732d87d56a0aa4c69105e7bcf4b500e40bb16446d6286c07b884eb73d
