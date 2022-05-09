@@ -11,7 +11,7 @@ events:
 components:
   - name: che-pycharm-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:66369ff476b6bd035f5a992d505b0e2a624f46a7d180acb61c41086a37739eea
+      image: quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
       command:
         - /projector/entrypoint-volume.sh
       env:
@@ -53,7 +53,7 @@ components:
     volume: {}
   - name: che-pycharm-injector
     container:
-      image: quay.io/che-incubator/che-pycharm@sha256:a102dda82bf750e463efeedfbe1c41d6bad88bc22e9678deff5dd78ac4036b9a
+      image: quay.io/che-incubator/che-pycharm@sha256:34d7c8e684ec39b35e35f43d01dc67e917cf24b2d2f6d1dbabd0da9343d056ad
       command:
         - /projector/entrypoint-init-container.sh
       env:

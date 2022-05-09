@@ -11,7 +11,7 @@ events:
 components:
   - name: che-idea-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:66369ff476b6bd035f5a992d505b0e2a624f46a7d180acb61c41086a37739eea
+      image: quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
       command:
         - /projector/entrypoint-volume.sh
       env:
@@ -53,7 +53,7 @@ components:
     volume: {}
   - name: che-idea-injector
     container:
-      image: quay.io/che-incubator/che-idea@sha256:610573ad80a1fbb84f2d9df725d3c1145c13209f3e439b4c360b9ee26c43f32b
+      image: quay.io/che-incubator/che-idea@sha256:50189de84040694beb98a8959e6ed9e8f8216e9d936eb506ae059a8650ef4564
       command:
         - /projector/entrypoint-init-container.sh
       env:
