@@ -48,7 +48,7 @@
     "@types/semver": "^7.3.9",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "concurrently": "^7.1.0",
+    "concurrently": "^7.2.0",
     "cpx": "^1.5.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
