@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "scalameta/metals"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "scalameta/metals"
+    ]
+  }
+]
