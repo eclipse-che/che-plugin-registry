@@ -1,0 +1,140 @@
+schemaVersion: 2.1.0
+metadata:
+  name: theia-ide
+commands:
+  - id: init-container-command
+    apply:
+      component: remote-runtime-injector
+events:
+  preStart:
+    - init-container-command
+components:
+  - name: theia-ide
+    container:
+      image: quay.io/eclipse/che-theia@sha256:8070f95fca778eb7e1883f33e64fb8578ad61d288cb0cdb321322165372b3197
+      env:
+        - name: THEIA_PLUGINS
+          value: local-dir:///plugins
+        - name: HOSTED_PLUGIN_HOSTNAME
+          value: 0.0.0.0
+        - name: HOSTED_PLUGIN_PORT
+          value: '3130'
+        - name: THEIA_HOST
+          value: 127.0.0.1
+      volumeMounts:
+        - name: plugins
+          path: /plugins
+        - name: theia-local
+          path: /home/theia/.theia
+      mountSources: true
+      memoryLimit: 512M
+      cpuLimit: 1500m
+      cpuRequest: 100m
+      endpoints:
+        - name: theia
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: webviews
+          attributes:
+            type: webview
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: mini-browser
+          attributes:
+            type: mini-browser
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: theia-dev
+          attributes:
+            type: ide-dev
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3130
+          exposure: public
+          protocol: http
+        - name: theia-redirect-1
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13131
+          exposure: public
+          protocol: http
+        - name: theia-redirect-2
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13132
+          exposure: public
+          protocol: http
+        - name: theia-redirect-3
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13133
+          exposure: public
+          protocol: http
+        - name: terminal
+          attributes:
+            type: collocated-terminal
+            discoverable: false
+            cookiesAuthEnabled: true
+            urlRewriteSupported: true
+          targetPort: 3333
+          exposure: public
+          secure: false
+          protocol: wss
+    attributes:
+      app.kubernetes.io/component: che-theia
+      app.kubernetes.io/part-of: che-theia.eclipse.org
+  - name: plugins
+    volume: {}
+  - name: theia-local
+    volume: {}
+  - name: che-machine-exec
+    container:
+      image: quay.io/eclipse/che-machine-exec@sha256:b2f6afb7181bc3b39b00e6ace772779b851d57ee9c7ef5aaef9e09661d3c52f0
+      command:
+        - /go/bin/che-machine-exec
+        - '--url'
+        - 127.0.0.1:3333
+    attributes:
+      app.kubernetes.io/component: machine-exec
+      app.kubernetes.io/part-of: che-theia.eclipse.org
+  - name: remote-runtime-injector
+    container:
+      image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:282a47cca188e587e08200c26a63c442eab8f52992016b0f715c893bc9ca8d90
+      env:
+        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+          value: /remote-endpoint/plugin-remote-endpoint
+        - name: REMOTE_ENDPOINT_VOLUME_NAME
+          value: remote-endpoint
+      volumeMounts:
+        - name: plugins
+          path: /plugins
+        - name: remote-endpoint
+          path: /remote-endpoint
+    attributes:
+      app.kubernetes.io/component: remote-runtime-injector
+      app.kubernetes.io/part-of: che-theia.eclipse.org
+  - name: remote-endpoint
+    volume:
+      ephemeral: true
