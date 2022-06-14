@@ -475,6 +475,8 @@ plugins:
   - repository:
       url: https://github.com/redhat-developer/vscode-didact
       revision: 0.4.0
+      deprecate:
+        automigrate: false
     extension: https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-didact-0.4.0-309.vsix
   - repository:
       url: 'https://github.com/Azure/vscode-kubernetes-tools'
