@@ -45,7 +45,7 @@
     "@types/glob": "^7.2.0",
     "@types/jest": "^27.5.0",
     "@types/js-yaml": "^4.0.5",
-    "@types/semver": "^7.3.9",
+    "@types/semver": "^7.3.10",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "concurrently": "^7.2.1",

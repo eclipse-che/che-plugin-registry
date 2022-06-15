@@ -897,7 +897,7 @@ __metadata:
     "@types/glob": ^7.2.0
     "@types/jest": ^27.5.0
     "@types/js-yaml": ^4.0.3
-    "@types/semver": ^7.3.9
+    "@types/semver": ^7.3.10
     "@typescript-eslint/eslint-plugin": ^5.28.0
     "@typescript-eslint/parser": ^5.28.0
     eslint: ^8.16.0
@@ -934,7 +934,7 @@ __metadata:
     "@types/glob": ^7.2.0
     "@types/jest": ^27.5.0
     "@types/js-yaml": ^4.0.5
-    "@types/semver": ^7.3.9
+    "@types/semver": ^7.3.10
     "@typescript-eslint/eslint-plugin": ^5.28.0
     "@typescript-eslint/parser": ^5.28.0
     axios: ^0.27.2
@@ -1589,10 +1589,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.3.9":
-  version: 7.3.9
-  resolution: "@types/semver@npm:7.3.9"
-  checksum: 60bfcfdfa7f937be2c6f4b37ddb6714fb0f27b05fe4cbdfdd596a97d35ed95d13ee410efdd88e72a66449d0384220bf20055ab7d6b5df10de4990fbd20e5cbe0
+"@types/semver@npm:^7.3.10":
+  version: 7.3.10
+  resolution: "@types/semver@npm:7.3.10"
+  checksum: 7047c2822b1759b2b950f39cfcf261f2b9dca47b4b55bdebba0905a8553631f1531eb0f59264ffe4834d1198c8331c8e0010a4cd742f4e0b60abbf399d134364
   languageName: node
   linkType: hard
 
