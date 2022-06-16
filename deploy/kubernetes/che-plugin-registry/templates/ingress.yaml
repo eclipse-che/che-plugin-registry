@@ -7,7 +7,13 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 
+{{ if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
   name: che-plugin-registry
@@ -25,9 +31,20 @@ spec:
     http:
       paths:
       - path: /
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: ImplementationSpecific
+        {{- else -}}
+        {{- end }}
         backend:
-          serviceName: che-plugin-registry
-          servicePort: 8080
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: che-plugin-registry
+            port:
+              number: 8080
+          {{- else }}
+            serviceName: che-plugin-registry
+            servicePort: 8080
+          {{- end }}
 {{- if .Values.chePluginRegistryIngressSecretName }}
   tls:
   - hosts:
