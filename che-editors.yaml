@@ -603,6 +603,27 @@ editors:
               path: '/?backgroundColor=434343&wss'
               secure: false
               protocol: http
+            - name: intellij-redirect-1
+              targetPort: 13131
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-2
+              targetPort: 13132
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-3
+              targetPort: 13133
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
@@ -682,6 +703,27 @@ editors:
               path: '/?backgroundColor=434343&wss'
               secure: false
               protocol: http
+            - name: intellij-redirect-1
+              targetPort: 13131
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-2
+              targetPort: 13132
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-3
+              targetPort: 13133
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
@@ -761,6 +803,27 @@ editors:
               path: '/?backgroundColor=434343&wss'
               secure: false
               protocol: http
+            - name: intellij-redirect-1
+              targetPort: 13131
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-2
+              targetPort: 13132
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-3
+              targetPort: 13133
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
@@ -840,6 +903,27 @@ editors:
               path: '/?backgroundColor=434343&wss'
               secure: false
               protocol: http
+            - name: intellij-redirect-1
+              targetPort: 13131
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-2
+              targetPort: 13132
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
+            - name: intellij-redirect-3
+              targetPort: 13133
+              exposure: public
+              protocol: http
+              attributes:
+                discoverable: false
+                urlRewriteSupported: true
         attributes:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
