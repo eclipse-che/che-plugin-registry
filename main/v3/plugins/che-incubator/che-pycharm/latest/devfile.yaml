@@ -42,6 +42,27 @@ components:
           exposure: public
           path: /?backgroundColor=434343&wss
           protocol: http
+        - name: intellij-redirect-1
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13131
+          exposure: public
+          protocol: http
+        - name: intellij-redirect-2
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13132
+          exposure: public
+          protocol: http
+        - name: intellij-redirect-3
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13133
+          exposure: public
+          protocol: http
     attributes:
       app.kubernetes.io/component: che-pycharm-injector
       app.kubernetes.io/part-of: che-pycharm.eclipse.org
@@ -53,7 +74,7 @@ components:
     volume: {}
   - name: che-pycharm-injector
     container:
-      image: quay.io/che-incubator/che-pycharm@sha256:1bb94e2ae8ded3c0e3da334dd173b2f427e803b9e3443987fdb80d8c311064e1
+      image: quay.io/che-incubator/che-pycharm@sha256:c0e6f1b030dc01ed3baa5481482c6ab62456e9434c0f8b54eb9cd2b8854c597b
       command:
         - /projector/entrypoint-init-container.sh
       env:

@@ -61,11 +61,11 @@ quay.io/che-incubator/che-code:insiders
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
 quay.io/che-incubator/che-idea:next
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
-quay.io/che-incubator/che-idea@sha256:a62bfd292f9a6c71130cc53720aef8b7409bc9f5253bd83fcb773d608d1d0337
+quay.io/che-incubator/che-idea@sha256:b6c93e83cf21570eb604900ea817f4836f40542274bb6cafbf5db6b5a7f0b69b
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
 quay.io/che-incubator/che-pycharm:next
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
-quay.io/che-incubator/che-pycharm@sha256:1bb94e2ae8ded3c0e3da334dd173b2f427e803b9e3443987fdb80d8c311064e1
+quay.io/che-incubator/che-pycharm@sha256:c0e6f1b030dc01ed3baa5481482c6ab62456e9434c0f8b54eb9cd2b8854c597b
 quay.io/eclipse/che-theia-dev:next
 quay.io/eclipse/che-buildah-base@sha256:417203d8629edd92f187afd3ebb3d8dc28338d34809eb75ffc2e08a400f8d56b
 quay.io/eclipse/che-sidecar-workspace-data-sync@sha256:88d0125837d5a57cb24bb3ed81e6a8f4119a5043b7926bd2bd01710854c44f10
