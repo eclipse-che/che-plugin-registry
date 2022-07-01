@@ -19,9 +19,6 @@ jobs:
   publish:
     # only if it's a pull request
     if: github.event.workflow_run.event == 'pull_request'
-    strategy:
-      matrix:
-        dist: [ 'alpine', 'rhel' ]
     name: publish
     runs-on: ubuntu-20.04
     steps:
@@ -29,7 +26,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
-          name: plugin-registry-content-${{matrix.dist}}
+          name: plugin-registry-content
           path: content
       - name: PR number
         uses: dawidd6/action-download-artifact@v2
@@ -75,7 +72,7 @@ jobs:
                PARENT_DIR=$(dirname $file);
                cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.html
              done
-           export DEPLOY_DOMAIN=https://pr-check-${PR_NUMBER}-${{matrix.dist}}-che-plugin-registry.surge.sh
+           export DEPLOY_DOMAIN=https://pr-check-${PR_NUMBER}-che-plugin-registry.surge.sh
            echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
            surge ./unpacked --domain $DEPLOY_DOMAIN
       - name: 'Comment PR'
@@ -83,4 +80,4 @@ jobs:
         with:
          script: |
            const { repo: { owner, repo } } = context;
-           await github.rest.repos.createCommitStatus({ owner, repo, sha: process.env.PR_SHA, state: "success", target_url: process.env.DEPLOY_DOMAIN, description: "Browse registry content (${{matrix.dist}}) live", context: "surge(${{matrix.dist}})"})
+           await github.rest.repos.createCommitStatus({ owner, repo, sha: process.env.PR_SHA, state: "success", target_url: process.env.DEPLOY_DOMAIN, description: "Browse registry content live", context: "surge"})

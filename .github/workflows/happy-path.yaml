@@ -8,7 +8,6 @@
 #
 
 # che-plugin-registry Happy Path workflow
-# matrix jobs with alpine and ubi8
 name: Happy Path
 
 on:
@@ -23,10 +22,6 @@ on:
 
 jobs:
   happy-path:
-    strategy:
-      fail-fast: false
-      matrix:
-        dist: ['alpine', 'rhel']
     runs-on: ubuntu-20.04
     steps:
       - name: Clone source code
@@ -69,14 +64,8 @@ jobs:
           export SKIP_FORMAT=true
           export SKIP_LINT=true
           export SKIP_TEST=true
-          if [[ "${{matrix.dist}}" == "alpine" ]]; then
-            docker pull quay.io/eclipse/che-plugin-registry:next
-            BUILDER=docker ./build.sh --tag happy-path
-          elif [[ "${{matrix.dist}}" == "rhel" ]]; then
-            BUILDER=docker ./build.sh --rhel --tag happy-path
-          fi  
-
-          # save locally built image
+          docker pull quay.io/eclipse/che-plugin-registry:next
+           # save locally built image
           docker save -o docker-image.tar quay.io/eclipse/che-plugin-registry:happy-path
       - name: Start minikube
         id: run-minikube
