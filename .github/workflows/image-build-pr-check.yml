@@ -13,9 +13,6 @@ on: [push, pull_request]
 
 jobs:
   image-build:
-    strategy:
-      matrix:
-        dist: [ 'alpine', 'rhel' ]
     runs-on: ubuntu-20.04
     steps:
     - name: Clone source code
@@ -54,14 +51,9 @@ jobs:
         export SKIP_FORMAT=true
         export SKIP_LINT=true
         export SKIP_TEST=true
-        if [[ "${{matrix.dist}}" == "alpine" ]]; then
-          docker pull quay.io/eclipse/che-plugin-registry:next
-          BUILDER=docker ./build.sh --tag pr-check
-          EXPORTED_FOLDER=/usr/local/apache2/htdocs/v3
-        elif [[ "${{matrix.dist}}" == "rhel" ]]; then
-          BUILDER=docker ./build.sh --rhel --tag pr-check
-          EXPORTED_FOLDER=/var/www/html/v3
-        fi
+        docker pull quay.io/eclipse/che-plugin-registry:next
+        BUILDER=docker ./build.sh --tag pr-check
+        EXPORTED_FOLDER=/var/www/html/v3
         ls -la output/
         docker run --rm --entrypoint=sh quay.io/eclipse/che-plugin-registry:pr-check -c "ls -la ${EXPORTED_FOLDER}"
         docker create --name pluginRegistry quay.io/eclipse/che-plugin-registry:pr-check sh
@@ -72,8 +64,8 @@ jobs:
         tar zcvf content-${{matrix.dist}}.tgz -C root-dir .
     - uses: actions/upload-artifact@v3
       with:
-        name: plugin-registry-content-${{matrix.dist}}
-        path: content-${{matrix.dist}}.tgz
+        name: plugin-registry-content
+        path: content.tgz
   pull-request-info:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-20.04

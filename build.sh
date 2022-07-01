@@ -34,8 +34,6 @@ Options:
     --offline
         Build offline version of registry, with all artifacts included
         cached in the registry; disabled by default.
-    --rhel
-        Build using the rhel.Dockerfile (UBI images) instead of default
     --skip-oci-image
         Build artifacts but do not create the image
     --skip-digest-generation
@@ -73,10 +71,6 @@ function parse_arguments() {
             --skip-digest-generation)
             BUILD_FLAGS_ARRAY+=("--skip-digest-generation:true")
             shift;
-            ;;
-            --rhel)
-            DOCKERFILE="./build/dockerfiles/rhel.Dockerfile"
-            shift
             ;;
             *)
             print_usage
