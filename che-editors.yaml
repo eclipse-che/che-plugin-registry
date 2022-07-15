@@ -287,10 +287,16 @@ editors:
       - name: che-machine-exec
         container:
           image: 'quay.io/eclipse/che-machine-exec:7.50.0'
+          memoryLimit: 128Mi
+          memoryRequest: 32Mi
+          cpuLimit: 500m
+          cpuRequest: 30m
           command:
             - /go/bin/che-machine-exec
             - '--url'
             - '127.0.0.1:3333'
+            - '--idle-timeout'
+            - '15m'
           endpoints:
             - name: terminal
               targetPort: 3333
