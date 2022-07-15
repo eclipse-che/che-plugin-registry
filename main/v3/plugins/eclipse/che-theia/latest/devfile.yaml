@@ -116,6 +116,12 @@ components:
         - /go/bin/che-machine-exec
         - '--url'
         - 127.0.0.1:3333
+        - '--idle-timeout'
+        - 15m
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
     attributes:
       app.kubernetes.io/component: machine-exec
       app.kubernetes.io/part-of: che-theia.eclipse.org

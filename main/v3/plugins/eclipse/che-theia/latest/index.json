@@ -112,10 +112,16 @@ spec:
         - exposedPort: 13132
         - exposedPort: 13133
     - image: quay.io/eclipse/che-machine-exec@sha256:1b75170b0a413e4ed13abc9172943f1cbc6c733da64d701efc4ff9ce05b828f7
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       command:
         - /go/bin/che-machine-exec
         - '--url'
         - 127.0.0.1:3333
+        - '--idle-timeout'
+        - 15m
       name: che-machine-exec
       ports:
         - exposedPort: 3333
