@@ -32,7 +32,7 @@
     "handlebars": "^4.7.7",
     "inversify": "^6.0.1",
     "js-yaml": "^4.1.0",
-    "moment": "^2.29.3",
+    "moment": "^2.29.4",
     "nanospinner": "^1.1.0",
     "reflect-metadata": "^0.1.13",
     "semver": "^7.3.5",
