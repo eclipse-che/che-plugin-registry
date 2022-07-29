@@ -776,3 +776,86 @@ source "${script_dir}/entrypoint.sh"
 extract_and_use_related_images_env_variables_with_image_digest_info
 
 assertFileContentEquals "${METAS_DIR}/che-theia-plugin.yaml" "${expected_cheTheiaPluginYaml}"
+
+#################################################################
+initTest "Should replace relative:extension with internal URL in che-theia-plugin.yaml "
+
+cheTheiaPluginYaml=$(cat <<-END
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/java
+  publisher: redhat
+  name: java
+  version: latest
+  displayName: Language Support for Java(TM) by Red Hat
+  description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
+  repository: https://github.com/redhat-developer/vscode-java
+  categories:
+    - Programming Languages
+    - Linters
+    - Formatters
+    - Snippets
+  icon: /images/redhat-java-icon.png
+sidecar:
+  name: vscode-java
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 800m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: m2
+      path: /home/theia/.m2
+  image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
+preferences:
+  java.server.launchMode: Standard
+dependencies:
+  - vscjava/vscode-java-debug
+  - vscjava/vscode-java-test
+extensions:
+  - relative:extension/resources/github_com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7_44-che-assets/java-0.82.0-369.vsix
+END
+)
+expected_cheTheiaPluginYaml=$(cat <<-END
+schemaVersion: 1.0.0
+metadata:
+  id: redhat/java
+  publisher: redhat
+  name: java
+  version: latest
+  displayName: Language Support for Java(TM) by Red Hat
+  description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
+  repository: https://github.com/redhat-developer/vscode-java
+  categories:
+    - Programming Languages
+    - Linters
+    - Formatters
+    - Snippets
+  icon: /images/redhat-java-icon.png
+sidecar:
+  name: vscode-java
+  memoryLimit: 1500Mi
+  memoryRequest: 20Mi
+  cpuLimit: 800m
+  cpuRequest: 30m
+  volumeMounts:
+    - name: m2
+      path: /home/theia/.m2
+  image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
+preferences:
+  java.server.launchMode: Standard
+dependencies:
+  - vscjava/vscode-java-debug
+  - vscjava/vscode-java-test
+extensions:
+  - http://che-plugin-registry/v3/resources/github_com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7_44-che-assets/java-0.82.0-369.vsix
+END
+)
+
+echo "$cheTheiaPluginYaml" > "${METAS_DIR}/che-theia-plugin.yaml"
+
+export CHE_PLUGIN_REGISTRY_INTERNAL_URL=http://che-plugin-registry/v3
+
+# shellcheck disable=SC1090
+source "${script_dir}/entrypoint.sh"
+update_extension_vsx_references
+assertFileContentEquals "${METAS_DIR}/che-theia-plugin.yaml" "${expected_cheTheiaPluginYaml}"
