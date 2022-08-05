@@ -54,8 +54,12 @@ function run_main() {
         fi
     fi
 
-    # if /var/lib/pgsql exists
-    if [ -d /var/lib/pgsql ]; then
+    # Check if START_OPENVSX has been defined
+    # if not, default to false
+    START_OPENVSX=${START_OPENVSX:-false}
+    
+    # start only if wanted
+    if [ "${START_OPENVSX}" == "true" ]; then
       # change permissions
       cp -r /var/lib/pgsql/14/data/old /var/lib/pgsql/14/data/database
       rm -rf /var/lib/pgsql/14/data/old
