@@ -10,7 +10,7 @@ icon: /images/dart-code-dart-code-icon.png
 category: Programming Languages
 repository: https://github.com/Dart-Code/Dart-Code.git
 firstPublicationDate: '2020-09-09'
-latestUpdateDate: '2022-08-04'
+latestUpdateDate: '2022-08-08'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:6d0c440a7dc648816fcd4885b9cc85f0eb0f391659bb9fc8a9123075bea75165
