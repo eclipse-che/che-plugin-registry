@@ -60,7 +60,7 @@ spec:
     secondsOfRunBeforeIdling: 900000
   components:
     devWorkspace:
-      runningLimit: 999999
+      runningLimit: '999999'
     cheServer:
       extraProperties:
         CHE_INFRA_KUBERNETES_WORKSPACE__UNRECOVERABLE__EVENTS: 'Failed Scheduling,Failed to pull image'
