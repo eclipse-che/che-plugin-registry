@@ -56,18 +56,22 @@ createGithubSecret() {
 createCustomResourcesFile() {
   cat > custom-resources.yaml <<-END
 spec:
-  auth:
-    updateAdminPassword: false
-  server:
-    pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
-    pluginRegistryPullPolicy: IfNotPresent
-    customCheProperties:
-      CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '-1'
-      CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '900000'
-      CHE_INFRA_KUBERNETES_WORKSPACE__UNRECOVERABLE__EVENTS: 'Failed Scheduling,Failed to pull image'
-      CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
-      CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
-      CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
+  devEnvironments:
+    secondsOfRunBeforeIdling: 900000
+  components:
+    devWorkspace:
+      runningLimit: 999999
+    cheServer:
+      extraProperties:
+        CHE_INFRA_KUBERNETES_WORKSPACE__UNRECOVERABLE__EVENTS: 'Failed Scheduling,Failed to pull image'
+        CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
+        CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
+        CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent 
+    pluginRegistry:
+      deployment:
+        containers:
+          - image: ${PLUGIN_REGISTRY_IMAGE}
+            imagePullPolicy: IfNotPresent
 END
 
   echo "Generated custom resources file"
