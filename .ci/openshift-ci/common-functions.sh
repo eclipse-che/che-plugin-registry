@@ -75,7 +75,7 @@ END
 }
 
 deployChe() {
-  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --platform=openshift --installer=operator --batch
+  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --platform=openshift --batch
 }
 
 patchTestPodConfig(){
