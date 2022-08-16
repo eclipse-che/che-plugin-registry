@@ -9,7 +9,7 @@ description: 'Insights about your application dependencies: Security, License co
 icon: /images/redhat-fabric8-analytics-icon.png
 category: Other
 repository: https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension
-firstPublicationDate: '2020-11-09'
+firstPublicationDate: '2022-06-28'
 latestUpdateDate: '2022-08-16'
 spec:
   containers:
@@ -20,4 +20,4 @@ spec:
       cpuRequest: 30m
       cpuLimit: 500m
   extensions:
-    - https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.2.1/fabric8-analytics-0.2.1.vsix
+    - https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension/releases/download/0.3.6/fabric8-analytics-0.3.6.vsix
