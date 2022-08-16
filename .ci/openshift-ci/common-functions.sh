@@ -55,6 +55,7 @@ createGithubSecret() {
 
 createCustomResourcesFile() {
   cat > custom-resources.yaml <<-END
+apiVersion: org.eclipse.che/v2
 spec:
   devEnvironments:
     secondsOfRunBeforeIdling: 900000
