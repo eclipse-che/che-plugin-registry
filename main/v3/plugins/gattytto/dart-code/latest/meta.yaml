@@ -10,7 +10,7 @@ icon: /images/dart-code-dart-code-icon.png
 category: Programming Languages
 repository: https://github.com/Dart-Code/Dart-Code.git
 firstPublicationDate: '2020-09-09'
-latestUpdateDate: '2022-08-15'
+latestUpdateDate: '2022-08-16'
 deprecate:
   automigrate: true
   migrateTo: dart-code/dart-code/latest
