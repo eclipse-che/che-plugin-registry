@@ -69,6 +69,8 @@ COPY README.md .htaccess /mnt/rootfs/var/www/html/
 COPY output/v3 /mnt/rootfs/var/www/html/v3
 COPY v3/plugins/ /mnt/rootfs/var/www/html/v3/plugins/
 COPY v3/images/*.png /mnt/rootfs/var/www/html/v3/images/
+# apply permissions to later change these files (entrypoint update_extension_vsx_references)
+RUN chmod g+rwx -R /mnt/rootfs/var/www/html/v3
 
 # Use scratch image and then copy ubi fs
 FROM scratch
