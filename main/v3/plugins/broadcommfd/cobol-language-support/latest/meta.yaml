@@ -10,7 +10,7 @@ icon: /images/broadcommfd-cobol-language-support-icon.png
 category: Programming Languages
 repository: https://github.com/eclipse/che-che4z-lsp-for-cobol.git
 firstPublicationDate: '2021-06-10'
-latestUpdateDate: '2022-08-19'
+latestUpdateDate: '2022-08-22'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
