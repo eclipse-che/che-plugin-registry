@@ -906,7 +906,7 @@ __metadata:
     eslint-plugin-deprecation: ^1.3.2
     eslint-plugin-header: ^3.1.1
     eslint-plugin-import: ^2.26.0
-    eslint-plugin-jest: ^26.8.3
+    eslint-plugin-jest: ^26.8.4
     eslint-plugin-no-null: ^1.0.2
     eslint-plugin-no-unsanitized: ^4.0.1
     fs-extra: ^10.1.0
@@ -946,7 +946,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-deprecation: ^1.3.2
     eslint-plugin-header: ^3.1.1
-    eslint-plugin-jest: ^26.8.3
+    eslint-plugin-jest: ^26.8.4
     eslint-plugin-no-null: ^1.0.2
     eslint-plugin-no-unsanitized: ^4.0.1
     fs-extra: ^10.1.0
@@ -986,7 +986,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-deprecation: ^1.3.2
     eslint-plugin-header: ^3.1.1
-    eslint-plugin-jest: ^26.8.3
+    eslint-plugin-jest: ^26.8.4
     eslint-plugin-no-null: ^1.0.2
     eslint-plugin-no-unsanitized: ^4.0.1
     import-sort-style-eslint: ^6.0.0
@@ -3630,9 +3630,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^26.8.3":
-  version: 26.8.3
-  resolution: "eslint-plugin-jest@npm:26.8.3"
+"eslint-plugin-jest@npm:^26.8.4":
+  version: 26.8.4
+  resolution: "eslint-plugin-jest@npm:26.8.4"
   dependencies:
     "@typescript-eslint/utils": ^5.10.0
   peerDependencies:
@@ -3643,7 +3643,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: 3fd8dd06e4b293caf9a06a8767731e7f9fd0e74cae2f5f820484ab01a7435cab340bdcc41295bff71c0448fc92345830a399848acb4aec481e3abbfeebe14e2d
+  checksum: e15cfc8fd5056e6a4915f6872e5eca217c28fb46b1e0a7bae0bac6af3adf17b7f4a7822e00b0651dc2168251e711bba6f8893f02c8417a4ee2c712d87a19d24d
   languageName: node
   linkType: hard
 
