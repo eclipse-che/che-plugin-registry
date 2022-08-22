@@ -918,7 +918,7 @@ __metadata:
     prettier: ^2.7.1
     prettier-plugin-import-sort: ^0.0.7
     semver: ^7.3.5
-    simple-git: ^3.12.0
+    simple-git: ^3.13.0
     ts-jest: ^27.1.4
     ts-node: ^10.9.1
     typescript: ^4.4.3
@@ -964,7 +964,7 @@ __metadata:
     reflect-metadata: ^0.1.13
     rimraf: ^3.0.2
     semver: ^7.3.5
-    simple-git: ^3.12.0
+    simple-git: ^3.13.0
     ts-jest: ^27.1.4
     ts-mockito: ^2.6.1
     ts-node: ^10.9.1
@@ -7983,14 +7983,14 @@ resolve@^1.22.0:
   languageName: node
   linkType: hard
 
-"simple-git@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "simple-git@npm:3.12.0"
+"simple-git@npm:^3.13.0":
+  version: 3.13.0
+  resolution: "simple-git@npm:3.13.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
     debug: ^4.3.4
-  checksum: a862851030a3f2100f33cafe68de255ba13a8ddef30cbb17a9b8d9a74cc903c7c39ab8b4afde9f6c362a9f4bb65b09989356f6c58171c190611d3916a4802a1e
+  checksum: 6f36a451d4614838026caebdb54ecfc74889939603c74245293afc33f0d8bca34b77a0f54e10504b94a0dfe6726cc0eda7016fa416e6316b1e6b7cfca467b350
   languageName: node
   linkType: hard
 
