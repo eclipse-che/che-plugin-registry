@@ -82,3 +82,8 @@ done;
 
 # disable the personal access token
 psql -c "UPDATE personal_access_token SET active = false;"
+
+# cleanup
+rm -rf /tmp/opt/nodejs
+rm -rf /tmp/extension_*.vsix
+rm -rf /tmp/vsix
