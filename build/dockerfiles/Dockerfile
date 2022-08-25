@@ -37,6 +37,7 @@ COPY /build/dockerfiles/application.yaml /mnt/rootfs/openvsx-server/config/
 # use the final root filesystem as default directory
 WORKDIR /mnt/rootfs
 
+
 # apply permissions to later change these files on httpd and postgres
 RUN chmod g+rwx /mnt/rootfs/var/log/httpd && chmod g+rw /mnt/rootfs/run/httpd && chmod g+rw /mnt/rootfs/var/lib/pgsql
 
@@ -86,6 +87,13 @@ ENV LC_ALL=en_US.UTF-8 \
     JAVA_HOME=
 
 RUN /usr/pgsql-14/bin/initdb && \
+    # disable replica
+    echo "wal_level = minimal" >> /var/lib/pgsql/14/data/database/postgresql.conf && \
+    echo "max_wal_senders = 0" >> /var/lib/pgsql/14/data/database/postgresql.conf && \
+    echo "archive_mode = off" >> /var/lib/pgsql/14/data/database/postgresql.conf && \
+    echo "wal_keep_size = 0" >> /var/lib/pgsql/14/data/database/postgresql.conf && \
+    echo "wal_init_zero = off" >> /var/lib/pgsql/14/data/database/postgresql.conf && \
+    
     # Add all vsix files to the database
     /import-vsix.sh && \
     # add permissions for anyuserid
