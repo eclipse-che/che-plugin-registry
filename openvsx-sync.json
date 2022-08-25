@@ -28,6 +28,7 @@
     "redhat.fabric8-analytics",
     "redhat.vscode-tekton-pipelines",
     "redhat.project-initializer",
+    "redhat.vscode-redhat-account",
     "redhat.vscode-openshift-connector",
     "felixfbecker.php-debug",
     "redhat.rhamt-vscode-extension",
