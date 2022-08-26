@@ -10,7 +10,7 @@ icon: /images/stylelint-vscode-stylelint-icon.png
 category: Linters
 repository: https://github.com/stylelint/vscode-stylelint
 firstPublicationDate: '2021-02-09'
-latestUpdateDate: '2022-08-25'
+latestUpdateDate: '2022-08-26'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3
