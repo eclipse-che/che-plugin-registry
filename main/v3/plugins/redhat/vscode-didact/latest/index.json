@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-didact-icon.png
 category: Other
 repository: https://github.com/redhat-developer/vscode-didact
 firstPublicationDate: '2021-04-30'
-latestUpdateDate: '2022-08-29'
+latestUpdateDate: '2022-08-31'
 spec:
   extensions:
     - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-didact-0.4.0-309.vsix
