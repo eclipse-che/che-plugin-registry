@@ -1,0 +1,20 @@
+[
+  {
+    "category": "Linters",
+    "ids": [
+      "timonwong/shellcheck"
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "timonwong/shellcheck"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "mads-hartmann/bash-ide-vscode"
+    ]
+  }
+]
