@@ -43,7 +43,7 @@ describe('Test Sidecar', () => {
     expect(result).toBe(fakeImage);
 
     // should have called the component with the directory of the plugin
-    expect(sidecarDockerImageGetDockerImageForMock).toBeCalled();
+    expect(sidecarDockerImageGetDockerImageForMock).toHaveBeenCalled();
     expect(sidecarDockerImageGetDockerImageForMock.mock.calls[0][0]).toBe(directory);
   });
 

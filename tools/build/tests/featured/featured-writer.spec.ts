@@ -39,9 +39,9 @@ describe('Test Featured', () => {
 
     await featuredWriter.writeReport(featuredJson);
 
-    expect(writeFileSpy).toBeCalled();
+    expect(writeFileSpy).toHaveBeenCalled();
     // check we ensure parent folder exists
-    expect(ensureDirSpy).toBeCalled();
+    expect(ensureDirSpy).toHaveBeenCalled();
 
     const callWrite = writeFileSpy.mock.calls[0];
     // write path is ok

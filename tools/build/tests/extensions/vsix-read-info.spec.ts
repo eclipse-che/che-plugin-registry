@@ -52,9 +52,9 @@ describe('Test VsixReadInfo', () => {
     expect((vsixInfoToAnalyze.packageJson as any).activationEvents).toStrictEqual(['my-activation1', 'my-activation2']);
 
     // two times
-    expect(pathExistSpy).toBeCalledTimes(2);
+    expect(pathExistSpy).toHaveBeenCalledTimes(2);
     // no nls so one time
-    expect(readFileSpy).toBeCalledTimes(1);
+    expect(readFileSpy).toHaveBeenCalledTimes(1);
   });
 
   test('basics theia', async () => {
@@ -75,8 +75,8 @@ describe('Test VsixReadInfo', () => {
     expect((vsixInfoToAnalyze.packageJson as any).activationEvents).toStrictEqual(['my-activation1', 'my-activation2']);
 
     // only once
-    expect(readFileSpy).toBeCalledTimes(1);
-    expect(pathExistSpy).toBeCalledTimes(1);
+    expect(readFileSpy).toHaveBeenCalledTimes(1);
+    expect(pathExistSpy).toHaveBeenCalledTimes(1);
   });
 
   test('basics with nls', async () => {
@@ -103,9 +103,9 @@ describe('Test VsixReadInfo', () => {
     expect(vsixInfoToAnalyze.packageNlsJson).toStrictEqual(nlsJson);
 
     // two times
-    expect(pathExistSpy).toBeCalledTimes(2);
+    expect(pathExistSpy).toHaveBeenCalledTimes(2);
     // nls so two times
-    expect(readFileSpy).toBeCalledTimes(2);
+    expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
   test('path does not exists', async () => {

@@ -72,7 +72,7 @@ describe('Test VsixDownload', () => {
     }, 0);
 
     await promise;
-    expect(pipeMethod).toBeCalled();
+    expect(pipeMethod).toHaveBeenCalled();
   });
 
   test('error fetch', async () => {
@@ -101,7 +101,7 @@ describe('Test VsixDownload', () => {
     const createWriteStreamSpy = jest.spyOn(fs, 'createWriteStream') as jest.Mock;
     pathExistSpy.mockResolvedValue(true);
     await vsixDownload.download(vsixInfoToAnalyze);
-    expect(createWriteStreamSpy).toBeCalledTimes(0);
+    expect(createWriteStreamSpy).toHaveBeenCalledTimes(0);
   });
 
   test('invalid uri', async () => {

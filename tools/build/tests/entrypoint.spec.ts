@@ -37,7 +37,7 @@ describe('Test Entrypoint', () => {
   test('entrypoint', async () => {
     startMethodMock.mockResolvedValue(true);
     await require('../src/entrypoint');
-    expect(startMethodMock).toBeCalled();
+    expect(startMethodMock).toHaveBeenCalled();
     expect(process.exitCode).toBeUndefined();
   });
 
@@ -47,7 +47,7 @@ describe('Test Entrypoint', () => {
     spyExit.mockReturnValue(value);
     await require('../src/entrypoint');
     startMethodMock.mockResolvedValue(false);
-    expect(spyExit).toBeCalled();
-    expect(startMethodMock).toBeCalled();
+    expect(spyExit).toHaveBeenCalled();
+    expect(startMethodMock).toHaveBeenCalled();
   });
 });

@@ -40,8 +40,8 @@ describe('Test Main with stubs', () => {
     const main = new Main();
     const returnCode = await main.start();
     expect(returnCode).toBeTruthy();
-    expect(buildMethod).toBeCalled();
-    expect(mockedConsoleError).toBeCalledTimes(0);
+    expect(buildMethod).toHaveBeenCalled();
+    expect(mockedConsoleError).toHaveBeenCalledTimes(0);
   });
 
   test('error', async () => {
@@ -50,9 +50,9 @@ describe('Test Main with stubs', () => {
     });
     const main = new Main();
     const returnCode = await main.start();
-    expect(mockedConsoleError).toBeCalled();
+    expect(mockedConsoleError).toHaveBeenCalled();
     expect(returnCode).toBeFalsy();
-    expect(buildMethod).toBeCalled();
+    expect(buildMethod).toHaveBeenCalled();
   });
 
   test('error without stack', async () => {
@@ -62,8 +62,8 @@ describe('Test Main with stubs', () => {
     });
     const main = new Main();
     const returnCode = await main.start();
-    expect(mockedConsoleError).toBeCalled();
+    expect(mockedConsoleError).toHaveBeenCalled();
     expect(returnCode).toBeFalsy();
-    expect(buildMethod).toBeCalled();
+    expect(buildMethod).toHaveBeenCalled();
   });
 });

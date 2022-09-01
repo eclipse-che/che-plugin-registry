@@ -44,7 +44,7 @@ describe('Test Sidecar', () => {
       throw new Error();
     });
     await sidecarDockerImage.init();
-    expect(spyRevparse).toBeCalled();
+    expect(spyRevparse).toHaveBeenCalled();
     sidecarDockerImage['gitRootDirectory'] = undefined;
     await expect(sidecarDockerImage.getDockerImageFor('mycustom')).rejects.toThrow(
       'To use sidecar.directory attribute in the sidecar description, working directory should be a git repository.'
