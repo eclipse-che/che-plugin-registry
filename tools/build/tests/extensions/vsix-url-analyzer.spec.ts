@@ -53,9 +53,9 @@ describe('Test VsixUrlAnalyzer', () => {
 
   test('basics', async () => {
     await vsixUrlAnalyzer.analyze(vsixInfoToAnalyze);
-    expect(vsixDownload.download).toBeCalled();
-    expect(vsixUnpack.unpack).toBeCalled();
-    expect(vsixReadInfo.read).toBeCalled();
+    expect(vsixDownload.download).toHaveBeenCalled();
+    expect(vsixUnpack.unpack).toHaveBeenCalled();
+    expect(vsixReadInfo.read).toHaveBeenCalled();
   });
 
   test('basics multiple calls', async () => {
@@ -74,15 +74,15 @@ describe('Test VsixUrlAnalyzer', () => {
     const call2Promise = vsixUrlAnalyzer.analyze(vsixInfoToAnalyze);
 
     // but it is stuck on download and only let one call pass
-    expect(vsixDownload.download).toBeCalledTimes(1);
-    expect(vsixUnpack.unpack).toBeCalledTimes(0);
-    expect(vsixReadInfo.read).toBeCalledTimes(0);
+    expect(vsixDownload.download).toHaveBeenCalledTimes(1);
+    expect(vsixUnpack.unpack).toHaveBeenCalledTimes(0);
+    expect(vsixReadInfo.read).toHaveBeenCalledTimes(0);
 
     await call1Promise;
     await call2Promise;
     // two calls have been done sequentially
-    expect(vsixDownload.download).toBeCalledTimes(2);
-    expect(vsixUnpack.unpack).toBeCalledTimes(2);
-    expect(vsixReadInfo.read).toBeCalledTimes(2);
+    expect(vsixDownload.download).toHaveBeenCalledTimes(2);
+    expect(vsixUnpack.unpack).toHaveBeenCalledTimes(2);
+    expect(vsixReadInfo.read).toHaveBeenCalledTimes(2);
   });
 });

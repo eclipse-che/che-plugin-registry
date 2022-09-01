@@ -59,7 +59,7 @@ describe('Test DigestImagesHelper', () => {
 
     const updatedYamls = await digestImagesHelper.updateImages(metaYamlPlugins);
     // only 4 images, so 4 calls
-    expect(registryHelperGetImageDigestMock).toBeCalledTimes(4);
+    expect(registryHelperGetImageDigestMock).toHaveBeenCalledTimes(4);
 
     const firstYaml = updatedYamls[0];
     expect((firstYaml.spec.containers as any)[0].image).toBe('image-digest-1');

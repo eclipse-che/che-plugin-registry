@@ -122,8 +122,8 @@ describe('Test RegistryHelper', () => {
     const axiosHead = jest.spyOn(Axios, 'head') as jest.Mock;
     const updatedImageName = await registryHelper.getImageDigest('fake-docker-registry.com/dummy-org/dummy-image:next');
     expect(updatedImageName).toBe(imageName);
-    expect(axiosGet).toBeCalledTimes(0);
-    expect(axiosHead).toBeCalledTimes(0);
+    expect(axiosGet).toHaveBeenCalledTimes(0);
+    expect(axiosHead).toHaveBeenCalledTimes(0);
   });
 
   test('basics with current sha1', async () => {
@@ -155,8 +155,8 @@ describe('Test RegistryHelper', () => {
     axiosHead.mockResolvedValue('');
     const updatedImageName = await registryHelper.getImageDigest(imageName);
     expect(updatedImageName).toBe(imageName);
-    expect(axiosGet).toBeCalledTimes(0);
-    expect(axiosHead).toBeCalledTimes(0);
+    expect(axiosGet).toHaveBeenCalledTimes(0);
+    expect(axiosHead).toHaveBeenCalledTimes(0);
   });
 
   test('no git root directory if SKIP_DIGEST_GENERATION=true', async () => {

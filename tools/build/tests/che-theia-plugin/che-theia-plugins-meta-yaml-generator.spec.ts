@@ -329,7 +329,7 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(result).toBeDefined();
     expect(result.length).toBe(1);
     expect(result[0].description).toBe(packageJson.name);
-    expect(console.error as jest.Mock).toBeCalled();
+    expect(console.error as jest.Mock).toHaveBeenCalled();
     const call = (console.error as jest.Mock).mock.calls[0];
     expect(call[0]).toContain('No description field in package.json found for');
   });
@@ -376,7 +376,7 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     expect(result).toBeDefined();
     expect(result.length).toBe(1);
     expect(result[0].category).toBe('Other');
-    expect(console.error as jest.Mock).toBeCalled();
+    expect(console.error as jest.Mock).toHaveBeenCalled();
     const call = (console.error as jest.Mock).mock.calls[0];
     expect(call[0]).toContain('No categories field in package.json found for');
   });
@@ -467,7 +467,7 @@ describe('Test CheTheiaPluginsAnalyzer', () => {
     }
     const cheTheiaPluginMetaInfos: CheTheiaPluginMetaInfo[] = [cheTheiaPluginMetaInfo];
     await cheTheiaPluginsMetaYamlGenerator.compute(cheTheiaPluginMetaInfos);
-    expect(console.warn as jest.Mock).toBeCalled();
+    expect(console.warn as jest.Mock).toHaveBeenCalled();
     const call = (console.warn as jest.Mock).mock.calls[0];
     expect(call[0]).toContain('No icon field in package.json found for');
   });

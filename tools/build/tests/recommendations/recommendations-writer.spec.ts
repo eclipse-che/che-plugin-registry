@@ -55,9 +55,9 @@ describe('Test Featured', () => {
     await recommendationsWriter.writeRecommendations(featuredJson);
 
     // only one file being written now
-    expect(writeFileSpy).toBeCalledTimes(1);
+    expect(writeFileSpy).toHaveBeenCalledTimes(1);
     // check we ensure parent folder exists
-    expect(ensureDirSpy).toBeCalled();
+    expect(ensureDirSpy).toHaveBeenCalled();
 
     const callWrite = writeFileSpy.mock.calls[0];
     // write path is ok

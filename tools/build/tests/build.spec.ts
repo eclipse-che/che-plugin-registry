@@ -274,25 +274,25 @@ describe('Test Build', () => {
     metaYamlPluginsGeneratorComputeMock.mockResolvedValueOnce([]);
 
     await build.build();
-    expect(chePluginsMetaYamlGenerator.compute).toBeCalled();
-    expect(cheEditorMetaYamlGenerator.compute).toBeCalled();
-    expect(cheTheiaPluginsMetaYamlGenerator.compute).toBeCalled();
+    expect(chePluginsMetaYamlGenerator.compute).toHaveBeenCalled();
+    expect(cheEditorMetaYamlGenerator.compute).toHaveBeenCalled();
+    expect(cheTheiaPluginsMetaYamlGenerator.compute).toHaveBeenCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     // computed id should be all lowercase
     expect(computeCall[0][0].id).toBe('foobar-publisher/acustomname');
 
-    expect(recommendationsWriter.writeRecommendations).toBeCalled();
-    expect(vsixUrlAnalyzer.analyze).toBeCalled();
-    expect(featuredAnalyzer.generate).toBeCalled();
-    expect(featuredWriter.writeReport).toBeCalled();
-    expect(recommendationsAnalyzer.generate).toBeCalled();
-    expect(recommendationsWriter.writeRecommendations).toBeCalled();
-    expect(externalImagesWriter.write).toBeCalled();
-    expect(metaYamlWriter.write).toBeCalled();
-    expect(indexWriter.write).toBeCalled();
-    expect(cheTheiaPluginsYamlWriter.write).toBeCalled();
-    expect(cheTheiaPluginsYamlGenerator.compute).toBeCalled();
-    expect(digestImagesHelper.updateImages).toBeCalled();
+    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
+    expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
+    expect(featuredAnalyzer.generate).toHaveBeenCalled();
+    expect(featuredWriter.writeReport).toHaveBeenCalled();
+    expect(recommendationsAnalyzer.generate).toHaveBeenCalled();
+    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
+    expect(externalImagesWriter.write).toHaveBeenCalled();
+    expect(metaYamlWriter.write).toHaveBeenCalled();
+    expect(indexWriter.write).toHaveBeenCalled();
+    expect(cheTheiaPluginsYamlWriter.write).toHaveBeenCalled();
+    expect(cheTheiaPluginsYamlGenerator.compute).toHaveBeenCalled();
+    expect(digestImagesHelper.updateImages).toHaveBeenCalled();
   });
 
   test('basics without package.json', async () => {
@@ -457,19 +457,19 @@ describe('Test Build', () => {
     metaYamlEditorGeneratorComputeMock.mockResolvedValueOnce([]);
     metaYamlPluginsGeneratorComputeMock.mockResolvedValueOnce([]);
     await build.build();
-    expect(cheTheiaPluginsMetaYamlGenerator.compute).toBeCalled();
+    expect(cheTheiaPluginsMetaYamlGenerator.compute).toHaveBeenCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     expect(computeCall[0][0].id).toBe('my/id');
 
-    expect(recommendationsWriter.writeRecommendations).toBeCalled();
-    expect(vsixUrlAnalyzer.analyze).toBeCalled();
-    expect(featuredAnalyzer.generate).toBeCalled();
-    expect(featuredWriter.writeReport).toBeCalled();
-    expect(recommendationsAnalyzer.generate).toBeCalled();
-    expect(recommendationsWriter.writeRecommendations).toBeCalled();
-    expect(externalImagesWriter.write).toBeCalled();
-    expect(metaYamlWriter.write).toBeCalled();
-    expect(indexWriter.write).toBeCalled();
+    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
+    expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
+    expect(featuredAnalyzer.generate).toHaveBeenCalled();
+    expect(featuredWriter.writeReport).toHaveBeenCalled();
+    expect(recommendationsAnalyzer.generate).toHaveBeenCalled();
+    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
+    expect(externalImagesWriter.write).toHaveBeenCalled();
+    expect(metaYamlWriter.write).toHaveBeenCalled();
+    expect(indexWriter.write).toHaveBeenCalled();
   });
 
   test('succed task', async () => {
@@ -493,7 +493,7 @@ describe('Test Build', () => {
     deferred.reject('rejecting');
     await expect(deferred.promise).rejects.toMatch('rejecting');
     expect(currentValue).toBeFalsy();
-    expect(spyTask).toBeCalled();
+    expect(spyTask).toHaveBeenCalled();
     expect(spyTask.mock.calls[0][0]).toStrictEqual({ text: 'error' });
   });
 
@@ -504,7 +504,7 @@ describe('Test Build', () => {
     const wrapTask = build.wrapIntoTask('This is my task', deferred.promise, task);
     deferred.reject('rejecting');
     await expect(wrapTask).rejects.toMatch('rejecting');
-    expect(spyFailTask).toBeCalled();
+    expect(spyFailTask).toHaveBeenCalled();
     expect(spyFailTask.mock.calls[0][0]).toBeUndefined();
   });
 
@@ -547,6 +547,6 @@ describe('Test Build', () => {
 
     await build.build();
     //  check that we don't call digest update
-    expect(digestImagesHelper.updateImages).toBeCalledTimes(0);
+    expect(digestImagesHelper.updateImages).toHaveBeenCalledTimes(0);
   });
 });

@@ -52,7 +52,7 @@ describe('Test VsixUnpack', () => {
 
     await vsixUnpack.unpack(vsixInfoToAnalyze);
     expect(vsixInfoToAnalyze.unpackedArchive).toBe(unpackedDirShouldBe);
-    expect(decompress).toBeCalled();
+    expect(decompress).toHaveBeenCalled();
     const call = (decompress as jest.Mock).mock.calls[0];
     expect(call[0]).toBe(downloadedArchiveName);
     expect(call[1]).toBe(unpackedDirShouldBe);
@@ -73,7 +73,7 @@ describe('Test VsixUnpack', () => {
 
     await vsixUnpack.unpack(vsixInfoToAnalyze);
     expect(vsixInfoToAnalyze.unpackedArchive).toBe(unpackedDirShouldBe);
-    expect(decompress).toBeCalled();
+    expect(decompress).toHaveBeenCalled();
     const call = (decompress as jest.Mock).mock.calls[0];
     expect(call[0]).toBe(downloadedArchiveName);
     expect(call[1]).toBe(unpackedDirShouldBe);
@@ -87,7 +87,7 @@ describe('Test VsixUnpack', () => {
     const statSpy = jest.spyOn(fs, 'stat') as jest.Mock;
     statSpy.mockResolvedValue({ mtime: new Date() });
     await vsixUnpack.unpack(vsixInfoToAnalyze);
-    expect(decompress).toBeCalledTimes(0);
+    expect(decompress).toHaveBeenCalledTimes(0);
   });
 
   test('not unpacked', async () => {
