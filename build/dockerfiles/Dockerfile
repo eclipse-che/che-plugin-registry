@@ -18,7 +18,7 @@ FROM quay.io/fbenoit/openvsx:fix-issue-498c AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
-FROM registry.access.redhat.com/ubi8/ubi:8.6-903 AS ubi-builder
+FROM registry.access.redhat.com/ubi8/ubi:8.6-903.1661794351 AS ubi-builder
 RUN mkdir -p /mnt/rootfs
 # Install httpd and postgresql
 RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
