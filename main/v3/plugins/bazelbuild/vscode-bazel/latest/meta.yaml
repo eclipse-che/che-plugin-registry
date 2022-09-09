@@ -10,7 +10,7 @@ icon: /images/bazelbuild-vscode-bazel-icon.png
 category: Programming Languages
 repository: https://github.com/bazelbuild/vscode-bazel.git
 firstPublicationDate: '2019-09-19'
-latestUpdateDate: '2022-09-08'
+latestUpdateDate: '2022-09-09'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:7cf6f00d3f2daf04675618c408e08f019f25b91ec08d279094fddb01f559502b
