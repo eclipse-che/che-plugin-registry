@@ -12,7 +12,7 @@ export PATH=/tmp/opt/nodejs/bin:$PATH
 
 
 # install the cli
-npm install -g ovsx@0.2.1
+npm install -g ovsx@0.5.0
 
 # insert user
 psql -c "INSERT INTO user_data (id, login_name) VALUES (1001, 'eclipse-che');"
