@@ -46,6 +46,6 @@ jobs:
         yarn
         yarn workspaces foreach run build
     - name: report-coverage
-      uses: codecov/codecov-action@v3.1.0
+      uses: codecov/codecov-action@v3.1.1
       with:
         files: ./tools/pr-check/coverage/coverage-final.json,./tools/automation/coverage/coverage-final.json,./tools/build/coverage/coverage-final.json
