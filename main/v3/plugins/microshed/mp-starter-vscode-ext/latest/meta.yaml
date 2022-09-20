@@ -10,7 +10,7 @@ icon: /images/microprofile-community-mp-starter-vscode-ext-icon.png
 category: Programming Languages
 repository: https://github.com/MicroShed/mp-starter-vscode-ext
 firstPublicationDate: '2019-10-29'
-latestUpdateDate: '2022-09-18'
+latestUpdateDate: '2022-09-20'
 deprecate:
   automigrate: true
   migrateTo: microprofile-community/mp-starter-vscode-ext/latest
