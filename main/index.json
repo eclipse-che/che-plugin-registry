@@ -181,6 +181,18 @@
     "version": "insiders"
   },
   {
+    "id": "che-incubator/che-code/latest",
+    "description": "Code OSS integration in Eclipse Che.",
+    "displayName": "che-code",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-code/latest/devfile.yaml"
+    },
+    "name": "che-code",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
     "id": "che-incubator/che-idea/latest",
     "description": "IntelliJ IDEA Community running using Projector (latest released version)",
     "displayName": "IntelliJ IDEA Community Edition",
