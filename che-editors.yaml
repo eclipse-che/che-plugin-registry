@@ -559,7 +559,7 @@ editors:
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: insiders
+        version: 7.53.0
         title: CheCode Insiders.
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
