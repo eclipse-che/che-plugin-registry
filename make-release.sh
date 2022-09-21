@@ -130,6 +130,15 @@ createNewPlugins () {
   sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
 
+  # Now do che-code in che-editors.yaml
+  cheCode="che-incubator/che-code"
+  sed -i "che-editors.yaml" \
+      -e "s#id: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheCode}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
+      -e "s#name: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheCode}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
+      -e "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#"
+
   # update package.json with the new version
   sed -i -r -e "s/(\"version\": )(\".*\")/\1\"${newVERSION}\"/" tools/build/package.json
 
