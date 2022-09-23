@@ -168,7 +168,7 @@ editors:
           ephemeral: true
   - schemaVersion: 2.1.0
     metadata:
-      name: eclipse/che-theia/7.53.0
+      name: eclipse/che-theia/7.54.0
       displayName: theia-ide
       description: Eclipse Theia
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
@@ -188,7 +188,7 @@ editors:
     components:
       - name: theia-ide
         container:
-          image: "quay.io/eclipse/che-theia:7.53.0"
+          image: "quay.io/eclipse/che-theia:7.54.0"
           env:
             - name: THEIA_PLUGINS
               value: 'local-dir:///plugins'
@@ -284,7 +284,7 @@ editors:
         volume: {}
       - name: che-machine-exec
         container:
-          image: 'quay.io/eclipse/che-machine-exec:7.53.0'
+          image: 'quay.io/eclipse/che-machine-exec:7.54.0'
           memoryLimit: 128Mi
           memoryRequest: 32Mi
           cpuLimit: 500m
@@ -314,7 +314,7 @@ editors:
           app.kubernetes.io/component: remote-runtime-injector
           app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
-          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.53.0"
+          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.54.0"
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
@@ -553,7 +553,7 @@ editors:
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/che-code/7.53.0
+      name: che-incubator/che-code/7.54.0
       displayName: che-code
       description: Code OSS integration in Eclipse Che.
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
@@ -574,7 +574,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.53.0'
+          image: 'quay.io/che-incubator/che-code:7.54.0'
           command: ["/entrypoint-init-container.sh"]
           volumeMounts:
             - name: checode
