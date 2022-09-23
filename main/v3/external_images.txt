@@ -49,9 +49,9 @@ quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce24626745
 quay.io/eclipse/che-theia:next
 quay.io/eclipse/che-machine-exec:next
 quay.io/eclipse/che-theia-endpoint-runtime-binary:next
-quay.io/eclipse/che-theia@sha256:502660ea465f2981b52ce8cfb531ae238037fa4acabcd45c35963509b0858fb7
-quay.io/eclipse/che-machine-exec@sha256:b64a40187f7abe56f9f4dede4c1199d87edad806e2ec4802faeb2bd50d1cdf9a
-quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:6109b55813cd98794c3af5bd07d0d30adec6d504564d842d79d95f073b34efc1
+quay.io/eclipse/che-theia@sha256:853c67c07673a877827e0b58bd794dbb47e9274755a69b653ba1da65e9154208
+quay.io/eclipse/che-machine-exec@sha256:f7b49d477bd3210f290807e3e1b0a4c6d024c48241b6ef40f05db974b9d21621
+quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:4bd06089346ed8331d8abbfe0d9f1fbe9f28d72ad1752581730dde83f4ec90d6
 index.docker.io/ksmster/che-editor-jupyter@sha256:83439ae9edcaa3a97536742315a7912f93e499f49847da094c480031eae4ba47
 index.docker.io/dirigiblelabs/dirigible-openshift@sha256:3365635d1e0403697dea0674bbbdc749c4be2db29818a93b8e1e53c3c5144113
 index.docker.io/wsskeleton/eclipse-broadway@sha256:57c82cd806a56f69aa8663f68405d0778b628a29a64fb16881b11ce9f484dda7
@@ -59,7 +59,7 @@ index.docker.io/codercom/code-server@sha256:ef07281004909bb2c228422df2e99a5ba5e4
 quay.io/devfile/universal-developer-image@sha256:53cec58dd190dd1e06100478ae879d7c28abd8fc883d5fdf5be3eb6e943fe5e7
 quay.io/che-incubator/che-code:insiders
 quay.io/devfile/universal-developer-image@sha256:53cec58dd190dd1e06100478ae879d7c28abd8fc883d5fdf5be3eb6e943fe5e7
-quay.io/che-incubator/che-code@sha256:63f0ecd89ab12a815ac632816422a5613f4b5344e32ef62e007f78b37a46078c
+quay.io/che-incubator/che-code@sha256:6a9c1e7b36babe45c4e761c5e5e03c005487933c31b5f27c676fb83f2a227f6f
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
 quay.io/che-incubator/che-idea:next
 quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
