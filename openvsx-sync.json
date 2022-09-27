@@ -41,6 +41,7 @@
     "scala-lang.scala",
     "scalameta.metals",
     "sonarsource.sonarlint-vscode",
+    "vscode.git-base",
     "vscode.git",
     "atlassian.atlascode",
     "broadcommfd.cobol-language-support",
