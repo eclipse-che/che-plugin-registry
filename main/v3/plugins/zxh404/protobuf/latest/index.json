@@ -10,7 +10,7 @@ icon: /images/zxh404-vscode-proto3-icon.png
 category: Programming Languages
 repository: https://github.com/zxh0/vscode-proto3
 firstPublicationDate: '2020-08-28'
-latestUpdateDate: '2022-09-27'
+latestUpdateDate: '2022-10-03'
 deprecate:
   automigrate: true
   migrateTo: zxh404/vscode-proto3/latest
