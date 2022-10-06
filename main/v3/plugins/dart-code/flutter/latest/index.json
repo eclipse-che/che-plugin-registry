@@ -10,7 +10,7 @@ icon: /images/dart-code-flutter-icon.png
 category: Programming Languages
 repository: https://github.com/Dart-Code/Flutter.git
 firstPublicationDate: '2020-09-07'
-latestUpdateDate: '2022-10-04'
+latestUpdateDate: '2022-10-06'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:55703ae5faebedee56fdce3879fa2281cc260488d8a488ff77ed3d40f778ddf7
