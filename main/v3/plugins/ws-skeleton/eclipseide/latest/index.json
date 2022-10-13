@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: https://github.com/ws-skeleton/che-editor-eclipseide/
 firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2022-10-11'
+latestUpdateDate: '2022-10-13'
 spec:
   endpoints:
     - name: eclipse-ide
