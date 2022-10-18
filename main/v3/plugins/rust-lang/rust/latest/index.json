@@ -10,7 +10,7 @@ icon: /images/rust-lang-rust-icon.png
 category: Programming Languages
 repository: https://github.com/rust-lang/rls-vscode
 firstPublicationDate: '2020-05-13'
-latestUpdateDate: '2022-10-15'
+latestUpdateDate: '2022-10-18'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:ade1c7107cd675704b507a3414019c9052c69552729ed3c012508e499a24890e
