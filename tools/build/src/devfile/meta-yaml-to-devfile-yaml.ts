@@ -90,11 +90,19 @@ export class MetaYamlToDevfileYaml {
       return;
     }
 
+    let name = '';
+    if (metaYaml.name) {
+      name = metaYaml.name;
+      name = name.replace(/\//gi, '-');
+    } else {
+      name = metaYaml.displayName;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const devfileYaml: any = {
       schemaVersion: '2.1.0',
       metadata: {
-        name: metaYaml.displayName,
+        name: name,
       },
     };
 
