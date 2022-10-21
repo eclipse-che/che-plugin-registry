@@ -10,7 +10,7 @@ icon: /images/vscode-typescript-language-features-icon.png
 category: Programming Languages
 repository: https://github.com/theia-ide/vscode-builtin-extensions
 firstPublicationDate: '2020-10-03'
-latestUpdateDate: '2022-10-18'
+latestUpdateDate: '2022-10-21'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:4bce2e39fee6b9e4a8b4e8681380ce2462674597a48b81c131cbbf055dd5d0c3
