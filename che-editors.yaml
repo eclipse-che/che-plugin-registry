@@ -473,12 +473,12 @@ editors:
     metadata:
       name: che-incubator/che-code/insiders
       displayName: VS Code - Open Source
-      description: VS Code - Open Source for Eclipse Che - Insiders build
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
         version: insiders
-        title: VS Code - Open Source for Eclipse Che - Insiders build
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
@@ -555,12 +555,12 @@ editors:
     metadata:
       name: che-incubator/che-code/7.55.0
       displayName: VS Code - Open Source
-      description: VS Code - Open Source for Eclipse Che
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
         version: 7.55.0
-        title: VS Code - Open Source for Eclipse Che
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
@@ -742,7 +742,7 @@ editors:
       attributes:
         publisher: che-incubator
         version: latest
-        title: IntelliJ IDEA Community for Eclipse Che
+        title: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2022-01-11'
         skipMetaYaml: true
@@ -837,12 +837,12 @@ editors:
     metadata:
       name: che-incubator/che-pycharm/next
       displayName: JetBrains PyCharm Community
-      description: JetBrains PyCharm Community for Eclipse Che - next
+      description: JetBrains PyCharm Community IDE for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: next
-        title: JetBrains PyCharm Community for Eclipse Che - next
+        title: JetBrains PyCharm Community IDE for Eclipse Che - next
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
         skipMetaYaml: true
@@ -937,12 +937,12 @@ editors:
     metadata:
       name: che-incubator/che-pycharm/latest
       displayName: JetBrains PyCharm Community
-      description: JetBrains PyCharm Community for Eclipse Che
+      description: JetBrains PyCharm Community IDE for Eclipse Che
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: latest
-        title: JetBrains PyCharm Community for Eclipse Che
+        title: JetBrains PyCharm Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
         skipMetaYaml: true
