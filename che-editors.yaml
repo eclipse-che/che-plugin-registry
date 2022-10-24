@@ -3,13 +3,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: eclipse/che-theia/next
-      displayName: theia-ide
-      description: Eclipse Theia, get the latest release each day.
+      displayName: Eclipse Theia
+      description: Eclipse Theia for Eclipse Che - next
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
       attributes:
         publisher: eclipse
         version: next
-        title: Eclipse Theia development version.
+        title: Eclipse Theia for Eclipse Che - next
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
     commands:
@@ -169,13 +169,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: eclipse/che-theia/7.55.0
-      displayName: theia-ide
-      description: Eclipse Theia
+      displayName: Eclipse Theia
+      description: Eclipse Theia for Eclipse Che
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
       attributes:
         publisher: eclipse
-        version: 7.28.0
-        title: Eclipse Theia
+        version: 7.55.0
+        title: Eclipse Theia for Eclipse Che
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
     commands:
@@ -332,12 +332,12 @@ editors:
     metadata:
       name: ws-skeleton/jupyter/5.7.0
       displayName: Jupyter Notebook
-      description: Jupyter Notebook as Editor for Eclipse Che
+      description: Jupyter Notebook for Eclipse Che
       icon: https://jupyter.org/assets/main-logo.svg
       attributes:
         publisher: ws-skeleton
         version: 5.7.0
-        title: Jupyter Notebook as Editor for Eclipse Che
+        title: Jupyter Notebook for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-jupyter/'
         firstPublicationDate: '2019-02-05'
     components:
@@ -363,7 +363,7 @@ editors:
     metadata:
       name: dirigiblelabs/dirigible/3.4.0
       displayName: Eclipse Dirigible
-      description: Eclipse Dirigible as App Development Platform for Eclipse Che
+      description: Eclipse Dirigible for Eclipse Che
       icon: https://www.dirigible.io/img/dirigible.svg
       attributes:
         publisher: dirigiblelabs
@@ -411,13 +411,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: ws-skeleton/eclipseide/4.9.0
-      displayName: Eclipse IDE
-      description: Eclipse running on the Web with Broadway
+      displayName: Eclipse IDE with Broadway
+      description: Eclipse IDE (in browser using Broadway) for Eclipse Che
       icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
       attributes:
         publisher: ws-skeleton
         version: 4.9.0
-        title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
+        title: Eclipse IDE (in browser using Broadway) for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/'
         firstPublicationDate: '2019-02-05'
     components:
@@ -439,13 +439,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: cdr/code-server/3.6.2
-      displayName: code-server
-      description: An open source distribution of Visual Studio Code as a cloud IDE
+      displayName: VS Code via code-server
+      description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
       icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg
       attributes:
         publisher: cdr
         version: 3.6.2
-        title: Visual Studio Code - Web (code-server)
+        title: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
         repository: 'https://github.com/cdr/code-server'
         firstPublicationDate: '2020-11-03'
     components:
@@ -472,13 +472,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-code/insiders
-      displayName: che-code
-      description: Code OSS integration in Eclipse Che.
+      displayName: VS Code - Open Source
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
         version: insiders
-        title: CheCode Insiders.
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
@@ -554,13 +554,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-code/7.55.0
-      displayName: che-code
-      description: Code OSS integration in Eclipse Che.
+      displayName: VS Code - Open Source
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: 7.53.0
-        title: CheCode Insiders.
+        version: 7.55.0
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
@@ -636,13 +636,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-idea/next
-      displayName: IntelliJ IDEA Community Edition
-      description: IntelliJ IDEA Community running using Projector (next development version)
+      displayName: IntelliJ IDEA Community
+      description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: next
-        title: IntelliJ IDEA Community as Editor for Eclipse Che
+        title: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2022-01-11'
         skipMetaYaml: true
@@ -736,13 +736,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-idea/latest
-      displayName: IntelliJ IDEA Community Edition
-      description: IntelliJ IDEA Community running using Projector (latest released version)
+      displayName: IntelliJ IDEA Community
+      description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: latest
-        title: IntelliJ IDEA Community as Editor for Eclipse Che
+        title: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2022-01-11'
         skipMetaYaml: true
@@ -836,13 +836,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-pycharm/next
-      displayName: PyCharm Community
-      description: PyCharm Community running using Projector (next development version)
+      displayName: JetBrains PyCharm Community
+      description: JetBrains PyCharm Community IDE for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: next
-        title: PyCharm Community as Editor for Eclipse Che
+        title: JetBrains PyCharm Community IDE for Eclipse Che - next
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
         skipMetaYaml: true
@@ -936,13 +936,13 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-pycharm/latest
-      displayName: PyCharm Community
-      description: PyCharm Community running using Projector (latest released version)
+      displayName: JetBrains PyCharm Community
+      description: JetBrains PyCharm Community IDE for Eclipse Che
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
       attributes:
         publisher: che-incubator
         version: latest
-        title: PyCharm Community as Editor for Eclipse Che
+        title: JetBrains PyCharm Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
         skipMetaYaml: true
