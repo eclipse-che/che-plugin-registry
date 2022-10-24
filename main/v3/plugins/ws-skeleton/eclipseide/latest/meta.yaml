@@ -3,9 +3,9 @@ publisher: ws-skeleton
 name: eclipseide
 version: latest
 type: Che Editor
-displayName: Eclipse IDE
-title: Eclipse IDE (in browser using Broadway) as editor for Eclipse Che
-description: Eclipse running on the Web with Broadway
+displayName: Eclipse IDE with Broadway
+title: Eclipse IDE (in browser using Broadway) for Eclipse Che
+description: Eclipse IDE (in browser using Broadway) for Eclipse Che
 icon: /images/default.png
 category: Editor
 repository: https://github.com/ws-skeleton/che-editor-eclipseide/

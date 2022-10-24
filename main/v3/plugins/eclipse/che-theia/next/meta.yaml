@@ -3,9 +3,9 @@ publisher: eclipse
 name: che-theia
 version: next
 type: Che Editor
-displayName: theia-ide
-title: Eclipse Theia development version.
-description: Eclipse Theia, get the latest release each day.
+displayName: Eclipse Theia
+title: Eclipse Theia for Eclipse Che - next
+description: Eclipse Theia for Eclipse Che - next
 icon: /images/default.png
 category: Editor
 repository: https://github.com/eclipse-che/che-theia

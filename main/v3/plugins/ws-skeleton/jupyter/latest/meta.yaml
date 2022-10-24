@@ -4,8 +4,8 @@ name: jupyter
 version: latest
 type: Che Editor
 displayName: Jupyter Notebook
-title: Jupyter Notebook as Editor for Eclipse Che
-description: Jupyter Notebook as Editor for Eclipse Che
+title: Jupyter Notebook for Eclipse Che
+description: Jupyter Notebook for Eclipse Che
 icon: /images/default.png
 category: Editor
 repository: https://github.com/ws-skeleton/che-editor-jupyter/

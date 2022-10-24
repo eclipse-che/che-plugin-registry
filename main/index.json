@@ -157,8 +157,8 @@
   },
   {
     "id": "cdr/code-server/latest",
-    "description": "An open source distribution of Visual Studio Code as a cloud IDE",
-    "displayName": "code-server",
+    "description": "An open source distribution of Visual Studio Code (code-server) for Eclipse Che",
+    "displayName": "VS Code via code-server",
     "links": {
       "self": "/v3/plugins/cdr/code-server/latest",
       "devfile": "/v3/plugins/cdr/code-server/latest/devfile.yaml"
@@ -170,8 +170,8 @@
   },
   {
     "id": "che-incubator/che-code/insiders",
-    "description": "Code OSS integration in Eclipse Che.",
-    "displayName": "che-code",
+    "description": "Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build",
+    "displayName": "VS Code - Open Source",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-code/insiders/devfile.yaml"
     },
@@ -182,8 +182,8 @@
   },
   {
     "id": "che-incubator/che-code/latest",
-    "description": "Code OSS integration in Eclipse Che.",
-    "displayName": "che-code",
+    "description": "Microsoft Visual Studio Code - Open Source IDE for Eclipse Che",
+    "displayName": "VS Code - Open Source",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-code/latest/devfile.yaml"
     },
@@ -194,8 +194,8 @@
   },
   {
     "id": "che-incubator/che-idea/latest",
-    "description": "IntelliJ IDEA Community running using Projector (latest released version)",
-    "displayName": "IntelliJ IDEA Community Edition",
+    "description": "JetBrains IntelliJ IDEA Community IDE for Eclipse Che",
+    "displayName": "IntelliJ IDEA Community",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea/latest/devfile.yaml"
     },
@@ -206,8 +206,8 @@
   },
   {
     "id": "che-incubator/che-idea/next",
-    "description": "IntelliJ IDEA Community running using Projector (next development version)",
-    "displayName": "IntelliJ IDEA Community Edition",
+    "description": "JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next",
+    "displayName": "IntelliJ IDEA Community",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea/next/devfile.yaml"
     },
@@ -218,8 +218,8 @@
   },
   {
     "id": "che-incubator/che-pycharm/latest",
-    "description": "PyCharm Community running using Projector (latest released version)",
-    "displayName": "PyCharm Community",
+    "description": "JetBrains PyCharm Community IDE for Eclipse Che",
+    "displayName": "JetBrains PyCharm Community",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-pycharm/latest/devfile.yaml"
     },
@@ -230,8 +230,8 @@
   },
   {
     "id": "che-incubator/che-pycharm/next",
-    "description": "PyCharm Community running using Projector (next development version)",
-    "displayName": "PyCharm Community",
+    "description": "JetBrains PyCharm Community IDE for Eclipse Che - next",
+    "displayName": "JetBrains PyCharm Community",
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-pycharm/next/devfile.yaml"
     },
@@ -320,7 +320,7 @@
   },
   {
     "id": "dirigiblelabs/dirigible/latest",
-    "description": "Eclipse Dirigible as App Development Platform for Eclipse Che",
+    "description": "Eclipse Dirigible for Eclipse Che",
     "displayName": "Eclipse Dirigible",
     "links": {
       "self": "/v3/plugins/dirigiblelabs/dirigible/latest",
@@ -411,8 +411,8 @@
   },
   {
     "id": "eclipse/che-theia/latest",
-    "description": "Eclipse Theia",
-    "displayName": "theia-ide",
+    "description": "Eclipse Theia for Eclipse Che",
+    "displayName": "Eclipse Theia",
     "links": {
       "self": "/v3/plugins/eclipse/che-theia/latest",
       "devfile": "/v3/plugins/eclipse/che-theia/latest/devfile.yaml"
@@ -424,8 +424,8 @@
   },
   {
     "id": "eclipse/che-theia/next",
-    "description": "Eclipse Theia, get the latest release each day.",
-    "displayName": "theia-ide",
+    "description": "Eclipse Theia for Eclipse Che - next",
+    "displayName": "Eclipse Theia",
     "links": {
       "self": "/v3/plugins/eclipse/che-theia/next",
       "devfile": "/v3/plugins/eclipse/che-theia/next/devfile.yaml"
@@ -1230,8 +1230,8 @@
   },
   {
     "id": "ws-skeleton/eclipseide/latest",
-    "description": "Eclipse running on the Web with Broadway",
-    "displayName": "Eclipse IDE",
+    "description": "Eclipse IDE (in browser using Broadway) for Eclipse Che",
+    "displayName": "Eclipse IDE with Broadway",
     "links": {
       "self": "/v3/plugins/ws-skeleton/eclipseide/latest",
       "devfile": "/v3/plugins/ws-skeleton/eclipseide/latest/devfile.yaml"
@@ -1243,7 +1243,7 @@
   },
   {
     "id": "ws-skeleton/jupyter/latest",
-    "description": "Jupyter Notebook as Editor for Eclipse Che",
+    "description": "Jupyter Notebook for Eclipse Che",
     "displayName": "Jupyter Notebook",
     "links": {
       "self": "/v3/plugins/ws-skeleton/jupyter/latest",
