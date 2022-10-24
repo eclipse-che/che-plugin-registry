@@ -1,6 +1,6 @@
 apiVersion: v2
 publisher: eclipse
-name: che-theia
+name: che/theia/next
 version: next
 type: Che Editor
 displayName: theia-ide

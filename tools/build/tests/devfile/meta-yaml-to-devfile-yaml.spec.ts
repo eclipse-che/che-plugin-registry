@@ -37,7 +37,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('Che machine-exec Service');
+    expect(devfileYaml.metadata?.name).toBe('che-machine-exec-plugin');
     expect(devfileYaml.components).toBeDefined();
     expect(devfileYaml.components?.length).toBe(1);
     const component = devfileYaml.components[0];
@@ -63,7 +63,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('theia-ide');
+    expect(devfileYaml.metadata?.name).toBe('che-theia-next');
     expect(devfileYaml.components).toBeDefined();
     expect(devfileYaml.components?.length).toBe(6);
     const theiaIdeComponent = devfileYaml.components[0];
@@ -149,7 +149,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('no-container');
+    expect(devfileYaml.metadata?.name).toBe('che-theia');
     expect(devfileYaml.components).toBeDefined();
     expect(devfileYaml.components?.length).toBe(1);
     const component = devfileYaml.components[0];
