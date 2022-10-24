@@ -3,7 +3,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: eclipse/che-theia/next
-      displayName: Eclipse Theia - next
+      displayName: Eclipse Theia
       description: Eclipse Theia for Eclipse Che - next
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
       attributes:
@@ -472,7 +472,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-code/insiders
-      displayName: VS Code - Open Source - Insiders
+      displayName: VS Code - Open Source
       description: VS Code - Open Source for Eclipse Che - Insiders build
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
@@ -636,7 +636,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-idea/next
-      displayName: IntelliJ IDEA Community - next
+      displayName: IntelliJ IDEA Community
       description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
@@ -836,7 +836,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-pycharm/next
-      displayName: JetBrains PyCharm Community - next
+      displayName: JetBrains PyCharm Community
       description: JetBrains PyCharm Community for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
       attributes:
