@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: Jupyter Notebook
+  name: jupyter
 components:
   - name: jupyter-notebook
     container:

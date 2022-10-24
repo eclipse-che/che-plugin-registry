@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: Che Theia Dev Plugin
+  name: theia-dev
 components:
   - name: theia-dev
     container:
