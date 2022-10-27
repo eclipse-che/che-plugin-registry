@@ -379,7 +379,9 @@ This repo contains several [actions](https://github.com/eclipse-che/che-plugin-r
 
 Downstream builds can be found at the link below, which is _internal to Red Hat_. Stable builds can be found by replacing the 3.x with a specific version like 3.2.  
 
-* [dashboard_3.x](https://main-jenkins-csb-crwqe.apps.ocp-c1.prod.psi.redhat.com/job/DS_CI/job/dashboard_3.x/)
+* [pluginregistry_3.x](https://main-jenkins-csb-crwqe.apps.ocp-c1.prod.psi.redhat.com/job/DS_CI/job/pluginregistry_3.x/)
+
+NOTE: The registry downstream is a fork of upstream, with different plugin content and support for restricted environments enabled by default.
 
 
 # License
