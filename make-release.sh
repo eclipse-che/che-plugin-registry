@@ -131,6 +131,7 @@ createNewPlugins () {
       -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
   # update .metadata.attributes.version to latest released version
   cheTheiaDesc="Eclipse Theia for Eclipse Che"
+  # shellcheck disable=SC2016
   yq -Yi --arg ver "${newVERSION}" --arg desc "${cheTheiaDesc}" \
     '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
 
@@ -144,6 +145,7 @@ createNewPlugins () {
       -e "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#"
   # update .metadata.attributes.version to latest released version
   cheCodeDesc="Microsoft Visual Studio Code - Open Source IDE for Eclipse Che"
+  # shellcheck disable=SC2016
   yq -Yi --arg ver "${newVERSION}" --arg desc "${cheCodeDesc}"  \
     '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
  
