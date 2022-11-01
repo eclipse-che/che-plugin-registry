@@ -372,10 +372,10 @@ latestUpdateDate: "2019-07-05"
 # Builds
 
 This repo contains several [actions](https://github.com/eclipse-che/che-plugin-registry/actions), including:
-* ![release latest stable](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml/badge.svg)
-* ![next builds](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/next-build.yml/badge.svg)
-* ![PR](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/pr-checks.yml/badge.svg)
-* ![try in webIDE](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/try-in-web-ide.yaml/badge.svg)
+* [![release latest stable](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml)
+* [![next builds](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/next-build.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/next-build.yml)
+* [![PR](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/pr-checks.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/pr-checks.yml)
+* [![try in webIDE](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/try-in-web-ide.yaml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/try-in-web-ide.yaml)
 
 Downstream builds can be found at the link below, which is _internal to Red Hat_. Stable builds can be found by replacing the 3.x with a specific version like 3.2.  
 
