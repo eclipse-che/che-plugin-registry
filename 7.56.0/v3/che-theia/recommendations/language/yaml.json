@@ -1,0 +1,50 @@
+[
+  {
+    "category": "Snippets",
+    "ids": [
+      "redhat/vscode-tekton-pipelines",
+      "redhat/vscode-yaml",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Other",
+    "ids": [
+      "redhat/vscode-tekton-pipelines",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "ids": [
+      "redhat/vscode-yaml",
+      "redhat/vscode-apache-camel"
+    ]
+  },
+  {
+    "category": "Linters",
+    "ids": [
+      "redhat/vscode-yaml",
+      "redhat/vscode-apache-camel",
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Formatters",
+    "ids": [
+      "redhat/vscode-yaml"
+    ]
+  },
+  {
+    "category": "Debuggers",
+    "ids": [
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  },
+  {
+    "category": "Azure",
+    "ids": [
+      "ms-kubernetes-tools/vscode-kubernetes-tools"
+    ]
+  }
+]

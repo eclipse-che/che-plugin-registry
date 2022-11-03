@@ -1,0 +1,25 @@
+apiVersion: v2
+publisher: vscjava
+name: vscode-java-test
+version: latest
+type: VS Code extension
+displayName: Java Test Runner
+title: Java Test Runner
+description: Run and debug JUnit or TestNG test cases
+icon: /images/vscjava-vscode-java-test-icon.png
+category: Other
+repository: https://github.com/Microsoft/vscode-java-test
+firstPublicationDate: '2021-03-03'
+latestUpdateDate: '2022-11-03'
+spec:
+  containers:
+    - image: quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
+      name: vscode-java
+      memoryLimit: 1500Mi
+      memoryRequest: 20Mi
+      cpuRequest: 30m
+      cpuLimit: 800m
+  extensions:
+    - https://open-vsx.org/api/vscjava/vscode-java-test/0.28.1/file/vscjava.vscode-java-test-0.28.1.vsix
+    - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/java-0.82.0-369.vsix
+    - https://github.com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7.44-che-assets/vscode-java-debug-0.26.0.vsix
