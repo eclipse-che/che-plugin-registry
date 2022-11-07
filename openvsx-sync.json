@@ -64,5 +64,12 @@
     "4ops.terraform",
     "randomchance.logstash",
     "fbaligand.vscode-logstash-editor",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "JFrog.jfrog-vscode-extension",
+    "SonatypeCommunity.vscode-iq-plugin",
+    "GitLab.gitlab-workflow",
+    "redhat.ansible",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.jupyter-keymap"
 ]

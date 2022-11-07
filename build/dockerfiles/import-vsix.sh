@@ -56,6 +56,11 @@ for vsixFullName in $listOfVsixes; do
 
     # extract the download link from the json metadata
     vsixDownloadLink=$(echo "${vsixMetadata}" | jq -r '.files.download')
+    # try to get download link for linux-x64
+    vsixLinux64DownloadLink=$(echo "${vsixMetadata}" | jq -r '.downloads."linux-x64"')
+    if [[ $vsixLinux64DownloadLink != null ]]; then
+        vsixDownloadLink=$vsixLinux64DownloadLink
+    fi
 
     echo "Downloading ${vsixDownloadLink} into ${vsixPublisher} folder..."
 
