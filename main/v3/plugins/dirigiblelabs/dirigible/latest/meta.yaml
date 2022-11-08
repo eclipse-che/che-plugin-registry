@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/
 firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2022-11-07'
+latestUpdateDate: '2022-11-08'
 spec:
   endpoints:
     - name: dirigible
