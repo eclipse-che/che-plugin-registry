@@ -11,7 +11,7 @@ See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc
 
 
 ## Prerequisites
- - nodejs 12.x and yarn v1
+ - nodejs 14.x and yarn v1
 
 ## Build registry container image
 
