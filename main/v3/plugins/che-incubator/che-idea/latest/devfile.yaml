@@ -74,7 +74,7 @@ components:
     volume: {}
   - name: che-idea-injector
     container:
-      image: quay.io/che-incubator/che-idea@sha256:b6c93e83cf21570eb604900ea817f4836f40542274bb6cafbf5db6b5a7f0b69b
+      image: quay.io/che-incubator/che-idea@sha256:8aae69dc4b0c122491a75400639af0fe92b5e214c6e68ac97cda29fb58b44151
       command:
         - /projector/entrypoint-init-container.sh
       env:

@@ -74,7 +74,7 @@ components:
     volume: {}
   - name: che-pycharm-injector
     container:
-      image: quay.io/che-incubator/che-pycharm@sha256:c0e6f1b030dc01ed3baa5481482c6ab62456e9434c0f8b54eb9cd2b8854c597b
+      image: quay.io/che-incubator/che-pycharm@sha256:7c0e3eabd62495201cf5ba0a913776d972a1e6fb9cf1bcdc78afcf4d7256af47
       command:
         - /projector/entrypoint-init-container.sh
       env:
