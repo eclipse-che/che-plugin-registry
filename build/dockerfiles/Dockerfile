@@ -83,7 +83,10 @@ ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     PGDATA=/var/lib/pgsql/14/data/database \
-    JAVA_HOME=
+    # Use a cached version of the license list and not go over the internet
+    # it's needed for openvsx server when vsix is publishing on AirGap environment.
+    # Set Xmx to run openvsx server
+    JVM_ARGS="-DSPDXParser.OnlyUseLocalLicenses=true -Xmx2048m"
 
 RUN /usr/pgsql-14/bin/initdb && \
     # Add all vsix files to the database

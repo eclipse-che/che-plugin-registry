@@ -1,75 +1,222 @@
 [
-    "donjayamanne.githistory",
-    "vscode.github-authentication",
-    "github.vscode-pull-request-github",
-    "ms-vscode.js-debug",
-    "vscode.typescript-language-features",
-    "bazelbuild.vscode-bazel",
-    "octref.vetur",
-    "vscodevim.vim",
-    "errata-ai.vale-server",
-    "llvm-vs-code-extensions.vscode-clangd",
-    "eclipse-cdt.cdt-gdb-vscode",
-    "bmewburn.vscode-intelephense-client",
-    "ms-python.python",
-    "asciidoctor.asciidoctor-vscode",
-    "eamodio.gitlens",
-    "golang.go",
-    "dart-code.dart-code",
-    "dart-code.flutter",
-    "redhat.vscode-yaml",
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
-    "redhat.java",
-    "vscjava.vscode-java-debug",
-    "vscjava.vscode-java-test",
-    "redhat.vscode-microprofile",
-    "redhat.vscode-camelk",
-    "redhat.vscode-quarkus",
-    "redhat.fabric8-analytics",
-    "redhat.vscode-tekton-pipelines",
-    "redhat.project-initializer",
-    "redhat.vscode-redhat-account",
-    "redhat.vscode-openshift-connector",
-    "felixfbecker.php-debug",
-    "redhat.rhamt-vscode-extension",
-    "redhat.vscode-apache-camel",
-    "redhat.vscode-xml",
-    "redhat.vscode-didact",
-    "rogalmic.bash-debug",
-    "muhammad-sammy.csharp",
-    "rust-lang.rust",
-    "scala-lang.scala",
-    "scalameta.metals",
-    "sonarsource.sonarlint-vscode",
-    "vscode.git-base",
-    "vscode.git",
-    "atlassian.atlascode",
-    "broadcommfd.cobol-language-support",
-    "broadcommfd.debugger-for-mainframe",
-    "broadcommfd.hlasm-language-support",
-    "zowe.vscode-extension-for-zowe",
-    "broadcommfd.explorer-for-endevor",
-    "zxh404.vscode-proto3",
-    "timonwong.shellcheck",
-    "grammarcraft.xtend-lang",
-    "castwide.solargraph",
-    "mads-hartmann.bash-ide-vscode",
-    "vscode.npm",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
-    "jebbs.plantuml",
-    "redhat.vscode-commons",
-    "broadcommfd.ccf",
-    "4ops.terraform",
-    "randomchance.logstash",
-    "fbaligand.vscode-logstash-editor",
-    "stylelint.vscode-stylelint",
-    "JFrog.jfrog-vscode-extension",
-    "SonatypeCommunity.vscode-iq-plugin",
-    "GitLab.gitlab-workflow",
-    "redhat.ansible",
-    "ms-toolsai.jupyter",
-    "ms-toolsai.jupyter-renderers",
-    "ms-toolsai.jupyter-keymap"
+    {
+        "id": "donjayamanne.githistory"
+    },
+    {
+        "id": "vscode.github-authentication"
+    },
+    {
+        "id": "github.vscode-pull-request-github"
+    },
+    {
+        "id": "ms-vscode.js-debug"
+    },
+    {
+        "id": "vscode.typescript-language-features"
+    },
+    {
+        "id": "bazelbuild.vscode-bazel"
+    },
+    {
+        "id": "octref.vetur"
+    },
+    {
+        "id": "vscodevim.vim"
+    },
+    {
+        "id": "errata-ai.vale-server"
+    },
+    {
+        "id": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    {
+        "id": "eclipse-cdt.cdt-gdb-vscode"
+    },
+    {
+        "id": "bmewburn.vscode-intelephense-client"
+    },
+    {
+        "id": "ms-python.python"
+    },
+    {
+        "id": "asciidoctor.asciidoctor-vscode"
+    },
+    {
+        "id": "eamodio.gitlens"
+    },
+    {
+        "id": "golang.go"
+    },
+    {
+        "id": "dart-code.dart-code"
+    },
+    {
+        "id": "dart-code.flutter"
+    },
+    {
+        "id": "redhat.vscode-yaml"
+    },
+    {
+        "id": "ms-kubernetes-tools.vscode-kubernetes-tools"
+    },
+    {
+        "id": "redhat.java",
+        "version": "1.12.0"
+    },
+    {
+        "id": "vscjava.vscode-java-debug"
+    },
+    {
+        "id": "vscjava.vscode-java-test"
+    },
+    {
+        "id": "redhat.vscode-microprofile"
+    },
+    {
+        "id": "redhat.vscode-camelk"
+    },
+    {
+        "id": "redhat.vscode-quarkus"
+    },
+    {
+        "id": "redhat.fabric8-analytics"
+    },
+    {
+        "id": "redhat.vscode-tekton-pipelines"
+    },
+    {
+        "id": "redhat.project-initializer"
+    },
+    {
+        "id": "redhat.vscode-redhat-account"
+    },
+    {
+        "id": "redhat.vscode-openshift-connector"
+    },
+    {
+        "id": "felixfbecker.php-debug"
+    },
+    {
+        "id": "redhat.rhamt-vscode-extension"
+    },
+    {
+        "id": "redhat.vscode-apache-camel"
+    },
+    {
+        "id": "redhat.vscode-xml"
+    },
+    {
+        "id": "redhat.vscode-didact"
+    },
+    {
+        "id": "rogalmic.bash-debug"
+    },
+    {
+        "id": "muhammad-sammy.csharp"
+    },
+    {
+        "id": "rust-lang.rust"
+    },
+    {
+        "id": "scala-lang.scala"
+    },
+    {
+        "id": "scalameta.metals"
+    },
+    {
+        "id": "sonarsource.sonarlint-vscode"
+    },
+    {
+        "id": "vscode.git-base"
+    },
+    {
+        "id": "vscode.git"
+    },
+    {
+        "id": "atlassian.atlascode"
+    },
+    {
+        "id": "broadcommfd.cobol-language-support"
+    },
+    {
+        "id": "broadcommfd.debugger-for-mainframe"
+    },
+    {
+        "id": "broadcommfd.hlasm-language-support"
+    },
+    {
+        "id": "zowe.vscode-extension-for-zowe"
+    },
+    {
+        "id": "broadcommfd.explorer-for-endevor"
+    },
+    {
+        "id": "zxh404.vscode-proto3"
+    },
+    {
+        "id": "timonwong.shellcheck"
+    },
+    {
+        "id": "grammarcraft.xtend-lang"
+    },
+    {
+        "id": "castwide.solargraph"
+    },
+    {
+        "id": "mads-hartmann.bash-ide-vscode"
+    },
+    {
+        "id": "vscode.npm"
+    },
+    {
+        "id": "esbenp.prettier-vscode"
+    },
+    {
+        "id": "dbaeumer.vscode-eslint"
+    },
+    {
+        "id": "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
+    },
+    {
+        "id": "jebbs.plantuml"
+    },
+    {
+        "id": "redhat.vscode-commons"
+    },
+    {
+        "id": "broadcommfd.ccf"
+    },
+    {
+        "id": "4ops.terraform"
+    },
+    {
+        "id": "randomchance.logstash"
+    },
+    {
+        "id": "fbaligand.vscode-logstash-editor"
+    },
+    {
+        "id": "stylelint.vscode-stylelint"
+    },
+    {
+        "id": "JFrog.jfrog-vscode-extension"
+    },
+    {
+        "id": "SonatypeCommunity.vscode-iq-plugin"
+    },
+    {
+        "id": "GitLab.gitlab-workflow"
+    },
+    {
+        "id": "redhat.ansible"
+    },
+    {
+        "id": "ms-toolsai.jupyter"
+    },
+    {
+        "id": "ms-toolsai.jupyter-renderers"
+    },
+    {
+        "id": "ms-toolsai.jupyter-keymap"
+    }
 ]
