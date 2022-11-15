@@ -51,7 +51,7 @@
     "js-yaml": "^4.1.0",
     "moment": "^2.29.4",
     "semver": "^7.3.8",
-    "simple-git": "^3.14.1"
+    "simple-git": "^3.15.0"
   },
   "devDependencies": {
     "@types/decompress": "^4.2.4",
