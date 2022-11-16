@@ -61,7 +61,7 @@ You can deploy the registry to Openshift as follows:
 You can deploy Che plugin registry on Kubernetes using [helm](https://docs.helm.sh/). For example if you want to deploy it in the namespace `eclipse-che` and you are using `minikube` you can use the following command.
 
 ```bash
-NAMESPACE="ecipse-che"
+NAMESPACE="eclipse-che"
 DOMAIN="$(minikube ip).nip.io"
 helm upgrade --install che-plugin-registry \
     --debug \
