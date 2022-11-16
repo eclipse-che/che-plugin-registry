@@ -423,19 +423,6 @@
     "version": "latest"
   },
   {
-    "id": "eclipse/che-theia/next",
-    "description": "Eclipse Theia for Eclipse Che - next",
-    "displayName": "Eclipse Theia",
-    "links": {
-      "self": "/v3/plugins/eclipse/che-theia/next",
-      "devfile": "/v3/plugins/eclipse/che-theia/next/devfile.yaml"
-    },
-    "name": "che-theia",
-    "publisher": "eclipse",
-    "type": "Che Editor",
-    "version": "next"
-  },
-  {
     "id": "errata-ai/vale-server/latest",
     "description": "The official Visual Studio Code extension for Vale and Vale Server.",
     "displayName": "Vale",
