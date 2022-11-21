@@ -3,16 +3,7 @@
         "id": "donjayamanne.githistory"
     },
     {
-        "id": "vscode.github-authentication"
-    },
-    {
         "id": "github.vscode-pull-request-github"
-    },
-    {
-        "id": "ms-vscode.js-debug"
-    },
-    {
-        "id": "vscode.typescript-language-features"
     },
     {
         "id": "bazelbuild.vscode-bazel"
@@ -127,12 +118,6 @@
         "id": "sonarsource.sonarlint-vscode"
     },
     {
-        "id": "vscode.git-base"
-    },
-    {
-        "id": "vscode.git"
-    },
-    {
         "id": "atlassian.atlascode"
     },
     {
@@ -164,9 +149,6 @@
     },
     {
         "id": "mads-hartmann.bash-ide-vscode"
-    },
-    {
-        "id": "vscode.npm"
     },
     {
         "id": "esbenp.prettier-vscode"
