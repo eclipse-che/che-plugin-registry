@@ -155,7 +155,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const component = devfileYaml.components[0];
     expect(component.name).toBe('foo');
     const componentContainer = component.container;
-    expect(componentContainer.image).toBe('quay.io/foobar:next');
+    expect(componentContainer.image).toBe('quay.io/foobar:latest');
   });
 
   test('vscode extension', async () => {
