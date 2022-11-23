@@ -73,7 +73,7 @@
     "eslint-plugin-no-unsanitized": "^4.0.1",
     "import-sort-style-eslint": "^6.0.0",
     "jest": "^27.5.1",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.0",
     "prettier-plugin-import-sort": "^0.0.7",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
