@@ -44,7 +44,7 @@ describe('Test ContainerHelper', () => {
         {
           name: 'theia-ide',
           container: {
-            image: 'quay.io/eclipse/che-theia:next',
+            image: 'quay.io/eclipse/che-theia:latest',
             env: [
               {
                 name: 'THEIA_PLUGINS',
@@ -147,7 +147,7 @@ describe('Test ContainerHelper', () => {
         {
           name: 'remote-runtime-injector',
           container: {
-            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next',
+            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest',
             volumeMounts: [
               {
                 name: 'remote-endpoint',

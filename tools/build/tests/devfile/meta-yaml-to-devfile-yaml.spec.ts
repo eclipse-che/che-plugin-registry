@@ -63,13 +63,13 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('che-theia-next');
+    expect(devfileYaml.metadata?.name).toBe('che-theia-latest');
     expect(devfileYaml.components).toBeDefined();
     expect(devfileYaml.components?.length).toBe(6);
     const theiaIdeComponent = devfileYaml.components[0];
     expect(theiaIdeComponent.name).toBe('theia-ide');
     const theiaIdeComponentContainer = theiaIdeComponent.container;
-    expect(theiaIdeComponentContainer.image).toBe('quay.io/eclipse/che-theia:next');
+    expect(theiaIdeComponentContainer.image).toBe('quay.io/eclipse/che-theia:latest');
 
     expect(theiaIdeComponentContainer.endpoints).toBeDefined();
     expect(theiaIdeComponentContainer.endpoints?.length).toBe(8);
@@ -99,7 +99,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(remoteRuntimeInjectorComponent.name).toBe('remote-runtime-injector');
     const remoteRuntimeInjectorComponentContainer = remoteRuntimeInjectorComponent.container;
     expect(remoteRuntimeInjectorComponentContainer.image).toBe(
-      'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+      'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest'
     );
 
     const pluginsVolumeComponent = devfileYaml.components[1];

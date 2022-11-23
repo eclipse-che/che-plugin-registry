@@ -14,7 +14,7 @@ latestUpdateDate: '2021-02-19'
 spec:
   containers:
     - name: theia-ide
-      image: 'quay.io/eclipse/che-theia:next'
+      image: 'quay.io/eclipse/che-theia:latest'
       mountSources: true
       memoryLimit: 512M
       memoryRequest: 50M
@@ -35,7 +35,7 @@ spec:
         - '127.0.0.1:3333'
   initContainers:
     - name: remote-runtime-injector
-      image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next'
+      image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
