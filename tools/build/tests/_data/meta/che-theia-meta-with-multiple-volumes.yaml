@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: next
+version: latest
 type: Che Editor
 displayName: theia-ide
 title: Eclipse Theia development version.
@@ -26,7 +26,7 @@ spec:
         - name: theia-local
           mountPath: /home/theia/.theia
     - name: che-machine-exec
-      image: 'quay.io/eclipse/che-machine-exec@next'
+      image: 'quay.io/eclipse/che-machine-exec@latest'
       ports:
         - exposedPort: 3333
       command:
