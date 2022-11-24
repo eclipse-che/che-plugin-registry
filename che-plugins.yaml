@@ -13,7 +13,7 @@ plugins:
           protocol: http
     containers:
       - name: theia-dev
-        image: 'quay.io/eclipse/che-theia-dev:next'
+        image: 'quay.io/eclipse/che-theia-dev:latest'
         commands:
           - name: uname
             workingDir: $(project)

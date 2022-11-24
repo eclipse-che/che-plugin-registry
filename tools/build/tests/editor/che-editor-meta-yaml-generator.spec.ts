@@ -47,7 +47,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
         {
           name: 'theia-ide',
           container: {
-            image: 'quay.io/eclipse/che-theia:next',
+            image: 'quay.io/eclipse/che-theia:latest',
             env: [
               {
                 name: 'THEIA_PLUGINS',
@@ -141,7 +141,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
         {
           name: 'remote-runtime-injector',
           container: {
-            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:next',
+            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest',
             volumeMounts: [
               {
                 name: 'remote-endpoint',
@@ -202,7 +202,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
     }
     expect(metaYamlInfoSpecContainers).toBeDefined();
     expect(metaYamlInfoSpecContainers.length).toBe(1);
-    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-theia:next');
+    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-theia:latest');
 
     expect(metaYamlInfoSpec.endpoints).toBeDefined();
     expect(metaYamlInfoSpec.endpoints.length).toBe(7);
