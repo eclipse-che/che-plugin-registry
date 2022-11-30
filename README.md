@@ -9,7 +9,6 @@ Current build from the main branch is available at [https://eclipse-che.github.i
 ## Building and publishing third party VSIX extensions for plugin registry
 See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc/building/build-vsix-extension.adoc
 
-
 ## Prerequisites
  - nodejs 14.x and yarn v1
 
