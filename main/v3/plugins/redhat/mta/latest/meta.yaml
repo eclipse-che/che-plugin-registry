@@ -10,7 +10,7 @@ icon: /images/redhat-mta-vscode-extension-icon.png
 category: Other
 repository: https://github.com/windup/rhamt-vscode-extension
 firstPublicationDate: '2021-02-16'
-latestUpdateDate: '2022-11-25'
+latestUpdateDate: '2022-11-30'
 deprecate:
   automigrate: true
   migrateTo: redhat/mta-vscode-extension/latest

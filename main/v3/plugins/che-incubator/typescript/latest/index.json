@@ -10,7 +10,7 @@ icon: /images/vscode-typescript-language-features-icon.png
 category: Programming Languages
 repository: https://github.com/theia-ide/vscode-builtin-extensions
 firstPublicationDate: '2020-10-03'
-latestUpdateDate: '2022-11-25'
+latestUpdateDate: '2022-11-30'
 deprecate:
   automigrate: true
   migrateTo: vscode/typescript-language-features/latest
