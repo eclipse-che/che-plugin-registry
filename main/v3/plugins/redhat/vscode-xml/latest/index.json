@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-xml-icon.png
 category: Programming Languages
 repository: https://github.com/redhat-developer/vscode-xml
 firstPublicationDate: '2021-11-05'
-latestUpdateDate: '2022-11-30'
+latestUpdateDate: '2022-12-01'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:974dd0a5ab7e075d7d344af2e8e2a2f80a069e8a5a4c9ffc2a57e421b62aa17a
