@@ -112,6 +112,26 @@ editors:
             - exposedPort: 13131
             - exposedPort: 13132
             - exposedPort: 13133
+      - name: theia-ide-contributions
+        attributes:
+          controller.devfile.io/container-contribution: true
+        container:
+          args:
+            - sh
+            - '-c'
+            - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
+          env:
+            - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+              value: /remote-endpoint/plugin-remote-endpoint
+            - name: THEIA_PLUGINS
+              value: local-dir:///plugins/sidecars/tools
+          memoryLimit: 512Mi
+          volumeMounts:
+            - name: plugins
+              path: /plugins
+            - name: remote-endpoint
+              path: /remote-endpoint
+          image: "quay.io/devfile/universal-developer-image:ubi8-13008af"
       - name: plugins
         volume: {}
       - name: theia-local
@@ -337,7 +357,7 @@ editors:
           cpuRequest: 30m
       - name: che-code-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-770ea4a'
+          image: 'quay.io/devfile/universal-developer-image:ubi8-13008af'
           memoryLimit: 1024Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -383,6 +403,7 @@ editors:
         attributes:
           app.kubernetes.io/component: che-code-runtime
           app.kubernetes.io/part-of: che-code.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: checode
         volume: {}
   - schemaVersion: 2.1.0
@@ -419,7 +440,7 @@ editors:
           cpuRequest: 30m
       - name: che-code-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-770ea4a'
+          image: 'quay.io/devfile/universal-developer-image:ubi8-13008af'
           memoryLimit: 1024Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -465,6 +486,7 @@ editors:
         attributes:
           app.kubernetes.io/component: che-code-runtime
           app.kubernetes.io/part-of: che-code.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: checode
         volume: {}
   - schemaVersion: 2.1.0
