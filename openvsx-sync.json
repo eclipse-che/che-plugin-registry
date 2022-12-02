@@ -76,6 +76,9 @@
         "id": "redhat.vscode-camelk"
     },
     {
+        "id": "vscode.html-language-features"
+    },
+    {
         "id": "redhat.vscode-quarkus"
     },
     {
