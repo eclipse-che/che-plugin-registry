@@ -10,7 +10,7 @@ icon: /images/sdkbox-vscode-libra-move-icon.png
 category: Snippets
 repository: https://github.com/sdkbox/vscode-libra-move
 firstPublicationDate: '2019-09-24'
-latestUpdateDate: '2022-12-01'
+latestUpdateDate: '2022-12-03'
 deprecate:
   automigrate: true
   migrateTo: sdkbox/vscode-libra-move/latest
