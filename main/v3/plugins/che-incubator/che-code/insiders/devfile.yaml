@@ -11,7 +11,7 @@ events:
 components:
   - name: che-code-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:53cec58dd190dd1e06100478ae879d7c28abd8fc883d5fdf5be3eb6e943fe5e7
+      image: quay.io/devfile/universal-developer-image@sha256:d1709bbdfa076474f58f796026a2ed2dd3b24fea7e51ce2cc984e729663ff62c
       command:
         - /checode/entrypoint-volume.sh
       volumeMounts:
@@ -57,6 +57,7 @@ components:
     attributes:
       app.kubernetes.io/component: che-code-runtime
       app.kubernetes.io/part-of: che-code.eclipse.org
+      controller.devfile.io/container-contribution: true
   - name: checode
     volume: {}
   - name: che-code-injector
