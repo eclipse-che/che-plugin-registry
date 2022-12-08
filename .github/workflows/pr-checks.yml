@@ -15,7 +15,7 @@ on:
 jobs:
   # check EOF newline
   linelint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: eof-newline
     steps:
       - name: Checkout

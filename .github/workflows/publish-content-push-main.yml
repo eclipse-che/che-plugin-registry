@@ -18,7 +18,7 @@ on:
 jobs:
   publish:
     name: publish
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Clone source code
         uses: actions/checkout@v3
