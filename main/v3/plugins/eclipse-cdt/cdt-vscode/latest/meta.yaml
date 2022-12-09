@@ -10,7 +10,7 @@ icon: /images/eclipse-cdt-cdt-vscode-icon.png
 category: Other
 repository: https://github.com/eclipse-cdt/cdt-vscode.git
 firstPublicationDate: '2019-12-18'
-latestUpdateDate: '2022-12-08'
+latestUpdateDate: '2022-12-09'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:ae5124e3198ac6977ca973aaf4885a14e800d647c96a23d15a2b6babbe8fef2a

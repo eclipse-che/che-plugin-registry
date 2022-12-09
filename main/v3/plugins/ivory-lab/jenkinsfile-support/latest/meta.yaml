@@ -10,7 +10,7 @@ icon: /images/ivory-lab-jenkinsfile-support-icon.png
 category: Programming Languages
 repository: https://github.com/sgwozdz/jenkinsfile-support.git
 firstPublicationDate: '2020-06-03'
-latestUpdateDate: '2022-12-08'
+latestUpdateDate: '2022-12-09'
 spec:
   extensions:
     - https://disaster37.github.io/vscode-plugins/ivory-lab.jenkinsfile-support-1.1.0.vsix
