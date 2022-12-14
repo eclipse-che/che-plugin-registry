@@ -10,7 +10,7 @@ icon: /images/randomchance-logstash-icon.png
 category: Programming Languages
 repository: https://github.com/randomchance/vscode-logstash-configuration-syntax.git
 firstPublicationDate: '2021-03-11'
-latestUpdateDate: '2022-12-13'
+latestUpdateDate: '2022-12-14'
 spec:
   extensions:
     - https://open-vsx.org/api/RandomChance/logstash/0.0.4/file/RandomChance.logstash-0.0.4.vsix

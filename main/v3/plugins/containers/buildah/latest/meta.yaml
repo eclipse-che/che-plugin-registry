@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Other
 repository: https://github.com/containers/buildah
 firstPublicationDate: '2020-04-15'
-latestUpdateDate: '2022-12-13'
+latestUpdateDate: '2022-12-14'
 spec:
   containers:
     - name: buildah-dev
