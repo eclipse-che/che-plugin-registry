@@ -23,7 +23,7 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/setup-node@v3
       with:
@@ -35,7 +35,7 @@ jobs:
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-    - uses: actions/cache@v3.0.11
+    - uses: actions/cache@v3
       id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -46,6 +46,6 @@ jobs:
         yarn
         yarn workspaces foreach run build
     - name: report-coverage
-      uses: codecov/codecov-action@v3.1.1
+      uses: codecov/codecov-action@v3
       with:
         files: ./tools/pr-check/coverage/coverage-final.json,./tools/automation/coverage/coverage-final.json,./tools/build/coverage/coverage-final.json

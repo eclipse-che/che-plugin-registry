@@ -20,7 +20,7 @@ jobs:
   publish:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
       with:
@@ -29,7 +29,7 @@ jobs:
       with:
         node-version: '16'
     - name: Get current time
-      uses: 1466587594/get-current-time@v2
+      uses: 1466587594/get-current-time@v2.0.2
       id: current-date-time
       with:
         format: YYYY-MM-DD-HH

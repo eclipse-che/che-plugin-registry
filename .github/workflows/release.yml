@@ -32,7 +32,7 @@ on:
         default: 'true'
 jobs:
   release-build-publish:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: 'setup nodejs'
         uses: actions/setup-node@v3
@@ -63,14 +63,14 @@ jobs:
             echo "[INFO] No existing tags detected for $VERSION"
           fi
       - name: Login to Quay.io
-        uses: azure/docker-login@v1.0.1
+        uses: azure/docker-login@v1
         with:
           login-server: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
 
       - name: Login to Docker Hub
-        uses: azure/docker-login@v1.0.1
+        uses: azure/docker-login@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -79,7 +79,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
-      - uses: actions/cache@v3.0.11
+      - uses: actions/cache@v3
         name: Cache yarn dependencies
         id: yarn-cache
         with:
@@ -88,7 +88,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - uses: actions/cache@v3.0.11
+      - uses: actions/cache@v3
         name: Cache vsix dependencies
         id: download-unpacked-cache
         with:
