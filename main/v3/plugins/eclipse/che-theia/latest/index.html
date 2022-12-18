@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: https://github.com/eclipse-che/che-theia
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2022-12-14'
+latestUpdateDate: '2022-12-18'
 spec:
   endpoints:
     - name: theia
@@ -85,7 +85,7 @@ spec:
         secure: true
       public: true
   containers:
-    - image: quay.io/eclipse/che-theia@sha256:5db3dfe292bb9e0dd01b652626db9a916b2ddb83add2a143e4f604168dc601fb
+    - image: quay.io/eclipse/che-theia@sha256:d73cc508734c61964219dcc4f56a736aea6ac3b92d028025dfe8ef77124f61f4
       env:
         - name: THEIA_PLUGINS
           value: local-dir:///plugins
@@ -129,7 +129,7 @@ spec:
           mountPath: /remote-endpoint
           ephemeral: true
       name: theia-ide-contributions
-    - image: quay.io/eclipse/che-machine-exec@sha256:d7bb6e3fb32004e890b50b49affb417a83ae89006fe84766b0c7316437c239ce
+    - image: quay.io/eclipse/che-machine-exec@sha256:01cda608c9bacea2a63c2af623419a45ccceff3b82bb9701e22b16a8276735ed
       memoryLimit: 128Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
@@ -142,7 +142,7 @@ spec:
       ports:
         - exposedPort: 3333
   initContainers:
-    - image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:fe58069773a27a983d530523a1a0aadb41e158e33d32fc8b486f8bb926aa1e29
+    - image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:1361b3fe2b286410dabc647d1414530df5e6f72bfd04890702c2340996afc9de
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
