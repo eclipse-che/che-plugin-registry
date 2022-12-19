@@ -29,7 +29,7 @@ jobs:
       with:
         node-version: '16'
     - name: Get current time
-      uses: 1466587594/get-current-time@v2.0.2
+      uses: 1466587594/get-current-time@v2
       id: current-date-time
       with:
         format: YYYY-MM-DD-HH
