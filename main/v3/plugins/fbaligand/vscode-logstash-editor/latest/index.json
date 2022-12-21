@@ -10,7 +10,7 @@ icon: /images/fbaligand-vscode-logstash-editor-icon.png
 category: Programming Languages
 repository: https://github.com/fbaligand/vscode-logstash-editor.git
 firstPublicationDate: '2021-06-22'
-latestUpdateDate: '2022-12-19'
+latestUpdateDate: '2022-12-21'
 spec:
   extensions:
     - https://open-vsx.org/api/fbaligand/vscode-logstash-editor/1.1.3/file/fbaligand.vscode-logstash-editor-1.1.3.vsix
