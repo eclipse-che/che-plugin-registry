@@ -1,7 +1,7 @@
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: next
+version: latest
 type: Che Editor
 displayName: no-container
 title: Eclipse Theia development version.
@@ -14,4 +14,4 @@ latestUpdateDate: '2021-02-19'
 spec:
   initContainers:
     - name: foo
-      image: 'quay.io/foobar:next'
+      image: 'quay.io/foobar:latest'

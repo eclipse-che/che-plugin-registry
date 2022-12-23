@@ -18,7 +18,7 @@ FROM quay.io/fbenoit/openvsx:fix-issue-498c AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
-FROM registry.access.redhat.com/ubi8/ubi:8.6-903.1661794351 AS ubi-builder
+FROM registry.access.redhat.com/ubi8/ubi:8.7-1037 AS ubi-builder
 RUN mkdir -p /mnt/rootfs
 # Install httpd and postgresql
 RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
@@ -83,7 +83,10 @@ ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     PGDATA=/var/lib/pgsql/14/data/database \
-    JAVA_HOME=
+    # Use a cached version of the license list and not go over the internet
+    # it's needed for openvsx server when vsix is publishing on AirGap environment.
+    # Set Xmx to run openvsx server
+    JVM_ARGS="-DSPDXParser.OnlyUseLocalLicenses=true -Xmx2048m"
 
 RUN /usr/pgsql-14/bin/initdb && \
     # Add all vsix files to the database

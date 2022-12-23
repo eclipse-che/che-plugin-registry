@@ -163,7 +163,7 @@ describe('Test Build', () => {
       containers: [
         {
           name: 'theia-dev',
-          image: 'quay.io/eclipse/che-theia-dev:next',
+          image: 'quay.io/eclipse/che-theia-dev:latest',
           mountSources: true,
           memoryLimit: '2Gi',
         },

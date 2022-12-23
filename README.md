@@ -11,7 +11,7 @@ See: https://github.com/redhat-developer/codeready-workspaces/blob/master/devdoc
 
 
 ## Prerequisites
- - nodejs 12.x and yarn v1
+ - nodejs 14.x and yarn v1
 
 ## Build registry container image
 
@@ -61,7 +61,7 @@ You can deploy the registry to Openshift as follows:
 You can deploy Che plugin registry on Kubernetes using [helm](https://docs.helm.sh/). For example if you want to deploy it in the namespace `eclipse-che` and you are using `minikube` you can use the following command.
 
 ```bash
-NAMESPACE="ecipse-che"
+NAMESPACE="eclipse-che"
 DOMAIN="$(minikube ip).nip.io"
 helm upgrade --install che-plugin-registry \
     --debug \
@@ -238,18 +238,6 @@ Response:
     }
   },
   {
-    "id": "eclipse/che-theia/next",
-    "displayName": "theia-ide",
-    "version": "next",
-    "type": "Che Editor",
-    "name": "che-theia",
-    "description": "Eclipse Theia, get the latest release each day.",
-    "publisher": "eclipse",
-    "links": {
-      "self": "/v3/plugins/eclipse/che-theia/next"
-    }
-  },
-  {
     "id": "eclipse/x-lang-ls/2019.08.20",
     "displayName": "x lang support",
     "version": "2019.08.20",
@@ -285,12 +273,6 @@ Response:
 Example:
 
 ```bash
-curl  "http://localhost:8080/v3/plugins/eclipse/che-theia/next/meta.yaml"
-```
-
-or
-
-```bash
 curl  "http://localhost:8080/v3/plugins/eclipse/che-theia/latest/meta.yaml"
 ```
 
@@ -300,78 +282,159 @@ Response:
 apiVersion: v2
 publisher: eclipse
 name: che-theia
-version: next
+version: latest
 type: Che Editor
-displayName: theia-ide
-title: Eclipse Theia development version.
-description: Eclipse Theia, get the latest release each day.
-icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
+displayName: Eclipse Theia
+title: Eclipse Theia for Eclipse Che
+description: Eclipse Theia for Eclipse Che
+icon: /images/default.png
 category: Editor
-repository: https://github.com/eclipse/che-theia
-firstPublicationDate: "2019-03-07"
+repository: https://github.com/eclipse-che/che-theia
+firstPublicationDate: '2019-03-07'
+latestUpdateDate: '2022-11-15'
 spec:
   endpoints:
-  - name: theia
-    public: true
-    targetPort: 3100
-    attributes:
-      protocol: http
-      type: ide
-      secure: true
-      cookiesAuthEnabled: true
-      discoverable: false
-  - name: theia-dev
-    public: true
-    targetPort: 3130
-    attributes:
-      protocol: http
-      type: ide-dev
-      discoverable: false
-  - name: theia-redirect-1
-    public: true
-    targetPort: 13131
-    attributes:
-      protocol: http
-      discoverable: false
-  - name: theia-redirect-2
-    public: true
-    targetPort: 13132
-    attributes:
-      protocol: http
-      discoverable: false
-  - name: theia-redirect-3
-    public: true
-    targetPort: 13133
-    attributes:
-      protocol: http
-      discoverable: false
+    - name: theia
+      targetPort: 3100
+      attributes:
+        type: ide
+        cookiesAuthEnabled: true
+        discoverable: false
+        urlRewriteSupported: true
+        protocol: http
+        secure: true
+      public: true
+    - name: webviews
+      targetPort: 3100
+      attributes:
+        type: webview
+        cookiesAuthEnabled: true
+        discoverable: false
+        unique: true
+        urlRewriteSupported: true
+        protocol: http
+        secure: true
+      public: true
+    - name: mini-browser
+      targetPort: 3100
+      attributes:
+        type: mini-browser
+        cookiesAuthEnabled: true
+        discoverable: false
+        unique: true
+        urlRewriteSupported: true
+        protocol: http
+        secure: true
+      public: true
+    - name: theia-dev
+      targetPort: 3130
+      attributes:
+        type: ide-dev
+        discoverable: false
+        urlRewriteSupported: true
+        protocol: http
+      public: true
+    - name: theia-redirect-1
+      targetPort: 13131
+      attributes:
+        discoverable: false
+        urlRewriteSupported: true
+        protocol: http
+      public: true
+    - name: theia-redirect-2
+      targetPort: 13132
+      attributes:
+        discoverable: false
+        urlRewriteSupported: true
+        protocol: http
+      public: true
+    - name: theia-redirect-3
+      targetPort: 13133
+      attributes:
+        discoverable: false
+        urlRewriteSupported: true
+        protocol: http
+      public: true
+    - name: terminal
+      targetPort: 3333
+      attributes:
+        type: collocated-terminal
+        discoverable: false
+        cookiesAuthEnabled: true
+        urlRewriteSupported: true
+        protocol: ws
+        secure: true
+      public: true
   containers:
-  - name: theia-ide
-    image: eclipse/che-theia:next
-    env:
-    - name: THEIA_PLUGINS
-      value: local-dir:///plugins
-    - name: HOSTED_PLUGIN_HOSTNAME
-      value: 0.0.0.0
-    - name: HOSTED_PLUGIN_PORT
-      value: "3130"
-    volumes:
-    - mountPath: /plugins
-      name: plugins
-    mountSources: true
-    ports:
-    - exposedPort: 3100
-    - exposedPort: 3130
-    - exposedPort: 13131
-    - exposedPort: 13132
-    - exposedPort: 13133
-    memoryLimit: 512M
-latestUpdateDate: "2019-07-05"
+    - image: quay.io/eclipse/che-theia@sha256:0f0eb1abd028a65c4664d9d32ba9679278c77ae41e6b8b64d6f46143f5ddd2e1
+      env:
+        - name: THEIA_PLUGINS
+          value: local-dir:///plugins
+        - name: HOSTED_PLUGIN_HOSTNAME
+          value: 0.0.0.0
+        - name: HOSTED_PLUGIN_PORT
+          value: '3130'
+        - name: THEIA_HOST
+          value: 127.0.0.1
+      mountSources: true
+      memoryLimit: 512M
+      cpuLimit: 1500m
+      cpuRequest: 100m
+      volumes:
+        - name: plugins
+          mountPath: /plugins
+        - name: theia-local
+          mountPath: /home/theia/.theia
+      name: theia-ide
+      ports:
+        - exposedPort: 3100
+        - exposedPort: 3130
+        - exposedPort: 13131
+        - exposedPort: 13132
+        - exposedPort: 13133
+    - image: quay.io/eclipse/che-machine-exec@sha256:7b1ca4c11bc213a5c782f6870ed7314d7281b2ae38d460abfb10d72a4a10828f
+      memoryLimit: 128Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+      command:
+        - /go/bin/che-machine-exec
+        - '--url'
+        - 127.0.0.1:3333
+      name: che-machine-exec
+      ports:
+        - exposedPort: 3333
+  initContainers:
+    - image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:8c903f900640530980f34b24e5d39abea93a5dfb456273b4b0c48f72ee6280b9
+      env:
+        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+          value: /remote-endpoint/plugin-remote-endpoint
+        - name: REMOTE_ENDPOINT_VOLUME_NAME
+          value: remote-endpoint
+      volumes:
+        - name: plugins
+          mountPath: /plugins
+        - name: remote-endpoint
+          mountPath: /remote-endpoint
+          ephemeral: true
+      name: remote-runtime-injector
 ```
 
-## CI
-Visit [GitHub Actions Workflows](https://github.com/eclipse-che/che-plugin-registry/actions/) to see all associated CI workflows.
+# Builds
 
-### License
+This repo contains several [actions](https://github.com/eclipse-che/che-plugin-registry/actions), including:
+* [![release latest stable](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml)
+* [![next builds](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/next-build.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/next-build.yml)
+* [![PR](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/pr-checks.yml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/pr-checks.yml)
+* [![try in webIDE](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/try-in-web-ide.yaml/badge.svg)](https://github.com/eclipse-che/che-plugin-registry/actions/workflows/try-in-web-ide.yaml)
+
+Downstream builds can be found at the link below, which is _internal to Red Hat_. Stable builds can be found by replacing the 3.x with a specific version like 3.2.  
+
+* [pluginregistry_3.x](https://main-jenkins-csb-crwqe.apps.ocp-c1.prod.psi.redhat.com/job/DS_CI/job/pluginregistry_3.x/)
+
+NOTE: The registry downstream is a fork of upstream, with different plugin content and support for restricted environments enabled by default.
+
+
+# License
 
 Che is open sourced under the Eclipse Public License 2.0.
