@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Other
 repository: https://github.com/che-incubator/workspace-data-sync
 firstPublicationDate: '2020-07-10'
-latestUpdateDate: '2022-12-27'
+latestUpdateDate: '2022-12-28'
 spec:
   endpoints:
     - name: che-rsync-events
