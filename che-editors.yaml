@@ -2,13 +2,13 @@ version: 2.0.0
 editors:
   - schemaVersion: 2.1.0
     metadata:
-      name: eclipse/che-theia/7.58.0
+      name: eclipse/che-theia/7.59.0
       displayName: Eclipse Theia
       description: Eclipse Theia for Eclipse Che
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
       attributes:
         publisher: eclipse
-        version: 7.55.0
+        version: 7.59.0
         title: Eclipse Theia for Eclipse Che
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
@@ -22,7 +22,7 @@ editors:
     components:
       - name: theia-ide
         container:
-          image: "quay.io/eclipse/che-theia:7.58.0"
+          image: "quay.io/eclipse/che-theia:7.59.0"
           env:
             - name: THEIA_PLUGINS
               value: 'local-dir:///plugins'
@@ -138,7 +138,7 @@ editors:
         volume: {}
       - name: che-machine-exec
         container:
-          image: 'quay.io/eclipse/che-machine-exec:7.58.0'
+          image: 'quay.io/eclipse/che-machine-exec:7.59.0'
           memoryLimit: 128Mi
           memoryRequest: 32Mi
           cpuLimit: 500m
@@ -168,7 +168,7 @@ editors:
           app.kubernetes.io/component: remote-runtime-injector
           app.kubernetes.io/part-of: che-theia.eclipse.org
         container:
-          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.58.0"
+          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.59.0"
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
@@ -294,12 +294,14 @@ editors:
     metadata:
       name: cdr/code-server/3.6.2
       displayName: VS Code via code-server
-      description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
+      description: An open source distribution of Visual Studio Code (code-server)
+        for Eclipse Che
       icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg
       attributes:
         publisher: cdr
         version: 3.6.2
-        title: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
+        title: An open source distribution of Visual Studio Code (code-server) for
+          Eclipse Che
         repository: 'https://github.com/cdr/code-server'
         firstPublicationDate: '2020-11-03'
     components:
@@ -327,12 +329,14 @@ editors:
     metadata:
       name: che-incubator/che-code/insiders
       displayName: VS Code - Open Source
-      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
+        - Insiders build
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
         version: insiders
-        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders
+          build
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
@@ -408,13 +412,13 @@ editors:
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/che-code/7.58.0
+      name: che-incubator/che-code/7.59.0
       displayName: VS Code - Open Source
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: 7.55.0
+        version: 7.59.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -429,7 +433,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.58.0'
+          image: 'quay.io/che-incubator/che-code:7.59.0'
           command: ["/entrypoint-init-container.sh"]
           volumeMounts:
             - name: checode
@@ -568,15 +572,15 @@ editors:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:next'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -668,15 +672,15 @@ editors:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:latest'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -768,15 +772,15 @@ editors:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:next'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -868,15 +872,15 @@ editors:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:latest'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
