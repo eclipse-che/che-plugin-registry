@@ -34,6 +34,14 @@ jobs:
   release-build-publish:
     runs-on: ubuntu-22.04
     steps:
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      # want pip-installed version of yq (3.1 or newer) not the mikefarah version with alternate syntax
+      - run: |
+          pip install -U yq jq; which yq; yq --version; yq --help
       - name: 'setup nodejs'
         uses: actions/setup-node@v3
         with:
