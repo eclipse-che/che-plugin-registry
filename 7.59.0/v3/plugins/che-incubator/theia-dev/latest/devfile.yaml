@@ -1,0 +1,15 @@
+schemaVersion: 2.1.0
+metadata:
+  name: theia-dev
+components:
+  - name: theia-dev
+    container:
+      image: quay.io/eclipse/che-theia-dev@sha256:82ed8ac835751b31d63d7c210c92c2ad5d610a6f93482d461f3ae38c3f2dd954
+      mountSources: true
+      memoryLimit: 2Gi
+      endpoints:
+        - name: theia-dev-flow
+          attributes: {}
+          targetPort: 3010
+          exposure: public
+          protocol: http
