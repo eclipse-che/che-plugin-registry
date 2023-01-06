@@ -34,6 +34,10 @@ jobs:
   release-build-publish:
     runs-on: ubuntu-22.04
     steps:
+      - name: Clone source code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
@@ -51,10 +55,6 @@ jobs:
           node-version: '16'
           registry-url: 'https://registry.npmjs.org'
           scope: '@eclipse-che'
-      - name: Clone source code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Check existing tags
         if: ${{ github.event.inputs.performRelease == 'true' }}
         run: |
