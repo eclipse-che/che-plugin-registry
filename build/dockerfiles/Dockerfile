@@ -56,6 +56,7 @@ RUN sed -i /mnt/rootfs/etc/httpd/conf/httpd.conf \
     -e "s,logs/error_log,/dev/stderr," \
     -e "s,logs/access_log,/dev/stdout," \
     -e "s,AllowOverride None,AllowOverride All," && \
+    echo "LimitRequestFieldSize 32768" >> /mnt/rootfs/etc/httpd/conf/httpd.conf && \
     chmod a+rwX /mnt/rootfs/etc/httpd/conf /mnt/rootfs/etc/httpd/conf.d /mnt/rootfs/run/httpd /mnt/rootfs/etc/httpd/logs/
 
 STOPSIGNAL SIGWINCH
