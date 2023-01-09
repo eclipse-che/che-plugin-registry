@@ -8,7 +8,7 @@ editors:
       icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
       attributes:
         publisher: eclipse
-        version: 7.55.0
+        version: 7.59.0
         title: Eclipse Theia for Eclipse Che
         repository: https://github.com/eclipse-che/che-theia
         firstPublicationDate: '2019-03-07'
@@ -414,7 +414,7 @@ editors:
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: 7.55.0
+        version: 7.59.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -568,15 +568,15 @@ editors:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:next'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -668,15 +668,15 @@ editors:
           app.kubernetes.io/component: che-idea-injector
           app.kubernetes.io/part-of: che-idea.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:latest'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -768,15 +768,15 @@ editors:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:next'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -868,15 +868,15 @@ editors:
           app.kubernetes.io/component: che-pycharm-injector
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
       - name: projector-volume
-        volume: { }
+        volume: {}
       - name: projector-configuration
-        volume: { }
+        volume: {}
       - name: projector-java-configuration
-        volume: { }
+        volume: {}
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:latest'
-          command: [ "/projector/entrypoint-init-container.sh" ]
+          command: ["/projector/entrypoint-init-container.sh"]
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
