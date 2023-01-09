@@ -294,14 +294,12 @@ editors:
     metadata:
       name: cdr/code-server/3.6.2
       displayName: VS Code via code-server
-      description: An open source distribution of Visual Studio Code (code-server)
-        for Eclipse Che
+      description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
       icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg
       attributes:
         publisher: cdr
         version: 3.6.2
-        title: An open source distribution of Visual Studio Code (code-server) for
-          Eclipse Che
+        title: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
         repository: 'https://github.com/cdr/code-server'
         firstPublicationDate: '2020-11-03'
     components:
@@ -329,14 +327,12 @@ editors:
     metadata:
       name: che-incubator/che-code/insiders
       displayName: VS Code - Open Source
-      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
-        - Insiders build
+      description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
         version: insiders
-        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders
-          build
+        title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
         skipMetaYaml: true
