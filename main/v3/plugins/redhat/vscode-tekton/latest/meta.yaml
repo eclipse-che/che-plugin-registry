@@ -10,7 +10,7 @@ icon: /images/redhat-vscode-tekton-pipelines-icon.png
 category: Snippets
 repository: https://github.com/redhat-developer/vscode-tekton.git
 firstPublicationDate: '2020-06-24'
-latestUpdateDate: '2023-01-08'
+latestUpdateDate: '2023-01-09'
 deprecate:
   automigrate: true
   migrateTo: redhat/vscode-tekton-pipelines/latest
