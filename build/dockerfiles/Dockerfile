@@ -14,7 +14,7 @@
 # OpenVSX
 #FROM ghcr.io/eclipse/openvsx-server:72706d1 AS openvsx-server
 # fix https://github.com/eclipse/openvsx/pull/499 for https://github.com/eclipse/openvsx/issues/498
-FROM quay.io/fbenoit/openvsx:fix-issue-498c AS openvsx-server
+FROM ghcr.io/eclipse/openvsx-server:f061c72 AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
@@ -97,6 +97,8 @@ RUN /usr/pgsql-14/bin/initdb && \
     rm /var/lib/pgsql/14/data/database/postmaster.pid && \
     rm /var/run/postgresql/.s.PGSQL* && \
     rm /tmp/.s.PGSQL* && \
+    chmod 777 /tmp/.lock && \
+    chmod -R 777 /tmp/file && \
     chmod -R g+rwX /var/lib/pgsql/14/data/database && mv /var/lib/pgsql/14/data/database /var/lib/pgsql/14/data/old
 ENTRYPOINT ["/entrypoint.sh"]
 
