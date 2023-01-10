@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: https://github.com/cdr/code-server
 firstPublicationDate: '2020-11-03'
-latestUpdateDate: '2023-01-09'
+latestUpdateDate: '2023-01-10'
 spec:
   endpoints:
     - name: code-server
