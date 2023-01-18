@@ -962,7 +962,7 @@ __metadata:
     prettier: ^2.8.3
     prettier-plugin-import-sort: ^0.0.7
     reflect-metadata: ^0.1.13
-    rimraf: ^4.1.0
+    rimraf: ^4.1.1
     semver: ^7.3.8
     simple-git: ^3.16.0
     ts-jest: ^27.1.4
@@ -993,7 +993,7 @@ __metadata:
     jest: ^27.5.1
     prettier: ^2.8.3
     prettier-plugin-import-sort: ^0.0.7
-    rimraf: ^4.1.0
+    rimraf: ^4.1.1
     ts-jest: ^27.1.4
     ts-mockito: ^2.6.1
     ts-node: ^10.9.1
@@ -8076,12 +8076,12 @@ resolve@^1.22.1:
   languageName: node
   linkType: hard
 
-"rimraf@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "rimraf@npm:4.1.0"
+"rimraf@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "rimraf@npm:4.1.1"
   bin:
     rimraf: dist/cjs/src/bin.js
-  checksum: da4849802779a8c8cbe3aa1fbdf817b1ec41f7e95fb82074de3129e0030cd4e6e1f512a732344f0062c1cea59569c8113c78c3f50267cc469e8e9bfbe7622cb5
+  checksum: f52d46f59c1a532b3d0f73cb5228ff8f7df4ee87b9df95cf655788ea186c935b5c6ab4c45b66f8de5ed1e3690f58ff83f9a5b0ba1ae2e76a9bf36415f37732f7
   languageName: node
   linkType: hard
 
