@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/decompress": "^4.2.4",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.0",
     "@types/glob": "^8.0.0",
     "@types/jest": "^27.5.0",
     "@types/js-yaml": "^4.0.5",

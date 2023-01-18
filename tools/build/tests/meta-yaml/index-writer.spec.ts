@@ -84,7 +84,7 @@ describe('Test IndexWriter', () => {
     expect(fsEnsureDirSpy).toHaveBeenNthCalledWith(1, '/fake-output/v3/plugins');
 
     expect(fsWriteFileSpy.mock.calls[0][0]).toBe('/fake-output/v3/plugins/index.json');
-    const jsonOutput = JSON.parse(fsWriteFileSpy.mock.calls[0][1]);
+    const jsonOutput = JSON.parse(fsWriteFileSpy.mock.calls[0][1].toString());
     // result has been sorted
     expect(jsonOutput[0].id).toBe('my-publisher/my-che-editor-name/latest');
     expect(jsonOutput[0].description).toBe('my-che-plugin');
