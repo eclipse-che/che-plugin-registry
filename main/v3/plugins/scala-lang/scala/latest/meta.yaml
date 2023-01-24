@@ -10,7 +10,7 @@ icon: /images/scala-lang-scala-icon.png
 category: Programming Languages
 repository: https://github.com/scala/vscode-scala-syntax.git
 firstPublicationDate: '2021-04-14'
-latestUpdateDate: '2023-01-19'
+latestUpdateDate: '2023-01-24'
 spec:
   extensions:
     - https://github.com/scala/vscode-scala-syntax/releases/download/0.5.3/scala.vsix
