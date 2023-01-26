@@ -10,7 +10,7 @@ icon: /images/broadcommfd-ccf-icon.png
 category: Other
 repository: https://github.com/BroadcomMFD/cobol-control-flow
 firstPublicationDate: '2021-06-10'
-latestUpdateDate: '2023-01-25'
+latestUpdateDate: '2023-01-26'
 deprecate:
   automigrate: true
   migrateTo: broadcommfd/ccf/0.4.0/latest
