@@ -61,7 +61,7 @@ jobs:
         docker cp pluginRegistry:${EXPORTED_FOLDER} root-dir/v3
         docker rm -f pluginRegistry
         cp root-dir/v3/plugins/index.json root-dir/index.json
-        tar zcvf content-${{matrix.dist}}.tgz -C root-dir .
+        tar zcvf content.tgz -C root-dir .
     - uses: actions/upload-artifact@v3
       with:
         name: plugin-registry-content
