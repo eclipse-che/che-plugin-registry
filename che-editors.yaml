@@ -378,7 +378,6 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 urlRewriteSupported: true
-              path: '?tkn=eclipse-che'
               targetPort: 3100
               exposure: public
               secure: true
@@ -461,7 +460,6 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 urlRewriteSupported: true
-              path: '?tkn=eclipse-che'
               targetPort: 3100
               exposure: public
               secure: true
