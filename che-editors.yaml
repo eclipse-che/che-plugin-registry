@@ -567,8 +567,9 @@ editors:
                 discoverable: false
                 urlRewriteSupported: false
         attributes:
-          app.kubernetes.io/component: che-idea-injector
+          app.kubernetes.io/component: che-idea-runtime
           app.kubernetes.io/part-of: che-idea.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: projector-volume
         volume: {}
       - name: projector-configuration
@@ -667,8 +668,9 @@ editors:
                 discoverable: false
                 urlRewriteSupported: false
         attributes:
-          app.kubernetes.io/component: che-idea-injector
+          app.kubernetes.io/component: che-idea-runtime
           app.kubernetes.io/part-of: che-idea.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: projector-volume
         volume: {}
       - name: projector-configuration
