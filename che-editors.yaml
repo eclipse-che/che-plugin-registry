@@ -769,8 +769,9 @@ editors:
                 discoverable: false
                 urlRewriteSupported: false
         attributes:
-          app.kubernetes.io/component: che-pycharm-injector
+          app.kubernetes.io/component: che-pycharm-runtime
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: projector-volume
         volume: {}
       - name: projector-configuration
@@ -869,8 +870,9 @@ editors:
                 discoverable: false
                 urlRewriteSupported: false
         attributes:
-          app.kubernetes.io/component: che-pycharm-injector
+          app.kubernetes.io/component: che-pycharm-runtime
           app.kubernetes.io/part-of: che-pycharm.eclipse.org
+          controller.devfile.io/container-contribution: true
       - name: projector-volume
         volume: {}
       - name: projector-configuration
