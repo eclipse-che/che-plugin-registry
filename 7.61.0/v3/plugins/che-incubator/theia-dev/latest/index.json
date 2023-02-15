@@ -1,0 +1,33 @@
+apiVersion: v2
+publisher: che-incubator
+name: theia-dev
+version: latest
+type: Che Plugin
+displayName: Che Theia Dev Plugin
+title: Che Theia Dev Plugin
+description: Che Theia Dev Plugin
+icon: /images/default.png
+category: Other
+repository: https://github.com/che-incubator/che-theia-dev-plugin/
+firstPublicationDate: '2019-02-05'
+latestUpdateDate: '2023-02-15'
+spec:
+  endpoints:
+    - name: theia-dev-flow
+      public: true
+      targetPort: 3010
+      attributes:
+        protocol: http
+  containers:
+    - name: theia-dev
+      image: quay.io/eclipse/che-theia-dev@sha256:34eb9d3f2a4ab750779c6fdfa86b1a72a07b09466446740d2f352599ac6d6a39
+      commands:
+        - name: uname
+          workingDir: $(project)
+          command:
+            - uname
+            - '-a'
+      mountSources: true
+      ports:
+        - exposedPort: 3010
+      memoryLimit: 2Gi
