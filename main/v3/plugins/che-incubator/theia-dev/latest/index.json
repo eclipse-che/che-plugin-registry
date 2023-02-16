@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Other
 repository: https://github.com/che-incubator/che-theia-dev-plugin/
 firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2023-02-14'
+latestUpdateDate: '2023-02-16'
 spec:
   endpoints:
     - name: theia-dev-flow
@@ -20,7 +20,7 @@ spec:
         protocol: http
   containers:
     - name: theia-dev
-      image: quay.io/eclipse/che-theia-dev@sha256:4163926d3a3e3599cbf3bb763b5d905bfd46f82f6b7601c976464911e9659115
+      image: quay.io/eclipse/che-theia-dev@sha256:34eb9d3f2a4ab750779c6fdfa86b1a72a07b09466446740d2f352599ac6d6a39
       commands:
         - name: uname
           workingDir: $(project)
