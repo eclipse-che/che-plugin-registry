@@ -299,36 +299,6 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@eclipse-che/plugin-registry-build-update-automation@file:tools/automation":
-  "resolved" "file:tools/automation"
-  "version" "0.0.0"
-  dependencies:
-    "fs-extra" "^11.1.0"
-    "handlebars" "^4.7.7"
-    "js-yaml" "^4.1.0"
-    "moment" "^2.29.4"
-    "semver" "^7.3.8"
-    "simple-git" "^3.16.1"
-
-"@eclipse-che/plugin-registry-generator@file:tools/build":
-  "resolved" "file:tools/build"
-  "version" "7.61.0"
-  dependencies:
-    "axios" "^0.27.2"
-    "decompress" "^4.2.1"
-    "docker-image-name-parser" "^0.1.0"
-    "fs-extra" "^11.1.0"
-    "glob" "^8.1.0"
-    "handlebars" "^4.7.7"
-    "inversify" "^6.0.1"
-    "js-yaml" "^4.1.0"
-    "moment" "^2.29.4"
-    "nanospinner" "^1.1.0"
-    "reflect-metadata" "^0.1.13"
-    "semver" "^7.3.8"
-    "simple-git" "^3.16.1"
-    "tslib" "^2.5.0"
-
 "@eslint/eslintrc@^1.4.1":
   "integrity" "sha512-XXrH9Uarn0stsyldqDYq8r++mROmWRI1xKMXa640Bb//SY1+ECYX6VzT6Lcx5frD0V30XieqJ0oX9I2Xj5aoMA=="
   "resolved" "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-1.4.1.tgz"
