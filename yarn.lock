@@ -299,7 +299,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@eclipse-che/plugin-registry-build-update-automation@file:/home/nboldt/5-Che/0.github_upstream/che-plugin-registry/tools/automation":
+"@eclipse-che/plugin-registry-build-update-automation@file:tools/automation":
   "resolved" "file:tools/automation"
   "version" "0.0.0"
   dependencies:
@@ -310,7 +310,7 @@
     "semver" "^7.3.8"
     "simple-git" "^3.16.1"
 
-"@eclipse-che/plugin-registry-generator@file:/home/nboldt/5-Che/0.github_upstream/che-plugin-registry/tools/build":
+"@eclipse-che/plugin-registry-generator@file:tools/build":
   "resolved" "file:tools/build"
   "version" "7.61.0"
   dependencies:
@@ -328,9 +328,6 @@
     "semver" "^7.3.8"
     "simple-git" "^3.16.1"
     "tslib" "^2.5.0"
-
-"@eclipse-che/plugin-registry-generator@file:tools/build":
-  "resolved" "file:tools/build/tools/build"
 
 "@eslint/eslintrc@^1.4.1":
   "integrity" "sha512-XXrH9Uarn0stsyldqDYq8r++mROmWRI1xKMXa640Bb//SY1+ECYX6VzT6Lcx5frD0V30XieqJ0oX9I2Xj5aoMA=="
