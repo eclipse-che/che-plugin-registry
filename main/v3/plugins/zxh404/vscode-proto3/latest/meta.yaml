@@ -10,7 +10,7 @@ icon: /images/zxh404-vscode-proto3-icon.png
 category: Programming Languages
 repository: https://github.com/zxh0/vscode-proto3
 firstPublicationDate: '2020-08-28'
-latestUpdateDate: '2023-02-27'
+latestUpdateDate: '2023-02-28'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:491c62a3ac775d5426d72a59ac18bdd50f5f5d61d07fbfb34e0cd7fed3d4da21
