@@ -950,7 +950,7 @@ __metadata:
     eslint-plugin-no-null: ^1.0.2
     eslint-plugin-no-unsanitized: ^4.0.2
     fs-extra: ^11.1.0
-    glob: ^9.1.2
+    glob: ^9.2.1
     handlebars: ^4.7.7
     if-env: ^1.0.4
     import-sort-style-eslint: ^6.0.0
@@ -4792,15 +4792,15 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"glob@npm:^9.1.2":
-  version: 9.1.2
-  resolution: "glob@npm:9.1.2"
+"glob@npm:^9.2.1":
+  version: 9.2.1
+  resolution: "glob@npm:9.2.1"
   dependencies:
     fs.realpath: ^1.0.0
     minimatch: ^7.4.1
     minipass: ^4.2.4
-    path-scurry: ^1.5.0
-  checksum: 8c0bcd729b5783c340553966a25728a6c6e53275b825b4bf3be52bc2d6d31ea39d55d3c7e989edfc541f5a0ba7421b8616788f55367dd8551aac6cebbf7491ab
+    path-scurry: ^1.6.1
+  checksum: ef9b1c32491e6b532bdd0d2abcc3c9f48e83446609e11285869156982fc5a756dfbaa6f59f797712343bd1e22500ac15708692806633653fde4ef67c85e2aab7
   languageName: node
   linkType: hard
 
@@ -7583,13 +7583,13 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-"path-scurry@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "path-scurry@npm:1.5.0"
+"path-scurry@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "path-scurry@npm:1.6.1"
   dependencies:
     lru-cache: ^7.14.1
     minipass: ^4.0.2
-  checksum: d576186d8a5845edaf2344949e333ecfddf391f9dcffbfe7679006f523b6a92fb751e272c4446dfd17124ba4d63867afd3e77f6afd1bd829767111d98d5d8d94
+  checksum: 7ba57e823cb7bb879669a4e5e05a283cde1bb9e81b6d806b2609f8d8026d0aef08f4b655b17fc86b21c9c32807851bba95ca715db5ab0605fb13c7a3e9172e42
   languageName: node
   linkType: hard
 
