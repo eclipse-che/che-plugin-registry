@@ -28,11 +28,11 @@ do
             if [[ $BUILD_PUBLISH == 'build-publish' ]]; then
                 IMAGE_NAME=quay.io/eclipse/che-plugin-sidecar:"$SIDECAR_NAME"-"$SHORT_SHA1"
                 echo "Building $IMAGE_NAME"
-                docker buildx build --platform "$PLATFORMS" -t "$IMAGE_NAME" \
+                docker buildx build --provenance=false --platform "$PLATFORMS" -t "$IMAGE_NAME" \
                     "$BUILD_ARGS" sidecars/"$SIDECAR_NAME"/
             elif [[ $BUILD_PUBLISH == 'build' ]]; then
                 echo "Checking $SIDECAR_NAME-$SHORT_SHA1"
-                docker buildx build --platform "$PLATFORMS" sidecars/"$SIDECAR_NAME"/
+                docker buildx build --provenance=false --platform "$PLATFORMS" sidecars/"$SIDECAR_NAME"/
             fi
         fi
     fi
