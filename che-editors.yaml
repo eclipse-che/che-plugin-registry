@@ -382,6 +382,17 @@ editors:
               exposure: public
               secure: true
               protocol: http
+            - name: webviews
+              targetPort: 3100
+              exposure: public
+              secure: true
+              protocol: http
+              attributes:
+                type: webview
+                cookiesAuthEnabled: true
+                discoverable: false
+                unique: true
+                urlRewriteSupported: true
             - name: code-redirect-1
               targetPort: 13131
               exposure: public
@@ -464,6 +475,17 @@ editors:
               exposure: public
               secure: true
               protocol: http
+            - name: webviews
+              targetPort: 3100
+              exposure: public
+              secure: true
+              protocol: http
+              attributes:
+                type: webview
+                cookiesAuthEnabled: true
+                discoverable: false
+                unique: true
+                urlRewriteSupported: false
             - name: code-redirect-1
               targetPort: 13131
               exposure: public
