@@ -10,7 +10,7 @@ icon: /images/4ops-terraform-icon.png
 category: Programming Languages
 repository: https://github.com/4ops/vscode-language-terraform.git
 firstPublicationDate: '2021-04-21'
-latestUpdateDate: '2023-03-07'
+latestUpdateDate: '2023-03-08'
 spec:
   extensions:
     - https://disaster37.github.io/vscode-plugins/4ops.terraform-0.2.2.vsix
