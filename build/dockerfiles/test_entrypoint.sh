@@ -147,30 +147,6 @@ initTest "Should update image registry URL with CHE_SIDECAR_CONTAINERS_REGISTRY_
 metayaml=$(cat <<-END
 spec:
  containers:
-    - image: 'quay.io/eclipse/che-theia@sha256:69b7d27a9e9a4b46c2734d995456385bb0d7ab1022638d95ddaa5a5919ef43c1'
-      env:
-        - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
-        - name: HOSTED_PLUGIN_HOSTNAME
-          value: 0.0.0.0
-        - name: HOSTED_PLUGIN_PORT
-          value: '3130'
-        - name: THEIA_HOST
-          value: 127.0.0.1
-      mountSources: true
-      memoryLimit: 512M
-      volumes:
-        - name: plugins
-          mountPath: /plugins
-        - name: theia-local
-          mountPath: /home/theia/.theia
-      name: theia-ide
-      ports:
-        - exposedPort: 3100
-        - exposedPort: 3130
-        - exposedPort: 13131
-        - exposedPort: 13132
-        - exposedPort: 13133
     - image: 'quay.io/eclipse/che-machine-exec@sha256:98fdc3f341ed683dc0f07176729c887f2b965bade9c27d16dc0e05f9034e624c'
       command:
         - /go/bin/che-machine-exec
@@ -181,30 +157,6 @@ END
 expected_metayaml=$(cat <<-END
 spec:
  containers:
-    - image: 'https://fakeregistry.io:5000/eclipse/che-theia@sha256:69b7d27a9e9a4b46c2734d995456385bb0d7ab1022638d95ddaa5a5919ef43c1'
-      env:
-        - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
-        - name: HOSTED_PLUGIN_HOSTNAME
-          value: 0.0.0.0
-        - name: HOSTED_PLUGIN_PORT
-          value: '3130'
-        - name: THEIA_HOST
-          value: 127.0.0.1
-      mountSources: true
-      memoryLimit: 512M
-      volumes:
-        - name: plugins
-          mountPath: /plugins
-        - name: theia-local
-          mountPath: /home/theia/.theia
-      name: theia-ide
-      ports:
-        - exposedPort: 3100
-        - exposedPort: 3130
-        - exposedPort: 13131
-        - exposedPort: 13132
-        - exposedPort: 13133
     - image: 'https://fakeregistry.io:5000/eclipse/che-machine-exec@sha256:98fdc3f341ed683dc0f07176729c887f2b965bade9c27d16dc0e05f9034e624c'
       command:
         - /go/bin/che-machine-exec

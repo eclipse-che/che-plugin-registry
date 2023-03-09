@@ -226,15 +226,15 @@ Response:
 ```json
 [
   {
-    "id": "eclipse/che-theia/latest",
-    "displayName": "theia-ide",
+    "id": "eclipse/che-code/latest",
+    "displayName": "VS Code - Open Source",
     "version": "latest",
     "type": "Che Editor",
-    "name": "che-theia",
-    "description": "Eclipse Theia",
+    "name": "che-code",
+    "description": "Microsoft Visual Studio Code - Open Source IDE for Eclipse Che",
     "publisher": "eclipse",
     "links": {
-      "self": "/v3/plugins/eclipse/che-theia/latest"
+      "self": "/v3/plugins/eclipse/che-code/latest"
     }
   },
   {
@@ -366,32 +366,6 @@ spec:
         secure: true
       public: true
   containers:
-    - image: quay.io/eclipse/che-theia@sha256:0f0eb1abd028a65c4664d9d32ba9679278c77ae41e6b8b64d6f46143f5ddd2e1
-      env:
-        - name: THEIA_PLUGINS
-          value: local-dir:///plugins
-        - name: HOSTED_PLUGIN_HOSTNAME
-          value: 0.0.0.0
-        - name: HOSTED_PLUGIN_PORT
-          value: '3130'
-        - name: THEIA_HOST
-          value: 127.0.0.1
-      mountSources: true
-      memoryLimit: 512M
-      cpuLimit: 1500m
-      cpuRequest: 100m
-      volumes:
-        - name: plugins
-          mountPath: /plugins
-        - name: theia-local
-          mountPath: /home/theia/.theia
-      name: theia-ide
-      ports:
-        - exposedPort: 3100
-        - exposedPort: 3130
-        - exposedPort: 13131
-        - exposedPort: 13132
-        - exposedPort: 13133
     - image: quay.io/eclipse/che-machine-exec@sha256:7b1ca4c11bc213a5c782f6870ed7314d7281b2ae38d460abfb10d72a4a10828f
       memoryLimit: 128Mi
       memoryRequest: 32Mi
@@ -404,20 +378,6 @@ spec:
       name: che-machine-exec
       ports:
         - exposedPort: 3333
-  initContainers:
-    - image: quay.io/eclipse/che-theia-endpoint-runtime-binary@sha256:8c903f900640530980f34b24e5d39abea93a5dfb456273b4b0c48f72ee6280b9
-      env:
-        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-          value: /remote-endpoint/plugin-remote-endpoint
-        - name: REMOTE_ENDPOINT_VOLUME_NAME
-          value: remote-endpoint
-      volumes:
-        - name: plugins
-          mountPath: /plugins
-        - name: remote-endpoint
-          mountPath: /remote-endpoint
-          ephemeral: true
-      name: remote-runtime-injector
 ```
 
 # Builds

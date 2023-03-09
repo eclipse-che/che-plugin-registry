@@ -202,7 +202,6 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
     }
     expect(metaYamlInfoSpecContainers).toBeDefined();
     expect(metaYamlInfoSpecContainers.length).toBe(1);
-    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-theia:latest');
 
     expect(metaYamlInfoSpec.endpoints).toBeDefined();
     expect(metaYamlInfoSpec.endpoints.length).toBe(7);

@@ -118,23 +118,6 @@ createNewPlugins () {
   sed -i "che-editors.yaml" \
       -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:${newVERSION}\1#"
 
-  # Now do che-theia in che-editors.yaml
-  cheTheia="eclipse/che-theia"
-  cheTheiaEndpointRuntimeBinary="${cheTheia}-endpoint-runtime-binary"
-  sed -i "che-editors.yaml" \
-      -e "s#id: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheTheia}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#name: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheTheia}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheTheia}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheia}:${newVERSION}\1#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
-  # update .metadata.attributes.version to latest released version
-  cheTheiaDesc="Eclipse Theia for Eclipse Che"
-  # shellcheck disable=SC2016
-  yq -Yi --arg ver "${newVERSION}" --arg desc "${cheTheiaDesc}" \
-    '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
-
   # Now do che-code in che-editors.yaml
   cheCode="che-incubator/che-code"
   sed -i "che-editors.yaml" \
