@@ -1,29 +1,5 @@
 version: 1.0.0
 plugins:
-  - id: che-incubator/theia-dev/0.0.1
-    displayName: Che Theia Dev Plugin
-    description: Che Theia Dev Plugin
-    repository: 'https://github.com/che-incubator/che-theia-dev-plugin/'
-    firstPublicationDate: '2019-02-05'
-    endpoints:
-      - name: theia-dev-flow
-        public: true
-        targetPort: 3010
-        attributes:
-          protocol: http
-    containers:
-      - name: theia-dev
-        image: 'quay.io/eclipse/che-theia-dev:latest'
-        commands:
-          - name: uname
-            workingDir: $(project)
-            command:
-              - uname
-              - '-a'
-        mountSources: true
-        ports:
-          - exposedPort: 3010
-        memoryLimit: 2Gi
   - id: containers/buildah/1.14.0
     displayName: Buildah Base Dev Plugin
     description: Container to build docker images with buildah

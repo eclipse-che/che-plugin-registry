@@ -1,16 +1,16 @@
 apiVersion: v2
 publisher: eclipse
-name: che-theia
+name: che-code
 version: latest
 type: Che Editor
 displayName: no-container
-title: Eclipse Theia development version.
-description: 'Eclipse Theia, get the latest release each day.'
+title: VS Code - Open Source
+description: 'Microsoft Visual Studio Code - Open Source IDE for Eclipse Che'
 icon: /images/default.png
 category: Editor
-repository: 'https://github.com/eclipse-che/che-theia'
-firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2021-02-19'
+repository: 'https://github.com/che-incubator/che-code'
+firstPublicationDate: '2023-03-09'
+latestUpdateDate: '2023-03-09'
 spec:
   initContainers:
     - name: foo

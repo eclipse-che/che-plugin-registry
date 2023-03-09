@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2021 Red Hat, Inc.
+ * Copyright (c) 2021-2023 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -31,8 +31,6 @@ export class IndexWriter {
     }
     if (plugin.type === 'Che Editor' || plugin.type === 'Che Plugin') {
       links.devfile = `/v3/plugins/${plugin.id}/devfile.yaml`;
-    } else if (plugin.type === 'VS Code extension') {
-      links.plugin = `/v3/plugins/${plugin.id}/che-theia-plugin.yaml`;
     }
     return links;
   }

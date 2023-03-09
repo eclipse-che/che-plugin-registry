@@ -1,105 +1,7 @@
 # Adding a VS Code extension to Che
-Che uses a similar system to OpenVSX when it comes to adding VS Code extensions. In the root of this repository is a [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) file. In order to add/update a VS Code extension in Che, simply add/edit this file with the relevant extension information.
+Che uses a similar system to OpenVSX when it comes to adding VS Code extensions. In the root of this repository is a [`che-plugins.yaml`](./che-plugins.yaml) file. In order to add/update a VS Code extension in Che, simply add/edit this file with the relevant extension information.
 
-Here is the expected format of a [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) plugin entry:
-
-```yaml
-  - repository:
-      # Repository URL to clone and from
-      url: https://github.com/redhat-developer/vscode-java
-      # Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
-      revision: v0.69.0
-    # Direct link(s) to the vsix files included with this plugin. The vsix build by the repository specified must be listed first
-    extensions:
-      - https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
-      - https://download.jboss.org/jbosstools/vscode/3rdparty/vscode-java-debug/vscode-java-debug-0.26.0.vsix
-      - https://open-vsx.org/api/vscjava/vscode-java-test/0.24.0/file/vscjava.vscode-java-test-0.24.0.vsix
-```
-
-Here are all the supported values, including optional ones:
-
-```yaml
-  # (OPTIONAL) The ID of the plugin, useful if a plugin has multiple entries for one repository (for example, Java 8 vs. Java 11)
-  - id: redhat/java11
-  # Repository information about the plugin. If ID is specified then this field is not a list element.
-  - repository:
-      # Repository URL to clone and from
-      url: https://github.com/redhat-developer/vscode-java
-      # Tag or SHA1 ID of the upstream repository that hosts the extension, usually corresponding to a version/snapshot/release.
-      revision: v0.69.0
-    # (OPTIONAL) An alias for this plugin: this means anything listed here will get its own meta.yaml generated
-    aliases:
-      - redhat/java
-    # (OPTIONAL) plug-in preferences in freeform format
-    preferences:
-      # name of the preference with it's value, example:
-      asciidoc.use_asciidoctorpdf: true
-      shellcheck.executablePath: /bin/shellcheck
-      solargraph.bundlerPath: /usr/local/bin/bundle
-      solargraph.commandPath: /usr/local/bundle/bin/solargraph
-    # (OPTIONAL) If the plugin runs in a sidecar, then the sidecar information is specified here
-    sidecar:
-      # Directory where the Dockerfile that builds this extension is located
-      directory: java
-      # (OPTIONAL) The name of the container
-      name: vscode-java
-      # (OPTIONAL) The memory limit of the container
-      memoryLimit: "1500Mi"
-      # (OPTIONAL) The memory request of the container
-      memoryRequest: "1000Mi"
-      # (OPTIONAL) The CPU limit of the container
-      cpuLimit: "500m"
-      # (OPTIONAL) The CPU request of the container
-      cpuRequest: "125m"
-      # (OPTIONAL) Definitions of root process commands inside container
-      command:
-        - /bin/sh
-      # (OPTIONAL) Arguments for root process commands inside container
-      args:
-        - "-c"
-        - "./entrypoint.sh"
-      # (OPTIONAL) Any volume mounting information for the container
-      volumeMounts:
-          # The name of the mount
-        - name: m2
-          # The path of the mount
-          path: "/home/theia/.m2"
-      # (OPTIONAL) Any endpoint information for the container
-      endpoints:
-          # Endpoint name
-        - name: "configuration-endpoint"
-          # Whether or not the endpoint is exposed publically or not
-          public: true
-          # The port number
-          targetPort: 61436
-          # Attributes relating to the endpoint
-          attributes:
-            protocol: http
-    # Direct link(s) to the vsix files included with this plugin
-    extension: https://download.jboss.org/jbosstools/static/jdt.ls/stable/java-0.69.0-2547.vsix
-    # Do not look at specified dependencies from extensionDependencies field of package.json
-    skipDependencies:
-      - id-of/extension1
-      - id-of/extension2
-    # Add extra dependencies in addition to the one listed in extensionDependencies field of package.json
-    extraDependencies:
-      - id-of/extension1
-      - id-of/extension2
-    # Optional information for meta.yaml generation only
-    metaYaml:
-      # Do not include this plug-in in index.json if true.
-      # useful in case of dependencies that you do not want to expose as standalone plug-ins
-      skipIndex: <true|false>
-      # Do not look at specified dependencies from extensionDependencies field of package.json (only for meta.yaml generation)
-      skipDependencies:
-        - id-of/extension1
-        - id-of/extension2
-      # Add extra dependencies in addition to the one listed in extensionDependencies field of package.json (only for meta.yaml generation)
-      extraDependencies:
-        - id-of/extension1
-        - id-of/extension2
-      
-```
+See [`che-plugins.yaml`](./che-plugins.yaml) for syntax examples.
 
 # Adding a Che Editor to Che
 Che supports multiple editors and each workspace can use its own editor. In the root of this repository is a [`che-editors.yaml`](./che-editors.yaml) file. In order to add/update a Che Editor in Che, simply add/edit this file with the relevant editor information.
@@ -188,7 +90,7 @@ Here are all the supported values, including optional ones:
           # The name of the mount
         - name: m2
           # The path of the mount
-          path: "/home/theia/.m2"
+          path: "/home/postgres/.m2"
 
     # (OPTIONAL) Any init container
     initContainers:
@@ -207,10 +109,10 @@ Here are all the supported values, including optional ones:
           # The name of the mount
         - name: my-path
           # The path of the mount
-          path: "/home/theia/path"          
+          path: "/home/postgres/path"          
 ```
 
-# Adding a Che Plugin to Che (Not a VS Code extension or a Theia Plug-in)
+# Adding a Che Plugin to Che (Not a VS Code extension)
 Che supports plug-ins. These plug-ins are not VS Code extensions, and only bring new endpoints and containers. In the root of this repository is a [`che-plugins.yaml`](./che-plugins.yaml) file. In order to add/update a Che Plugin in Che, simply add/edit this file with the relevant plug-in information.
 
 Here is the expected format of a [`che-plugins.yaml`](./che-plugins.yaml) editor entry:
@@ -269,7 +171,7 @@ Here are all the supported values, including optional ones:
           # The name of the mount
         - name: m2
           # The path of the mount
-          path: "/home/theia/.m2"
+          path: "/home/postgres/.m2"
         # (OPTIONAL) mount the source code of the projects in the container
         mountSources: true
         # (OPTIONAL) ports exposed by this container
@@ -304,7 +206,7 @@ Here are all the supported values, including optional ones:
           # The name of the mount
         - name: my-path
           # The path of the mount
-          path: "/home/theia/path"          
+          path: "/home/postgres/path"          
 ```
 
 ## Sidecars

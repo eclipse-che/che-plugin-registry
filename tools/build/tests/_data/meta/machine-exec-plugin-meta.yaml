@@ -35,7 +35,6 @@ spec:
       image: 'quay.io/eclipse/che-machine-exec:next'
       attributes:
         app.kubernetes.io/component: machine-exec
-        app.kubernetes.io/part-of: che-theia.eclipse.org
       ports:
         - exposedPort: 4444
       command:
