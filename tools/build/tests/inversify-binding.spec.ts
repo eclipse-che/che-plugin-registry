@@ -19,14 +19,10 @@ import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-
 import { Container } from 'inversify';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
-import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
-import { FeaturedWriter } from '../src/featured/featured-writer';
 import { IndexWriter } from '../src/meta-yaml/index-writer';
 import { InversifyBinding } from '../src/inversify-binding';
 import { MetaYamlToDevfileYaml } from '../src/devfile/meta-yaml-to-devfile-yaml';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
-import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
-import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
 import { RegistryHelper } from '../src/registry/registry-helper';
 import { VsixDownload } from '../src/extensions/vsix-download';
 import { VsixReadInfo } from '../src/extensions/vsix-read-info';
@@ -64,10 +60,6 @@ describe('Test InversifyBinding', () => {
     expect(container.get(VsixUnpack)).toBeDefined();
     expect(container.get(VsixUrlAnalyzer)).toBeDefined();
 
-    // check featured module
-    expect(container.get(FeaturedAnalyzer)).toBeDefined();
-    expect(container.get(FeaturedWriter)).toBeDefined();
-
     // check meta module
     expect(await container.getAsync(DigestImagesHelper)).toBeDefined();
     expect(container.get(IndexWriter)).toBeDefined();
@@ -77,10 +69,6 @@ describe('Test InversifyBinding', () => {
     // check plugin module
     expect(container.get(ChePluginsAnalyzer)).toBeDefined();
     expect(container.get(ChePluginsMetaYamlGenerator)).toBeDefined();
-
-    // check recommendations module
-    expect(container.get(RecommendationsAnalyzer)).toBeDefined();
-    expect(container.get(RecommendationsWriter)).toBeDefined();
 
     // check registry module
     expect(await container.getAsync(RegistryHelper)).toBeDefined();

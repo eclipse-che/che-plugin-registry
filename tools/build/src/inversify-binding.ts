@@ -20,11 +20,8 @@ import { commonModule } from './common/common-module';
 import { devfileModule } from './devfile/devfile-module';
 import { editorModule } from './editor/editor-module';
 import { extensionsModule } from './extensions/extension-module';
-import { featuredModule } from './featured/featured-module';
 import { metaYamlModule } from './meta-yaml/meta-yaml-module';
-import { recommendationsModule } from './recommendations/recommendations-module';
 import { registryModule } from './registry/registry-module';
-import { sidecarModule } from './sidecar/plugin-module';
 
 export class InversifyBinding {
   private container: Container;
@@ -60,11 +57,8 @@ export class InversifyBinding {
     this.container.load(devfileModule);
     this.container.load(editorModule);
     this.container.load(extensionsModule);
-    this.container.load(featuredModule);
     this.container.load(metaYamlModule);
-    this.container.load(recommendationsModule);
     this.container.load(registryModule);
-    this.container.load(sidecarModule);
 
     this.container.bind(Build).toSelf().inSingletonScope();
 

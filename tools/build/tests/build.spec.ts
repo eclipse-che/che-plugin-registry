@@ -19,12 +19,8 @@ import { Container } from 'inversify';
 import { Deferred } from '../src/util/deferred';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
-import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
-import { FeaturedWriter } from '../src/featured/featured-writer';
 import { IndexWriter } from '../src/meta-yaml/index-writer';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
-import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
-import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
 import { VsixUrlAnalyzer } from '../src/extensions/vsix-url-analyzer';
 import { createSpinner } from 'nanospinner';
 
@@ -45,16 +41,6 @@ describe('Test Build', () => {
     analyze: vsixUrlAnalyzerAnalyzeMock,
   };
 
-  const featuredAnalyzerGenerateMock = jest.fn();
-  const featuredAnalyzer: any = {
-    generate: featuredAnalyzerGenerateMock,
-  };
-
-  const featuredWriterWriteReportMock = jest.fn();
-  const featuredWriter: any = {
-    writeReport: featuredWriterWriteReportMock,
-  };
-
   const metaYamlWriterWriteMock = jest.fn();
   const metaYamlWriter: any = {
     write: metaYamlWriterWriteMock,
@@ -73,11 +59,6 @@ describe('Test Build', () => {
   const digestImagesHelperUpdateImagesMock = jest.fn();
   const digestImagesHelper: any = {
     updateImages: digestImagesHelperUpdateImagesMock,
-  };
-
-  const recommendationsAnalyzerGenerateMock = jest.fn();
-  const recommendationsAnalyzer: any = {
-    generate: recommendationsAnalyzerGenerateMock,
   };
 
   const metaYamlGeneratorComputeMock = jest.fn();
@@ -140,10 +121,6 @@ describe('Test Build', () => {
     container.bind('string').toConstantValue('/fake-root-directory/output').whenTargetNamed('OUTPUT_ROOT_DIRECTORY');
     container.bind('boolean').toConstantValue(false).whenTargetNamed('SKIP_DIGEST_GENERATION');
     container.bind('string[]').toConstantValue([]).whenTargetNamed('ARGUMENTS');
-    container.bind(FeaturedAnalyzer).toConstantValue(featuredAnalyzer);
-    container.bind(FeaturedWriter).toConstantValue(featuredWriter);
-    container.bind(RecommendationsAnalyzer).toConstantValue(recommendationsAnalyzer);
-    container.bind(RecommendationsWriter).toConstantValue(recommendationsWriter);
     container.bind(VsixUrlAnalyzer).toConstantValue(vsixUrlAnalyzer);
 
     container.bind(ChePluginsMetaYamlGenerator).toConstantValue(chePluginsMetaYamlGenerator);
@@ -168,7 +145,7 @@ describe('Test Build', () => {
     vsixUrlAnalyzerAnalyzeMock.mockImplementation((vsixInfo: any) => {
       vsixInfo.packageJson = packageJson;
     });
-    
+
     const cheEditorPluginYaml = await buildCheEditorYaml();
     const cheEditorsYaml: CheEditorsYaml = {
       editors: [cheEditorPluginYaml],
@@ -187,9 +164,6 @@ describe('Test Build', () => {
     expect(computeCall[0][0].id).toBe('foobar-publisher/acustomname');
 
     expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
-    expect(featuredAnalyzer.generate).toHaveBeenCalled();
-    expect(featuredWriter.writeReport).toHaveBeenCalled();
-    expect(recommendationsAnalyzer.generate).toHaveBeenCalled();
     expect(externalImagesWriter.write).toHaveBeenCalled();
     expect(metaYamlWriter.write).toHaveBeenCalled();
     expect(indexWriter.write).toHaveBeenCalled();
@@ -211,8 +185,6 @@ describe('Test Build', () => {
     expect(computeCall[0][0].id).toBe('my/id');
 
     expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
-    expect(featuredAnalyzer.generate).toHaveBeenCalled();
-    expect(featuredWriter.writeReport).toHaveBeenCalled();
     expect(externalImagesWriter.write).toHaveBeenCalled();
     expect(metaYamlWriter.write).toHaveBeenCalled();
     expect(indexWriter.write).toHaveBeenCalled();

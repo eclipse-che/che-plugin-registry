@@ -22,14 +22,10 @@ import { ChePluginMetaInfo } from './che-plugin/che-plugins-meta-info';
 import { ChePluginYaml } from './che-plugin/che-plugins-yaml';
 import { ChePluginsAnalyzer } from './che-plugin/che-plugins-analyzer';
 import { ChePluginsMetaYamlGenerator } from './che-plugin/che-plugins-meta-yaml-generator';
-import { Deferred } from './util/deferred';
 import { DigestImagesHelper } from './meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from './meta-yaml/external-images-writer';
-import { FeaturedAnalyzer } from './featured/featured-analyzer';
-import { FeaturedWriter } from './featured/featured-writer';
 import { IndexWriter } from './meta-yaml/index-writer';
 import { MetaYamlWriter } from './meta-yaml/meta-yaml-writer';
-import { VsixInfo } from './extensions/vsix-info';
 import { VsixUrlAnalyzer } from './extensions/vsix-url-analyzer';
 
 export interface MetaYamlSpec {
@@ -60,9 +56,6 @@ export class Build {
   @named('SKIP_DIGEST_GENERATION')
   private skipDigests: boolean;
 
-  @inject(FeaturedAnalyzer)
-  private featuredAnalyzer: FeaturedAnalyzer;
-
   @inject(CheEditorsMetaYamlGenerator)
   private cheEditorsMetaYamlGenerator: CheEditorsMetaYamlGenerator;
 
@@ -80,15 +73,6 @@ export class Build {
 
   @inject(DigestImagesHelper)
   private digestImagesHelper: DigestImagesHelper;
-
-  @inject(FeaturedWriter)
-  private featuredWriter: FeaturedWriter;
-
-  @inject(RecommendationsAnalyzer)
-  private recommendationsAnalyzer: RecommendationsAnalyzer;
-
-  @inject(RecommendationsWriter)
-  private recommendationsWriter: RecommendationsWriter;
 
   @inject(VsixUrlAnalyzer)
   private vsixUrlAnalyzer: VsixUrlAnalyzer;

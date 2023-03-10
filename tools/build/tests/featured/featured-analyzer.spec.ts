@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2023 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -10,20 +10,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
 
-import { Container } from 'inversify';
-import { FeaturedAnalyzer } from '../../src/featured/featured-analyzer';
-
 describe('Test Featured', () => {
-  let container: Container;
-
-  let featuredAnalyzer: FeaturedAnalyzer;
 
   beforeEach(async () => {
     jest.restoreAllMocks();
     jest.resetAllMocks();
-    container = new Container();
-    container.bind(FeaturedAnalyzer).toSelf().inSingletonScope();
-    featuredAnalyzer = container.get(FeaturedAnalyzer);
   });
 
   test('basics', async () => {
