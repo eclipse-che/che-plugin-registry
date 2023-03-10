@@ -16,8 +16,6 @@ import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
 import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
 import { ChePluginsAnalyzer } from '../src/che-plugin/che-plugins-analyzer';
 import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-yaml-generator';
-import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
-import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Container } from 'inversify';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
@@ -52,10 +50,6 @@ describe('Test InversifyBinding', () => {
     const container: Container = await inversifyBinding.initBindings();
 
     expect(inversifyBinding).toBeDefined();
-
-    // check che-theia-plugin module
-    expect(container.get(CheTheiaPluginsAnalyzer)).toBeDefined();
-    expect(await container.getAsync(CheTheiaPluginsMetaYamlGenerator)).toBeDefined();
 
     // check devfile module
     expect(container.get(MetaYamlToDevfileYaml)).toBeDefined();

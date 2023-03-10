@@ -12,8 +12,6 @@ import * as fs from 'fs-extra';
 
 import { ResourceLimitsChecker, cpuRegex, memoryRegex } from '../src/resource-limits-checker';
 
-import { CheTheiaPlugin } from '../src/che-theia-plugins';
-
 describe('Resource Limits Checker Test', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
@@ -93,19 +91,6 @@ describe('Resource Limits Checker Test', () => {
   test('Resource Limits Checker :: valid plugin', async () => {
     const checker = new ResourceLimitsChecker();
 
-    const plugin: CheTheiaPlugin = {
-      repository: {
-        url: 'https://github.com/...',
-        revision: 'main',
-      },
-      sidecar: {
-        memoryLimit: '100M',
-        memoryRequest: '10M',
-        cpuLimit: '0.5',
-        cpuRequest: '100m',
-      },
-    };
-
     const result = checker.validate(plugin);
     expect(result).toStrictEqual({
       invalid: undefined,
@@ -116,17 +101,6 @@ describe('Resource Limits Checker Test', () => {
   test('Resource Limits Checker :: missing memoryRequest and cpuRequest, invalid memoryLimit', async () => {
     const checker = new ResourceLimitsChecker();
 
-    const plugin: CheTheiaPlugin = {
-      repository: {
-        url: 'https://github.com/...',
-        revision: 'main',
-      },
-      sidecar: {
-        memoryLimit: '100 Megabytes',
-        cpuLimit: '0.5',
-      },
-    };
-
     const result = checker.validate(plugin);
     expect(result).toStrictEqual({
       invalid: ['memoryLimit'],
@@ -136,14 +110,6 @@ describe('Resource Limits Checker Test', () => {
 
   test('Resource Limits Checker :: all memory and CPU limits/requests are missing', async () => {
     const checker = new ResourceLimitsChecker();
-
-    const plugin: CheTheiaPlugin = {
-      repository: {
-        url: 'https://github.com/...',
-        revision: 'main',
-      },
-      sidecar: {},
-    };
 
     const result = checker.validate(plugin);
     expect(result).toStrictEqual({

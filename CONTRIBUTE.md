@@ -221,20 +221,10 @@ There are three things needed when contributing a sidecar:
 * An entrypoint script, which allows your sidecar image to be used in Che. Here is an [example](https://github.com/eclipse-che/che-plugin-registry/blob/main/sidecars/node/etc/entrypoint.sh) of such a script. The script needs to be included in the sidecar directory, and also be added to the `Dockerfile` via the `ADD` instruction. Additional scripts may also be contributed and added.
 
 ### Contribution Flow
-At this time, updating/adding a new plugin and sidecar requires two PRs.
 
-#### PR 1: Sidecar Changes
-1. Make the changes necessary to add the sidecar, or update an existing one.
-2. Open a PR with the changes.
-3. A PR check will run to validate that the sidecar builds. Reviewers will then review the PR.
-4. When the PR is merged, a CI job will build the image, and push it to `quay.io/eclipse/che-plugin-sidecar`. Such CI jobs run via GitHub action and can be monitored [here](https://github.com/eclipse-che/che-plugin-registry/actions).
+Plugins are contributed as [VS Code - Open Source](https://github.com/microsoft/vscode) extension files (.vsix), published to the [open-vsx.org](https://open-vsx.org/) registry.
 
-The resulting image built and pushed via GitHub action will be named according to the directory name, and the shortened commit hash that last changed its definition. For example, if commit `b8f0528` was a change made to the `java` sidecar, then the resulting image from that change will be named `java-b8f0528`. You can check for new images by checking the [quay.io web interface](https://quay.io/repository/eclipse/che-plugin-sidecar?tag=latest&tab=tags), or by checking the console log of the GitHub action job that built and pushed the image.
-
-One PR can modify/add/remove multiple sidecars, they do not need to be split up into separate PRs.
-
-#### PR 2: Plugin Changes
-Now that the sidecar image has been built and pushed, the second PR can make use of it. The second PR will be the one that modifies the [`che-theia-plugins.yaml`](./che-theia-plugins.yaml) file.
+See `openvsx-sync.json`
 
 ## Registry Publishing
 ### Pull Requests
@@ -250,4 +240,4 @@ A next build of the plugin registry is published on both [surge.sh](https://che-
 ### Versioned Releases
 Versioned releases of the che-plugin-registry are also published to GitHub Pages. The version of the release is name of the last folder in the URL.
 
-For example, the `7.29.0` version of the plugin registry would be published at https://eclipse-che.github.io/che-plugin-registry/7.29.0/
+For example, the `7.62.0` version of the plugin registry would be published at https://eclipse-che.github.io/che-plugin-registry/7.62.0/

@@ -16,7 +16,6 @@ import * as path from 'path';
 import { Build } from './build';
 import { Container } from 'inversify';
 import { chePluginsModule } from './che-plugin/che-plugins-module';
-import { cheTheiaPluginModule } from './che-theia-plugin/che-theia-plugin-module';
 import { commonModule } from './common/common-module';
 import { devfileModule } from './devfile/devfile-module';
 import { editorModule } from './editor/editor-module';
@@ -58,7 +57,6 @@ export class InversifyBinding {
     this.container = new Container();
     this.container.load(commonModule);
     this.container.load(chePluginsModule);
-    this.container.load(cheTheiaPluginModule);
     this.container.load(devfileModule);
     this.container.load(editorModule);
     this.container.load(extensionsModule);

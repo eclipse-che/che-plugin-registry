@@ -10,19 +10,11 @@
 import 'reflect-metadata';
 
 import { CheEditorYaml, CheEditorsYaml } from '../src/editor/che-editors-yaml';
-import { ChePluginYaml, ChePluginsYaml } from '../src/che-plugin/che-plugins-yaml';
-import { CheTheiaPluginYaml, CheTheiaPluginsYaml } from '../src/che-theia-plugin/che-theia-plugins-yaml';
 
 import { Build } from '../src/build';
 import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
 import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
-import { ChePluginsAnalyzer } from '../src/che-plugin/che-plugins-analyzer';
 import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-yaml-generator';
-import { CheTheiaPluginAnalyzerMetaInfo } from '../src/che-theia-plugin/che-theia-plugin-analyzer-meta-info';
-import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
-import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
-import { CheTheiaPluginsYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-yaml-generator';
-import { CheTheiaPluginsYamlWriter } from '../src/che-theia-plugin/che-theia-plugins-yaml-writer';
 import { Container } from 'inversify';
 import { Deferred } from '../src/util/deferred';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
@@ -42,16 +34,6 @@ jest.mock('fs-extra');
 
 describe('Test Build', () => {
   let container: Container;
-
-  const cheTheiaPluginsAnalyzerAnalyzeMock = jest.fn();
-  const cheTheiaPluginsAnalyzer: any = {
-    analyze: cheTheiaPluginsAnalyzerAnalyzeMock,
-  };
-
-  const chePluginsAnalyzerAnalyzeMock = jest.fn();
-  const chePluginsAnalyzer: any = {
-    analyze: chePluginsAnalyzerAnalyzeMock,
-  };
 
   const cheEditorsAnalyzerAnalyzeMock = jest.fn();
   const cheEditorsAnalyzer: any = {
@@ -98,15 +80,7 @@ describe('Test Build', () => {
     generate: recommendationsAnalyzerGenerateMock,
   };
 
-  const recommendationsWriterWriteRecommendationsMock = jest.fn();
-  const recommendationsWriter: any = {
-    writeRecommendations: recommendationsWriterWriteRecommendationsMock,
-  };
-
   const metaYamlGeneratorComputeMock = jest.fn();
-  const cheTheiaPluginsMetaYamlGenerator: any = {
-    compute: metaYamlGeneratorComputeMock,
-  };
 
   const metaYamlPluginsGeneratorComputeMock = jest.fn();
   const chePluginsMetaYamlGenerator: any = {
@@ -118,58 +92,7 @@ describe('Test Build', () => {
     compute: metaYamlEditorGeneratorComputeMock,
   };
 
-  const cheTheiaPluginsYamlWriterWriteMock = jest.fn();
-  const cheTheiaPluginsYamlWriter: any = {
-    write: cheTheiaPluginsYamlWriterWriteMock,
-  };
-
-  const cheTheiaPluginsYamlGeneratorComputeMock = jest.fn();
-  const cheTheiaPluginsYamlGenerator: any = {
-    compute: cheTheiaPluginsYamlGeneratorComputeMock,
-  };
-
   let build: Build;
-
-  async function buildCheMetaPluginYaml(): Promise<CheTheiaPluginYaml> {
-    return {
-      featured: false,
-      sidecar: { image: 'fake-image' },
-      repository: {
-        url: 'http://fake-repository',
-        revision: 'main',
-      },
-      extension: 'https://my-fake.vsix',
-    };
-  }
-
-  async function buildChePluginYaml(): Promise<ChePluginYaml> {
-    return {
-      id: 'che-incubator/theia-dev/0.0.1',
-      icon: '',
-      displayName: 'Che Theia Dev Plugin',
-      description: 'Che Theia Dev Plugin',
-      repository: 'https://github.com/che-incubator/che-theia-dev-plugin/',
-      firstPublicationDate: '2019-02-05',
-      endpoints: [
-        {
-          name: 'theia-dev-flow',
-          public: true,
-          targetPort: 3010,
-          attributes: {
-            protocol: 'http',
-          },
-        },
-      ],
-      containers: [
-        {
-          name: 'theia-dev',
-          image: 'quay.io/eclipse/che-theia-dev:latest',
-          mountSources: true,
-          memoryLimit: '2Gi',
-        },
-      ],
-    };
-  }
 
   async function buildCheEditorYaml(): Promise<CheEditorYaml> {
     return {
@@ -223,11 +146,6 @@ describe('Test Build', () => {
     container.bind(RecommendationsWriter).toConstantValue(recommendationsWriter);
     container.bind(VsixUrlAnalyzer).toConstantValue(vsixUrlAnalyzer);
 
-    container.bind(CheTheiaPluginsAnalyzer).toConstantValue(cheTheiaPluginsAnalyzer);
-    container.bind(CheTheiaPluginsMetaYamlGenerator).toConstantValue(cheTheiaPluginsMetaYamlGenerator);
-    container.bind(CheTheiaPluginsYamlWriter).toConstantValue(cheTheiaPluginsYamlWriter);
-    container.bind(CheTheiaPluginsYamlGenerator).toConstantValue(cheTheiaPluginsYamlGenerator);
-    container.bind(ChePluginsAnalyzer).toConstantValue(chePluginsAnalyzer);
     container.bind(ChePluginsMetaYamlGenerator).toConstantValue(chePluginsMetaYamlGenerator);
     container.bind(CheEditorsAnalyzer).toConstantValue(cheEditorsAnalyzer);
     container.bind(CheEditorsMetaYamlGenerator).toConstantValue(cheEditorMetaYamlGenerator);
@@ -241,8 +159,6 @@ describe('Test Build', () => {
   });
 
   test('basics', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    // no id, so it will be computed
 
     const packageJson: any = {
       publisher: 'foobar-Publisher',
@@ -252,17 +168,7 @@ describe('Test Build', () => {
     vsixUrlAnalyzerAnalyzeMock.mockImplementation((vsixInfo: any) => {
       vsixInfo.packageJson = packageJson;
     });
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    const chePluginYaml = await buildChePluginYaml();
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [chePluginYaml],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
+    
     const cheEditorPluginYaml = await buildCheEditorYaml();
     const cheEditorsYaml: CheEditorsYaml = {
       editors: [cheEditorPluginYaml],
@@ -276,177 +182,21 @@ describe('Test Build', () => {
     await build.build();
     expect(chePluginsMetaYamlGenerator.compute).toHaveBeenCalled();
     expect(cheEditorMetaYamlGenerator.compute).toHaveBeenCalled();
-    expect(cheTheiaPluginsMetaYamlGenerator.compute).toHaveBeenCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     // computed id should be all lowercase
     expect(computeCall[0][0].id).toBe('foobar-publisher/acustomname');
 
-    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
     expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
     expect(featuredAnalyzer.generate).toHaveBeenCalled();
     expect(featuredWriter.writeReport).toHaveBeenCalled();
     expect(recommendationsAnalyzer.generate).toHaveBeenCalled();
-    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
     expect(externalImagesWriter.write).toHaveBeenCalled();
     expect(metaYamlWriter.write).toHaveBeenCalled();
     expect(indexWriter.write).toHaveBeenCalled();
-    expect(cheTheiaPluginsYamlWriter.write).toHaveBeenCalled();
-    expect(cheTheiaPluginsYamlGenerator.compute).toHaveBeenCalled();
     expect(digestImagesHelper.updateImages).toHaveBeenCalled();
   });
 
-  test('basics without package.json', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
-  });
-
-  test('basics with no extensions', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    delete (cheTheiaPluginYaml as any).extensions;
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
-    const cheEditorsYaml: CheEditorsYaml = {
-      editors: [],
-    };
-    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
-  });
-
-  test('basics with empty vsixInfos', async () => {
-    const analyzeCheTheiaPluginSpy = jest.spyOn(build, 'analyzeCheTheiaPlugin');
-    analyzeCheTheiaPluginSpy.mockImplementation(async (cheTheiaPlugin: CheTheiaPluginAnalyzerMetaInfo) =>
-      cheTheiaPlugin.vsixInfos.clear()
-    );
-
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
-    const cheEditorsYaml: CheEditorsYaml = {
-      editors: [],
-    };
-    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
-
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    await expect(build.build()).rejects.toThrow('Unable to find a package.json file for extension');
-  });
-
-  test('basics without publisher', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    // no id, so it will be computed
-    const packageJson: any = {
-      name: 'ACuStOmName',
-    };
-
-    vsixUrlAnalyzerAnalyzeMock.mockImplementation((vsixInfo: any) => {
-      vsixInfo.packageJson = packageJson;
-    });
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
-    const cheEditorsYaml: CheEditorsYaml = {
-      editors: [],
-    };
-    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    await expect(build.build()).rejects.toThrow('Unable to find a publisher field in package.json file for extension');
-  });
-
-  test('basics without name', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    // no id, so it will be computed
-    const packageJson: any = {
-      publisher: 'ACuStOmName',
-    };
-
-    vsixUrlAnalyzerAnalyzeMock.mockImplementation((vsixInfo: any) => {
-      vsixInfo.packageJson = packageJson;
-    });
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
-    const cheEditorsYaml: CheEditorsYaml = {
-      editors: [],
-    };
-    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
-    await expect(build.build()).rejects.toThrow('Unable to find a name field in package.json file for extension');
-  });
-
-  test('basics without extension', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    delete (cheTheiaPluginYaml as any).extension;
-
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
-    const cheEditorsYaml: CheEditorsYaml = {
-      editors: [],
-    };
-    cheEditorsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheEditorsYaml);
-    await expect(build.build()).rejects.toThrow('does not have mandatory extension field');
-  });
-
   test('basics with id', async () => {
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    cheTheiaPluginYaml.id = 'my/id';
-
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    const chePluginYaml = await buildChePluginYaml();
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [chePluginYaml],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
-
     const cheEditorPluginYaml = await buildCheEditorYaml();
     const cheEditorsYaml: CheEditorsYaml = {
       editors: [cheEditorPluginYaml],
@@ -457,16 +207,12 @@ describe('Test Build', () => {
     metaYamlEditorGeneratorComputeMock.mockResolvedValueOnce([]);
     metaYamlPluginsGeneratorComputeMock.mockResolvedValueOnce([]);
     await build.build();
-    expect(cheTheiaPluginsMetaYamlGenerator.compute).toHaveBeenCalled();
     const computeCall = metaYamlGeneratorComputeMock.mock.calls[0];
     expect(computeCall[0][0].id).toBe('my/id');
 
-    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
     expect(vsixUrlAnalyzer.analyze).toHaveBeenCalled();
     expect(featuredAnalyzer.generate).toHaveBeenCalled();
     expect(featuredWriter.writeReport).toHaveBeenCalled();
-    expect(recommendationsAnalyzer.generate).toHaveBeenCalled();
-    expect(recommendationsWriter.writeRecommendations).toHaveBeenCalled();
     expect(externalImagesWriter.write).toHaveBeenCalled();
     expect(metaYamlWriter.write).toHaveBeenCalled();
     expect(indexWriter.write).toHaveBeenCalled();
@@ -513,8 +259,6 @@ describe('Test Build', () => {
     // force to refresh the singleton
     container.rebind(Build).toSelf().inSingletonScope();
     build = container.get(Build);
-    const cheTheiaPluginYaml = await buildCheMetaPluginYaml();
-    // no id, so it will be computed
 
     const packageJson: any = {
       publisher: 'foobar-Publisher',
@@ -524,16 +268,6 @@ describe('Test Build', () => {
     vsixUrlAnalyzerAnalyzeMock.mockImplementation((vsixInfo: any) => {
       vsixInfo.packageJson = packageJson;
     });
-    const cheTheiaPluginsYaml: CheTheiaPluginsYaml = {
-      plugins: [cheTheiaPluginYaml],
-    };
-    cheTheiaPluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(cheTheiaPluginsYaml);
-
-    const chePluginYaml = await buildChePluginYaml();
-    const chePluginsYaml: ChePluginsYaml = {
-      plugins: [chePluginYaml],
-    };
-    chePluginsAnalyzerAnalyzeMock.mockResolvedValueOnce(chePluginsYaml);
 
     const cheEditorPluginYaml = await buildCheEditorYaml();
     const cheEditorsYaml: CheEditorsYaml = {

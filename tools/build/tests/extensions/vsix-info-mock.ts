@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2023 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -23,10 +23,10 @@ export function createVsixInfo(): VsixInfo {
   };
   const aliases: string[] = [];
 
-  const cheTheiaPlugin = { id, extension, aliases, repository, sidecar, featured, vsixInfos };
+  const fakePlugin = { id, extension, aliases, repository, sidecar, featured, vsixInfos };
   const vsixInfoToAnalyze: VsixInfo = {
     uri: 'my-fake.vsix',
-    cheTheiaPlugin,
+    fakePlugin,
   };
   return vsixInfoToAnalyze;
 }

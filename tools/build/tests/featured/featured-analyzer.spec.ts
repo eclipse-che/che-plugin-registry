@@ -10,8 +10,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
 
-import { CheTheiaPluginGenerator } from '../packages/che-theia-plugins-generator';
-import { CheTheiaPluginMetaInfo } from '../../src/build';
 import { Container } from 'inversify';
 import { FeaturedAnalyzer } from '../../src/featured/featured-analyzer';
 
@@ -19,11 +17,8 @@ describe('Test Featured', () => {
   let container: Container;
 
   let featuredAnalyzer: FeaturedAnalyzer;
-  let cheTheiaPlugins: CheTheiaPluginMetaInfo[];
 
   beforeEach(async () => {
-    const generator = new CheTheiaPluginGenerator();
-    cheTheiaPlugins = await generator.generate();
     jest.restoreAllMocks();
     jest.resetAllMocks();
     container = new Container();
@@ -32,14 +27,6 @@ describe('Test Featured', () => {
   });
 
   test('basics', async () => {
-    const result = await featuredAnalyzer.generate(cheTheiaPlugins);
-    expect(result).toBeDefined();
-
-    expect(result.version).toBe('1.0.0');
-    const items = result.featured;
-    expect(items).toBeDefined();
-    expect(items.length).toBe(4);
-
     // only vscode-java is interesting, other one are fake one
     const vscodeJavaItem = items[0];
 

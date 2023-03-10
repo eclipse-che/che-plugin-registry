@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2023 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -8,14 +8,11 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
-import { CheTheiaPluginAnalyzerMetaInfo } from '../che-theia-plugin/che-theia-plugin-analyzer-meta-info';
-
 /**
  * Describe information about a vsix
  */
 export interface VsixInfo {
   uri: string;
-  cheTheiaPlugin: CheTheiaPluginAnalyzerMetaInfo;
   downloadedArchive?: string;
   unpackedArchive?: string;
   creationDate?: string;

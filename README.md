@@ -43,7 +43,7 @@ will force the build to use `buildah`. If `BUILDER` is not specified, the script
 
 ### Offline and airgapped registry images
 
-Using the `--offline` option in `build.sh` will build the registry to contain all referenced extension artifacts (i.e. all `.theia` and `.vsix` archives). The offline version of the plugin registry is useful in network-limited scenarios, as it avoids the need to download plugin extensions from the outside internet.
+Using the `--offline` option in `build.sh` will build the registry to contain all referenced extension artifacts (i.e. all `.vsix` archives). The offline version of the plugin registry is useful in network-limited scenarios, as it avoids the need to download plugin extensions from the outside internet.
 
 ## Deploy the registry to OpenShift
 
@@ -91,7 +91,7 @@ apiVersion:            # plugin meta.yaml API version -- v2; v1 supported for ba
 publisher:             # publisher name; must match [-a-z0-9]+
 name:                  # plugin name; must match [-a-z0-9]+
 version:               # plugin version; must match [-.a-z0-9]+
-type:                  # plugin type; e.g. "Theia plugin", "Che Editor"
+type:                  # plugin type; e.g. "Che Editor"
 displayName:           # name shown in user dashboard
 title:                 # plugin title
 description:           # short description of plugin's purpose
@@ -188,10 +188,9 @@ spec:                  # spec (used to be che-plugin.yaml)
   workspaceEnv:        # optional; env vars for the workspace
     - name:
       value:
-  extensions:            # optional; required for VS Code/Theia plugins; list of urls to plugin artifacts (.vsix/.theia files) -- examples follow
+  extensions:            # optional; required for VS Code plugins; list of urls to plugin artifacts (.vsix/ files) -- examples follow
     - https://github.com/Azure/vscode-kubernetes-tools/releases/download/0.1.17/vscode-kubernetes-tools-0.1.17.vsix # example
     - vscode:extension/redhat.vscode-xml # example
-    - https://github.com/redhat-developer/omnisharp-theia-plugin/releases/download/v0.0.1/omnisharp_theia_plugin.theia # example
     - relative:extension/resources/java-0.46.0-1549.vsix # example; see [4]
 ```
 
@@ -268,116 +267,90 @@ Response:
 ]
 ```
 
-## Get meta.yaml of a plugin
+## Get devfile.yaml of a plugin
 
 Example:
 
 ```bash
-curl  "http://localhost:8080/v3/plugins/eclipse/che-theia/latest/meta.yaml"
+curl -sSlkO "http://devspaces.apps.mycluster.com/plugin-registry/v3/plugins/che-incubator/che-code/latest/devfile.yaml"
 ```
 
 Response:
 
 ```yaml
-apiVersion: v2
-publisher: eclipse
-name: che-theia
-version: latest
-type: Che Editor
-displayName: Eclipse Theia
-title: Eclipse Theia for Eclipse Che
-description: Eclipse Theia for Eclipse Che
-icon: /images/default.png
-category: Editor
-repository: https://github.com/eclipse-che/che-theia
-firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2022-11-15'
-spec:
-  endpoints:
-    - name: theia
-      targetPort: 3100
-      attributes:
-        type: ide
-        cookiesAuthEnabled: true
-        discoverable: false
-        urlRewriteSupported: true
-        protocol: http
-        secure: true
-      public: true
-    - name: webviews
-      targetPort: 3100
-      attributes:
-        type: webview
-        cookiesAuthEnabled: true
-        discoverable: false
-        unique: true
-        urlRewriteSupported: true
-        protocol: http
-        secure: true
-      public: true
-    - name: mini-browser
-      targetPort: 3100
-      attributes:
-        type: mini-browser
-        cookiesAuthEnabled: true
-        discoverable: false
-        unique: true
-        urlRewriteSupported: true
-        protocol: http
-        secure: true
-      public: true
-    - name: theia-dev
-      targetPort: 3130
-      attributes:
-        type: ide-dev
-        discoverable: false
-        urlRewriteSupported: true
-        protocol: http
-      public: true
-    - name: theia-redirect-1
-      targetPort: 13131
-      attributes:
-        discoverable: false
-        urlRewriteSupported: true
-        protocol: http
-      public: true
-    - name: theia-redirect-2
-      targetPort: 13132
-      attributes:
-        discoverable: false
-        urlRewriteSupported: true
-        protocol: http
-      public: true
-    - name: theia-redirect-3
-      targetPort: 13133
-      attributes:
-        discoverable: false
-        urlRewriteSupported: true
-        protocol: http
-      public: true
-    - name: terminal
-      targetPort: 3333
-      attributes:
-        type: collocated-terminal
-        discoverable: false
-        cookiesAuthEnabled: true
-        urlRewriteSupported: true
-        protocol: ws
-        secure: true
-      public: true
-  containers:
-    - image: quay.io/eclipse/che-machine-exec@sha256:7b1ca4c11bc213a5c782f6870ed7314d7281b2ae38d460abfb10d72a4a10828f
-      memoryLimit: 128Mi
+schemaVersion: 2.1.0
+metadata:
+  name: che-code
+commands:
+  - id: init-container-command
+    apply:
+      component: che-code-injector
+events:
+  preStart:
+    - init-container-command
+components:
+  - name: che-code-runtime-description
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:b5bce679581d79023180ed446f5fa6307639cf73202725bb4fda18c488dfc557
+      command:
+        - /checode/entrypoint-volume.sh
+      volumeMounts:
+        - name: checode
+          path: /checode
+      memoryLimit: 1024Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+      endpoints:
+        - name: che-code
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: code-redirect-1
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+          targetPort: 13131
+          exposure: public
+          protocol: http
+        - name: code-redirect-2
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+          targetPort: 13132
+          exposure: public
+          protocol: http
+        - name: code-redirect-3
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+          targetPort: 13133
+          exposure: public
+          protocol: http
+    attributes:
+      app.kubernetes.io/component: che-code-runtime
+      app.kubernetes.io/part-of: che-code.eclipse.org
+      controller.devfile.io/container-contribution: true
+  - name: checode
+    volume: {}
+  - name: che-code-injector
+    container:
+      image: registry.redhat.io/devspaces/code-rhel8@sha256:debc18de31a6b3b575e42cc485f6c2241ee4d3d6988fad4e4e9837edba24f89f
+      command:
+        - /entrypoint-init-container.sh
+      volumeMounts:
+        - name: checode
+          path: /checode
+      memoryLimit: 256Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
-      command:
-        - /go/bin/che-machine-exec
-        - '--url'
-        - 127.0.0.1:3333
-      name: che-machine-exec
-      ports:
-        - exposedPort: 3333
 ```
 
 # Builds

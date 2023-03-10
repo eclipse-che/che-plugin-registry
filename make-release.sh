@@ -1,6 +1,6 @@
 #!/bin/bash
 # Release process automation script. 
-# Used to create branch/tag, update VERSION files, create new che-theia and machine-exec plugins,
+# Used to create branch/tag, update VERSION files, create new machine-exec plugins,
 # and and trigger release by force pushing changes to the release branch 
 
 # set to 1 to actually trigger changes in the release branch

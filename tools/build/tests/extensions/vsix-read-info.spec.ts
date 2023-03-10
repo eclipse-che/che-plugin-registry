@@ -57,28 +57,6 @@ describe('Test VsixReadInfo', () => {
     expect(readFileSpy).toHaveBeenCalledTimes(1);
   });
 
-  test('basics theia', async () => {
-    expect(vsixInfoToAnalyze.packageJson).toBeUndefined();
-    vsixInfoToAnalyze.unpackedArchive = 'my-plugin.theia';
-    vsixInfoToAnalyze.unpackedExtensionRootDir = '/fake-root-dir';
-    const pathExistSpy = jest.spyOn(fs, 'pathExists') as jest.Mock;
-    pathExistSpy.mockResolvedValueOnce(true);
-
-    // no nls file
-    pathExistSpy.mockResolvedValueOnce(false);
-
-    const jsonString = '{"activationEvents": ["my-activation1", "my-activation2"]}';
-    const readFileSpy = jest.spyOn(fs, 'readFile') as jest.Mock;
-    readFileSpy.mockResolvedValueOnce(jsonString);
-    await vsixReadInfo.read(vsixInfoToAnalyze);
-    expect(vsixInfoToAnalyze.packageJson).toBeDefined();
-    expect((vsixInfoToAnalyze.packageJson as any).activationEvents).toStrictEqual(['my-activation1', 'my-activation2']);
-
-    // only once
-    expect(readFileSpy).toHaveBeenCalledTimes(1);
-    expect(pathExistSpy).toHaveBeenCalledTimes(1);
-  });
-
   test('basics with nls', async () => {
     expect(vsixInfoToAnalyze.packageJson).toBeUndefined();
     vsixInfoToAnalyze.unpackedArchive = 'my-plugin.vsix';
@@ -106,18 +84,6 @@ describe('Test VsixReadInfo', () => {
     expect(pathExistSpy).toHaveBeenCalledTimes(2);
     // nls so two times
     expect(readFileSpy).toHaveBeenCalledTimes(2);
-  });
-
-  test('path does not exists', async () => {
-    expect(vsixInfoToAnalyze.packageJson).toBeUndefined();
-    vsixInfoToAnalyze.unpackedArchive = 'my-plugin.theia';
-    vsixInfoToAnalyze.unpackedExtensionRootDir = '/fake-root-dir';
-
-    const pathExistSpy = jest.spyOn(fs, 'pathExists') as jest.Mock;
-    pathExistSpy.mockResolvedValue(false);
-    await expect(vsixReadInfo.read(vsixInfoToAnalyze)).rejects.toThrow(
-      `Unable to find package.json file from vsix ${vsixInfoToAnalyze.uri}`
-    );
   });
 
   test('missing unpackedExtensionRootDir', async () => {

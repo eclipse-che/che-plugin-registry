@@ -42,8 +42,6 @@ export class VsixUnpack {
     let rootDir: string;
     if (vsixInfo.uri.endsWith('.vsix')) {
       rootDir = path.resolve(destFolder, 'extension');
-    } else if (vsixInfo.uri.endsWith('.theia')) {
-      rootDir = path.resolve(destFolder);
     } else {
       throw new Error(`Unknown URI format for uri ${vsixInfo.uri}`);
     }

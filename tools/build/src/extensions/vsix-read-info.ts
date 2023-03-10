@@ -25,7 +25,6 @@ export class VsixReadInfo {
       throw new Error("Cannot read something in unpacked vsix as it's not unpacked.");
     }
 
-    // theia plugin or vscode vsix ?
     if (!vsixInfo.unpackedExtensionRootDir) {
       throw new Error("Cannot read something in unpacked vsix as it's not unpacked correctly.");
     }

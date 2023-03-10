@@ -58,45 +58,13 @@ describe('Test VsixUnpack', () => {
     expect(call[1]).toBe(unpackedDirShouldBe);
   });
 
-  test('basics theia', async () => {
-    vsixInfoToAnalyze.uri = 'my-fake-plugin.theia';
-    const downloadedArchiveName = '/fake/my-fake-plugin.theia';
-    const unpackedDirShouldBe = '/foo-unpack/my-fake-plugin.theia';
-    expect(vsixInfoToAnalyze.unpackedArchive).toBeUndefined();
-    vsixInfoToAnalyze.downloadedArchive = downloadedArchiveName;
-
-    const pathExistSpy = jest.spyOn(fs, 'pathExists') as jest.Mock;
-    pathExistSpy.mockResolvedValue(false);
-
-    const statSpy = jest.spyOn(fs, 'stat') as jest.Mock;
-    statSpy.mockResolvedValue({ mtime: new Date() });
-
-    await vsixUnpack.unpack(vsixInfoToAnalyze);
-    expect(vsixInfoToAnalyze.unpackedArchive).toBe(unpackedDirShouldBe);
-    expect(decompress).toHaveBeenCalled();
-    const call = (decompress as jest.Mock).mock.calls[0];
-    expect(call[0]).toBe(downloadedArchiveName);
-    expect(call[1]).toBe(unpackedDirShouldBe);
-  });
-
-  test('already downloaded', async () => {
-    vsixInfoToAnalyze.downloadedArchive = 'my-plugin.theia';
-
-    const pathExistSpy = jest.spyOn(fs, 'pathExists') as jest.Mock;
-    pathExistSpy.mockResolvedValue(true);
-    const statSpy = jest.spyOn(fs, 'stat') as jest.Mock;
-    statSpy.mockResolvedValue({ mtime: new Date() });
-    await vsixUnpack.unpack(vsixInfoToAnalyze);
-    expect(decompress).toHaveBeenCalledTimes(0);
-  });
-
   test('not unpacked', async () => {
     await expect(vsixUnpack.unpack(vsixInfoToAnalyze)).rejects.toThrow(
       'Cannot unpack a vsix as it is not yet downloaded.'
     );
   });
 
-  test('not a vsix or theia plugin', async () => {
+  test('not a vsix file', async () => {
     vsixInfoToAnalyze.uri = 'my-fake-plugin.unknown';
     const downloadedArchiveName = '/fake/my-fake-plugin.unknown';
     expect(vsixInfoToAnalyze.unpackedArchive).toBeUndefined();
