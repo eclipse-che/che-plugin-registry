@@ -10,7 +10,7 @@ icon: /images/atlassian-atlascode-icon.png
 category: Other
 repository: https://bitbucket.org/atlassianlabs/atlascode.git
 firstPublicationDate: '2021-03-24'
-latestUpdateDate: '2023-03-09'
+latestUpdateDate: '2023-03-10'
 spec:
   extensions:
     - https://open-vsx.org/api/atlassian/atlascode/2.8.6/file/atlassian.atlascode-2.8.6.vsix
