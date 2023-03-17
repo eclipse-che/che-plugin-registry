@@ -74,6 +74,14 @@ export class CheEditorsMetaYamlGenerator {
           spec.initContainers.push(...containers.initContainers);
         }
 
+        if (cheEditor.commands) {
+          spec.commands = cheEditor.commands;
+        }
+
+        if (cheEditor.events) {
+          spec.events = cheEditor.events;
+        }
+
         return {
           id: metaId,
           disableLatest,
