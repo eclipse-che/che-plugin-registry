@@ -116,16 +116,28 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(remoteEndpointVolumeComponent.volume.ephemeral).toBeTruthy();
 
     expect(devfileYaml.commands).toBeDefined();
-    expect(devfileYaml.commands?.length).toBe(1);
+    expect(devfileYaml.commands?.length).toBe(2);
+
     const devfileFirstCommand = devfileYaml.commands[0];
     expect(devfileFirstCommand.id).toBe('init-container-command');
     expect(devfileFirstCommand.apply).toStrictEqual({ component: 'remote-runtime-injector' });
+
+    const devfileSecondCommand = devfileYaml.commands[1];
+    expect(devfileSecondCommand.id).toBe('init-editor-command');
+    expect(devfileSecondCommand.exec).toStrictEqual({
+      component: 'editor-runtime-description',
+      commandLine: 'entrypoint-volume.sh',
+    });
 
     expect(devfileYaml.events).toBeDefined();
     expect(devfileYaml.events.preStart).toBeDefined();
     expect(devfileYaml.events?.preStart?.length).toBe(1);
     const preStartFirstEvent = devfileYaml.events.preStart[0];
     expect(preStartFirstEvent).toBe('init-container-command');
+
+    const postStartEvent = devfileYaml.events.postStart;
+    expect(postStartEvent).toBeDefined();
+    expect(postStartEvent[0]).toBe('init-editor-command');
   });
 
   test('che-theia with multiple volumes which have identical name', async () => {
