@@ -60,7 +60,7 @@
     "@types/jest": "^27.5.0",
     "@types/js-yaml": "^4.0.3",
     "@types/semver": "^7.3.13",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
