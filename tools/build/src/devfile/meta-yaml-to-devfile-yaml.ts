@@ -167,6 +167,16 @@ export class MetaYamlToDevfileYaml {
       components[0].container.endpoints = endpoints;
     }
 
+    const metaYamlCommands = metaYamlSpec.commands;
+    if (metaYamlCommands && metaYamlCommands.length > 0) {
+      devfileYaml.commands = metaYamlCommands;
+    }
+
+    const metaYamlEvents = metaYamlSpec.events;
+    if (metaYamlEvents) {
+      devfileYaml.events = metaYamlEvents;
+    }
+
     if (metaYamlSpec.initContainers && metaYamlSpec.initContainers.length === 1) {
       // handle only one container from meta.yaml
       const initContainer = metaYamlSpec.initContainers[0];
@@ -174,21 +184,26 @@ export class MetaYamlToDevfileYaml {
       const componentsFromContainer: any[] = this.componentsFromContainer(initContainer);
 
       // add a command
-      const commands = devfileYaml.commands || [];
-      commands.push({
-        id: 'init-container-command',
-        apply: {
-          component: componentsFromContainer[0].name,
-        },
-      });
-      devfileYaml.commands = commands;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const commands: any[] = devfileYaml.commands || [];
+      if (commands.findIndex(command => command.id === 'init-container-command') < 0) {
+        commands.push({
+          id: 'init-container-command',
+          apply: {
+            component: componentsFromContainer[0].name,
+          },
+        });
+        devfileYaml.commands = commands;
+      }
 
       // add event
       const events = devfileYaml.events || {};
-      const preStartEvents = events.preStart || [];
-      preStartEvents.push('init-container-command');
-      events.preStart = preStartEvents;
-      devfileYaml.events = events;
+      const preStartEvents: string[] = events.preStart || [];
+      if (preStartEvents.findIndex(event => event === 'init-container-command') < 0) {
+        events.preStart = preStartEvents;
+        preStartEvents.push('init-container-command');
+        devfileYaml.events = events;
+      }
       components = components.concat(componentsFromContainer);
     }
 

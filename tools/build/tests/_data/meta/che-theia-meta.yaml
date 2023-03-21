@@ -124,3 +124,16 @@ spec:
         - name: remote-endpoint
           mountPath: /remote-endpoint
           ephemeral: true
+  events:
+      preStart:
+        - init-container-command
+      postStart:
+        - init-editor-command
+  commands:
+      - id: init-container-command
+        apply:
+          component: remote-runtime-injector
+      - id: init-editor-command
+        exec:
+          component: editor-runtime-description
+          commandLine: 'entrypoint-volume.sh'
