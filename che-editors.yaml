@@ -718,15 +718,19 @@ editors:
       - id: init-container-command
         apply:
           component: che-pycharm-injector
+      - id: init-che-pycharm-command
+        exec:
+          component: che-pycharm-runtime-description
+          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &'
     events:
       preStart:
         - init-container-command
+      postStart:
+        - init-che-pycharm-command
     components:
       - name: che-pycharm-runtime-description
         container:
           image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
-          command:
-            - /projector/entrypoint-volume.sh
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
@@ -819,15 +823,19 @@ editors:
       - id: init-container-command
         apply:
           component: che-pycharm-injector
+      - id: init-che-pycharm-command
+        exec:
+          component: che-pycharm-runtime-description
+          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &'
     events:
       preStart:
         - init-container-command
+      postStart:
+        - init-che-pycharm-command
     components:
       - name: che-pycharm-runtime-description
         container:
           image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
-          command:
-            - /projector/entrypoint-volume.sh
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
