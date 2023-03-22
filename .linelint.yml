@@ -1,2 +1,11 @@
 ignore:
   - .yarn/
+
+rules:
+  # checks if file ends in a newline character
+  end-of-file:
+    # set to true to enable this rule
+    enable: true
+
+    # set to true to disable autofix (if enabled globally)
+    disable-autofix: false
