@@ -10,7 +10,7 @@ icon: /images/redhat-mta-vscode-extension-icon.png
 category: Other
 repository: https://github.com/windup/rhamt-vscode-extension
 firstPublicationDate: '2021-02-16'
-latestUpdateDate: '2023-03-21'
+latestUpdateDate: '2023-03-22'
 spec:
   containers:
     - image: quay.io/windupeng/mta-vscode-extension@sha256:61a897972980458954d5ae5a50053aa8d050b065efff6cbe748dac2ab22f46bf
