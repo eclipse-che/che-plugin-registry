@@ -344,9 +344,15 @@ editors:
       - id: init-container-command
         apply:
           component: che-code-injector
+      - id: init-che-code-command
+        exec:
+          component: che-code-runtime-description
+          commandLine: 'nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &'
     events:
       preStart:
         - init-container-command
+      postStart:
+        - init-che-code-command
     components:
       - name: che-code-injector
         container:
@@ -366,8 +372,6 @@ editors:
           memoryRequest: 256Mi
           cpuLimit: 500m
           cpuRequest: 30m
-          command:
-            - /checode/entrypoint-volume.sh
           volumeMounts:
             - name: checode
               path: /checode
@@ -426,9 +430,15 @@ editors:
       - id: init-container-command
         apply:
           component: che-code-injector
+      - id: init-che-code-command
+        exec:
+          component: che-code-runtime-description
+          commandLine: 'nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &'
     events:
       preStart:
         - init-container-command
+      postStart:
+        - init-che-code-command
     components:
       - name: che-code-injector
         container:
@@ -448,8 +458,6 @@ editors:
           memoryRequest: 256Mi
           cpuLimit: 500m
           cpuRequest: 30m
-          command:
-            - /checode/entrypoint-volume.sh
           volumeMounts:
             - name: checode
               path: /checode
