@@ -59,7 +59,7 @@ export class RegistryHelper {
     // grab image name and tag
     const dockerImageName = parse(imageName);
 
-    // do not use digest on nightlies/next, latest
+    // do not use digest on nightlies/next
     if (dockerImageName.tag === 'nightly' || dockerImageName.tag === 'next' || dockerImageName.tag === 'insiders') {
       return imageName;
     }
