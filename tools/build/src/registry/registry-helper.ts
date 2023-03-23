@@ -60,12 +60,7 @@ export class RegistryHelper {
     const dockerImageName = parse(imageName);
 
     // do not use digest on nightlies/next, latest
-    if (
-      dockerImageName.tag === 'nightly' ||
-      dockerImageName.tag === 'next' ||
-      dockerImageName.tag === 'insiders' ||
-      dockerImageName.tag === 'latest'
-    ) {
+    if (dockerImageName.tag === 'nightly' || dockerImageName.tag === 'next' || dockerImageName.tag === 'insiders') {
       return imageName;
     }
     // do not grab digest of an image that is being published (if tag contains the current sha1)
