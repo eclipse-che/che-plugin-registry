@@ -5,15 +5,19 @@ commands:
   - id: init-container-command
     apply:
       component: che-idea-injector
+  - id: init-che-idea-command
+    exec:
+      component: che-idea-runtime-description
+      commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
 events:
   preStart:
     - init-container-command
+  postStart:
+    - init-che-idea-command
 components:
   - name: che-idea-runtime-description
     container:
       image: quay.io/devfile/universal-developer-image@sha256:49986fed7f4e2555a154c856795c689b8367206b63ec37426fe2c8e43f5630e4
-      command:
-        - /projector/entrypoint-volume.sh
       env:
         - name: PROJECTOR_ASSEMBLY_DIR
           value: /projector
