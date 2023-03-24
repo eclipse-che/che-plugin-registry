@@ -131,7 +131,7 @@ editors:
               path: /plugins
             - name: remote-endpoint
               path: /remote-endpoint
-          image: "quay.io/devfile/universal-developer-image:ubi8-13008af"
+          image: "quay.io/devfile/universal-developer-image:latest"
       - name: plugins
         volume: {}
       - name: theia-local
@@ -368,7 +368,7 @@ editors:
           cpuRequest: 30m
       - name: che-code-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-13008af'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           memoryLimit: 1024Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -455,7 +455,7 @@ editors:
           cpuRequest: 30m
       - name: che-code-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-13008af'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           memoryLimit: 1024Mi
           memoryRequest: 256Mi
           cpuLimit: 500m
@@ -530,7 +530,7 @@ editors:
     components:
       - name: che-idea-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
@@ -635,7 +635,7 @@ editors:
     components:
       - name: che-idea-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
@@ -740,7 +740,7 @@ editors:
     components:
       - name: che-pycharm-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
@@ -845,7 +845,7 @@ editors:
     components:
       - name: che-pycharm-runtime-description
         container:
-          image: 'quay.io/devfile/universal-developer-image:ubi8-9436df2'
+          image: 'quay.io/devfile/universal-developer-image:latest'
           env:
             - name: PROJECTOR_ASSEMBLY_DIR
               value: /projector
