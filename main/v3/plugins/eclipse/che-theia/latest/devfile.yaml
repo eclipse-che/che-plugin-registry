@@ -111,7 +111,7 @@ components:
     volume: {}
   - name: theia-ide-contributions
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:d1709bbdfa076474f58f796026a2ed2dd3b24fea7e51ce2cc984e729663ff62c
+      image: quay.io/devfile/universal-developer-image@sha256:80fdd1ae37d3b9e0260d9c66b4ff12e35317c31243eabeea5212d98c537a3ba9
       args:
         - sh
         - '-c'

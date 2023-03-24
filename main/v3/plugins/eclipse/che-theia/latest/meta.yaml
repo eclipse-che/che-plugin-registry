@@ -10,7 +10,7 @@ icon: /images/default.png
 category: Editor
 repository: https://github.com/eclipse-che/che-theia
 firstPublicationDate: '2019-03-07'
-latestUpdateDate: '2023-03-23'
+latestUpdateDate: '2023-03-24'
 spec:
   endpoints:
     - name: theia
@@ -121,7 +121,7 @@ spec:
         - name: THEIA_PLUGINS
           value: local-dir:///plugins/sidecars/tools
       memoryLimit: 512Mi
-      image: quay.io/devfile/universal-developer-image@sha256:d1709bbdfa076474f58f796026a2ed2dd3b24fea7e51ce2cc984e729663ff62c
+      image: quay.io/devfile/universal-developer-image@sha256:80fdd1ae37d3b9e0260d9c66b4ff12e35317c31243eabeea5212d98c537a3ba9
       volumes:
         - name: plugins
           mountPath: /plugins
