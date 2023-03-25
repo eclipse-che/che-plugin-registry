@@ -10,7 +10,7 @@ icon: /images/jebbs-plantuml-icon.png
 category: Programming Languages
 repository: https://github.com/qjebbs/vscode-plantuml.git
 firstPublicationDate: '2021-01-28'
-latestUpdateDate: '2023-03-24'
+latestUpdateDate: '2023-03-25'
 spec:
   containers:
     - image: quay.io/eclipse/che-plugin-sidecar@sha256:bb404ffaa12565beb12b4cd8160cfa3ff3ef3be420430a6562f1fe48639cbf1f
