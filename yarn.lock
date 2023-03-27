@@ -892,7 +892,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@eclipse-che/plugin-registry-generator@workspace:tools/build"
   dependencies:
-    "@types/decompress": ^4.2.4
     "@types/fs-extra": ^11.0.1
     "@types/glob": ^8.1.0
     "@types/jest": ^27.5.0
@@ -1487,15 +1486,6 @@ __metadata:
   dependencies:
     "@babel/types": ^7.3.0
   checksum: 4e86b3d0ee9fe19bd7e1b523b71ed7cbef0f0fe37158970ef1e6c22da218fef05f79e79b07f2c10dc9bbe3ea9fb7e69dfce9761aff16fb10e891d14cac6d66d4
-  languageName: node
-  linkType: hard
-
-"@types/decompress@npm:^4.2.4":
-  version: 4.2.4
-  resolution: "@types/decompress@npm:4.2.4"
-  dependencies:
-    "@types/node": "*"
-  checksum: e47960f863148ef3afe9060a0c8dfd11d671322a47a341a3bd7128bbdea5b57c10117d76db0cfebf533b695ca81a4ffd4a3e6f338a149a5547052d4f63af9f76
   languageName: node
   linkType: hard
 
