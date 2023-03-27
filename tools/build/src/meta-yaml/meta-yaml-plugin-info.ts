@@ -8,19 +8,17 @@
  * SPDX-License-Identifier: EPL-2.0
  ***********************************************************************/
 
-import { VsixCategory, VsixInfo } from '../extensions/vsix-info';
-
 export interface MetaYamlPluginInfo {
   id: string;
   publisher: string;
   name: string;
   version: string;
-  type: 'VS Code extension' | 'Che Editor' | 'Che Plugin';
+  type: 'Che Editor';
   displayName: string;
   title: string;
   description: string;
   iconFile?: string;
-  category: VsixCategory | 'Editor';
+  category: 'Editor';
   repository: string;
   firstPublicationDate: string;
   latestUpdateDate: string;
@@ -34,6 +32,4 @@ export interface MetaYamlPluginInfo {
   };
   // do not write latest alias
   disableLatest?: boolean;
-
-  vsixInfos: Map<string, VsixInfo>;
 }

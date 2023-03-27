@@ -24,10 +24,6 @@ export class MetaYamlWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
-  @inject('boolean')
-  @named('EMBED_VSIX')
-  private embedVsix: boolean;
-
   @inject(MetaYamlToDevfileYaml)
   private metaYamlToDevfileYaml: MetaYamlToDevfileYaml;
 
@@ -74,31 +70,6 @@ export class MetaYamlWriter {
           icon = `/images/${destIconFileName}`;
         } else {
           icon = MetaYamlWriter.DEFAULT_ICON;
-        }
-
-        // copy vsix for offline storage
-        if (this.embedVsix) {
-          // need to write vsix file downloaded
-          if (plugin.spec && plugin.spec.extensions) {
-            await Promise.all(
-              plugin.spec.extensions.map(async (extension, index) => {
-                const vsixInfo = plugin.vsixInfos.get(extension);
-                if (vsixInfo && vsixInfo.downloadedArchive) {
-                  const directoryPattern = path
-                    .dirname(extension)
-                    .replace('http://', '')
-                    .replace('https://', '')
-                    .replace(/[^a-zA-Z0-9-/]/g, '_');
-                  const filePattern = path.basename(extension);
-                  const destFolder = path.join(resourcesFolder, directoryPattern);
-                  const destFile = path.join(destFolder, filePattern);
-                  await fs.ensureDir(destFolder);
-                  await fs.copyFile(vsixInfo.downloadedArchive, destFile);
-                  plugin.spec.extensions[index] = `relative:extension/resources/${directoryPattern}/${filePattern}`;
-                }
-              })
-            );
-          }
         }
 
         const displayName = plugin.displayName;

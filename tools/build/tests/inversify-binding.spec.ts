@@ -14,26 +14,14 @@ import * as fs from 'fs-extra';
 
 import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
 import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
-import { ChePluginsAnalyzer } from '../src/che-plugin/che-plugins-analyzer';
-import { ChePluginsMetaYamlGenerator } from '../src/che-plugin/che-plugins-meta-yaml-generator';
-import { CheTheiaPluginsAnalyzer } from '../src/che-theia-plugin/che-theia-plugins-analyzer';
-import { CheTheiaPluginsMetaYamlGenerator } from '../src/che-theia-plugin/che-theia-plugins-meta-yaml-generator';
 import { Container } from 'inversify';
 import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
 import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
-import { FeaturedAnalyzer } from '../src/featured/featured-analyzer';
-import { FeaturedWriter } from '../src/featured/featured-writer';
 import { IndexWriter } from '../src/meta-yaml/index-writer';
 import { InversifyBinding } from '../src/inversify-binding';
 import { MetaYamlToDevfileYaml } from '../src/devfile/meta-yaml-to-devfile-yaml';
 import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
-import { RecommendationsAnalyzer } from '../src/recommendations/recommendations-analyzer';
-import { RecommendationsWriter } from '../src/recommendations/recommendations-writer';
 import { RegistryHelper } from '../src/registry/registry-helper';
-import { VsixDownload } from '../src/extensions/vsix-download';
-import { VsixReadInfo } from '../src/extensions/vsix-read-info';
-import { VsixUnpack } from '../src/extensions/vsix-unpack';
-import { VsixUrlAnalyzer } from '../src/extensions/vsix-url-analyzer';
 
 describe('Test InversifyBinding', () => {
   const mockedArgv: string[] = ['dummy', 'dummy'];
@@ -53,10 +41,6 @@ describe('Test InversifyBinding', () => {
 
     expect(inversifyBinding).toBeDefined();
 
-    // check che-theia-plugin module
-    expect(container.get(CheTheiaPluginsAnalyzer)).toBeDefined();
-    expect(await container.getAsync(CheTheiaPluginsMetaYamlGenerator)).toBeDefined();
-
     // check devfile module
     expect(container.get(MetaYamlToDevfileYaml)).toBeDefined();
 
@@ -64,29 +48,11 @@ describe('Test InversifyBinding', () => {
     expect(container.get(CheEditorsAnalyzer)).toBeDefined();
     expect(container.get(CheEditorsMetaYamlGenerator)).toBeDefined();
 
-    // check extension module
-    expect(container.get(VsixDownload)).toBeDefined();
-    expect(container.get(VsixReadInfo)).toBeDefined();
-    expect(container.get(VsixUnpack)).toBeDefined();
-    expect(container.get(VsixUrlAnalyzer)).toBeDefined();
-
-    // check featured module
-    expect(container.get(FeaturedAnalyzer)).toBeDefined();
-    expect(container.get(FeaturedWriter)).toBeDefined();
-
     // check meta module
     expect(await container.getAsync(DigestImagesHelper)).toBeDefined();
     expect(container.get(IndexWriter)).toBeDefined();
     expect(container.get(MetaYamlWriter)).toBeDefined();
     expect(container.get(ExternalImagesWriter)).toBeDefined();
-
-    // check plugin module
-    expect(container.get(ChePluginsAnalyzer)).toBeDefined();
-    expect(container.get(ChePluginsMetaYamlGenerator)).toBeDefined();
-
-    // check recommendations module
-    expect(container.get(RecommendationsAnalyzer)).toBeDefined();
-    expect(container.get(RecommendationsWriter)).toBeDefined();
 
     // check registry module
     expect(await container.getAsync(RegistryHelper)).toBeDefined();

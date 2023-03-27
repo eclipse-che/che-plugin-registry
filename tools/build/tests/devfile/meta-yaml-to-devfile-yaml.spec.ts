@@ -170,14 +170,6 @@ describe('Test MetaYamlToDevfileYaml', () => {
     expect(componentContainer.image).toBe('quay.io/foobar:latest');
   });
 
-  test('vscode extension', async () => {
-    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'vscode-extension.yaml');
-    const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.load(metaYamlContent);
-    const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
-    expect(devfileYaml).toBeUndefined();
-  });
-
   test('container without endpoints', async () => {
     const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'container-no-endpoints.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
