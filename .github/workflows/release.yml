@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020-2021 Red Hat, Inc.
+# Copyright (c) 2020-2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -98,17 +98,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
-      - uses: actions/cache@v3
-        name: Cache vsix dependencies
-        id: download-unpacked-cache
-        with:
-          path: | 
-            /tmp/che-plugin-registry/download-folder
-            /tmp/che-plugin-registry/unpack-folder
-          key: download-unpacked-cache-${{ hashFiles('**/che-theia-plugins.yaml') }}
-          restore-keys: |
-            download-unpacked-cache-
 
       - name: Perform checkout & docker pull
         if: ${{ github.event.inputs.performRelease == 'false' }}
