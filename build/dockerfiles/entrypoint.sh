@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018-2021 Red Hat, Inc.
+# Copyright (c) 2018-2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -23,18 +23,17 @@ set -e
 REGISTRY=${CHE_SIDECAR_CONTAINERS_REGISTRY_URL}
 ORGANIZATION=${CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION}
 TAG=${CHE_SIDECAR_CONTAINERS_REGISTRY_TAG}
-INTERNAL_URL=${CHE_PLUGIN_REGISTRY_INTERNAL_URL}
 
 DEFAULT_METAS_DIR="/var/www/html/v3"
 METAS_DIR="${METAS_DIR:-${DEFAULT_METAS_DIR}}"
 
 # Regex used to break an image reference into groups:
 #   \1 - Whitespace and (optional) quotation preceding image reference
-#   \2 - Registry portion of image, e.g. (quay.io)/eclipse/che-theia:tag
-#   \3 - Organization portion of image, e.g. quay.io/(eclipse)/che-theia:tag
-#   \4 - Image name portion of image, e.g. quay.io/eclipse/(che-theia):tag
-#   \5 - Optional image digest identifier (empty for tags), e.g. quay.io/eclipse/che-theia(@sha256):digest
-#   \6 - Tag of image or digest, e.g. quay.io/eclipse/che-theia:(tag)
+#   \2 - Registry portion of image, e.g. (quay.io)/che-incubator/che-code:tag
+#   \3 - Organization portion of image, e.g. quay.io/(eclipse)/che-code:tag
+#   \4 - Image name portion of image, e.g. quay.io/che-incubator/(che-code):tag
+#   \5 - Optional image digest identifier (empty for tags), e.g. quay.io/che-incubator/che-code(@sha256):digest
+#   \6 - Tag of image or digest, e.g. quay.io/che-incubator/che-code:(tag)
 #   \7 - Optional quotation following image reference
 IMAGE_REGEX="([[:space:]>-]*[\r]?[[:space:]]*[\"']?)([._:a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)/([._a-zA-Z0-9-]*)(@sha256)?:([._a-zA-Z0-9-]*)([\"']?)"
 
@@ -44,8 +43,6 @@ function run_main() {
     extract_and_use_related_images_env_variables_with_image_digest_info
 
     update_container_image_references
-
-    update_extension_vsx_references
 
     # Add current (arbitrary) user to /etc/passwd and /etc/group
     if ! whoami &> /dev/null; then
@@ -115,7 +112,7 @@ function extract_and_use_related_images_env_variables_with_image_digest_info() {
     done
     echo "--------------------------------------------------------------"
 
-    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml' -o -name 'che-theia-plugin.yaml')
+    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml')
     for meta in "${metas[@]}"; do
         readarray -t images < <(grep "image:" "${meta}" | sed -r "s;.*image:[[:space:]]*'?\"?([._:a-zA-Z0-9-]*/?[._a-zA-Z0-9-]*/[._a-zA-Z0-9-]*(@sha256)?:?[._a-zA-Z0-9-]*)'?\"?[[:space:]]*;\1;")
         for image in "${images[@]}"; do
@@ -150,7 +147,7 @@ function update_container_image_references() {
     # We can't use the `-d` option for readarray because
     # registry.centos.org/centos/httpd-24-centos7 ships with Bash 4.2
     # The below command will fail if any path contains whitespace
-    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml' -o -name 'che-theia-plugin.yaml')
+    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml')
     for meta in "${metas[@]}"; do
     echo "Checking meta $meta"
     # Need to update each field separately in case they are not defined.
@@ -168,15 +165,6 @@ function update_container_image_references() {
         < "$meta" tr '\n' '\r' | sed -E "s|image:$IMAGE_REGEX|image:\1\2/\3/\4:${TAG}\7|g" |  tr '\r' '\n' > "$meta.tmp" && cat "$meta.tmp" > "$meta" && rm "$meta.tmp"
     fi
     done
-}
-
-function update_extension_vsx_references() {
-    readarray -t metas < <(find "${METAS_DIR}" -name 'meta.yaml' -o -name 'devfile.yaml' -o -name 'che-theia-plugin.yaml')
-    if [ -n "$INTERNAL_URL" ]; then
-        INTERNAL_URL=${INTERNAL_URL%/}
-        echo "Updating relative:extension in files to ${INTERNAL_URL}"
-        sed -i "s|relative:extension|${INTERNAL_URL}|" "${metas[@]}"
-    fi
 }
 
 # do not execute the main function in unit tests
