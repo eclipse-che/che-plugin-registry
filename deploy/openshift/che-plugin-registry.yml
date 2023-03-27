@@ -128,9 +128,6 @@ objects:
       app.kubernetes.io/instance: che
       app.kubernetes.io/component: plugin-registry
   data:
-    CHE_SIDECAR_CONTAINERS_REGISTRY_URL: ${CHE_SIDECAR_CONTAINERS_REGISTRY_URL}
-    CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: ${CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION}
-    CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: ${CHE_SIDECAR_CONTAINERS_REGISTRY_TAG}
 
 parameters:
 - name: IMAGE
@@ -149,12 +146,3 @@ parameters:
   value: Always
   displayName: Eclipse Che plugin registry image pull policy
   description: Always pull by default. Can be IfNotPresent
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_URL
-  displayName: Sidecar image registry URL
-  description: URL of docker registry containing plugin sidecar images; used to override sidecars in plugins
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION
-  displayName: Sidecar image registry organization
-  description: Organization containing plugin sidecar images; used to override base images in plugins
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_TAG
-  displayName: Plugin sidecar images tag
-  description: Tag used for overridden sidecar images; used to override base images in plugins

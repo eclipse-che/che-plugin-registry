@@ -123,8 +123,6 @@ editors:
           env:
             - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
               value: /remote-endpoint/plugin-remote-endpoint
-            - name: THEIA_PLUGINS
-              value: local-dir:///plugins/sidecars/tools
           memoryLimit: 512Mi
           volumeMounts:
             - name: plugins
