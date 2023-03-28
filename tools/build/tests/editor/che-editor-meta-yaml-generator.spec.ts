@@ -28,14 +28,14 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
     const cheEditor: CheEditorMetaInfo = {
       schemaVersion: '2.1.0',
       metadata: {
-        displayName: 'theia-ide',
-        description: 'Eclipse Theia, get the latest release each day.',
-        icon: 'https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true',
+        displayName: 'VS Code - Open Source',
+        description: 'Microsoft Visual Studio Code - Open Source IDE for Eclipse Che',
+        icon: 'https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true',
         name: id,
         attributes: {
           version: '5.7.0',
-          title: 'Eclipse Theia development version.',
-          repository: 'https://github.com/eclipse-che/che-theia',
+          title: 'Microsoft Visual Studio Code - Open Source IDE for Eclipse Che',
+          repository: 'https://github.com/che-incubator/che-code',
           firstPublicationDate: '2019-03-07',
         },
       },
@@ -45,14 +45,10 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
       },
       components: [
         {
-          name: 'theia-ide',
+          name: 'che-code-runtime-description',
           container: {
-            image: 'quay.io/eclipse/che-theia:latest',
+            image: 'quay.io/devfile/universal-developer-image:latest',
             env: [
-              {
-                name: 'THEIA_PLUGINS',
-                value: 'local-dir:///plugins',
-              },
               {
                 name: 'HOSTED_PLUGIN_HOSTNAME',
                 value: '0.0.0.0',
@@ -61,58 +57,27 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
                 name: 'HOSTED_PLUGIN_PORT',
                 value: '3130',
               },
-              {
-                name: 'THEIA_HOST',
-                value: '127.0.0.1',
-              },
             ],
             volumeMounts: [
               {
-                name: 'plugins',
-                path: '/plugins',
+                name: 'checode',
+                path: '/checode',
               },
             ],
             mountSources: true,
             memoryLimit: '512M',
             endpoints: [
               {
-                name: 'theia',
+                name: 'che-code',
                 public: true,
-                targetPort: 3100,
+                targetPort: 13131,
                 attributes: {
                   protocol: 'http',
                   type: 'ide',
                 },
               },
               {
-                name: 'webviews',
-                public: true,
-                targetPort: 3100,
-                attributes: {
-                  protocol: 'http',
-                  type: 'webview',
-                },
-              },
-              {
-                name: 'mini-browser',
-                public: true,
-                targetPort: 3100,
-                attributes: {
-                  protocol: 'http',
-                  type: 'mini-browser',
-                },
-              },
-              {
-                name: 'theia-dev',
-                public: true,
-                targetPort: 3130,
-                attributes: {
-                  protocol: 'http',
-                  type: 'ide-dev',
-                },
-              },
-              {
-                name: 'theia-redirect-1',
+                name: 'code-redirect-1',
                 public: true,
                 targetPort: 13131,
                 attributes: {
@@ -120,7 +85,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
                 },
               },
               {
-                name: 'theia-redirect-2',
+                name: 'code-redirect-2',
                 public: true,
                 targetPort: 13132,
                 attributes: {
@@ -128,7 +93,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
                 },
               },
               {
-                name: 'theia-redirect-3',
+                name: 'code-redirect-3',
                 public: true,
                 targetPort: 13133,
                 attributes: {
@@ -139,9 +104,9 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
           },
         },
         {
-          name: 'remote-runtime-injector',
+          name: 'che-code-injector',
           container: {
-            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest',
+            image: 'quay.io/che-incubator/che-code:latest',
             volumeMounts: [
               {
                 name: 'remote-endpoint',
@@ -201,11 +166,11 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
       throw new Error('No spec containers');
     }
     expect(metaYamlInfoSpecContainers).toBeDefined();
-    expect(metaYamlInfoSpecContainers.length).toBe(1);
-    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/eclipse/che-theia:latest');
+    expect(metaYamlInfoSpecContainers.length).toBe(2);
+    expect(metaYamlInfoSpecContainers[0].image).toBe('quay.io/devfile/universal-developer-image:latest');
 
     expect(metaYamlInfoSpec.endpoints).toBeDefined();
-    expect(metaYamlInfoSpec.endpoints.length).toBe(7);
+    expect(metaYamlInfoSpec.endpoints.length).toBe(4);
   });
 
   test('empty', async () => {

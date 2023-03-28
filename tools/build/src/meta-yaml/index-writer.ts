@@ -31,8 +31,6 @@ export class IndexWriter {
     }
     if (plugin.type === 'Che Editor' || plugin.type === 'Che Plugin') {
       links.devfile = `/v3/plugins/${plugin.id}/devfile.yaml`;
-    } else if (plugin.type === 'VS Code extension') {
-      links.plugin = `/v3/plugins/${plugin.id}/che-theia-plugin.yaml`;
     }
     return links;
   }
