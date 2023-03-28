@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2023 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -15,17 +15,11 @@ import * as path from 'path';
 
 import { Build } from './build';
 import { Container } from 'inversify';
-import { chePluginsModule } from './che-plugin/che-plugins-module';
-import { cheTheiaPluginModule } from './che-theia-plugin/che-theia-plugin-module';
 import { commonModule } from './common/common-module';
 import { devfileModule } from './devfile/devfile-module';
 import { editorModule } from './editor/editor-module';
-import { extensionsModule } from './extensions/extension-module';
-import { featuredModule } from './featured/featured-module';
 import { metaYamlModule } from './meta-yaml/meta-yaml-module';
-import { recommendationsModule } from './recommendations/recommendations-module';
 import { registryModule } from './registry/registry-module';
-import { sidecarModule } from './sidecar/plugin-module';
 
 export class InversifyBinding {
   private container: Container;
@@ -57,16 +51,10 @@ export class InversifyBinding {
     });
     this.container = new Container();
     this.container.load(commonModule);
-    this.container.load(chePluginsModule);
-    this.container.load(cheTheiaPluginModule);
     this.container.load(devfileModule);
     this.container.load(editorModule);
-    this.container.load(extensionsModule);
-    this.container.load(featuredModule);
     this.container.load(metaYamlModule);
-    this.container.load(recommendationsModule);
     this.container.load(registryModule);
-    this.container.load(sidecarModule);
 
     this.container.bind(Build).toSelf().inSingletonScope();
 

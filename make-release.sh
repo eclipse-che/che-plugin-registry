@@ -107,33 +107,11 @@ commitChangeOrCreatePR()
   fi
 }
 
-# generate new meta.yaml files for the plugins, and update the che-plugins.yaml, che-editors.yaml; also update the VERSION file
-createNewPlugins () {
+# update che-editors.yaml; also update the VERSION file
+updateEditors () {
   newVERSION="$1"
-  thisVERSION="$2" # if false, don't update che-plugins.yaml, che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-plugins.yaml and che-editors.yaml 
+  thisVERSION="$2" # if false, don't update che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-editors.yaml 
   pwd
-
-  # First bump id and image fields for che-machine-exec in che-plugins.yaml
-  cheMachineExec="eclipse/che-machine-exec"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheMachineExec}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheMachineExec}:${newVERSION}\1#"
-
-  # Now do che-theia in che-editors.yaml
-  cheTheia="eclipse/che-theia"
-  cheTheiaEndpointRuntimeBinary="${cheTheia}-endpoint-runtime-binary"
-  sed -i "che-editors.yaml" \
-      -e "s#id: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheTheia}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#name: ${cheTheia}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheTheia}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheTheia}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheia}:${newVERSION}\1#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheTheiaEndpointRuntimeBinary}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheTheiaEndpointRuntimeBinary}:${newVERSION}\1#"
-  # update .metadata.attributes.version to latest released version
-  cheTheiaDesc="Eclipse Theia for Eclipse Che"
-  # shellcheck disable=SC2016
-  yq -Yi --arg ver "${newVERSION}" --arg desc "${cheTheiaDesc}" \
-    '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
 
   # Now do che-code in che-editors.yaml
   cheCode="che-incubator/che-code"
@@ -159,8 +137,8 @@ createNewPlugins () {
   fi
 }
 
-# add new plugins + update che-editors.yaml, che-plugins.yaml files, and bump VERSION file to VERSION
-createNewPlugins "${VERSION}" "${VERSION}"
+# update che-editors.yaml and bump VERSION file to VERSION
+updateEditors "${VERSION}" "${VERSION}"
 
 # commit change into branch
 commitChangeOrCreatePR "${VERSION}" "${BRANCH}" "pr-${BRANCH}-to-${VERSION}"
@@ -190,16 +168,16 @@ else
   NEXTVERSION="${BASE}.${NEXT}-SNAPSHOT"
 fi
 
-# add new plugins + update che-editors.yaml, che-plugins.yaml, and bump VERSION file to NEXTVERSION
-createNewPlugins "${VERSION}" "${NEXTVERSION}"
+# update che-editors.yaml and bump VERSION file to NEXTVERSION
+updateEditors "${VERSION}" "${NEXTVERSION}"
 commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${NEXTVERSION}"
 
 # now, if we're doing a 7.y.z release, push new plugins into main branch too (#16476)
 if [[ ${BASEBRANCH} != "main" ]]; then
   fetchAndCheckout "main"
 
-  # add new plugins + update che-editors.yaml, che-plugins.yaml files; do not update VERSION file in main
-  createNewPlugins "${VERSION}" false
+  # update che-editors.yaml; do not update VERSION file in main
+  updateEditors "${VERSION}" false
   commitChangeOrCreatePR "${VERSION}" "main" "pr-add-${VERSION}-plugins-to-main"
 fi
 

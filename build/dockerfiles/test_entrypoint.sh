@@ -359,503 +359,175 @@ update_container_image_references
 assertFileContentEquals "${METAS_DIR}/meta.yaml" "${expected_metayaml}"
 
 #################################################################
-initTest "Should replace 2.11 image references in theia-ide devfile.yaml with RELATED_IMAGE env vars "
+initTest "Should replace image references in che-code devfile.yaml with RELATED_IMAGE env vars "
 
 devfileyaml=$(cat <<-END
 schemaVersion: 2.1.0
 metadata:
-  name: theia-ide
+  name: che-code
 commands:
   - id: init-container-command
     apply:
-      component: remote-runtime-injector
+      component: che-code-injector
+  - id: init-che-code-command
+    exec:
+      component: che-code-runtime-description
+      commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
 events:
   preStart:
     - init-container-command
+  postStart:
+    - init-che-code-command
 components:
-  - name: theia-ide
+  - name: che-code-runtime-description
     container:
-      image: 'registry.redhat.io/codeready-workspaces/theia-rhel8:2.11'
-      env:
-        - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
-        - name: HOSTED_PLUGIN_HOSTNAME
-          value: 0.0.0.0
-        - name: HOSTED_PLUGIN_PORT
-          value: '3130'
-        - name: THEIA_HOST
-          value: 0.0.0.0
+      image: quay.io/devfile/universal-developer-image:2.11
       volumeMounts:
-        - name: plugins
-          path: /plugins
-        - name: theia-local
-          path: /home/theia/.theia
-      mountSources: true
-      memoryLimit: 512M
-      cpuLimit: 1500m
-      cpuRequest: 100m
+        - name: checode
+          path: /checode
+      memoryLimit: 1024Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       endpoints:
-        - name: theia
+        - name: che-code
           attributes:
             type: main
             cookiesAuthEnabled: true
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
           protocol: https
-        - name: webviews
-          attributes:
-            type: webview
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: mini-browser
-          attributes:
-            type: mini-browser
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: theia-dev
-          attributes:
-            type: ide-dev
-            discoverable: false
-          targetPort: 3130
-          exposure: public
-          protocol: http
-        - name: theia-redirect-1
+        - name: code-redirect-1
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13131
           exposure: public
           protocol: http
-        - name: theia-redirect-2
+        - name: code-redirect-2
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13132
           exposure: public
           protocol: http
-        - name: theia-redirect-3
+        - name: code-redirect-3
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13133
           exposure: public
           protocol: http
-        - name: terminal
-          attributes:
-            type: collocated-terminal
-            discoverable: false
-            cookiesAuthEnabled: true
-          targetPort: 3333
-          exposure: public
-          secure: false
-          protocol: wss
-    attributes: {}
-  - name: plugins
+    attributes:
+      app.kubernetes.io/component: che-code-runtime
+      app.kubernetes.io/part-of: che-code.eclipse.org
+      controller.devfile.io/container-contribution: true
+  - name: checode
     volume: {}
-  - name: theia-local
-    volume: {}
-  - name: che-machine-exec
+  - name: che-code-injector
     container:
-      image: 'registry.redhat.io/codeready-workspaces/machineexec-rhel8:2.11'
+      image: quay.io/che-incubator/che-code:2.11
       command:
-        - /go/bin/che-machine-exec
-        - '--url'
-        - '0.0.0.0:3333'
-      memoryLimit: 128Mi
-      memoryRequest: 32Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
-    attributes: {}
-  - name: remote-runtime-injector
-    container:
-      image: 'registry.redhat.io/codeready-workspaces/theia-endpoint-rhel8:2.11'
-      env:
-        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-          value: /remote-endpoint/plugin-remote-endpoint
-        - name: REMOTE_ENDPOINT_VOLUME_NAME
-          value: remote-endpoint
+        - /entrypoint-init-container.sh
       volumeMounts:
-        - name: remote-endpoint
-          path: /remote-endpoint
-      memoryLimit: 128Mi
+        - name: checode
+          path: /checode
+      memoryLimit: 256Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
-  - name: remote-endpoint
-    volume:
-      ephemeral: true
 END
 )
 expected_devfileyaml=$(cat <<-END
 schemaVersion: 2.1.0
 metadata:
-  name: theia-ide
+  name: che-code
 commands:
   - id: init-container-command
     apply:
-      component: remote-runtime-injector
+      component: che-code-injector
+  - id: init-che-code-command
+    exec:
+      component: che-code-runtime-description
+      commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
 events:
   preStart:
     - init-container-command
+  postStart:
+    - init-che-code-command
 components:
-  - name: theia-ide
+  - name: che-code-runtime-description
     container:
-      image: 'registry.redhat.io/codeready-workspaces/theia-rhel8@sha256:be279f90a9aeeb885fcedca4749396ce16825eb66947900b549cfdf16f97dfeb'
-      env:
-        - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
-        - name: HOSTED_PLUGIN_HOSTNAME
-          value: 0.0.0.0
-        - name: HOSTED_PLUGIN_PORT
-          value: '3130'
-        - name: THEIA_HOST
-          value: 0.0.0.0
+      image: quay.io/devfile/universal-developer-image@sha256:80fdd1ae37d3b9e0260d9c66b4ff12e35317c31243eabeea5212d98c537a3ba9
       volumeMounts:
-        - name: plugins
-          path: /plugins
-        - name: theia-local
-          path: /home/theia/.theia
-      mountSources: true
-      memoryLimit: 512M
-      cpuLimit: 1500m
-      cpuRequest: 100m
+        - name: checode
+          path: /checode
+      memoryLimit: 1024Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
       endpoints:
-        - name: theia
+        - name: che-code
           attributes:
             type: main
             cookiesAuthEnabled: true
             discoverable: false
+            urlRewriteSupported: true
           targetPort: 3100
           exposure: public
           secure: false
           protocol: https
-        - name: webviews
-          attributes:
-            type: webview
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: mini-browser
-          attributes:
-            type: mini-browser
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: theia-dev
-          attributes:
-            type: ide-dev
-            discoverable: false
-          targetPort: 3130
-          exposure: public
-          protocol: http
-        - name: theia-redirect-1
+        - name: code-redirect-1
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13131
           exposure: public
           protocol: http
-        - name: theia-redirect-2
+        - name: code-redirect-2
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13132
           exposure: public
           protocol: http
-        - name: theia-redirect-3
+        - name: code-redirect-3
           attributes:
             discoverable: false
+            urlRewriteSupported: false
           targetPort: 13133
           exposure: public
           protocol: http
-        - name: terminal
-          attributes:
-            type: collocated-terminal
-            discoverable: false
-            cookiesAuthEnabled: true
-          targetPort: 3333
-          exposure: public
-          secure: false
-          protocol: wss
-    attributes: {}
-  - name: plugins
+    attributes:
+      app.kubernetes.io/component: che-code-runtime
+      app.kubernetes.io/part-of: che-code.eclipse.org
+      controller.devfile.io/container-contribution: true
+  - name: checode
     volume: {}
-  - name: theia-local
-    volume: {}
-  - name: che-machine-exec
+  - name: che-code-injector
     container:
-      image: 'registry.redhat.io/codeready-workspaces/machineexec-rhel8@sha256:bfdd8cf61a6fad757f1e8334aa84dbf44baddf897ff8def7496bf6dbc066679d'
+      image: quay.io/che-incubator/che-code@sha256:8fd9eca7c28c59ce93c0b24c7ff0f38080e9a2ac66668274aeabc6b8f3144012
       command:
-        - /go/bin/che-machine-exec
-        - '--url'
-        - '0.0.0.0:3333'
-      memoryLimit: 128Mi
-      memoryRequest: 32Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
-    attributes: {}
-  - name: remote-runtime-injector
-    container:
-      image: 'registry.redhat.io/codeready-workspaces/theia-endpoint-rhel8@sha256:cda289285594c87d1acfb77543aae109973cd1b84953bde061a27889423979c5'
-      env:
-        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-          value: /remote-endpoint/plugin-remote-endpoint
-        - name: REMOTE_ENDPOINT_VOLUME_NAME
-          value: remote-endpoint
+        - /entrypoint-init-container.sh
       volumeMounts:
-        - name: remote-endpoint
-          path: /remote-endpoint
-      memoryLimit: 128Mi
+        - name: checode
+          path: /checode
+      memoryLimit: 256Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
-  - name: remote-endpoint
-    volume:
-      ephemeral: true
 END
 )
 echo "$devfileyaml" > "${METAS_DIR}/devfile.yaml"
-export RELATED_IMAGE_codeready_workspaces_theia_endpoint_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/theia-endpoint-rhel8@sha256:cda289285594c87d1acfb77543aae109973cd1b84953bde061a27889423979c5'
-export RELATED_IMAGE_codeready_workspaces_machineexec_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/machineexec-rhel8@sha256:bfdd8cf61a6fad757f1e8334aa84dbf44baddf897ff8def7496bf6dbc066679d'
-export RELATED_IMAGE_codeready_workspaces_theia_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/theia-rhel8@sha256:be279f90a9aeeb885fcedca4749396ce16825eb66947900b549cfdf16f97dfeb'
+export RELATED_IMAGE_che_code_plugin_registry_image_GIXDCMIK='quay.io/che-incubator/che-code@sha256:8fd9eca7c28c59ce93c0b24c7ff0f38080e9a2ac66668274aeabc6b8f3144012'
+export RELATED_IMAGE_universal_developer_image_plugin_registry_image_GIXDCMIK='quay.io/devfile/universal-developer-image@sha256:80fdd1ae37d3b9e0260d9c66b4ff12e35317c31243eabeea5212d98c537a3ba9'
+
 # shellcheck disable=SC1090
 source "${script_dir}/entrypoint.sh"
 
 extract_and_use_related_images_env_variables_with_image_digest_info
 
 assertFileContentEquals "${METAS_DIR}/devfile.yaml" "${expected_devfileyaml}"
-
-
-
-
-#################################################################
-initTest "Should replace 2.11 image references in che-machine-exec-plugin devfile.yaml with RELATED_IMAGE env vars "
-
-devfileyaml=$(cat <<-END
-schemaVersion: 2.1.0
-metadata:
-  name: Che machine-exec Service
-components:
-  - name: che-machine-exec
-    container:
-      image: 'registry.redhat.io/codeready-workspaces/machineexec-rhel8:2.11'
-      command:
-        - /go/bin/che-machine-exec
-        - '--url'
-        - '0.0.0.0:4444'
-      memoryLimit: 128Mi
-      memoryRequest: 32Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
-      endpoints:
-        - name: che-machine-exec
-          attributes:
-            type: terminal
-            discoverable: false
-            cookiesAuthEnabled: true
-          targetPort: 4444
-          exposure: public
-          secure: false
-          protocol: wss
-END
-)
-expected_devfileyaml=$(cat <<-END
-schemaVersion: 2.1.0
-metadata:
-  name: Che machine-exec Service
-components:
-  - name: che-machine-exec
-    container:
-      image: 'registry.redhat.io/codeready-workspaces/machineexec-rhel8@sha256:bfdd8cf61a6fad757f1e8334aa84dbf44baddf897ff8def7496bf6dbc066679d'
-      command:
-        - /go/bin/che-machine-exec
-        - '--url'
-        - '0.0.0.0:4444'
-      memoryLimit: 128Mi
-      memoryRequest: 32Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
-      endpoints:
-        - name: che-machine-exec
-          attributes:
-            type: terminal
-            discoverable: false
-            cookiesAuthEnabled: true
-          targetPort: 4444
-          exposure: public
-          secure: false
-          protocol: wss
-END
-)
-echo "$devfileyaml" > "${METAS_DIR}/devfile.yaml"
-export RELATED_IMAGE_codeready_workspaces_theia_endpoint_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/theia-endpoint-rhel8@sha256:cda289285594c87d1acfb77543aae109973cd1b84953bde061a27889423979c5'
-export RELATED_IMAGE_codeready_workspaces_machineexec_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/machineexec-rhel8@sha256:bfdd8cf61a6fad757f1e8334aa84dbf44baddf897ff8def7496bf6dbc066679d'
-export RELATED_IMAGE_codeready_workspaces_theia_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/theia-rhel8@sha256:be279f90a9aeeb885fcedca4749396ce16825eb66947900b549cfdf16f97dfeb'
-# shellcheck disable=SC1090
-source "${script_dir}/entrypoint.sh"
-
-extract_and_use_related_images_env_variables_with_image_digest_info
-
-assertFileContentEquals "${METAS_DIR}/devfile.yaml" "${expected_devfileyaml}"
-
-#################################################################
-initTest "Should replace image references in che-theia-plugin.yaml with RELATED_IMAGE env vars "
-
-cheTheiaPluginYaml=$(cat <<-END
-schemaVersion: 1.0.0
-metadata:
-  id: redhat/java11
-  publisher: redhat
-  name: java11
-  version: latest
-  displayName: Language Support for Java(TM) by Red Hat
-  description: 'Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...'
-  repository: 'https://github.com/redhat-developer/vscode-java'
-  categories:
-    - Programming Languages
-    - Linters
-    - Formatters
-    - Snippets
-  icon: /images/redhat-java-icon.png
-sidecar:
-  image: 'registry.redhat.io/codeready-workspaces/plugin-java11-rhel8:2.11'
-  name: vscode-java
-  memoryLimit: 1500Mi
-  cpuLimit: 500m
-  cpuRequest: 30m
-extensions:
-  - 'relative:extension/resources/download_jboss_org/jbosstools/static/jdt_ls/stable/java-0.75.0-60.vsix'
-END
-)
-expected_cheTheiaPluginYaml=$(cat <<-END
-schemaVersion: 1.0.0
-metadata:
-  id: redhat/java11
-  publisher: redhat
-  name: java11
-  version: latest
-  displayName: Language Support for Java(TM) by Red Hat
-  description: 'Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...'
-  repository: 'https://github.com/redhat-developer/vscode-java'
-  categories:
-    - Programming Languages
-    - Linters
-    - Formatters
-    - Snippets
-  icon: /images/redhat-java-icon.png
-sidecar:
-  image: 'registry.redhat.io/codeready-workspaces/plugin-java11-rhel8@sha256:d0337762e71fd4badabcb38a582b2f35e7e7fc1c9c0f2e841e339d45b7bd34ed'
-  name: vscode-java
-  memoryLimit: 1500Mi
-  cpuLimit: 500m
-  cpuRequest: 30m
-extensions:
-  - 'relative:extension/resources/download_jboss_org/jbosstools/static/jdt_ls/stable/java-0.75.0-60.vsix'
-END
-)
-echo "$cheTheiaPluginYaml" > "${METAS_DIR}/che-theia-plugin.yaml"
-export RELATED_IMAGE_codeready_workspaces_plugin_java11_plugin_registry_image_GIXDCMIK='registry.redhat.io/codeready-workspaces/plugin-java11-rhel8@sha256:d0337762e71fd4badabcb38a582b2f35e7e7fc1c9c0f2e841e339d45b7bd34ed'
-# shellcheck disable=SC1090
-source "${script_dir}/entrypoint.sh"
-
-extract_and_use_related_images_env_variables_with_image_digest_info
-
-assertFileContentEquals "${METAS_DIR}/che-theia-plugin.yaml" "${expected_cheTheiaPluginYaml}"
-
-#################################################################
-initTest "Should replace relative:extension with internal URL in che-theia-plugin.yaml "
-
-cheTheiaPluginYaml=$(cat <<-END
-schemaVersion: 1.0.0
-metadata:
-  id: redhat/java
-  publisher: redhat
-  name: java
-  version: latest
-  displayName: Language Support for Java(TM) by Red Hat
-  description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
-  repository: https://github.com/redhat-developer/vscode-java
-  categories:
-    - Programming Languages
-    - Linters
-    - Formatters
-    - Snippets
-  icon: /images/redhat-java-icon.png
-sidecar:
-  name: vscode-java
-  memoryLimit: 1500Mi
-  memoryRequest: 20Mi
-  cpuLimit: 800m
-  cpuRequest: 30m
-  volumeMounts:
-    - name: m2
-      path: /home/theia/.m2
-  image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
-preferences:
-  java.server.launchMode: Standard
-dependencies:
-  - vscjava/vscode-java-debug
-  - vscjava/vscode-java-test
-extensions:
-  - relative:extension/resources/github_com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7_44-che-assets/java-0.82.0-369.vsix
-END
-)
-expected_cheTheiaPluginYaml=$(cat <<-END
-schemaVersion: 1.0.0
-metadata:
-  id: redhat/java
-  publisher: redhat
-  name: java
-  version: latest
-  displayName: Language Support for Java(TM) by Red Hat
-  description: Java Linting, Intellisense, formatting, refactoring, Maven/Gradle support and more...
-  repository: https://github.com/redhat-developer/vscode-java
-  categories:
-    - Programming Languages
-    - Linters
-    - Formatters
-    - Snippets
-  icon: /images/redhat-java-icon.png
-sidecar:
-  name: vscode-java
-  memoryLimit: 1500Mi
-  memoryRequest: 20Mi
-  cpuLimit: 800m
-  cpuRequest: 30m
-  volumeMounts:
-    - name: m2
-      path: /home/theia/.m2
-  image: quay.io/eclipse/che-plugin-sidecar:java-23e57d6
-preferences:
-  java.server.launchMode: Standard
-dependencies:
-  - vscjava/vscode-java-debug
-  - vscjava/vscode-java-test
-extensions:
-  - http://che-plugin-registry/v3/resources/github_com/redhat-developer/codeready-workspaces-vscode-extensions/releases/download/7_44-che-assets/java-0.82.0-369.vsix
-END
-)
-
-echo "$cheTheiaPluginYaml" > "${METAS_DIR}/che-theia-plugin.yaml"
-
-export CHE_PLUGIN_REGISTRY_INTERNAL_URL=http://che-plugin-registry/v3
-
-# shellcheck disable=SC1090
-source "${script_dir}/entrypoint.sh"
-update_extension_vsx_references
-assertFileContentEquals "${METAS_DIR}/che-theia-plugin.yaml" "${expected_cheTheiaPluginYaml}"
