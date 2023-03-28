@@ -43,8 +43,9 @@ jobs:
         restore-keys: yarn-
     - name: typescript
       run: |
+        yarn --version
         yarn
-        yarn workspaces foreach run build
+        yarn --cwd ./tools/build/ run build
     - name: report-coverage
       uses: codecov/codecov-action@v3
       with:
