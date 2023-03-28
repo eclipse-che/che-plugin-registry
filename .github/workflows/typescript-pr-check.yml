@@ -45,8 +45,7 @@ jobs:
       run: |
         yarn --version
         yarn
-        yarn plugin import workspace-tools
-        yarn workspaces foreach run build
+        yarn --cwd ./tools/build/ run build
     - name: report-coverage
       uses: codecov/codecov-action@v3
       with:
