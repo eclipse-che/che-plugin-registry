@@ -85,10 +85,6 @@ export class MetaYamlToDevfileYaml {
   convert(inputMetaYaml: any): any | undefined {
     // clone object to not modify the original source
     const metaYaml = JSON.parse(JSON.stringify(inputMetaYaml));
-    // do not handle VS Code extensions as they can't be converted into devfile 2.0
-    if (!metaYaml || metaYaml.type === 'VS Code extension') {
-      return;
-    }
 
     let name = '';
     if (metaYaml.name) {

@@ -31,102 +31,51 @@ describe('Test MetaYamlToDevfileYaml', () => {
     metaYamlToDevfileYaml = container.get(MetaYamlToDevfileYaml);
   });
 
-  test('machine-exec', async () => {
-    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'machine-exec-plugin-meta.yaml');
+  test('che-code', async () => {
+    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-code-meta.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('che-machine-exec-plugin');
+    expect(devfileYaml.metadata?.name).toBe('che-code');
     expect(devfileYaml.components).toBeDefined();
-    expect(devfileYaml.components?.length).toBe(1);
-    const component = devfileYaml.components[0];
-    expect(component.name).toBe('che-machine-exec');
-    const componentContainer = component.container;
-    expect(componentContainer.image).toBe('quay.io/eclipse/che-machine-exec:next');
-    expect(componentContainer.command).toStrictEqual(['/go/bin/che-machine-exec', '--url', '127.0.0.1:4444']);
+    expect(devfileYaml.components?.length).toBe(3);
 
-    expect(componentContainer.endpoints).toBeDefined();
-    expect(componentContainer.endpoints?.length).toBe(2);
-    const endpoint = componentContainer.endpoints[0];
-    expect(endpoint.name).toBe('che-machine-exec');
-    expect(endpoint.exposure).toBe('public');
-    expect(endpoint.secure).toBe(false);
-    expect(endpoint.protocol).toBe('wss');
-    const endpointAttributes = endpoint.attributes;
-    expect(endpointAttributes.type).toBe('terminal');
-  });
+    const codeIdeComponent = devfileYaml.components[0];
+    expect(codeIdeComponent.name).toBe('che-code-runtime-description');
+    const codeIdeComponentContainer = codeIdeComponent.container;
+    expect(codeIdeComponentContainer.image).toBe('quay.io/devfile/universal-developer-image:latest');
+    expect(codeIdeComponentContainer.endpoints).toBeDefined();
+    expect(codeIdeComponentContainer.endpoints?.length).toBe(4);
+    const codeIdeFirstEndpoint = codeIdeComponentContainer.endpoints[0];
+    expect(codeIdeFirstEndpoint.name).toBe('che-code');
+    expect(codeIdeFirstEndpoint.exposure).toBe('public');
+    const codeIdeFirstEndpointAttributes = codeIdeFirstEndpoint.attributes;
+    expect(codeIdeFirstEndpointAttributes.type).toBe('main');
 
-  test('che-theia', async () => {
-    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-theia-meta.yaml');
-    const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.load(metaYamlContent);
-    const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
-    expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('che-theia-latest');
-    expect(devfileYaml.components).toBeDefined();
-    expect(devfileYaml.components?.length).toBe(6);
-    const theiaIdeComponent = devfileYaml.components[0];
-    expect(theiaIdeComponent.name).toBe('theia-ide');
-    const theiaIdeComponentContainer = theiaIdeComponent.container;
-    expect(theiaIdeComponentContainer.image).toBe('quay.io/eclipse/che-theia:latest');
+    expect(codeIdeComponentContainer.volumeMounts).toBeDefined();
+    expect(codeIdeComponentContainer.volumeMounts?.length).toBe(1);
+    const codeIdeFirstVolumeMount = codeIdeComponentContainer.volumeMounts[0];
+    expect(codeIdeFirstVolumeMount.name).toBe('checode');
+    expect(codeIdeFirstVolumeMount.path).toBe('/checode');
 
-    expect(theiaIdeComponentContainer.endpoints).toBeDefined();
-    expect(theiaIdeComponentContainer.endpoints?.length).toBe(8);
-    const theiaIdeFirstEndpoint = theiaIdeComponentContainer.endpoints[0];
-    expect(theiaIdeFirstEndpoint.name).toBe('theia');
-    expect(theiaIdeFirstEndpoint.exposure).toBe('public');
-    const theiaIdeFirstEndpointAttributes = theiaIdeFirstEndpoint.attributes;
-    expect(theiaIdeFirstEndpointAttributes.type).toBe('main');
-
-    expect(theiaIdeComponentContainer.env).toBeDefined();
-    expect(theiaIdeComponentContainer.env?.length).toBe(4);
-    const theiaIdeFirstEnv = theiaIdeComponentContainer.env[0];
-    expect(theiaIdeFirstEnv.name).toBe('THEIA_PLUGINS');
-    expect(theiaIdeFirstEnv.value).toBe('local-dir:///plugins');
-
-    const theiaHostEnv = theiaIdeComponentContainer.env.find((env: any) => env.name === 'THEIA_HOST');
-    expect(theiaHostEnv.name).toBe('THEIA_HOST');
-    expect(theiaHostEnv.value).toBe('127.0.0.1');
-
-    expect(theiaIdeComponentContainer.volumeMounts).toBeDefined();
-    expect(theiaIdeComponentContainer.volumeMounts?.length).toBe(2);
-    const theiaIdeFirstVolumeMount = theiaIdeComponentContainer.volumeMounts[0];
-    expect(theiaIdeFirstVolumeMount.name).toBe('plugins');
-    expect(theiaIdeFirstVolumeMount.path).toBe('/plugins');
-
-    const remoteRuntimeInjectorComponent = devfileYaml.components[4];
-    expect(remoteRuntimeInjectorComponent.name).toBe('remote-runtime-injector');
+    const remoteRuntimeInjectorComponent = devfileYaml.components[2];
+    expect(remoteRuntimeInjectorComponent.name).toBe('che-code-injector');
     const remoteRuntimeInjectorComponentContainer = remoteRuntimeInjectorComponent.container;
-    expect(remoteRuntimeInjectorComponentContainer.image).toBe(
-      'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest'
-    );
-
-    const pluginsVolumeComponent = devfileYaml.components[1];
-    expect(pluginsVolumeComponent.name).toBe('plugins');
-    expect(pluginsVolumeComponent.volume).toStrictEqual({});
-
-    const theiaLocalVolumeComponent = devfileYaml.components[2];
-    expect(theiaLocalVolumeComponent.name).toBe('theia-local');
-    expect(theiaLocalVolumeComponent.volume).toStrictEqual({});
-
-    const remoteEndpointVolumeComponent = devfileYaml.components[5];
-    expect(remoteEndpointVolumeComponent.name).toBe('remote-endpoint');
-    expect(remoteEndpointVolumeComponent.volume).toBeDefined();
-    expect(remoteEndpointVolumeComponent.volume.ephemeral).toBeTruthy();
+    expect(remoteRuntimeInjectorComponentContainer.image).toBe('quay.io/che-incubator/che-code:insiders');
 
     expect(devfileYaml.commands).toBeDefined();
     expect(devfileYaml.commands?.length).toBe(2);
 
     const devfileFirstCommand = devfileYaml.commands[0];
     expect(devfileFirstCommand.id).toBe('init-container-command');
-    expect(devfileFirstCommand.apply).toStrictEqual({ component: 'remote-runtime-injector' });
+    expect(devfileFirstCommand.apply).toStrictEqual({ component: 'che-code-injector' });
 
     const devfileSecondCommand = devfileYaml.commands[1];
-    expect(devfileSecondCommand.id).toBe('init-editor-command');
+    expect(devfileSecondCommand.id).toBe('init-che-code-command');
     expect(devfileSecondCommand.exec).toStrictEqual({
-      component: 'editor-runtime-description',
-      commandLine: 'entrypoint-volume.sh',
+      component: 'che-code-runtime-description',
+      commandLine: 'nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &',
     });
 
     expect(devfileYaml.events).toBeDefined();
@@ -137,21 +86,19 @@ describe('Test MetaYamlToDevfileYaml', () => {
 
     const postStartEvent = devfileYaml.events.postStart;
     expect(postStartEvent).toBeDefined();
-    expect(postStartEvent[0]).toBe('init-editor-command');
+    expect(postStartEvent[0]).toBe('init-che-code-command');
   });
 
-  test('che-theia with multiple volumes which have identical name', async () => {
-    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-theia-meta-with-multiple-volumes.yaml');
+  test('che-code with multiple volumes which have identical name', async () => {
+    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'che-code-meta-with-multiple-volumes.yaml');
     const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
-    expect(devfileYaml.components?.length).toBe(6);
-    expect(devfileYaml.components?.find((value: any) => value.name === 'theia-ide')).toBeDefined();
-    expect(devfileYaml.components?.find((value: any) => value.name === 'plugins')).toBeDefined();
-    expect(devfileYaml.components?.find((value: any) => value.name === 'theia-local')).toBeDefined();
-    expect(devfileYaml.components?.find((value: any) => value.name === 'che-machine-exec')).toBeDefined();
-    expect(devfileYaml.components?.find((value: any) => value.name === 'remote-runtime-injector')).toBeDefined();
-    expect(devfileYaml.components?.find((value: any) => value.name === 'remote-endpoint')).toBeDefined();
+    expect(devfileYaml.components?.length).toBe(4);
+    expect(devfileYaml.components?.find((value: any) => value.name === 'che-code-runtime-description')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'checode')).toBeDefined();
+    expect(devfileYaml.components?.find((value: any) => value.name === 'che-code-injector')).toBeDefined();
+    // expect(devfileYaml.components?.find((value: any) => value.name === 'remote-endpoint')).toBeDefined();
     expect(devfileYaml.components?.find((value: any) => value.name === 'non-existent')).toBeUndefined();
   });
 
@@ -161,21 +108,13 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const metaYaml = jsYaml.load(metaYamlContent);
     const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
     expect(devfileYaml.schemaVersion).toBe('2.1.0');
-    expect(devfileYaml.metadata?.name).toBe('che-theia');
+    expect(devfileYaml.metadata?.name).toBe('che-code');
     expect(devfileYaml.components).toBeDefined();
     expect(devfileYaml.components?.length).toBe(1);
     const component = devfileYaml.components[0];
     expect(component.name).toBe('foo');
     const componentContainer = component.container;
     expect(componentContainer.image).toBe('quay.io/foobar:latest');
-  });
-
-  test('vscode extension', async () => {
-    const metaYamlPath = path.resolve(__dirname, '..', '_data', 'meta', 'vscode-extension.yaml');
-    const metaYamlContent = await fs.readFile(metaYamlPath, 'utf-8');
-    const metaYaml = jsYaml.load(metaYamlContent);
-    const devfileYaml = metaYamlToDevfileYaml.convert(metaYaml);
-    expect(devfileYaml).toBeUndefined();
   });
 
   test('container without endpoints', async () => {

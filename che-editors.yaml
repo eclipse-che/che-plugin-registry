@@ -2,188 +2,6 @@ version: 2.0.0
 editors:
   - schemaVersion: 2.1.0
     metadata:
-      name: eclipse/che-theia/7.63.0
-      displayName: Eclipse Theia
-      description: Eclipse Theia for Eclipse Che
-      icon: https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true
-      attributes:
-        publisher: eclipse
-        version: 7.63.0
-        title: Eclipse Theia for Eclipse Che
-        repository: https://github.com/eclipse-che/che-theia
-        firstPublicationDate: '2019-03-07'
-    commands:
-      - id: init-container-command
-        apply:
-          component: remote-runtime-injector
-    events:
-      preStart:
-        - init-container-command
-    components:
-      - name: theia-ide
-        container:
-          image: "quay.io/eclipse/che-theia:7.63.0"
-          env:
-            - name: THEIA_PLUGINS
-              value: 'local-dir:///plugins'
-            - name: HOSTED_PLUGIN_HOSTNAME
-              value: 0.0.0.0
-            - name: HOSTED_PLUGIN_PORT
-              value: '3130'
-            - name: THEIA_HOST
-              value: 127.0.0.1
-          volumeMounts:
-            - name: plugins
-              path: /plugins
-            - name: theia-local
-              path: /home/theia/.theia
-          mountSources: true
-          memoryLimit: 512M
-          cpuLimit: 1500m
-          cpuRequest: 100m
-          endpoints:
-            - name: theia
-              targetPort: 3100
-              exposure: public
-              secure: true
-              protocol: http
-              attributes:
-                type: main
-                cookiesAuthEnabled: true
-                discoverable: false
-                urlRewriteSupported: true
-            - name: webviews
-              targetPort: 3100
-              exposure: public
-              secure: true
-              protocol: http
-              attributes:
-                type: webview
-                cookiesAuthEnabled: true
-                discoverable: false
-                unique: true
-                urlRewriteSupported: true
-            - name: mini-browser
-              targetPort: 3100
-              exposure: public
-              secure: true
-              protocol: http
-              attributes:
-                type: mini-browser
-                cookiesAuthEnabled: true
-                discoverable: false
-                unique: true
-                urlRewriteSupported: true
-            - name: theia-dev
-              targetPort: 3130
-              exposure: public
-              protocol: http
-              attributes:
-                type: ide-dev
-                discoverable: false
-                urlRewriteSupported: true
-            - name: theia-redirect-1
-              targetPort: 13131
-              exposure: public
-              protocol: http
-              attributes:
-                discoverable: false
-                urlRewriteSupported: false
-            - name: theia-redirect-2
-              targetPort: 13132
-              exposure: public
-              protocol: http
-              attributes:
-                discoverable: false
-                urlRewriteSupported: false
-            - name: theia-redirect-3
-              targetPort: 13133
-              exposure: public
-              protocol: http
-              attributes:
-                discoverable: false
-                urlRewriteSupported: false
-        attributes:
-          app.kubernetes.io/component: che-theia
-          app.kubernetes.io/part-of: che-theia.eclipse.org
-          ports:
-            - exposedPort: 3100
-            - exposedPort: 3130
-            - exposedPort: 13131
-            - exposedPort: 13132
-            - exposedPort: 13133
-      - name: theia-ide-contributions
-        attributes:
-          controller.devfile.io/container-contribution: true
-        container:
-          args:
-            - sh
-            - '-c'
-            - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
-          env:
-            - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-              value: /remote-endpoint/plugin-remote-endpoint
-            - name: THEIA_PLUGINS
-              value: local-dir:///plugins/sidecars/tools
-          memoryLimit: 512Mi
-          volumeMounts:
-            - name: plugins
-              path: /plugins
-            - name: remote-endpoint
-              path: /remote-endpoint
-          image: "quay.io/devfile/universal-developer-image:latest"
-      - name: plugins
-        volume: {}
-      - name: theia-local
-        volume: {}
-      - name: che-machine-exec
-        container:
-          image: 'quay.io/eclipse/che-machine-exec:7.63.0'
-          memoryLimit: 128Mi
-          memoryRequest: 32Mi
-          cpuLimit: 500m
-          cpuRequest: 30m
-          command:
-            - /go/bin/che-machine-exec
-            - '--url'
-            - '127.0.0.1:3333'
-          endpoints:
-            - name: terminal
-              targetPort: 3333
-              exposure: public
-              secure: true
-              protocol: ws
-              attributes:
-                type: collocated-terminal
-                discoverable: false
-                cookiesAuthEnabled: true
-                urlRewriteSupported: true
-        attributes:
-          app.kubernetes.io/component: machine-exec
-          app.kubernetes.io/part-of: che-theia.eclipse.org
-          ports:
-            - exposedPort: 3333
-      - name: remote-runtime-injector
-        attributes:
-          app.kubernetes.io/component: remote-runtime-injector
-          app.kubernetes.io/part-of: che-theia.eclipse.org
-        container:
-          image: "quay.io/eclipse/che-theia-endpoint-runtime-binary:7.63.0"
-          env:
-            - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
-              value: /remote-endpoint/plugin-remote-endpoint
-            - name: REMOTE_ENDPOINT_VOLUME_NAME
-              value: remote-endpoint
-          volumeMounts:
-            - name: plugins
-              path: /plugins
-            - name: remote-endpoint
-              path: /remote-endpoint
-      - name: remote-endpoint
-        volume:
-          ephemeral: true
-  - schemaVersion: 2.1.0
-    metadata:
       name: ws-skeleton/jupyter/5.7.0
       displayName: Jupyter Notebook
       description: Jupyter Notebook for Eclipse Che
@@ -194,6 +12,7 @@ editors:
         title: Jupyter Notebook for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-jupyter/'
         firstPublicationDate: '2019-02-05'
+        skipMetaYaml: true
     components:
       - name: jupyter-notebook
         container:
@@ -225,6 +44,7 @@ editors:
         title: Eclipse Dirigible for Eclipse Che
         repository: 'https://github.com/dirigiblelabs/dirigible-che-editor-plugin/'
         firstPublicationDate: '2019-02-05'
+        skipMetaYaml: true
     components:
       - name: eclipse-dirigible
         container:
@@ -274,6 +94,7 @@ editors:
         title: Eclipse IDE (in browser using Broadway) for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/'
         firstPublicationDate: '2019-02-05'
+        skipMetaYaml: true
     components:
       - name: eclipse-ide
         container:
@@ -304,6 +125,7 @@ editors:
           Eclipse Che
         repository: 'https://github.com/cdr/code-server'
         firstPublicationDate: '2020-11-03'
+        skipMetaYaml: true
     components:
       - name: code-server
         container:
