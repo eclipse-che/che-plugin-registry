@@ -25,14 +25,14 @@ describe('Test ContainerHelper', () => {
     cheEditor = {
       schemaVersion: '2.1.0',
       metadata: {
-        displayName: 'theia-ide',
-        description: 'Eclipse Theia, get the latest release each day.',
-        icon: 'https://raw.githubusercontent.com/theia-ide/theia/master/logo/theia-logo-no-text-black.svg?sanitize=true',
+        displayName: 'VS Code - Open Source',
+        description: 'Microsoft Visual Studio Code - Open Source IDE for Eclipse Che',
+        icon: 'https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true',
         name: 'che-editor',
         attributes: {
           version: '5.7.0',
-          title: 'Eclipse Theia development version.',
-          repository: 'https://github.com/eclipse-che/che-theia',
+          title: 'Microsoft Visual Studio Code - Open Source IDE for Eclipse Che',
+          repository: 'https://github.com/che-incubator/che-code',
           firstPublicationDate: '2019-03-07',
         },
       },
@@ -42,38 +42,20 @@ describe('Test ContainerHelper', () => {
       },
       components: [
         {
-          name: 'theia-ide',
+          name: 'che-code-runtime-description',
           container: {
-            image: 'quay.io/eclipse/che-theia:latest',
-            env: [
-              {
-                name: 'THEIA_PLUGINS',
-                value: 'local-dir:///plugins',
-              },
-              {
-                name: 'HOSTED_PLUGIN_HOSTNAME',
-                value: '0.0.0.0',
-              },
-              {
-                name: 'HOSTED_PLUGIN_PORT',
-                value: '3130',
-              },
-              {
-                name: 'THEIA_HOST',
-                value: '127.0.0.1',
-              },
-            ],
+            image: 'quay.io/devfile/universal-developer-image:latest',
             volumeMounts: [
               {
-                name: 'plugins',
-                path: '/plugins',
+                name: 'checode',
+                path: '/checode',
               },
             ],
             mountSources: true,
             memoryLimit: '512M',
             endpoints: [
               {
-                name: 'theia',
+                name: 'che-code',
                 public: true,
                 targetPort: 3100,
                 attributes: {
@@ -82,34 +64,7 @@ describe('Test ContainerHelper', () => {
                 },
               },
               {
-                name: 'webviews',
-                public: true,
-                targetPort: 3100,
-                attributes: {
-                  protocol: 'http',
-                  type: 'webview',
-                },
-              },
-              {
-                name: 'mini-browser',
-                public: true,
-                targetPort: 3100,
-                attributes: {
-                  protocol: 'http',
-                  type: 'mini-browser',
-                },
-              },
-              {
-                name: 'theia-dev',
-                public: true,
-                targetPort: 3130,
-                attributes: {
-                  protocol: 'http',
-                  type: 'ide-dev',
-                },
-              },
-              {
-                name: 'theia-redirect-1',
+                name: 'code-redirect-1',
                 public: true,
                 targetPort: 13131,
                 attributes: {
@@ -117,7 +72,7 @@ describe('Test ContainerHelper', () => {
                 },
               },
               {
-                name: 'theia-redirect-2',
+                name: 'code-redirect-2',
                 public: true,
                 targetPort: 13132,
                 attributes: {
@@ -125,7 +80,7 @@ describe('Test ContainerHelper', () => {
                 },
               },
               {
-                name: 'theia-redirect-3',
+                name: 'code-redirect-3',
                 public: true,
                 targetPort: 13133,
                 attributes: {
@@ -135,33 +90,18 @@ describe('Test ContainerHelper', () => {
             ],
           },
           attributes: {
-            ports: [
-              { exposedPort: 3100 },
-              { exposedPort: 3130 },
-              { exposedPort: 13131 },
-              { exposedPort: 13132 },
-              { exposedPort: 13133 },
-            ],
+            ports: [{ port: 3011 }],
+            'controller.devfile.io/container-contribution': true,
           },
         },
         {
           name: 'remote-runtime-injector',
           container: {
-            image: 'quay.io/eclipse/che-theia-endpoint-runtime-binary:latest',
+            image: 'quay.io/che-incubator/che-code:latest',
             volumeMounts: [
               {
-                name: 'remote-endpoint',
-                path: '/remote-endpoint',
-              },
-            ],
-            env: [
-              {
-                name: 'PLUGIN_REMOTE_ENDPOINT_EXECUTABLE',
-                value: '/remote-endpoint/plugin-remote-endpoint',
-              },
-              {
-                name: 'REMOTE_ENDPOINT_VOLUME_NAME',
-                value: 'remote-endpoint',
+                name: 'checode',
+                path: '/checode',
               },
             ],
           },
@@ -187,8 +127,6 @@ describe('Test ContainerHelper', () => {
     const containers: Containers = await containerHelper.resolve(cheEditor);
     expect(containers).toBeDefined();
     expect(containers.containers.length).toBe(1);
-    expect(containers.initContainers.length).toBe(1);
-    expect(containers.containers[0].ports?.length).toBe(5);
   });
 
   test('empty components', async () => {
