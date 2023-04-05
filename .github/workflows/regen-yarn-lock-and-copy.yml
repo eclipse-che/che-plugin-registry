@@ -16,10 +16,6 @@ on:
     paths:
       - yarn.lock 
       - tools/build/yarn.lock
-  pull_request:
-    paths:
-      - yarn.lock 
-      - tools/build/yarn.lock
 
 jobs:
   build:
