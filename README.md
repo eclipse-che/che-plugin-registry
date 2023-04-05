@@ -1,6 +1,6 @@
 [![codecov](https://img.shields.io/codecov/c/github/eclipse-che/che-plugin-registry)](https://codecov.io/gh/eclipse-che/che-plugin-registry)
 
-# Eclipse Che Plugin Registry
+# Eclipse  Che Plugin Registry
 
 This repository holds editor definitions and ready-to-use plugins for different languages and technologies as part of the embedded instance of the [Open VSX](https://open-vsx.org/about) registry to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on open-vsx.org that can be used with Microsoft Visual Studio Code editor.
 
