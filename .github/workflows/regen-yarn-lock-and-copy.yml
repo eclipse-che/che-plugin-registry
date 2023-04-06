@@ -1,0 +1,44 @@
+#
+# Copyright (c) 2023 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+# every time root/yarn.lock is updated, copy it to tools/build/yarn.lock 
+# so that downstream builds can use the second yarn.lock for cachito processes
+
+# Note: to regenerate the yarn.lock file, use:
+# rm -f yarn.lock tools/build/yarn.lock; yarn install --mode update-lockfile; cp yarn.lock tools/build/yarn.lock
+name: Copy yarn.lock to tools/build/
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'yarn.lock'
+      - '!tools/build/yarn.lock'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+          token: ${{secrets.CHE_BOT_GITHUB_TOKEN}}
+      - name: Copy yarn.lock
+        run: |
+          rm -f tools/build/yarn.lock; cp yarn.lock tools/build/yarn.lock
+      - name: Config Git
+        run: |
+          git config --global user.email "che-bot@eclipse.org"
+          git config --global user.name "Che bot"
+      - name: Commit changes
+        run: |
+          git add tools/build/yarn.lock
+          git commit --amend --no-edit --signoff
+          git push || true
