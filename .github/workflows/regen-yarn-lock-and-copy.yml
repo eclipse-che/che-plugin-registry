@@ -9,6 +9,9 @@
 
 # every time root/yarn.lock is updated, copy it to tools/build/yarn.lock 
 # so that downstream builds can use the second yarn.lock for cachito processes
+
+# Note: to regenerate the yarn.lock file, use:
+# rm -f yarn.lock tools/build/yarn.lock; yarn install --mode update-lockfile; cp yarn.lock tools/build/yarn.lock
 name: Copy yarn.lock to tools/build/
 
 on:
