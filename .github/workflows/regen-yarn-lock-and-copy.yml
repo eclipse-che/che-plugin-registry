@@ -19,7 +19,8 @@ on:
     branches:
       - main
     paths:
-      - yarn.lock 
+      - 'yarn.lock'
+      - '!tools/build/yarn.lock'
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
           token: ${{secrets.CHE_BOT_GITHUB_TOKEN}}
       - name: Copy yarn.lock
         run: |
-          cp -f yarn.lock tools/build/yarn.lock
+          rm -f tools/build/yarn.lock; cp yarn.lock tools/build/yarn.lock
       - name: Config Git
         run: |
           git config --global user.email "che-bot@eclipse.org"
