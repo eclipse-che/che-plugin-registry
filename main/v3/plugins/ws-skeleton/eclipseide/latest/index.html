@@ -1,29 +1,33 @@
-apiVersion: v2
-publisher: ws-skeleton
-name: eclipseide
-version: latest
-type: Che Editor
-displayName: Eclipse IDE with Broadway
-title: Eclipse IDE (in browser using Broadway) for Eclipse Che
-description: Eclipse IDE (in browser using Broadway) for Eclipse Che
-icon: /images/default.png
-category: Editor
-repository: https://github.com/ws-skeleton/che-editor-eclipseide/
-firstPublicationDate: '2019-02-05'
-latestUpdateDate: '2023-03-25'
-spec:
-  endpoints:
-    - name: eclipse-ide
-      targetPort: 5000
-      attributes:
-        type: ide
-        protocol: http
-      public: true
-  containers:
-    - image: index.docker.io/wsskeleton/eclipse-broadway@sha256:57c82cd806a56f69aa8663f68405d0778b628a29a64fb16881b11ce9f484dda7
-      mountSources: true
-      memoryLimit: 2048M
-      name: eclipse-ide
-      ports:
-        - exposedPort: 5000
-  initContainers: []
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="Author" content="Made by 'tree'">
+ <meta name="GENERATOR" content="$Version: $ tree v2.0.2 (c) 1996 - 2022 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro $">
+ <title>Directory Tree</title>
+ <style type="text/css">
+  BODY { font-family : monospace, sans-serif;  color: black;}
+  P { font-family : monospace, sans-serif; color: black; margin:0px; padding: 0px;}
+  A:visited { text-decoration : none; margin : 0px; padding : 0px;}
+  A:link    { text-decoration : none; margin : 0px; padding : 0px;}
+  A:hover   { text-decoration: underline; background-color : yellow; margin : 0px; padding : 0px;}
+  A:active  { margin : 0px; padding : 0px;}
+  .VERSION { font-size: small; font-family : arial, sans-serif; }
+  .NORM  { color: black;  }
+  .FIFO  { color: purple; }
+  .CHAR  { color: yellow; }
+  .DIR   { color: blue;   }
+  .BLOCK { color: yellow; }
+  .LINK  { color: aqua;   }
+  .SOCK  { color: fuchsia;}
+  .EXEC  { color: green;  }
+ </style>
+</head>
+<body>
+	<h1>Directory Tree</h1><p>
+	<a href=".">.</a><br>
+	├── <a href="./devfile.yaml">devfile.yaml</a><br>
+	└── <a href="./index.html">index.html</a><br>
+	<hr>
+</body>
+</html>
