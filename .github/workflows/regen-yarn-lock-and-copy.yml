@@ -9,13 +9,14 @@
 
 # every time root/yarn.lock is updated, copy it to tools/build/yarn.lock 
 # so that downstream builds can use the second yarn.lock for cachito processes
-name: Regenerate-yarn-lock-and-copy-to-subfolders
+name: Copy yarn.lock to tools/build/
 
 on:
   push:
+    branches:
+      - main
     paths:
       - yarn.lock 
-      - tools/build/yarn.lock
 
 jobs:
   build:
@@ -25,24 +26,15 @@ jobs:
         with:
           fetch-depth: 2
           token: ${{secrets.CHE_BOT_GITHUB_TOKEN}}
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - name: Regen yarn.lock using yarn v1
+      - name: Copy yarn.lock
         run: |
-          yarn --version
-          rm -f yarn.lock tools/build/yarn.lock
-          yarn install --mode update-lockfile
-          cp yarn.lock tools/build/yarn.lock
-        env:
-          YARN_ENABLE_SCRIPTS: 0 # disable postinstall scripts
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false # allow to override yarn.lock files
+          cp -f yarn.lock tools/build/yarn.lock
       - name: Config Git
         run: |
           git config --global user.email "che-bot@eclipse.org"
           git config --global user.name "Che bot"
       - name: Commit changes
         run: |
-          git add yarn.lock tools/build/yarn.lock
+          git add tools/build/yarn.lock
           git commit --amend --no-edit --signoff
           git push || true
