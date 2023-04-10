@@ -98,7 +98,7 @@ RUN /usr/pgsql-14/bin/initdb && \
     rm /var/lib/pgsql/14/data/database/postmaster.pid && \
     rm /var/run/postgresql/.s.PGSQL* && \
     rm /tmp/.s.PGSQL* && \
-    chmod 777 /tmp/.lock && \
+    rm /tmp/.lock && \
     chmod -R 777 /tmp/file && \
     chmod -R g+rwX /var/lib/pgsql/14/data/database && mv /var/lib/pgsql/14/data/database /var/lib/pgsql/14/data/old
 ENTRYPOINT ["/entrypoint.sh"]
