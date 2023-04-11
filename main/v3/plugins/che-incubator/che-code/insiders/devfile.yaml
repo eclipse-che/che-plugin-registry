@@ -17,7 +17,7 @@ events:
 components:
   - name: che-code-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:9d692f0cc4d1f138fa195815b407cf3680446b597890a31d896804a73af5ce26
+      image: quay.io/devfile/universal-developer-image@sha256:73d38afb1c7ce012d4c5f3b0c25894d2e70ae876effee6382e869d40d6ed468e
       volumeMounts:
         - name: checode
           path: /checode
