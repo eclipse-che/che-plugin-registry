@@ -39,7 +39,7 @@ jobs:
           git config --global user.name "Che bot"
       - name: Commit changes
         run: |
-          git pull origin main
+          git pull
           git add tools/build/yarn.lock
           git commit --amend --no-edit --signoff
           git push || true
