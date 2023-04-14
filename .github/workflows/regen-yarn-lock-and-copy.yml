@@ -17,13 +17,14 @@ name: Copy yarn.lock to tools/build/
 on:
   push:
     branches:
-      - main
+      - '*/*'
+      - '!main'
     paths:
       - 'yarn.lock'
       - '!tools/build/yarn.lock'
 
 jobs:
-  build:
+  copy-yarn-lock:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -39,7 +40,6 @@ jobs:
           git config --global user.name "Che bot"
       - name: Commit changes
         run: |
-          git pull
           git add tools/build/yarn.lock
           git commit --amend --no-edit --signoff
           git push || true
