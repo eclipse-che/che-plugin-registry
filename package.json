@@ -27,7 +27,7 @@
     "ts-mockito": "^2.6.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
-    "typescript": "^4.4.3"
+    "typescript": "^5.0.4"
   },
   "jest": {
     "collectCoverage": true,
