@@ -42,4 +42,4 @@ jobs:
         run: |
           git add tools/build/yarn.lock
           git commit --amend --no-edit --signoff
-          git push || true
+          git push -f || true
