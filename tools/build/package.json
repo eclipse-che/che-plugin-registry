@@ -1,6 +1,6 @@
 {
   "name": "@eclipse-che/plugin-registry-generator",
-  "version": "7.63.0",
+  "version": "7.64.0",
   "description": "Generator of yaml files exposed by the plug-in registry.",
   "main": "lib/entrypoint.js",
   "bin": "lib/entrypoint.js",
