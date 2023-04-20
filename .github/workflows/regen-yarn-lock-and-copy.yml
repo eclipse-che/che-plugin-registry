@@ -17,11 +17,7 @@ name: Copy yarn.lock to tools/build/
 on:
   push:
     branches:
-      - '**'
-      - '!main'
-    paths:
-      - 'yarn.lock'
-      - '!tools/build/yarn.lock'
+      - "dependabot/npm_and_yarn/**"
 
 jobs:
   copy-yarn-lock:
@@ -41,5 +37,5 @@ jobs:
       - name: Commit changes
         run: |
           git add tools/build/yarn.lock
-          git commit --amend --no-edit --signoff
-          git push || true
+          git commit --amend --no-edit --signoff -m "[dependabot skip] update tools/build/yarn.lock"
+          git push -f || true
