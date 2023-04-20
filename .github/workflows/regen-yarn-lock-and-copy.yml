@@ -22,6 +22,7 @@ on:
 jobs:
   copy-yarn-lock:
     runs-on: ubuntu-22.04
+    if: github.actor == 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v3
         with:
