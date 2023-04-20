@@ -38,5 +38,5 @@ jobs:
       - name: Commit changes
         run: |
           git add tools/build/yarn.lock
-          git commit --amend --no-edit --signoff -m "[dependabot skip] update tools/build/yarn.lock"
+          git commit --amend --no-edit --signoff
           git push -f || true
