@@ -65,7 +65,7 @@ components:
     volume: {}
   - name: che-code-injector
     container:
-      image: quay.io/che-incubator/che-code@sha256:8e246342d98f4f2fbe08153fa49b2dbf56e8798aea03d040f0c80ed836579052
+      image: quay.io/che-incubator/che-code@sha256:bdf11726e63451290781fd4f03dfb19fa09b6c3a7cefdca77b5014139cefa16b
       command:
         - /entrypoint-init-container.sh
       volumeMounts:
