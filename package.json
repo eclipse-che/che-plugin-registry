@@ -20,7 +20,7 @@
     "eslint-plugin-no-unsanitized": "^4.0.2",
     "import-sort-style-eslint": "^6.0.0",
     "jest": "^27.5.1",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.8",
     "prettier-plugin-import-sort": "^0.0.7",
     "rimraf": "^5.0.0",
     "ts-jest": "^29.1.0",
