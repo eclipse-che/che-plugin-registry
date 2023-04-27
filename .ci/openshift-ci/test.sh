@@ -28,6 +28,7 @@ runTests() {
   runTest "TypescriptPlugin" "typescript-debug-plugins"
 }
 
-setupTestEnvironment
+# should be reworked in case of https://github.com/eclipse/che/issues/21210
+# setupTestEnvironment
 # runTests
-finishReport
+# finishReport
