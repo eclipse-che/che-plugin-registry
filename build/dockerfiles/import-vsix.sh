@@ -34,6 +34,24 @@ numberOfExtensions=$(echo "${openVsxSyncFileContent}" | jq ". | length")
 listOfPublishers=()
 IFS=$'\n' 
 
+base_dir=$(cd "$(dirname "$0")"; pwd)
+if [[ -f "${base_dir%/*/*}/VERSION" ]]; then
+  VERSION="${base_dir%/*/*}/VERSION"
+  echo "Load file with the Eclipse Che version"
+else
+  echo "File with the current Eclipse Che version not found"
+  exit 1
+fi
+
+currentVersion=$(head -n 1 "${VERSION}")
+
+if [[ $currentVersion == *-SNAPSHOT* ]]; then
+  currentVersion=main
+fi
+
+codeVersion=$(curl -sSlko- https://raw.githubusercontent.com/che-incubator/che-code/"${currentVersion}"/code/package.json | jq -r '.version')
+echo "Che Code version=${codeVersion}"
+
 for i in $(seq 0 "$((numberOfExtensions - 1))"); do
     vsixFullName=$(echo "${openVsxSyncFileContent}" | jq -r ".[$i].id")
     vsixVersion=$(echo "${openVsxSyncFileContent}" | jq -r ".[$i].version")
@@ -53,7 +71,54 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
             vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/latest")
             
             # if version wasn't set in json, grab it from metadata and add it into the file
-            vsixVersion=$(echo "${vsixMetadata}" | jq -r '.version')
+            # get all versions of the extension
+            allVersions=$(echo "${vsixMetadata}" | jq -r '.allVersions')
+            key_value_pairs=$(echo "$allVersions" | jq -r 'to_entries[] | [ .key, .value ] | @tsv')
+            
+            # go through all versions of the extension to find the latest stable version that is compatible with the VS Code version
+            resultedVersion=null
+            while IFS=$'\t' read -r key value; do
+                # get metadata for the version
+                vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
+                # check there is no error field in the metadata
+                if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
+                    echo "Error while getting metadata for ${vsixFullName} version ${key}"
+                    continue
+                fi
+      
+                # check if the version is pre-release
+                preRelease=$(echo "${vsixMetadata}" | jq -r '.preRelease')
+                if [[ $preRelease == true ]]; then
+                    echo "Skipping pre-release version ${value}"
+                    continue
+                fi
+
+                # extract the engine version from the json metadata
+                vscodeEngineVersion=$(echo "${vsixMetadata}" | jq -r '.engines.vscode')
+                # remove ^ from the engine version
+                vscodeEngineVersion="${vscodeEngineVersion//^/}"
+                # remove >= from the engine version
+                vscodeEngineVersion="${vscodeEngineVersion//>=/}"
+                # replace x by 0 in the engine version
+                vscodeEngineVersion="${vscodeEngineVersion//x/0}"
+                # check if the extension's engine version is compatible with the code version
+                # if the extension's engine version is ahead of the code version, check a next version of the extension
+                if [[  "$vscodeEngineVersion" = "$(echo -e "$vscodeEngineVersion\n$codeVersion" | sort -V | head -n1)" ]]; then
+                    #VS Code version >= Engine version, can proceed."
+                    resultedVersion=$(echo "${vsixMetadata}" | jq -r ".version")
+                    break
+                else 
+                    echo "Skipping ${value}, it is not compatible with VS Code editor $codeVersion"
+                    continue
+                fi
+            done <<< "$key_value_pairs"
+
+            if [[ $resultedVersion == null ]]; then
+                echo "[ERROR] No stable version of $vsixFullName is compatible with VS Code editor verision $codeVersion; must exit!"
+                exit 1
+            else
+                vsixVersion=$resultedVersion
+            fi
         else
             vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${vsixVersion}")
         fi 
