@@ -62,6 +62,7 @@ RUN sed -i /mnt/rootfs/etc/httpd/conf/httpd.conf \
 STOPSIGNAL SIGWINCH
 
 RUN mkdir -m 777 /mnt/rootfs/var/www/html/v3
+COPY /VERSION /mnt/rootfs/
 COPY /build/dockerfiles/*.sh /mnt/rootfs/
 COPY /openvsx-sync.json /mnt/rootfs/
 RUN chmod 755 /mnt/rootfs/*.sh
