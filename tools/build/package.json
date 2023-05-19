@@ -37,7 +37,7 @@
     "reflect-metadata": "^0.1.13",
     "semver": "^7.5.0",
     "simple-git": "^3.18.0",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
