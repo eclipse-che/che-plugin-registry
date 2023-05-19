@@ -52,7 +52,7 @@ describe('Test Main with stubs', () => {
     const returnCode = await main.start();
     expect(mockedConsoleError).toHaveBeenCalled();
     expect(returnCode).toBeFalsy();
-    expect(buildMethod).toHaveBeenCalled();
+    expect(buildMethod).toHaveBeenCalledTimes(0);
   });
 
   test('error without stack', async () => {
@@ -64,6 +64,6 @@ describe('Test Main with stubs', () => {
     const returnCode = await main.start();
     expect(mockedConsoleError).toHaveBeenCalled();
     expect(returnCode).toBeFalsy();
-    expect(buildMethod).toHaveBeenCalled();
+    expect(buildMethod).toHaveBeenCalledTimes(0);
   });
 });
