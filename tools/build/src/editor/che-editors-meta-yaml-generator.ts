@@ -100,7 +100,7 @@ export class CheEditorsMetaYamlGenerator {
           spec,
           skipMetaYaml,
         } as MetaYamlPluginInfo;
-      })
+      }),
     );
 
     return metaYamlPluginInfos;

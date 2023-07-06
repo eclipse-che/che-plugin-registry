@@ -29,20 +29,20 @@ export class DigestImagesHelper {
           if (spec.containers) {
             await Promise.all(
               spec.containers.map(
-                async container => (container.image = await this.registryHelper.getImageDigest(container.image))
-              )
+                async container => (container.image = await this.registryHelper.getImageDigest(container.image)),
+              ),
             );
           }
           if (spec.initContainers) {
             await Promise.all(
               spec.initContainers.map(
-                async container => (container.image = await this.registryHelper.getImageDigest(container.image))
-              )
+                async container => (container.image = await this.registryHelper.getImageDigest(container.image)),
+              ),
             );
           }
         }
         return plugin;
-      })
+      }),
     );
   }
 }

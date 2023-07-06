@@ -185,7 +185,7 @@ describe('Test ChePluginsMetaYamlGenerator', () => {
     const cheEditorMetaInfo = await generateEditorMetaInfo('my/incomplete');
     const cheEditorMetaInfos: CheEditorMetaInfo[] = [cheEditorMetaInfo];
     await expect(cheEditorsMetaYamlGenerator.compute(cheEditorMetaInfos)).rejects.toThrow(
-      'is not composed of 3 parts separated by /'
+      'is not composed of 3 parts separated by /',
     );
   });
 

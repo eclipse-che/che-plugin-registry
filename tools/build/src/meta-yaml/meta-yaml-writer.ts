@@ -154,10 +154,10 @@ export class MetaYamlWriter {
               const devfileYamlString = jsyaml.dump(devfileYaml, { noRefs: true, lineWidth: -1 });
               promises.push(fs.writeFile(devfilePath, devfileYamlString));
             }
-          })
+          }),
         );
         return Promise.all(promises);
-      })
+      }),
     );
     return metaYamlPluginGenerated;
   }

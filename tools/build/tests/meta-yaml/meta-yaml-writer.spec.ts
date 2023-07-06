@@ -84,7 +84,7 @@ describe('Test MetaYamlWriter', () => {
 
     expect(fsCopyFileSpy).toHaveBeenCalledWith(
       '/fake-dir/icon.png',
-      '/fake-output/v3/images/my-publisher-my-name-icon.png'
+      '/fake-output/v3/images/my-publisher-my-name-icon.png',
     );
     expect(fsEnsureDirSpy).toHaveBeenNthCalledWith(1, '/fake-output/v3/plugins');
     expect(fsEnsureDirSpy).toHaveBeenNthCalledWith(2, '/fake-output/v3/images');
@@ -110,7 +110,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       1,
       '/fake-output/v3/plugins/custom-publisher/custom-name/latest/meta.yaml',
-      content
+      content,
     );
 
     // check that alias is also being written (and alias is deprecated)
@@ -121,7 +121,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       2,
       '/fake-output/v3/plugins/first/alias/latest/meta.yaml',
-      aliasContent
+      aliasContent,
     );
   });
 
@@ -145,7 +145,7 @@ spec:
     expect(fsEnsureDirSpy).toHaveBeenNthCalledWith(3, '/fake-output/v3/resources');
     expect(fsEnsureDirSpy).toHaveBeenNthCalledWith(
       4,
-      '/fake-output/v3/plugins/custom-publisher/custom-name/my-version'
+      '/fake-output/v3/plugins/custom-publisher/custom-name/my-version',
     );
     // icon is the default one
     const content = `apiVersion: v2
@@ -169,7 +169,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       1,
       '/fake-output/v3/plugins/custom-publisher/custom-name/my-version/meta.yaml',
-      content
+      content,
     );
     // no version written with disable Latest
     expect(fsWriteFileSpy).toHaveBeenCalledTimes(1);
@@ -229,7 +229,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       1,
       '/fake-output/v3/plugins/foo/bar/latest/devfile.yaml',
-      'devfileFakeResult: dummy\n'
+      'devfileFakeResult: dummy\n',
     );
   });
 
@@ -271,7 +271,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       2,
       '/fake-output/v3/plugins/foo/bar/latest/devfile.yaml',
-      'devfileFakeResult: dummy\n'
+      'devfileFakeResult: dummy\n',
     );
   });
 
@@ -320,7 +320,7 @@ spec:
     expect(fsWriteFileSpy).toHaveBeenNthCalledWith(
       2,
       '/fake-output/v3/plugins/foo/bar/latest/devfile.yaml',
-      'devfileFakeResult: dummy\n'
+      'devfileFakeResult: dummy\n',
     );
   });
 });

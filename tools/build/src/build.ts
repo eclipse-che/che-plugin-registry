@@ -85,7 +85,7 @@ export class Build {
       cheEditorsYaml.editors.map(async (cheEditorYaml: CheEditorYaml) => {
         const cheEditorMetaInfo: CheEditorMetaInfo = { ...cheEditorYaml };
         return cheEditorMetaInfo;
-      })
+      }),
     );
 
     return cheEditors;
@@ -101,7 +101,7 @@ export class Build {
     if (promise) {
       promise.then(
         () => task.success(),
-        () => task.error()
+        () => task.error(),
       );
     }
     return promise;
@@ -113,7 +113,7 @@ export class Build {
     const cheEditors = await this.wrapIntoTask('Analyze che-editors.yaml file', this.analyzeCheEditorsYaml());
     const cheEditorsMetaYaml = await this.wrapIntoTask(
       'Compute meta.yaml for che-editors',
-      this.cheEditorsMetaYamlGenerator.compute(cheEditors)
+      this.cheEditorsMetaYamlGenerator.compute(cheEditors),
     );
 
     const computedYamls = [...cheEditorsMetaYaml];
@@ -123,7 +123,7 @@ export class Build {
       // update all images to use digest instead of tags
       allMetaYamls = await this.wrapIntoTask(
         'Update tags by digests for OCI images',
-        this.digestImagesHelper.updateImages(computedYamls)
+        this.digestImagesHelper.updateImages(computedYamls),
       );
     }
 
@@ -133,7 +133,7 @@ export class Build {
     // generate v3/plugins folder
     const generatedYamls = await this.wrapIntoTask(
       'Write meta.yamls in v3/plugins folder',
-      this.metaYamlWriter.write(allMetaYamls)
+      this.metaYamlWriter.write(allMetaYamls),
     );
 
     // generate index.json
