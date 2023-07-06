@@ -66,7 +66,7 @@ export class RegistryHelper {
     // do not grab digest of an image that is being published (if tag contains the current sha1)
     if (dockerImageName.tag && dockerImageName.tag.includes(this.shortSha1)) {
       console.log(
-        `Do not fetch digest for ${imageName} as the tag ${dockerImageName.tag} includes the current sha1 ${this.shortSha1}`
+        `Do not fetch digest for ${imageName} as the tag ${dockerImageName.tag} includes the current sha1 ${this.shortSha1}`,
       );
       return imageName;
     }
