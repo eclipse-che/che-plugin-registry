@@ -5,7 +5,7 @@ index.docker.io/codercom/code-server@sha256:ef07281004909bb2c228422df2e99a5ba5e4
 quay.io/devfile/universal-developer-image@sha256:9b8f171125d1b0f8023258f343ce9d044f073fe769a3d360b25a6ea52d915bfd
 quay.io/che-incubator/che-code:insiders
 quay.io/devfile/universal-developer-image@sha256:9b8f171125d1b0f8023258f343ce9d044f073fe769a3d360b25a6ea52d915bfd
-quay.io/che-incubator/che-code@sha256:e33137d2633e43f31cf0417fb6de75c14f27af86a3b7ece8f5cf9ba6117272f1
+quay.io/che-incubator/che-code@sha256:9ef66e2f4c7a62836a4a91d249721a8037fbc73ad786065cb6c0c742309dce73
 quay.io/devfile/universal-developer-image@sha256:9b8f171125d1b0f8023258f343ce9d044f073fe769a3d360b25a6ea52d915bfd
 quay.io/che-incubator/che-idea:next
 quay.io/devfile/universal-developer-image@sha256:9b8f171125d1b0f8023258f343ce9d044f073fe769a3d360b25a6ea52d915bfd
