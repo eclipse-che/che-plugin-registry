@@ -12,9 +12,7 @@
 #
 
 # OpenVSX
-#FROM ghcr.io/eclipse/openvsx-server:72706d1 AS openvsx-server
-# fix https://github.com/eclipse/openvsx/pull/499 for https://github.com/eclipse/openvsx/issues/498
-FROM ghcr.io/eclipse/openvsx-server:f061c72 AS openvsx-server
+FROM ghcr.io/eclipse/openvsx-server:8fbf749 AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
@@ -22,8 +20,8 @@ FROM registry.access.redhat.com/ubi8/ubi:8.8-1009 AS ubi-builder
 RUN mkdir -p /mnt/rootfs
 # Install httpd and postgresql
 RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-RUN yum install --installroot /mnt/rootfs postgresql14-libs postgresql14 postgresql14-server \
-    java-11-openjdk coreutils-single glibc-minimal-langpack glibc-langpack-en langpacks-en glibc-locale-source httpd nc \
+RUN yum install --installroot /mnt/rootfs postgresql15-libs postgresql15 postgresql15-server \
+    java-17-openjdk coreutils-single glibc-minimal-langpack glibc-langpack-en langpacks-en glibc-locale-source httpd nc \
     net-tools procps vi curl wget tar gzip jq\
     --releasever 8 --nodocs -y && \
     yum --installroot /mnt/rootfs clean all && \
@@ -45,7 +43,7 @@ RUN cat /mnt/rootfs/etc/passwd | sed s#root:x.*#root:x:\${USER_ID}:\${GROUP_ID}:
     && cat /mnt/rootfs/etc/group | sed s#root:x:0:#root:x:0:0,\${USER_ID}:#g > /mnt/rootfs/.group.template
 
 # change permissions
-RUN for f in "/mnt/rootfs/etc/passwd" "/mnt/rootfs/etc/group" "/mnt/rootfs/var/lib/pgsql" "/mnt/rootfs/usr/pgsql-14" "/mnt/rootfs/var/run/postgresql"; do\
+RUN for f in "/mnt/rootfs/etc/passwd" "/mnt/rootfs/etc/group" "/mnt/rootfs/var/lib/pgsql" "/mnt/rootfs/usr/pgsql-15" "/mnt/rootfs/var/run/postgresql"; do\
            chgrp -R 0 ${f} && \
            chmod -R g+rwX ${f}; \
        done
@@ -84,24 +82,24 @@ USER postgres
 ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
-    PGDATA=/var/lib/pgsql/14/data/database \
+    PGDATA=/var/lib/pgsql/15/data/database \
     # Use a cached version of the license list and not go over the internet
     # it's needed for openvsx server when vsix is publishing on AirGap environment.
     # Set Xmx to run openvsx server
     JVM_ARGS="-DSPDXParser.OnlyUseLocalLicenses=true -Xmx2048m"
 
-RUN /usr/pgsql-14/bin/initdb && \
+RUN /usr/pgsql-15/bin/initdb && \
     # Add all vsix files to the database
     /import-vsix.sh && \
     # add permissions for anyuserid
-    chgrp -R 0 /var/lib/pgsql/14/data/database && \
+    chgrp -R 0 /var/lib/pgsql/15/data/database && \
     #cleanup postgresql pid
-    rm /var/lib/pgsql/14/data/database/postmaster.pid && \
+    rm /var/lib/pgsql/15/data/database/postmaster.pid && \
     rm /var/run/postgresql/.s.PGSQL* && \
     rm /tmp/.s.PGSQL* && \
     rm /tmp/.lock && \
     chmod -R 777 /tmp/file && \
-    chmod -R g+rwX /var/lib/pgsql/14/data/database && mv /var/lib/pgsql/14/data/database /var/lib/pgsql/14/data/old
+    chmod -R g+rwX /var/lib/pgsql/15/data/database && mv /var/lib/pgsql/15/data/database /var/lib/pgsql/15/data/old
 ENTRYPOINT ["/entrypoint.sh"]
 
 # append Brew metadata here
