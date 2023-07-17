@@ -32,7 +32,6 @@ getMetadata(){
     key=$2
 
     # check there is no error field in the metadata and retry if there is
-    max_attempts=5
     for i in 1 2 3 4 5
     do
         vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
@@ -86,7 +85,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
         # grab metadata for the vsix file
         # if version wasn't set, use latest
         if [[ $vsixVersion == null ]]; then
-            getMetadata $vsixName "latest"
+            getMetadata "${vsixName}" "latest"
             # if version wasn't set in json, grab it from metadata and add it into the file
             # get all versions of the extension
             allVersions=$(echo "${vsixMetadata}" | jq -r '.allVersions')
@@ -96,7 +95,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
             resultedVersion=null
             while IFS=$'\t' read -r key value; do
                 # get metadata for the version
-                getMetadata $vsixName $key
+                getMetadata "${vsixName}" "${key}"
       
                 # check if the version is pre-release
                 preRelease=$(echo "${vsixMetadata}" | jq -r '.preRelease')
@@ -132,7 +131,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
                 vsixVersion=$resultedVersion
             fi
         else
-            getMetadata $vsixName $vsixVersion
+            getMetadata "${vsixName}" "${vsixVersion}"
         fi 
         
         # extract the download link from the json metadata
