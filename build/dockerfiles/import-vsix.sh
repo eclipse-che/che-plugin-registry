@@ -37,6 +37,11 @@ getMetadata(){
         vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
         if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
             echo "Attempt $j/5: Error while getting metadata for ${vsixName} version ${key}"
+
+            if [[ $j = 5 ]]; then
+                echo "[ERROR] Maximum attempts reached."
+                exit 1
+            fi
             continue
         else
             break
