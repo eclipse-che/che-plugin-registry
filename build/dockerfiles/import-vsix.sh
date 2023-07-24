@@ -26,6 +26,28 @@ export OVSX_PAT=eclipse_che_token
 
 containsElement () { for e in "${@:2}"; do [[ "$e" = "$1" ]] && return 0; done; return 1; }
 
+vsixMetadata="" #now global so it can be set/checked via function
+getMetadata(){
+    vsixName=$1
+    key=$2
+
+    # check there is no error field in the metadata and retry if there is
+    for j in 1 2 3 4 5
+    do
+        vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
+        if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
+            echo "Attempt $j/5: Error while getting metadata for ${vsixName} version ${key}"
+
+            if [[ $j -eq 5 ]]; then
+                echo "[ERROR] Maximum of 5 attempts reached - must exit!"
+                exit 1
+            fi
+            continue
+        else
+            break
+        fi
+    done
+}
 
 # pull vsix from OpenVSX
 mkdir -p /tmp/vsix
@@ -68,8 +90,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
         # grab metadata for the vsix file
         # if version wasn't set, use latest
         if [[ $vsixVersion == null ]]; then
-            vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/latest")
-            
+            getMetadata "${vsixName}" "latest"
             # if version wasn't set in json, grab it from metadata and add it into the file
             # get all versions of the extension
             allVersions=$(echo "${vsixMetadata}" | jq -r '.allVersions')
@@ -79,12 +100,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
             resultedVersion=null
             while IFS=$'\t' read -r key value; do
                 # get metadata for the version
-                vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
-                # check there is no error field in the metadata
-                if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
-                    echo "Error while getting metadata for ${vsixFullName} version ${key}"
-                    continue
-                fi
+                getMetadata "${vsixName}" "${key}"
       
                 # check if the version is pre-release
                 preRelease=$(echo "${vsixMetadata}" | jq -r '.preRelease')
@@ -120,14 +136,8 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
                 vsixVersion=$resultedVersion
             fi
         else
-            vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${vsixVersion}")
+            getMetadata "${vsixName}" "${vsixVersion}"
         fi 
-        # check there is no error field in the metadata
-        if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
-            echo "Error while getting metadata for ${vsixFullName}"
-            echo "${vsixMetadata}"
-            exit 1
-        fi
         
         # extract the download link from the json metadata
         vsixDownloadLink=$(echo "${vsixMetadata}" | jq -r '.files.download')
