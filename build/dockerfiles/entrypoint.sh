@@ -58,8 +58,8 @@ function run_main() {
     # start only if wanted
     if [ "${START_OPENVSX}" == "true" ]; then
       # change permissions
-      cp -r /var/lib/pgsql/14/data/old /var/lib/pgsql/14/data/database
-      rm -rf /var/lib/pgsql/14/data/old
+      cp -r /var/lib/pgsql/15/data/old /var/lib/pgsql/15/data/database
+      rm -rf /var/lib/pgsql/15/data/old
 
       # start postgres and openvsx
       ./start-services.sh
