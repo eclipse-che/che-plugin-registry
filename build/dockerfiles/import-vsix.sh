@@ -6,13 +6,13 @@ set -o pipefail
 ./start-services.sh
 
 # install temporary nodejs
-mkdir -p /tmp/opt/nodejs && curl -sL https://nodejs.org/download/release/v14.18.3/node-v14.18.3-linux-x64.tar.gz | tar xzf - -C /tmp/opt/nodejs --strip-components=1
+mkdir -p /tmp/opt/nodejs && curl -sL https://nodejs.org/download/release/v18.16.1/node-v18.16.1-linux-x64.tar.gz | tar xzf - -C /tmp/opt/nodejs --strip-components=1
 # add path
 export PATH=/tmp/opt/nodejs/bin:$PATH
 
 
 # install the cli
-npm install -g ovsx@0.7.1
+npm install -g ovsx@0.8.2
 
 # insert user
 psql -c "INSERT INTO user_data (id, login_name) VALUES (1001, 'eclipse-che');"
@@ -135,6 +135,12 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
         vsixUniversalDownloadLink=$(echo "${vsixMetadata}" | jq -r '.downloads."universal"')
         if [[ $vsixUniversalDownloadLink != null ]]; then
             vsixDownloadLink=$vsixUniversalDownloadLink
+        else
+            # get linux download link
+            vsixLinuxDownloadLink=$(echo "${vsixMetadata}" | jq -r '.downloads."linux-x64"')
+            if [[ $vsixLinuxDownloadLink != null ]]; then
+                vsixDownloadLink=$vsixLinuxDownloadLink
+            fi
         fi
     fi
 
