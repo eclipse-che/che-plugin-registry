@@ -104,7 +104,6 @@ jobs:
         run: |
           git checkout ${{ github.event.inputs.version}}
           docker pull quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version}} 
-          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Pulled existing image from https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: Perform release
         if: ${{ github.event.inputs.performRelease == 'true' }}
         run: |
@@ -114,7 +113,6 @@ jobs:
           export GITHUB_TOKEN=${{ secrets.CHE_BOT_GITHUB_TOKEN }}
 
           ./make-release.sh --version ${{ github.event.inputs.version}} --trigger-release
-          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Performed tagging and container build of new image https://quay.io/eclipse/che-plugin-registry:${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: Prepare mattermost message
         run:
           echo "{\"text\":\"Release has been performed\"}" > mattermost.json
@@ -134,8 +132,6 @@ jobs:
           export BUILD_DIR="$PWD/content"
           export GH_PAGES_DIR="$PWD/gh-pages"
           ./build/dev/publish-plugin-registry-to-gh-pages.sh
-
-          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Published plugin registry to GitHub Pages https://github.com/eclipse-che/che-plugin-registry/tree/gh-pages/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
       - name: publish to npmjs
         if: ${{ github.event.inputs.publishToNpmJs == 'true' }}
         env:
@@ -145,19 +141,17 @@ jobs:
           BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${{ github.event.inputs.version}}"
           cd tools/build
           npm publish --tag latest
-
-          echo MM_MESSAGE_APPEND='${{ env.MM_MESSAGE_APPEND }} \n Published package to npmjs https://www.npmjs.com/package/@eclipse-che/plugin-registry-generator/v/${{ github.event.inputs.version }}.' >> $GITHUB_ENV
-      - name: Create failure MM message
-        if: ${{ failure() }}
-        run: |
-          echo "{\"text\":\":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. ${MM_MESSAGE_APPEND}\"}" > mattermost.json
-      - name: Create success MM message
-        run: |
-          echo "{\"text\":\":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release job is complete: ${MM_MESSAGE_APPEND}\"}" > mattermost.json
-      - name: Send MM message
-        if: ${{ success() }} || ${{ failure() }}
-        uses: mattermost/action-mattermost-notify@1.1.0
-        env:
-          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
-          MATTERMOST_CHANNEL: eclipse-che-releases
-          MATTERMOST_USERNAME: che-bot
+      #- name: Create failure MM message
+        #if: ${{ failure() }}
+        #run: |
+          #echo "{\"text\":\":no_entry_sign: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release has failed: https://github.com/eclipse-che/che-plugin-registry/actions/workflows/release.yml. ${MM_MESSAGE_APPEND}\"}" > mattermost.json
+      #- name: Create success MM message
+        #run: |
+          #echo "{\"text\":\":white_check_mark: Che Plugin Registry image and generator ${{ github.event.inputs.version }} release job is complete: ${MM_MESSAGE_APPEND}\"}" > mattermost.json
+      #- name: Send MM message
+        #if: ${{ success() }} || ${{ failure() }}
+        #uses: mattermost/action-mattermost-notify@1.1.0
+        #env:
+          #MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          #MATTERMOST_CHANNEL: eclipse-che-releases
+          #MATTERMOST_USERNAME: che-bot
