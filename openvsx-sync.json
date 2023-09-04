@@ -108,6 +108,9 @@
         "id": "rogalmic.bash-debug"
     },
     {
+        "id": "ms-dotnettools.vscode-dotnet-runtime"
+    },
+    {
         "id": "muhammad-sammy.csharp"
     },
     {
