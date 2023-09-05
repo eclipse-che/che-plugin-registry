@@ -17,7 +17,7 @@ events:
 components:
   - name: che-pycharm-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:cf2cdaa09824f696fd31261580682a66b4534572467d8be9f71c23065b922a6c
+      image: quay.io/devfile/universal-developer-image@sha256:78996f4b534f22bc4dea90889d40b0a7e9f2834529d4282fd68a4b7380e24098
       env:
         - name: PROJECTOR_ASSEMBLY_DIR
           value: /projector
