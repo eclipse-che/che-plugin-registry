@@ -12,7 +12,7 @@
 #
 
 # OpenVSX
-FROM ghcr.io/eclipse/openvsx-server:8fbf749 AS openvsx-server
+FROM ghcr.io/eclipse/openvsx-server:d7fba39 AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
