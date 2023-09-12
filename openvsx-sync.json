@@ -6,13 +6,13 @@
         "id": "vscode.github-authentication"
     },
     {
-        "id": "github.vscode-pull-request-github"
+        "id": "GitHub.vscode-pull-request-github"
     },
     {
         "id": "vscode.typescript-language-features"
     },
     {
-        "id": "bazelbuild.vscode-bazel"
+        "id": "BazelBuild.vscode-bazel"
     },
     {
         "id": "octref.vetur"
@@ -42,13 +42,13 @@
         "id": "eamodio.gitlens"
     },
     {
-        "id": "golang.go"
+        "id": "golang.Go"
     },
     {
-        "id": "dart-code.dart-code"
+        "id": "Dart-Code.dart-code"
     },
     {
-        "id": "dart-code.flutter"
+        "id": "Dart-Code.flutter"
     },
     {
         "id": "redhat.vscode-yaml"
@@ -123,7 +123,7 @@
         "id": "scalameta.metals"
     },
     {
-        "id": "sonarsource.sonarlint-vscode"
+        "id": "SonarSource.sonarlint-vscode"
     },
     {
         "id": "vscode.git-base"
@@ -135,19 +135,19 @@
         "id": "atlassian.atlascode"
     },
     {
-        "id": "broadcommfd.cobol-language-support"
+        "id": "BroadcomMFD.cobol-language-support"
     },
     {
-        "id": "broadcommfd.debugger-for-mainframe"
+        "id": "BroadcomMFD.debugger-for-mainframe"
     },
     {
-        "id": "broadcommfd.hlasm-language-support"
+        "id": "BroadcomMFD.hlasm-language-support"
     },
     {
-        "id": "zowe.vscode-extension-for-zowe"
+        "id": "Zowe.vscode-extension-for-zowe"
     },
     {
-        "id": "broadcommfd.explorer-for-endevor"
+        "id": "BroadcomMFD.explorer-for-endevor"
     },
     {
         "id": "zxh404.vscode-proto3"
@@ -183,13 +183,13 @@
         "id": "redhat.vscode-commons"
     },
     {
-        "id": "broadcommfd.ccf"
+        "id": "BroadcomMFD.ccf"
     },
     {
         "id": "4ops.terraform"
     },
     {
-        "id": "randomchance.logstash"
+        "id": "RandomChance.logstash"
     },
     {
         "id": "fbaligand.vscode-logstash-editor"
