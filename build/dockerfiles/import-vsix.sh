@@ -26,32 +26,46 @@ export OVSX_PAT=eclipse_che_token
 
 containsElement () { for e in "${@:2}"; do [[ "$e" = "$1" ]] && return 0; done; return 1; }
 
-function getOpenVSXData(){
+vsixMetadata="" #now global so it can be set/checked via function
+getMetadata(){
     vsixName=$1
     key=$2
-    parameters=$3
-
-    # build the request url
-    if [[ -n "$parameters" ]]; then
-        url="https://open-vsx.org/api/${vsixName}/${key}?${parameters}"
-    else
-        url="https://open-vsx.org/api/${vsixName}/${key}"
-    fi
 
     # check there is no error field in the metadata and retry if there is
     for j in 1 2 3 4 5
     do
-        result=$(curl -sLS "${url}")
-        if [[ $(echo "${result}" | jq -r ".error") != null ]]; then
-            echo "Attempt $j/5: Error while getting metadata for ${vsixFullName} version ${key}"
+        vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
+        if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
+            echo "Attempt $j/5: Error while getting metadata for ${vsixName} version ${key}"
 
             if [[ $j -eq 5 ]]; then
-                echo "[ERROR] Maximum of 5 attempts reached - must exit with failure!"
+                echo "[ERROR] Maximum of 5 attempts reached - must exit!"
                 exit 1
             fi
             continue
         else
-            echo "$result"
+            break
+        fi
+    done
+}
+
+versionsPage=""
+getVersions(){
+    vsixName=$1
+    # check the versions page is empty and retry if it is
+    for j in 1 2 3 4 5
+    do
+        versionsPage=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=200")
+        totalSize=$(echo "${versionsPage}" | jq -r ".totalSize")
+        if [[ "$totalSize" != "null" && "$totalSize" -eq 0 ]]; then
+            echo "Attempt $j/5: Error while getting versions for ${vsixName}"
+
+            if [[ $j -eq 5 ]]; then
+                echo "[ERROR] Maximum of 5 attempts reached - must exit!"
+                exit 1
+            fi
+            continue
+        else
             break
         fi
     done
@@ -98,8 +112,8 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
         # grab metadata for the vsix file
         # if version wasn't set, use latest
         if [[ $vsixVersion == null ]]; then
-            vsixMetadata=$(getOpenVSXData "${vsixName}" "latest")
-            versionsPage=$(getOpenVSXData "${vsixName}" "versions" "size=200")
+            getMetadata "${vsixName}" "latest"
+            getVersions "${vsixName}"
             # if version wasn't set in json, grab it from metadata and add it into the file
             # get all versions of the extension
             allVersions=$(echo "${versionsPage}" | jq -r '.versions')
@@ -113,7 +127,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
             resultedVersion=null
             while IFS=$'\t' read -r key value; do
                 # get metadata for the version
-                vsixMetadata=$(getOpenVSXData "${vsixName}" "${key}")
+                getMetadata "${vsixName}" "${key}"
       
                 # check if the version is pre-release
                 preRelease=$(echo "${vsixMetadata}" | jq -r '.preRelease')
@@ -149,7 +163,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
                 vsixVersion=$resultedVersion
             fi
         else
-            vsixMetadata=$(getOpenVSXData "${vsixName}" "${vsixVersion}")
+            getMetadata "${vsixName}" "${vsixVersion}"
         fi 
         
         # extract the download link from the json metadata
