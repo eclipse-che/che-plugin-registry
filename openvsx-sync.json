@@ -69,6 +69,9 @@
         "id": "redhat.vscode-microprofile"
     },
     {
+        "id": "redhat.vscode-apache-camel"
+    },
+    {
         "id": "redhat.vscode-camelk"
     },
     {
@@ -94,9 +97,6 @@
     },
     {
         "id": "redhat.rhamt-vscode-extension"
-    },
-    {
-        "id": "redhat.vscode-apache-camel"
     },
     {
         "id": "redhat.vscode-xml"
