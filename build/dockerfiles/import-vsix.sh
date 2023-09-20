@@ -35,6 +35,7 @@ getMetadata(){
     for j in 1 2 3 4 5
     do
         vsixMetadata=$(curl -sLS "https://open-vsx.org/api/${vsixName}/${key}")
+        echo "${vsixMetadata}"
         if [[ $(echo "${vsixMetadata}" | jq -r ".error") != null ]]; then
             echo "Attempt $j/5: Error while getting metadata for ${vsixName} version ${key}"
 
@@ -56,6 +57,7 @@ getVersions(){
     for j in 1 2 3 4 5
     do
         versionsPage=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=200")
+        echo "Reading versions"
         totalSize=$(echo "${versionsPage}" | jq -r ".totalSize")
         if [[ "$totalSize" != "null" && "$totalSize" -eq 0 ]]; then
             echo "Attempt $j/5: Error while getting versions for ${vsixName}"
