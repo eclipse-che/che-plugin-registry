@@ -31,17 +31,17 @@ export YAML_FILE_NAME=${YAML_FILE_NAME:-"devfile.yaml"}
 
 provisionOpenShiftOAuthUser() {
   echo -e "[INFO] Provisioning Openshift OAuth user"
-  htpasswd -c -B -b users.htpasswd ${OCP_ADMIN_USER_NAME} ${OCP_LOGIN_PASSWORD}
-  htpasswd -b users.htpasswd ${OCP_NON_ADMIN_USER_NAME} ${OCP_LOGIN_PASSWORD}
+  htpasswd -c -B -b users.htpasswd "${OCP_ADMIN_USER_NAME}" "${OCP_LOGIN_PASSWORD}"
+  htpasswd -b users.htpasswd "${OCP_NON_ADMIN_USER_NAME}" "${OCP_LOGIN_PASSWORD}"
   oc create secret generic htpass-secret --from-file=htpasswd="users.htpasswd" -n openshift-config
   oc apply -f ".ci/openshift-ci/htpasswdProvider.yaml"
-  oc adm policy add-cluster-role-to-user cluster-admin ${OCP_ADMIN_USER_NAME}
+  oc adm policy add-cluster-role-to-user cluster-admin "${OCP_ADMIN_USER_NAME}"
 
   echo -e "[INFO] Waiting for htpasswd auth to be working up to 5 minutes"
   CURRENT_TIME=$(date +%s)
   ENDTIME=$((CURRENT_TIME + 300))
   while [ "$(date +%s)" -lt $ENDTIME ]; do
-      if oc login -u=${OCP_ADMIN_USER_NAME} -p=${OCP_LOGIN_PASSWORD} --insecure-skip-tls-verify=false; then
+      if oc login -u="${OCP_ADMIN_USER_NAME}" -p="${OCP_LOGIN_PASSWORD}" --insecure-skip-tls-verify=false; then
           break
       fi
       sleep 10
@@ -78,7 +78,7 @@ deployChe() {
 
 # this command starts port forwarding between the local machine and the che-host service in the OpenShift cluster.
 forwardPortToService() {
-  oc port-forward service/che-host ${CHE_FORWARDED_PORT}:8080 -n ${CHE_NAMESPACE} &
+  oc port-forward service/che-host ${CHE_FORWARDED_PORT}:8080 -n "${CHE_NAMESPACE}" &
   sleep 3s
 }
 
@@ -96,7 +96,7 @@ requestFactoryResolverGitRepoUrl() {
     -H "Authorization: Bearer ${CLUSTER_ACCESS_TOKEN}" \
     -H 'Content-Type: application/json' \
     -d '{
-    "url": "'${GIT_REPO_URL}'"
+    "url": "'"${GIT_REPO_URL}"'"
   }'
 }
 
@@ -104,7 +104,7 @@ testFactoryResolver() {
   PUBLIC_REPO_URL=$1
 
   echo "[INFO] Check factory resolver for public repository"
-  if [ "$(requestFactoryResolverGitRepoUrl ${PUBLIC_REPO_URL} | grep "HTTP/1.1 200")" ]; then
+  if requestFactoryResolverGitRepoUrl "${PUBLIC_REPO_URL}" | grep "HTTP/1.1 200"; then
     echo "[INFO] Factory resolver returned 'HTTP/1.1 200' status code."
   else
     echo "[ERROR] Factory resolver returned wrong status code. Expected: HTTP/1.1 200."
@@ -126,8 +126,8 @@ initUserNamespace() {
   OCP_USER_NAME=$1
 
   echo "[INFO] Initialize user namespace"
-  oc login -u=${OCP_USER_NAME} -p=${OCP_LOGIN_PASSWORD} --insecure-skip-tls-verify=false
-  if [ "$(requestProvisionNamespace | grep "HTTP/1.1 200")" ]; then
+  oc login -u="${OCP_USER_NAME}" -p="${OCP_LOGIN_PASSWORD}" --insecure-skip-tls-verify=false
+  if requestProvisionNamespace | grep "HTTP/1.1 200"; then
     echo "[INFO] Request provision user namespace returned 'HTTP/1.1 200' status code."
   else
     echo "[ERROR] Request provision user namespace returned wrong status code. Expected: HTTP/1.1 200"
@@ -139,8 +139,8 @@ testProjectIsCloned() {
   PROJECT_NAME=$1
   OCP_USER_NAMESPACE=$2
 
-  WORKSPACE_POD_NAME=$(oc get pods -n ${OCP_USER_NAMESPACE} | grep workspace | awk '{print $1}')
-  if oc exec -it -n ${OCP_USER_NAMESPACE} ${WORKSPACE_POD_NAME} -- test -f /projects/${PROJECT_NAME}/${YAML_FILE_NAME}; then
+  WORKSPACE_POD_NAME=$(oc get pods -n "${OCP_USER_NAMESPACE}" | grep workspace | awk '{print $1}')
+  if oc exec -it -n "${OCP_USER_NAMESPACE}" "${WORKSPACE_POD_NAME}" -- test -f /projects/"${PROJECT_NAME}"/"${YAML_FILE_NAME}"; then
     echo "[INFO] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} exists."
   else
     echo "[INFO] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} is absent."
@@ -154,7 +154,7 @@ runTestWorkspaceWithGitRepoUrl() {
   GIT_REPO_URL=$3
   OCP_USER_NAMESPACE=$4
 
-  oc project ${OCP_USER_NAMESPACE}
+  oc project "${OCP_USER_NAMESPACE}"
   cat .ci/openshift-ci/devworkspace-test.yaml > devworkspace-test.yaml
 
   # patch the devworkspace-test.yaml file
@@ -164,8 +164,8 @@ runTestWorkspaceWithGitRepoUrl() {
 
   cat devworkspace-test.yaml
 
-  oc apply -f devworkspace-test.yaml -n ${OCP_USER_NAMESPACE}
-  oc wait -n ${OCP_USER_NAMESPACE} --for=condition=Ready dw ${WS_NAME} --timeout=360s
+  oc apply -f devworkspace-test.yaml -n "${OCP_USER_NAMESPACE}"
+  oc wait -n "${OCP_USER_NAMESPACE}" --for=condition=Ready dw "${WS_NAME}" --timeout=360s
   echo "[INFO] Test workspace is run"
 }
 
@@ -173,7 +173,7 @@ deleteTestWorkspace() {
   WS_NAME=$1
   OCP_USER_NAMESPACE=$2
 
-  oc delete dw ${WS_NAME} -n ${OCP_USER_NAMESPACE}
+  oc delete dw "${WS_NAME}" -n "${OCP_USER_NAMESPACE}"
 }
 
 testClonePublicRepoNoPatOAuth() {
@@ -182,11 +182,11 @@ testClonePublicRepoNoPatOAuth() {
   GIT_REPO_URL=$3
   OCP_USER_NAMESPACE=$4
 
-  runTestWorkspaceWithGitRepoUrl ${WS_NAME} ${PROJECT_NAME} ${GIT_REPO_URL} ${OCP_USER_NAMESPACE}
+  runTestWorkspaceWithGitRepoUrl "${WS_NAME}" "${PROJECT_NAME}" "${GIT_REPO_URL}" "${OCP_USER_NAMESPACE}"
   echo "[INFO] Check the public repository is cloned"
-  testProjectIsCloned ${PROJECT_NAME} ${OCP_USER_NAMESPACE} || \
+  testProjectIsCloned "${PROJECT_NAME}" "${OCP_USER_NAMESPACE}" || \
   { echo "[ERROR] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} should be present." && exit 1; }
-  deleteTestWorkspace ${WS_NAME} ${OCP_USER_NAMESPACE}
+  deleteTestWorkspace "${WS_NAME}" "${OCP_USER_NAMESPACE}"
 }
 
 setupTestEnvironment() {

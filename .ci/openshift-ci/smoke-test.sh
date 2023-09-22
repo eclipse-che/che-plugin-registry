@@ -21,11 +21,12 @@ export PRIVATE_REPO_URL=${PRIVATE_REPO_URL:-"https://github.com/chepullreq1/priv
 
 # import common test functions
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# shellcheck disable=SC1091
 source "${SCRIPT_DIR}"/common-functions.sh
 
 trap "catchFinish" EXIT SIGINT
 
-setupTestEnvironment ${OCP_NON_ADMIN_USER_NAME}
+setupTestEnvironment "${OCP_NON_ADMIN_USER_NAME}"
 
-testFactoryResolver ${PUBLIC_REPO_URL}
-testClonePublicRepoNoPatOAuth ${PUBLIC_REPO_WORKSPACE_NAME} ${PUBLIC_PROJECT_NAME} ${PUBLIC_REPO_URL} ${USER_CHE_NAMESPACE}
+testFactoryResolver "${PUBLIC_REPO_URL}"
+testClonePublicRepoNoPatOAuth "${PUBLIC_REPO_WORKSPACE_NAME}" "${PUBLIC_PROJECT_NAME}" "${PUBLIC_REPO_URL} ${USER_CHE_NAMESPACE}"
