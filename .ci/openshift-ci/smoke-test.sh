@@ -21,7 +21,7 @@ export PRIVATE_REPO_URL=${PRIVATE_REPO_URL:-"https://github.com/chepullreq1/priv
 
 # import common test functions
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-# shellcheck disable=SC1091
+# shellcheck disable=SC1091,SC1090
 source "${SCRIPT_DIR}"/common-functions.sh
 
 trap "catchFinish" EXIT SIGINT
