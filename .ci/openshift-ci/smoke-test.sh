@@ -1,34 +1,31 @@
 #!/bin/bash
 #
-# Copyright (c) 2021 Red Hat, Inc.
+# Copyright (c) 2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-
-################################ !!!   IMPORTANT   !!! ################################
-########### THIS JOB USE openshift ci operators workflows to run  #####################
-##########  More info about how it is configured can be found here: https://docs.ci.openshift.org/docs/how-tos/testing-operator-sdk-operators #############
-#######################################################################################################################################################
+# Contributors:
+#   Red Hat, Inc. - initial API and implementation
+#
 
 # exit immediately when a command fails
-set -e
+set -ex
 # only exit with zero if all commands of the pipeline exit successfully
 set -o pipefail
 
+export PUBLIC_REPO_URL=${PUBLIC_REPO_URL:-"https://github.com/chepullreq1/public-repo.git"}
+export PRIVATE_REPO_URL=${PRIVATE_REPO_URL:-"https://github.com/chepullreq1/private-repo.git"}
+
 # import common test functions
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-# shellcheck source=./.ci/openshift-ci/common-functions.sh
 source "${SCRIPT_DIR}"/common-functions.sh
 
-runTests() {
-  runTest "VscodeYamlPlugin" "nodejs-zmecm"
-  runTest "TypescriptPlugin" "typescript-debug-plugins"
-}
+trap "catchFinish" EXIT SIGINT
 
-# should be reworked in case of https://github.com/eclipse/che/issues/21210
-# setupTestEnvironment
-# runTests
-# finishReport
+setupTestEnvironment ${OCP_NON_ADMIN_USER_NAME}
+
+testFactoryResolver ${PUBLIC_REPO_URL}
+testClonePublicRepoNoPatOAuth ${PUBLIC_REPO_WORKSPACE_NAME} ${PUBLIC_PROJECT_NAME} ${PUBLIC_REPO_URL} ${USER_CHE_NAMESPACE}
