@@ -11,14 +11,12 @@
 #   Red Hat, Inc. - initial API and implementation
 
 # Dockerfile to bootstrap build and test in openshift-ci
-
-# Dockerfile to bootstrap build and test in openshift-ci
 FROM registry.access.redhat.com/ubi9/nodejs-18:1
 # hadolint ignore=DL3002
 USER 0
 
 # hadolint ignore=DL3041
-RUN dnf install -y -q --allowerasing --nobest nodejs-devel nodejs-libs \
+RUN dnf install -y -q --allowerasing --nobest nodejs-devel nodejs-libs psmisc python3-pip jq golang httpd-tools \
     # already installed or installed as deps:
     openssl openssl-devel ca-certificates make cmake cpp gcc gcc-c++ zlib zlib-devel brotli brotli-devel python3 nodejs-packaging && \
     dnf update -y && dnf clean all && \
@@ -33,3 +31,5 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
     bash <(curl -sL https://www.eclipse.org/che/chectl/) --channel=next && \
     curl https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.6/linux/oc.tar.gz | tar xvzf - -C /usr/local/bin/ oc && \
     chmod ug+x /usr/local/bin/oc
+
+SHELL ["/bin/bash", "-c"]
