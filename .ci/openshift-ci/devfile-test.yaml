@@ -1,0 +1,8 @@
+schemaVersion: 2.2.0
+metadata:
+  name: ws-name
+projects:
+  - name: project-name
+    git:
+      remotes:
+        origin: git-repo-url

@@ -1,0 +1,133 @@
+#
+# Copyright (c) 2023 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+# Contributors:
+#   Red Hat, Inc. - initial API and implementation
+#
+
+name: Smoke Test
+
+# Trigger the workflow on pull request
+on:
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - devfile.yaml
+      - '.ci/*'
+env:
+  LOCAL_TEST_DIR: /tmp
+jobs:
+  smoke-test:
+    runs-on: ubuntu-22.04
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Build plugin registry image
+        run: |
+          # eval $(minikube docker-env)
+          BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag next
+          docker save -o /tmp/che-plugin-registry-next.tar quay.io/eclipse/che-plugin-registry:next
+      
+      - name: Display docker images
+        run: |
+          docker images
+
+      - name: Cleanup docker images
+        run: |
+          docker system prune -af
+
+      - name: Disk free
+        run: |
+          df -h
+
+      - name: Start minikube
+        id: run-minikube
+        uses: che-incubator/setup-minikube-action@next
+        with:
+          minikube-version: v1.31.0
+
+      - name: Install chectl
+        run: bash <(curl -sL https://www.eclipse.org/che/chectl/) --channel=next
+
+      - name: Check that plugin registry image is present in the image list
+        run: minikube image list --format table
+
+      - name: Deploy Che
+        run: |
+          #
+          # load plugin registry image from /tmp/che-plugin-registry-next.tar
+          #
+          eval $(minikube docker-env) && docker load -i  /tmp/che-plugin-registry-next.tar && rm /tmp/che-plugin-registry-next.tar
+          minikube image list --format table
+
+          #
+          # deploy Che
+          #
+          chectl server:deploy \
+            --batch \
+            --platform minikube \
+            --k8spodwaittimeout=140000 \
+            --k8spodreadytimeout=140000 \
+            --che-operator-cr-patch-yaml "${GITHUB_WORKSPACE}/build/dev/github-minikube-checluster-patch.yaml"
+
+      - name: Run smoke test
+        run: |
+          docker run \
+            --shm-size=2048m \
+            -p 5920:5920 \
+            --network="host" \
+            -e TS_SELENIUM_LOAD_PAGE_TIMEOUT=60000 \
+            -e TS_SELENIUM_USERNAME=che@eclipse.org \
+            -e TS_SELENIUM_PASSWORD=admin \
+            -e TS_SELENIUM_BASE_URL=https://$(kubectl get ingress che -n eclipse-che -o jsonpath='{.spec.rules[0].host}') \
+            -e DELETE_WORKSPACE_ON_FAILED_TEST=true \
+            -e TS_SELENIUM_START_WORKSPACE_TIMEOUT=120000 \
+            -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
+            -e VIDEO_RECORDING=true \
+            -e TS_SELENIUM_LOG_LEVEL=TRACE \
+            -e TS_WAIT_LOADER_PRESENCE_TIMEOUT=120000 \
+            -e TS_COMMON_DASHBOARD_WAIT_TIMEOUT=30000 \
+            -v ${LOCAL_TEST_DIR}/tests/e2e/report:/tmp/e2e/report:Z \
+            -v ${LOCAL_TEST_DIR}/tests/e2e/video:/tmp/ffmpeg_report:Z \
+            -e USERSTORY=SmokeTest \
+            -e TS_SELENIUM_VALUE_OPENSHIFT_OAUTH=false \
+            -e TEST_REPO=https://github.com/che-incubator/quarkus-api-example?df=smoke-test.devfile.yaml \
+            quay.io/mmusiien/che-e2e:smoke-test
+
+      - name: Bump logs
+        if: always()
+        run: |
+          NS=admin-che
+          TARGET_DIR="/tmp/devworkspace-happy-path-artifacts/${NS}-info"
+          mkdir -p "$TARGET_DIR"
+          for POD in $(kubectl get pods -o name -n ${NS}); do
+            for CONTAINER in $(kubectl get -n ${NS} ${POD} -o jsonpath="{.spec.containers[*].name}"); do
+            echo "[INFO] Downloading logs $POD/$CONTAINER in $NS"
+            # container name includes `pod/` prefix. remove it
+            LOGS_FILE=$TARGET_DIR/$(echo ${POD}-${CONTAINER}.log | sed 's|pod/||g')
+            kubectl logs ${POD} -c ${CONTAINER} -n ${NS} > $LOGS_FILE || true
+            done
+          done
+          echo "[INFO] Bumping events in namespace ${NS}"
+          kubectl get events -n $NS  > $TARGET_DIR/events.log || true
+
+      - name: Store e2e artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e-artifacts
+          path: /tmp/tests
+      
+      - name: Store k8s logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: k8s-logs
+          path: /tmp/devworkspace-happy-path-artifacts/admin-che-info

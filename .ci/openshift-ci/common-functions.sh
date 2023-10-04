@@ -1,47 +1,47 @@
 #!/bin/bash
-
 #
-# Copyright (c) 2021 Red Hat, Inc.
+# Copyright (c) 2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
 #
 # SPDX-License-Identifier: EPL-2.0
 #
+# Contributors:
+#   Red Hat, Inc. - initial API and implementation
+#
 
-################################ !!!   IMPORTANT   !!! ################################
-########### THIS JOB USE openshift ci operators workflows to run  #####################
-##########  More info about how it is configured can be found here: https://docs.ci.openshift.org/docs/how-tos/testing-operator-sdk-operators #############
-#######################################################################################################################################################
-
-# exit immediately when a command fails
 set -e
 # only exit with zero if all commands of the pipeline exit successfully
 set -o pipefail
 
-export RAM_MEMORY=8192
-export TEST_POD_NAMESPACE="plugin-registry-test"
-export PLUGIN_REGISTRY_IMAGE=${CHE_PLUGIN_REGISTRY}
-export TEST_CONTAINER_NAME="plugins-test"
-export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts-che"}
-export TESTS_STATUS=()
-export TEST_RESULT="PASSED"
 
-# turn off telemetry
-mkdir -p "${HOME}"/.config/chectl
-echo "{\"segment.telemetry\":\"off\"}" > "${HOME}"/.config/chectl/config.json
+export CHE_NAMESPACE=${CHE_NAMESPACE:-"eclipse-che"}
+export ARTIFACTS_DIR=${ARTIFACT_DIR:-"/tmp/artifacts"}
+export CHE_FORWARDED_PORT="8081"
+export OCP_ADMIN_USER_NAME=${OCP_ADMIN_USER_NAME:-"admin"}
+export OCP_NON_ADMIN_USER_NAME=${OCP_NON_ADMIN_USER_NAME:-"user"}
+export OCP_LOGIN_PASSWORD=${OCP_LOGIN_PASSWORD:-"passw"}
+export ADMIN_CHE_NAMESPACE=${OCP_ADMIN_USER_NAME}"-che"
+export USER_CHE_NAMESPACE=${OCP_NON_ADMIN_USER_NAME}"-che"
+export GIT_PROVIDER_USERNAME=${GIT_PROVIDER_USERNAME:-"chepullreq1"}
+export PUBLIC_REPO_WORKSPACE_NAME=${PUBLIC_REPO_WORKSPACE_NAME:-"public-repo-wksp-testname"}
+export PUBLIC_PROJECT_NAME=${PUBLIC_PROJECT_NAME:-"public-repo"}
+export YAML_FILE_NAME=${YAML_FILE_NAME:-"devfile.yaml"}
 
 provisionOpenShiftOAuthUser() {
-  htpasswd -c -B -b users.htpasswd user user
+  echo -e "[INFO] Provisioning Openshift OAuth user"
+  htpasswd -c -B -b users.htpasswd "${OCP_ADMIN_USER_NAME}" "${OCP_LOGIN_PASSWORD}"
+  htpasswd -b users.htpasswd "${OCP_NON_ADMIN_USER_NAME}" "${OCP_LOGIN_PASSWORD}"
   oc create secret generic htpass-secret --from-file=htpasswd="users.htpasswd" -n openshift-config
   oc apply -f ".ci/openshift-ci/htpasswdProvider.yaml"
-  oc adm policy add-cluster-role-to-user cluster-admin user
+  oc adm policy add-cluster-role-to-user cluster-admin "${OCP_ADMIN_USER_NAME}"
 
   echo -e "[INFO] Waiting for htpasswd auth to be working up to 5 minutes"
   CURRENT_TIME=$(date +%s)
   ENDTIME=$((CURRENT_TIME + 300))
   while [ "$(date +%s)" -lt $ENDTIME ]; do
-      if oc login -u user -p user --insecure-skip-tls-verify=false; then
+      if oc login -u="${OCP_ADMIN_USER_NAME}" -p="${OCP_LOGIN_PASSWORD}" --insecure-skip-tls-verify=false; then
           break
       fi
       sleep 10
@@ -55,19 +55,15 @@ createGithubSecret() {
 
 createCustomResourcesFile() {
   cat > custom-resources.yaml <<-END
+apiVersion: org.eclipse.che/v2
 spec:
-  auth:
-    updateAdminPassword: false
-  server:
-    pluginRegistryImage: ${PLUGIN_REGISTRY_IMAGE}
-    pluginRegistryPullPolicy: IfNotPresent
-    customCheProperties:
-      CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: '-1'
-      CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: '900000'
-      CHE_INFRA_KUBERNETES_WORKSPACE__UNRECOVERABLE__EVENTS: 'Failed Scheduling,Failed to pull image'
-      CHE_WORKSPACE_SIDECAR_IMAGE__PULL__POLICY: IfNotPresent
-      CHE_WORKSPACE_PLUGIN__BROKER_PULL__POLICY: IfNotPresent
-      CHE_INFRA_KUBERNETES_PVC_JOBS_IMAGE_PULL__POLICY: IfNotPresent
+  components:
+    pluginRegistry:
+      openVSXURL: ''
+      deployment:
+        containers:
+          - image: '${PLUGIN_REGISTRY_IMAGE}'
+            imagePullPolicy: Always
 END
 
   echo "Generated custom resources file"
@@ -75,150 +71,161 @@ END
 }
 
 deployChe() {
-  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml --platform=openshift --batch
+  chectl server:deploy --che-operator-cr-patch-yaml=custom-resources.yaml \
+                       --platform=openshift \
+                       --telemetry=off \
+                       --batch
 }
 
-patchTestPodConfig(){
-  TEST_USERSTORY="$1"
-  TEST_POD_NAME="$2"
-  E2E_OPENSHIFT_TOKEN="$(oc whoami -t)"
-
-  # obtain the basic test pod config
-  cat .ci/openshift-ci/plugins-test-pod.yaml > plugins-test-pod.yaml
-
-  # Patch the basic test pod config
-  ECLIPSE_CHE_URL=https://$(oc get route -n "eclipse-che" che -o jsonpath='{.status.ingress[0].host}')
-  sed -i "s@CHE_URL@${ECLIPSE_CHE_URL}@g" plugins-test-pod.yaml
-  sed -i "s@TEST_USERSTORY@${TEST_USERSTORY}@g" plugins-test-pod.yaml
-  sed -i "s@POD_NAME@${TEST_POD_NAME}@g" plugins-test-pod.yaml
-  sed -i "s@OCP_TOKEN@${E2E_OPENSHIFT_TOKEN}@g" plugins-test-pod.yaml
-  sed -i "s@GH_USERNAME@${GH_USERNAME}@g" plugins-test-pod.yaml
-  sed -i "s@GH_PASSWORD@${GH_PASSWORD}@g" plugins-test-pod.yaml
-
-  cat plugins-test-pod.yaml
+# this command starts port forwarding between the local machine and the che-host service in the OpenShift cluster.
+forwardPortToService() {
+  oc port-forward service/che-host ${CHE_FORWARDED_PORT}:8080 -n "${CHE_NAMESPACE}" &
+  sleep 3s
 }
 
-downloadTestResults() {
-  TEST_USERSTORY="$1"
-  TEST_POD_NAME="$2"
-  mkdir -p /tmp/e2e
-  oc rsync -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}":/tmp/e2e/report/ /tmp/e2e -c download-reports
-  oc exec -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c download-reports -- touch /tmp/e2e/done
+getPluginRegistryURL() {
+  PLUGIN_REGISTRY_URL=$(oc get checlusters.org.eclipse.che -n "${CHE_NAMESPACE}" "${CHE_NAMESPACE}" -o=jsonpath='{.status.pluginRegistryURL}')
+  echo "[INFO] Plugin registry URL: ${PLUGIN_REGISTRY_URL}"
+}
 
-  mkdir -p "${ARTIFACTS_DIR}"
-  cp -r /tmp/e2e "${ARTIFACTS_DIR}/${TEST_USERSTORY}"
-  rm -rf /tmp/e2e
+killProcessByPort() {
+  fuser -k ${CHE_FORWARDED_PORT}/tcp
+}
 
-  chectl server:logs --chenamespace="eclipse-che" --directory="${ARTIFACTS_DIR}/${TEST_USERSTORY}"
-  oc get checluster -o yaml -n "eclipse-che" > "${ARTIFACTS_DIR}/${TEST_USERSTORY}/che-cluster.yaml"
+requestProvisionNamespace() {
+  CLUSTER_ACCESS_TOKEN=$(oc whoami -t)
 
-  TEST_POD_EXIT_CODE=$(oc logs -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c ${TEST_CONTAINER_NAME} | grep EXIT_CODE)
+  curl -i -X 'POST' \
+    http://localhost:${CHE_FORWARDED_PORT}/api/kubernetes/namespace/provision \
+    -H 'accept: application/json' \
+    -H "Authorization: Bearer ${CLUSTER_ACCESS_TOKEN}" \
+    -d ''
+}
 
-  echo "The ${TEST_USERSTORY} pod exit code: ${TEST_POD_EXIT_CODE}"
+initUserNamespace() {
+  OCP_USER_NAME=$1
 
-  if [[ ${TEST_POD_EXIT_CODE} == "+ EXIT_CODE=1" ]]; then
-    echo "[ERROR] The ${TEST_USERSTORY} plugin test failed."
-    STATUS_MESSAGE="${TEST_USERSTORY}-------FAILED"
-    TESTS_STATUS+=("$STATUS_MESSAGE")
-    TEST_RESULT="FAILED"
+  echo "[INFO] Initialize user namespace"
+  oc login -u="${OCP_USER_NAME}" -p="${OCP_LOGIN_PASSWORD}" --insecure-skip-tls-verify=true
+  if requestProvisionNamespace | grep "HTTP/1.1 200"; then
+    echo "[INFO] Request provision user namespace returned 'HTTP/1.1 200' status code."
   else
-    STATUS_MESSAGE="${TEST_USERSTORY}-------PASSED"
-    TESTS_STATUS+=("${STATUS_MESSAGE}")
-  fi
-  
-}
-
-finishReport() {
-  # report test results
-
-  echo ""
-  echo ""
-  echo "==================== FINISH REPORT ========================"
-  echo ""
-
-  for RESULT in "${TESTS_STATUS[@]}"; do
-    echo "    ${RESULT}"
-  done
-
-  if [[ ${TEST_RESULT} == "FAILED" ]]; then
-    echo ""
-    echo "[ERROR] The plugin tests failed."
-    echo ""
-    echo "==========================================================="
-    echo ""
-    echo ""
-
+    echo "[ERROR] Request provision user namespace returned wrong status code. Expected: HTTP/1.1 200"
     exit 1
+  fi
+}
 
+provisionNamespace() {
+    if requestProvisionNamespace | grep "HTTP/1.1 200"; then
+    echo "[INFO] Request provision user namespace returned 'HTTP/1.1 200' status code."
+  else
+    echo "[ERROR] Request provision user namespace returned wrong status code. Expected: HTTP/1.1 200"
+    exit 1
+  fi
+}
+
+testProjectIsCloned() {
+  PROJECT_NAME=$1
+  OCP_USER_NAMESPACE=$2
+
+  WORKSPACE_POD_NAME=$(oc get pods -n "${OCP_USER_NAMESPACE}" | grep workspace | awk '{print $1}')
+  if oc exec -it -n "${OCP_USER_NAMESPACE}" "${WORKSPACE_POD_NAME}" -- test -f /projects/"${PROJECT_NAME}"/"${YAML_FILE_NAME}"; then
+    echo "[INFO] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} exists."
+  else
+    echo "[INFO] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} is absent."
+    return 1
+  fi
+}
+
+runTestWorkspaceWithGitRepoUrlAndCustomEditor() {
+  WS_NAME=$1
+  PROJECT_NAME=$2
+  GIT_REPO_URL=$3
+  OCP_USER_NAMESPACE=$4
+  EDITOR_ID=$5
+
+  EDITOR_URL=$PLUGIN_REGISTRY_URL/plugins/$EDITOR_ID/devfile.yaml
+  echo "[INFO] Editor URL: ${EDITOR_URL}"
+
+  oc project "${OCP_USER_NAMESPACE}"
+  cat .ci/openshift-ci/devfile-test.yaml > devfile-test.yaml
+
+  # patch the devfile-test.yaml file
+  sed -i "s#ws-name#${WS_NAME}#g" devfile-test.yaml
+  sed -i "s#project-name#${PROJECT_NAME}#g" devfile-test.yaml
+  sed -i "s#git-repo-url#${GIT_REPO_URL}#g" devfile-test.yaml
+
+  # download editor.yaml file from local plugin registry with no tls verification
+  curl -k -o ./editor.yaml "${EDITOR_URL}"
+  cat editor.yaml
+
+  mkdir -p /tmp/npm-cache
+  export npm_config_cache=/tmp/npm-cache
+  npm install -g --prefix /tmp/generator @eclipse-che/che-devworkspace-generator@latest
+  # generate devworkspace-test.yaml file
+  node /tmp/generator/lib/node_modules/@eclipse-che/che-devworkspace-generator/lib/entrypoint.js \
+    --devfile-path:./devfile-test.yaml \
+    --editor-path:./editor.yaml \
+    --output-file:./devworkspace-test.yaml
+
+  cat devworkspace-test.yaml
+
+  # run the workspace
+  oc apply -f devworkspace-test.yaml -n "${OCP_USER_NAMESPACE}"
+  oc wait -n "${OCP_USER_NAMESPACE}" --for=condition=Ready dw "${WS_NAME}" --timeout=360s
+  echo "[INFO] Test workspace is run"
+}
+
+deleteTestWorkspace() {
+  WS_NAME=$1
+  OCP_USER_NAMESPACE=$2
+
+  oc delete dw "${WS_NAME}" -n "${OCP_USER_NAMESPACE}"
+}
+
+# Catch the finish of the job and write logs in artifacts.
+catchFinish() {
+  local RESULT=$?
+  killProcessByPort
+  if [ "$RESULT" != "0" ]; then
+    set +e
+    collectEclipseCheLogs
+    set -e
   fi
 
-  echo "The plugin tests successfuly passed."
-  echo ""
-  echo "==========================================================="
-  echo ""
-  echo ""
-
-  exit 0
-
+  [[ "${RESULT}" != "0" ]] && echo "[ERROR] Job failed." || echo "[INFO] Job completed successfully."
+  exit $RESULT
 }
 
-cleanUpAfterTest(){
-  TEST_POD_NAME="$1"
-  
-  # delete test pod
-  oc delete pod -n "${TEST_POD_NAMESPACE}" "${TEST_POD_NAME}"
+collectEclipseCheLogs() {
+  mkdir -p "${ARTIFACTS_DIR}"/che-logs
 
-  # get token
-  chectl auth:login -n eclipse-che
-
-  # get workspace ID
-  WORKSPACE_ID=$(chectl workspace:list -n eclipse-che | grep "${TEST_POD_NAME}" | awk '{print $1}')
-  echo "Workspace ID: ${WORKSPACE_ID}"
-
-  # stop workspace
-  chectl workspace:stop -n eclipse-che "${WORKSPACE_ID}"
-
-  # delete workspace
-  chectl workspace:delete -n eclipse-che "${WORKSPACE_ID}"
+  # Collect all Eclipse Che logs and cluster CR
+  chectl server:logs -n "$CHE_NAMESPACE" --directory "${ARTIFACTS_DIR}"/che-logs --telemetry off
+  oc get checluster -o yaml -n "$CHE_NAMESPACE" > "${ARTIFACTS_DIR}/che-cluster.yaml"
 }
 
-runTest() {
-  TEST_USERSTORY="$1"
-  TEST_POD_NAME="$2"
+testStartWorkspace() {
+  WS_NAME=$1
+  PROJECT_NAME=$2
+  GIT_REPO_URL=$3
+  OCP_USER_NAMESPACE=$4
+  EDITOR_ID=$5
 
-  patchTestPodConfig "${TEST_USERSTORY}" "${TEST_POD_NAME}"
-
-  # Create the test pod
-  oc apply -f plugins-test-pod.yaml
-
-  # wait for the pod to start
-  while true; do
-    sleep 3
-    PHASE=$(oc get pod -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" \
-        --template='{{ .status.phase }}')
-    if [[ ${PHASE} == "Running" ]]; then
-        break
-    fi
-  done
-
-  # wait for the test to finish
-  oc logs -n ${TEST_POD_NAMESPACE} "${TEST_POD_NAME}" -c ${TEST_CONTAINER_NAME} -f
-
-  # just to sleep
-  sleep 3
-
-  downloadTestResults "${TEST_USERSTORY}" "${TEST_POD_NAME}"
-  cleanUpAfterTest "${TEST_POD_NAME}" || echo "Cleanup after test has failed"
+  runTestWorkspaceWithGitRepoUrlAndCustomEditor "${WS_NAME}" "${PROJECT_NAME}" "${GIT_REPO_URL}" "${OCP_USER_NAMESPACE}" "${EDITOR_ID}"
+  echo "[INFO] Check the public repository is cloned"
+  testProjectIsCloned "${PROJECT_NAME}" "${OCP_USER_NAMESPACE}" || \
+  { echo "[ERROR] Project file /projects/${PROJECT_NAME}/${YAML_FILE_NAME} should be present." && exit 1; }
+  deleteTestWorkspace "${WS_NAME}" "${OCP_USER_NAMESPACE}"
 }
 
-createTestPodNamespace(){
-  oc create namespace $TEST_POD_NAMESPACE
-}
+setupTestEnvironment() {
+  OCP_USER_NAME=$1
 
-setupTestEnvironment(){
   provisionOpenShiftOAuthUser
-  createGithubSecret
   createCustomResourcesFile
   deployChe
-  createTestPodNamespace
+  forwardPortToService
+  getPluginRegistryURL
+  provisionNamespace
 }
