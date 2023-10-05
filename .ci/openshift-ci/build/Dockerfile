@@ -24,8 +24,7 @@ ADD . /che-plugin-registry
 WORKDIR /che-plugin-registry
 
 # Install build tools
-# hadolint ignore=DL3041
-RUN dnf install -y -q --allowerasing --nobest nodejs-devel nodejs-libs \
+RUN dnf install -y -q --allowerasing --nobest nodejs-devel nodejs-libs psmisc python3-pip jq golang httpd-tools \
     # already installed or installed as deps:
     openssl openssl-devel ca-certificates make cmake cpp gcc gcc-c++ zlib zlib-devel brotli brotli-devel python3 nodejs-packaging && \
     dnf update -y && dnf clean all && \
@@ -34,7 +33,7 @@ RUN dnf install -y -q --allowerasing --nobest nodejs-devel nodejs-libs \
     echo -n "npm  version: "; npm -v; \
     echo -n "yarn version: "; yarn -v;
 
-# Build repo
+# Generate editors' metadata
 RUN ./build.sh --skip-oci-image --skip-digest-generation
 
 FROM ghcr.io/eclipse/openvsx-server:d7fba39 AS openvsx-server
@@ -103,6 +102,7 @@ COPY --from=ubi-builder /mnt/rootfs/ /
 # Add UTF-8 for the database
 RUN localedef -f UTF-8 -i en_US en_US.UTF-8 && \
     usermod -a -G apache,root,postgres postgres
+
 USER postgres
 ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
