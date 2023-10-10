@@ -50,6 +50,7 @@ describe('Test MetaYamlToDevfileYaml', () => {
     const codeIdeFirstEndpoint = codeIdeComponentContainer.endpoints[0];
     expect(codeIdeFirstEndpoint.name).toBe('che-code');
     expect(codeIdeFirstEndpoint.exposure).toBe('public');
+    expect(codeIdeFirstEndpoint.protocol).toBe('https');
     const codeIdeFirstEndpointAttributes = codeIdeFirstEndpoint.attributes;
     expect(codeIdeFirstEndpointAttributes.type).toBe('main');
 

@@ -19,7 +19,7 @@ spec:
         cookiesAuthEnabled: true
         discoverable: false
         urlRewriteSupported: true
-        protocol: http
+        protocol: https
         secure: true
       targetPort: 3100
       public: true
@@ -28,21 +28,21 @@ spec:
       attributes:
         discoverable: false
         urlRewriteSupported: false
-        protocol: http
+        protocol: https
       public: true
     - name: code-redirect-2
       targetPort: 13132
       attributes:
         discoverable: false
         urlRewriteSupported: false
-        protocol: http
+        protocol: https
       public: true
     - name: code-redirect-3
       targetPort: 13133
       attributes:
         discoverable: false
         urlRewriteSupported: false
-        protocol: http
+        protocol: https
       public: true
   containers:
     - image: quay.io/devfile/universal-developer-image:latest
