@@ -131,13 +131,14 @@ export class MetaYamlToDevfileYaml {
           devfileEndpoint.attributes['type'] = 'main';
         }
 
-        // if it's secured, remove secure option for now but add extra s on the protocol
+        // if it's secured, remove 'secure' option for now but change protocol to secure (https or wss)
         if (devfileEndpoint.attributes && devfileEndpoint.attributes.secure === true) {
           devfileEndpoint.secure = false;
           delete devfileEndpoint.attributes['secure'];
-          // add extra s
-          if (devfileEndpoint.attributes.protocol) {
-            devfileEndpoint.attributes.protocol = `${devfileEndpoint.attributes.protocol}s`;
+          // switch to secure protocol (https or wss)
+          const protocol = devfileEndpoint.attributes.protocol;
+          if (protocol && (protocol === 'http' || protocol === 'ws')) {
+            devfileEndpoint.attributes.protocol = `${protocol}s`;
           }
         }
 
