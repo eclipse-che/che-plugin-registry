@@ -49,6 +49,26 @@ describe('Test EndpointsHelper', () => {
     expect(endpoint.secure).toBeUndefined();
   });
 
+  test('https', async () => {
+    const endpointYaml: CommonEndpointYaml = {
+      name: 'endpoint-name',
+      path: 'endpoint-path',
+      exposure: 'public',
+      protocol: 'https',
+      secure: true,
+    };
+    const volumes = new Map();
+    volumes.set('example', { ephemeral: true });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const endpoint: any = await endpointsHelper.resolve(endpointYaml);
+    expect(endpoint).toBeDefined();
+    expect(endpoint.public).toBeTruthy();
+    expect(endpoint.attributes.protocol).toBe('https');
+    expect(endpoint.attributes.secure).toBeTruthy();
+    expect(endpoint.exposure).toBeUndefined();
+    expect(endpoint.secure).toBeUndefined();
+  });
+
   test('change endpoint type', async () => {
     const endpointYaml: CommonEndpointYaml = {
       name: 'endpoint-name',
