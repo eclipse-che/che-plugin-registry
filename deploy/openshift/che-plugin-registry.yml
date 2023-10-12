@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2021 Red Hat, Inc.
+# Copyright (c) 2018-2023 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -7,13 +7,13 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 ---
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   name: che-plugin-registry
 objects:
-- apiVersion: v1
-  kind: DeploymentConfig
+- apiVersion: apps/v1
+  kind: Deployment
   metadata:
     name: che-plugin-registry
     labels:
@@ -25,16 +25,14 @@ objects:
   spec:
     replicas: 1
     selector:
-      app: che
-      component: plugin-registry
+      matchLabels:
+        app: che
+        component: plugin-registry
     strategy:
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
+      type: RollingUpdate
+      rollingUpdate:
         maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Rolling
+        maxSurge: 25%
     template:
       metadata:
         labels:
@@ -52,18 +50,22 @@ objects:
           - containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /plugins/
+              path: /v3/plugins/
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 10
           readinessProbe:
             httpGet:
-              path: /plugins/
+              path: /v3/plugins/
               port: 8080
             initialDelaySeconds: 3
             periodSeconds: 10
             timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 10
           securityContext:
             capabilities:
               drop:
@@ -71,7 +73,7 @@ objects:
           resources:
             requests:
               cpu: 100m
-              memory: 32Mi
+              memory: 512Mi
             limits:
               cpu: 500m
               memory: ${MEMORY_LIMIT}
@@ -107,9 +109,6 @@ objects:
       app.kubernetes.io/instance: che
       app.kubernetes.io/component: plugin-registry
   spec:
-    tls:
-      termination:
-        edge
     to:
       kind: Service
       name: che-plugin-registry
@@ -128,9 +127,7 @@ objects:
       app.kubernetes.io/instance: che
       app.kubernetes.io/component: plugin-registry
   data:
-    CHE_SIDECAR_CONTAINERS_REGISTRY_URL: ${CHE_SIDECAR_CONTAINERS_REGISTRY_URL}
-    CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION: ${CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION}
-    CHE_SIDECAR_CONTAINERS_REGISTRY_TAG: ${CHE_SIDECAR_CONTAINERS_REGISTRY_TAG}
+    START_OPENVSX: ${START_OPENVSX}
 
 parameters:
 - name: IMAGE
@@ -142,19 +139,14 @@ parameters:
   displayName: Eclipse Che plugin registry version
   description: Eclipse Che plugin registry version which defaults to next
 - name: MEMORY_LIMIT
-  value: 256Mi
+  value: 1024Mi
   displayName: Memory Limit
   description: Maximum amount of memory the container can use. Defaults 256Mi
 - name: PULL_POLICY
   value: Always
   displayName: Eclipse Che plugin registry image pull policy
   description: Always pull by default. Can be IfNotPresent
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_URL
-  displayName: Sidecar image registry URL
-  description: URL of docker registry containing plugin sidecar images; used to override sidecars in plugins
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_ORGANIZATION
-  displayName: Sidecar image registry organization
-  description: Organization containing plugin sidecar images; used to override base images in plugins
-- name: CHE_SIDECAR_CONTAINERS_REGISTRY_TAG
-  displayName: Plugin sidecar images tag
-  description: Tag used for overridden sidecar images; used to override base images in plugins
+- name: START_OPENVSX
+  value: "false"
+  displayName: Start embedded OpenVSX registry
+  description: If true, an embedded OpenVSX registry will be started
