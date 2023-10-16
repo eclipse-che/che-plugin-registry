@@ -217,5 +217,8 @@
     },
     {
         "id": "ms-toolsai.jupyter-keymap"
+    },
+    {
+        "id": "cnshenj.vscode-task-manager"
     }
 ]
