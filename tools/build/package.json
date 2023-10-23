@@ -30,7 +30,7 @@
     "fs-extra": "^11.1.0",
     "glob": "^10.3.10",
     "handlebars": "^4.7.8",
-    "inversify": "^6.0.1",
+    "inversify": "^6.0.2",
     "js-yaml": "^4.1.0",
     "moment": "^2.29.4",
     "nanospinner": "^1.1.0",
