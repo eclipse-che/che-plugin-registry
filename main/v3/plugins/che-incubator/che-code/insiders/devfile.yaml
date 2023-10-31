@@ -17,7 +17,7 @@ events:
 components:
   - name: che-code-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:a9fd159779a77e0453fca9188470e786024d7ea6add1b957655bfeca1731fed6
+      image: quay.io/devfile/universal-developer-image@sha256:9da4db923308dd3872a264d4730bc0dfb3fa1e42249f78b3fb9337a8aa9cc681
       volumeMounts:
         - name: checode
           path: /checode
@@ -42,21 +42,21 @@ components:
             urlRewriteSupported: false
           targetPort: 13131
           exposure: public
-          protocol: http
+          protocol: https
         - name: code-redirect-2
           attributes:
             discoverable: false
             urlRewriteSupported: false
           targetPort: 13132
           exposure: public
-          protocol: http
+          protocol: https
         - name: code-redirect-3
           attributes:
             discoverable: false
             urlRewriteSupported: false
           targetPort: 13133
           exposure: public
-          protocol: http
+          protocol: https
     attributes:
       app.kubernetes.io/component: che-code-runtime
       app.kubernetes.io/part-of: che-code.eclipse.org
