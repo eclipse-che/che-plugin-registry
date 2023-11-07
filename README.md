@@ -7,7 +7,7 @@ This repository holds editor definitions and ready-to-use plugins for different 
 Current build from the main branch is available at [https://eclipse-che.github.io/che-plugin-registry/main/](https://eclipse-che.github.io/che-plugin-registry/main/).
 
 ## Prerequisites
- - nodejs 118.x and yarn v1.x
+ - nodejs 18.x and yarn v1.x
 
 ## Build registry container image
 
