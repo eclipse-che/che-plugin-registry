@@ -102,7 +102,7 @@ commitChangeOrCreatePR()
       git pull origin "${PR_BRANCH}"
       git push origin "${PR_BRANCH}"
       lastCommitComment="$(git log -1 --pretty=%B)"
-      hub pull-request -f -m "${lastCommitComment}" -b "${aBRANCH}" -h "${PR_BRANCH}"
+      gh pr create -f -B "${aBRANCH}" -H "${PR_BRANCH}"
     fi
   fi
 }
