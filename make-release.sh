@@ -101,7 +101,6 @@ commitChangeOrCreatePR()
       git checkout "${PR_BRANCH}"
       git pull origin "${PR_BRANCH}"
       git push origin "${PR_BRANCH}"
-      lastCommitComment="$(git log -1 --pretty=%B)"
       gh pr create -f -B "${aBRANCH}" -H "${PR_BRANCH}"
     fi
   fi
