@@ -954,7 +954,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^29.5.8":
+"@types/jest@^29.5.5":
   version "29.5.8"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.8.tgz#ed5c256fe2bc7c38b1915ee5ef1ff24a3427e120"
   integrity sha512-fXEFTxMV2Co8ZF5aYFJv+YeA08RTYJfhtN5c9JSv/mFEMe+xxjufCb+PHL+bJcMs/ebPUsBu+UNTEz+ydXrR6g==
@@ -994,10 +994,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
   integrity sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==
 
-"@types/semver@^7.3.12", "@types/semver@^7.5.0", "@types/semver@^7.5.3":
+"@types/semver@^7.3.12", "@types/semver@^7.5.0":
   version "7.5.3"
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.3.tgz#9a726e116beb26c24f1ccd6850201e1246122e04"
   integrity sha512-OxepLK9EuNEIPxWNME+C6WwbRAOOI2o2BaQEGzz5Lu2e4Z5eDnEo+/aVEDMIXywoJitJ7xWd641wrGLZdtwRyw==
+
+"@types/semver@^7.5.5":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.5.tgz#deed5ab7019756c9c90ea86139106b0346223f35"
+  integrity sha512-+d+WYC1BxJ6yVOgUgzK8gWvp5qF8ssV5r4nsDcZWKRWcDQLQ619tvWAxJQYGgBrO1MnLJC7a5GtiYsAoQ47dJg==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
@@ -2134,7 +2139,7 @@ eslint-plugin-header@^3.1.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-header/-/eslint-plugin-header-3.1.1.tgz#6ce512432d57675265fac47292b50d1eff11acd6"
   integrity sha512-9vlKxuJ4qf793CmeeSrZUvVClw6amtpghq3CuWcB5cUNnWHQhgcqy5eF8oVKFk1G3Y/CbchGfEaw3wiIJaNmVg==
 
-eslint-plugin-jest@^27.6.0:
+eslint-plugin-jest@^27.4.2:
   version "27.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-27.6.0.tgz#e5c0cf735b3c8cad0ef9db5b565b2fc99f5e55ed"
   integrity sha512-MTlusnnDMChbElsszJvrwD1dN3x6nZl//s4JD23BxB6MgR66TZlL064su24xEIS3VACfAoHV1vgyMgPw8nkdng==
@@ -2234,7 +2239,7 @@ eslint@^5.0.0:
     table "^5.2.3"
     text-table "^0.2.0"
 
-eslint@^8.53.0:
+eslint@^8.51.0:
   version "8.53.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.53.0.tgz#14f2c8244298fcae1f46945459577413ba2697ce"
   integrity sha512-N4VuiPjXDUa4xVeV/GC/RV3hQW9Nw+Y463lkWaKKXKYMvmRiRDAtfpuPFLN+E1/6ZhyR8J2ig+eVREnYgUsiag==
@@ -4450,7 +4455,7 @@ prettier-plugin-import-sort@^0.0.7:
     import-sort-parser-babylon "^6.0.0"
     import-sort-parser-typescript "^6.0.0"
 
-prettier@^3.1.0:
+prettier@^3.0.3:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.1.0.tgz#c6d16474a5f764ea1a4a373c593b779697744d5e"
   integrity sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==
