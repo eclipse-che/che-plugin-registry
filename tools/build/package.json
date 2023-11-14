@@ -40,7 +40,7 @@
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.2",
+    "@types/fs-extra": "^11.0.4",
     "@types/glob": "^8.1.0",
     "@types/jest": "^29.5.8",
     "@types/js-yaml": "^4.0.6",
