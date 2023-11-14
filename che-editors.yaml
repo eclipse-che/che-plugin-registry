@@ -208,25 +208,25 @@ editors:
               targetPort: 3100
               exposure: public
               secure: true
-              protocol: http
+              protocol: https
             - name: code-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: code-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: code-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
@@ -238,13 +238,13 @@ editors:
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/che-code/7.75.0
+      name: che-incubator/che-code/7.77.0
       displayName: VS Code - Open Source
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: 7.75.0
+        version: 7.77.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -266,7 +266,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.75.0'
+          image: 'quay.io/che-incubator/che-code:7.77.0'
           command: ["/entrypoint-init-container.sh"]
           volumeMounts:
             - name: checode
@@ -295,25 +295,25 @@ editors:
               targetPort: 3100
               exposure: public
               secure: true
-              protocol: http
+              protocol: https
             - name: code-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: code-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: code-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
