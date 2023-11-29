@@ -27,7 +27,7 @@
     "axios": "^1.6.2",
     "decompress": "^4.2.1",
     "docker-image-name-parser": "^0.1.0",
-    "fs-extra": "^11.1.0",
+    "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
     "handlebars": "^4.7.8",
     "inversify": "^6.0.1",
