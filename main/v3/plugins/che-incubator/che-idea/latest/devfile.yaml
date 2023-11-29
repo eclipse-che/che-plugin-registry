@@ -17,7 +17,7 @@ events:
 components:
   - name: che-idea-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:2f48b1f749cebc308c20cfdbbcf98f0739c7786cbd69e74d95a4e16a074d0a87
+      image: quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
       env:
         - name: PROJECTOR_ASSEMBLY_DIR
           value: /projector
