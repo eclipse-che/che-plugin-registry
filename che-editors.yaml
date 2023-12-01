@@ -806,7 +806,7 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 urlRewriteSupported: true
-              targetPort: 3100
+              targetPort: 3400
               exposure: public
               secure: true
               protocol: http
@@ -873,7 +873,7 @@ editors:
                 cookiesAuthEnabled: true
                 discoverable: false
                 urlRewriteSupported: true
-              targetPort: 3100
+              targetPort: 3400
               exposure: public
               secure: true
               protocol: http
