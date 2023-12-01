@@ -750,7 +750,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-idea-server/next
-      displayName: IntelliJ IDEA Ultimate dev server
+      displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
@@ -817,7 +817,7 @@ editors:
   - schemaVersion: 2.1.0
     metadata:
       name: che-incubator/che-idea-server/latest
-      displayName: IntelliJ IDEA Ultimate dev server
+      displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest
       icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
       attributes:
