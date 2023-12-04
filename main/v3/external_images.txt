@@ -14,3 +14,7 @@ quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d
 quay.io/che-incubator/che-pycharm:next
 quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
 quay.io/che-incubator/che-pycharm@sha256:7c0e3eabd62495201cf5ba0a913776d972a1e6fb9cf1bcdc78afcf4d7256af47
+quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
+quay.io/che-incubator/che-idea-dev-server:next
+quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
+quay.io/che-incubator/che-idea-dev-server@sha256:55d433645dec56ea178df03f466623e045fde046e1cb43b37493999bdb9494de

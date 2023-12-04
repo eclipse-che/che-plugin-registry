@@ -36,6 +36,30 @@
     "version": "latest"
   },
   {
+    "id": "che-incubator/che-idea-server/latest",
+    "description": "JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest",
+    "displayName": "IntelliJ IDEA Ultimate (desktop)",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea-server/latest/devfile.yaml"
+    },
+    "name": "che-idea-server",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-idea-server/next",
+    "description": "JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next",
+    "displayName": "IntelliJ IDEA Ultimate (desktop)",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea-server/next/devfile.yaml"
+    },
+    "name": "che-idea-server",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
     "id": "che-incubator/che-idea/latest",
     "description": "JetBrains IntelliJ IDEA Community IDE for Eclipse Che",
     "displayName": "IntelliJ IDEA Community",
