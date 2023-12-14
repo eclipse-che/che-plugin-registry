@@ -34,7 +34,7 @@
     "js-yaml": "^4.1.0",
     "moment": "^2.29.4",
     "nanospinner": "^1.1.0",
-    "reflect-metadata": "^0.1.14",
+    "reflect-metadata": "^0.2.0",
     "semver": "^7.5.2",
     "simple-git": "^3.21.0",
     "tslib": "^2.6.2"
