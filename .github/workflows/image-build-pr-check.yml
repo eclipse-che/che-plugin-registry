@@ -51,7 +51,7 @@ jobs:
         docker rm -f pluginRegistry
         cp root-dir/v3/plugins/index.json root-dir/index.json
         tar zcvf content.tgz -C root-dir .
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: plugin-registry-content
         path: content.tgz
@@ -64,11 +64,11 @@ jobs:
        run: |
          echo "${{ github.event.number }}" > PR_NUMBER
          echo "${{ github.event.pull_request.head.sha }}" > PR_SHA
-     - uses: actions/upload-artifact@v3
+     - uses: actions/upload-artifact@v4
        with:
          name: pull-request-number
          path: PR_NUMBER
-     - uses: actions/upload-artifact@v3
+     - uses: actions/upload-artifact@v4
        with:
          name: pull-request-sha
          path: PR_SHA
