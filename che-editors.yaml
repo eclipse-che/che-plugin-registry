@@ -238,13 +238,13 @@ editors:
         volume: {}
   - schemaVersion: 2.1.0
     metadata:
-      name: che-incubator/che-code/7.78.0
+      name: che-incubator/che-code/7.79.0
       displayName: VS Code - Open Source
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
       attributes:
         publisher: che-incubator
-        version: 7.78.0
+        version: 7.79.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -266,7 +266,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.78.0'
+          image: 'quay.io/che-incubator/che-code:7.79.0'
           command: ["/entrypoint-init-container.sh"]
           volumeMounts:
             - name: checode
@@ -767,7 +767,8 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &'
+          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
+            2>&1 &'
     events:
       preStart:
         - inject-editor
@@ -777,7 +778,6 @@ editors:
       - name: idea-server
         volume: {}
       - name: editor-injector
-      # injects the IDEA dev server into the shared volume
         container:
           image: 'quay.io/che-incubator/che-idea-dev-server:next'
           command: ["/entrypoint-init-container.sh"]
@@ -789,7 +789,6 @@ editors:
           cpuLimit: 500m
           cpuRequest: 30m
       - name: editor-runtime
-      # defines the editor-specific parameters for a runtime container
         container:
           image: 'quay.io/devfile/universal-developer-image:latest'
           memoryLimit: 6144Mi
@@ -834,7 +833,8 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &'
+          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
+            2>&1 &'
     events:
       preStart:
         - inject-editor
@@ -844,7 +844,6 @@ editors:
       - name: idea-server
         volume: {}
       - name: editor-injector
-      # injects the IDEA dev server into the shared volume
         container:
           image: 'quay.io/che-incubator/che-idea-dev-server:latest'
           command: ["/entrypoint-init-container.sh"]
@@ -856,7 +855,6 @@ editors:
           cpuLimit: 500m
           cpuRequest: 30m
       - name: editor-runtime
-      # defines the editor-specific parameters for a runtime container
         container:
           image: 'quay.io/devfile/universal-developer-image:latest'
           memoryLimit: 6144Mi
