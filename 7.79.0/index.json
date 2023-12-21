@@ -1,0 +1,146 @@
+[
+  {
+    "id": "cdr/code-server/latest",
+    "description": "An open source distribution of Visual Studio Code (code-server) for Eclipse Che",
+    "displayName": "VS Code via code-server",
+    "links": {
+      "devfile": "/v3/plugins/cdr/code-server/latest/devfile.yaml"
+    },
+    "name": "code-server",
+    "publisher": "cdr",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-code/insiders",
+    "description": "Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build",
+    "displayName": "VS Code - Open Source",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-code/insiders/devfile.yaml"
+    },
+    "name": "che-code",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "insiders"
+  },
+  {
+    "id": "che-incubator/che-code/latest",
+    "description": "Microsoft Visual Studio Code - Open Source IDE for Eclipse Che",
+    "displayName": "VS Code - Open Source",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-code/latest/devfile.yaml"
+    },
+    "name": "che-code",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-idea-server/latest",
+    "description": "JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest",
+    "displayName": "IntelliJ IDEA Ultimate (desktop)",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea-server/latest/devfile.yaml"
+    },
+    "name": "che-idea-server",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-idea-server/next",
+    "description": "JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next",
+    "displayName": "IntelliJ IDEA Ultimate (desktop)",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea-server/next/devfile.yaml"
+    },
+    "name": "che-idea-server",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
+    "id": "che-incubator/che-idea/latest",
+    "description": "JetBrains IntelliJ IDEA Community IDE for Eclipse Che",
+    "displayName": "IntelliJ IDEA Community",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea/latest/devfile.yaml"
+    },
+    "name": "che-idea",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-idea/next",
+    "description": "JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next",
+    "displayName": "IntelliJ IDEA Community",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-idea/next/devfile.yaml"
+    },
+    "name": "che-idea",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
+    "id": "che-incubator/che-pycharm/latest",
+    "description": "JetBrains PyCharm Community IDE for Eclipse Che",
+    "displayName": "JetBrains PyCharm Community",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-pycharm/latest/devfile.yaml"
+    },
+    "name": "che-pycharm",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "che-incubator/che-pycharm/next",
+    "description": "JetBrains PyCharm Community IDE for Eclipse Che - next",
+    "displayName": "JetBrains PyCharm Community",
+    "links": {
+      "devfile": "/v3/plugins/che-incubator/che-pycharm/next/devfile.yaml"
+    },
+    "name": "che-pycharm",
+    "publisher": "che-incubator",
+    "type": "Che Editor",
+    "version": "next"
+  },
+  {
+    "id": "dirigiblelabs/dirigible/latest",
+    "description": "Eclipse Dirigible for Eclipse Che",
+    "displayName": "Eclipse Dirigible",
+    "links": {
+      "devfile": "/v3/plugins/dirigiblelabs/dirigible/latest/devfile.yaml"
+    },
+    "name": "dirigible",
+    "publisher": "dirigiblelabs",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "ws-skeleton/eclipseide/latest",
+    "description": "Eclipse IDE (in browser using Broadway) for Eclipse Che",
+    "displayName": "Eclipse IDE with Broadway",
+    "links": {
+      "devfile": "/v3/plugins/ws-skeleton/eclipseide/latest/devfile.yaml"
+    },
+    "name": "eclipseide",
+    "publisher": "ws-skeleton",
+    "type": "Che Editor",
+    "version": "latest"
+  },
+  {
+    "id": "ws-skeleton/jupyter/latest",
+    "description": "Jupyter Notebook for Eclipse Che",
+    "displayName": "Jupyter Notebook",
+    "links": {
+      "devfile": "/v3/plugins/ws-skeleton/jupyter/latest/devfile.yaml"
+    },
+    "name": "jupyter",
+    "publisher": "ws-skeleton",
+    "type": "Che Editor",
+    "version": "latest"
+  }
+]
