@@ -380,7 +380,7 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
+              secure: true
               protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
@@ -486,7 +486,7 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
+              secure: true
               protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
@@ -592,7 +592,7 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
+              secure: true
               protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
@@ -698,7 +698,7 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
+              secure: true
               protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
