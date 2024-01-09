@@ -26,7 +26,7 @@ editors:
             - name: jupyter
               targetPort: 8888
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 type: main
         attributes:
@@ -78,7 +78,7 @@ editors:
                 type: main
               targetPort: 8080
               exposure: public
-              protocol: http
+              protocol: https
         attributes:
           ports:
             - exposedPort: 8080
@@ -105,7 +105,7 @@ editors:
             - name: eclipse-ide
               targetPort: 5000
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 type: main
         attributes:
@@ -139,7 +139,7 @@ editors:
             - name: code-server
               targetPort: 8080
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 type: main
         attributes:
@@ -380,26 +380,26 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
-              protocol: http
+              secure: true
+              protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
@@ -486,26 +486,26 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
-              protocol: http
+              secure: true
+              protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
@@ -592,26 +592,26 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
-              protocol: http
+              secure: true
+              protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
@@ -698,26 +698,26 @@ editors:
               targetPort: 8887
               exposure: public
               path: '/?backgroundColor=434343&wss'
-              secure: false
-              protocol: http
+              secure: true
+              protocol: https
             - name: intellij-redirect-1
               targetPort: 13131
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-2
               targetPort: 13132
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
             - name: intellij-redirect-3
               targetPort: 13133
               exposure: public
-              protocol: http
+              protocol: https
               attributes:
                 discoverable: false
                 urlRewriteSupported: false
@@ -808,7 +808,7 @@ editors:
               targetPort: 3400
               exposure: public
               secure: true
-              protocol: http
+              protocol: https
         attributes:
           app.kubernetes.io/component: editor-runtime
           app.kubernetes.io/part-of: idea-server.eclipse.org
@@ -874,7 +874,7 @@ editors:
               targetPort: 3400
               exposure: public
               secure: true
-              protocol: http
+              protocol: https
         attributes:
           app.kubernetes.io/component: editor-runtime
           app.kubernetes.io/part-of: idea-server.eclipse.org
