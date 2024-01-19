@@ -224,7 +224,7 @@ Downstream builds can be found at the link below, which is _internal to Red Hat_
 
 * [pluginregistry_3.x](https://main-jenkins-csb-crwqe.apps.ocp-c1.prod.psi.redhat.com/job/DS_CI/job/pluginregistry_3.x/)
 
-NOTE: The registry downstream is a fork of upstream, with different plugin content and support for restricted environments enabled by default.
+NOTE: The registry downstream is a fork of upstream, with different plugin content and support for restricted environments enabled by default. 
 
 
 # License
