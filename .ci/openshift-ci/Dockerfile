@@ -20,10 +20,15 @@ SHELL ["/bin/bash", "-c"]
 # Install yq, kubectl, chectl cli used by olm/olm.sh script.
 # hadolint ignore=DL3041
 # Install yq, kubectl, chectl cli.
-RUN yum install --assumeyes -d1 psmisc python3-pip  httpd-tools nodejs && \
+RUN yum install --assumeyes -d1 psmisc python3-pip  httpd-tools nodejs npm && \
     pip3 install --upgrade setuptools && \
     pip3 install yq && \
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin && \
     bash <(curl -sL https://www.eclipse.org/che/chectl/) --channel=next
+
+RUN yum update -y && npm install -g yarn@1.22 npm@9 && \
+    echo -n "node version: "; node -v; \
+    echo -n "npm  version: "; npm -v; \
+    echo -n "yarn version: "; yarn -v; \
