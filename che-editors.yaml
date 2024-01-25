@@ -1,6 +1,6 @@
 version: 2.0.0
 editors:
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: ws-skeleton/jupyter/5.7.0
       displayName: Jupyter Notebook
@@ -12,7 +12,6 @@ editors:
         title: Jupyter Notebook for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-jupyter/'
         firstPublicationDate: '2019-02-05'
-        skipMetaYaml: true
     components:
       - name: jupyter-notebook
         container:
@@ -32,7 +31,7 @@ editors:
         attributes:
           ports:
             - exposedPort: 8888
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: dirigiblelabs/dirigible/3.4.0
       displayName: Eclipse Dirigible
@@ -44,7 +43,6 @@ editors:
         title: Eclipse Dirigible for Eclipse Che
         repository: 'https://github.com/dirigiblelabs/dirigible-che-editor-plugin/'
         firstPublicationDate: '2019-02-05'
-        skipMetaYaml: true
     components:
       - name: eclipse-dirigible
         container:
@@ -82,7 +80,7 @@ editors:
         attributes:
           ports:
             - exposedPort: 8080
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: ws-skeleton/eclipseide/4.9.0
       displayName: Eclipse IDE with Broadway
@@ -94,7 +92,6 @@ editors:
         title: Eclipse IDE (in browser using Broadway) for Eclipse Che
         repository: 'https://github.com/ws-skeleton/che-editor-eclipseide/'
         firstPublicationDate: '2019-02-05'
-        skipMetaYaml: true
     components:
       - name: eclipse-ide
         container:
@@ -111,7 +108,7 @@ editors:
         attributes:
           ports:
             - exposedPort: 5000
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: cdr/code-server/3.6.2
       displayName: VS Code via code-server
@@ -125,7 +122,6 @@ editors:
           Eclipse Che
         repository: 'https://github.com/cdr/code-server'
         firstPublicationDate: '2020-11-03'
-        skipMetaYaml: true
     components:
       - name: code-server
         container:
@@ -147,7 +143,7 @@ editors:
             - exposedPort: 8080
       - name: user-data
         volume: {}
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-code/insiders
       displayName: VS Code - Open Source
@@ -161,7 +157,6 @@ editors:
           build
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -169,8 +164,7 @@ editors:
       - id: init-che-code-command
         exec:
           component: che-code-runtime-description
-          commandLine: 'nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -180,7 +174,8 @@ editors:
       - name: che-code-injector
         container:
           image: 'quay.io/che-incubator/che-code:insiders'
-          command: ["/entrypoint-init-container.sh"]
+          command:
+            - /entrypoint-init-container.sh
           volumeMounts:
             - name: checode
               path: /checode
@@ -236,7 +231,7 @@ editors:
           controller.devfile.io/container-contribution: true
       - name: checode
         volume: {}
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-code/7.80.0
       displayName: VS Code - Open Source
@@ -248,7 +243,6 @@ editors:
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -256,8 +250,7 @@ editors:
       - id: init-che-code-command
         exec:
           component: che-code-runtime-description
-          commandLine: 'nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -267,7 +260,8 @@ editors:
       - name: che-code-injector
         container:
           image: 'quay.io/che-incubator/che-code:7.80.0'
-          command: ["/entrypoint-init-container.sh"]
+          command:
+            - /entrypoint-init-container.sh
           volumeMounts:
             - name: checode
               path: /checode
@@ -323,7 +317,7 @@ editors:
           controller.devfile.io/container-contribution: true
       - name: checode
         volume: {}
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-idea/next
       displayName: IntelliJ IDEA Community
@@ -335,7 +329,6 @@ editors:
         title: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2022-01-11'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -343,8 +336,7 @@ editors:
       - id: init-che-idea-command
         exec:
           component: che-idea-runtime-description
-          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -416,7 +408,8 @@ editors:
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:next'
-          command: ["/projector/entrypoint-init-container.sh"]
+          command:
+            - /projector/entrypoint-init-container.sh
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -429,7 +422,7 @@ editors:
           memoryRequest: 32Mi
           cpuLimit: 500m
           cpuRequest: 30m
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-idea/latest
       displayName: IntelliJ IDEA Community
@@ -441,7 +434,6 @@ editors:
         title: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2022-01-11'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -449,8 +441,7 @@ editors:
       - id: init-che-idea-command
         exec:
           component: che-idea-runtime-description
-          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -522,7 +513,8 @@ editors:
       - name: che-idea-injector
         container:
           image: 'quay.io/che-incubator/che-idea:latest'
-          command: ["/projector/entrypoint-init-container.sh"]
+          command:
+            - /projector/entrypoint-init-container.sh
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -535,7 +527,7 @@ editors:
           memoryRequest: 32Mi
           cpuLimit: 500m
           cpuRequest: 30m
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-pycharm/next
       displayName: JetBrains PyCharm Community
@@ -547,7 +539,6 @@ editors:
         title: JetBrains PyCharm Community IDE for Eclipse Che - next
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -555,8 +546,7 @@ editors:
       - id: init-che-pycharm-command
         exec:
           component: che-pycharm-runtime-description
-          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -628,7 +618,8 @@ editors:
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:next'
-          command: ["/projector/entrypoint-init-container.sh"]
+          command:
+            - /projector/entrypoint-init-container.sh
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -641,7 +632,7 @@ editors:
           memoryRequest: 32Mi
           cpuLimit: 500m
           cpuRequest: 30m
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-pycharm/latest
       displayName: JetBrains PyCharm Community
@@ -653,7 +644,6 @@ editors:
         title: JetBrains PyCharm Community IDE for Eclipse Che
         repository: 'https://github.com/che-incubator/jetbrains-editor-images'
         firstPublicationDate: '2021-10-06'
-        skipMetaYaml: true
     commands:
       - id: init-container-command
         apply:
@@ -661,8 +651,7 @@ editors:
       - id: init-che-pycharm-command
         exec:
           component: che-pycharm-runtime-description
-          commandLine: 'nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
-            2>&1 &'
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
     events:
       preStart:
         - init-container-command
@@ -734,7 +723,8 @@ editors:
       - name: che-pycharm-injector
         container:
           image: 'quay.io/che-incubator/che-pycharm:latest'
-          command: ["/projector/entrypoint-init-container.sh"]
+          command:
+            - /projector/entrypoint-init-container.sh
           env:
             - name: PROJECTOR_VOLUME_MOUNT
               value: /projector-volume
@@ -747,7 +737,7 @@ editors:
           memoryRequest: 32Mi
           cpuLimit: 500m
           cpuRequest: 30m
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-idea-server/next
       displayName: IntelliJ IDEA Ultimate (desktop)
@@ -759,7 +749,6 @@ editors:
         title: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
         repository: 'https://github.com/che-incubator/che-idea-dev-server'
         firstPublicationDate: '2023-30-11'
-        skipMetaYaml: true
     commands:
       - id: inject-editor
         apply:
@@ -767,8 +756,7 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
-            2>&1 &'
+          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &
     events:
       preStart:
         - inject-editor
@@ -780,7 +768,8 @@ editors:
       - name: editor-injector
         container:
           image: 'quay.io/che-incubator/che-idea-dev-server:next'
-          command: ["/entrypoint-init-container.sh"]
+          command:
+            - /entrypoint-init-container.sh
           volumeMounts:
             - name: idea-server
               path: /idea-server
@@ -813,7 +802,7 @@ editors:
           app.kubernetes.io/component: editor-runtime
           app.kubernetes.io/part-of: idea-server.eclipse.org
           controller.devfile.io/container-contribution: true
-  - schemaVersion: 2.1.0
+  - schemaVersion: 2.2.2
     metadata:
       name: che-incubator/che-idea-server/latest
       displayName: IntelliJ IDEA Ultimate (desktop)
@@ -825,7 +814,6 @@ editors:
         title: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest
         repository: 'https://github.com/che-incubator/che-idea-dev-server'
         firstPublicationDate: '2023-30-11'
-        skipMetaYaml: true
     commands:
       - id: inject-editor
         apply:
@@ -833,8 +821,7 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: 'nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
-            2>&1 &'
+          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &
     events:
       preStart:
         - inject-editor
@@ -846,7 +833,8 @@ editors:
       - name: editor-injector
         container:
           image: 'quay.io/che-incubator/che-idea-dev-server:latest'
-          command: ["/entrypoint-init-container.sh"]
+          command:
+            - /entrypoint-init-container.sh
           volumeMounts:
             - name: idea-server
               path: /idea-server

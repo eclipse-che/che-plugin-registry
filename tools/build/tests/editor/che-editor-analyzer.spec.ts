@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -36,10 +36,10 @@ describe('Test CheEditorsAnalyzer', () => {
     expect(result.editors.length).toBeGreaterThan(5);
 
     // search for editors with an id provided in yaml
-    const codeEditors = result.editors.filter(plugin => plugin.metadata.name === 'che-incubator/che-code/insiders');
+    const codeEditors = result.editors.filter(editor => editor.metadata?.name === 'che-incubator/che-code/insiders');
     expect(codeEditors).toBeDefined();
     expect(codeEditors.length).toBe(1);
     const codeEditor = codeEditors[0];
-    expect(codeEditor.metadata.attributes.repository).toBe('https://github.com/che-incubator/che-code');
+    expect(codeEditor.metadata?.attributes.repository).toBe('https://github.com/che-incubator/che-code');
   });
 });

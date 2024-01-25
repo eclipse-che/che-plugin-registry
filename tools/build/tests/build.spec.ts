@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -9,18 +9,18 @@
  ***********************************************************************/
 import 'reflect-metadata';
 
-import { CheEditorYaml, CheEditorsYaml } from '../src/editor/che-editors-yaml';
+import { CheEditorsYaml } from '../src/editor/che-editors-yaml';
 
 import { Build } from '../src/build';
 import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
-import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
 import { Container } from 'inversify';
 import { Deferred } from '../src/util/deferred';
-import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
-import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
-import { IndexWriter } from '../src/meta-yaml/index-writer';
-import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
 import { createSpinner } from 'nanospinner';
+import { V222Devfile } from '@devfile/api';
+import { DevfileYamlWriter } from '../src/devfle-yaml/devfile-yaml-writer';
+import { IndexWriter } from '../src/devfle-yaml/index-writer';
+import { DigestImagesHelper } from '../src/devfle-yaml/digest-images-helper';
+import { ExternalImagesWriter } from '../src/devfle-yaml/external-images-writer';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -57,15 +57,12 @@ describe('Test Build', () => {
   const metaYamlGeneratorComputeMock = jest.fn();
 
   const metaYamlEditorGeneratorComputeMock = jest.fn();
-  const cheEditorMetaYamlGenerator: any = {
-    compute: metaYamlEditorGeneratorComputeMock,
-  };
 
   let build: Build;
 
-  async function buildCheEditorYaml(): Promise<CheEditorYaml> {
+  async function buildCheEditorYaml(): Promise<V222Devfile> {
     return {
-      schemaVersion: '2.1.0',
+      schemaVersion: '2.2.2',
       metadata: {
         name: 'ws-skeleton/eclipseide/4.9.0',
         displayName: 'Eclipse IDE',
@@ -87,7 +84,7 @@ describe('Test Build', () => {
             endpoints: [
               {
                 name: 'eclipse-ide',
-                public: true,
+                exposure: 'public',
                 targetPort: 5000,
                 attributes: {
                   protocol: 'http',
@@ -111,8 +108,7 @@ describe('Test Build', () => {
     container.bind('string[]').toConstantValue([]).whenTargetNamed('ARGUMENTS');
 
     container.bind(CheEditorsAnalyzer).toConstantValue(cheEditorsAnalyzer);
-    container.bind(CheEditorsMetaYamlGenerator).toConstantValue(cheEditorMetaYamlGenerator);
-    container.bind(MetaYamlWriter).toConstantValue(metaYamlWriter);
+    container.bind(DevfileYamlWriter).toConstantValue(metaYamlWriter);
     container.bind(IndexWriter).toConstantValue(indexWriter);
     container.bind(DigestImagesHelper).toConstantValue(digestImagesHelper);
     container.bind(ExternalImagesWriter).toConstantValue(externalImagesWriter);
@@ -134,7 +130,6 @@ describe('Test Build', () => {
     metaYamlEditorGeneratorComputeMock.mockResolvedValueOnce([]);
 
     await build.build();
-    expect(cheEditorMetaYamlGenerator.compute).toHaveBeenCalled();
 
     expect(metaYamlWriter.write).toHaveBeenCalled();
     expect(indexWriter.write).toHaveBeenCalled();

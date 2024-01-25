@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2023 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -10,11 +10,9 @@
 import { ContainerModule, interfaces } from 'inversify';
 
 import { CheEditorsAnalyzer } from './che-editors-analyzer';
-import { CheEditorsMetaYamlGenerator } from './che-editors-meta-yaml-generator';
 
 const editorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(CheEditorsAnalyzer).toSelf().inSingletonScope();
-  bind(CheEditorsMetaYamlGenerator).toSelf().inSingletonScope();
 });
 
 export { editorModule };

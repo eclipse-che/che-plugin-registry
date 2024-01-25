@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2023 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -15,10 +15,8 @@ import * as path from 'path';
 
 import { Build } from './build';
 import { Container } from 'inversify';
-import { commonModule } from './common/common-module';
-import { devfileModule } from './devfile/devfile-module';
 import { editorModule } from './editor/editor-module';
-import { metaYamlModule } from './meta-yaml/meta-yaml-module';
+import { metaYamlModule } from './devfle-yaml/devfile-yaml-module';
 import { registryModule } from './registry/registry-module';
 
 export class InversifyBinding {
@@ -50,8 +48,6 @@ export class InversifyBinding {
       }
     });
     this.container = new Container();
-    this.container.load(commonModule);
-    this.container.load(devfileModule);
     this.container.load(editorModule);
     this.container.load(metaYamlModule);
     this.container.load(registryModule);
