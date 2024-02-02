@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2021 Red Hat, Inc.
+ * Copyright (c) 2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -11,14 +11,14 @@
 import 'reflect-metadata';
 
 import { Container } from 'inversify';
-import { DigestImagesHelper } from '../../src/meta-yaml/digest-images-helper';
-import { MetaYamlPluginInfo } from '../../src/meta-yaml/meta-yaml-plugin-info';
+import { DigestImagesHelper } from '../../src/devfle-yaml/digest-images-helper';
 import { RegistryHelper } from '../../src/registry/registry-helper';
+import { V222Devfile, V222DevfileComponentsItemsContainer } from '@devfile/api';
 
 describe('Test DigestImagesHelper', () => {
   let container: Container;
 
-  let metaYamlPlugins: MetaYamlPluginInfo[];
+  let editors: V222Devfile[];
   let digestImagesHelper: DigestImagesHelper;
 
   const registryHelperGetImageDigestMock = jest.fn();
@@ -27,20 +27,31 @@ describe('Test DigestImagesHelper', () => {
   };
 
   beforeEach(async () => {
-    metaYamlPlugins = [
-      // first plug-in has both containers and init containers
+    const container1: V222DevfileComponentsItemsContainer = {
+      image: 'container-image1:foo',
+    };
+    const container2: V222DevfileComponentsItemsContainer = {
+      image: 'container-image2:bar',
+    };
+    editors = [
       {
-        spec: {
-          containers: [{ image: 'container-image1:foo' }, { image: 'container-image2:bar' }],
-          initContainers: [{ image: 'init-container-image1:foo' }, { image: 'init-container-image2:bar' }],
-        },
-      } as any,
+        schemaVersion: '2.2.2',
+        components: [
+          {
+            container: container1,
+            name: 'first-component',
+          },
+          {
+            name: 'second-component',
+            container: container2,
+          },
+        ],
+      },
       // empty spec
       {
-        spec: {},
-      } as any,
-      // no spec
-      {} as any,
+        schemaVersion: '2.2.2',
+        components: [{ name: 'empty-component' }],
+      },
     ];
     jest.restoreAllMocks();
     jest.resetAllMocks();
@@ -54,17 +65,16 @@ describe('Test DigestImagesHelper', () => {
   test('basics', async () => {
     registryHelperGetImageDigestMock.mockResolvedValueOnce('image-digest-1');
     registryHelperGetImageDigestMock.mockResolvedValueOnce('image-digest-2');
-    registryHelperGetImageDigestMock.mockResolvedValueOnce('image-digest-3');
-    registryHelperGetImageDigestMock.mockResolvedValueOnce('image-digest-4');
 
-    const updatedYamls = await digestImagesHelper.updateImages(metaYamlPlugins);
-    // only 4 images, so 4 calls
-    expect(registryHelperGetImageDigestMock).toHaveBeenCalledTimes(4);
+    const updatedYamls = await digestImagesHelper.updateImages(editors);
+    expect(registryHelperGetImageDigestMock).toHaveBeenCalledTimes(2);
 
     const firstYaml = updatedYamls[0];
-    expect((firstYaml.spec.containers as any)[0].image).toBe('image-digest-1');
-    expect((firstYaml.spec.containers as any)[1].image).toBe('image-digest-2');
-    expect((firstYaml.spec.initContainers as any)[0].image).toBe('image-digest-3');
-    expect((firstYaml.spec.initContainers as any)[1].image).toBe('image-digest-4');
+    const components = firstYaml.components;
+    if (!components) {
+      throw new Error('components not found');
+    }
+    expect(components[0].container?.image).toBe('image-digest-1');
+    expect(components[1].container?.image).toBe('image-digest-2');
   });
 });

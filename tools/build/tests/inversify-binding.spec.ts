@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2020-2021 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -13,14 +13,12 @@ import 'reflect-metadata';
 import * as fs from 'fs-extra';
 
 import { CheEditorsAnalyzer } from '../src/editor/che-editors-analyzer';
-import { CheEditorsMetaYamlGenerator } from '../src/editor/che-editors-meta-yaml-generator';
 import { Container } from 'inversify';
-import { DigestImagesHelper } from '../src/meta-yaml/digest-images-helper';
-import { ExternalImagesWriter } from '../src/meta-yaml/external-images-writer';
-import { IndexWriter } from '../src/meta-yaml/index-writer';
+import { DigestImagesHelper } from '../src/devfle-yaml/digest-images-helper';
+import { ExternalImagesWriter } from '../src/devfle-yaml/external-images-writer';
+import { IndexWriter } from '../src/devfle-yaml/index-writer';
 import { InversifyBinding } from '../src/inversify-binding';
-import { MetaYamlToDevfileYaml } from '../src/devfile/meta-yaml-to-devfile-yaml';
-import { MetaYamlWriter } from '../src/meta-yaml/meta-yaml-writer';
+import { DevfileYamlWriter } from '../src/devfle-yaml/devfile-yaml-writer';
 import { RegistryHelper } from '../src/registry/registry-helper';
 
 describe('Test InversifyBinding', () => {
@@ -41,17 +39,13 @@ describe('Test InversifyBinding', () => {
 
     expect(inversifyBinding).toBeDefined();
 
-    // check devfile module
-    expect(container.get(MetaYamlToDevfileYaml)).toBeDefined();
-
     // check editor module
     expect(container.get(CheEditorsAnalyzer)).toBeDefined();
-    expect(container.get(CheEditorsMetaYamlGenerator)).toBeDefined();
 
     // check meta module
     expect(await container.getAsync(DigestImagesHelper)).toBeDefined();
     expect(container.get(IndexWriter)).toBeDefined();
-    expect(container.get(MetaYamlWriter)).toBeDefined();
+    expect(container.get(DevfileYamlWriter)).toBeDefined();
     expect(container.get(ExternalImagesWriter)).toBeDefined();
 
     // check registry module

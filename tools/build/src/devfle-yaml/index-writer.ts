@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (c) 2021 Red Hat, Inc.
+ * Copyright (c) 2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -13,7 +13,8 @@ import * as path from 'path';
 
 import { inject, injectable, named } from 'inversify';
 
-import { MetaYamlPluginInfo } from './meta-yaml-plugin-info';
+import { V222Devfile } from '@devfile/api';
+import { DevfileYamlWriter } from './devfile-yaml-writer';
 
 /**
  * Write in a file named index.json, all the plugins that can be found.
@@ -24,34 +25,41 @@ export class IndexWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
-  getLinks(plugin: MetaYamlPluginInfo): { self?: string; devfile?: string } {
-    const links: { self?: string; devfile?: string; plugin?: string } = {};
-    if (!plugin.skipMetaYaml) {
-      links.self = `/v3/plugins/${plugin.id}`;
-    }
-    if (plugin.type === 'Che Editor' || plugin.type === 'Che Plugin') {
-      links.devfile = `/v3/plugins/${plugin.id}/devfile.yaml`;
-    }
-    return links;
-  }
+  @inject(DevfileYamlWriter)
+  private devfileYamlWriter: DevfileYamlWriter;
 
-  async write(generatedMetaYamlPluginInfos: MetaYamlPluginInfo[]): Promise<void> {
-    const metaYamlPluginInfos = generatedMetaYamlPluginInfos.filter(metaPluginInfo => !metaPluginInfo.skipIndex);
+  private CHE_EDITOR_TYPE = 'Che Editor';
 
+  async write(editors: V222Devfile[]): Promise<void> {
     const v3PluginsFolder = path.resolve(this.outputRootDirectory, 'v3', 'plugins');
     await fs.ensureDir(v3PluginsFolder);
     const externalImagesFile = path.join(v3PluginsFolder, 'index.json');
 
-    const indexValues = metaYamlPluginInfos.map(plugin => ({
-      id: plugin.id,
-      description: plugin.description,
-      displayName: plugin.displayName,
-      links: this.getLinks(plugin),
-      name: plugin.name,
-      publisher: plugin.publisher,
-      type: plugin.type,
-      version: plugin.version,
-    }));
+    const indexValues = editors.map(editor => {
+      let id = this.devfileYamlWriter.verifyEditorId(editor);
+      const splitIds = id.split('/');
+      const publisher = splitIds[0];
+      const name = splitIds[1];
+      let version = splitIds[2];
+
+      if (Number.isInteger(parseInt(version[0]))) {
+        version = 'latest';
+      }
+      id = publisher + '/' + name + '/' + version;
+
+      return {
+        id: id,
+        description: editor.metadata?.description,
+        displayName: editor.metadata?.displayName,
+        links: {
+          devfile: `/v3/plugins/${id}/devfile.yaml`,
+        },
+        name: name,
+        publisher: publisher,
+        type: this.CHE_EDITOR_TYPE,
+        version: version,
+      };
+    });
     indexValues.sort((pluginA, pluginB) => pluginA.id.localeCompare(pluginB.id));
     await fs.writeFile(externalImagesFile, JSON.stringify(indexValues, undefined, 2));
   }

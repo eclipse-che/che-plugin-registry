@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**********************************************************************
- * Copyright (c) 2020-2023 Red Hat, Inc.
+ * Copyright (c) 2020-2024 Red Hat, Inc.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
