@@ -133,7 +133,7 @@ curl  "http://localhost:8080/v3/plugins/che-incubator/che-code/latest/devfile.ya
 Response:
 
 ```yaml
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: che-code
 commands:
