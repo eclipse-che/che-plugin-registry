@@ -45,13 +45,13 @@ jobs:
             do
               (cd $directory && tree -H '.' -L 1 --noreport --charset utf-8 | sed '/<p class="VERSION">/,/<\/p>/d' > index.html)
            done
-           # Make meta.yaml as index
-           for file in $(find content -name 'meta.yaml' -type f)
+           # Make devfile.yaml as index
+           for file in $(find content -name 'devfile.yaml' -type f)
              do
                PARENT_DIR=$(dirname $file);
-               cp ${PARENT_DIR}/meta.yaml ${PARENT_DIR}/index.html
+               cp ${PARENT_DIR}/devfile.yaml ${PARENT_DIR}/index.html
              done
-           export DEPLOY_DOMAIN=https://che-plugin-registry-main.surge.sh
+           export DEPLOY_DOMAIN=https://che-plugin-registry.surge.sh
            echo "DEPLOY_DOMAIN=$DEPLOY_DOMAIN" >> $GITHUB_ENV
            surge ./content --domain $DEPLOY_DOMAIN
       - name: Publish to gh-pages
