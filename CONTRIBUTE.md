@@ -143,7 +143,7 @@ The job names are `surge`. Clicking on `Details` in the GitHub PR view will take
 For example, build of PR 805 would be hosted at: https://pr-check-805-che-plugin-registry.surge.sh/
 
 ### Next
-A next build of the plugin registry is published on both [surge.sh](https://che-plugin-registry-main.surge.sh/), and [GitHub Pages](https://eclipse-che.github.io/che-plugin-registry/main/). Both are updated upon every commit merged to the main branch.
+A next build of the plugin registry is published on both [surge.sh](https://che-plugin-registry.surge.sh/), and [GitHub Pages](https://eclipse-che.github.io/che-plugin-registry/main/). Both are updated upon every commit merged to the main branch.
 
 ### Versioned Releases
 Versioned releases of the che-plugin-registry are also published to GitHub Pages. The version of the release is name of the last folder in the URL.
