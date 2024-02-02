@@ -1,6 +1,6 @@
 version: 2.0.0
 editors:
-  - schemaVersion: 2.2.2
+  - schemaVersion: 2.2.1
     metadata:
       name: ws-skeleton/jupyter/5.7.0
       displayName: Jupyter Notebook
