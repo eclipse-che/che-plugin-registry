@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: che-pycharm
+  displayName: JetBrains PyCharm Community
+  description: JetBrains PyCharm Community IDE for Eclipse Che - next
+  icon: https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png
+  attributes:
+    publisher: che-incubator
+    version: next
+    title: JetBrains PyCharm Community IDE for Eclipse Che - next
+    repository: https://github.com/che-incubator/jetbrains-editor-images
+    firstPublicationDate: '2021-10-06'
 commands:
   - id: init-container-command
     apply:
@@ -17,7 +26,7 @@ events:
 components:
   - name: che-pycharm-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
+      image: quay.io/devfile/universal-developer-image@sha256:75034f0dad7a6df3db53e20fc3597b68f2311e556164d47aa9151d3b3584bbce
       env:
         - name: PROJECTOR_ASSEMBLY_DIR
           value: /projector
@@ -41,32 +50,32 @@ components:
             cookiesAuthEnabled: true
             discoverable: false
             urlRewriteSupported: true
-            secure: false
           targetPort: 8887
           exposure: public
           path: /?backgroundColor=434343&wss
-          protocol: http
+          secure: true
+          protocol: https
         - name: intellij-redirect-1
-          attributes:
-            discoverable: false
-            urlRewriteSupported: false
           targetPort: 13131
           exposure: public
-          protocol: http
-        - name: intellij-redirect-2
+          protocol: https
           attributes:
             discoverable: false
             urlRewriteSupported: false
+        - name: intellij-redirect-2
           targetPort: 13132
           exposure: public
-          protocol: http
-        - name: intellij-redirect-3
+          protocol: https
           attributes:
             discoverable: false
             urlRewriteSupported: false
+        - name: intellij-redirect-3
           targetPort: 13133
           exposure: public
-          protocol: http
+          protocol: https
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
     attributes:
       app.kubernetes.io/component: che-pycharm-runtime
       app.kubernetes.io/part-of: che-pycharm.eclipse.org

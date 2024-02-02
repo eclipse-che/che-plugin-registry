@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: che-code
+  displayName: VS Code - Open Source
+  description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
+  icon: https://raw.githubusercontent.com/che-incubator/che-code/main/code/resources/server/code-512.png?sanitize=true
+  attributes:
+    publisher: che-incubator
+    version: insiders
+    title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
+    repository: https://github.com/che-incubator/che-code
+    firstPublicationDate: '2021-10-31'
 commands:
   - id: init-container-command
     apply:
@@ -15,54 +24,6 @@ events:
   postStart:
     - init-che-code-command
 components:
-  - name: che-code-runtime-description
-    container:
-      image: quay.io/devfile/universal-developer-image@sha256:f4e3180413ab3d16957642af9b12b0d13afe9f3429ecd62fc71e24553ca0cd74
-      volumeMounts:
-        - name: checode
-          path: /checode
-      memoryLimit: 1024Mi
-      memoryRequest: 256Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
-      endpoints:
-        - name: che-code
-          attributes:
-            type: main
-            cookiesAuthEnabled: true
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: code-redirect-1
-          attributes:
-            discoverable: false
-            urlRewriteSupported: false
-          targetPort: 13131
-          exposure: public
-          protocol: https
-        - name: code-redirect-2
-          attributes:
-            discoverable: false
-            urlRewriteSupported: false
-          targetPort: 13132
-          exposure: public
-          protocol: https
-        - name: code-redirect-3
-          attributes:
-            discoverable: false
-            urlRewriteSupported: false
-          targetPort: 13133
-          exposure: public
-          protocol: https
-    attributes:
-      app.kubernetes.io/component: che-code-runtime
-      app.kubernetes.io/part-of: che-code.eclipse.org
-      controller.devfile.io/container-contribution: true
-  - name: checode
-    volume: {}
   - name: che-code-injector
     container:
       image: quay.io/che-incubator/che-code:insiders
@@ -75,3 +36,51 @@ components:
       memoryRequest: 32Mi
       cpuLimit: 500m
       cpuRequest: 30m
+  - name: che-code-runtime-description
+    container:
+      image: quay.io/devfile/universal-developer-image@sha256:75034f0dad7a6df3db53e20fc3597b68f2311e556164d47aa9151d3b3584bbce
+      memoryLimit: 1024Mi
+      memoryRequest: 256Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+      volumeMounts:
+        - name: checode
+          path: /checode
+      endpoints:
+        - name: che-code
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: true
+          protocol: https
+        - name: code-redirect-1
+          targetPort: 13131
+          exposure: public
+          protocol: https
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+        - name: code-redirect-2
+          targetPort: 13132
+          exposure: public
+          protocol: https
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+        - name: code-redirect-3
+          targetPort: 13133
+          exposure: public
+          protocol: https
+          attributes:
+            discoverable: false
+            urlRewriteSupported: false
+    attributes:
+      app.kubernetes.io/component: che-code-runtime
+      app.kubernetes.io/part-of: che-code.eclipse.org
+      controller.devfile.io/container-contribution: true
+  - name: checode
+    volume: {}

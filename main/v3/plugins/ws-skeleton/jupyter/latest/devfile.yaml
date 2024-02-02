@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: jupyter
+  displayName: Jupyter Notebook
+  description: Jupyter Notebook for Eclipse Che
+  icon: https://jupyter.org/assets/main-logo.svg
+  attributes:
+    publisher: ws-skeleton
+    version: 5.7.0
+    title: Jupyter Notebook for Eclipse Che
+    repository: https://github.com/ws-skeleton/che-editor-jupyter/
+    firstPublicationDate: '2019-02-05'
 components:
   - name: jupyter-notebook
     container:
@@ -12,9 +21,11 @@ components:
       memoryLimit: 512M
       endpoints:
         - name: jupyter
-          attributes:
-            type: main
           targetPort: 8888
           exposure: public
-          protocol: http
-    attributes: {}
+          protocol: https
+          attributes:
+            type: main
+    attributes:
+      ports:
+        - exposedPort: 8888

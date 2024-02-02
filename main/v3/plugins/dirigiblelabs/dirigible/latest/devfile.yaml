@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: dirigible
+  displayName: Eclipse Dirigible
+  description: Eclipse Dirigible for Eclipse Che
+  icon: https://www.dirigible.io/img/dirigible.svg
+  attributes:
+    publisher: dirigiblelabs
+    version: 3.4.0
+    title: Eclipse Dirigible for Eclipse Che
+    repository: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/
+    firstPublicationDate: '2019-02-05'
 components:
   - name: eclipse-dirigible
     container:
@@ -34,5 +43,7 @@ components:
             type: main
           targetPort: 8080
           exposure: public
-          protocol: http
-    attributes: {}
+          protocol: https
+    attributes:
+      ports:
+        - exposedPort: 8080

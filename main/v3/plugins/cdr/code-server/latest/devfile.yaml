@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: code-server
+  displayName: VS Code via code-server
+  description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
+  icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg
+  attributes:
+    publisher: cdr
+    version: 3.6.2
+    title: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
+    repository: https://github.com/cdr/code-server
+    firstPublicationDate: '2020-11-03'
 components:
   - name: code-server
     container:
@@ -12,11 +21,13 @@ components:
       memoryLimit: 1024M
       endpoints:
         - name: code-server
-          attributes:
-            type: main
           targetPort: 8080
           exposure: public
-          protocol: http
-    attributes: {}
+          protocol: https
+          attributes:
+            type: main
+    attributes:
+      ports:
+        - exposedPort: 8080
   - name: user-data
     volume: {}

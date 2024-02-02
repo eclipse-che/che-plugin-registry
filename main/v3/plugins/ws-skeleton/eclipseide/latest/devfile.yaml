@@ -1,6 +1,15 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.2
 metadata:
   name: eclipseide
+  displayName: Eclipse IDE with Broadway
+  description: Eclipse IDE (in browser using Broadway) for Eclipse Che
+  icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
+  attributes:
+    publisher: ws-skeleton
+    version: 4.9.0
+    title: Eclipse IDE (in browser using Broadway) for Eclipse Che
+    repository: https://github.com/ws-skeleton/che-editor-eclipseide/
+    firstPublicationDate: '2019-02-05'
 components:
   - name: eclipse-ide
     container:
@@ -9,9 +18,11 @@ components:
       memoryLimit: 2048M
       endpoints:
         - name: eclipse-ide
-          attributes:
-            type: main
           targetPort: 5000
           exposure: public
-          protocol: http
-    attributes: {}
+          protocol: https
+          attributes:
+            type: main
+    attributes:
+      ports:
+        - exposedPort: 5000
