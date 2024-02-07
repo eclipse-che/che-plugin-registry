@@ -1,0 +1,23 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="2000" height="2000">
+	<title>dirigible-logo-2Kx2K-svg</title>
+	<defs>
+		<image  width="1666" height="60" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC"/>
+		<image  width="1666" height="60" id="img2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC"/>
+		<image  width="1666" height="60" id="img3" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: #fecc04 } 
+		.s1 { fill: #000000 } 
+	</style>
+	<path id="Layer" class="s0" d="m1000 2000c-553 0-1000-447-1000-1000c0-553 447-1000 1000-1000c553 0 1000 447 1000 1000c0 553-447 1000-1000 1000z" />
+	<g id="Layer_1">
+		<path id="Layer" class="s1" d="m956.31 1452.37c-400.55 0-724.33-210.05-724.33-469.91c0-259.86 323.78-469.91 724.33-469.91c400.55 0 724.33 210.05 724.33 469.91c0 259.86-323.78 469.91-724.33 469.91z" />
+		<path id="Layer" class="s1" d="m1202.94 1418.68c-7.02 31.1-21.79 78.22-55.32 113.68c-31.04 32.82-63.63 40.29-214.18 41.13c-178.08 0.99-208.7-9.22-234.39-41.13c-31.31-38.89-39.75-92.48-42.11-129.5" />
+		<path id="Layer" class="s1" d="m1361.66 621.78l202.51-98.65l166.15 49.33l-114.78 274.01" />
+		<path id="Layer copy" class="s1" d="m1613.54 1113.13l114.78 274.01l-166.15 49.33l-202.51-98.65" />
+		<use id="Layer 1" href="#img1" x="123" y="836" />
+		<use id="Layer 2" href="#img2" x="119" y="952" />
+		<use id="Layer 3" href="#img3" x="120" y="1068" />
+	</g>
+</svg>

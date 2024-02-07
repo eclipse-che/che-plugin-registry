@@ -22,20 +22,18 @@ export class DevfileYamlWriter {
   @named('OUTPUT_ROOT_DIRECTORY')
   private outputRootDirectory: string;
 
-  public static readonly DEFAULT_ICON = '/images/default.png';
-
   verifyEditorId(editor: V222Devfile): string {
     const metadata = editor.metadata;
     if (!metadata) {
-      throw new Error(`The metadata of ${editor} is not defined`);
+      throw new Error(`The metadata of ${JSON.stringify(editor)} is not defined`);
     }
     const id = metadata.name;
     if (!id) {
-      throw new Error(`The id of ${metadata} is not defined`);
+      throw new Error(`The name of ${JSON.stringify(editor)} is not defined`);
     }
     const values = id.split('/');
     if (values.length !== 3) {
-      throw new Error(`The id for ${id} is not composed of 3 parts separated by / like <1>/<2>/<3>`);
+      throw new Error(`The nmae for ${id} is not composed of 3 parts separated by / like <1>/<2>/<3>`);
     }
     return id;
   }

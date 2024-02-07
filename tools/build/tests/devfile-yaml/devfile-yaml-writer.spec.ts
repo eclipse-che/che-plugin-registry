@@ -171,7 +171,7 @@ components:
 
       expect(() => {
         devfileYamlWriter.verifyEditorId(editor);
-      }).toThrow('The metadata of [object Object] is not defined');
+      }).toThrow('The metadata of {"schemaVersion":"2.2.2"} is not defined');
     });
 
     it('should throw an error if id is not defined', () => {
@@ -182,7 +182,7 @@ components:
 
       expect(() => {
         devfileYamlWriter.verifyEditorId(editor);
-      }).toThrow('The id of [object Object] is not defined');
+      }).toThrow('The name of {"schemaVersion":"2.2.2","metadata":{}} is not defined');
     });
 
     it('should throw an error if id is not composed of 3 parts separated by /', () => {
@@ -195,7 +195,7 @@ components:
 
       expect(() => {
         devfileYamlWriter.verifyEditorId(editor);
-      }).toThrow('The id for invalidId is not composed of 3 parts separated by / like <1>/<2>/<3>');
+      }).toThrow('The nmae for invalidId is not composed of 3 parts separated by / like <1>/<2>/<3>');
     });
   });
 });
