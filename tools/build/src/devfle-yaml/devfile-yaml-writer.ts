@@ -33,7 +33,7 @@ export class DevfileYamlWriter {
     }
     const values = id.split('/');
     if (values.length !== 3) {
-      throw new Error(`The nmae for ${id} is not composed of 3 parts separated by / like <1>/<2>/<3>`);
+      throw new Error(`The name for ${id} is not composed of 3 parts separated by / like <1>/<2>/<3>`);
     }
     return id;
   }

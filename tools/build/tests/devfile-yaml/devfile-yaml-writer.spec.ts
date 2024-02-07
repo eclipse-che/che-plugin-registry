@@ -195,7 +195,7 @@ components:
 
       expect(() => {
         devfileYamlWriter.verifyEditorId(editor);
-      }).toThrow('The nmae for invalidId is not composed of 3 parts separated by / like <1>/<2>/<3>');
+      }).toThrow('The name for invalidId is not composed of 3 parts separated by / like <1>/<2>/<3>');
     });
   });
 });
