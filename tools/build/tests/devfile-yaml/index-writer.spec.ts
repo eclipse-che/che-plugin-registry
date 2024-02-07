@@ -131,13 +131,9 @@ describe('Test IndexWriter', () => {
     fsEnsureDirSpy.mockReturnValue();
     fsWriteFileSpy.mockReturnValue();
 
-    let error: any;
-    try {
-      await indexWriter.write(editors);
-    } catch (e: any) {
-      error = e;
-    }
-    expect(error.message).toBe('The metadata of {"schemaVersion":"2.2.2"} is not defined');
+    await expect(indexWriter.write(editors)).rejects.toThrow(
+      'The metadata of {"schemaVersion":"2.2.2"} is not defined',
+    );
   });
 
   test('throw an error if name is not defined', async () => {
@@ -156,13 +152,7 @@ describe('Test IndexWriter', () => {
     fsEnsureDirSpy.mockReturnValue();
     fsWriteFileSpy.mockReturnValue();
 
-    let error: any;
-    try {
-      await indexWriter.write(editors);
-    } catch (e: any) {
-      error = e;
-    }
-    expect(error.message).toBe('The id of {"displayName":"display-name"} is not defined');
+    await expect(indexWriter.write(editors)).rejects.toThrow('The id of {"displayName":"display-name"} is not defined');
   });
 
   test('throw an error if id is not valid', async () => {
@@ -181,13 +171,7 @@ describe('Test IndexWriter', () => {
     fsEnsureDirSpy.mockReturnValue();
     fsWriteFileSpy.mockReturnValue();
 
-    let error: any;
-    try {
-      await indexWriter.write(editors);
-    } catch (e: any) {
-      error = e;
-    }
-    expect(error.message).toBe(
+    await expect(indexWriter.write(editors)).rejects.toThrow(
       'The id for my-publisher/my-name is not composed of 3 parts separated by / like <1>/<2>/<3>',
     );
   });
