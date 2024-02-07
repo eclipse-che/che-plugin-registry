@@ -3,7 +3,7 @@ metadata:
   name: code-server
   displayName: VS Code via code-server
   description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
-  icon: https://raw.githubusercontent.com/sr229/discord-open-source/master/logos/code-server.svg
+  icon: /images/vscode.svg
   attributes:
     publisher: cdr
     version: 3.6.2

@@ -9,7 +9,8 @@
     "name": "code-server",
     "publisher": "cdr",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/vscode.svg"
   },
   {
     "id": "che-incubator/che-code/insiders",
@@ -21,7 +22,8 @@
     "name": "che-code",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "insiders"
+    "version": "insiders",
+    "icon": "/v3/images/vscode.svg"
   },
   {
     "id": "che-incubator/che-code/latest",
@@ -33,7 +35,8 @@
     "name": "che-code",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/vscode.svg"
   },
   {
     "id": "che-incubator/che-idea-server/latest",
@@ -45,7 +48,8 @@
     "name": "che-idea-server",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/intllij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea-server/next",
@@ -57,7 +61,8 @@
     "name": "che-idea-server",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "next"
+    "version": "next",
+    "icon": "/v3/images/intllij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea/latest",
@@ -69,7 +74,8 @@
     "name": "che-idea",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/intllij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea/next",
@@ -81,7 +87,8 @@
     "name": "che-idea",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "next"
+    "version": "next",
+    "icon": "/v3/images/intllij-idea.svg"
   },
   {
     "id": "che-incubator/che-pycharm/latest",
@@ -93,7 +100,8 @@
     "name": "che-pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/pycharm.svg"
   },
   {
     "id": "che-incubator/che-pycharm/next",
@@ -105,7 +113,8 @@
     "name": "che-pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
-    "version": "next"
+    "version": "next",
+    "icon": "/v3/images/pycharm.svg"
   },
   {
     "id": "dirigiblelabs/dirigible/latest",
@@ -117,7 +126,8 @@
     "name": "dirigible",
     "publisher": "dirigiblelabs",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/dirigible.svg"
   },
   {
     "id": "ws-skeleton/eclipseide/latest",
@@ -129,7 +139,8 @@
     "name": "eclipseide",
     "publisher": "ws-skeleton",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/eclipse-ide.svg"
   },
   {
     "id": "ws-skeleton/jupyter/latest",
@@ -141,6 +152,7 @@
     "name": "jupyter",
     "publisher": "ws-skeleton",
     "type": "Che Editor",
-    "version": "latest"
+    "version": "latest",
+    "icon": "/v3/images/notebook.svg"
   }
 ]

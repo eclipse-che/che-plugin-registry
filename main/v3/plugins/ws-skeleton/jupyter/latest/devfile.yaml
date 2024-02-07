@@ -3,7 +3,7 @@ metadata:
   name: jupyter
   displayName: Jupyter Notebook
   description: Jupyter Notebook for Eclipse Che
-  icon: https://jupyter.org/assets/main-logo.svg
+  icon: /images/notebook.svg
   attributes:
     publisher: ws-skeleton
     version: 5.7.0

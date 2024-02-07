@@ -3,7 +3,7 @@ metadata:
   name: eclipseide
   displayName: Eclipse IDE with Broadway
   description: Eclipse IDE (in browser using Broadway) for Eclipse Che
-  icon: https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-svg-vector.svg
+  icon: /images/eclipse-ide.svg
   attributes:
     publisher: ws-skeleton
     version: 4.9.0

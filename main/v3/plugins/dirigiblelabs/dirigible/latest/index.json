@@ -3,7 +3,7 @@ metadata:
   name: dirigible
   displayName: Eclipse Dirigible
   description: Eclipse Dirigible for Eclipse Che
-  icon: https://www.dirigible.io/img/dirigible.svg
+  icon: /images/dirigible.svg
   attributes:
     publisher: dirigiblelabs
     version: 3.4.0
