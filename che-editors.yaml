@@ -322,7 +322,7 @@ editors:
       name: che-incubator/che-idea/next
       displayName: IntelliJ IDEA Community
       description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
-      icon: /images/intllij-idea.svg
+      icon: /images/intellij-idea.svg
       attributes:
         publisher: che-incubator
         version: next
@@ -427,7 +427,7 @@ editors:
       name: che-incubator/che-idea/latest
       displayName: IntelliJ IDEA Community
       description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
-      icon: /images/intllij-idea.svg
+      icon: /images/intellij-idea.svg
       attributes:
         publisher: che-incubator
         version: latest
@@ -742,7 +742,7 @@ editors:
       name: che-incubator/che-idea-server/next
       displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
-      icon: /images/intllij-idea.svg
+      icon: /images/intellij-idea.svg
       attributes:
         publisher: che-incubator
         version: next
@@ -807,7 +807,7 @@ editors:
       name: che-incubator/che-idea-server/latest
       displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest
-      icon: /images/intllij-idea.svg
+      icon: /images/intellij-idea.svg
       attributes:
         publisher: che-incubator
         version: latest
