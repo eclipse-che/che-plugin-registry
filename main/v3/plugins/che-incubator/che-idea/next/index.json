@@ -3,7 +3,7 @@ metadata:
   name: che-idea
   displayName: IntelliJ IDEA Community
   description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
-  icon: /images/intllij-idea.svg
+  icon: /images/intellij-idea.svg
   attributes:
     publisher: che-incubator
     version: next

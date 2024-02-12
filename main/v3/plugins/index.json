@@ -49,7 +49,7 @@
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest",
-    "icon": "/v3/images/intllij-idea.svg"
+    "icon": "/v3/images/intellij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea-server/next",
@@ -62,7 +62,7 @@
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "next",
-    "icon": "/v3/images/intllij-idea.svg"
+    "icon": "/v3/images/intellij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea/latest",
@@ -75,7 +75,7 @@
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "latest",
-    "icon": "/v3/images/intllij-idea.svg"
+    "icon": "/v3/images/intellij-idea.svg"
   },
   {
     "id": "che-incubator/che-idea/next",
@@ -88,7 +88,7 @@
     "publisher": "che-incubator",
     "type": "Che Editor",
     "version": "next",
-    "icon": "/v3/images/intllij-idea.svg"
+    "icon": "/v3/images/intellij-idea.svg"
   },
   {
     "id": "che-incubator/che-pycharm/latest",
