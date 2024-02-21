@@ -164,7 +164,8 @@ editors:
       - id: init-che-code-command
         exec:
           component: che-code-runtime-description
-          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -233,13 +234,13 @@ editors:
         volume: {}
   - schemaVersion: 2.2.2
     metadata:
-      name: che-incubator/che-code/7.81.0
+      name: che-incubator/che-code/7.82.0
       displayName: VS Code - Open Source
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: /images/vscode.svg
       attributes:
         publisher: che-incubator
-        version: 7.81.0
+        version: 7.82.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -250,7 +251,8 @@ editors:
       - id: init-che-code-command
         exec:
           component: che-code-runtime-description
-          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /checode/entrypoint-volume.sh > /checode/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -259,7 +261,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.81.0'
+          image: 'quay.io/che-incubator/che-code:7.82.0'
           command:
             - /entrypoint-init-container.sh
           volumeMounts:
@@ -336,7 +338,8 @@ editors:
       - id: init-che-idea-command
         exec:
           component: che-idea-runtime-description
-          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -441,7 +444,8 @@ editors:
       - id: init-che-idea-command
         exec:
           component: che-idea-runtime-description
-          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -546,7 +550,8 @@ editors:
       - id: init-che-pycharm-command
         exec:
           component: che-pycharm-runtime-description
-          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -651,7 +656,8 @@ editors:
       - id: init-che-pycharm-command
         exec:
           component: che-pycharm-runtime-description
-          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt 2>&1 &
+          commandLine: nohup /projector/entrypoint-volume.sh > /projector/entrypoint-logs.txt
+            2>&1 &
     events:
       preStart:
         - init-container-command
@@ -756,7 +762,8 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &
+          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
+            2>&1 &
     events:
       preStart:
         - inject-editor
@@ -821,7 +828,8 @@ editors:
       - id: start-idea-server
         exec:
           component: editor-runtime
-          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &
+          commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out
+            2>&1 &
     events:
       preStart:
         - inject-editor
