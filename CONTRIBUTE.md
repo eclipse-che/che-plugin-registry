@@ -113,7 +113,9 @@ Here are all the supported values, including optional ones:
       - name: che-code-runtime-description
         # (OPTIONAL) Map of implementation-dependant free-form YAML attributes
         attributes:
+          # The component within the architecture
           app.kubernetes.io/component: che-code-runtime
+          # The name of a higher level application this one is part of
           app.kubernetes.io/part-of: che-code.eclipse.org
           # Defines a container component as a "container contribution". If a flattened DevWorkspace has a container component with the merge-contribution attribute, then any container contributions are merged into that container component
           controller.devfile.io/container-contribution: true
@@ -144,10 +146,13 @@ Here are all the supported values, including optional ones:
             - name: che-code
               # (OPTIONAL) Map of implementation-dependant string-based free-form attributes
               attributes:
-                # Type of the endpoint
+                # Type of the endpoint. It only allows for it's value to be set to main  which indicates that the endpoint should be used as the mainUrl in the workspace status (i.e. it should be the URL used to access the editor in this context)
                 type: main
+                # An attribute that instructs the service to automatically redirect the unauthenticated requests for current user authentication. Setting this attribute to true has security consequences because it makes Cross-site request forgery (CSRF) attacks possible. The default value of the attribute is false. 
                 cookiesAuthEnabled: true
+                # Defines an endpoint as "discoverable", meaning that a service should be created using the endpoint name (i.e. instead of generating a service name for all endpoints, this endpoint should be statically accessible)
                 discoverable: false
+                # Used to secure the endpoint with authorization on OpenShift, so that not anyone on the cluster can access the endpoint, the attribute enables authentication. 
                 urlRewriteSupported: true
               # Port number to be used within the container component
               targetPort: 3100
@@ -187,7 +192,7 @@ Here are all the supported values, including optional ones:
             2>&1 &'        
 ```
 
-To run the workspace using a new editor you need to build a link:
+To run a workspace using a new editor you need to build a link:
 `https://<che-host>/#<sample-git-repo>?che-editor=<editor-definition-raw-url>`. Where:
 - `che-host` is an Eclipse Che instance like `https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com`
 - `git-repo` is a repository with a project that should be cloned into the workspace
