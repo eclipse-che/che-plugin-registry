@@ -171,7 +171,7 @@ Here are all the supported values, including optional ones:
       # IDs of commands that should be executed before the devworkspace start. This commands would typically be executed in init container
       preStart:
         - init-container-command
-      # IDs of commands that should be executed after the devworkspace is completely started. In the case of Che-Theia, these commands should be executed after all plugins and extensions have started, including project cloning. This means that those commands are not triggered until the user opens the IDE in his browser
+      # IDs of commands that should be executed after the devworkspace is completely started. In the case of Che-Code, these commands should be executed after all plugins and extensions have started, including project cloning. This means that those commands are not triggered until the user opens the IDE in his browser
       postStart:
         - init-che-code-command
     # (OPTIONAL) Predefined, ready-to-use, devworkspace-related commands
@@ -194,7 +194,7 @@ Here are all the supported values, including optional ones:
 
 To run a workspace using a new editor you need to build a link:
 `https://<che-host>/#<sample-git-repo>?che-editor=<editor-definition-raw-url>`. Where:
-- `che-host` is an Eclipse Che instance like `https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com`
+- `che-host` is an Eclipse Che instance like `https://devspaces.apps.sandbox-stage.gb17.p1.openshiftapps.com/`
 - `git-repo` is a repository with a project that should be cloned into the workspace
 - `editor-definition-raw-url` is an URL to the raw content of your editor definition 
 
