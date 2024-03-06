@@ -194,7 +194,7 @@ Here are all the supported values, including optional ones:
 
 To run a workspace using a new editor you need to build a link:
 `https://<che-host>/#<sample-git-repo>?che-editor=<editor-definition-raw-url>`. Where:
-- `che-host` is an Eclipse Che instance like `https://devspaces.apps.sandbox-stage.gb17.p1.openshiftapps.com/`
+- `che-host` is an Eclipse Che instance like `https://devspaces.apps.sandbox-m4.g2pi.p1.openshiftapps.com/`
 - `git-repo` is a repository with a project that should be cloned into the workspace
 - `editor-definition-raw-url` is an URL to the raw content of your editor definition 
 
