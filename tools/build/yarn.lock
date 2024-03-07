@@ -475,10 +475,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@devfile/api@2.2.2-1709132141":
-  version "2.2.2-1709132141"
-  resolved "https://registry.yarnpkg.com/@devfile/api/-/api-2.2.2-1709132141.tgz#7c2e0ffddfbbb76d119597088563821337d5d65e"
-  integrity sha512-rav70K395A0H50h06hnJS5J6YgC2Nti3wg0LmpK/T2XjucGRlmlb9UeEbPZa6+jVNE50HzdqiFNaQLkkTLF1tg==
+"@devfile/api@2.2.2-1709808589":
+  version "2.2.2-1709808589"
+  resolved "https://registry.yarnpkg.com/@devfile/api/-/api-2.2.2-1709808589.tgz#b59656bfd3bc9a9919b8d5468e53a720fe6d13e2"
+  integrity sha512-frdF31pg6fPazZQDni0L9jDvTnsigFk8so9GR1vtOIrD5lywq9Je19yz7p6KmfKYPC5ESSn+IoNyzjQnS2BlJA==
   dependencies:
     "@types/node" "*"
     "@types/node-fetch" "^2.5.7"
@@ -5456,6 +5456,7 @@ wordwrap@^1.0.0:
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
