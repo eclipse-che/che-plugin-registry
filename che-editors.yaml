@@ -234,13 +234,13 @@ editors:
         volume: {}
   - schemaVersion: 2.2.2
     metadata:
-      name: che-incubator/che-code/7.82.0
+      name: che-incubator/che-code/7.83.0
       displayName: VS Code - Open Source
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
       icon: /images/vscode.svg
       attributes:
         publisher: che-incubator
-        version: 7.82.0
+        version: 7.83.0
         title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         repository: https://github.com/che-incubator/che-code
         firstPublicationDate: '2021-10-31'
@@ -261,7 +261,7 @@ editors:
     components:
       - name: che-code-injector
         container:
-          image: 'quay.io/che-incubator/che-code:7.82.0'
+          image: 'quay.io/che-incubator/che-code:7.83.0'
           command:
             - /entrypoint-init-container.sh
           volumeMounts:
