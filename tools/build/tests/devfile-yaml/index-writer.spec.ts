@@ -31,8 +31,8 @@ describe('Test IndexWriter', () => {
           displayName: 'display-name',
           description: 'my-description',
           icon: '/images/idea.svg',
+          tags: ['my-tag', 'Tech-Preview'],
           attributes: {
-            tags: ['my-tag'],
             icon: 'my-icon',
             category: 'my-category',
             version: 'latest',
@@ -107,6 +107,8 @@ describe('Test IndexWriter', () => {
     expect(jsonOutput[1].type).toBe('Che Editor');
     expect(jsonOutput[1].version).toBe('latest');
     expect(jsonOutput[1].icon).toBe('/v3/images/idea.svg');
+    expect(jsonOutput[1].tags[0]).toBe('my-tag');
+    expect(jsonOutput[1].tags[1]).toBe('Tech-Preview');
 
     expect(jsonOutput[2].id).toBe('my-publisher/my-name/latest');
     expect(jsonOutput[2].description).toBe('my-description');
