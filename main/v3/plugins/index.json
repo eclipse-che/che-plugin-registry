@@ -6,6 +6,9 @@
     "links": {
       "devfile": "/v3/plugins/cdr/code-server/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "code-server",
     "publisher": "cdr",
     "type": "Che Editor",
@@ -19,6 +22,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-code/insiders/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-code",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -45,6 +51,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea-server/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-idea-server",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -58,6 +67,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea-server/next/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-idea-server",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -71,6 +83,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-idea",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -84,6 +99,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-idea/next/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-idea",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -97,6 +115,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-pycharm/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -110,6 +131,9 @@
     "links": {
       "devfile": "/v3/plugins/che-incubator/che-pycharm/next/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "che-pycharm",
     "publisher": "che-incubator",
     "type": "Che Editor",
@@ -123,6 +147,9 @@
     "links": {
       "devfile": "/v3/plugins/dirigiblelabs/dirigible/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "dirigible",
     "publisher": "dirigiblelabs",
     "type": "Che Editor",
@@ -136,6 +163,9 @@
     "links": {
       "devfile": "/v3/plugins/ws-skeleton/eclipseide/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "eclipseide",
     "publisher": "ws-skeleton",
     "type": "Che Editor",
@@ -149,6 +179,9 @@
     "links": {
       "devfile": "/v3/plugins/ws-skeleton/jupyter/latest/devfile.yaml"
     },
+    "tags": [
+      "Tech-Preview"
+    ],
     "name": "jupyter",
     "publisher": "ws-skeleton",
     "type": "Che Editor",

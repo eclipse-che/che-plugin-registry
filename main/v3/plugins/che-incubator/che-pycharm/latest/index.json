@@ -4,6 +4,8 @@ metadata:
   displayName: JetBrains PyCharm Community
   description: JetBrains PyCharm Community IDE for Eclipse Che
   icon: /images/pycharm.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: che-incubator
     version: latest

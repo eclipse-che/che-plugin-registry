@@ -4,6 +4,8 @@ metadata:
   displayName: VS Code - Open Source
   description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che - Insiders build
   icon: /images/vscode.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: che-incubator
     version: insiders

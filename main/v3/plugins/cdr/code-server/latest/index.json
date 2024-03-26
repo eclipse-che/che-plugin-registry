@@ -4,6 +4,8 @@ metadata:
   displayName: VS Code via code-server
   description: An open source distribution of Visual Studio Code (code-server) for Eclipse Che
   icon: /images/vscode.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: cdr
     version: 3.6.2

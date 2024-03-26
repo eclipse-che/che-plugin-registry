@@ -4,6 +4,8 @@ metadata:
   displayName: Eclipse IDE with Broadway
   description: Eclipse IDE (in browser using Broadway) for Eclipse Che
   icon: /images/eclipse-ide.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: ws-skeleton
     version: 4.9.0

@@ -4,6 +4,8 @@ metadata:
   displayName: Jupyter Notebook
   description: Jupyter Notebook for Eclipse Che
   icon: /images/notebook.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: ws-skeleton
     version: 5.7.0

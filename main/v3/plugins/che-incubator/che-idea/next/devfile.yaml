@@ -4,6 +4,8 @@ metadata:
   displayName: IntelliJ IDEA Community
   description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
   icon: /images/intellij-idea.svg
+  tags:
+    - Tech-Preview
   attributes:
     publisher: che-incubator
     version: next
