@@ -6,6 +6,8 @@ editors:
       displayName: Jupyter Notebook
       description: Jupyter Notebook for Eclipse Che
       icon: /images/notebook.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: ws-skeleton
         version: 5.7.0
@@ -37,6 +39,8 @@ editors:
       displayName: Eclipse Dirigible
       description: Eclipse Dirigible for Eclipse Che
       icon: /images/dirigible.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: dirigiblelabs
         version: 3.4.0
@@ -86,6 +90,8 @@ editors:
       displayName: Eclipse IDE with Broadway
       description: Eclipse IDE (in browser using Broadway) for Eclipse Che
       icon: /images/eclipse-ide.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: ws-skeleton
         version: 4.9.0
@@ -115,6 +121,8 @@ editors:
       description: An open source distribution of Visual Studio Code (code-server)
         for Eclipse Che
       icon: /images/vscode.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: cdr
         version: 3.6.2
@@ -150,6 +158,8 @@ editors:
       description: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
         - Insiders build
       icon: /images/vscode.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: insiders
@@ -325,6 +335,8 @@ editors:
       displayName: IntelliJ IDEA Community
       description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che - next
       icon: /images/intellij-idea.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: next
@@ -431,6 +443,8 @@ editors:
       displayName: IntelliJ IDEA Community
       description: JetBrains IntelliJ IDEA Community IDE for Eclipse Che
       icon: /images/intellij-idea.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: latest
@@ -537,6 +551,8 @@ editors:
       displayName: JetBrains PyCharm Community
       description: JetBrains PyCharm Community IDE for Eclipse Che - next
       icon: /images/pycharm.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: next
@@ -643,6 +659,8 @@ editors:
       displayName: JetBrains PyCharm Community
       description: JetBrains PyCharm Community IDE for Eclipse Che
       icon: /images/pycharm.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: latest
@@ -749,6 +767,8 @@ editors:
       displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
       icon: /images/intellij-idea.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: next
@@ -815,6 +835,8 @@ editors:
       displayName: IntelliJ IDEA Ultimate (desktop)
       description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - latest
       icon: /images/intellij-idea.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: che-incubator
         version: latest

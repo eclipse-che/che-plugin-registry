@@ -57,6 +57,7 @@ export class IndexWriter {
         links: {
           devfile: `/v3/plugins/${id}/devfile.yaml`,
         },
+        tags: metadata.tags,
         name: name,
         publisher: publisher,
         type: this.CHE_EDITOR_TYPE,

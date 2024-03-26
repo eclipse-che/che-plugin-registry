@@ -37,6 +37,8 @@ Here is the expected format of a [`che-editors.yaml`](./che-editors.yaml) editor
       displayName: Jupyter Notebook
       description: Jupyter Notebook for Eclipse Che
       icon: /images/notebook.svg
+      tags:
+        - Tech-Preview
       attributes:
         publisher: ws-skeleton
         version: 5.7.0
@@ -77,6 +79,9 @@ Here are all the supported values, including optional ones:
       description: Run Editor Foo on top of Eclipse Che
       # Editor's icon. The icon should be located in /images folder.
       icon: /images/editor_icon.svg
+      # (OPTIONAL) Array of tags of the current editor. Tech-Preview means it's considered experimental and is not recommended for production environments. While it can include new features and improvements, it may still contain bugs or undergo significant changes before reaching a stable version. 
+      tags:
+        - Tech-Preview
       # (OPTIONAL) Additional attributes
       attributes:
         title: This is my editor
