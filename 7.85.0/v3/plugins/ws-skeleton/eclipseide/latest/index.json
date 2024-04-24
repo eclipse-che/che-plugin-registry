@@ -1,0 +1,30 @@
+schemaVersion: 2.2.2
+metadata:
+  name: eclipseide
+  displayName: Eclipse IDE with Broadway
+  description: Eclipse IDE (in browser using Broadway) for Eclipse Che
+  icon: /images/eclipse-ide.svg
+  tags:
+    - Tech-Preview
+  attributes:
+    publisher: ws-skeleton
+    version: 4.9.0
+    title: Eclipse IDE (in browser using Broadway) for Eclipse Che
+    repository: https://github.com/ws-skeleton/che-editor-eclipseide/
+    firstPublicationDate: '2019-02-05'
+components:
+  - name: eclipse-ide
+    container:
+      image: index.docker.io/wsskeleton/eclipse-broadway@sha256:57c82cd806a56f69aa8663f68405d0778b628a29a64fb16881b11ce9f484dda7
+      mountSources: true
+      memoryLimit: 2048M
+      endpoints:
+        - name: eclipse-ide
+          targetPort: 5000
+          exposure: public
+          protocol: https
+          attributes:
+            type: main
+    attributes:
+      ports:
+        - exposedPort: 5000
