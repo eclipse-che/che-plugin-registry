@@ -52,7 +52,7 @@ jobs:
           echo "PR_SHA=$pr_sha" >> $GITHUB_ENV
       - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
       - name: publish
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
