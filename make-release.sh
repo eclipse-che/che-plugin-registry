@@ -1,32 +1,45 @@
 #!/bin/bash
-# Release process automation script. 
+# Release process automation script.
 # Used to create branch/tag, update VERSION files
-# and trigger release by force pushing changes to the release branch 
+# and trigger release by force pushing changes to the release branch
 
 # set to 1 to actually trigger changes in the release branch
-TRIGGER_RELEASE=0 
+TRIGGER_RELEASE=0
 NOCOMMIT=0
 TMP=""
 REPO=git@github.com:eclipse-che/che-plugin-registry
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
-    '-t'|'--trigger-release') TRIGGER_RELEASE=1; NOCOMMIT=0; shift 0;;
-    '-v'|'--version') VERSION="$2"; shift 1;;
-    '-tmp'|'--use-tmp-dir') TMP=$(mktemp -d); shift 0;;
-    '-n'|'--no-commit') NOCOMMIT=1; TRIGGER_RELEASE=0; shift 0;;
+  '-t' | '--trigger-release')
+    TRIGGER_RELEASE=1
+    NOCOMMIT=0
+    shift 0
+    ;;
+  '-v' | '--version')
+    VERSION="$2"
+    shift 1
+    ;;
+  '-tmp' | '--use-tmp-dir')
+    TMP=$(mktemp -d)
+    shift 0
+    ;;
+  '-n' | '--no-commit')
+    NOCOMMIT=1
+    TRIGGER_RELEASE=0
+    shift 0
+    ;;
   esac
   shift 1
 done
 
-usage ()
-{
+usage() {
   echo "Usage: $0  --version [VERSION TO RELEASE] [--trigger-release]"
-  echo "Example: $0 --version 7.27.0 --trigger-release"; echo
+  echo "Example: $0 --version 7.27.0 --trigger-release"
+  echo
 }
 
-performRelease() 
-{
+performRelease() {
   SHORT_SHA1=$(git rev-parse --short HEAD)
   VERSION=$(head -n 1 VERSION)
   BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${VERSION}"
@@ -46,19 +59,19 @@ BRANCH=${VERSION%.*}.x
 # if doing a .0 release, use main; if doing a .z release, use $BRANCH
 if [[ ${VERSION} == *".0" ]]; then
   BASEBRANCH="main"
-else 
+else
   BASEBRANCH="${BRANCH}"
 fi
 
-fetchAndCheckout ()
-{
+fetchAndCheckout() {
   bBRANCH="$1"
-  git fetch origin "${bBRANCH}:${bBRANCH}"; git checkout "${bBRANCH}"
+  git fetch origin "${bBRANCH}:${bBRANCH}"
+  git checkout "${bBRANCH}"
 }
 
 # work in tmp dir if --use-tmp-dir (not required when running as GH action)
-if [[ $TMP ]] && [[ -d $TMP ]]; then 
-  pushd "$TMP" > /dev/null || exit 1
+if [[ $TMP ]] && [[ -d $TMP ]]; then
+  pushd "$TMP" >/dev/null || exit 1
   # get sources from ${BASEBRANCH} branch
   echo "Check out ${REPO} to ${TMP}/${REPO##*/}"
   git clone "${REPO}" -q
@@ -73,8 +86,7 @@ if [[ "${BASEBRANCH}" != "${BRANCH}" ]]; then
   fetchAndCheckout "${BRANCH}"
 fi
 
-commitChangeOrCreatePR()
-{
+commitChangeOrCreatePR() {
   if [[ ${NOCOMMIT} -eq 1 ]]; then
     echo "[INFO] NOCOMMIT = 1; so nothing will be committed. Run this script with no flags for usage + list of flags/options."
   else
@@ -84,7 +96,7 @@ commitChangeOrCreatePR()
 
     if [[ ${PR_BRANCH} == *"add"* ]]; then
       COMMIT_MSG="chore: release: add ${aVERSION} plugins in ${aBRANCH}"
-    else 
+    else
       COMMIT_MSG="chore: release: bump to ${aVERSION} in ${aBRANCH}"
     fi
 
@@ -107,32 +119,48 @@ commitChangeOrCreatePR()
 }
 
 # update che-editors.yaml; also update the VERSION file
-updateEditors () {
+updateEditors() {
   newVERSION="$1"
-  thisVERSION="$2" # if false, don't update che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-editors.yaml 
+  thisVERSION="$2" # if false, don't update che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-editors.yaml
   pwd
 
-  # Now do che-code in che-editors.yaml
   cheCode="che-incubator/che-code"
-  sed -i "che-editors.yaml" \
-      -e "s#id: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheCode}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#name: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheCode}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#"
-  # update .metadata.attributes.version to latest released version
   cheCodeDesc="Microsoft Visual Studio Code - Open Source IDE for Eclipse Che"
+
+  # Go through each YAML file in editors folder
+  find editors -type f -name "*.yaml" | while read -r file; do
+    # Check if the file exists and is readable
+    if [ -f "$file" ] && [ -r "$file" ]; then
+      # Update version-related information in each YAML file
+      sed -i "s#id: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheCode}/${newVERSION}#" "$file"
+      sed -i "s#name: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheCode}/${newVERSION}#" "$file"
+      sed -i "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#" "$file"
+      # Update metadata attributes if needed
+      # shellcheck disable=SC2016
+      yq -Yi --arg ver "${newVERSION}" --arg desc "${cheCodeDesc}" \
+        '.metadata |= if .description == $desc then .attributes.version |= $ver else . end' "$file"
+    fi
+  done
+
+  # Now do che-code in che-editors.yaml
+  sed -i "che-editors.yaml" \
+    -e "s#id: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheCode}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
+    -e "s#name: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheCode}/${newVERSION}#"
+  sed -i "che-editors.yaml" \
+    -e "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#"
+  # update .metadata.attributes.version to latest released version
   # shellcheck disable=SC2016
-  yq -Yi --arg ver "${newVERSION}" --arg desc "${cheCodeDesc}"  \
+  yq -Yi --arg ver "${newVERSION}" --arg desc "${cheCodeDesc}" \
     '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
- 
+
   # update package.json with the new version
   sed -i -r -e "s/(\"version\": )(\".*\")/\1\"${newVERSION}\"/" tools/build/package.json
 
   # for .z releases, VERSION files should not be updated in main branch (only in .z branch)
   if [[ ${thisVERSION} != "false" ]]; then
     # update VERSION file with VERSION or NEWVERSION
-    echo "${thisVERSION}" > VERSION
+    echo "${thisVERSION}" >VERSION
   fi
 }
 
@@ -159,11 +187,15 @@ fetchAndCheckout "${BASEBRANCH}"
 # change VERSION file + commit change into ${BASEBRANCH} branch
 if [[ "${BASEBRANCH}" != "${BRANCH}" ]]; then
   # bump the y digit
-  [[ $BRANCH =~ ^([0-9]+)\.([0-9]+)\.x ]] && BASE=${BASH_REMATCH[1]}; NEXT=${BASH_REMATCH[2]}; (( NEXT=NEXT+1 )) # for BRANCH=7.10.x, get BASE=7, NEXT=11
+  [[ $BRANCH =~ ^([0-9]+)\.([0-9]+)\.x ]] && BASE=${BASH_REMATCH[1]}
+  NEXT=${BASH_REMATCH[2]}
+  ((NEXT = NEXT + 1)) # for BRANCH=7.10.x, get BASE=7, NEXT=11
   NEXTVERSION="${BASE}.${NEXT}.0-SNAPSHOT"
 else
   # bump the z digit
-  [[ $VERSION =~ ^([0-9]+)\.([0-9]+)\.([0-9]+) ]] && BASE="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"; NEXT="${BASH_REMATCH[3]}"; (( NEXT=NEXT+1 )) # for VERSION=7.7.1, get BASE=7.7, NEXT=2
+  [[ $VERSION =~ ^([0-9]+)\.([0-9]+)\.([0-9]+) ]] && BASE="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+  NEXT="${BASH_REMATCH[3]}"
+  ((NEXT = NEXT + 1)) # for VERSION=7.7.1, get BASE=7.7, NEXT=2
   NEXTVERSION="${BASE}.${NEXT}-SNAPSHOT"
 fi
 

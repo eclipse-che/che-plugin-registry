@@ -1,0 +1,71 @@
+schemaVersion: 2.2.2
+metadata:
+  name: dirigible
+  displayName: Eclipse Dirigible
+  description: Eclipse Dirigible for Eclipse Che
+  tags:
+    - Tech-Preview
+  attributes:
+    publisher: dirigiblelabs
+    version: 3.4.0
+    title: Eclipse Dirigible for Eclipse Che
+    repository: https://github.com/dirigiblelabs/dirigible-che-editor-plugin/
+    firstPublicationDate: '2019-02-05'
+    icon-mediatype: image/svg+xml
+    icon-data: "<svg version=\"1.2\" baseProfile=\"tiny-ps\" xmlns=\"http://www.w3.org/2000/svg\"\
+      \ viewBox=\"0 0 2000 2000\" width=\"2000\" height=\"2000\">\n  <title>dirigible-logo-2Kx2K-svg</title>\n\
+      \  <defs>\n    <image  width=\"1666\" height=\"60\" id=\"img1\" href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC\"\
+      />\n    <image  width=\"1666\" height=\"60\" id=\"img2\" href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC\"\
+      />\n    <image  width=\"1666\" height=\"60\" id=\"img3\" href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABoIAAAA8AQMAAAB4uDr4AAAAAXNSR0IB2cksfwAAAANQTFRF/swEeAI/WwAAACNJREFUeJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAMCnATE4AAFkcoGEAAAAAElFTkSuQmCC\"\
+      />\n  </defs>\n  <style>\n    tspan { white-space:pre }\n    .s0 { fill: #fecc04\
+      \ } \n    .s1 { fill: #000000 } \n  </style>\n  <path id=\"Layer\" class=\"\
+      s0\" d=\"m1000 2000c-553 0-1000-447-1000-1000c0-553 447-1000 1000-1000c553 0\
+      \ 1000 447 1000 1000c0 553-447 1000-1000 1000z\" />\n  <g id=\"Layer_1\">\n\
+      \    <path id=\"Layer\" class=\"s1\" d=\"m956.31 1452.37c-400.55 0-724.33-210.05-724.33-469.91c0-259.86\
+      \ 323.78-469.91 724.33-469.91c400.55 0 724.33 210.05 724.33 469.91c0 259.86-323.78\
+      \ 469.91-724.33 469.91z\" />\n    <path id=\"Layer\" class=\"s1\" d=\"m1202.94\
+      \ 1418.68c-7.02 31.1-21.79 78.22-55.32 113.68c-31.04 32.82-63.63 40.29-214.18\
+      \ 41.13c-178.08 0.99-208.7-9.22-234.39-41.13c-31.31-38.89-39.75-92.48-42.11-129.5\"\
+      \ />\n    <path id=\"Layer\" class=\"s1\" d=\"m1361.66 621.78l202.51-98.65l166.15\
+      \ 49.33l-114.78 274.01\" />\n    <path id=\"Layer copy\" class=\"s1\" d=\"m1613.54\
+      \ 1113.13l114.78 274.01l-166.15 49.33l-202.51-98.65\" />\n    <use id=\"Layer\
+      \ 1\" href=\"#img1\" x=\"123\" y=\"836\" />\n    <use id=\"Layer 2\" href=\"\
+      #img2\" x=\"119\" y=\"952\" />\n    <use id=\"Layer 3\" href=\"#img3\" x=\"\
+      120\" y=\"1068\" />\n  </g>\n</svg>\n"
+components:
+  - name: eclipse-dirigible
+    container:
+      image: docker.io/dirigiblelabs/dirigible-openshift:3.4.0
+      env:
+        - name: DIRIGIBLE_DATABASE_PROVIDER
+          value: local
+        - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER
+          value: /projects/dirigible/repository
+        - name: DIRIGIBLE_REPOSITORY_LOCAL_ROOT_FOLDER_IS_ABSOLUTE
+          value: 'true'
+        - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER
+          value: /projects/dirigible/repository
+        - name: DIRIGIBLE_REPOSITORY_SEARCH_ROOT_FOLDER_IS_ABSOLUTE
+          value: 'true'
+        - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER
+          value: /projects/dirigible/cms
+        - name: DIRIGIBLE_CMS_INTERNAL_ROOT_FOLDER_IS_ABSOLUTE
+          value: 'true'
+        - name: DIRIGIBLE_DATABASE_H2_ROOT_FOLDER_DEFAULT
+          value: /projects/dirigible/h2
+        - name: DIRIGIBLE_DATABASE_H2_URL
+          value: jdbc:h2:/projects/dirigible/h2
+        - name: DIRIGIBLE_OPERATIONS_LOGS_ROOT_FOLDER_DEFAULT
+          value: /usr/local/tomcat/logs
+      mountSources: true
+      memoryLimit: 1024M
+      endpoints:
+        - name: dirigible
+          attributes:
+            type: main
+          targetPort: 8080
+          exposure: public
+          protocol: https
+    attributes:
+      ports:
+        - exposedPort: 8080

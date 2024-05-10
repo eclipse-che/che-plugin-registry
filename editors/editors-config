@@ -1,0 +1,12 @@
+che-incubator/che-code/insiders/devfile.yaml
+che-incubator/che-code/latest/devfile.yaml
+che-incubator/che-idea/latest/devfile.yaml
+che-incubator/che-idea/next/devfile.yaml
+che-incubator/che-idea-server/latest/devfile.yaml
+che-incubator/che-idea-server/next/devfile.yaml
+che-incubator/che-pycharm/latest/devfile.yaml
+che-incubator/che-pycharm/next/devfile.yaml
+dirigiblelabs/dirigible/latest/devfile.yaml
+ws-skeleton/eclipseide/latest/devfile.yaml
+ws-skeleton/jupyter/latest/devfile.yaml
+cdr/code-server/latest/devfile.yaml
