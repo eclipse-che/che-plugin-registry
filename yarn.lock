@@ -475,10 +475,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@devfile/api@2.2.2-1715367693":
-  version "2.2.2-1715367693"
-  resolved "https://registry.yarnpkg.com/@devfile/api/-/api-2.2.2-1715367693.tgz#0e0bbd8a54b5d4f05c2aa9b6cc725a2404629a5c"
-  integrity sha512-dWGyC7I6cV3L+K2TMOY/hUzmMqp+X1wMp3M3OusoXZrKWExvQVcZZwVd9BB6vPot+0THEHK56U8qYTEy/Ojy0w==
+"@devfile/api@2.2.2-1716821574":
+  version "2.2.2-1716821574"
+  resolved "https://registry.yarnpkg.com/@devfile/api/-/api-2.2.2-1716821574.tgz#a9d5f82d015974e0c11338089db8759843c23127"
+  integrity sha512-PbtkJualxyD7MiFULCKHOi4rHXONiXMXImMJ0XjjGsPPnbmHt7yUcjm6OzmA+1loYLqR+BrRk+JLUO5zRf062A==
   dependencies:
     "@types/node" "*"
     "@types/node-fetch" "^2.5.7"
