@@ -21,7 +21,7 @@ jobs:
       run: |
         ISSUE_NUMBER=${{ github.event.issue.number }}
         REPO=${{ github.repository }}
-        LABEL_TO_ADD="status/need-triage"
+        LABEL_TO_ADD="bug"
         LABEL_PREFIX="severity"
 
         # Get the issue labels
