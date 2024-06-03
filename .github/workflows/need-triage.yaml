@@ -10,10 +10,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install GitHub CLI
-      uses: actions/setup-gh@v3
+      uses: actions/checkout@v4
 
     - name: Add Label "status/need-triage" if no label starting with "severity" exists
       env:
@@ -23,10 +20,8 @@ jobs:
         REPO=${{ github.repository }}
         LABEL_TO_ADD="bug"
         LABEL_PREFIX="severity"
-
         # Get the issue labels
         ISSUE_LABELS=$(gh issue view $ISSUE_NUMBER --json labels --jq '.labels[].name')
-
         # Check if any label starts with 'severity'
         if echo "$ISSUE_LABELS" | grep -q "^$LABEL_PREFIX"; then
           echo "A label starting with '$LABEL_PREFIX' exists. No action needed."
