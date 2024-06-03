@@ -1,0 +1,53 @@
+name: need-triage Label
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Create package.json
+      run: |
+        echo '{}' > package.json
+    - name: Install @octokit/rest
+      run: npm install @octokit/rest
+
+    - name: Add Label "status/need-triage" if no label starting with "severity" exists
+      run: |
+        node -e "
+        const { Octokit } = require('@octokit/rest');
+        const octokit = new Octokit({ auth: process.env.CHE_BOT_GITHUB_TOKEN });
+        const owner = '${{ github.repository_owner }}';
+        const repo = '${{ github.event.repository.name }}';
+        const issue_number = ${{ github.event.issue.number }};
+        const labelPrefix = 'severity';
+        const labelToAdd = 'status/need-triage';
+        (async () => {
+          const { data: issue } = await octokit.issues.get({
+            owner,
+            repo,
+            issue_number,
+          });
+          const hasSeverityLabel = issue.labels.some(label => label.name.startsWith(labelPrefix));
+          if (!hasSeverityLabel) {
+            await octokit.issues.addLabels({
+              owner,
+              repo,
+              issue_number,
+              labels: [labelToAdd],
+            });
+          }
+        })();
+        "
+      env:
+        GITHUB_TOKEN: ${{ secrets.CHE_BOT_GITHUB_TOKEN }}
