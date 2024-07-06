@@ -1,4 +1,4 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.2.2
 metadata:
   name: che-plugin-registry-dev
 components:
@@ -9,6 +9,9 @@ components:
       memoryLimit: 8Gi
       cpuRequest: 100m
       cpuLimit: 2000m
+      volumeMounts:
+        - name: local
+          path: /home/user/.local/
       env:
         - name: CONCURRENTLY_OPTS
           value: -m 1
@@ -16,6 +19,9 @@ components:
         - name: openvsx
           exposure: internal
           targetPort: 5432
+  - volume:
+      ephemeral: true
+    name: local
 commands:
   - id: build
     exec:
