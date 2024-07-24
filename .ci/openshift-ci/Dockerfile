@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2023 Red Hat, Inc.
+# Copyright (c) 2024 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -11,11 +11,16 @@
 #   Red Hat, Inc. - initial API and implementation
 
 # Dockerfile to bootstrap build and test in openshift-ci
-FROM registry.ci.openshift.org/openshift/release:golang-1.18
+FROM registry.ci.openshift.org/openshift/release:golang-1.20
 # hadolint ignore=DL3002
 USER 0
 
 SHELL ["/bin/bash", "-c"]
+
+# Temporary workaround since mirror.centos.org is down and can be replaced with vault.centos.org
+RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo && \
+    sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/*.repo && \
+    sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/*.repo
 
 # Install yq, kubectl, chectl cli used by olm/olm.sh script.
 # hadolint ignore=DL3041
