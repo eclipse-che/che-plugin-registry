@@ -146,7 +146,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
                 vscodeEngineVersion="${vscodeEngineVersion//x/0}"
                 # check if the extension's engine version is compatible with the code version
                 # if the extension's engine version is ahead of the code version, check a next version of the extension
-                if [[  "$vscodeEngineVersion" = "$(echo -e "$vscodeEngineVersion\n$codeVersion" | sort -V | head -n1)" ]]; then
+                if [[  "$vscodeEngineVersion" == "*" || "$vscodeEngineVersion" = "$(echo -e "$vscodeEngineVersion\n$codeVersion" | sort -V | head -n1)" ]]; then
                     #VS Code version >= Engine version, can proceed."
                     resultedVersion=$(echo "${vsixMetadata}" | jq -r ".version")
                     break
