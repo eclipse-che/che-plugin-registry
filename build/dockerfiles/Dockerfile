@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2022 Red Hat, Inc.
+# Copyright (c) 2018-2024 Red Hat, Inc.
 # This program and the accompanying materials are made
 # available under the terms of the Eclipse Public License 2.0
 # which is available at https://www.eclipse.org/legal/epl-2.0/
@@ -11,8 +11,8 @@
 #   IBM Corporation - implementation
 #
 
-# OpenVSX
-FROM ghcr.io/eclipse/openvsx-server:v0.14.5 AS openvsx-server
+# OpenVSX https://github.com/eclipse/openvsx/pkgs/container/openvsx-server
+FROM ghcr.io/eclipse/openvsx-server:v0.16.0 AS openvsx-server
 
 # UBI Builder
 # https://registry.access.redhat.com/ubi8/ubi
