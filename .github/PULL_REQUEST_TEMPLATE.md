@@ -24,6 +24,10 @@ Pull Request Policy: https://github.com/eclipse/che/wiki/Development-Workflow#pu
  -->
 
 
+#### Release Notes
+<!-- markdown to be included in marketing announcement -->
+
+
 ### PR Checklist
 
 [As the author of this Pull Request I made sure that:](https://github.com/eclipse/che/blob/master/CONTRIBUTING.md#pull-request-template-and-its-checklist)
