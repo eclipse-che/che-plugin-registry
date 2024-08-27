@@ -40,7 +40,7 @@ components:
       cpuRequest: 30m
   - name: che-code-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:8065b7ae5f00d2ee984a214e112ce09a513ae06a2a3d58cce11d3eec1137d623
+      image: quay.io/devfile/universal-developer-image@sha256:1b84280bea96228affa7ecedd7347e6801f6e369bdfa7e40dabfc4fa99f9cad6
       memoryLimit: 1024Mi
       memoryRequest: 256Mi
       cpuLimit: 500m
