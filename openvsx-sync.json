@@ -135,19 +135,7 @@
         "id": "atlassian.atlascode"
     },
     {
-        "id": "BroadcomMFD.cobol-language-support"
-    },
-    {
-        "id": "BroadcomMFD.debugger-for-mainframe"
-    },
-    {
-        "id": "BroadcomMFD.hlasm-language-support"
-    },
-    {
         "id": "Zowe.vscode-extension-for-zowe"
-    },
-    {
-        "id": "BroadcomMFD.explorer-for-endevor"
     },
     {
         "id": "zxh404.vscode-proto3"
