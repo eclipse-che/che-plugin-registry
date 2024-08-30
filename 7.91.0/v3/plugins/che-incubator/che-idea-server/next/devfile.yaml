@@ -1,0 +1,67 @@
+schemaVersion: 2.2.2
+metadata:
+  name: che-idea-server
+  displayName: IntelliJ IDEA Ultimate (desktop)
+  description: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
+  icon: /images/intellij-idea.svg
+  tags:
+    - Tech-Preview
+  attributes:
+    publisher: che-incubator
+    version: next
+    title: JetBrains IntelliJ IDEA Ultimate dev server for Eclipse Che - next
+    repository: https://github.com/che-incubator/che-idea-dev-server
+    firstPublicationDate: '2023-30-11'
+commands:
+  - id: inject-editor
+    apply:
+      component: editor-injector
+  - id: start-idea-server
+    exec:
+      component: editor-runtime
+      commandLine: nohup /idea-server/entrypoint-volume.sh > /idea-server/std.out 2>&1 &
+events:
+  preStart:
+    - inject-editor
+  postStart:
+    - start-idea-server
+components:
+  - name: idea-server
+    volume: {}
+  - name: editor-injector
+    container:
+      image: quay.io/che-incubator/che-idea-dev-server:next
+      command:
+        - /entrypoint-init-container.sh
+      volumeMounts:
+        - name: idea-server
+          path: /idea-server
+      memoryLimit: 256Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
+  - name: editor-runtime
+    container:
+      image: quay.io/devfile/universal-developer-image@sha256:1b84280bea96228affa7ecedd7347e6801f6e369bdfa7e40dabfc4fa99f9cad6
+      memoryLimit: 6144Mi
+      memoryRequest: 2048Mi
+      cpuLimit: 2000m
+      cpuRequest: 1500m
+      volumeMounts:
+        - name: idea-server
+          path: /idea-server
+      endpoints:
+        - name: idea-server
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3400
+          exposure: public
+          secure: true
+          protocol: https
+    attributes:
+      app.kubernetes.io/component: editor-runtime
+      app.kubernetes.io/part-of: idea-server.eclipse.org
+      controller.devfile.io/container-contribution: true
