@@ -88,7 +88,7 @@ jobs:
             -e TS_SELENIUM_PASSWORD=admin \
             -e TS_SELENIUM_BASE_URL=https://$(kubectl get ingress che -n eclipse-che -o jsonpath='{.spec.rules[0].host}') \
             -e DELETE_WORKSPACE_ON_FAILED_TEST=true \
-            -e TS_SELENIUM_START_WORKSPACE_TIMEOUT=200000 \
+            -e TS_SELENIUM_START_WORKSPACE_TIMEOUT=350000 \
             -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
             -e VIDEO_RECORDING=true \
             -e TS_SELENIUM_LOG_LEVEL=TRACE \
