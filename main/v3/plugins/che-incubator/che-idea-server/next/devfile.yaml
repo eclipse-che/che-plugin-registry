@@ -42,7 +42,7 @@ components:
       cpuRequest: 30m
   - name: editor-runtime
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:1b84280bea96228affa7ecedd7347e6801f6e369bdfa7e40dabfc4fa99f9cad6
+      image: quay.io/devfile/universal-developer-image@sha256:91981073726f36cc94381102a449fe09d626a972b083f2ec7dea8a12fc20229a
       memoryLimit: 6144Mi
       memoryRequest: 2048Mi
       cpuLimit: 2000m
