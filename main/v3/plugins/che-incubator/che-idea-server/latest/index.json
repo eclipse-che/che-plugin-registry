@@ -30,7 +30,7 @@ components:
     volume: {}
   - name: editor-injector
     container:
-      image: quay.io/che-incubator/che-idea-dev-server@sha256:daff30de4e00e34785b7c11bb33fb24d6e3541f88f3f1170611d613d58864740
+      image: quay.io/che-incubator/che-idea-dev-server@sha256:a29f9c43098f1e010c160921c5c1a1820ab06c07f09eed0e0d88438d64d539b2
       command:
         - /entrypoint-init-container.sh
       volumeMounts:
