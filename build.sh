@@ -87,7 +87,7 @@ echo "Build tooling..."
 pushd "${base_dir}"/tools/build > /dev/null
 yarn build
 echo "Generate artifacts..."
-eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS_ARRAY[@]}"
+eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS_ARRAY[*]@Q}"
 popd > /dev/null
 
 if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
