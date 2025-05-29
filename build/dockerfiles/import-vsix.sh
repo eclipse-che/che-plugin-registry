@@ -55,7 +55,7 @@ getVersions(){
     # check the versions page is empty and retry if it is
     for j in 1 2 3 4 5
     do
-        versionsPage=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=200")
+        versionsPage=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=400")
         totalSize=$(echo "${versionsPage}" | jq -r ".totalSize")
         if [[ "$totalSize" != "null" && "$totalSize" -eq 0 ]]; then
             echo "Attempt $j/5: Error while getting versions for ${vsixName}"
