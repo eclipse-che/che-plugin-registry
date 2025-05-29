@@ -6,7 +6,7 @@ metadata:
   icon: /images/vscode.svg
   attributes:
     publisher: che-incubator
-    version: 7.100.0
+    version: 7.104.0
     title: Microsoft Visual Studio Code - Open Source IDE for Eclipse Che
     repository: https://github.com/che-incubator/che-code
     firstPublicationDate: '2021-10-31'
@@ -26,7 +26,7 @@ events:
 components:
   - name: che-code-injector
     container:
-      image: quay.io/che-incubator/che-code@sha256:3417851e1e3f57b0f659321a2487db8a603717a5f574d7b18371a072affcdbf0
+      image: quay.io/che-incubator/che-code@sha256:ce0cb4c8200932e41ba3e4440e1c82767b9e4fc0631b58f4a8fb10d4816aa55f
       command:
         - /entrypoint-init-container.sh
       volumeMounts:
@@ -38,7 +38,7 @@ components:
       cpuRequest: 30m
   - name: che-code-runtime-description
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:c7ef40c8e6997d8961572a0e9088aec6735b4df0dedae2361085a44260b8c12f
+      image: quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
       memoryLimit: 1024Mi
       memoryRequest: 256Mi
       cpuLimit: 500m
