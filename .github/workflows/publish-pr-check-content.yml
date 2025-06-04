@@ -23,13 +23,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: download dist artifact
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v10
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: plugin-registry-content
           path: content
       - name: PR number
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v10
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: pull-request-number
@@ -42,7 +42,7 @@ jobs:
           fi
           echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
       - name: PR sha
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v10
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: pull-request-sha
