@@ -1,0 +1,12 @@
+quay.io/che-incubator/che-code:insiders
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
+quay.io/che-incubator/che-code@sha256:3ccf82d7f10b8331edda6c883d2bba646530cb87447d5041fc069df53c50e1f7
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
+quay.io/che-incubator/che-idea:next
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
+quay.io/che-incubator/che-idea@sha256:8aae69dc4b0c122491a75400639af0fe92b5e214c6e68ac97cda29fb58b44151
+quay.io/che-incubator/che-idea-dev-server:next
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
+quay.io/che-incubator/che-idea-dev-server@sha256:efba45d3b1edf5fdf51ed9a7aac053fedeff31d31fbeb4c5fe194775ef59e953
+quay.io/devfile/universal-developer-image@sha256:7dd18ea9ce0546949505940dd09743f5a9ddbfbe175b90c5a9626b1f8e013321
