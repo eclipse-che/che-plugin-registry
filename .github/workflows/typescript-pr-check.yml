@@ -25,7 +25,7 @@ jobs:
   check:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: '20'
     - name: Clone source code
