@@ -10,6 +10,8 @@
 name: Next Build/Publish
 
 on:
+  workflow_dispatch:
+    inputs: {}
   push:
     branches:
       - main
