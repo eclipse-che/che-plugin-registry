@@ -192,6 +192,9 @@
         "id": "GitLab.gitlab-workflow"
     },
     {
+        "id": "ms-python.vscode-python-envs"
+    },
+    {
         "id": "redhat.ansible"
     },
     {
