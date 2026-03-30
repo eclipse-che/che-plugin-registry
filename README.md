@@ -2,6 +2,8 @@
 
 # Eclipse Che Plugin Registry
 
+> **Deprecation Notice:** The embedded plugin registry is deprecated. Setting up an internal, on-premises Open VSX registry provides full control over the extension lifecycle, enables offline use, and improves compliance. Refer to the [Running the Open VSX On-Premises](https://eclipse.dev/che/docs/stable/administration-guide/running-the-open-vsx-on-premises/) procedure for detailed setup instructions.
+
 This repository holds editor definitions and ready-to-use plugins for different languages and technologies as part of the embedded instance of the [Open VSX](https://open-vsx.org/about) registry to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on open-vsx.org that can be used with Microsoft Visual Studio Code editor.
 
 Current build from the main branch is available at [https://eclipse-che.github.io/che-plugin-registry/main/](https://eclipse-che.github.io/che-plugin-registry/main/).
