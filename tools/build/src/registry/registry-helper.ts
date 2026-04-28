@@ -96,8 +96,12 @@ export class RegistryHelper {
     }
 
     // use custom headers to correctly grab all information
-    headers['Accept'] =
-      'application/vnd.oci.image.manifest.v1+json,application/vnd.oci.image.index.v1+json,application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.distribution.manifest.list.v2+json';
+    headers['Accept'] = [
+      'application/vnd.oci.image.manifest.v1+json',
+      'application/vnd.oci.image.index.v1+json',
+      'application/vnd.docker.distribution.manifest.v2+json',
+      'application/vnd.docker.distribution.manifest.list.v2+json',
+    ].join(',');
 
     // to workaround that JSON is tried on response even if text is specified, use arraybuffer instead
     // we really need untouched raw content as we're using content to apply sha256 on it
