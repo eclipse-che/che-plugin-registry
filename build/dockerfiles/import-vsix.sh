@@ -55,14 +55,21 @@ getMetadata(){
     done
 }
 
-versionsPage=""
+allVersions=""
 getVersions(){
     vsixName=$1
-    # check the versions page is empty and retry if it is
+    local totalSize=-1
+    local offset=0
+    local apiResponse=""
+
+    # Initialize allVersions for this call
+    allVersions="{}"
+
+    # Fetch first page to get totalSize
     for j in 1 2 3 4 5
     do
-        versionsPage=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=600")
-        totalSize=$(echo "${versionsPage}" | jq -r ".totalSize")
+        apiResponse=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=100&offset=0")
+        totalSize=$(echo "${apiResponse}" | jq -r ".totalSize")
         if [[ "$totalSize" != "null" && "$totalSize" -eq 0 ]]; then
             echo "Attempt $j/5: Error while getting versions for ${vsixName}"
 
@@ -74,6 +81,33 @@ getVersions(){
         else
             break
         fi
+    done
+
+    # Merge first page versions
+    allVersions=$(echo "$allVersions $(echo "${apiResponse}" | jq -r '.versions')" | jq -s '.[0] * .[1]')
+    offset=100
+
+    # Fetch remaining pages if needed
+    while [[ $offset -lt $totalSize ]]; do
+        for j in 1 2 3 4 5
+        do
+            local versions
+            apiResponse=$(curl -sLS "https://open-vsx.org/api/${vsixName}/versions?size=100&offset=${offset}")
+            versions=$(echo "${apiResponse}" | jq -r ".versions")
+            if [[ "$versions" != "null" ]]; then
+                # Merge current page versions
+                allVersions=$(echo "$allVersions $versions" | jq -s '.[0] * .[1]')
+                break
+            else
+                echo "Attempt $j/5: Error while getting versions for ${vsixName} at offset ${offset}"
+                if [[ $j -eq 5 ]]; then
+                    echo "[ERROR] Maximum of 5 attempts reached - must exit!"
+                    exit 1
+                fi
+                continue
+            fi
+        done
+        offset=$((offset + 100))
     done
 }
 
@@ -121,8 +155,7 @@ for i in $(seq 0 "$((numberOfExtensions - 1))"); do
             getMetadata "${vsixName}" "latest"
             getVersions "${vsixName}"
             # if version wasn't set in json, grab it from metadata and add it into the file
-            # get all versions of the extension
-            allVersions=$(echo "${versionsPage}" | jq -r '.versions')
+            # get all versions of the extension (allVersions is set by getVersions)
             if [[ "$allVersions" == "{}" ]]; then
                 echo "No versions found for ${vsixName}"
                 exit 1
