@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="none" viewBox="0 0 70 70">
+  <defs>
+    <linearGradient id="a" x1="24.9986" x2="66.6565" y1="27.0463" y2="27.0463" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#21D789"/>
+      <stop offset="1" stop-color="#07C3F2"/>
+    </linearGradient>
+    <linearGradient id="b" x1="-24.5595" x2="61.2197" y1="59.0805" y2="-4.2413" gradientUnits="userSpaceOnUse">
+      <stop offset="0.0107527" stop-color="#FCF84A"/>
+      <stop offset="0.1116" stop-color="#A7EB62"/>
+      <stop offset="0.2056" stop-color="#5FE077"/>
+      <stop offset="0.2727" stop-color="#32DA84"/>
+      <stop offset="0.3065" stop-color="#21D789"/>
+      <stop offset="0.5768" stop-color="#21D789"/>
+      <stop offset="0.5968" stop-color="#21D789"/>
+      <stop offset="0.686" stop-color="#20D68C"/>
+      <stop offset="0.7627" stop-color="#1ED497"/>
+      <stop offset="0.8348" stop-color="#19D1A9"/>
+      <stop offset="0.904" stop-color="#13CCC2"/>
+      <stop offset="0.9707" stop-color="#0BC6E1"/>
+      <stop offset="1" stop-color="#07C3F2"/>
+    </linearGradient>
+    <linearGradient id="c" x1="9.33007" x2="23.6369" y1="77.6536" y2="32.7598" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#21D789"/>
+      <stop offset="0.1601" stop-color="#24D888"/>
+      <stop offset="0.2979" stop-color="#2FD985"/>
+      <stop offset="0.4273" stop-color="#41DC80"/>
+      <stop offset="0.5517" stop-color="#5AE079"/>
+      <stop offset="0.6726" stop-color="#7AE46F"/>
+      <stop offset="0.7908" stop-color="#A1EA64"/>
+      <stop offset="0.9045" stop-color="#CFF157"/>
+      <stop offset="1" stop-color="#FCF84A"/>
+    </linearGradient>
+    <linearGradient id="d" x1="28.2753" x2="59.4087" y1="38.6232" y2="-3.23587" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#21D789"/>
+      <stop offset="0.0925964" stop-color="#23D986"/>
+      <stop offset="0.1722" stop-color="#2ADE7B"/>
+      <stop offset="0.2467" stop-color="#36E669"/>
+      <stop offset="0.2707" stop-color="#3BEA62"/>
+      <stop offset="0.3504" stop-color="#47EB61"/>
+      <stop offset="0.4943" stop-color="#67ED5D"/>
+      <stop offset="0.6859" stop-color="#9AF156"/>
+      <stop offset="0.9155" stop-color="#E0F64D"/>
+      <stop offset="1" stop-color="#FCF84A"/>
+    </linearGradient>
+    <linearGradient id="e" x1="75.8894" x2="13.1579" y1="43.9495" y2="43.3687" gradientUnits="userSpaceOnUse">
+      <stop offset="0.3871" stop-color="#FCF84A"/>
+      <stop offset="0.4627" stop-color="#ECF74C"/>
+      <stop offset="0.611" stop-color="#C1F451"/>
+      <stop offset="0.8153" stop-color="#7EEF5A"/>
+      <stop offset="1" stop-color="#3BEA62"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#a)" d="M49 10.9668L69.5333 28.0001L62.0666 42.9335L49.9333 39.6668H39.2L49 10.9668Z"/>
+  <path fill="url(#b)" d="M28.4667 22.1667L24.5 42.9333L24.0333 50.1667L14.2333 54.6L0 56L4.2 10.7333L29.8667 0L45.7333 10.2667L28.4667 22.1667Z"/>
+  <path fill="url(#c)" d="M28.4667 22.1667L30.3333 62.5334L24.0333 70.0001L0 56.0001L19.6 26.6001L28.4667 22.1667Z"/>
+  <path fill="url(#d)" d="M54.8333 19.1333H30.5666L52.0333 0L54.8333 19.1333Z"/>
+  <path fill="url(#e)" d="M70 62.5333L48.5334 69.7667L20.3 61.8333L28.4667 22.1667L31.7334 19.1333L49 17.5L47.6 35L61.3667 29.6333L70 62.5333Z"/>
+  <g>
+    <path fill="#000000" d="M56 14H14V56H56V14Z"/>
+    <path fill="#FFFFFF" d="M19.1333 19.1333H25.55C29.2833 19.1333 31.6167 21.35 31.6167 24.6166C31.6167 28.2333 28.8167 30.1 25.2 30.1H22.5167V34.7666H19.0167V19.1333H19.1333ZM25.3167 27.1833C27.0667 27.1833 28 26.0166 28 24.7333C28 23.2166 26.95 22.4 25.2 22.4H22.5167V27.1833H25.3167Z"/>
+    <path fill="#FFFFFF" d="M33.6 27.0666C33.6 22.6332 36.8667 18.8999 41.7667 18.8999C44.8 18.8999 46.4334 19.8332 48.0667 21.2332L45.9667 23.7999C44.8 22.6332 43.6334 21.9332 42 21.9332C39.4334 21.9332 37.3334 24.0332 37.3334 26.8332C37.3334 29.6332 39.2 31.7332 42 31.7332C43.8667 31.7332 44.8 31.0332 46.2 29.8666L48.3 32.1999C46.4334 34.0666 44.5667 34.9999 41.5334 34.9999C36.8667 34.9999 33.6 31.4999 33.6 27.0666Z"/>
+    <path fill="#FFFFFF" d="M34.4167 48.6499H18.6667V51.3332H34.4167V48.6499Z"/>
+  </g>
+</svg>
