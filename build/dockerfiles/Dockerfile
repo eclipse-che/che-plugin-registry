@@ -81,18 +81,12 @@ RUN sed -i /mnt/rootfs/etc/httpd/conf/httpd.conf \
 
 STOPSIGNAL SIGWINCH
 
-RUN mkdir -m 777 /mnt/rootfs/var/www/html/v3
 COPY /VERSION /mnt/rootfs/
 COPY /build/dockerfiles/*.sh /mnt/rootfs/
 COPY /openvsx-sync.json /mnt/rootfs/
 RUN chmod 755 /mnt/rootfs/*.sh
 COPY /build/dockerfiles/openvsx.conf /mnt/rootfs/etc/httpd/conf.d/
 COPY README.md .htaccess /mnt/rootfs/var/www/html/
-COPY output/v3 /mnt/rootfs/var/www/html/v3
-COPY v3/plugins/ /mnt/rootfs/var/www/html/v3/plugins/
-COPY v3/images/*.* /mnt/rootfs/var/www/html/v3/images/
-# apply permissions to later change these files (entrypoint update_extension_vsx_references)
-RUN chmod g+rwx -R /mnt/rootfs/var/www/html/v3
 
 # Use scratch image and then copy ubi fs
 FROM scratch
