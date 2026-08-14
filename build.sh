@@ -17,8 +17,6 @@ ORGANIZATION="eclipse"
 TAG="next"
 DOCKERFILE="./build/dockerfiles/Dockerfile"
 SKIP_OCI_IMAGE="false"
-NODE_BUILD_OPTIONS="${NODE_BUILD_OPTIONS:-}"
-BUILD_FLAGS_ARRAY=()
 
 USAGE="
 Usage: ./build.sh [OPTIONS]
@@ -31,13 +29,8 @@ Options:
         Docker registry to be used for image; default 'quay.io'
     --organization, -o [ORGANIZATION]
         Docker image organization to be used for image; default: 'eclipse'
-    --offline
-        Build offline version of registry, with all artifacts included
-        cached in the registry; disabled by default.
     --skip-oci-image
         Build artifacts but do not create the image
-    --skip-digest-generation
-        Write image entries as is instead of re-writing with digests
 "
 
 function print_usage() {
@@ -60,16 +53,8 @@ function parse_arguments() {
             ORGANIZATION="$2"
             shift; shift;
             ;;
-            --offline)
-            BUILD_FLAGS_ARRAY+=("--embed-vsix:true")
-            shift;
-            ;;
             --skip-oci-image)
             SKIP_OCI_IMAGE="true"
-            shift;
-            ;;
-            --skip-digest-generation)
-            BUILD_FLAGS_ARRAY+=("--skip-digest-generation:true")
             shift;
             ;;
             *)
@@ -80,15 +65,6 @@ function parse_arguments() {
 }
 
 parse_arguments "$@"
-
-echo "Update yarn dependencies..."
-yarn
-echo "Build tooling..."
-pushd "${base_dir}"/tools/build > /dev/null
-yarn build
-echo "Generate artifacts..."
-eval yarn node "${NODE_BUILD_OPTIONS}" lib/entrypoint.js --output-folder:"${base_dir}/output" "${BUILD_FLAGS_ARRAY[*]@Q}"
-popd > /dev/null
 
 if [ "${SKIP_OCI_IMAGE}" != "true" ]; then
     BUILD_COMMAND="build"

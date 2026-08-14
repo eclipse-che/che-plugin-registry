@@ -1,5 +1,3 @@
-ignore:
-  - .yarn/
 rules:
   # checks if file ends in a newline character
   end-of-file:

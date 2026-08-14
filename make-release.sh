@@ -29,7 +29,7 @@ performRelease()
 {
   SHORT_SHA1=$(git rev-parse --short HEAD)
   VERSION=$(head -n 1 VERSION)
-  BUILDER=docker SKIP_FORMAT=true SKIP_LINT=true SKIP_TEST=true ./build.sh --tag "${VERSION}"
+  BUILDER=docker ./build.sh --tag "${VERSION}"
   docker tag quay.io/eclipse/che-plugin-registry:"${VERSION}" quay.io/eclipse/che-plugin-registry:"${SHORT_SHA1}"
   docker push quay.io/eclipse/che-plugin-registry:"${SHORT_SHA1}"
   docker push quay.io/eclipse/che-plugin-registry:"${VERSION}"
@@ -106,38 +106,15 @@ commitChangeOrCreatePR()
   fi
 }
 
-# update che-editors.yaml; also update the VERSION file
-updateEditors () {
-  newVERSION="$1"
-  thisVERSION="$2" # if false, don't update che-editors.yaml and VERSION file; otherwise use this value in VERSION, and new version in che-editors.yaml 
-  pwd
-
-  # Now do che-code in che-editors.yaml
-  cheCode="che-incubator/che-code"
-  sed -i "che-editors.yaml" \
-      -e "s#id: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#id: ${cheCode}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#name: ${cheCode}/\([0-9]\+\.[0-9]\+\.[0-9]\+\)#name: ${cheCode}/${newVERSION}#"
-  sed -i "che-editors.yaml" \
-      -e "s#image: \(['\"]*\)quay.io/${cheCode}:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\1#image: \1quay.io/${cheCode}:${newVERSION}\1#"
-  # update .metadata.attributes.version to latest released version
-  cheCodeDesc="Microsoft Visual Studio Code - Open Source IDE for Eclipse Che"
-  # shellcheck disable=SC2016
-  yq -Yi --arg ver "${newVERSION}" --arg desc "${cheCodeDesc}"  \
-    '.editors[] |= if .metadata.description == $desc then .metadata.attributes.version |= $ver else . end' "che-editors.yaml"
- 
-  # update package.json with the new version
-  sed -i -r -e "s/(\"version\": )(\".*\")/\1\"${newVERSION}\"/" tools/build/package.json
-
-  # for .z releases, VERSION files should not be updated in main branch (only in .z branch)
+updateVersion () {
+  thisVERSION="$1"
   if [[ ${thisVERSION} != "false" ]]; then
-    # update VERSION file with VERSION or NEWVERSION
     echo "${thisVERSION}" > VERSION
   fi
 }
 
-# update che-editors.yaml and bump VERSION file to VERSION
-updateEditors "${VERSION}" "${VERSION}"
+# bump VERSION file to VERSION
+updateVersion "${VERSION}"
 
 # commit change into branch
 commitChangeOrCreatePR "${VERSION}" "${BRANCH}" "pr-${BRANCH}-to-${VERSION}"
@@ -167,18 +144,9 @@ else
   NEXTVERSION="${BASE}.${NEXT}-SNAPSHOT"
 fi
 
-# update che-editors.yaml and bump VERSION file to NEXTVERSION
-updateEditors "${VERSION}" "${NEXTVERSION}"
+updateVersion "${NEXTVERSION}"
 commitChangeOrCreatePR "${NEXTVERSION}" "${BASEBRANCH}" "pr-${BASEBRANCH}-to-${NEXTVERSION}"
 
-# now, if we're doing a 7.y.z release, push new plugins into main branch too (#16476)
-if [[ ${BASEBRANCH} != "main" ]]; then
-  fetchAndCheckout "main"
-
-  # update che-editors.yaml; do not update VERSION file in main
-  updateEditors "${VERSION}" false
-  commitChangeOrCreatePR "${VERSION}" "main" "pr-add-${VERSION}-plugins-to-main"
-fi
 
 # cleanup tmp dir
 if [[ $TMP ]] && [[ -d $TMP ]]; then

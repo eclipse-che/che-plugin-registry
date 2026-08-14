@@ -50,7 +50,7 @@ objects:
           - containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /v3/plugins/
+              path: /
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -59,7 +59,7 @@ objects:
             failureThreshold: 10
           readinessProbe:
             httpGet:
-              path: /v3/plugins/
+              path: /
               port: 8080
             initialDelaySeconds: 3
             periodSeconds: 10
