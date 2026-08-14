@@ -1,5 +1,0 @@
-rules:
-  # checks if file ends in a newline character
-  end-of-file:
-    # set to true to enable this rule
-    enable: true
