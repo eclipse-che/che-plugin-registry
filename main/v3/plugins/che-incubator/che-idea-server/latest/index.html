@@ -30,7 +30,7 @@ components:
     volume: {}
   - name: editor-injector
     container:
-      image: quay.io/che-incubator/che-idea-dev-server@sha256:8fff0cab326f8d3da5ef85c12b14d2666871a013ef5bb8863ee7ec85ac9d3cb4
+      image: quay.io/che-incubator/che-idea-dev-server@sha256:d22e0056dd17cbcc797445ab87e41b473b1c8f282b9c6dbb4af07bdd85d960f1
       command:
         - /entrypoint-init-container.sh
       volumeMounts:
@@ -42,7 +42,7 @@ components:
       cpuRequest: 30m
   - name: editor-runtime
     container:
-      image: quay.io/devfile/universal-developer-image@sha256:e90c044425c3ed320d4995673cdef3c0c2aab8aece5863e7358c88095fb0df91
+      image: quay.io/devfile/universal-developer-image@sha256:be5178c2ea69a971eb9f01a2f401832d1e740de67442a0ba94b62a9843c0a1b4
       memoryLimit: 6144Mi
       memoryRequest: 2048Mi
       cpuLimit: 2000m
