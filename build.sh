@@ -10,8 +10,6 @@
 
 set -e
 
-base_dir=$(cd "$(dirname "$0")"; pwd)
-
 REGISTRY="quay.io"
 ORGANIZATION="eclipse"
 TAG="next"
